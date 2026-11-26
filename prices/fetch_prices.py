@@ -285,6 +285,16 @@ SUPPLIERS = {
                     "shipping": "Ontario; petites tôles (jusqu’à 24 × 24 po) expédiées au Canada.",
                     "shipping_en": "Ontario; small sheets (up to 24 × 24 in) shipped within Canada.",
                     "method": "Vitrine Shopify publique (products.json)"},
+    "aircraftspruce": {"id": "aircraftspruce", "name": "Aircraft Spruce Canada", "city": "Brantford (ON)", "region": "CA",
+                       "site": "https://www.aircraftspruce.ca", "currency": "CAD", "ships_qc": "oui",
+                       "shipping": "Prix en CAD sur les pages catalogue publiques. Entrepôt à Brantford (ON); expédition au Canada (frais en sus). Le PDF 2026/2027 imprime « --- » et renvoie au site pour les prix courants.",
+                       "shipping_en": "CAD prices on public catalog pages. Warehouse in Brantford, ON; ships across Canada (freight extra). The 2026/2027 PDF catalog prints ‘---’ and points to the website for current prices.",
+                       "method": "Pages catalogue publiques (tableaux HTML avec prix CAD); PDF sans montants"},
+    "cobalt": {"id": "cobalt", "name": "Cobalt Industrial", "city": "Barrie (ON) et Calgary (AB)", "region": "CA",
+               "site": "https://cobaltindustrial.ca", "currency": "CAD", "ships_qc": "oui",
+               "shipping": "Quincaillerie H. Paulin : petites barres, cornières et feuilles. Expédition par transporteur (tarifs au panier) ou cueillette à Barrie et Calgary.",
+               "shipping_en": "H. Paulin hardware-store stock: small bars, angles and sheets. Carrier shipping (rates at checkout) or pickup in Barrie and Calgary.",
+               "method": "Pages catégorie publiques (prix CAD affichés)"},
 }
 
 # Suppliers we checked that do not publish prices, or that we cannot read politely.
@@ -293,11 +303,14 @@ SUPPLIERS_STATIC = [
      "url": "https://www.metalsupermarkets.com/location/ottawa/", "note": "Aucun magasin au Québec (localisateur officiel); le plus proche est à Ottawa. Pas de prix publics lisibles : soumission en magasin ou en ligne.",
      "note_en": "No Quebec store (official locator); closest is Ottawa. No readable public prices: quote in store or online."},
     {"name": "Russel Metals", "city": "Québec (plusieurs centres)", "status": "sur_demande",
-     "url": "https://www.russelmetals.com/", "note": "Centre de service : prix sur soumission.", "note_en": "Service centre: quoted prices."},
+     "url": "https://www.russelmetals.com/", "note": "Centre de service : prix sur soumission. Le Guide des produits Acier Leroux / Métaux Russel (PDF public) donne dimensions et poids, sans prix.",
+     "note_en": "Service centre: quoted prices. The public Acier Leroux / Russel Metals Products Guide PDF lists sizes and weights, not prices."},
     {"name": "Acier Leroux (Leroux Steel)", "city": "Boucherville et régions", "status": "sur_demande",
-     "url": "https://www.leroux-steel.com/", "note": "Prix sur demande.", "note_en": "Quote only."},
+     "url": "https://www.russelmetals.com/wp-content/uploads/centres-de-service-guide-des-produits.pdf", "note": "Guide de produits PDF public (dimensions/poids seulement, aucun prix). Prix sur soumission.",
+     "note_en": "Public product-guide PDF (sizes/weights only, no prices). Quote only."},
     {"name": "Acier Picard", "city": "Lévis", "status": "sur_demande",
-     "url": "https://www.acierpicard.com/", "note": "Prix sur demande.", "note_en": "Quote only."},
+     "url": "https://www.acierpicard.com/", "note": "Prix sur demande. Le carnet de références AQM / Acier Majeau (PDF) est un guide de dimensions, sans prix.",
+     "note_en": "Quote only. The AQM / Acier Majeau reference catalog PDF is a dimension guide, with no prices."},
     {"name": "Marmen", "city": "Trois-Rivières", "status": "sur_demande",
      "url": "https://www.marmeninc.com/", "note": "Fabricant; pas de vente de matière en ligne.", "note_en": "Fabricator; no online material sales."},
     {"name": "Acier Lachine", "city": "Montréal", "status": "sur_demande",
@@ -341,6 +354,21 @@ SUPPLIERS_STATIC = [
     {"name": "Amazon.ca", "city": "En ligne", "status": "non_couvert",
      "url": "https://www.amazon.ca/", "note": "Pas d’aspiration (conditions d’Amazon). Liens affiliés possibles plus tard, si approuvés.",
      "note_en": "Not scraped (Amazon terms). Affiliate links possible later, if approved."},
+    {"name": "McMaster-Carr", "city": "Elmhurst (IL, É.-U.), expédie au Canada en USD", "status": "bloque",
+     "url": "https://www.mcmaster.com/", "note": "Ils indiquent que les prix sont dans leurs catalogues. Le catalogue imprimé 132 (2026, ~4 500 p.) n’est pas un PDF public (envoi sélectif aux clients). Le « catalogue en ligne » est le site : robots.txt interdit /catalog/, les PDF (/*/pdf) et les points de prix dynamiques (ItmPrsnttnDynamicDat.aspx, /mv). L’API et le punchout exigent un compte client approuvé. Non lu, pas de contournement.",
+     "note_en": "They say pricing is in their catalogs. Printed Catalog 132 (2026, ~4,500 pp.) is not a public PDF (mailed selectively to customers). The ‘online catalog’ is the website: robots.txt disallows /catalog/, PDFs (/*/pdf) and the dynamic price endpoints (ItmPrsnttnDynamicDat.aspx, /mv). The API and punchout need an approved customer account. Not read, no workaround."},
+    {"name": "Midwest Steel & Aluminum", "city": "Minneapolis (MN, É.-U.)", "status": "non_couvert",
+     "url": "https://www.midweststeelsupply.com/", "note": "Boutique de coupe sur mesure; robots OK, mais le prix n’apparaît pas dans le HTML public (calculé après choix des dimensions). Pas de liste PDF. Non ajouté plutôt que deviner.",
+     "note_en": "Cut-to-size shop; robots OK, but the price is not in the public HTML (calculated after size is chosen). No PDF price list. Not added rather than guess."},
+    {"name": "Canadian Tire", "city": "Magasins au Canada (dont QC)", "status": "bloque",
+     "url": "https://www.canadiantire.ca/", "note": "Prix publics en magasin/ligne, mais protection Akamai pour notre robot : non lu, pas de contournement. Pas de catalogue PDF de métal en stock trouvé.",
+     "note_en": "Public in-store/online prices, but Akamai bot protection for our bot: not read, no workaround. No metal-stock price-list PDF found."},
+    {"name": "Lordco Auto Parts", "city": "C.-B. (magasins à l’ouest)", "status": "non_couvert",
+     "url": "https://lordco.com/", "note": "Quelques pièces de métal de quincaillerie (ex. cornière Paulin 1/8 × 1 × 36 po à 13,99 $ CAD) ont un prix public sur la fiche, sans catalogue ou liste téléchargeable. Non aspiré en masse.",
+     "note_en": "A few hardware-store metal SKUs (e.g. Paulin 1/8 × 1 × 36 in angle at CA$13.99) have a public product-page price, but no downloadable catalog. Not bulk-crawled."},
+    {"name": "ArcelorMittal Dofasco", "city": "Hamilton (ON) — usine", "status": "non_couvert",
+     "url": "https://ec.dofasco.ca/EC-B2B-Public-Files/Price%20Book%20-%20ENGLISH.pdf", "note": "Livre « Products & Prices » public (en vigueur 1er janv. 2027) : extra en CAD/cwt FOB usine pour bobines (commande typique ≥ 2 master coils). Pas de prix de base publié, donc pas un prix de tôle au détail comparable.",
+     "note_en": "Public ‘Products & Prices’ book (effective 1 Jan 2027): CAD/cwt extras FOB mill for coils (typical order ≥ 2 master coils). No published base selling price, so not a comparable retail sheet price."},
 ]
 
 MRU_COLLECTIONS = [
@@ -798,6 +826,304 @@ def fetch_recyborg(fx, quick=False):
     return rows
 
 
+# ---------------------------------------------------------------------------
+# Aircraft Spruce Canada — public catalog pages (the PDF prints "---")
+# ---------------------------------------------------------------------------
+AS_PAGES = [
+    # aluminum sheet
+    ("/catalog/mepages/3003_alsheet.php", "sheet"),
+    ("/catalog/mepages/5052H_alsheet.php", "sheet"),
+    ("/catalog/mepages/alumsheet_6061.php", "sheet"),
+    ("/catalog/mepages/alumsheet_6061t4.php", "sheet"),
+    ("/catalog/mepages/alumsheet_6061t6.php", "sheet"),
+    ("/catalog/mepages/alumsheet_2024.php", "sheet"),
+    ("/catalog/mepages/alumsheet_2024t3.php", "sheet"),
+    ("/catalog/mepages/alumsheet_7075.php", "sheet"),
+    ("/catalog/mepages/alumsheet_7075t6.php", "sheet"),
+    # aluminum bar / tube / angle
+    ("/catalog/mepages/6061t6.php", "flat bar"),
+    ("/catalog/mepages/alumround6061t6.php", "round bar"),
+    ("/catalog/mepages/alumtube_6061t6.php", "tube"),
+    ("/catalog/mepages/alumtubing-sq.php", "square tube"),
+    ("/catalog/mepages/alumtube_6061_0.php", "tube"),
+    ("/catalog/mepages/alumtube_5052.php", "tube"),
+    ("/catalog/mepages/3003versatube.php", "tube"),
+    ("/catalog/mepages/alumangle3.php", "angle"),
+    ("/catalog/mepages/alumbar.php", "flat bar"),
+    ("/catalog/mepages/alumround.php", "round bar"),
+    ("/catalog/mepages/alumtube_2024.php", "tube"),
+    ("/catalog/mepages/alumangle.php", "angle"),
+    # steel / stainless
+    ("/catalog/mepages/4130sheet.php", "sheet"),
+    ("/catalog/mepages/4130strips.php", "flat bar"),
+    ("/catalog/mepages/4130rod.php", "round bar"),
+    ("/catalog/mepages/4130square.php", "tube"),
+    ("/catalog/mepages/4130tubing_un1.php", "tube"),
+    ("/catalog/mepages/stainlesstubing.php", "tube"),
+    ("/catalog/mepages/stainlessrod304.php", "round bar"),
+    ("/catalog/mepages/4340rod.php", "round bar"),
+    ("/catalog/mepages/e4340flatsteel.php", "flat bar"),
+]
+
+
+def _as_money(cell):
+    m = re.search(r"\$\s*([\d,]+(?:\.\d{1,2})?)", cell or "")
+    return float(m.group(1).replace(",", "")) if m else None
+
+
+def _as_decode(resp):
+    """Aircraft Spruce pages declare iso-8859-1 and use Windows-1252 foot marks (0x92)."""
+    raw = resp.content
+    if re.search(br"charset\s*=\s*(iso-8859-1|windows-1252)", raw[:4000], re.I):
+        return raw.decode("windows-1252", errors="replace")
+    return resp.text
+
+
+def _as_sheet_size(s):
+    """Parse sheet sizes like 4x12 feet, including typographic foot marks, as inches."""
+    if not s:
+        return None, None
+    t = (s.replace("\u00d7", "x").replace("X", "x")
+         .replace("\u2032", "'").replace("\u2019", "'").replace("\u2018", "'").replace("\u00b4", "'")
+         .replace("\u2033", '"').replace("\u201d", '"').replace("\ufffd", "'"))
+    # Feet only when a foot mark or the word ft/feet is present (4130 "6 x 12" is inches).
+    m = re.search(r"(\d+(?:\.\d+)?)\s*'\s*x\s*(\d+(?:\.\d+)?)\s*'?", t, re.I)
+    if m:
+        a, b = float(m.group(1)) * 12, float(m.group(2)) * 12
+        return min(a, b), max(a, b)
+    m = re.search(r"(\d+(?:\.\d+)?)\s*x\s*(\d+(?:\.\d+)?)\s*(?:ft|feet)\b", t, re.I)
+    if m:
+        a, b = float(m.group(1)) * 12, float(m.group(2)) * 12
+        return min(a, b), max(a, b)
+    m = re.search(r"(\d+(?:\.\d+)?)\s*(?:in|\")?\s*x\s*(\d+(?:\.\d+)?)\s*(?:in|\")?", t, re.I)
+    if m:
+        a, b = float(m.group(1)), float(m.group(2))
+        if 0 < a <= 144 and 0 < b <= 144:
+            return min(a, b), max(a, b)
+    return None, None
+
+
+def _as_length_in(s):
+    if not s:
+        return None
+    t = s.replace("′", "'").replace("’", "'")
+    m = re.search(r"(\d+(?:\.\d+)?)\s*(?:ft|feet|')\b", t, re.I)
+    if m:
+        return float(m.group(1)) * 12
+    m = re.search(r"(\d+(?:\.\d+)?)\s*(?:in|\"|po)\b", t, re.I)
+    if m:
+        return float(m.group(1))
+    return None
+
+
+def fetch_aircraftspruce(fx, quick=False):
+    """Public HTML catalog pages on aircraftspruce.ca (CAD). The downloadable PDF
+    catalog leaves every price as '---' and tells the reader to use the website."""
+    sup = SUPPLIERS["aircraftspruce"]
+    pages = AS_PAGES[:1] if quick else AS_PAGES
+    rows = []
+    note = "Prix courant sur la page catalogue publique (le PDF imprime « --- »)"
+    for path, hint in pages:
+        url = sup["site"] + path
+        soup = BeautifulSoup(_as_decode(get(url)), "lxml")
+        h = soup.find("h1") or soup.find("title")
+        title = (h.get_text(" ", strip=True) if h else path).split("|")[0].strip()
+        for table in soup.find_all("table"):
+            headers = []
+            for tr in table.find_all("tr"):
+                cells = [c.get_text(" ", strip=True) for c in tr.find_all(["th", "td"])]
+                if not cells:
+                    continue
+                lows = [c.lower() for c in cells]
+                if any("price" in c or c == "pn" or "part no" in c or "part number" in c for c in lows) and not any(_as_money(c) for c in cells):
+                    headers = lows
+                    continue
+                price = next((p for c in cells if (p := _as_money(c))), None)
+                if not price:
+                    continue
+                blob = " ".join(cells)
+                if re.search(r"please (?:note|call)|call for price|discount of|hardenability|sold in the thicknesses|cosmetic blemish|cutting charges", blob, re.I):
+                    continue
+                if max((len(c) for c in cells), default=0) > 120:
+                    continue
+                col = {headers[i]: cells[i] for i in range(min(len(headers), len(cells)))} if headers else {}
+                size = col.get("size") or col.get("dimensions") or ""
+                thk_cell = next((col[k] for k in col if "thickness" in k or k in ("in.", "thk", "thick")), "")
+                length_cell = next((col[k] for k in col if "length" in k or k in ("lg", "long")), "")
+                pn = next((col[k] for k in col if k in ("pn", "p/n", "part no.", "part no", "part number")), "")
+                text = " ".join(x for x in (title, *cells) if x and x.lower() not in ("quantity", "buy", "add"))
+                w_in = l_in = length_ft = thickness_in = None
+                if "sheet" in hint or "sheet" in title.lower() or "plate" in title.lower():
+                    w_in, l_in = _as_sheet_size(size)
+                    if w_in is None:
+                        w_in, l_in = _as_sheet_size(" ".join(cells))
+                    if thk_cell:
+                        thickness_in, _, _ = N.parse_thickness(thk_cell, N.detect_family(title) or "aluminium")
+                    if w_in and l_in:
+                        # small pieces (typical 4130 coupons) are labelled in inches
+                        if max(w_in, l_in) <= 24:
+                            size_label = f"{w_in:g} × {l_in:g} po"
+                        else:
+                            size_label = f"{w_in/12:g} × {l_in/12:g} pi"
+                    else:
+                        size_label = size or ""
+                    form_hint = "sheet"
+                else:
+                    form_hint = hint
+                    length_in = _as_length_in(length_cell) or _as_length_in(size) or _as_length_in(text)
+                    if length_in:
+                        length_ft = length_in / 12.0
+                    size_label = size or (length_cell and f"{length_cell}") or size_label_from_title(text)
+                r = make_row(supplier=sup, text=text, price=price, currency="CAD", url=url, fx=fx,
+                             form_hint=form_hint, thickness_in=thickness_in, width_in=w_in, length_in=l_in,
+                             length_ft=length_ft, size_label=size_label, notes=note + (f"; PN {pn}" if pn else ""))
+                if r:
+                    rows.append(r)
+    return rows
+
+
+# ---------------------------------------------------------------------------
+# Cobalt Industrial — public category pages (H. Paulin hardware-store stock)
+# ---------------------------------------------------------------------------
+COBALT_CATEGORIES = [
+    "/categories/fasteners-hardware/metal-stock-tubing/aluminum-angles",
+    "/categories/fasteners-hardware/metal-stock-tubing/flat-aluminum",
+    "/categories/fasteners-hardware/metal-stock-tubing/flat-steel",
+    "/categories/fasteners-hardware/metal-stock-tubing/flat-tubing-aluminum",
+    "/categories/fasteners-hardware/metal-stock-tubing/sheet-metal",
+    "/categories/fasteners-hardware/metal-stock-tubing/steel-angles",
+    "/categories/fasteners-hardware/metal-stock-tubing/square-tubing-aluminum",
+    "/categories/fasteners-hardware/metal-stock-tubing/square-tubing-zinc",
+    "/categories/fasteners-hardware/metal-stock-tubing/square-tubes-zinc",
+    "/categories/fasteners-hardware/metal-stock-tubing/round-tubing-zinc",
+    "/categories/fasteners-hardware/metal-stock-tubing/slotted-steel-angles",
+]
+
+
+def _cobalt_dims(title):
+    """Parse '1/8" X 1" X 36"' or '6X18 16GA' or '24" X 0.025" X 8"' style titles."""
+    t = title.replace("×", "x").replace("X", "x")
+    # 24" X 0.025" X 8" aluminum sheet: mid value is thickness if it's a small decimal
+    m = re.search(
+        r"(\d+(?:\s+\d+/\d+|\.\d+|/\d+)?)\s*(?:\"|''|in)?\s*x\s*"
+        r"(\d+(?:\s+\d+/\d+|\.\d+|/\d+)?)\s*(?:\"|''|in)?\s*x\s*"
+        r"(\d+(?:\s+\d+/\d+|\.\d+|/\d+)?)\s*(?:\"|''|in|ft|FT)?",
+        t, re.I)
+    if not m:
+        m = re.search(
+            r"(\d+(?:\s+\d+/\d+|\.\d+|/\d+)?)\s*(?:\"|''|in)?\s*x\s*"
+            r"(\d+(?:\s+\d+/\d+|\.\d+|/\d+)?)\s*(?:\"|''|in|ft|FT)?",
+            t, re.I)
+        nums = [N._num(x) for x in m.groups()] if m else []
+    else:
+        nums = [N._num(x) for x in m.groups()]
+    gauge = None
+    gm = re.search(r"(\d+)\s*(?:GA|GAUGE|ga)\b", t, re.I)
+    if gm:
+        gauge = int(gm.group(1))
+    length_in = None
+    fm = re.search(r"(\d+(?:\.\d+)?)\s*(?:FT|feet)\b", t, re.I)
+    if fm:
+        length_in = float(fm.group(1)) * 12
+    return nums, gauge, length_in
+
+
+def fetch_cobalt(fx, quick=False):
+    sup = SUPPLIERS["cobalt"]
+    cats = COBALT_CATEGORIES[:2] if quick else COBALT_CATEGORIES
+    rows, seen = [], set()
+    for path in cats:
+        url = sup["site"] + path
+        soup = BeautifulSoup(get(url).text, "lxml")
+        for art in soup.select("article.product-item"):
+            a = art.select_one(".product-item-title a") or art.find("a", href=True)
+            price_el = art.select_one(".product-item-price")
+            if not (a and price_el):
+                continue
+            title = a.get_text(" ", strip=True)
+            href = a.get("href") or ""
+            purl = href if href.startswith("http") else (sup["site"] + href)
+            if purl in seen:
+                continue
+            seen.add(purl)
+            pm = re.search(r"([\d]+(?:[.,]\d{2})?)", price_el.get_text())
+            if not pm:
+                continue
+            price = float(pm.group(1).replace(",", "."))
+            avail = " ".join(p.get_text(" ", strip=True) for p in art.select(".product-item-availability, .product-item-pickup-note"))
+            nums, gauge, length_from_ft = _cobalt_dims(title)
+            family = N.detect_family(title)
+            if family is None and re.search(r"\bzinc\b", title, re.I) and not re.search(r"alumin", title, re.I):
+                family = "acier"
+                text = title + " zinc-plated steel"
+            else:
+                text = title
+            thickness_in = width_in = length_in = length_ft = None
+            hint = ""
+            low = title.lower()
+            if "sheet" in low or "sheet metal" in low:
+                hint = "sheet"
+                if gauge:
+                    gauges = (N.GAUGE_GALV if "galv" in low else
+                              N.GAUGE_STEEL if family == "acier" else
+                              N.GAUGE_AL if family == "aluminium" else N.GAUGE_STEEL)
+                    thickness_in = gauges.get(gauge)
+                if len(nums) >= 2 and nums[0] is not None:
+                    # 6x18 16ga, or 24 x 0.025 x 8
+                    if len(nums) == 3 and nums[1] is not None and nums[1] < 1:
+                        thickness_in = thickness_in or nums[1]
+                        width_in, length_in = nums[0], nums[2]
+                    else:
+                        width_in, length_in = nums[0], nums[1]
+                        if width_in and length_in and width_in > length_in:
+                            width_in, length_in = length_in, width_in
+            elif "angle" in low:
+                hint = "angle"
+                if nums:
+                    thickness_in = nums[0]
+                if length_from_ft:
+                    length_ft = length_from_ft / 1.0 if length_from_ft > 15 else length_from_ft  # already inches
+                    length_ft = length_from_ft / 12.0
+                elif len(nums) >= 3 and nums[-1] and nums[-1] >= 12:
+                    length_in = nums[-1]
+                    length_ft = length_in / 12.0
+            elif "flat tube" in low or "flat tubing" in low:
+                hint = "rectangular tube"
+                if length_from_ft:
+                    length_ft = length_from_ft / 12.0
+                elif len(nums) >= 3:
+                    length_ft = (nums[-1] / 12.0) if nums[-1] >= 12 else nums[-1]
+            elif "flat" in low:
+                hint = "flat bar"
+                if nums:
+                    thickness_in = nums[0]
+                if length_from_ft:
+                    length_ft = length_from_ft / 12.0
+                elif len(nums) >= 3 and nums[-1] and nums[-1] >= 12:
+                    length_ft = nums[-1] / 12.0
+            elif "tube" in low or "tubing" in low:
+                hint = "square tube" if "square" in low else "tube"
+                if length_from_ft:
+                    length_ft = length_from_ft / 12.0
+                elif len(nums) >= 3 and nums[-1] and nums[-1] >= 12:
+                    length_ft = nums[-1] / 12.0
+            size_label = size_label_from_title(title)
+            if width_in and length_in:
+                size_label = f"{width_in:g} × {length_in:g} po"
+            elif length_ft and not size_label:
+                size_label = f"{length_ft:g} pi"
+            size_label = size_label or title
+            r = make_row(supplier=sup, text=text, price=price, currency="CAD", url=purl, fx=fx,
+                         form_hint=hint, family=family, thickness_in=thickness_in, width_in=width_in,
+                         length_in=length_in, length_ft=length_ft, size_label=size_label,
+                         availability=avail, notes="H. Paulin; quincaillerie, petites longueurs")
+            if r:
+                if gauge and not r.get("gauge"):
+                    r["gauge"] = gauge
+                rows.append(r)
+    return rows
+
+
 FETCHERS = {
     "metalsrus": fetch_metalsrus, "metalsdepot": fetch_metalsdepot, "unitedstainless": fetch_unitedstainless,
     "mercier40": fetch_mercier40, "princessauto": fetch_princessauto, "millennium": fetch_millennium,
@@ -805,6 +1131,7 @@ FETCHERS = {
     "aluminox": fetch_aluminox, "forcesinc": fetch_forcesinc, "valmont": fetch_valmont,
     "acierterrebonne": fetch_acierterrebonne, "wemachine": fetch_wemachine, "smithmetal": fetch_smithmetal,
     "optikutz": fetch_optikutz, "recyborg": fetch_recyborg, "lasersupply": fetch_lasersupply,
+    "aircraftspruce": fetch_aircraftspruce, "cobalt": fetch_cobalt,
 }
 # Weekly set (bars/tubes, many requests): on a daily run their rows are kept from the last weekly run.
 WEEKLY = {"acierterrebonne", "recyborg"}
@@ -853,7 +1180,7 @@ def write_index(rows, today):
     """Daily median CAD $/lb per family x form-group. Appends/replaces today's lines."""
     groups = {}
     for r in rows:
-        if not r["price_per_lb_cad"] or r["supplier"] == "unitedstainless":
+        if not r["price_per_lb_cad"] or r["supplier"] == "unitedstainless" or not r.get("in_catalogue"):
             continue
         fg = "feuille_plaque" if r["form"] in ("tole", "plaque") else ("tube_tuyau" if r["form"].startswith(("tube", "tuyau")) else "barre")
         groups.setdefault((r["family"], fg), []).append(r["price_per_lb_cad"])

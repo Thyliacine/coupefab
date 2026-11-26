@@ -136,7 +136,7 @@ def detect_grade(text: str, family: str):
         return None, False
     if family == "aluminium":
         for g in ["3003", "5052", "6061", "6063", "5005", "3105", "5086", "2024", "7075", "1100"]:
-            if re.search(r"\b" + g + r"\b", t):
+            if re.search(r"\b" + g + r"(?!\d)", t):
                 return g, g in CATALOGUE["aluminium"]
         return None, False
     if family == "cuivre":
