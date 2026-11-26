@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GibbsCAM : FAO de production, du fraisage 2,5 axes au multitâche — CoupeFab</title>
+<meta name="description" content="GibbsCAM (Sandvik) : interface orientée atelier, modules fraisage, tournage et multitâche (MTM) pour tours-fraiseurs et suisses, synchronisation et posts fournis. Démarche, forces, limites et comparaison.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/guides/gibbscam-fao/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/gibbscam-fao/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/gibbscam-cam/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/gibbscam-fao/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GibbsCAM : FAO de production, du fraisage 2,5 axes au multitâche — CoupeFab">
+<meta property="og:description" content="GibbsCAM (Sandvik) : interface orientée atelier, modules fraisage, tournage et multitâche (MTM) pour tours-fraiseurs et suisses, synchronisation et posts fournis. Démarche, forces, limites et comparaison.">
+<meta property="og:url" content="https://coupefab.vercel.app/guides/gibbscam-fao/">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:locale:alternate" content="en_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="fr">
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/" aria-label="CoupeFab — Accueil"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Navigation principale">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/guides/logiciels/">Par logiciel</a></p>
+            <ul class="mega-list two"><li><a href="/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/guides/debuter-sheetcam/">SheetCam</a></li><li><a href="/guides/solidworks-tolerie-dxf/">SOLIDWORKS tôlerie</a></li><li><a href="/guides/autocad-nettoyer-dxf/">AutoCAD (DXF)</a></li><li><a href="/guides/fusion-fao-debuter/">Fusion (FAO)</a></li><li><a href="/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/guides/bricscad-dxf/">BricsCAD → DXF</a></li><li><a href="/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/guides/inventor-tolerie-cam/">Inventor</a></li><li><a href="/guides/mastercam-parcours-2d-dynamic/">Mastercam 2D</a></li><li><a href="/guides/mastercam-post-tour/">Mastercam post et tour</a></li><li><a href="/guides/camworks-fao-solidworks/">CAMWorks</a></li><li><a href="/guides/fusion-plasma-post-par-table/">Fusion plasma : posts par table</a></li><li><a href="/guides/esprit-cam-multitache/">ESPRIT CAM</a></li><li><a href="/guides/onshape-tolerie-cam/">Onshape</a></li><li><a href="/guides/solidworks-mises-en-plan-cam/">SOLIDWORKS CAM et mises en plan</a></li><li><a href="/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/guides/gibbscam-fao/">GibbsCAM</a></li></ul>
+            <p class="mega-all"><a href="/guides/logiciels/">Tous les logiciels →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/procedes/">Par procédé</a></p>
+            <ul class="mega-list"><li><a href="/guides/decoupe-plasma-cnc/">Plasma CNC</a></li><li><a href="/guides/laser-fibre/">Laser fibre</a></li><li><a href="/guides/jet-d-eau/">Jet d’eau</a></li><li><a href="/guides/routeur-cnc/">Routeur CNC</a></li><li><a href="/guides/fraiseuse-cnc/">Fraiseuse CNC</a></li><li><a href="/guides/tour-cnc/">Tour CNC</a></li><li><a href="/guides/presse-plieuse/">Presse plieuse</a></li><li><a href="/guides/plasma-biseau-chanfrein/">Plasma biseau (chanfrein)</a></li><li><a href="/guides/oxycoupage/">Oxycoupage</a></li><li><a href="/guides/electroerosion-fil-enfoncage/">Électroérosion (fil et enfonçage)</a></li><li><a href="/guides/usinage-5-axes/">Usinage 5 axes</a></li><li><a href="/guides/tour-fraiseur-decolleteuse-suisse/">Tour-fraiseur et décolleteuse suisse</a></li><li><a href="/guides/preparation-soudure-chanfrein/">Préparation de soudure</a></li><li><a href="/guides/ebavurage-finition/">Ébavurage et finition</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/fondamentaux/">Par sujet</a></p>
+            <ul class="mega-list"><li><a href="/guides/reference-g-code-m-code/">G-code et M-code</a></li><li><a href="/guides/avances-vitesses/">Avances et vitesses</a></li><li><a href="/guides/kerf-qualite-coupe/">Kerf et qualité de coupe</a></li><li><a href="/guides/pliage-k-factor/">Pliage : K-factor et déduction</a></li><li><a href="/guides/nuances-metaux/">Nuances de métaux</a></li><li><a href="/guides/dxf-bonnes-pratiques/">DXF : bonnes pratiques</a></li><li class="more"><a href="/guides/fondamentaux/">Fondamentaux CNC →</a></li><li class="more"><a href="/guides/materiaux/">Matériaux et nuances →</a></li><li class="more"><a href="/guides/depannage/">Dépannage →</a></li><li class="more"><a href="/guides/atelier/">Atelier : sécurité, soumissions, métrologie, formation →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/prix/">
+              <span class="feature-k">Outil</span>
+              <strong>Prix des tôles</strong>
+              <span>Tôle, plaque, barre et tube : prix publiés chez les fournisseurs qui livrent au Québec, mis à jour chaque jour ouvrable.</span>
+            </a>
+            <a class="mega-allguides" href="/guides/">Tous les guides (71) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/prix/">Prix des tôles</a></li>
+    <li><a class="nav-link" href="/occasions/">Occasions</a></li>
+    <li><a class="nav-link" href="/infolettre/">Infolettre</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Rechercher"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Rechercher</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Langue">
+        <a href="/guides/gibbscam-fao/" hreflang="fr-CA" lang="fr-CA" aria-current="true">FR</a><a href="/en/guides/gibbscam-cam/" hreflang="en-CA" lang="en-CA">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Rechercher">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Rechercher un guide (ex. SheetCam, K-factor, scories)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Fermer</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>Aucun guide trouvé. Essayez un autre mot (logiciel, procédé, matériau).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Fil d’Ariane"><ol><li><a href="/">Accueil</a></li><li><a href="/guides/">Guides</a></li><li><a href="/guides/logiciels/">Logiciels CAO / FAO et commandes</a></li><li aria-current="page">GibbsCAM</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://coupefab.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/guides/"}, {"@type": "ListItem", "position": 3, "name": "Logiciels CAO / FAO et commandes", "item": "https://coupefab.vercel.app/guides/logiciels/"}, {"@type": "ListItem", "position": 4, "name": "GibbsCAM"}]}</script>
+<article class="guide" data-guide="gibbscam">
+  <header class="guide-head">
+    <p class="kicker">Logiciel · FAO</p>
+    <h1>GibbsCAM : FAO de production, du fraisage 2,5 axes au multitâche</h1>
+    <p class="guide-lede">GibbsCAM (Sandvik) : interface orientée atelier, modules fraisage, tournage et multitâche (MTM) pour tours-fraiseurs et suisses, synchronisation et posts fournis. Démarche, forces, limites et comparaison.</p>
+    <p class="guide-meta">
+      <span>Révisé le <time datetime="2026-11-26">26 novembre 2026</time></span>
+      <span>3 min de lecture</span>
+      <span>Niveau : Intermédiaire</span>
+      <span class="pill pill-draft" tabindex="0" title="Rédigé par CoupeFab à partir des documents officiels cités. Révision technique par Michaël Brassard en attente.">Brouillon<span class="pill-tip" role="tooltip">Rédigé par CoupeFab à partir des documents officiels cités. Révision technique par Michaël Brassard en attente.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>Sur cette page</summary><ol><li><a href="#modules-typiques">Modules typiques</a></li><li><a href="#demarche-fraisage-2-5-axes">Démarche (fraisage 2,5 axes)</a></li><li><a href="#multitache-ce-qui-compte">Multitâche : ce qui compte</a></li><li><a href="#forces-et-limites">Forces et limites</a></li><li><a href="#liste-de-verification">Liste de vérification</a></li><li><a href="#erreurs-frequentes">Erreurs fréquentes</a></li><li><a href="#faq">FAQ</a></li><li><a href="#a-valider-en-atelier-michael">À valider en atelier (Michaël)</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p><strong>GibbsCAM</strong> (aujourd’hui dans le groupe Sandvik, aux côtés d’autres logiciels de fabrication) est une FAO réputée pour son interface <strong>visuelle et orientée atelier</strong>. Elle couvre le fraisage 2,5 et 3 axes, le tournage, le 4/5 axes et surtout le <strong>multitâche</strong> (<em>Multi-Task Machining</em>, MTM) pour les tours-fraiseurs et décolleteuses suisses, avec synchronisation multi-broches/multi-tourelles et posts fournis par l’éditeur.</p>
+<h2 id="modules-typiques">Modules typiques</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Besoin</th><th>Module</th></tr></thead><tbody>
+<tr><td>Fraisage prismatique</td><td>Production Milling (2,5 axes), 3 axes</td></tr>
+<tr><td>Tournage</td><td>Production Turning</td></tr>
+<tr><td>Tours-fraiseurs, suisses</td><td>Multi-Task Machining (MTM)</td></tr>
+<tr><td>4e/5e axe</td><td>Modules multi-axes</td></tr>
+</tbody></table></div>
+<p>Les noms et le découpage des licences évoluent : vérifiez l’offre courante auprès du revendeur.</p>
+<h2 id="demarche-fraisage-2-5-axes">Démarche (fraisage 2,5 axes)</h2>
+<ol class="steps"><li>Importer ou dessiner la géométrie ; définir le <strong>brut</strong>.</li><li>Créer les <strong>outils</strong> (bibliothèque).</li><li>Choisir l’opération (contour, poche, perçage…) en sélectionnant la géométrie.</li><li>Régler profondeurs, pas, entrées.</li><li><strong>Simuler</strong> (matière et, pour le multitâche, machine).</li><li>Post-traiter avec le post de la machine, relire, tester à vide.</li></ol>
+<h2 id="multitache-ce-qui-compte">Multitâche : ce qui compte</h2>
+<ul><li>Définir correctement la <strong>machine</strong> (broches, tourelles, axes, contre-broche).</li><li>Organiser les opérations par <strong>flux</strong> (<em>flows</em>) et les synchroniser (attentes, transferts).</li><li>Utiliser des posts <strong>multi-flux</strong> fournis pour le modèle exact.</li><li>Simuler la machine complète avant chaque nouvelle pièce ; voir <a href="/guides/tour-fraiseur-decolleteuse-suisse/">Tour-fraiseur et décolleteuse suisse</a>.</li></ul>
+<h2 id="forces-et-limites">Forces et limites</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Forces</th><th>Limites</th></tr></thead><tbody>
+<tr><td>Prise en main rapide pour les machinistes</td><td>Moins répandue que Mastercam dans certaines régions (recrutement)</td></tr>
+<tr><td>Multitâche solide</td><td>Coût des modules avancés</td></tr>
+<tr><td>Posts fournis par l’éditeur</td><td>Dépendance au revendeur</td></tr>
+</tbody></table></div>
+<h2 id="liste-de-verification">Liste de vérification</h2>
+<ul class="checklist"><li>Post disponible pour chacune de vos machines</li><li>Formation et soutien local</li><li>Essai sur une pièce réelle (temps de programmation, qualité du code)</li><li>Compatibilité des fichiers avec votre CAO</li></ul>
+<h2 id="erreurs-frequentes">Erreurs fréquentes</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Erreur</th><th>Conséquence</th></tr></thead><tbody>
+<tr><td>Machine multitâche mal configurée</td><td>Synchronisation fausse, collisions</td></tr>
+<tr><td>Bibliothèque d’outils non tenue à jour</td><td>Avances et longueurs fausses</td></tr>
+<tr><td>Pas de test à vide après modification du post</td><td>Erreur à la première pièce</td></tr>
+</tbody></table></div>
+<h2 id="faq">FAQ</h2>
+<h3 id="gibbscam-ou-esprit">GibbsCAM ou ESPRIT ?</h3>
+<p>Les deux visent le multitâche ; comparez sur vos machines, vos posts et le soutien local. Voir <a href="/guides/esprit-cam-multitache/">ESPRIT CAM</a>.</p>
+<h3 id="gibbscam-fait-il-la-decoupe-de-tole">GibbsCAM fait-il la découpe de tôle ?</h3>
+<p>Ce n’est pas sa spécialité ; pour la tôle, voir <a href="/guides/debuter-sheetcam/">SheetCam</a> et <a href="/guides/pronest-imbrication/">ProNest</a>.</p>
+<section class="review-box"><h2 id="a-valider-en-atelier-michael">À valider en atelier (Michaël)</h2>
+<ul><li>Retours d’utilisateurs GibbsCAM dans votre réseau.</li></ul>
+</section><section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://www.gibbscam.com/en/go-multi-task-machining" class="ext" rel="noopener">GibbsCAM — GO Multi-Task Machining</a>, consulté le 26 novembre 2026.</li><li><a href="https://www.gibbscam.com/" class="ext" rel="noopener">GibbsCAM — Site officiel</a>, consulté le 26 novembre 2026.</li></ul></section>
+
+      <p class="report"><a href="/a-propos/#contact">Une erreur, un ajout ? Écrivez-nous →</a></p>
+    </div>
+  </div>
+  <section class="related"><h2>Guides connexes</h2><div class="gcards"><a class="gcard" href="/guides/esprit-cam-multitache/" data-hub="software"><span class="card-meta">Logiciel · FAO multitâche · Avancé · 3 min de lecture</span><strong>ESPRIT CAM (Hexagon) : programmer tours-fraiseurs, suisses et multi-canaux</strong><span class="card-desc">Ce qu’ESPRIT fait de particulier : jumeau numérique de la machine, simulation complète, synchronisation multi-canaux, posts développés par l’éditeur. Pour quel atelier, démarche type et pièges.</span></a><a class="gcard" href="/guides/tour-fraiseur-decolleteuse-suisse/" data-hub="process"><span class="card-meta">Procédé · tournage multitâche · Avancé · 3 min de lecture</span><strong>Tours-fraiseurs et décolleteuses de type suisse : principes, différences et choix</strong><span class="card-desc">Poupée mobile et canon de guidage (suisse), axe B et contre-broche (tour-fraiseur), outils motorisés, axes C et Y : comment fonctionnent ces machines, pour quelles pièces, et ce que ça change en programmation FAO.</span></a><a class="gcard" href="/guides/mastercam-parcours-2d-dynamic/" data-hub="software"><span class="card-meta">Logiciel · FAO · Intermédiaire · 3 min de lecture</span><strong>Mastercam : parcours 2D et fraisage dynamique (Dynamic Motion) sans se tromper</strong><span class="card-desc">Définition machine, brut, chaînage, Dynamic Mill, Peel Mill, Dynamic Contour, Face et vérification : la démarche Mastercam en 2D, les niveaux de licence et les pièges de chaînage les plus courants.</span></a><a class="gcard" href="/guides/post-processeurs/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · FAO · Intermédiaire · 3 min de lecture</span><strong>Post-processeurs : choisir, tester et modifier sans casser la machine</strong><span class="card-desc">Ce que fait un post-processeur, où trouver le bon pour votre commande (Fusion, Mastercam, SheetCam…), comment le valider à blanc et quelles modifications sont sûres.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">Un guide par semaine, en français d’abord</p><p>Nouveaux guides, occasions au Québec et mouvements de prix. Pas de pub tierce.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="fr" novalidate>
+  <div class="hp" aria-hidden="true"><label>Site web<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Prénom ou atelier (facultatif)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Courriel
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="oui">
+    <span>J’accepte de recevoir l’infolettre de CoupeFab (guides, digest d’occasions et suivi des prix des tôles). Je peux me désabonner en tout temps. Voir la <a href="/confidentialite/">politique de confidentialité</a>.</span>
+  </label>
+  <button type="submit">S’inscrire</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">Conformité CASL : la case n’est pas précochée. Aucun envoi sans ce consentement exprès.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "GibbsCAM : FAO de production, du fraisage 2,5 axes au multitâche", "description": "GibbsCAM (Sandvik) : interface orientée atelier, modules fraisage, tournage et multitâche (MTM) pour tours-fraiseurs et suisses, synchronisation et posts fournis. Démarche, forces, limites et comparaison.", "inLanguage": "fr-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/guides/gibbscam-fao/", "mainEntityOfPage": "https://coupefab.vercel.app/guides/gibbscam-fao/", "proficiencyLevel": "Intermediate", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["gibbscam", "sandvik", "cambrio", "multi-task machining", "mtm", "swiss", "mill-turn", "2.5 axis", "production milling", "post processor", "machine simulation"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "GibbsCAM ou ESPRIT ?", "acceptedAnswer": {"@type": "Answer", "text": "Les deux visent le multitâche ; comparez sur vos machines, vos posts et le soutien local. Voir ESPRIT CAM ."}}, {"@type": "Question", "name": "GibbsCAM fait-il la découpe de tôle ?", "acceptedAnswer": {"@type": "Answer", "text": "Ce n’est pas sa spécialité ; pour la tôle, voir SheetCam et ProNest ."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>La référence francophone de la découpe CNC et de la fabrication métallique : guides vérifiés, prix des tôles comparés, occasions au Québec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/guides/logiciels/">Logiciels CAO / FAO et commandes</a></li>
+        <li><a href="/guides/procedes/">Procédés de coupe et d’usinage</a></li>
+        <li><a href="/guides/fondamentaux/">Fondamentaux CNC</a></li>
+        <li><a href="/guides/materiaux/">Matériaux et nuances</a></li>
+        <li><a href="/guides/depannage/">Dépannage</a></li>
+        <li><a href="/guides/atelier/">Atelier : sécurité, soumissions, métrologie, formation</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explorer</p>
+      <ul>
+        <li><a href="/prix/">Prix des tôles</a></li>
+        <li><a href="/occasions/">Occasions</a></li>
+        <li><a href="/infolettre/">Infolettre</a></li>
+        <li><a href="/a-propos/">À propos</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Mentions</p>
+      <ul>
+        <li><a href="/divulgation/">Divulgation (affiliations)</a></li>
+        <li><a href="/confidentialite/">Confidentialité et LCAP</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Québec, Canada. Aucun lien d’affiliation. Les marques citées appartiennent à leurs propriétaires et sont mentionnées à titre descriptif.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>
