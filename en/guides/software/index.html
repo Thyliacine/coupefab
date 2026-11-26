@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CAD/CAM software and controls — CoupeFab guides</title>
+<meta name="description" content="Mastercam, SolidWorks, Fusion, Inventor, BricsCAD, SheetCam, ProNest, LinuxCNC… From model to G-code, one program at a time.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/en/guides/software/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/software/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/logiciels/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/logiciels/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CAD/CAM software and controls — CoupeFab guides">
+<meta property="og:description" content="Mastercam, SolidWorks, Fusion, Inventor, BricsCAD, SheetCam, ProNest, LinuxCNC… From model to G-code, one program at a time.">
+<meta property="og:url" content="https://coupefab.vercel.app/en/guides/software/">
+<meta property="og:locale" content="en_CA">
+<meta property="og:locale:alternate" content="fr_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="en">
+<a class="skip" href="#contenu">Skip to content</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/en/" aria-label="CoupeFab — Home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Main navigation">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/en/guides/software/">By software</a></p>
+            <ul class="mega-list two"><li><a href="/en/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/en/guides/getting-started-sheetcam/">SheetCam</a></li><li><a href="/en/guides/solidworks-sheet-metal-flat-pattern-dxf/">SOLIDWORKS sheet metal</a></li><li><a href="/en/guides/autocad-dxf-cleanup/">AutoCAD (DXF)</a></li><li><a href="/en/guides/fusion-cam-getting-started/">Fusion CAM</a></li><li><a href="/en/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/en/guides/bricscad-to-clean-dxf/">BricsCAD → DXF</a></li><li><a href="/en/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/en/guides/inventor-sheet-metal-and-cam/">Inventor</a></li><li><a href="/en/guides/mastercam-2d-toolpaths-dynamic-milling/">Mastercam 2D</a></li><li><a href="/en/guides/mastercam-posts-and-lathe/">Mastercam posts and lathe</a></li><li><a href="/en/guides/onshape-sheet-metal-cam/">Onshape</a></li><li><a href="/en/guides/solidworks-drawings-and-cam/">SOLIDWORKS CAM and drawings</a></li><li><a href="/en/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/en/guides/freecad-cam/">FreeCAD CAM</a></li><li><a href="/en/guides/vectric-vcarve-aspire/">Vectric VCarve / Aspire</a></li><li><a href="/en/guides/lightburn-laser/">LightBurn</a></li><li><a href="/en/guides/pronest-nesting/">ProNest</a></li></ul>
+            <p class="mega-all"><a href="/en/guides/software/">All software →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/processes/">By process</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/cnc-plasma-cutting/">CNC plasma</a></li><li><a href="/en/guides/fiber-laser-cutting/">Fiber laser</a></li><li><a href="/en/guides/waterjet-cutting/">Waterjet</a></li><li><a href="/en/guides/cnc-router/">CNC router</a></li><li><a href="/en/guides/cnc-mill/">CNC mill</a></li><li><a href="/en/guides/cnc-lathe/">CNC lathe</a></li><li><a href="/en/guides/press-brake-bending/">Press brake</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/fundamentals/">By topic</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/g-code-m-code-reference/">G-code &amp; M-code</a></li><li><a href="/en/guides/feeds-and-speeds/">Feeds and speeds</a></li><li><a href="/en/guides/kerf-and-cut-quality/">Kerf and cut quality</a></li><li><a href="/en/guides/bend-allowance-k-factor/">Bending: K-factor and deduction</a></li><li><a href="/en/guides/metal-grades/">Metal grades</a></li><li><a href="/en/guides/dxf-best-practices/">DXF best practices</a></li><li class="more"><a href="/en/guides/fundamentals/">CNC fundamentals →</a></li><li class="more"><a href="/en/guides/troubleshooting/">Troubleshooting →</a></li><li class="more"><a href="/en/guides/shop/">Shop: safety, buying, consumables →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/en/sheet-prices/">
+              <span class="feature-k">Tool</span>
+              <strong>Sheet prices</strong>
+              <span>Sheet, plate, bar and tube: published prices from suppliers serving Quebec, refreshed every business day.</span>
+            </a>
+            <a class="mega-allguides" href="/en/guides/">All guides (41) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/en/sheet-prices/">Sheet prices</a></li>
+    <li><a class="nav-link" href="/en/used-equipment/">Used equipment</a></li>
+    <li><a class="nav-link" href="/en/newsletter/">Newsletter</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Search</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Language">
+        <a href="/guides/logiciels/" hreflang="fr-CA" lang="fr-CA">FR</a><a href="/en/guides/software/" hreflang="en-CA" lang="en-CA" aria-current="true">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Search guides (e.g. SheetCam, K-factor, dross)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Close</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>No guide found. Try another word (software, process, material).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<div class="page">
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/en/">Home</a></li><li><a href="/en/guides/">Guides</a></li><li aria-current="page">CAD/CAM software and controls</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coupefab.vercel.app/en/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/en/guides/"}, {"@type": "ListItem", "position": 3, "name": "CAD/CAM software and controls"}]}</script>
+<header class="page-head">
+  <p class="kicker">Guides · 18</p>
+  <h1>CAD/CAM software and controls</h1>
+  <p class="lede">Mastercam, SolidWorks, Fusion, Inventor, BricsCAD, SheetCam, ProNest, LinuxCNC… From model to G-code, one program at a time.</p>
+</header>
+<h2 class="sec-h">CAD</h2><div class="gcards"><a class="gcard" href="/en/guides/solidworks-sheet-metal-flat-pattern-dxf/" data-hub="software"><span class="card-meta">Software · CAD · Intermediate · 3 min read</span><strong>SOLIDWORKS sheet metal: bend parameters, flat pattern and a clean DXF for cutting</strong><span class="card-desc">Base flange, K-factor, bend table or deduction, flat pattern, then DXF/DWG export of the flat pattern with bend lines on their own layer: the workflow to send a file that cuts right the first time.</span></a><a class="gcard" href="/en/guides/autocad-dxf-cleanup/" data-hub="software"><span class="card-meta">Software · 2D CAD · Beginner · 3 min read</span><strong>AutoCAD: clean up a drawing and export a DXF ready for CNC cutting</strong><span class="card-desc">Units, layers, duplicates (OVERKILL), closed contours (JOIN, PEDIT), splines, PURGE and AUDIT, then saving as DXF: the AutoCAD routine for a file CAM accepts the first time.</span></a><a class="gcard" href="/en/guides/bricscad-to-clean-dxf/" data-hub="software"><span class="card-meta">Software · CAD · Beginner · 3 min read</span><strong>From BricsCAD to a clean DXF for cutting</strong><span class="card-desc">DXFOUT, decimal precision, DXF version, proxy objects and cleanup: export a DXF from BricsCAD that SheetCam, ProNest or any CAM reads the first time.</span></a><a class="gcard" href="/en/guides/inventor-sheet-metal-and-cam/" data-hub="software"><span class="card-meta">Software · CAD · Intermediate · 3 min read</span><strong>Autodesk Inventor: sheet metal rules, flat pattern, DXF and Inventor CAM</strong><span class="card-desc">Sheet metal styles and unfold rules (K-factor, bend table), creating the flat pattern, exporting the flat face to DXF with layers, and where Inventor CAM sits compared to Fusion.</span></a><a class="gcard" href="/en/guides/onshape-sheet-metal-cam/" data-hub="software"><span class="card-meta">Software · cloud CAD · Beginner · 3 min read</span><strong>Onshape: sheet metal, flat pattern DXF export and CAM Studio</strong><span class="card-desc">Sheet metal model with K-factor, flat view and bend table, DXF/DWG export of the flat pattern, then what CAM Studio covers depending on the Onshape plan.</span></a></div><h2 class="sec-h">CAM / nesting</h2><div class="gcards"><a class="gcard" href="/en/guides/getting-started-sheetcam/" data-hub="software"><span class="card-meta">Software · plasma CAM · Beginner · 4 min read</span><strong>Getting started with SheetCam: from DXF to plasma G-code</strong><span class="card-desc">Units, job, DXF import, plasma tool, operation, nesting and post processor: the SheetCam workflow step by step, with the pitfalls the SheetCam team documents itself.</span></a><a class="gcard" href="/en/guides/fusion-cam-getting-started/" data-hub="software"><span class="card-meta">Software · CAM · Beginner · 3 min read</span><strong>Getting started with Autodesk Fusion CAM: 2D milling, plasma cutting and posting</strong><span class="card-desc">Setup, 2D operations, Adaptive, plasma or laser profiling, simulation and post processing in Fusion’s Manufacture workspace, plus the real limits of the Personal Use licence.</span></a><a class="gcard" href="/en/guides/mastercam-2d-toolpaths-dynamic-milling/" data-hub="software"><span class="card-meta">Software · CAM · Intermediate · 3 min read</span><strong>Mastercam: 2D toolpaths and dynamic milling (Dynamic Motion) done right</strong><span class="card-desc">Machine definition, stock, chaining, Dynamic Mill, Peel Mill, Dynamic Contour, Face and verification: the Mastercam 2D workflow, licence levels and the most common chaining pitfalls.</span></a><a class="gcard" href="/en/guides/mastercam-posts-and-lathe/" data-hub="software"><span class="card-meta">Software · CAM · Advanced · 3 min read</span><strong>Mastercam: machine definition, post processor and first steps in turning</strong><span class="card-desc">How Mastercam links machine definition, control definition and post processor, what to ask your reseller, and the basic turning workflow: stock, chuck, roughing, finishing, grooving, threading.</span></a><a class="gcard" href="/en/guides/solidworks-drawings-and-cam/" data-hub="software"><span class="card-meta">Software · CAM · Intermediate · 3 min read</span><strong>SOLIDWORKS: shop-ready drawings and SOLIDWORKS CAM (Standard or Professional)</strong><span class="card-desc">What a drawing must contain for machining and bending, the difference between SOLIDWORKS CAM Standard and Professional, feature-based machining and the technology database.</span></a><a class="gcard" href="/en/guides/freecad-cam/" data-hub="software"><span class="card-meta">Open source · CAM · Intermediate · 3 min read</span><strong>FreeCAD CAM: free open-source CAM, from job to G-code</strong><span class="card-desc">FreeCAD 1.0’s CAM workbench (formerly Path): job, tools, Profile, Pocket and Adaptive operations, simulation, choosing a post processor for grbl, LinuxCNC or Mach, and sheet metal with the SheetMetal add-on.</span></a><a class="gcard" href="/en/guides/vectric-vcarve-aspire/" data-hub="software"><span class="card-meta">Software · router CAM · Beginner · 3 min read</span><strong>Vectric VCarve and Aspire: picking the edition and getting router toolpaths right</strong><span class="card-desc">VCarve Desktop, VCarve Pro or Aspire: what sets them apart (job size, 3D), job setup, profile, pocket and V-carving toolpaths, and choosing the post for your router.</span></a><a class="gcard" href="/en/guides/lightburn-laser/" data-hub="software"><span class="card-meta">Software · laser · Beginner · 3 min read</span><strong>LightBurn: set up your laser, layers and cut settings</strong><span class="card-desc">Core or Pro depending on the controller (GCode, Ruida DSP, galvo), adding the machine, colour layers, speed and power, material test grid and kerf offset.</span></a><a class="gcard" href="/en/guides/pronest-nesting/" data-hub="software"><span class="card-meta">Software · nesting · Advanced · 3 min read</span><strong>ProNest: production nesting for plasma, laser, oxyfuel and waterjet</strong><span class="card-desc">What a production nesting package such as Hypertherm’s ProNest does, the difference between ProNest and ProNest LT, and when it beats a simpler package such as SheetCam.</span></a></div><h2 class="sec-h">Machine control</h2><div class="gcards"><a class="gcard" href="/en/guides/mach3-mach4/" data-hub="software"><span class="card-meta">Software · control · Intermediate · 3 min read</span><strong>Mach3, Mach4 and MachPro: where the PC CNC control software stands</strong><span class="card-desc">Current status of Mach3 (no longer updated), Mach4 Hobby and Industrial (maintenance) and MachPro, the role of the motion controller, and what to check before upgrading an old Mach3 machine.</span></a><a class="gcard" href="/en/guides/linuxcnc-qtplasmac/" data-hub="software"><span class="card-meta">Open source · control · Advanced · 3 min read</span><strong>LinuxCNC and QtPlasmaC: open-source control for plasma tables, with height control</strong><span class="card-desc">What LinuxCNC is, typical hardware (Mesa cards), the QtPlasmaC interface for plasma, its torch height control (THC), the VAD anti-dive threshold and the commissioning steps.</span></a><a class="gcard" href="/en/guides/firecontrol-langmuir/" data-hub="software"><span class="card-meta">Software · plasma control · Beginner · 3 min read</span><strong>FireControl (Langmuir): load, adjust and cut on CrossFire, PRO and XR</strong><span class="card-desc">The free control software for Langmuir tables: loading G-code, scaling, dry run, run-from-here, pierce delay, and torch height control (THC) with SMART Voltage and speed cutoff.</span></a><a class="gcard" href="/en/guides/ugs-grbl/" data-hub="software"><span class="card-meta">Open source · control · Beginner · 3 min read</span><strong>UGS and grbl: connect, set up and run a job on a small CNC router</strong><span class="card-desc">Universal Gcode Sender with grbl or grblHAL: connecting, setup wizard, $$ settings, homing, jogging, work zero, probing and sending the program.</span></a></div>
+<nav class="chips other-hubs" aria-label="Other sections"><a class="chip" href="/en/guides/processes/">Cutting and machining processes</a><a class="chip" href="/en/guides/fundamentals/">CNC fundamentals</a><a class="chip" href="/en/guides/troubleshooting/">Troubleshooting</a><a class="chip" href="/en/guides/shop/">Shop: safety, buying, consumables</a></nav>
+</div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "CAD/CAM software and controls", "description": "Mastercam, SolidWorks, Fusion, Inventor, BricsCAD, SheetCam, ProNest, LinuxCNC… From model to G-code, one program at a time.", "inLanguage": "en-CA", "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://coupefab.vercel.app/en/guides/getting-started-sheetcam/", "name": "Getting started with SheetCam: from DXF to plasma G-code"}, {"@type": "ListItem", "position": 2, "url": "https://coupefab.vercel.app/en/guides/mach3-mach4/", "name": "Mach3, Mach4 and MachPro: where the PC CNC control software stands"}, {"@type": "ListItem", "position": 3, "url": "https://coupefab.vercel.app/en/guides/solidworks-sheet-metal-flat-pattern-dxf/", "name": "SOLIDWORKS sheet metal: bend parameters, flat pattern and a clean DXF for cutting"}, {"@type": "ListItem", "position": 4, "url": "https://coupefab.vercel.app/en/guides/autocad-dxf-cleanup/", "name": "AutoCAD: clean up a drawing and export a DXF ready for CNC cutting"}, {"@type": "ListItem", "position": 5, "url": "https://coupefab.vercel.app/en/guides/fusion-cam-getting-started/", "name": "Getting started with Autodesk Fusion CAM: 2D milling, plasma cutting and posting"}, {"@type": "ListItem", "position": 6, "url": "https://coupefab.vercel.app/en/guides/linuxcnc-qtplasmac/", "name": "LinuxCNC and QtPlasmaC: open-source control for plasma tables, with height control"}, {"@type": "ListItem", "position": 7, "url": "https://coupefab.vercel.app/en/guides/bricscad-to-clean-dxf/", "name": "From BricsCAD to a clean DXF for cutting"}, {"@type": "ListItem", "position": 8, "url": "https://coupefab.vercel.app/en/guides/inventor-sheet-metal-and-cam/", "name": "Autodesk Inventor: sheet metal rules, flat pattern, DXF and Inventor CAM"}, {"@type": "ListItem", "position": 9, "url": "https://coupefab.vercel.app/en/guides/firecontrol-langmuir/", "name": "FireControl (Langmuir): load, adjust and cut on CrossFire, PRO and XR"}, {"@type": "ListItem", "position": 10, "url": "https://coupefab.vercel.app/en/guides/mastercam-2d-toolpaths-dynamic-milling/", "name": "Mastercam: 2D toolpaths and dynamic milling (Dynamic Motion) done right"}, {"@type": "ListItem", "position": 11, "url": "https://coupefab.vercel.app/en/guides/mastercam-posts-and-lathe/", "name": "Mastercam: machine definition, post processor and first steps in turning"}, {"@type": "ListItem", "position": 12, "url": "https://coupefab.vercel.app/en/guides/onshape-sheet-metal-cam/", "name": "Onshape: sheet metal, flat pattern DXF export and CAM Studio"}, {"@type": "ListItem", "position": 13, "url": "https://coupefab.vercel.app/en/guides/solidworks-drawings-and-cam/", "name": "SOLIDWORKS: shop-ready drawings and SOLIDWORKS CAM (Standard or Professional)"}, {"@type": "ListItem", "position": 14, "url": "https://coupefab.vercel.app/en/guides/ugs-grbl/", "name": "UGS and grbl: connect, set up and run a job on a small CNC router"}, {"@type": "ListItem", "position": 15, "url": "https://coupefab.vercel.app/en/guides/freecad-cam/", "name": "FreeCAD CAM: free open-source CAM, from job to G-code"}, {"@type": "ListItem", "position": 16, "url": "https://coupefab.vercel.app/en/guides/vectric-vcarve-aspire/", "name": "Vectric VCarve and Aspire: picking the edition and getting router toolpaths right"}, {"@type": "ListItem", "position": 17, "url": "https://coupefab.vercel.app/en/guides/lightburn-laser/", "name": "LightBurn: set up your laser, layers and cut settings"}, {"@type": "ListItem", "position": 18, "url": "https://coupefab.vercel.app/en/guides/pronest-nesting/", "name": "ProNest: production nesting for plasma, laser, oxyfuel and waterjet"}]}}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/en/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>A French-first reference for CNC cutting and metal fabrication: sourced guides, compared sheet prices, used equipment in Quebec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/en/guides/software/">CAD/CAM software and controls</a></li>
+        <li><a href="/en/guides/processes/">Cutting and machining processes</a></li>
+        <li><a href="/en/guides/fundamentals/">CNC fundamentals</a></li>
+        <li><a href="/en/guides/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/en/guides/shop/">Shop: safety, buying, consumables</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explore</p>
+      <ul>
+        <li><a href="/en/sheet-prices/">Sheet prices</a></li>
+        <li><a href="/en/used-equipment/">Used equipment</a></li>
+        <li><a href="/en/newsletter/">Newsletter</a></li>
+        <li><a href="/en/about/">About</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Legal</p>
+      <ul>
+        <li><a href="/en/affiliate-disclosure/">Affiliate disclosure</a></li>
+        <li><a href="/en/privacy/">Privacy and CASL</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Quebec, Canada. No affiliate links. Trademarks belong to their owners and are used descriptively.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>
