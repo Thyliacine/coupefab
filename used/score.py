@@ -24,11 +24,15 @@ Year adjustment (comparables only, never shown as an “appraised value”):
 Comparables, in order, stopping at the first set with ≥ 2 members
 other than the subject itself:
   1. same make + same normalized model
-  2. same category + same make + same size class (when known)
-  3. otherwise no used-median badge (MSRP-only rules may still apply)
+  2. same category + same make + same size class (when the subject has a class)
+  3. same category + same size class (so a 95 t brake can be compared with
+     other medium brakes when no same-make pair exists)
+  Listings without a size class do not fall back to the whole category:
+  that would mix hobby and production machines.
 
-Auction listings (price_type = auction) are scored, but the badge tooltip
-mentions that hammer prices exclude buyer’s premium and fees.
+New in-stock machines are never used as comparables for used listings, and
+the reverse. Auction listings (price_type = auction) are scored, but the badge
+tooltip mentions that hammer prices exclude buyer’s premium and fees.
 """
 from __future__ import annotations
 
@@ -89,6 +93,9 @@ def comparables(subject: dict, pool: list[dict]) -> list[dict]:
             return False
         if l.get("price_type") == "auction":
             return False  # hammer / buy-now mix would skew the median
+        # New in-stock machines are not used comparables (and the reverse).
+        if bool(l.get("condition_new")) != bool(subject.get("condition_new")):
+            return False
         return True
 
     others = [l for l in pool if ok(l)]

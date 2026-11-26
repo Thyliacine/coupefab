@@ -87,8 +87,8 @@ scripts/refresh.sh --weekly             # HEBDOMADAIRE : ajoute barres, tubes et
 scripts/refresh.sh --only metalsrus     # un ou plusieurs fournisseurs; les autres sont repris de latest.json
 ```
 
-`refresh.sh` relève les prix, régénère **tout** le site (`build.py`), fait un commit local des seuls fichiers de prix et écrit `/tmp/coupefab-deploy/create_deployment.json` + `uploads.json` (tout le site, pour ne pas écraser les autres pages).
-Déploiement : `create_deployment` du connecteur Vercel (équipe `micro-bot` = `team_51rPr828F5cibUCQd4qzdhyb`, projet `coupefab`) en passant le **contenu** de `create_deployment.json` comme objet d’arguments (pas une référence `$file:` en chaîne); si Vercel répond `missing_files`, `upload_file` (`xVercelDigest`=SHA, `contentLength`=taille, `requestBody`=`$file:<b64_path>`) pour les fichiers modifiés listés dans `uploads.json` (au minimum `prix/*`, `en/sheet-prices/index.html`, `js/prix.js`, `css/prix.css`, `sitemap.xml`), puis relancer.
+`refresh.sh` relève les prix **et** les occasions (`python -m used.fetch_listings`), régénère **tout** le site (`build.py`), fait un commit local des fichiers de prix et d’occasions, et prépare le déploiement via `scripts/deploy_manifest.py`.
+Déploiement (méthode **site.tgz**) : le manifeste empacte le site construit dans `/tmp/coupefab-deploy/site.tgz` et écrit un `create_deployment` de trois fichiers (`src/site.tgz`, `src/vercel.json` issu de `scripts/vercel-deploy.json`, `src/api/subscribe.js`). Le `vercel.json` de déploiement lance `mkdir -p public && tar xzf site.tgz -C public` (`rootDirectory` = `src`). Appeler `upload_file` pour tout SHA nouveau (`xVercelDigest`, `contentLength`, `requestBody`=`$file:<b64_path>`, équipe `micro-bot` = `team_51rPr828F5cibUCQd4qzdhyb`, projet `coupefab`), puis `create_deployment` avec le contenu de `requestBody.json`. Ne pas renvoyer les ~200 pages une par une : les déploiements récents ne conservent que le tarball.
 Puis pousser les fichiers modifiés sur GitHub (`Thyliacine/coupefab`).
 Vérifier ensuite : `curl -s https://coupefab.vercel.app/prix/ | grep -o 'Mis à jour[^<]*'`.
 
