@@ -3,3 +3,7 @@
 node_modules
 *.pyc
 __pycache__/
+# binaries decoded by build.py from assets/bin/*.b64 (git stays text-only)
+/fonts/*.woff2
+/og/*.png
+/apple-touch-icon.png
