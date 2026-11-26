@@ -20,7 +20,7 @@ ELIGIBLE = {"oui", "cueillette", "a_confirmer"}  # can actually be bought by a Q
 TIER_PCT = 10  # ±10 % around the median: "bon prix" / "cher"
 # Surplus / clearance sellers: shown, but never "Meilleur prix" and never part of the median
 # (decision of 26 Nov 2026: Mercier 40 = new "red corner" plates, grade not stated, stock varies).
-SURPLUS = {"mercier40"}
+SURPLUS = {"mercier40", "recyborg"}
 
 STEEL_FRACS = [0.1875, 0.25, 0.3125, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 4]
 AL_DEC = [0.016, 0.020, 0.025, 0.032, 0.040, 0.050, 0.063, 0.071, 0.080, 0.090, 0.100, 0.125, 0.160, 0.1875,

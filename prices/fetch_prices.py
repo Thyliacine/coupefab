@@ -262,6 +262,11 @@ SUPPLIERS = {
                    "shipping": "Ontario; expédie au Canada. Aluminium 6061-T6 coupé à la longueur.",
                    "shipping_en": "Ontario; ships within Canada. 6061-T6 aluminum cut to length.",
                    "method": "Vitrine Shopify publique (products.json)"},
+    "recyborg": {"id": "recyborg", "name": "Coop Recyborg", "city": "Montréal (QC)", "region": "QC",
+                 "site": "https://recyborg.com", "currency": "CAD", "ships_qc": "cueillette",
+                 "shipping": "Ressourcerie, cueillette à Montréal (Pointe-Saint-Charles). Prix « neuf » au pied publiés; stock variable, nuance non précisée. Classé « Surplus / indicatif » : affiché, mais exclu de la médiane et du « Meilleur prix ».",
+                 "shipping_en": "Reuse centre, pickup in Montreal (Pointe-Saint-Charles). Published ‘new’ prices per foot; stock varies, grade not stated. Tagged ‘Surplus / indicative’: shown, but excluded from the median and from ‘Best price’.",
+                 "method": "Tableau de prix public (page HTML)"},
     "optikutz": {"id": "optikutz", "name": "OptiKutz", "city": "Niagara Falls (ON)", "region": "CA",
                  "site": "https://optikutz.com", "currency": "CAD", "ships_qc": "oui",
                  "shipping": "Ontario; tôles coupées au laser jusqu’à 2 × 4 pi, expédiées au Canada.",
@@ -754,16 +759,47 @@ def fetch_lasersupply(fx, quick=False):
                           keep=r"(stainless|alumin|steel|copper|brass).*sheet", exclude=r"acrylic|rowmark|2-ply")
 
 
+def fetch_recyborg(fx, quick=False):
+    """Coop Recyborg publishes one HTML table: description, metal, size, used $/lb, new $/ft.
+    Some cells hold two items stacked with <br>; they are split and zipped. Only the 'new' per-foot
+    price is kept (used per-lb scrap is not comparable stock)."""
+    sup = SUPPLIERS["recyborg"]
+    url = sup["site"] + "/fr/metal-neuf-et-doccasion/"
+    soup = BeautifulSoup(get(url).text, "lxml")
+    rows = []
+    for tr in soup.select("table tr"):
+        cells = [[x.strip() for x in c.get_text("\n").split("\n") if x.strip()] for c in tr.find_all("td")]
+        if len(cells) < 5:
+            continue
+        n = max(len(c) for c in cells)
+        for i in range(n):
+            pick = [c[i] if i < len(c) else (c[0] if len(c) == 1 else "") for c in cells]
+            desc, metal, dims, _, new = pick[:5]
+            m = re.search(r"([\d]+(?:[.,]\d+)?)\s*(?:\$|€)\s*(?:/|par)\s*pieds?", new, re.I)
+            if not m or "paire" in new:
+                continue
+            fam = {"acier": "acier", "aluminium": "aluminium", "inox": "inox"}.get(metal.lower().strip())
+            if not fam or re.search(r"plaque|t[ôo]le", desc, re.I):   # plate sold per foot, width not stated
+                continue
+            text = f"{desc} {metal} {dims}"
+            r = make_row(supplier=sup, text=text, price=float(m.group(1).replace(",", ".")), currency="CAD",
+                         url=url, fx=fx, unit="ft", family=fam, size_label=f"{dims} po",
+                         notes="Prix « neuf » au pied; ressourcerie, stock variable")
+            if r:
+                rows.append(r)
+    return rows
+
+
 FETCHERS = {
     "metalsrus": fetch_metalsrus, "metalsdepot": fetch_metalsdepot, "unitedstainless": fetch_unitedstainless,
     "mercier40": fetch_mercier40, "princessauto": fetch_princessauto, "millennium": fetch_millennium,
     "nationalsalvage": fetch_nationalsalvage,
     "aluminox": fetch_aluminox, "forcesinc": fetch_forcesinc, "valmont": fetch_valmont,
     "acierterrebonne": fetch_acierterrebonne, "wemachine": fetch_wemachine, "smithmetal": fetch_smithmetal,
-    "optikutz": fetch_optikutz, "lasersupply": fetch_lasersupply,
+    "optikutz": fetch_optikutz, "recyborg": fetch_recyborg, "lasersupply": fetch_lasersupply,
 }
 # Weekly set (bars/tubes, many requests): on a daily run their rows are kept from the last weekly run.
-WEEKLY = {"acierterrebonne"}
+WEEKLY = {"acierterrebonne", "recyborg"}
 
 CSV_FIELDS = ["supplier", "family", "grade", "in_catalogue", "form", "description", "size_label", "thickness_in",
               "thickness_mm", "gauge", "width_in", "length_in", "length_ft", "price", "currency", "unit", "fx_rate",

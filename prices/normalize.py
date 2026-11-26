@@ -296,6 +296,10 @@ def _fmt(v, mm=False):
 def _numbers(text):
     """[(value_in_inches_or_mm, is_mm, is_wall)] in reading order."""
     t = html_unescape(text).replace("″", '"').replace("”", '"').replace("’’", '"').replace("''", '"')
+    for u, f in (("½", "1/2"), ("¼", "1/4"), ("¾", "3/4"), ("⅛", "1/8"), ("⅜", "3/8"), ("⅝", "5/8"), ("⅞", "7/8"),
+                 ("⅙", "1/6"), ("⅓", "1/3")):
+        t = re.sub(r"(\d)\s*" + u, r"\1 " + f, t).replace(u, f)   # 1 ½ / 1½ -> 1 1/2
+    t = re.sub(r"(\d),(\d)\b", r"\1.\2", t)                        # 3,5 -> 3.5
     t = re.sub(r"(?<![\d]),(\d{2,4})\b", r".\1", t)                # ,120 -> .120
     t = re.sub(r"\((?:\.|0\.)\d+\)", " ", t)                  # '1/8" (.120)' keep the nominal
     t = re.sub(r"(\d)\s*\"\s*(\d+/\d+)", r"\1-\2", t)          # 1" 1/2 -> 1-1/2
@@ -370,6 +374,8 @@ def section_key(form, text):
                 w = min(vals[:2])
             dims = list(vals[:3])
             dims.remove(w)
+            if not mm and w > 0.5:  # '1 x 1' square tube: two outside sizes, wall not stated
+                return None, None
         if not dims:
             return None, None
         w = _snap_wall(w) if not mm else round(w, 2)
