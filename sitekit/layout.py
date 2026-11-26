@@ -5,7 +5,7 @@ from .taxonomy import T, PATHS, HUBS, HUB_ORDER, hub_path
 
 SITE = "https://coupefab.vercel.app"
 YEAR = "2026"
-ASSET_V = "20261126v"  # bump to bust CSS/JS caches
+ASSET_V = "20261126w"  # bump to bust CSS/JS caches
 
 
 def esc(s: str) -> str:
