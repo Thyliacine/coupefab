@@ -1,6 +1,6 @@
 ---
 id: materials-grades
-hub: fundamentals
+hub: materials
 order: 40
 nav: Nuances de métaux | Metal grades
 kicker: Fondamentaux · matériaux | Fundamentals · materials
