@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 # Daily CoupeFab price refresh: fetch -> build -> deploy manifest -> local commit.
-# Usage: scripts/refresh.sh [--only metalsrus mercier40 ...]
+# Usage: scripts/refresh.sh            daily: sheet & plate (bar/tube/pipe rows kept from the last weekly run)
+#        scripts/refresh.sh --weekly   weekly: also bar/tube/pipe (Metals 'R' Us bar, tube and pipe collections)
+#        scripts/refresh.sh --only metalsrus mercier40   only those suppliers
 set -euo pipefail
 cd "$(dirname "$0")/.."
 PY="${COUPEFAB_PY:-/workspace/coupefab-venv-tools/bin/python}"   # needs requests, beautifulsoup4, lxml
 [ -x "$PY" ] || PY=python3
-"$PY" prices/fetch_prices.py "$@"
+ARGS=()
+for a in "$@"; do if [ "$a" = "--weekly" ]; then ARGS+=("--with-bars"); else ARGS+=("$a"); fi; done
+"$PY" prices/fetch_prices.py "${ARGS[@]}"
 python3 build.py > /dev/null
 python3 scripts/deploy_manifest.py
 git add -A data/prices prix en/sheet-prices sitemap.xml >/dev/null 2>&1 || true

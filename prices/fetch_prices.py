@@ -221,12 +221,12 @@ SUPPLIERS = {
                      "shipping_en": "Small 24 × 48 in sheets; store pickup or shipping.",
                      "method": "Pages produit publiques"},
     "millennium": {"id": "millennium", "name": "Millennium Alloys", "city": "Colombie-Britannique", "region": "CA",
-                   "site": "https://millenniumalloys.ca", "currency": "CAD", "ships_qc": "a_confirmer",
-                   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
-                   "shipping_en": "Published prices, order by phone; shipping to Quebec to be confirmed.",
+                   "site": "https://millenniumalloys.ca", "currency": "CAD", "ships_qc": "repere",
+                   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
+                   "shipping_en": "Canadian price benchmark (hidden by default): published prices, order by phone, shipping to Quebec not confirmed.",
                    "method": "API publique WooCommerce Store (Crawl-delay 30 s respecté)"},
     "nationalsalvage": {"id": "nationalsalvage", "name": "National Salvage", "city": "Lethbridge (AB)", "region": "CA",
-                        "site": "https://shop.nationalsalvage.ca", "currency": "CAD", "ships_qc": "non",
+                        "site": "https://shop.nationalsalvage.ca", "currency": "CAD", "ships_qc": "repere",
                         "shipping": "Cueillette à Lethbridge (Alberta) seulement : repère de prix canadien, pas une source d’achat au Québec.",
                         "shipping_en": "Pickup in Lethbridge (Alberta) only: a Canadian price benchmark, not a Quebec buying option.",
                         "method": "Vitrine Shopify publique (products.json)"},
@@ -281,10 +281,13 @@ MRU_COLLECTIONS = [
 ]
 
 
+WITH_BARS = False  # set by --with-bars (weekly): bar/tube/pipe collections are large
+
+
 def fetch_metalsrus(fx, quick=False):
     sup = SUPPLIERS["metalsrus"]
     rows, seen = [], set()
-    cols = MRU_COLLECTIONS[:2] if quick else MRU_COLLECTIONS
+    cols = MRU_COLLECTIONS if (WITH_BARS and not quick) else MRU_COLLECTIONS[:2]
     for coll, hint in cols:
         page = 1
         while True:
@@ -647,6 +650,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", nargs="*", help="supplier ids to refresh (others kept from latest.json)")
     ap.add_argument("--quick", action="store_true", help="small sample, for testing")
+    ap.add_argument("--with-bars", action="store_true",
+                    help="also refresh bar/tube/pipe (weekly); otherwise those rows are kept from the last weekly run")
     ap.add_argument("--rederive", action="store_true", help="recompute thickness/derived units of stored rows, no fetch")
     args = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
@@ -655,6 +660,8 @@ def main():
     prev = {}
     if (OUT / "latest.json").exists():
         prev = json.loads((OUT / "latest.json").read_text())
+    global WITH_BARS
+    WITH_BARS = args.with_bars
     if args.rederive:
         n = 0
         for r in prev.get("rows", []):
@@ -684,6 +691,9 @@ def main():
         t0 = time.time()
         try:
             rows = fn(fx, quick=args.quick)
+            if sid == "metalsrus" and not WITH_BARS:
+                kept = [r for r in prev.get("rows", []) if r["supplier"] == sid and r["form"] not in ("tole", "plaque")]
+                rows += kept  # weekly bar/tube/pipe rows keep their own fetched_at date
             status[sid] = {"ok": True, "rows": len(rows), "fetched_at": now_iso(), "error": ""}
             all_rows += rows
             print(f"{sid}: {len(rows)} rows ({time.time()-t0:.0f}s)", flush=True)

@@ -11,7 +11,7 @@ Writes:
 Procedure (agent):
   1. call create_deployment with create_deployment.json;
   2. if Vercel answers "missing_files" with a list of SHAs, call upload_file for each of them
-     (xVercelDigest=sha, contentLength=size, requestBody="$file:<b64_path>", slug=micro-bot),
+     (xVercelDigest=sha, contentLength=size, requestBody="$file:<b64_path>", teamId=team_51rPr828F5cibUCQd4qzdhyb),
      then repeat step 1.
 """
 import base64
@@ -44,7 +44,7 @@ def main():
         rel = str(p.relative_to(ROOT))
         refs.append({"file": rel, "sha": sha, "size": len(b)})
         uploads.append({"file": rel, "sha": sha, "size": len(b), "b64_path": str(b64)})
-    args = {"slug": "micro-bot", "skipAutoDetectionConfirmation": "1",
+    args = {"teamId": "team_51rPr828F5cibUCQd4qzdhyb", "skipAutoDetectionConfirmation": "1",
             "requestBody": {"name": "coupefab", "project": "coupefab", "target": "production", "files": refs,
                             "projectSettings": {"framework": None}}}
     (OUT / "create_deployment.json").write_text(json.dumps(args, indent=1))

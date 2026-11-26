@@ -216,7 +216,8 @@ def suppliers_html(latest, rows, fr):
         counts[r["supplier"]] = counts.get(r["supplier"], 0) + 1
     ship_lbl = {"oui": ("Livre au Québec", "Ships to Quebec"), "cueillette": ("Cueillette au Québec", "Pickup in Quebec"),
                 "indicatif": ("Indicatif (non vendu seul)", "Indicative (not sold alone)"),
-                "a_confirmer": ("Expédition à confirmer", "Shipping to confirm"), "non": ("Repère hors Québec", "Benchmark outside Quebec")}
+                "a_confirmer": ("Expédition à confirmer", "Shipping to confirm"), "non": ("Repère hors Québec", "Benchmark outside Quebec"),
+                "repere": ("Repère canadien, masqué par défaut", "Canadian benchmark, hidden by default")}
     li = []
     for sid, s in sup.items():
         n = counts.get(sid, 0)
@@ -298,6 +299,7 @@ def render(form_newsletter, site):
             "dateModified": gen, "temporalCoverage": f"{(index[0]['date'] if index else gen[:10])}/..",
             "spatialCoverage": {"@type": "Place", "name": "Québec, Canada"},
             "isAccessibleForFree": True,
+            "license": "https://creativecommons.org/licenses/by/4.0/",
             "keywords": ["prix acier", "prix tôle", "steel price Canada", "aluminium", "inox", "plasma CNC", "Québec"],
             "variableMeasured": ["prix CAD", "CAD/lb", "CAD/kg", "CAD/pi²", "CAD/pi linéaire"],
             "distribution": [
@@ -361,7 +363,7 @@ def render(form_newsletter, site):
     </table></div>
     <p class="meta">{L("<span class=\"best-dot\"></span> = meilleur prix de la spécification parmi les fournisseurs achetables au Québec, en stock, hors valeurs aberrantes. $/lb, $/kg et $/pi² sont <em>calculés</em> à partir du prix affiché et du poids théorique (densité × épaisseur × surface) ou du poids d’expédition publié. Transport, taxes, coupe et droits non compris.",
                         "<span class=\"best-dot\"></span> = best price for the spec among suppliers buyable in Quebec, in stock, outliers excluded. $/lb, $/kg and $/sq ft are <em>computed</em> from the listed price and the theoretical weight (density × thickness × area) or the published shipping weight. Freight, taxes, cutting and duties not included.")}
-      <a href="/prix/coupefab-prix-metaux.csv" download>{L("Télécharger le CSV", "Download the CSV")}</a> · <a href="/prix/donnees.json">JSON</a></p>
+      <a href="/prix/coupefab-prix-metaux.csv" download>{L("Télécharger le CSV", "Download the CSV")}</a> · <a href="/prix/donnees.json">JSON</a> · {L("Données sous licence", "Data licensed under")} <a href="https://creativecommons.org/licenses/by/4.0/deed.{L("fr","en")}" rel="license noopener">CC BY 4.0</a> {L("(citez « CoupeFab »)", "(credit “CoupeFab”)")}</p>
   </section>
 
   <section id="meilleurs" class="panel">
@@ -425,6 +427,8 @@ def render(form_newsletter, site):
       <li>{L("Pour les tôles vendues au format, on retient le plus grand format offert en ligne (souvent 48 × 96 po); pour les barres et tubes, la plus grande longueur. $/pi², $/lb et $/kg sont calculés.", "For sheet sold by size we keep the largest size offered online (often 48 × 96 in); for bar and tube, the longest length. $/sq ft, $/lb and $/kg are computed.")}</li>
       <li>{L("Une ligne dont le $/lb s’écarte fortement de la médiane de sa famille est signalée « à vérifier » et exclue des meilleurs prix, sans être supprimée.", "A row whose $/lb is far from its family median is flagged “to check” and excluded from best prices, but not deleted.")}</li>
       <li>{L("Prix avant taxes, transport, coupe et droits. Les prix changent : confirmez toujours auprès du fournisseur.", "Prices before taxes, freight, cutting and duties. Prices change: always confirm with the supplier.")}</li>
+      <li>{L("Licence : les données compilées (tableau, CSV, JSON, historique) sont publiées sous <a href=\"https://creativecommons.org/licenses/by/4.0/deed.fr\" rel=\"license\">CC BY 4.0</a>; réutilisation libre en citant CoupeFab et le lien de la page. Les prix restent ceux des fournisseurs cités.", "Licence: the compiled data (table, CSV, JSON, history) is published under <a href=\"https://creativecommons.org/licenses/by/4.0/\" rel=\"license\">CC BY 4.0</a>; reuse freely with credit to CoupeFab and a link to this page. Prices remain those of the cited suppliers.")}</li>
+      <li>{L("Fréquence : tôle et plaque relevées chaque jour; barres, tubes et tuyaux chaque semaine (la date de chaque ligne l’indique).", "Frequency: sheet and plate surveyed daily; bar, tube and pipe weekly (each row shows its own date).")}</li>
       <li>{L("Historique daté conservé dans le dépôt public du site (un fichier par jour). Aucun lien d’affiliation sur cette page pour l’instant; s’il y en a un jour, il sera identifié et expliqué dans la <a href=\"/divulgation/\">divulgation</a>.", "Dated history kept in the site’s public repository (one file per day). No affiliate links on this page for now; if that changes they will be labelled and explained in the <a href=\"/en/affiliate-disclosure/\">disclosure</a>.")}</li>
     </ol>
   </section>
