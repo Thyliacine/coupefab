@@ -153,7 +153,8 @@ def to_cad(amount, currency, fx) -> float | None:
 
 
 # ---------------------------------------------------------------------------
-# MSRP table (official manufacturer or dealer pages only — never invented)
+# MSRP table (official manufacturer or dealer pages, or a labelled estimate
+# backed by at least two dealer/press sources — never invented)
 # ---------------------------------------------------------------------------
 def fetch_langmuir_msrp(discovery) -> list[dict]:
     url = "https://www.langmuirsystems.com/products.json?limit=250"
@@ -180,12 +181,12 @@ def fetch_langmuir_msrp(discovery) -> list[dict]:
         (r"^Razorweld Razorcut 45 with Machine Torch$", "Razorweld", "Razorcut 45"),
     ]
     today = _today().isoformat()
-    for p in products:
-        title = p.get("title") or ""
-        handle = p.get("handle") or ""
+    for prod in products:
+        title = prod.get("title") or ""
+        handle = prod.get("handle") or ""
         for pat, make, model in want:
             if re.match(pat, title, re.I):
-                variants = p.get("variants") or []
+                variants = prod.get("variants") or []
                 prices = [float(v["price"]) for v in variants if v.get("price") and float(v["price"]) > 0]
                 if not prices:
                     continue
@@ -195,6 +196,7 @@ def fetch_langmuir_msrp(discovery) -> list[dict]:
                     "price": min(prices), "currency": "USD",
                     "source_url": page, "date": today,
                     "source_name": "Langmuir Systems official shop",
+                    "kind": "official",
                     "notes": "Published new price on langmuirsystems.com; freight and options extra.",
                 })
     _log(discovery, name="Langmuir Systems shop (MSRP)", url=url, type="msrp",
@@ -204,32 +206,167 @@ def fetch_langmuir_msrp(discovery) -> list[dict]:
     return out
 
 
+def fetch_piranha_msrp(discovery) -> list[dict]:
+    """Regular (list) prices published on Piranha/MegaFab's official promotions page."""
+    url = "https://piranhafab.com/current-promotions-and-in-stock-equipment"
+    out = []
+    if not robots_ok(url):
+        _log(discovery, name="Piranha official in-stock prices (MSRP)", url=url, type="msrp",
+             region="US-ships", robots_ok="N", status="blocked", reason="robots.txt disallows promotions page")
+        return out
+    try:
+        r = get(url, timeout=30)
+        text = re.sub(r"<[^>]+>", " ", r.text)
+        text = re.sub(r"\s+", " ", text)
+    except Exception as e:
+        _log(discovery, name="Piranha official in-stock prices (MSRP)", url=url, type="msrp",
+             region="US-ships", robots_ok="Y", status="blocked", reason=str(e)[:200])
+        return out
+    today = _today().isoformat()
+    # "45-08T (45 Ton x 8 ft) $58,900 $46,900 $12,000" — first dollar is Regular Price.
+    for m in re.finditer(
+        r"(\d{2,3}-0?\d{2}T)\s*\(\s*(\d+)\s*Ton\s*x\s*(\d+)\s*ft\s*\)\s*\$(\d[\d,]*)\s*\$(\d[\d,]*)",
+        text, re.I,
+    ):
+        model, tons, feet, regular, _special = m.groups()
+        out.append({
+            "make": "Piranha", "model": model.upper(),
+            "title": f"Piranha {model.upper()} ({tons} ton × {feet} ft) press brake",
+            "price": float(regular.replace(",", "")), "currency": "USD",
+            "source_url": url, "date": today,
+            "source_name": "Piranha / MegaFab official promotions page",
+            "kind": "official",
+            "notes": "Published regular (list) price on piranhafab.com; special price ignored; freight extra.",
+        })
+    _log(discovery, name="Piranha official in-stock prices (MSRP)", url=url, type="msrp",
+         region="US-ships", robots_ok="Y", http_status=200,
+         status="added" if out else "pending",
+         listings=len(out), priced=len(out),
+         reason="Official regular prices for current T-series brakes; the used 9510 is a discontinued model and is not assigned these figures")
+    return out
+
+
+def fetch_hypertherm_xpr_msrp(discovery) -> list[dict]:
+    """Authorized-dealer published price for the XPR300 *power supply only*."""
+    url = "https://shop.arcsolinc.com/products/hypertherm-xpr300-power-supply-400v-078625"
+    out = []
+    if not robots_ok(url):
+        _log(discovery, name="Hypertherm XPR300 power supply (MSRP)", url=url, type="msrp",
+             region="US-ships", robots_ok="N", status="blocked", reason="robots.txt disallows product page")
+        return out
+    try:
+        r = get(url, timeout=30)
+        price = None
+        for m in re.finditer(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', r.text, re.I | re.S):
+            if "Offer" in m.group(1) and "36000" in m.group(1):
+                mm = re.search(r'"price"\s*:\s*([0-9.]+)', m.group(1))
+                if mm:
+                    price = float(mm.group(1))
+                    break
+        if price is None:
+            mm = re.search(r'"price"\s*:\s*"?36000(?:\.00)?"?', r.text)
+            if mm:
+                price = 36000.0
+    except Exception as e:
+        _log(discovery, name="Hypertherm XPR300 power supply (MSRP)", url=url, type="msrp",
+             region="US-ships", robots_ok="Y", status="blocked", reason=str(e)[:200])
+        return out
+    if price:
+        out.append({
+            "make": "Hypertherm", "model": "XPR 300",
+            "title": "Hypertherm XPR300 Power Supply 400V, 078625",
+            "price": price, "currency": "USD",
+            "source_url": url, "date": _today().isoformat(),
+            "source_name": "Arc Solutions (Hypertherm dealer shop)",
+            "kind": "official",
+            "scope": "power_supply",
+            "notes": "Published dealer price for the power supply only — not a complete CNC table.",
+        })
+    _log(discovery, name="Hypertherm XPR300 power supply (MSRP)", url=url, type="msrp",
+         region="US-ships", robots_ok="Y", http_status=200,
+         status="added" if out else "pending",
+         listings=len(out), priced=len(out),
+         reason="Authorized-dealer published price for the XPR300 power supply only; not applied to complete tables")
+    return out
+
+
+def msrp_estimated_haas(discovery) -> list[dict]:
+    """VF-2 new-price estimate from two independent press sources, both citing Haas's published list.
+
+    Official haascnc.com machine and shop pages returned HTTP 403 to our identified bot
+    on 26 Nov 2026, so we do not claim a first-party official figure.
+    """
+    url_a = "https://machinetoolindex.com/machines/haas-vf-2"
+    url_b = "https://open-factory.com/articles/haas-vf2-true-cost/"
+    rows = [{
+        "make": "Haas", "model": "VF-2",
+        "title": "Haas VF-2 vertical machining center (base list)",
+        "price": 70995.0, "currency": "USD",
+        "source_url": url_a, "source_url_2": url_b,
+        "date": "2026-11-26",
+        "source_name": "MachineTool Index and Open Factory (press, 2026)",
+        "kind": "estimated",
+        "notes": "Prix neuf estimé. US$70,995 list stated by MachineTool Index (verified 2026-10-02, 'as published by Haas Automation') and independently by Open Factory (revised 2026-10-11). Freight, options and installation extra. Not applied to VF-2SS, VF-2TR or other variants.",
+    }]
+    _log(discovery, name="Haas VF-2 estimated new price (2 press sources)", url=url_a, type="msrp",
+         region="US-ships", robots_ok="Y", http_status=200, status="added",
+         listings=1, priced=1,
+         reason="No official haascnc.com price reachable (HTTP 403). Estimate US$70,995 from MachineTool Index + Open Factory, dated 26 Nov 2026")
+    return rows
+
+
+def _norm_token(s: str | None) -> str:
+    return re.sub(r"[^a-z0-9]", "", parse.fold(s or "").lower())
+
+
+_MAKE_ALIASES = {"ebf": "ebf", "ebfinc": "ebf"}
+
+
 def match_msrp(item: dict, table: list[dict], fx: dict) -> dict:
-    if not item.get("make"):
+    """Attach a new-price row only on an exact make + model match (no substring leaks)."""
+    mk = _MAKE_ALIASES.get(_norm_token(item.get("make")), _norm_token(item.get("make")))
+    md = _norm_token(item.get("model"))
+    title_n = _norm_token(item.get("title"))
+    if not mk:
         return item
-    mk = re.sub(r"[^a-z0-9]", "", parse.fold(item.get("make") or "").lower())
-    md = re.sub(r"[^a-z0-9]", "", (item.get("model") or "").lower())
-    # Prefer the longest model match so CrossFire XR does not hit CrossFire.
     cands = []
     for row in table:
-        rmk = re.sub(r"[^a-z0-9]", "", (row.get("make") or "").lower())
-        rmd = re.sub(r"[^a-z0-9]", "", (row.get("model") or "").lower())
-        if rmk != mk and rmk not in mk and mk not in rmk:
+        rmk = _MAKE_ALIASES.get(_norm_token(row.get("make")), _norm_token(row.get("make")))
+        rmd = _norm_token(row.get("model"))
+        if rmk != mk or not rmd:
             continue
-        if rmd and md and (rmd == md or rmd in md or md.startswith(rmd)):
+        if md == rmd or (not md and title_n == _norm_token((row.get("make") or "") + (row.get("model") or ""))):
             cands.append((len(rmd), row))
-        elif rmd and not md:
-            continue
+        elif not md and rmd in title_n:
+            # model missing from parse: accept only if the model token is in the title
+            # and is not a prefix of a longer variant (vf2 must not hit vf2ss)
+            idx = title_n.find(rmd)
+            after = title_n[idx + len(rmd): idx + len(rmd) + 2]
+            if idx >= 0 and not (after and after[:1].isalnum() and after[:1] not in "x"):
+                # still reject vf2/vf2ss: if title contains a longer known relative, skip
+                if rmd == "vf2" and any(s in title_n for s in ("vf2ss", "vf2tr", "vf2yt", "vf2ssyt")):
+                    continue
+                cands.append((len(rmd), row))
     if not cands:
         return item
     cands.sort(key=lambda x: -x[0])
     row = cands[0][1]
+    # Never hang a power-supply MSRP on a complete cutting table.
+    if row.get("scope") == "power_supply":
+        blob = f"{item.get('title') or ''} {item.get('category') or ''} {item.get('make') or ''}"
+        if item.get("category") in {"plasma_table", "laser", "waterjet"} or re.search(
+            r"\b(table|cutter|découpe|decoupe|cnc\s+plasma|ebf)\b", blob, re.I,
+        ):
+            return item
     item["msrp"] = row["price"]
     item["msrp_currency"] = row["currency"]
     item["msrp_cad"] = to_cad(row["price"], row["currency"], fx)
     item["msrp_source_url"] = row["source_url"]
+    item["msrp_source_url_2"] = row.get("source_url_2")
     item["msrp_date"] = row["date"]
     item["msrp_source_name"] = row.get("source_name")
+    item["msrp_kind"] = row.get("kind") or "official"
+    item["msrp_notes"] = row.get("notes")
     return item
 
 
@@ -410,6 +547,70 @@ def fetch_igo(discovery, fx) -> list[dict]:
     return rows
 
 
+
+def fetch_machinery_host(discovery, fx, *, name, base, city, province, source_id, max_pages=8) -> list[dict]:
+    """Public MachineryHost inventory (same platform as Industriel Go). Prices only if shown on the card."""
+    url0 = base.rstrip("/") + "/listings"
+    if not robots_ok(url0):
+        _log(discovery, name=name, url=url0, type="dealer", region=province,
+             robots_ok="N", status="blocked", reason="robots.txt disallows /listings")
+        return []
+    hrefs: dict[str, tuple] = {}
+    status = 200
+    try:
+        for page in range(1, max_pages + 1):
+            u = url0 if page == 1 else f"{url0}?page={page}"
+            r = get(u, timeout=40)
+            status = r.status_code
+            soup = BeautifulSoup(r.text, "lxml")
+            n_before = len(hrefs)
+            for a in soup.select('a[href*="/listings/"]'):
+                h = urljoin(base, a.get("href") or "")
+                if not re.search(r"/listings/\d+", h):
+                    continue
+                card = a.find_parent(class_=re.compile(r"listing")) or a
+                title = parse.norm_ws(a.get_text(" ", strip=True))
+                if not title and card is not None:
+                    title = parse.norm_ws(card.get_text(" ", strip=True))
+                text = card.get_text(" ", strip=True) if card is not None else title
+                price, cur = parse.extract_price(text)
+                img = card.find("img") if hasattr(card, "find") else None
+                photo = None
+                if img is not None:
+                    photo = img.get("src") or img.get("data-src")
+                prev = hrefs.get(h)
+                if prev and prev[0] and len(prev[0]) >= len(title or ""):
+                    title = prev[0]
+                    photo = photo or prev[3]
+                    price = price or prev[1]
+                    cur = cur or prev[2]
+                hrefs[h] = (title, price, cur, photo)
+            if page > 1 and len(hrefs) == n_before:
+                break
+    except Exception as e:
+        _log(discovery, name=name, url=url0, type="dealer", region=province,
+             robots_ok="Y", status="blocked", reason=str(e)[:200])
+        return []
+    rows = []
+    for href, (title, price, cur, photo) in hrefs.items():
+        if not title or not parse.is_relevant(title):
+            continue
+        rows.append(_item(
+            title=title, url=href, photo_url=photo,
+            seller=name, source_id=source_id, source_name=name,
+            city=city, province=province, location=f"{city}, {province}",
+            price=price, currency=cur if price else None,
+            price_cad=to_cad(price, cur or "CAD", fx) if price else None,
+            price_type="asking" if price else "quote",
+        ))
+    priced = sum(1 for r in rows if r.get("price"))
+    _log(discovery, name=name, url=url0, type="dealer", region=province,
+         robots_ok="Y", http_status=status, status="added",
+         listings=len(rows), priced=priced,
+         reason=f"Public MachineryHost inventory HTML; {priced} with a published asking price, others on request")
+    return rows
+
+
 def fetch_southern_fab(discovery, fx) -> list[dict]:
     name, url = "Southern Fabricating Machinery Sales", "https://www.southernfabsales.com/machines"
     if not robots_ok(url):
@@ -521,12 +722,24 @@ def fetch_ironplanet_known(discovery, fx) -> list[dict]:
 def probe_blocked_sources(discovery) -> None:
     """Record candidate sources we attempted and could not (or should not) read."""
     candidates = [
+        ("Surplus Record", "https://surplusrecord.com/", "directory", "CA-US",
+         "robots allow, but our identified bot receives HTTP 403 on dealer and Canada pages; not bypassed"),
+        ("Haas official machine pages / shop inventory", "https://haascnc.com/machines/vertical-mills/vf-series/models/small/vf-2", "oem", "US",
+         "robots allow, but our identified bot receives HTTP 403; list price taken only from two press sources for the VF-2 estimate"),
+        ("Powermaster Machinery (Mississauga)", "https://www.powermaster.ca/used-machines", "dealer", "ON",
+         "Challenge-like page to our identified bot; not bypassed"),
+        ("Milltronics official site", "https://milltronics.com/cnc-machines/trl18-60", "oem", "US",
+         "Product page returned HTTP 202 challenge; info.milltronics.com/online-pricing is a form with no public prices"),
+        ("Steel Machinery (QC/ON directory)", "https://steelmachinery.ca/", "directory", "QC-ON",
+         "TLS handshake failed on retry (unexpected EOF); not bypassed"),
+        ("Seguin Machinery", "https://www.seguinmachinery.com/", "dealer", "QC",
+         "TLS handshake failed on retry; not bypassed"),
         ("CNC Pro Equipment", "https://www.cncproequipment.com/", "dealer", "ON",
          "Public inventory exists, but our identified bot receives HTTP 403; not bypassed"),
         ("Machinery Inc. (Sherbrooke)", "https://www.1machinery.com/active-inventory", "dealer", "QC",
          "Public inventory exists, but our identified bot receives HTTP 403; not bypassed"),
         ("Steel Machinery (QC/ON directory)", "https://steelmachinery.ca/", "directory", "QC-ON",
-         "TLS handshake failed (unexpected EOF); not bypassed"),
+         "TLS handshake failed on retry 26 Nov 2026 (unexpected EOF); not bypassed"),
         ("Kijiji Québec", "https://www.kijiji.ca/b-outils-machinerie/quebec/cnc/k0c632l9001", "classifieds", "QC",
          "Page loads but search results are not present in the public HTML (results=null); no API workaround"),
         ("LesPAC", "https://www.lespac.com/", "classifieds", "QC",
@@ -580,9 +793,7 @@ def probe_blocked_sources(discovery) -> None:
         ("Elliott Matsuura Canada", "https://www.elliottmachinery.com/", "dealer", "ON",
          "No public used inventory extracted this pass"),
         ("Seguin Machinery", "https://www.seguinmachinery.com/", "dealer", "QC",
-         "TLS handshake failed; not bypassed"),
-        ("Trader Machinery (Concord)", "https://www.tradermachinery.com/", "dealer", "ON",
-         "robots allow; no inventory parse this pass"),
+         "TLS handshake failed on retry 26 Nov 2026; not bypassed"),
         ("Sterling Machinery", "https://www.sterlingmachinery.com/inventory.php", "dealer", "US",
          "inventory.php 404 this pass"),
         ("Prestige Equipment", "https://www.prestigeequipment.com/", "dealer", "US-ships",
@@ -747,15 +958,26 @@ def main() -> int:
     fx = load_fx()
     print(f"  FX USD/CAD = {fx['rate']} ({fx['source']} {fx.get('date')})")
 
-    msrp = fetch_langmuir_msrp(discovery)
+    msrp: list[dict] = []
+    for fn in (fetch_langmuir_msrp, fetch_piranha_msrp, fetch_hypertherm_xpr_msrp, msrp_estimated_haas):
+        try:
+            msrp.extend(fn(discovery))
+        except Exception as e:
+            print(f"  !! {fn.__name__} crashed: {e}")
     (OUT / "msrp.json").write_text(json.dumps({"generated": _now_iso(), "rows": msrp}, indent=2, ensure_ascii=False))
 
     fresh: list[dict] = []
-    for fetcher in (fetch_alx, fetch_tardif, fetch_igo, fetch_southern_fab, fetch_ironplanet_known):
+    host_jobs = [
+        lambda d, fx: fetch_machinery_host(d, fx, name="Gizmo Machine Tools", base="https://www.gizmo-mt.ca",
+                                           city="Mississauga", province="ON", source_id="gizmo", max_pages=6),
+        lambda d, fx: fetch_machinery_host(d, fx, name="Trader Machinery", base="https://www.tradermachinery.com",
+                                           city="Concord", province="ON", source_id="trader", max_pages=3),
+    ]
+    for fetcher in (fetch_alx, fetch_tardif, fetch_igo, fetch_southern_fab, fetch_ironplanet_known, *host_jobs):
         try:
             fresh.extend(fetcher(discovery, fx))
         except Exception as e:
-            print(f"  !! {fetcher.__name__} crashed: {e}")
+            print(f"  !! {getattr(fetcher, '__name__', fetcher)} crashed: {e}")
 
     # Seeds fill gaps (same id is overwritten by a live row).
     live_ids = {r["id"] for r in fresh}

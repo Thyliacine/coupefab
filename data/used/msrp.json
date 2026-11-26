@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-26T14:55:46-05:00",
+  "generated": "2026-11-26T15:16:57-05:00",
   "rows": [
     {
       "make": "Langmuir",
@@ -10,6 +10,7 @@
       "source_url": "https://www.langmuirsystems.com/products/crossfire-pro-cnc-plasma-table-basic-package",
       "date": "2026-11-26",
       "source_name": "Langmuir Systems official shop",
+      "kind": "official",
       "notes": "Published new price on langmuirsystems.com; freight and options extra."
     },
     {
@@ -21,6 +22,7 @@
       "source_url": "https://www.langmuirsystems.com/products/crossfire-cnc-plasma-table-basic-package",
       "date": "2026-11-26",
       "source_name": "Langmuir Systems official shop",
+      "kind": "official",
       "notes": "Published new price on langmuirsystems.com; freight and options extra."
     },
     {
@@ -32,6 +34,7 @@
       "source_url": "https://www.langmuirsystems.com/products/crossfire-pro-max-cnc-plasma-table",
       "date": "2026-11-26",
       "source_name": "Langmuir Systems official shop",
+      "kind": "official",
       "notes": "Published new price on langmuirsystems.com; freight and options extra."
     },
     {
@@ -43,6 +46,7 @@
       "source_url": "https://www.langmuirsystems.com/products/titan-25t-cnc-press-brake",
       "date": "2026-11-26",
       "source_name": "Langmuir Systems official shop",
+      "kind": "official",
       "notes": "Published new price on langmuirsystems.com; freight and options extra."
     },
     {
@@ -54,6 +58,7 @@
       "source_url": "https://www.langmuirsystems.com/products/razorweld-razorcut-45-with-machine-torch",
       "date": "2026-11-26",
       "source_name": "Langmuir Systems official shop",
+      "kind": "official",
       "notes": "Published new price on langmuirsystems.com; freight and options extra."
     },
     {
@@ -65,6 +70,7 @@
       "source_url": "https://www.langmuirsystems.com/products/hypertherm-powermax45-sync-with-25ft-mechanized-torch",
       "date": "2026-11-26",
       "source_name": "Langmuir Systems official shop",
+      "kind": "official",
       "notes": "Published new price on langmuirsystems.com; freight and options extra."
     },
     {
@@ -76,7 +82,58 @@
       "source_url": "https://www.langmuirsystems.com/products/crossfire-xr-cnc-plasma-table",
       "date": "2026-11-26",
       "source_name": "Langmuir Systems official shop",
+      "kind": "official",
       "notes": "Published new price on langmuirsystems.com; freight and options extra."
+    },
+    {
+      "make": "Piranha",
+      "model": "45-08T",
+      "title": "Piranha 45-08T (45 ton × 8 ft) press brake",
+      "price": 58900.0,
+      "currency": "USD",
+      "source_url": "https://piranhafab.com/current-promotions-and-in-stock-equipment",
+      "date": "2026-11-26",
+      "source_name": "Piranha / MegaFab official promotions page",
+      "kind": "official",
+      "notes": "Published regular (list) price on piranhafab.com; special price ignored; freight extra."
+    },
+    {
+      "make": "Piranha",
+      "model": "70-08T",
+      "title": "Piranha 70-08T (70 ton × 8 ft) press brake",
+      "price": 63900.0,
+      "currency": "USD",
+      "source_url": "https://piranhafab.com/current-promotions-and-in-stock-equipment",
+      "date": "2026-11-26",
+      "source_name": "Piranha / MegaFab official promotions page",
+      "kind": "official",
+      "notes": "Published regular (list) price on piranhafab.com; special price ignored; freight extra."
+    },
+    {
+      "make": "Hypertherm",
+      "model": "XPR 300",
+      "title": "Hypertherm XPR300 Power Supply 400V, 078625",
+      "price": 36000.0,
+      "currency": "USD",
+      "source_url": "https://shop.arcsolinc.com/products/hypertherm-xpr300-power-supply-400v-078625",
+      "date": "2026-11-26",
+      "source_name": "Arc Solutions (Hypertherm dealer shop)",
+      "kind": "official",
+      "scope": "power_supply",
+      "notes": "Published dealer price for the power supply only — not a complete CNC table."
+    },
+    {
+      "make": "Haas",
+      "model": "VF-2",
+      "title": "Haas VF-2 vertical machining center (base list)",
+      "price": 70995.0,
+      "currency": "USD",
+      "source_url": "https://machinetoolindex.com/machines/haas-vf-2",
+      "source_url_2": "https://open-factory.com/articles/haas-vf2-true-cost/",
+      "date": "2026-11-26",
+      "source_name": "MachineTool Index and Open Factory (press, 2026)",
+      "kind": "estimated",
+      "notes": "Prix neuf estimé. US$70,995 list stated by MachineTool Index (verified 2026-10-02, 'as published by Haas Automation') and independently by Open Factory (revised 2026-10-11). Freight, options and installation extra. Not applied to VF-2SS, VF-2TR or other variants."
     }
   ]
 }

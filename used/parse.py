@@ -242,40 +242,69 @@ def extract_make_model(title: str) -> tuple[str | None, str | None]:
     return (make_raw or make), model
 
 
+def _ton_class(ton: float) -> str:
+    if ton <= 80:
+        return "small"
+    if ton <= 200:
+        return "medium"
+    return "large"
+
+
+def _area_class(area_sqft: float) -> str:
+    if area_sqft <= 40:
+        return "small"
+    if area_sqft <= 90:
+        return "medium"
+    return "large"
+
+
 def size_class(title: str, category: str, tonnage: float | None = None) -> str | None:
-    """A coarse class so a hobby table is not compared to a 10x26 production table."""
+    """A coarse class so a hobby table is not compared to a 10x26 production table.
+
+    Used for deal comparables (same category + size class when make+model is too thin).
+    """
     t = fold(title or "").lower()
     if tonnage and category in {"press_brake", "punch", "shear", "other"}:
-        if tonnage <= 80:
-            return "small"
-        if tonnage <= 200:
+        return _ton_class(tonnage)
+    # kN on brakes (1000 kN ≈ 100 t)
+    if category in {"press_brake", "punch", "other"}:
+        m = re.search(r"(\d[\d\s]*)\s*kn\b", t)
+        if m:
+            return _ton_class(float(m.group(1).replace(" ", "")) / 9.81)
+        m = re.search(r"(\d{2,4})\s*(?:t|tonnes?|tons?)\b", t)
+        if m:
+            return _ton_class(int(m.group(1)))
+        # Piranha-style model 9510 = 95 t × 10 ft, 45-08T = 45 t × 8 ft
+        m = re.search(r"\bpiranha\s+(\d{2,3})(\d{2})\b", t)
+        if not m:
+            m = re.search(r"\b(\d{2,3})-?0?(\d{2})t\b", t)
+        if m and category == "press_brake":
+            return _ton_class(int(m.group(1)))
+    if category in {"plasma_table", "laser", "waterjet", "router"}:
+        # inches first (78 × 150 po) so they are not read as feet
+        m = re.search(r"(\d{2,3})\s*[x×]\s*(\d{2,3})\s*(?:po|pouces|in|inch|\")", t)
+        if m:
+            return _area_class((int(m.group(1)) / 12.0) * (int(m.group(2)) / 12.0))
+        m = re.search(r"(\d{1,2})\s*'?\s*[x×]\s*(\d{1,2})\s*(?:pi|ft|pieds|')?", t)
+        if m:
+            return _area_class(int(m.group(1)) * int(m.group(2)))
+        # standard laser beds: 3015 ≈ 10×5 ft, 4020/4025 larger
+        if re.search(r"\b(3015|byspeed[^\d]{0,4}3015)\b", t):
             return "medium"
-        return "large"
-    # table size in feet: "5 x 5", "10 × 26", "5x10"
-    m = re.search(r"(\d{1,2})\s*[x×]\s*(\d{1,2})\s*(?:pi|ft|pieds|')?", t)
-    if m and category in {"plasma_table", "laser", "waterjet", "router"}:
-        a, b = int(m.group(1)), int(m.group(2))
-        area = a * b
-        if area <= 40:
-            return "small"
-        if area <= 90:
-            return "medium"
-        return "large"
-    m = re.search(r"(\d{2,4})\s*(?:t|tonnes?|ton)\b", t)
-    if m and category in {"press_brake", "punch", "other"}:
-        ton = int(m.group(1))
-        if ton <= 80:
-            return "small"
-        if ton <= 200:
-            return "medium"
-        return "large"
-    if category == "mill":
-        if re.search(r"\bvf-?[1-3]\b|\btm-\d\b", t):
-            return "small"
-        if re.search(r"\bvf-?[4-6]\b", t):
-            return "medium"
-        if re.search(r"\bvf-?[7-9]\b|boring\s+mill", t):
+        if re.search(r"\b(4020|4025|2040)\b", t):
             return "large"
+    if category == "mill":
+        if re.search(r"\bvf-?[1-3]\b|\btm-\d|\bumc-?500\b", t):
+            return "small"
+        if re.search(r"\bvf-?[4-6]\b|\bumc-?750\b", t):
+            return "medium"
+        if re.search(r"\bvf-?[7-9]\b|boring\s+mill|aléseuse", t):
+            return "large"
+    if category == "lathe":
+        if re.search(r"\bst-?1[0-5]\b|\bml-?1[0-8]\b|\b18\s*[x×]\s*\d+", t):
+            return "small"
+        if re.search(r"\bst-?(20|25|28|30|35)\b|\bquickturn|nexus\s*300", t):
+            return "medium"
     return None
 
 

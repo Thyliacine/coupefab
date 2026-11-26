@@ -73,8 +73,8 @@ PUBLIC_KEYS = (
     "seller", "source_id", "source_name", "url", "photo_url", "first_seen",
     "last_seen", "status", "badge", "badge_reason_fr", "badge_reason_en",
     "pct_off_msrp", "pct_vs_used_median", "n_comps", "msrp_cad", "msrp_source_url",
-    "msrp_date", "days_on_market", "price_dropped", "drop_pct", "condition_new",
-    "size_class",
+    "msrp_source_url_2", "msrp_kind", "msrp_date", "days_on_market", "price_dropped",
+    "drop_pct", "condition_new", "size_class",
 )
 
 
@@ -138,12 +138,22 @@ def card_html(it: dict, fr: bool) -> str:
     else:
         img = '<span class="oc-ph" aria-hidden="true"></span>'
     msrp_line = ""
-    if it.get("msrp_cad") and it.get("price_cad"):
+    if it.get("msrp_cad"):
         src = it.get("msrp_source_url") or ""
+        src2 = it.get("msrp_source_url_2") or ""
         when = date_fr(it.get("msrp_date")) if fr else date_en(it.get("msrp_date"))
-        cite = f'<a href="{esc(src)}" rel="nofollow noopener" target="_blank">MSRP</a>' if src else "MSRP"
+        estimated = (it.get("msrp_kind") or "official") == "estimated"
+        if estimated:
+            label = "Prix neuf estimé" if fr else "Estimated new price"
+        else:
+            label = "Prix neuf" if fr else "New price"
+        def _cite(url, text):
+            return f'<a href="{esc(url)}" rel="nofollow noopener" target="_blank">{esc(text)}</a>' if url else esc(text)
+        cite = _cite(src, label)
+        if src2:
+            cite += " · " + _cite(src2, "source 2" if not fr else "source 2")
         extra = f" ({when})" if when else ""
-        off = off_label(it.get("pct_off_msrp"), fr)
+        off = off_label(it.get("pct_off_msrp"), fr) if it.get("price_cad") else ""
         off_s = f" · {off}" if off else ""
         msrp_line = f'<p class="oc-msrp">{cite} {money(it["msrp_cad"], fr)}{extra}{off_s}</p>'
     if it.get("price_cad") or it.get("price"):
@@ -391,8 +401,8 @@ def _method_html(fr: bool, method: dict, fx_txt: str, sources: list) -> str:
     <li><span class="oc-tier oc-t-market">Prix du marché</span> à ± {tp} % de la médiane, ou 20–35 % sous le neuf sans comparables.</li>
     <li><span class="oc-tier oc-t-high">Cher</span> au moins {tp} % au-dessus de la médiane, ou moins de 20 % sous le neuf sans comparables.</li>
   </ul>
-  <p>Les comparables sont d’abord la même marque et le même modèle, sinon la même catégorie, marque et classe de taille. Une table hobby n’est pas comparée à une table de production. L’âge est ramené à l’année de l’annonce avec un facteur estimatif de {dep} % par an (plafond {cap} ans) — c’est une estimation CoupeFab, pas une expertise. Pointez ou touchez une pastille pour voir le calcul (par ex. « 42 % sous le prix neuf, 18 % sous la médiane usagée »).</p>
-  <p>Un prix neuf (MSRP) n’est affiché que s’il provient d’une page officielle du fabricant ou d’un concessionnaire, avec l’URL et la date. Nous n’inventons jamais ce chiffre. Un appareil usagé peut inclure des options que le prix de base n’inclut pas, ou l’inverse.</p>
+  <p>Les comparables, dans l’ordre, dès qu’il y en a au moins deux autres avec un prix : (1) même marque et même modèle ; (2) même catégorie, même marque et même classe de taille ; (3) même catégorie et même classe de taille. Une table hobby n’est pas comparée à une table de production, ni une plieuse de 44 t à une de 200 t. Une machine neuve en inventaire n’entre pas dans la médiane usagée, et l’inverse. L’âge est ramené à l’année de l’annonce avec un facteur estimatif de {dep} % par an (plafond {cap} ans) — c’est une estimation CoupeFab, pas une expertise. Pointez ou touchez une pastille pour voir le calcul (par ex. « 42 % sous le prix neuf, 18 % sous la médiane usagée »).</p>
+  <p>Un prix neuf n’est affiché que s’il provient d’une page officielle du fabricant ou d’un concessionnaire autorisé (URL + date), ou, à défaut, d’une fourchette clairement étiquetée « Prix neuf estimé » appuyée par au moins deux sources de presse ou de concessionnaires. Nous n’inventons jamais ce chiffre. Un appareil usagé peut inclure des options que le prix de base n’inclut pas, ou l’inverse.</p>
   <p>Une baisse de prix est signalée lorsque le montant publié a diminué depuis notre premier relevé. Les jours en ligne sont comptés depuis ce premier relevé. Une annonce absente pendant {stale} jours est marquée périmée ; « vendu » ne l’est que si le vendeur l’indique.</p>
   <p>{esc(fx_txt)}</p>
   <h3>Sources lues</h3>
@@ -410,8 +420,8 @@ def _method_html(fr: bool, method: dict, fx_txt: str, sources: list) -> str:
     <li><span class="oc-tier oc-t-market">Market price</span> within ±{tp}% of the median, or 20–35% off new with no comparables.</li>
     <li><span class="oc-tier oc-t-high">High</span> at least {tp}% above the median, or less than 20% off new with no comparables.</li>
   </ul>
-  <p>Comparables are first the same make and model, otherwise the same category, make and size class. A hobby table is not compared with a production table. Age is brought to the listing’s year with an estimated {dep}% declining-balance factor per year (capped at {cap} years) — a CoupeFab estimate, not an appraisal. Hover or tap a badge to see the arithmetic (e.g. “42% off new, 18% below the used median”).</p>
-  <p>A new (MSRP) figure is shown only when it comes from an official manufacturer or dealer page, with the URL and date. We never invent that number. A used machine may include options the base price does not, or the reverse.</p>
+  <p>Comparables, in order, once at least two other priced listings exist: (1) same make and model; (2) same category, make and size class; (3) same category and size class. A hobby table is not compared with a production table, nor a 44-ton brake with a 200-ton brake. New in-stock machines are not used as comparables for used listings, and the reverse. Age is brought to the listing’s year with an estimated {dep}% declining-balance factor per year (capped at {cap} years) — a CoupeFab estimate, not an appraisal. Hover or tap a badge to see the arithmetic (e.g. “42% off new, 18% below the used median”).</p>
+  <p>A new-price figure is shown only from an official manufacturer or authorized-dealer page (URL + date), or, failing that, a clearly labelled “Estimated new price” backed by at least two dealer or press sources. We never invent that number. A used machine may include options the base price does not, or the reverse.</p>
   <p>A price-drop mark appears when the published figure has fallen since we first saw the listing. Days on market are counted from that first sighting. A listing missing for {stale} days is marked stale; “sold” is used only when the seller says so.</p>
   <p>{esc(fx_txt)}</p>
   <h3>Sources read</h3>
