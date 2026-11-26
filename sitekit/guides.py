@@ -100,7 +100,7 @@ def registry():
 
 
 _WIKI = re.compile(r"\[\[([a-z0-9-]+)(?:\|([^\]]+))?\]\]")
-_PENDING = {"lathe-finish-chatter": "Tournage : fini et vibrations"}
+_PENDING = {}
 _SPECIAL = {"prix": ("/prix/", "/en/sheet-prices/", "comparateur de prix", "price comparison tool")}
 
 
