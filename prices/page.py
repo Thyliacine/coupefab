@@ -266,7 +266,7 @@ def render(form_newsletter, site):
     # public CSV of the current snapshot
     import io
     buf = io.StringIO()
-    w = csv.writer(buf)
+    w = csv.writer(buf, lineterminator="\n")
     ck = ["supplier", "family", "grade", "form", "description", "size_label", "thickness_in", "thickness_mm", "gauge",
           "width_in", "length_in", "length_ft", "price", "currency", "unit", "price_cad", "price_per_lb_cad",
           "price_per_kg_cad", "price_per_sqft_cad", "price_per_ft_cad", "weight_lb", "availability", "url",

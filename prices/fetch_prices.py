@@ -613,7 +613,7 @@ def write_history(prev_rows, rows, today):
             out.append(dict(r, date=today, change="prix" if abs((o.get("price") or 0) - (r.get("price") or 0)) > 0.004 else "dispo",
                             previous_price=o.get("price")))
     with path.open("a", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=HIST_FIELDS, extrasaction="ignore")
+        w = csv.DictWriter(f, fieldnames=HIST_FIELDS, extrasaction="ignore", lineterminator="\n")
         if new_file:
             w.writeheader()
         for x in out:
@@ -637,7 +637,7 @@ def write_index(rows, today):
     new = [{"date": today, "family": fam, "form_group": fg, "median_cad_per_lb": round(statistics.median(v), 3),
             "n_rows": len(v)} for (fam, fg), v in sorted(groups.items()) if len(v) >= 2]
     with path.open("w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=["date", "family", "form_group", "median_cad_per_lb", "n_rows"])
+        w = csv.DictWriter(f, fieldnames=["date", "family", "form_group", "median_cad_per_lb", "n_rows"], lineterminator="\n")
         w.writeheader()
         for x in old + new:
             w.writerow(x)
