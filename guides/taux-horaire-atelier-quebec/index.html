@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculer son taux horaire d’atelier au Québec (machine + main-d’œuvre), avec des sources honnêtes — CoupeFab</title>
+<meta name="description" content="Méthode pour bâtir un taux horaire machine et main-d’œuvre : salaires publiés par Guichet-Emplois (CNP 72100), charges sociales, amortissement, énergie, entretien, frais généraux et heures réellement facturables. Pourquoi aucun « taux du marché » publié n’est fiable.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/guides/taux-horaire-atelier-quebec/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/taux-horaire-atelier-quebec/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/shop-hourly-rate-quebec/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/taux-horaire-atelier-quebec/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculer son taux horaire d’atelier au Québec (machine + main-d’œuvre), avec des sources honnêtes — CoupeFab">
+<meta property="og:description" content="Méthode pour bâtir un taux horaire machine et main-d’œuvre : salaires publiés par Guichet-Emplois (CNP 72100), charges sociales, amortissement, énergie, entretien, frais généraux et heures réellement facturables. Pourquoi aucun « taux du marché » publié n’est fiable.">
+<meta property="og:url" content="https://coupefab.vercel.app/guides/taux-horaire-atelier-quebec/">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:locale:alternate" content="en_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="fr">
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/" aria-label="CoupeFab — Accueil"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Navigation principale">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/guides/logiciels/">Par logiciel</a></p>
+            <ul class="mega-list two"><li><a href="/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/guides/debuter-sheetcam/">SheetCam</a></li><li><a href="/guides/solidworks-tolerie-dxf/">SOLIDWORKS tôlerie</a></li><li><a href="/guides/autocad-nettoyer-dxf/">AutoCAD (DXF)</a></li><li><a href="/guides/fusion-fao-debuter/">Fusion (FAO)</a></li><li><a href="/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/guides/bricscad-dxf/">BricsCAD → DXF</a></li><li><a href="/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/guides/inventor-tolerie-cam/">Inventor</a></li><li><a href="/guides/mastercam-parcours-2d-dynamic/">Mastercam 2D</a></li><li><a href="/guides/mastercam-post-tour/">Mastercam post et tour</a></li><li><a href="/guides/camworks-fao-solidworks/">CAMWorks</a></li><li><a href="/guides/fusion-plasma-post-par-table/">Fusion plasma : posts par table</a></li><li><a href="/guides/esprit-cam-multitache/">ESPRIT CAM</a></li><li><a href="/guides/onshape-tolerie-cam/">Onshape</a></li><li><a href="/guides/solidworks-mises-en-plan-cam/">SOLIDWORKS CAM et mises en plan</a></li><li><a href="/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/guides/gibbscam-fao/">GibbsCAM</a></li></ul>
+            <p class="mega-all"><a href="/guides/logiciels/">Tous les logiciels →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/procedes/">Par procédé</a></p>
+            <ul class="mega-list"><li><a href="/guides/decoupe-plasma-cnc/">Plasma CNC</a></li><li><a href="/guides/laser-fibre/">Laser fibre</a></li><li><a href="/guides/jet-d-eau/">Jet d’eau</a></li><li><a href="/guides/routeur-cnc/">Routeur CNC</a></li><li><a href="/guides/fraiseuse-cnc/">Fraiseuse CNC</a></li><li><a href="/guides/tour-cnc/">Tour CNC</a></li><li><a href="/guides/presse-plieuse/">Presse plieuse</a></li><li><a href="/guides/plasma-biseau-chanfrein/">Plasma biseau (chanfrein)</a></li><li><a href="/guides/oxycoupage/">Oxycoupage</a></li><li><a href="/guides/electroerosion-fil-enfoncage/">Électroérosion (fil et enfonçage)</a></li><li><a href="/guides/usinage-5-axes/">Usinage 5 axes</a></li><li><a href="/guides/tour-fraiseur-decolleteuse-suisse/">Tour-fraiseur et décolleteuse suisse</a></li><li><a href="/guides/preparation-soudure-chanfrein/">Préparation de soudure</a></li><li><a href="/guides/ebavurage-finition/">Ébavurage et finition</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/fondamentaux/">Par sujet</a></p>
+            <ul class="mega-list"><li><a href="/guides/reference-g-code-m-code/">G-code et M-code</a></li><li><a href="/guides/avances-vitesses/">Avances et vitesses</a></li><li><a href="/guides/kerf-qualite-coupe/">Kerf et qualité de coupe</a></li><li><a href="/guides/pliage-k-factor/">Pliage : K-factor et déduction</a></li><li><a href="/guides/nuances-metaux/">Nuances de métaux</a></li><li><a href="/guides/dxf-bonnes-pratiques/">DXF : bonnes pratiques</a></li><li class="more"><a href="/guides/fondamentaux/">Fondamentaux CNC →</a></li><li class="more"><a href="/guides/materiaux/">Matériaux et nuances →</a></li><li class="more"><a href="/guides/depannage/">Dépannage →</a></li><li class="more"><a href="/guides/atelier/">Atelier : sécurité, soumissions, métrologie, formation →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/prix/">
+              <span class="feature-k">Outil</span>
+              <strong>Prix des tôles</strong>
+              <span>Tôle, plaque, barre et tube : prix publiés chez les fournisseurs qui livrent au Québec, mis à jour chaque jour ouvrable.</span>
+            </a>
+            <a class="mega-allguides" href="/guides/">Tous les guides (71) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/prix/">Prix des tôles</a></li>
+    <li><a class="nav-link" href="/occasions/">Occasions</a></li>
+    <li><a class="nav-link" href="/infolettre/">Infolettre</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Rechercher"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Rechercher</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Langue">
+        <a href="/guides/taux-horaire-atelier-quebec/" hreflang="fr-CA" lang="fr-CA" aria-current="true">FR</a><a href="/en/guides/shop-hourly-rate-quebec/" hreflang="en-CA" lang="en-CA">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Rechercher">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Rechercher un guide (ex. SheetCam, K-factor, scories)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Fermer</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>Aucun guide trouvé. Essayez un autre mot (logiciel, procédé, matériau).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Fil d’Ariane"><ol><li><a href="/">Accueil</a></li><li><a href="/guides/">Guides</a></li><li><a href="/guides/atelier/">Atelier : sécurité, soumissions, métrologie, formation</a></li><li aria-current="page">Taux horaire d’atelier (Québec)</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://coupefab.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/guides/"}, {"@type": "ListItem", "position": 3, "name": "Atelier : sécurité, soumissions, métrologie, formation", "item": "https://coupefab.vercel.app/guides/atelier/"}, {"@type": "ListItem", "position": 4, "name": "Taux horaire d’atelier (Québec)"}]}</script>
+<article class="guide" data-guide="shop-rates-quebec">
+  <header class="guide-head">
+    <p class="kicker">Atelier · prix de revient</p>
+    <h1>Calculer son taux horaire d’atelier au Québec (machine + main-d’œuvre), avec des sources honnêtes</h1>
+    <p class="guide-lede">Méthode pour bâtir un taux horaire machine et main-d’œuvre : salaires publiés par Guichet-Emplois (CNP 72100), charges sociales, amortissement, énergie, entretien, frais généraux et heures réellement facturables. Pourquoi aucun « taux du marché » publié n’est fiable.</p>
+    <p class="guide-meta">
+      <span>Révisé le <time datetime="2026-11-26">26 novembre 2026</time></span>
+      <span>4 min de lecture</span>
+      <span>Niveau : Intermédiaire</span>
+      <span class="pill pill-draft" tabindex="0" title="Rédigé par CoupeFab à partir des documents officiels cités. Révision technique par Michaël Brassard en attente.">Brouillon<span class="pill-tip" role="tooltip">Rédigé par CoupeFab à partir des documents officiels cités. Révision technique par Michaël Brassard en attente.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>Sur cette page</summary><ol><li><a href="#ce-que-disent-les-donnees-publiques-salaires">Ce que disent les données publiques (salaires)</a></li><li><a href="#la-methode-en-5-blocs">La méthode en 5 blocs</a></li><li><a href="#exemple-de-feuille-sans-chiffres-inventes">Exemple de feuille (sans chiffres inventés)</a></li><li><a href="#taux-par-machine-ou-taux-unique">Taux par machine ou taux unique ?</a></li><li><a href="#liste-de-verification-annuelle">Liste de vérification annuelle</a></li><li><a href="#erreurs-frequentes">Erreurs fréquentes</a></li><li><a href="#faq">FAQ</a></li><li><a href="#a-valider-en-atelier-michael">À valider en atelier (Michaël)</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p>« Quel est le taux horaire normal d’un atelier d’usinage ou de découpe au Québec ? » Réponse honnête : <strong>il n’existe pas de source publique fiable</strong> des taux facturés par les ateliers québécois. Les chiffres qui circulent viennent de sondages privés, de forums ou d’autres marchés. Ce qui est public et fiable, ce sont les <strong>salaires</strong> ; le reste, vous devez le calculer avec <strong>vos</strong> coûts. Voici la méthode.</p>
+<h2 id="ce-que-disent-les-donnees-publiques-salaires">Ce que disent les données publiques (salaires)</h2>
+<p>Guichet-Emplois (gouvernement du Canada) publie les salaires de la profession <strong>CNP 72100 – Machinistes et vérificateurs d’usinage et d’outillage</strong>. Pour la province de Québec, la page mise à jour le 18 novembre 2026 indique (période de référence 2024-2025, Enquête sur la population active de Statistique Canada) :</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Niveau</th><th>Salaire horaire</th></tr></thead><tbody>
+<tr><td>Bas</td><td>23,00 $</td></tr>
+<tr><td><strong>Médian</strong></td><td><strong>31,41 $</strong></td></tr>
+<tr><td>Haut</td><td>40,00 $</td></tr>
+</tbody></table></div>
+<p>Les valeurs régionales varient (par exemple 30,93 $ en Capitale-Nationale, 29,78 $ à Montréal, 31,81 $ en Montérégie, selon la même page). Ce sont des <strong>salaires</strong>, pas des taux facturés : il faut y ajouter charges, machine et frais généraux.</p>
+<h2 id="la-methode-en-5-blocs">La méthode en 5 blocs</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Bloc</th><th>Contenu</th><th>Comment l’estimer</th></tr></thead><tbody>
+<tr><td>1. Main-d’œuvre chargée</td><td>Salaire + charges de l’employeur (RRQ, AE, RQAP, FSS, CNESST, CNT) + avantages + vacances/fériés</td><td>Salaire × (1 + taux de charges réel de votre paie)</td></tr>
+<tr><td>2. Machine</td><td>Amortissement (prix ÷ durée d’utilisation prévue) ou paiements de financement, intérêts</td><td>Prix réel, durée réaliste</td></tr>
+<tr><td>3. Exploitation</td><td>Électricité, gaz (plasma/laser/oxycoupage), air comprimé, entretien, consommables non facturés</td><td>Factures des 12 derniers mois</td></tr>
+<tr><td>4. Frais généraux</td><td>Loyer, assurances, logiciels (FAO, licences), administration, vente, véhicules</td><td>Budget annuel réparti sur les machines</td></tr>
+<tr><td>5. Heures facturables</td><td>Heures payées × <strong>taux d’utilisation réel</strong> (pas 100 %)</td><td>Feuilles de temps : heures réellement facturées</td></tr>
+</tbody></table></div>
+<p><strong>Taux horaire (coût) = (main-d’œuvre chargée annuelle + coûts machine annuels + exploitation + part des frais généraux) ÷ heures facturables annuelles</strong></p>
+<p>Puis : <strong>taux facturé = taux coût + marge</strong> visée.</p>
+<h2 id="exemple-de-feuille-sans-chiffres-inventes">Exemple de feuille (sans chiffres inventés)</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Ligne</th><th>Votre valeur</th></tr></thead><tbody>
+<tr><td>Salaire horaire de l’opérateur</td><td>(votre paie ; repère public : médiane CNP 72100)</td></tr>
+<tr><td>Heures payées par an</td><td>(convention, horaire)</td></tr>
+<tr><td>Taux de charges et avantages</td><td>(votre comptable)</td></tr>
+<tr><td>Prix de la machine et durée d’amortissement</td><td>(facture, politique comptable)</td></tr>
+<tr><td>Électricité et gaz par an</td><td>(factures Hydro-Québec, fournisseur de gaz)</td></tr>
+<tr><td>Entretien et consommables par an</td><td>(registre)</td></tr>
+<tr><td>Frais généraux attribués</td><td>(budget)</td></tr>
+<tr><td>Taux d’utilisation</td><td>(heures facturées ÷ heures payées)</td></tr>
+</tbody></table></div>
+<aside class="callout callout-tip"><p class="callout-label">Astuce d’atelier</p><p>L’erreur la plus coûteuse est de diviser par <strong>toutes</strong> les heures payées. Mise en course, attente de matière, entretien, formation et soumissions ne sont pas facturables : un taux d’utilisation réaliste se mesure, il ne se suppose pas.</p></aside>
+<h2 id="taux-par-machine-ou-taux-unique">Taux par machine ou taux unique ?</h2>
+<ul><li><strong>Taux par machine</strong> : un laser fibre récent et une petite fraiseuse n’ont pas le même coût ; un taux par machine évite que l’une subventionne l’autre.</li><li><strong>Taux unique</strong> : plus simple, acceptable si les équipements sont comparables.</li><li>Dans les deux cas, chiffrez séparément les <strong>opérations secondaires</strong> (ébavurage, pliage, soudage) ; voir <a href="/guides/soumission-pieces-coupees/">Soumission de pièces coupées</a>.</li></ul>
+<h2 id="liste-de-verification-annuelle">Liste de vérification annuelle</h2>
+<ul class="checklist"><li>Salaires et charges mis à jour (hausses, nouvelles cotisations)</li><li>Factures d’énergie et de gaz des 12 derniers mois</li><li>Taux d’utilisation mesuré sur les feuilles de temps</li><li>Amortissements et financements à jour</li><li>Comparaison du taux avec les soumissions gagnées/perdues</li></ul>
+<h2 id="erreurs-frequentes">Erreurs fréquentes</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Erreur</th><th>Conséquence</th></tr></thead><tbody>
+<tr><td>Copier un « taux du marché » trouvé en ligne</td><td>Taux sans lien avec vos coûts</td></tr>
+<tr><td>Oublier les charges sociales</td><td>Main-d’œuvre sous-évaluée</td></tr>
+<tr><td>Utilisation supposée à 100 %</td><td>Taux trop bas, marge invisible</td></tr>
+<tr><td>Même taux pour toutes les machines</td><td>Laser sous-facturé, petite machine sur-facturée</td></tr>
+</tbody></table></div>
+<h2 id="faq">FAQ</h2>
+<h3 id="ou-trouver-les-taux-de-cotisation-a-jour">Où trouver les taux de cotisation à jour ?</h3>
+<p>Revenu Québec (RRQ, FSS, CNT, RQAP), la CNESST (taux de prime selon l’unité de classification) et l’ARC (AE) publient les taux annuels ; votre comptable les applique à votre paie.</p>
+<h3 id="les-salaires-de-guichet-emplois-sont-ils-representatifs-de-m">Les salaires de Guichet-Emplois sont-ils représentatifs de mon atelier ?</h3>
+<p>Ce sont des données d’enquête par profession et par région : un bon repère, pas un barème. Un programmeur CNC ou un opérateur laser expérimenté peut se situer ailleurs dans la fourchette.</p>
+<section class="review-box"><h2 id="a-valider-en-atelier-michael">À valider en atelier (Michaël)</h2>
+<ul><li>Votre structure de taux réelle (par machine ou unique) et vos taux d’utilisation mesurés.</li></ul>
+</section><section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://www.guichetemplois.gc.ca/rapportmarche/salaire-profession/16851/QC" class="ext" rel="noopener">Guichet-Emplois — Salaires, machinistes et vérificateurs d’usinage et d’outillage (CNP 72100), Québec</a>, consulté le 26 novembre 2026.</li><li><a href="https://www.quebec.ca/emploi/informer-metier-profession/explorer-metiers-professions/72100-machinistes-et-verificateurs-verificatrices-dusinage-et-doutillage" class="ext" rel="noopener">Gouvernement du Québec — Machinistes et vérificateurs d’usinage et d’outillage (CNP 72100)</a>, consulté le 26 novembre 2026.</li><li><a href="https://www.revenuquebec.ca/fr/entreprises/retenues-et-cotisations/" class="ext" rel="noopener">Revenu Québec — Retenues et cotisations de l’employeur</a>, consulté le 26 novembre 2026.</li></ul></section>
+
+      <p class="report"><a href="/a-propos/#contact">Une erreur, un ajout ? Écrivez-nous →</a></p>
+    </div>
+  </div>
+  <section class="related"><h2>Guides connexes</h2><div class="gcards"><a class="gcard" href="/guides/soumission-pieces-coupees/" data-hub="shop"><span class="card-meta">Atelier · prix de revient · Intermédiaire · 4 min de lecture</span><strong>Soumissionner des pièces coupées au laser ou au plasma : méthode de calcul complète</strong><span class="card-desc">Matière avec taux d’utilisation réel, temps de coupe (longueur + perçages), taux horaire machine, consommables, mise en course, ébavurage, pliage et marge : la méthode pas à pas avec une feuille de calcul type, sans chiffres inventés.</span></a><a class="gcard" href="/guides/metiers-cnc-formation-quebec/" data-hub="shop"><span class="card-meta">Atelier · carrière · Débutant · 3 min de lecture</span><strong>Métiers CNC et formation au Québec : DEP Techniques d’usinage, ASP commande numérique, DEC et santé-sécurité</strong><span class="card-desc">Les parcours pour devenir machiniste, opérateur ou programmeur CNC au Québec : DEP 5223 (1 800 h), ASP 5224 (885 h), DEC en génie mécanique, formation en entreprise, obligations de formation en santé-sécurité (CNESST) et salaires publiés.</span></a><a class="gcard" href="/guides/acheter-cnc-canada/" data-hub="shop"><span class="card-meta">Atelier · achat · Débutant · 4 min de lecture</span><strong>Acheter une CNC au Canada : neuve ou usagée, électricité, certification, import</strong><span class="card-desc">Définir le besoin, vérifier la tension et la certification électrique, comparer neuf et usagé, importer des États-Unis sans mauvaise surprise, et la liste de vérification d’une table plasma usagée au Québec.</span></a><a class="gcard" href="/guides/duree-vie-outils-usure/" data-hub="shop"><span class="card-meta">Atelier · outillage · Intermédiaire · 3 min de lecture</span><strong>Durée de vie des outils de coupe : lire l’usure, la prolonger et la gérer</strong><span class="card-desc">Usure en dépouille, cratère, arête rapportée, écaillage, entaille, déformation plastique : comment reconnaître chaque mode, sa cause et son correctif, le rôle dominant de la vitesse de coupe, et un système simple de suivi en atelier.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">Un guide par semaine, en français d’abord</p><p>Nouveaux guides, occasions au Québec et mouvements de prix. Pas de pub tierce.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="fr" novalidate>
+  <div class="hp" aria-hidden="true"><label>Site web<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Prénom ou atelier (facultatif)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Courriel
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="oui">
+    <span>J’accepte de recevoir l’infolettre de CoupeFab (guides, digest d’occasions et suivi des prix des tôles). Je peux me désabonner en tout temps. Voir la <a href="/confidentialite/">politique de confidentialité</a>.</span>
+  </label>
+  <button type="submit">S’inscrire</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">Conformité CASL : la case n’est pas précochée. Aucun envoi sans ce consentement exprès.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Calculer son taux horaire d’atelier au Québec (machine + main-d’œuvre), avec des sources honnêtes", "description": "Méthode pour bâtir un taux horaire machine et main-d’œuvre : salaires publiés par Guichet-Emplois (CNP 72100), charges sociales, amortissement, énergie, entretien, frais généraux et heures réellement facturables. Pourquoi aucun « taux du marché » publié n’est fiable.", "inLanguage": "fr-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/guides/taux-horaire-atelier-quebec/", "mainEntityOfPage": "https://coupefab.vercel.app/guides/taux-horaire-atelier-quebec/", "proficiencyLevel": "Intermediate", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["shop rate", "hourly rate", "machine rate", "burden rate", "overhead", "quebec", "salaire machiniste", "cnp 72100", "guichet-emplois", "depreciation", "utilization", "billable hours"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Où trouver les taux de cotisation à jour ?", "acceptedAnswer": {"@type": "Answer", "text": "Revenu Québec (RRQ, FSS, CNT, RQAP), la CNESST (taux de prime selon l’unité de classification) et l’ARC (AE) publient les taux annuels ; votre comptable les applique à votre paie."}}, {"@type": "Question", "name": "Les salaires de Guichet-Emplois sont-ils représentatifs de mon atelier ?", "acceptedAnswer": {"@type": "Answer", "text": "Ce sont des données d’enquête par profession et par région : un bon repère, pas un barème. Un programmeur CNC ou un opérateur laser expérimenté peut se situer ailleurs dans la fourchette."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>La référence francophone de la découpe CNC et de la fabrication métallique : guides vérifiés, prix des tôles comparés, occasions au Québec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/guides/logiciels/">Logiciels CAO / FAO et commandes</a></li>
+        <li><a href="/guides/procedes/">Procédés de coupe et d’usinage</a></li>
+        <li><a href="/guides/fondamentaux/">Fondamentaux CNC</a></li>
+        <li><a href="/guides/materiaux/">Matériaux et nuances</a></li>
+        <li><a href="/guides/depannage/">Dépannage</a></li>
+        <li><a href="/guides/atelier/">Atelier : sécurité, soumissions, métrologie, formation</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explorer</p>
+      <ul>
+        <li><a href="/prix/">Prix des tôles</a></li>
+        <li><a href="/occasions/">Occasions</a></li>
+        <li><a href="/infolettre/">Infolettre</a></li>
+        <li><a href="/a-propos/">À propos</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Mentions</p>
+      <ul>
+        <li><a href="/divulgation/">Divulgation (affiliations)</a></li>
+        <li><a href="/confidentialite/">Confidentialité et LCAP</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Québec, Canada. Aucun lien d’affiliation. Les marques citées appartiennent à leurs propriétaires et sont mentionnées à titre descriptif.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>

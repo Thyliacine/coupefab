@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tables plasma Torchmate et Avid CNC : logiciels, posts et contrôle de hauteur — CoupeFab</title>
+<meta name="description" content="Torchmate (Accumove, VMD, Torchmate CNC 4) et Avid CNC (Mach4 + SheetCam) : quelle chaîne logicielle, quel post, comment activer ou bloquer le THC par opération et régler l’anti-plongée.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/guides/torchmate-avid-cnc-plasma/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/torchmate-avid-cnc-plasma/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/torchmate-avid-cnc-plasma/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/torchmate-avid-cnc-plasma/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tables plasma Torchmate et Avid CNC : logiciels, posts et contrôle de hauteur — CoupeFab">
+<meta property="og:description" content="Torchmate (Accumove, VMD, Torchmate CNC 4) et Avid CNC (Mach4 + SheetCam) : quelle chaîne logicielle, quel post, comment activer ou bloquer le THC par opération et régler l’anti-plongée.">
+<meta property="og:url" content="https://coupefab.vercel.app/guides/torchmate-avid-cnc-plasma/">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:locale:alternate" content="en_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="fr">
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/" aria-label="CoupeFab — Accueil"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Navigation principale">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/guides/logiciels/">Par logiciel</a></p>
+            <ul class="mega-list two"><li><a href="/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/guides/debuter-sheetcam/">SheetCam</a></li><li><a href="/guides/solidworks-tolerie-dxf/">SOLIDWORKS tôlerie</a></li><li><a href="/guides/autocad-nettoyer-dxf/">AutoCAD (DXF)</a></li><li><a href="/guides/fusion-fao-debuter/">Fusion (FAO)</a></li><li><a href="/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/guides/bricscad-dxf/">BricsCAD → DXF</a></li><li><a href="/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/guides/inventor-tolerie-cam/">Inventor</a></li><li><a href="/guides/mastercam-parcours-2d-dynamic/">Mastercam 2D</a></li><li><a href="/guides/mastercam-post-tour/">Mastercam post et tour</a></li><li><a href="/guides/camworks-fao-solidworks/">CAMWorks</a></li><li><a href="/guides/fusion-plasma-post-par-table/">Fusion plasma : posts par table</a></li><li><a href="/guides/esprit-cam-multitache/">ESPRIT CAM</a></li><li><a href="/guides/onshape-tolerie-cam/">Onshape</a></li><li><a href="/guides/solidworks-mises-en-plan-cam/">SOLIDWORKS CAM et mises en plan</a></li><li><a href="/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/guides/gibbscam-fao/">GibbsCAM</a></li></ul>
+            <p class="mega-all"><a href="/guides/logiciels/">Tous les logiciels →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/procedes/">Par procédé</a></p>
+            <ul class="mega-list"><li><a href="/guides/decoupe-plasma-cnc/">Plasma CNC</a></li><li><a href="/guides/laser-fibre/">Laser fibre</a></li><li><a href="/guides/jet-d-eau/">Jet d’eau</a></li><li><a href="/guides/routeur-cnc/">Routeur CNC</a></li><li><a href="/guides/fraiseuse-cnc/">Fraiseuse CNC</a></li><li><a href="/guides/tour-cnc/">Tour CNC</a></li><li><a href="/guides/presse-plieuse/">Presse plieuse</a></li><li><a href="/guides/plasma-biseau-chanfrein/">Plasma biseau (chanfrein)</a></li><li><a href="/guides/oxycoupage/">Oxycoupage</a></li><li><a href="/guides/electroerosion-fil-enfoncage/">Électroérosion (fil et enfonçage)</a></li><li><a href="/guides/usinage-5-axes/">Usinage 5 axes</a></li><li><a href="/guides/tour-fraiseur-decolleteuse-suisse/">Tour-fraiseur et décolleteuse suisse</a></li><li><a href="/guides/preparation-soudure-chanfrein/">Préparation de soudure</a></li><li><a href="/guides/ebavurage-finition/">Ébavurage et finition</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/fondamentaux/">Par sujet</a></p>
+            <ul class="mega-list"><li><a href="/guides/reference-g-code-m-code/">G-code et M-code</a></li><li><a href="/guides/avances-vitesses/">Avances et vitesses</a></li><li><a href="/guides/kerf-qualite-coupe/">Kerf et qualité de coupe</a></li><li><a href="/guides/pliage-k-factor/">Pliage : K-factor et déduction</a></li><li><a href="/guides/nuances-metaux/">Nuances de métaux</a></li><li><a href="/guides/dxf-bonnes-pratiques/">DXF : bonnes pratiques</a></li><li class="more"><a href="/guides/fondamentaux/">Fondamentaux CNC →</a></li><li class="more"><a href="/guides/materiaux/">Matériaux et nuances →</a></li><li class="more"><a href="/guides/depannage/">Dépannage →</a></li><li class="more"><a href="/guides/atelier/">Atelier : sécurité, soumissions, métrologie, formation →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/prix/">
+              <span class="feature-k">Outil</span>
+              <strong>Prix des tôles</strong>
+              <span>Tôle, plaque, barre et tube : prix publiés chez les fournisseurs qui livrent au Québec, mis à jour chaque jour ouvrable.</span>
+            </a>
+            <a class="mega-allguides" href="/guides/">Tous les guides (71) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/prix/">Prix des tôles</a></li>
+    <li><a class="nav-link" href="/occasions/">Occasions</a></li>
+    <li><a class="nav-link" href="/infolettre/">Infolettre</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Rechercher"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Rechercher</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Langue">
+        <a href="/guides/torchmate-avid-cnc-plasma/" hreflang="fr-CA" lang="fr-CA" aria-current="true">FR</a><a href="/en/guides/torchmate-avid-cnc-plasma/" hreflang="en-CA" lang="en-CA">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Rechercher">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Rechercher un guide (ex. SheetCam, K-factor, scories)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Fermer</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>Aucun guide trouvé. Essayez un autre mot (logiciel, procédé, matériau).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Fil d’Ariane"><ol><li><a href="/">Accueil</a></li><li><a href="/guides/">Guides</a></li><li><a href="/guides/logiciels/">Logiciels CAO / FAO et commandes</a></li><li aria-current="page">Torchmate et Avid CNC</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://coupefab.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/guides/"}, {"@type": "ListItem", "position": 3, "name": "Logiciels CAO / FAO et commandes", "item": "https://coupefab.vercel.app/guides/logiciels/"}, {"@type": "ListItem", "position": 4, "name": "Torchmate et Avid CNC"}]}</script>
+<article class="guide" data-guide="torchmate-avid">
+  <header class="guide-head">
+    <p class="kicker">Logiciel · tables plasma</p>
+    <h1>Tables plasma Torchmate et Avid CNC : logiciels, posts et contrôle de hauteur</h1>
+    <p class="guide-lede">Torchmate (Accumove, VMD, Torchmate CNC 4) et Avid CNC (Mach4 + SheetCam) : quelle chaîne logicielle, quel post, comment activer ou bloquer le THC par opération et régler l’anti-plongée.</p>
+    <p class="guide-meta">
+      <span>Révisé le <time datetime="2026-11-26">26 novembre 2026</time></span>
+      <span>3 min de lecture</span>
+      <span>Niveau : Débutant</span>
+      <span class="pill pill-draft" tabindex="0" title="Rédigé par CoupeFab à partir des documents officiels cités. Révision technique par Michaël Brassard en attente.">Brouillon<span class="pill-tip" role="tooltip">Rédigé par CoupeFab à partir des documents officiels cités. Révision technique par Michaël Brassard en attente.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>Sur cette page</summary><ol><li><a href="#les-chaines-logicielles">Les chaînes logicielles</a></li><li><a href="#avid-cnc-thc-par-operation-dans-sheetcam">Avid CNC : THC par opération dans SheetCam</a></li><li><a href="#avid-cnc-reglages-thc-dans-mach4">Avid CNC : réglages THC dans Mach4</a></li><li><a href="#torchmate-a-retenir">Torchmate : à retenir</a></li><li><a href="#liste-de-verification-de-mise-en-service">Liste de vérification de mise en service</a></li><li><a href="#erreurs-frequentes">Erreurs fréquentes</a></li><li><a href="#faq">FAQ</a></li><li><a href="#a-valider-en-atelier-michael">À valider en atelier (Michaël)</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p>Torchmate (Lincoln Electric Cutting Systems) et Avid CNC sont deux marques de tables plasma très présentes dans les petits ateliers nord-américains. Leur point commun : une <strong>chaîne en trois logiciels</strong> — CAO (dessin/DXF), FAO (parcours et G-code) et commande (mouvement et contrôle de hauteur).</p>
+<h2 id="les-chaines-logicielles">Les chaînes logicielles</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Marque</th><th>CAO</th><th>FAO</th><th>Commande</th></tr></thead><tbody>
+<tr><td>Avid CNC</td><td>Tout logiciel qui exporte un DXF (Avid cite VCarve Pro)</td><td><strong>SheetCam</strong> avec le post et les jeux d’outils Avid</td><td><strong>Mach4</strong> (mouvement et THC)</td></tr>
+<tr><td>Torchmate (selon génération)</td><td>Torchmate CAD ou tout DXF</td><td>Torchmate CAD, SheetCam ou Fusion selon le post</td><td><strong>Visual Machine Designer (VMD)</strong> pour Accumove 2 et 3 ; <strong>Torchmate CNC 4.x</strong> pour les générateurs de signaux USB 501A</td></tr>
+</tbody></table></div>
+<aside class="callout callout-warn"><p class="callout-label">Attention</p><p>Torchmate avertit sur sa page de téléchargement qu’installer la mauvaise version du logiciel de commande peut <strong>endommager le micrologiciel</strong> du générateur de signaux. Vérifiez votre modèle et contactez le soutien technique avant toute mise à jour.</p></aside>
+<h2 id="avid-cnc-thc-par-operation-dans-sheetcam">Avid CNC : THC par opération dans SheetCam</h2>
+<p>Avid explique que SheetCam peut écrire, dans le G-code, la vitesse de coupe, la <strong>tension d’arc cible</strong> et des codes pour <strong>autoriser ou bloquer le THC</strong> :</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Besoin</th><th>Extrait de code (<em>code snippet</em>) de l’opération</th><th>Règles de trajet</th></tr></thead><tbody>
+<tr><td>THC voulu</td><td><code>M62P4</code> (THC autorisé)</td><td>Règles par défaut, actives</td></tr>
+<tr><td>THC non voulu</td><td><code>M63P4</code> (THC bloqué)</td><td>Aucune</td></tr>
+</tbody></table></div>
+<p>Les <strong>règles de trajet</strong> (<em>path rules</em>) bloquent automatiquement le THC sur certaines géométries (petits trous, coins) où la tension d’arc monte quand la machine ralentit.</p>
+<h2 id="avid-cnc-reglages-thc-dans-mach4">Avid CNC : réglages THC dans Mach4</h2>
+<ul><li><strong>Profil matière</strong> (FLAT, MODERATE, SEVERE) : règle la vitesse du THC et l’anti-plongée ; Avid recommande FLAT sauf tôle très gondolée.</li><li><strong>Sensibilité haut / bas</strong> : 100 = valeurs précalculées ; à modifier seulement si le profil ne suffit pas.</li><li><strong>Journal THC</strong> : enregistre la tension pendant la coupe ; on peut <strong>marquer</strong> le journal à un endroit problématique pour le diagnostic.</li></ul>
+<p>Avid rappelle que la tension d’arc est une mesure <strong>indirecte</strong> de la hauteur : elle grimpe aux entrées/sorties, dans les coins serrés, les petits trous et au-dessus des vides (pièces déjà coupées). Sans anti-plongée, le THC réagit en <strong>descendant la torche</strong>. Voir <a href="/guides/depannage-thc-oscille-plonge/">THC qui oscille ou plonge</a>.</p>
+<h2 id="torchmate-a-retenir">Torchmate : à retenir</h2>
+<ul><li>Identifier la génération de commande (Accumove 2, 3 ou plus récent ; générateur USB 501A) avant de choisir logiciel et post.</li><li>VMD propose une bibliothèque de formes simples et la répétition de pièces sans CAO.</li><li>Dans Fusion, la bibliothèque contient un post <em>Torchmate 3.0 Mill/Plasma</em> ; d’autres commandes demandent des codes M d’allumage particuliers : validez avec Torchmate (voir <a href="/guides/fusion-plasma-post-par-table/">Fusion plasma : posts par table</a>).</li></ul>
+<h2 id="liste-de-verification-de-mise-en-service">Liste de vérification de mise en service</h2>
+<ul class="checklist"><li>Version exacte de la commande et du logiciel notée</li><li>Post fourni par le fabricant installé dans la FAO</li><li>Outils plasma créés à partir de la charte de la source plasma (voir <a href="/guides/lire-charte-de-coupe/">Lire une charte de coupe</a>)</li><li>THC autorisé/bloqué selon l’opération ; anti-plongée active</li><li>Coupe test, journal THC conservé si problème</li></ul>
+<h2 id="erreurs-frequentes">Erreurs fréquentes</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Erreur</th><th>Correctif</th></tr></thead><tbody>
+<tr><td>Post générique au lieu du post de la marque</td><td>Installer le post officiel</td></tr>
+<tr><td>THC actif sur les petits trous</td><td>Règles de trajet ou M63P4 sur l’opération</td></tr>
+<tr><td>Mise à jour de logiciel sans vérifier la compatibilité</td><td>Contacter le soutien Torchmate d’abord</td></tr>
+<tr><td>Profil SEVERE par défaut</td><td>Revenir à FLAT, puis ajuster</td></tr>
+</tbody></table></div>
+<h2 id="faq">FAQ</h2>
+<h3 id="puis-je-utiliser-fusion-avec-une-avid">Puis-je utiliser Fusion avec une Avid ?</h3>
+<p>Avid documente surtout SheetCam ; un post Fusion compatible Mach4 plasma peut fonctionner, mais les codes THC d’Avid doivent être reproduits. SheetCam reste la voie documentée.</p>
+<h3 id="ma-tension-d-arc-affichee-ne-correspond-pas-a-la-charte-est-">Ma tension d’arc affichée ne correspond pas à la charte : est-ce grave ?</h3>
+<p>L’affichage varie avec les consommables et la machine ; partez de la charte, puis ajustez la cible selon la qualité observée.</p>
+<section class="review-box"><h2 id="a-valider-en-atelier-michael">À valider en atelier (Michaël)</h2>
+<ul><li>Vos réglages Mach4 (profil, sensibilités) sur une Avid réelle.</li><li>Les générations Torchmate rencontrées chez vos clients.</li></ul>
+</section><section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://www.avidcnc.com/support/instructions/software/plasma/" class="ext" rel="noopener">Avid CNC — Plasma introduction (CAD, SheetCam, Mach4)</a>, consulté le 26 novembre 2026.</li><li><a href="https://www.avidcnc.com/support/instructions/software/plasmaUsersGuide/" class="ext" rel="noopener">Avid CNC — Mach4 Plasma Users Guide (THC, anti-plongée)</a>, consulté le 26 novembre 2026.</li><li><a href="https://www.avidcnc.com/support/instructions/software/sheetcamSoftwareSetup/" class="ext" rel="noopener">Avid CNC — SheetCam Software Setup (M62P4/M63P4)</a>, consulté le 26 novembre 2026.</li><li><a href="https://torchmate.com/training-header/driver-software/driver-software-downloads" class="ext" rel="noopener">Torchmate — Driver Software Downloads (VMD, Torchmate CNC 4)</a>, consulté le 26 novembre 2026.</li></ul></section>
+
+      <p class="report"><a href="/a-propos/#contact">Une erreur, un ajout ? Écrivez-nous →</a></p>
+    </div>
+  </div>
+  <section class="related"><h2>Guides connexes</h2><div class="gcards"><a class="gcard" href="/guides/debuter-sheetcam/" data-hub="software"><span class="card-meta">Logiciel · FAO plasma · Débutant · 5 min de lecture</span><strong>Débuter avec SheetCam : du DXF au G-code plasma</strong><span class="card-desc">Unités, job, import DXF, outil plasma, opération, imbrication et post-processeur : la démarche SheetCam pas à pas, avec les pièges que l’équipe SheetCam documente elle-même.</span></a><a class="gcard" href="/guides/mach3-mach4/" data-hub="software"><span class="card-meta">Logiciel · commande · Intermédiaire · 3 min de lecture</span><strong>Mach3, Mach4 et MachPro : où en est le logiciel de commande CNC sur PC</strong><span class="card-desc">Statut actuel de Mach3 (plus mis à jour), Mach4 Hobby et Industrial (maintenance) et MachPro, rôle du contrôleur de mouvement, et ce qu’il faut vérifier avant de moderniser une vieille machine sous Mach3.</span></a><a class="gcard" href="/guides/depannage-thc-oscille-plonge/" data-hub="troubleshooting"><span class="card-meta">Dépannage · plasma · Intermédiaire · 3 min de lecture</span><strong>Dépannage du contrôle de hauteur (THC) : torche qui oscille, plonge ou monte</strong><span class="card-desc">Pourquoi le THC « chasse », plonge dans les coins ou au-dessus des vides, ou fait monter la torche : tension d’arc, anti-plongée, délai d’activation, consommables usés, mise à la masse. Méthode de diagnostic pas à pas.</span></a><a class="gcard" href="/guides/fusion-plasma-post-par-table/" data-hub="software"><span class="card-meta">Logiciel · FAO plasma · Intermédiaire · 4 min de lecture</span><strong>Fusion pour le plasma : choisir et installer le bon post selon votre table</strong><span class="card-desc">Langmuir CrossFire (FireControl), Torchmate, Hypertherm, LinuxCNC, Mach : où trouver le post plasma de Fusion, comment l’importer en post local, quelles propriétés régler (IHS, THC, hauteurs) et comment tester sans risque.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">Un guide par semaine, en français d’abord</p><p>Nouveaux guides, occasions au Québec et mouvements de prix. Pas de pub tierce.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="fr" novalidate>
+  <div class="hp" aria-hidden="true"><label>Site web<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Prénom ou atelier (facultatif)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Courriel
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="oui">
+    <span>J’accepte de recevoir l’infolettre de CoupeFab (guides, digest d’occasions et suivi des prix des tôles). Je peux me désabonner en tout temps. Voir la <a href="/confidentialite/">politique de confidentialité</a>.</span>
+  </label>
+  <button type="submit">S’inscrire</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">Conformité CASL : la case n’est pas précochée. Aucun envoi sans ce consentement exprès.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Tables plasma Torchmate et Avid CNC : logiciels, posts et contrôle de hauteur", "description": "Torchmate (Accumove, VMD, Torchmate CNC 4) et Avid CNC (Mach4 + SheetCam) : quelle chaîne logicielle, quel post, comment activer ou bloquer le THC par opération et régler l’anti-plongée.", "inLanguage": "fr-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/guides/torchmate-avid-cnc-plasma/", "mainEntityOfPage": "https://coupefab.vercel.app/guides/torchmate-avid-cnc-plasma/", "proficiencyLevel": "Beginner", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["torchmate", "accumove", "vmd", "visual machine designer", "torchmate cnc 4", "avid cnc", "mach4", "sheetcam", "thc", "anti-dive", "m62", "m63", "plasma table"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Puis-je utiliser Fusion avec une Avid ?", "acceptedAnswer": {"@type": "Answer", "text": "Avid documente surtout SheetCam ; un post Fusion compatible Mach4 plasma peut fonctionner, mais les codes THC d’Avid doivent être reproduits. SheetCam reste la voie documentée."}}, {"@type": "Question", "name": "Ma tension d’arc affichée ne correspond pas à la charte : est-ce grave ?", "acceptedAnswer": {"@type": "Answer", "text": "L’affichage varie avec les consommables et la machine ; partez de la charte, puis ajustez la cible selon la qualité observée."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>La référence francophone de la découpe CNC et de la fabrication métallique : guides vérifiés, prix des tôles comparés, occasions au Québec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/guides/logiciels/">Logiciels CAO / FAO et commandes</a></li>
+        <li><a href="/guides/procedes/">Procédés de coupe et d’usinage</a></li>
+        <li><a href="/guides/fondamentaux/">Fondamentaux CNC</a></li>
+        <li><a href="/guides/materiaux/">Matériaux et nuances</a></li>
+        <li><a href="/guides/depannage/">Dépannage</a></li>
+        <li><a href="/guides/atelier/">Atelier : sécurité, soumissions, métrologie, formation</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explorer</p>
+      <ul>
+        <li><a href="/prix/">Prix des tôles</a></li>
+        <li><a href="/occasions/">Occasions</a></li>
+        <li><a href="/infolettre/">Infolettre</a></li>
+        <li><a href="/a-propos/">À propos</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Mentions</p>
+      <ul>
+        <li><a href="/divulgation/">Divulgation (affiliations)</a></li>
+        <li><a href="/confidentialite/">Confidentialité et LCAP</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Québec, Canada. Aucun lien d’affiliation. Les marques citées appartiennent à leurs propriétaires et sont mentionnées à titre descriptif.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>
