@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quoting laser and plasma cut parts: a complete costing method — CoupeFab</title>
+<meta name="description" content="Material with real nesting utilization, cut time (length + pierces), machine hourly rate, consumables, setup, deburring, bending and margin: the step-by-step method with a template worksheet, no made-up numbers.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/en/guides/quoting-cut-parts/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/quoting-cut-parts/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/soumission-pieces-coupees/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/soumission-pieces-coupees/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Quoting laser and plasma cut parts: a complete costing method — CoupeFab">
+<meta property="og:description" content="Material with real nesting utilization, cut time (length + pierces), machine hourly rate, consumables, setup, deburring, bending and margin: the step-by-step method with a template worksheet, no made-up numbers.">
+<meta property="og:url" content="https://coupefab.vercel.app/en/guides/quoting-cut-parts/">
+<meta property="og:locale" content="en_CA">
+<meta property="og:locale:alternate" content="fr_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="en">
+<a class="skip" href="#contenu">Skip to content</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/en/" aria-label="CoupeFab — Home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Main navigation">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/en/guides/software/">By software</a></p>
+            <ul class="mega-list two"><li><a href="/en/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/en/guides/getting-started-sheetcam/">SheetCam</a></li><li><a href="/en/guides/solidworks-sheet-metal-flat-pattern-dxf/">SOLIDWORKS sheet metal</a></li><li><a href="/en/guides/autocad-dxf-cleanup/">AutoCAD (DXF)</a></li><li><a href="/en/guides/fusion-cam-getting-started/">Fusion CAM</a></li><li><a href="/en/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/en/guides/bricscad-to-clean-dxf/">BricsCAD → DXF</a></li><li><a href="/en/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/en/guides/inventor-sheet-metal-and-cam/">Inventor</a></li><li><a href="/en/guides/mastercam-2d-toolpaths-dynamic-milling/">Mastercam 2D</a></li><li><a href="/en/guides/mastercam-posts-and-lathe/">Mastercam posts and lathe</a></li><li><a href="/en/guides/camworks-cam-solidworks/">CAMWorks</a></li><li><a href="/en/guides/fusion-plasma-posts-per-table/">Fusion plasma: posts per table</a></li><li><a href="/en/guides/esprit-cam-multitasking/">ESPRIT CAM</a></li><li><a href="/en/guides/onshape-sheet-metal-cam/">Onshape</a></li><li><a href="/en/guides/solidworks-drawings-and-cam/">SOLIDWORKS CAM and drawings</a></li><li><a href="/en/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/en/guides/gibbscam-cam/">GibbsCAM</a></li></ul>
+            <p class="mega-all"><a href="/en/guides/software/">All software →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/processes/">By process</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/cnc-plasma-cutting/">CNC plasma</a></li><li><a href="/en/guides/fiber-laser-cutting/">Fiber laser</a></li><li><a href="/en/guides/waterjet-cutting/">Waterjet</a></li><li><a href="/en/guides/cnc-router/">CNC router</a></li><li><a href="/en/guides/cnc-mill/">CNC mill</a></li><li><a href="/en/guides/cnc-lathe/">CNC lathe</a></li><li><a href="/en/guides/press-brake-bending/">Press brake</a></li><li><a href="/en/guides/plasma-bevel-cutting/">Plasma bevel cutting</a></li><li><a href="/en/guides/oxyfuel-cutting/">Oxyfuel cutting</a></li><li><a href="/en/guides/edm-wire-sinker/">EDM (wire and sinker)</a></li><li><a href="/en/guides/five-axis-machining/">5-axis machining</a></li><li><a href="/en/guides/turn-mill-swiss-type-lathes/">Turn-mill and Swiss-type</a></li><li><a href="/en/guides/weld-preparation-bevels/">Weld preparation</a></li><li><a href="/en/guides/deburring-finishing/">Deburring and finishing</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/fundamentals/">By topic</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/g-code-m-code-reference/">G-code &amp; M-code</a></li><li><a href="/en/guides/feeds-and-speeds/">Feeds and speeds</a></li><li><a href="/en/guides/kerf-and-cut-quality/">Kerf and cut quality</a></li><li><a href="/en/guides/bend-allowance-k-factor/">Bending: K-factor and deduction</a></li><li><a href="/en/guides/metal-grades/">Metal grades</a></li><li><a href="/en/guides/dxf-best-practices/">DXF best practices</a></li><li class="more"><a href="/en/guides/fundamentals/">CNC fundamentals →</a></li><li class="more"><a href="/en/guides/materials/">Materials and grades →</a></li><li class="more"><a href="/en/guides/troubleshooting/">Troubleshooting →</a></li><li class="more"><a href="/en/guides/shop/">Shop: safety, quoting, inspection, training →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/en/sheet-prices/">
+              <span class="feature-k">Tool</span>
+              <strong>Sheet prices</strong>
+              <span>Sheet, plate, bar and tube: published prices from suppliers serving Quebec, refreshed every business day.</span>
+            </a>
+            <a class="mega-allguides" href="/en/guides/">All guides (71) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/en/sheet-prices/">Sheet prices</a></li>
+    <li><a class="nav-link" href="/en/used-equipment/">Used equipment</a></li>
+    <li><a class="nav-link" href="/en/newsletter/">Newsletter</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Search</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Language">
+        <a href="/guides/soumission-pieces-coupees/" hreflang="fr-CA" lang="fr-CA">FR</a><a href="/en/guides/quoting-cut-parts/" hreflang="en-CA" lang="en-CA" aria-current="true">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Search guides (e.g. SheetCam, K-factor, dross)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Close</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>No guide found. Try another word (software, process, material).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/en/">Home</a></li><li><a href="/en/guides/">Guides</a></li><li><a href="/en/guides/shop/">Shop: safety, quoting, inspection, training</a></li><li aria-current="page">Quoting cut parts</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coupefab.vercel.app/en/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/en/guides/"}, {"@type": "ListItem", "position": 3, "name": "Shop: safety, quoting, inspection, training", "item": "https://coupefab.vercel.app/en/guides/shop/"}, {"@type": "ListItem", "position": 4, "name": "Quoting cut parts"}]}</script>
+<article class="guide" data-guide="quoting">
+  <header class="guide-head">
+    <p class="kicker">Shop · costing</p>
+    <h1>Quoting laser and plasma cut parts: a complete costing method</h1>
+    <p class="guide-lede">Material with real nesting utilization, cut time (length + pierces), machine hourly rate, consumables, setup, deburring, bending and margin: the step-by-step method with a template worksheet, no made-up numbers.</p>
+    <p class="guide-meta">
+      <span>Reviewed <time datetime="2026-11-26">November 26, 2026</time></span>
+      <span>3 min read</span>
+      <span>Level : Intermediate</span>
+      <span class="pill pill-draft" tabindex="0" title="Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.">Draft<span class="pill-tip" role="tooltip">Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>On this page</summary><ol><li><a href="#the-basic-formula">The basic formula</a></li><li><a href="#step-by-step">Step by step</a></li><li><a href="#template-worksheet-columns">Template worksheet (columns)</a></li><li><a href="#checklist-before-sending">Checklist before sending</a></li><li><a href="#common-mistakes">Common mistakes</a></li><li><a href="#faq">FAQ</a></li><li><a href="#for-michael-to-review">For Michaël to review</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p>A cut part price isn’t “part weight times the price of steel”. It adds up the <strong>material actually consumed</strong>, <strong>machine time</strong>, <strong>secondary operations</strong> and <strong>setup</strong>, then a <strong>margin</strong>. Specialized quoting software uses the same logic; here it is by hand.</p>
+<h2 id="the-basic-formula">The basic formula</h2>
+<p><strong>Cost per part = material + cut time × machine rate + consumables + (setup ÷ quantity) + secondaries</strong></p>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Block</th><th>How to calculate it</th><th>Where the data comes from</th></tr></thead><tbody>
+<tr><td>Material</td><td>Part area ÷ nesting <strong>utilization</strong> × thickness × density × price per weight</td><td>Real nest (see <a href="/en/guides/nesting/">Nesting</a>); density and published prices in the <a href="/en/sheet-prices/">price comparison tool</a></td></tr>
+<tr><td>Cut time</td><td>Cut length ÷ speed <strong>+</strong> pierce count × pierce time <strong>+</strong> rapid moves</td><td>Cut chart (see <a href="/en/guides/reading-cut-charts/">Reading cut charts</a>) or CAM estimate</td></tr>
+<tr><td>Machine rate</td><td>$/h including depreciation, power, gas, maintenance, operator, overhead</td><td>Your own figures (see <a href="/en/guides/shop-hourly-rate-quebec/">Shop hourly rates (Quebec)</a>)</td></tr>
+<tr><td>Consumables</td><td>Cost per pierce or per arc-hour (plasma), nozzles and windows (laser)</td><td>Your wear records</td></tr>
+<tr><td>Setup</td><td>Programming, loading the sheet, adjustment, first article</td><td>Measured actual time</td></tr>
+<tr><td>Secondaries</td><td>Deburring, bending, tapping, welding, paint, packing</td><td>Standard time per operation</td></tr>
+</tbody></table></div>
+<aside class="callout callout-tip"><p class="callout-label">Shop tip</p><p>A part has <strong>one pierce per closed contour</strong> (outer profile + each hole). A part with 40 small holes can cost more in pierces than in cut length.</p></aside>
+<h2 id="step-by-step">Step by step</h2>
+<ol class="steps"><li><strong>Read the drawing</strong>: material, grade, thickness (gauge <strong>and</strong> decimal, see <a href="/en/guides/sheet-metal-gauge-chart/">Sheet metal gauges</a>), quantity, tolerances, finish.</li><li><strong>Measure the geometry</strong>: total cut length and contour count (CAM or nesting software provides them).</li><li><strong>Nest</strong> on the real sheet size to get utilization and parts per sheet.</li><li><strong>Price material</strong>: decide whether scrap is billed (often yes, fully or partly); use a <strong>current</strong> supplier price.</li><li><strong>Price time</strong>: chart speed for the thickness, pierce time, allowance for slowdowns (corners, small holes).</li><li><strong>Add consumables, setup, secondaries.</strong></li><li><strong>Apply margin</strong> and sanity-check against the market.</li><li><strong>Write assumptions</strong> on the quote (material supplied or not, tolerances, edge finish, lead time, material price validity).</li></ol>
+<h2 id="template-worksheet-columns">Template worksheet (columns)</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Column</th><th>Example content</th></tr></thead><tbody>
+<tr><td>Part / revision</td><td>P-1024 rev. B</td></tr>
+<tr><td>Material, grade, thickness</td><td>A36, 1/4 in</td></tr>
+<tr><td>Quantity</td><td>50</td></tr>
+<tr><td>Part area</td><td>(from CAM)</td></tr>
+<tr><td>Utilization</td><td>(from nest)</td></tr>
+<tr><td>Cut length</td><td>(from CAM)</td></tr>
+<tr><td>Pierce count</td><td>(from CAM)</td></tr>
+<tr><td>Calculated cut time</td><td>formula</td></tr>
+<tr><td>Machine rate</td><td>your value</td></tr>
+<tr><td>Material cost</td><td>formula</td></tr>
+<tr><td>Secondaries</td><td>minutes × rate</td></tr>
+<tr><td>Setup per part</td><td>minutes ÷ quantity</td></tr>
+<tr><td>Unit price, total price</td><td>formula + margin</td></tr>
+</tbody></table></div>
+<h2 id="checklist-before-sending">Checklist before sending</h2>
+<ul class="checklist"><li>Material price checked <strong>this week</strong> (published prices move; see the <a href="/en/sheet-prices/">price comparison tool</a>)</li><li>Sheet size available from the supplier</li><li>Deburring and edge requirements included (see <a href="/en/guides/deburring-finishing/">Deburring and finishing</a>)</li><li>Minimum quantity or setup charge stated</li><li>Quote validity and shipping terms</li></ul>
+<h2 id="common-mistakes">Common mistakes</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Mistake</th><th>Effect</th></tr></thead><tbody>
+<tr><td>Material at net part weight</td><td>Scrap unpaid, margin lost</td></tr>
+<tr><td>Ignoring pierces</td><td>Heavily perforated parts underpriced</td></tr>
+<tr><td>Using the chart’s maximum speed</td><td>Time underestimated; the machine slows in details</td></tr>
+<tr><td>Forgetting deburring</td><td>Unbilled labour</td></tr>
+<tr><td>Stale material price</td><td>Loss when price rises between quote and purchase</td></tr>
+</tbody></table></div>
+<h2 id="faq">FAQ</h2>
+<h3 id="should-scrap-be-billed">Should scrap be billed?</h3>
+<p>It’s a business decision; many shops bill the full sheet for small runs and a utilization percentage for large ones. Put it in the quote.</p>
+<h3 id="how-do-i-get-my-hourly-rate">How do I get my hourly rate?</h3>
+<p>Divide all annual costs of the machine and its operator by truly billable hours; see <a href="/en/guides/shop-hourly-rate-quebec/">Shop hourly rates (Quebec)</a>.</p>
+<section class="review-box"><h2 id="for-michael-to-review">For Michaël to review</h2>
+<ul><li>Your actual quoting structure (software or Excel sheet).</li><li>Your rules for scrap and minimum setup.</li></ul>
+</section><section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://www.quotationfactory.com/en/blog/how-to-quote-a-laser-cutting-job" class="ext" rel="noopener">Quotation Factory — How to quote a laser cutting job</a>, consulted November 26, 2026.</li><li><a href="https://quotometry.com/learn/laser-cutting-cost/" class="ext" rel="noopener">Quotometry — How to price laser cutting: cut length, pierces, material and sheet use</a>, consulted November 26, 2026.</li><li><a href="https://xnet.hypertherm.com/Xnet/library/download/?file=HYP254756" class="ext" rel="noopener">Hypertherm — Powermax cut charts (reference speeds)</a>, consulted November 26, 2026.</li></ul></section>
+<aside class="price-cta"><div><p class="price-cta-k">CoupeFab tool</p><p class="price-cta-t">Compare material prices</p><p>Sheet, plate, bar and tube: published prices from suppliers serving Quebec, refreshed every business day.</p></div><a class="btn" href="/en/sheet-prices/">Open the price tool</a></aside>
+      <p class="report"><a href="/en/about/#contact">Spotted an error or want something added? Tell us →</a></p>
+    </div>
+  </div>
+  <section class="related"><h2>Related guides</h2><div class="gcards"><a class="gcard" href="/en/guides/nesting/" data-hub="fundamentals"><span class="card-meta">Fundamentals · sheet metal · Intermediate · 3 min read</span><strong>Nesting: more parts per sheet without risking the cut</strong><span class="card-desc">Spacing, edge margin, rotation, reusable remnants, common-line cutting and cut order: the method to use every sheet better, in SheetCam, ProNest or another CAM.</span></a><a class="gcard" href="/en/guides/shop-hourly-rate-quebec/" data-hub="shop"><span class="card-meta">Shop · costing · Intermediate · 3 min read</span><strong>Calculating your shop hourly rate in Quebec (machine + labour), with honest sourcing</strong><span class="card-desc">A method to build a machine and labour hourly rate: wages published by Job Bank (NOC 72100), payroll burden, depreciation, power, maintenance, overhead and truly billable hours. Why no published “market rate” is reliable.</span></a><a class="gcard" href="/en/guides/deburring-finishing/" data-hub="process"><span class="card-meta">Process · after cutting · Beginner · 3 min read</span><strong>Deburring and finishing cut parts: dross, burrs, edges and oxide</strong><span class="card-desc">What to remove (dross, burr, sharp edge, cutting oxide), in what order, with which method (hammer, belt sander, brushes, tumbling, wide-belt machine), and how to specify it on a drawing.</span></a><a class="gcard" href="/en/guides/sheet-metal-gauge-chart/" data-hub="materials"><span class="card-meta">Materials · reference · Beginner · 4 min read</span><strong>Sheet metal gauge chart: steel, galvanized, stainless and aluminum in inches and mm</strong><span class="card-desc">The same gauge isn’t the same thickness across materials: 16 ga = 0.0598 in steel, 0.0635 in galvanized, 0.0625 in stainless and 0.0508 in aluminum. Full chart, pitfalls and ordering tips.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">One guide a week, French-first</p><p>New guides, used equipment in Quebec and price moves. No third-party ads.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="en" novalidate>
+  <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Name or shop (optional)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Email
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="yes">
+    <span>I agree to receive the CoupeFab newsletter (guides, used-equipment digest, and sheet-price updates). I may unsubscribe at any time. See the <a href="/en/privacy/">privacy policy</a>.</span>
+  </label>
+  <button type="submit">Subscribe</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">CASL compliance: the box is not pre-checked. Nothing is sent without this express consent.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Quoting laser and plasma cut parts: a complete costing method", "description": "Material with real nesting utilization, cut time (length + pierces), machine hourly rate, consumables, setup, deburring, bending and margin: the step-by-step method with a template worksheet, no made-up numbers.", "inLanguage": "en-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/en/guides/quoting-cut-parts/", "mainEntityOfPage": "https://coupefab.vercel.app/en/guides/quoting-cut-parts/", "proficiencyLevel": "Intermediate", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["quoting", "quote", "costing", "cost per part", "machine hourly rate", "cut length", "pierce count", "nesting utilization", "material cost", "setup", "deburring", "margin", "laser", "plasma"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Quoting laser and plasma cut parts: a complete costing method", "description": "Material with real nesting utilization, cut time (length + pierces), machine hourly rate, consumables, setup, deburring, bending and margin: the step-by-step method with a template worksheet, no made-up numbers.", "inLanguage": "en-CA", "step": [{"@type": "HowToStep", "name": "Read the drawing ", "text": "Read the drawing : material, grade, thickness (gauge and decimal, see Sheet metal gauges ), quantity, tolerances, finish."}, {"@type": "HowToStep", "name": "Measure the geometry ", "text": "Measure the geometry : total cut length and contour count (CAM or nesting software provides them)."}, {"@type": "HowToStep", "name": "Nest on the real sheet size to get utilization and parts per sheet", "text": "Nest on the real sheet size to get utilization and parts per sheet."}, {"@type": "HowToStep", "name": "Price material ", "text": "Price material : decide whether scrap is billed (often yes, fully or partly); use a current supplier price."}, {"@type": "HowToStep", "name": "Price time ", "text": "Price time : chart speed for the thickness, pierce time, allowance for slowdowns (corners, small holes)."}, {"@type": "HowToStep", "name": "Add consumables, setup, secondaries", "text": "Add consumables, setup, secondaries."}, {"@type": "HowToStep", "name": "Apply margin and sanity-check against the market", "text": "Apply margin and sanity-check against the market."}, {"@type": "HowToStep", "name": "Write assumptions on the quote (material supplied or not, tolerances, edge finish, lead time, material price v", "text": "Write assumptions on the quote (material supplied or not, tolerances, edge finish, lead time, material price validity)."}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Should scrap be billed?", "acceptedAnswer": {"@type": "Answer", "text": "It’s a business decision; many shops bill the full sheet for small runs and a utilization percentage for large ones. Put it in the quote."}}, {"@type": "Question", "name": "How do I get my hourly rate?", "acceptedAnswer": {"@type": "Answer", "text": "Divide all annual costs of the machine and its operator by truly billable hours; see Shop hourly rates (Quebec) ."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/en/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>A French-first reference for CNC cutting and metal fabrication: sourced guides, compared sheet prices, used equipment in Quebec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/en/guides/software/">CAD/CAM software and controls</a></li>
+        <li><a href="/en/guides/processes/">Cutting and machining processes</a></li>
+        <li><a href="/en/guides/fundamentals/">CNC fundamentals</a></li>
+        <li><a href="/en/guides/materials/">Materials and grades</a></li>
+        <li><a href="/en/guides/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/en/guides/shop/">Shop: safety, quoting, inspection, training</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explore</p>
+      <ul>
+        <li><a href="/en/sheet-prices/">Sheet prices</a></li>
+        <li><a href="/en/used-equipment/">Used equipment</a></li>
+        <li><a href="/en/newsletter/">Newsletter</a></li>
+        <li><a href="/en/about/">About</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Legal</p>
+      <ul>
+        <li><a href="/en/affiliate-disclosure/">Affiliate disclosure</a></li>
+        <li><a href="/en/privacy/">Privacy and CASL</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Quebec, Canada. No affiliate links. Trademarks belong to their owners and are used descriptively.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>
