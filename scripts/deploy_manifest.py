@@ -1,42 +1,55 @@
 #!/usr/bin/env python3
-"""Print the arguments for the Vercel connector's create_deployment call.
+"""Prepare a Vercel deployment of this static site through the Vercel connector.
 
-The site is deployed from this directory (no Git integration). Each file is
-inlined with the "$file:/abs/path" convention that the agent tool runner
-expands, so the JSON stays small.
+The site is deployed from this directory (the Vercel Git integration is not installed).
+Writes:
+  /tmp/coupefab-deploy/create_deployment.json  arguments for the connector's create_deployment
+                                               (files referenced by SHA1 + size, no inline data)
+  /tmp/coupefab-deploy/uploads.json            [{file, sha, size, b64_path}] for upload_file
+  /tmp/coupefab-deploy/<sha>.b64               base64 body of each file
 
-    python3 scripts/deploy_manifest.py > /tmp/coupefab-deploy.json
+Procedure (agent):
+  1. call create_deployment with create_deployment.json;
+  2. if Vercel answers "missing_files" with a list of SHAs, call upload_file for each of them
+     (xVercelDigest=sha, contentLength=size, requestBody="$file:<b64_path>", slug=micro-bot),
+     then repeat step 1.
 """
+import base64
+import hashlib
 import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+OUT = Path("/tmp/coupefab-deploy")
 INCLUDE_TOP = ["index.html", "404.html", "favicon.svg", "robots.txt", "sitemap.xml", "vercel.json"]
 INCLUDE_DIRS = ["a-propos", "api", "confidentialite", "css", "divulgation", "en", "guides", "infolettre", "js",
                 "occasions", "prix"]
 
 
 def files():
-    out = []
-    for name in INCLUDE_TOP:
-        if (ROOT / name).exists():
-            out.append(ROOT / name)
+    out = [ROOT / n for n in INCLUDE_TOP if (ROOT / n).exists()]
     for d in INCLUDE_DIRS:
-        for p in sorted((ROOT / d).rglob("*")):
-            if p.is_file() and not p.name.startswith("."):
-                out.append(p)
+        out += [p for p in sorted((ROOT / d).rglob("*")) if p.is_file() and not p.name.startswith(".")]
     return out
 
 
 def main():
-    body = {
-        "name": "coupefab",
-        "project": "coupefab",
-        "target": "production",
-        "files": [{"file": str(p.relative_to(ROOT)), "data": f"$file:{p}", "encoding": "utf-8"} for p in files()],
-        "projectSettings": {"framework": None, "buildCommand": None, "outputDirectory": None, "installCommand": None},
-    }
-    print(json.dumps({"slug": "micro-bot", "skipAutoDetectionConfirmation": "1", "requestBody": body}, indent=1))
+    OUT.mkdir(parents=True, exist_ok=True)
+    refs, uploads = [], []
+    for p in files():
+        b = p.read_bytes()
+        sha = hashlib.sha1(b).hexdigest()
+        b64 = OUT / f"{sha}.b64"
+        b64.write_text(base64.b64encode(b).decode())
+        rel = str(p.relative_to(ROOT))
+        refs.append({"file": rel, "sha": sha, "size": len(b)})
+        uploads.append({"file": rel, "sha": sha, "size": len(b), "b64_path": str(b64)})
+    args = {"slug": "micro-bot", "skipAutoDetectionConfirmation": "1",
+            "requestBody": {"name": "coupefab", "project": "coupefab", "target": "production", "files": refs,
+                            "projectSettings": {"framework": None}}}
+    (OUT / "create_deployment.json").write_text(json.dumps(args, indent=1))
+    (OUT / "uploads.json").write_text(json.dumps(uploads, indent=1))
+    print(f"{len(refs)} files -> {OUT}/create_deployment.json (uploads listed in uploads.json)")
 
 
 if __name__ == "__main__":

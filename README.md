@@ -87,8 +87,8 @@ scripts/refresh.sh --only metalsrus     # un ou plusieurs fournisseurs; les autr
 ```
 
 `refresh.sh` relève les prix, régénère le site (`build.py`), fait un commit local et écrit `/tmp/coupefab-deploy.json`.
-Déploiement : appel `create_deployment` du connecteur Vercel (équipe `micro-bot`, projet `coupefab`) avec le contenu de ce fichier
-(chaque fichier y est référencé en `$file:/chemin`). Puis pousser les fichiers modifiés sur GitHub (`Thyliacine/coupefab`).
+Déploiement : `create_deployment` du connecteur Vercel (équipe `micro-bot`, projet `coupefab`) avec `/tmp/coupefab-deploy/create_deployment.json`; si Vercel répond `missing_files`, `upload_file` pour chaque SHA manquant (voir `uploads.json`), puis relancer.
+Puis pousser les fichiers modifiés sur GitHub (`Thyliacine/coupefab`).
 Vérifier ensuite : `curl -s https://coupefab.vercel.app/prix/ | grep -o 'Mis à jour[^<]*'`.
 
 Un fournisseur en échec garde ses lignes de la veille, marquées « [relevé précédent] », et son erreur est inscrite dans `latest.json` → `status`.
