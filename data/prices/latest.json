@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-26T10:55:13-05:00",
+ "generated_at": "2026-11-26T11:08:14-05:00",
  "date": "2026-11-26",
  "fx": {
   "pair": "USD/CAD",
@@ -76,9 +76,9 @@
    "region": "CA",
    "site": "https://millenniumalloys.ca",
    "currency": "CAD",
-   "ships_qc": "a_confirmer",
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
-   "shipping_en": "Published prices, order by phone; shipping to Quebec to be confirmed.",
+   "ships_qc": "repere",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
+   "shipping_en": "Canadian price benchmark (hidden by default): published prices, order by phone, shipping to Quebec not confirmed.",
    "method": "API publique WooCommerce Store (Crawl-delay 30 s respecté)"
   },
   "nationalsalvage": {
@@ -88,7 +88,7 @@
    "region": "CA",
    "site": "https://shop.nationalsalvage.ca",
    "currency": "CAD",
-   "ships_qc": "non",
+   "ships_qc": "repere",
    "shipping": "Cueillette à Lethbridge (Alberta) seulement : repère de prix canadien, pas une source d’achat au Québec.",
    "shipping_en": "Pickup in Lethbridge (Alberta) only: a Canadian price benchmark, not a Quebec buying option.",
    "method": "Vitrine Shopify publique (products.json)"
@@ -228,7 +228,7 @@
   "metalsrus": {
    "ok": true,
    "rows": 1573,
-   "fetched_at": "2026-11-26T10:44:32-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "error": ""
   },
   "metalsdepot": {
@@ -240,13 +240,13 @@
   "unitedstainless": {
    "ok": true,
    "rows": 115,
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "error": ""
   },
   "mercier40": {
    "ok": true,
    "rows": 34,
-   "fetched_at": "2026-11-26T10:46:05-05:00",
+   "fetched_at": "2026-11-26T11:08:14-05:00",
    "error": ""
   },
   "princessauto": {
@@ -264,7 +264,7 @@
   "nationalsalvage": {
    "ok": true,
    "rows": 8,
-   "fetched_at": "2026-11-26T10:33:57-05:00",
+   "fetched_at": "2026-11-26T11:08:14-05:00",
    "error": ""
   }
  },
@@ -357,7 +357,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/aluminum-sheet-1-8-x-cut-6061-t6",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -388,7 +388,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-1-8-x-cut-44w",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -419,7 +419,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/aluminum-sheet-1-4-x-cut-6061-t6",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -450,7 +450,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-16ga-x-cut-a653-galv",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -481,7 +481,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-24ga-024-x-cut-a1008-cr",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -512,7 +512,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-1-4-x-cut-44w",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -543,7 +543,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-18ga-048-x-cut-a1008-cr",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -574,7 +574,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/aluminum-sheet-1-8-5052-h32",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -605,7 +605,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/copper-sheet-027-x-cut-c110",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -636,7 +636,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/aluminum-sheet-16ga-051-5052-h32",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -667,7 +667,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/stainless-sheets-24ga-024-x-cut-304-2b",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -698,7 +698,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-3-16-x-cut-44w",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -729,7 +729,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/aluminum-sheet-14ga-064-5052-h32",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -760,7 +760,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/aluminum-sheet-20ga-032-5052-h32",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -791,7 +791,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-20ga-036-x-cut-a1008-cr",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -822,7 +822,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/aluminum-sheet-12ga-081-5052-h32",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -853,7 +853,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/stainless-sheets-18ga-048-x-cut-304-2b",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -884,7 +884,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/aluminum-sheet-18ga-040-5052-h32",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -915,7 +915,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-14ga-075-x-cut-a36-hr",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -946,7 +946,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/stainless-sheets-1-8-x-cut-304-2b",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -977,7 +977,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/aluminum-sheet-1-2-x-cut-6061-t6",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1008,7 +1008,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-22ga-0336-x-cut-a653-galv",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1039,7 +1039,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/stainless-sheets-14ga-074-x-cut-304-2b",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1070,7 +1070,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/stainless-sheets-22ga-030-x-cut-304-2b",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1101,7 +1101,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/stainless-sheets-16ga-060-x-cut-304-spv",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1132,7 +1132,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-1-8-x-cut-a1008-cr",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1163,7 +1163,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-3-8-x-cut-44w",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1194,7 +1194,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/copper-sheet-1-8-x-cut-c110",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1225,7 +1225,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/aluminum-sheet-3-8-x-cut-6061-t6",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1256,7 +1256,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/stainless-sheets-20ga-037-x-cut-304-2b",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1287,7 +1287,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-16ga-059-a36-hr",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1318,7 +1318,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-22ga-030-x-cut-a1008-cr",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1349,7 +1349,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/stainless-sheets-3-16-x-cut-304-2b",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1380,7 +1380,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/aluminum-sheet-3-16-x-cut-6061-t6",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1411,7 +1411,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/aluminum-sheet-1-4-5052-h32",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1442,7 +1442,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/aluminum-sheet-3-16-5052-h32",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1473,7 +1473,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/aluminum-sheet-11ga-091-5052-h32",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1504,7 +1504,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/stainless-sheets-22ga-030-x-cut-304-spv",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1535,7 +1535,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/stainless-sheets-20ga-036-x-cut-304-spv",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1566,7 +1566,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-20ga-0396-x-cut-a653-galv",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1597,7 +1597,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/stainless-sheets-1-8-x-cut-316-2b",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1628,7 +1628,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/galvanized-smooth-surface-carbon-steel-sheet-22ga-x-cut-a653-galvanneal",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1659,7 +1659,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-5-8-x-cut-44w",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1690,7 +1690,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/brass-sheet-1-8-x-cut-c260",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1721,7 +1721,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/stainless-sheets-16ga-063-x-cut-304-2b",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1752,7 +1752,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/brass-sheet-1-4-x-cut-c260",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1783,7 +1783,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/aluminum-sheet-3-4-x-cut-6061-t6",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1814,7 +1814,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/stainless-sheets-18ga-048-x-cut-304-spv",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1845,7 +1845,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/stainless-sheets-1-4-x-cut-304-2b",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1876,7 +1876,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-1-2-x-cut-44w",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1907,7 +1907,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-5-16-x-cut-44w",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1938,7 +1938,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/aluminum-sheet-1-2-5052-h32",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -1969,7 +1969,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/stainless-sheets-1-4-x-cut-316-2b",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2000,7 +2000,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/stainless-sheets-3-16-x-cut-316-2b",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2031,7 +2031,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/brass-sheet-0400-x-cut-c260",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2062,7 +2062,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/aluminum-sheet-1-1-2-x-cut-6061-t6",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2093,7 +2093,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/aluminum-sheet-3-8-5052-h32",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2124,7 +2124,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-26ga-0217-x-cut-a653-galv",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2155,7 +2155,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/copper-sheet-1-4-x-cut-c110",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2186,7 +2186,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/stainless-sheets-1-2-x-cut-304-2b",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2217,7 +2217,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/galvanized-smooth-surface-carbon-steel-sheet-18ga-x-cut-a653-galvanneal",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2248,7 +2248,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/brass-sheet-1-16-x-cut-c260",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2279,7 +2279,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/stainless-sheets-1-2-x-cut-316-2b",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2310,7 +2310,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/stainless-sheets-3-4-x-cut-304-2b",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2341,7 +2341,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-1-1-4-x-cut-44w",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2372,7 +2372,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/aluminum-sheet-1-1-4-x-cut-6061-t6",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2403,7 +2403,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/galvanized-steel-sheet-18ga-x-052-x-48-a653",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2434,7 +2434,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/copper-sheet-1-16-x-cut-c110",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2465,7 +2465,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/stainless-sheets-3-8-x-cut-316-2b",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2496,7 +2496,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/stainless-sheets-3-8-x-cut-304-2b",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2527,7 +2527,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-1-1-2-x-cut-44w",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2558,7 +2558,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-3-4-x-cut-44w",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2589,7 +2589,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/aluminum-sheet-1-x-cut-6061-t6",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2620,7 +2620,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/stainless-steel-sheet-5-8-304-2b",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2651,7 +2651,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/copper-sheet-3-16-x-cut-c110",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2682,7 +2682,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/stainless-sheets-3-4-x-cut-316-2b",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2713,7 +2713,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/stainless-sheets-1-1-4-x-cut-304-2b",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2744,7 +2744,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-3-x-cut-44w",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2775,7 +2775,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-2-1-2-x-cut-44w",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2806,7 +2806,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-2-x-cut-44w",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2837,7 +2837,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-steel-sheet-1-x-cut-44w",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2868,7 +2868,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/aluminum-sheet-3-x-cut-6061-t6",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2899,7 +2899,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/aluminum-sheet-2-1-2-x-cut-6061-t6",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2930,7 +2930,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/aluminum-sheet-2-x-cut-6061-t6",
-   "fetched_at": "2026-11-26T10:43:58-05:00",
+   "fetched_at": "2026-11-26T11:08:07-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2961,7 +2961,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-hard-plate-1-4-x-cut-t400-hr",
-   "fetched_at": "2026-11-26T10:44:00-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -2992,7 +2992,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-hard-plate-1-4-x-cut-t100-hr",
-   "fetched_at": "2026-11-26T10:44:00-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -3023,7 +3023,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-hard-plate-3-8-x-cut-t100-ht",
-   "fetched_at": "2026-11-26T10:44:00-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -3054,7 +3054,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/carbon-hard-plate-1-2-x-cut-t100-hr",
-   "fetched_at": "2026-11-26T10:44:00-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -3085,7 +3085,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/carbon-hard-plate-1-1-2-x-cut-t400-hr",
-   "fetched_at": "2026-11-26T10:44:00-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -3116,7 +3116,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-hard-plate-1-x-cut-t400-hr",
-   "fetched_at": "2026-11-26T10:44:00-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -3147,7 +3147,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "rupture",
    "url": "https://metalsrus.ca/products/carbon-hard-plate-3-4-x-cut-t400-hr",
-   "fetched_at": "2026-11-26T10:44:00-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -3178,7 +3178,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-hard-plate-5-8-x-cut-t400-hr",
-   "fetched_at": "2026-11-26T10:44:00-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -3209,7 +3209,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-hard-plate-1-2-x-cut-t400-hr",
-   "fetched_at": "2026-11-26T10:44:00-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -3240,7 +3240,7 @@
    "shipping": "Livraison partout au Canada (tarifs transporteur au panier); coupe sur mesure.",
    "availability": "en ligne",
    "url": "https://metalsrus.ca/products/carbon-hard-plate-3-8-x-cut-t400-hr",
-   "fetched_at": "2026-11-26T10:44:00-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "",
    "notes": "Plus grand format offert en ligne (coupe sur mesure)"
   },
@@ -53925,7 +53925,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -53956,7 +53956,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -53987,7 +53987,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -54018,7 +54018,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -54049,7 +54049,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -54080,7 +54080,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -54111,7 +54111,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -54142,7 +54142,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -54173,7 +54173,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -54204,7 +54204,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -54235,7 +54235,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -54266,7 +54266,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -54297,7 +54297,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54328,7 +54328,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54359,7 +54359,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54390,7 +54390,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54421,7 +54421,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54452,7 +54452,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54483,7 +54483,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54514,7 +54514,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54545,7 +54545,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54576,7 +54576,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54607,7 +54607,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54638,7 +54638,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54669,7 +54669,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54700,7 +54700,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54731,7 +54731,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54762,7 +54762,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54793,7 +54793,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54824,7 +54824,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54855,7 +54855,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54886,7 +54886,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54917,7 +54917,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54948,7 +54948,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -54979,7 +54979,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55010,7 +55010,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55041,7 +55041,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55072,7 +55072,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55103,7 +55103,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55134,7 +55134,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55165,7 +55165,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55196,7 +55196,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55227,7 +55227,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55258,7 +55258,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55289,7 +55289,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55320,7 +55320,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55351,7 +55351,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55382,7 +55382,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55413,7 +55413,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55444,7 +55444,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55475,7 +55475,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55506,7 +55506,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55537,7 +55537,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55568,7 +55568,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55599,7 +55599,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55630,7 +55630,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55661,7 +55661,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -55692,7 +55692,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -55723,7 +55723,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -55754,7 +55754,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -55785,7 +55785,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -55816,7 +55816,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -55847,7 +55847,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -55878,7 +55878,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -55909,7 +55909,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -55940,7 +55940,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -55971,7 +55971,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -56002,7 +56002,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -56033,7 +56033,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -56064,7 +56064,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -56095,7 +56095,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -56126,7 +56126,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière"
   },
@@ -56157,7 +56157,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56188,7 +56188,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56219,7 +56219,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56250,7 +56250,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56281,7 +56281,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56312,7 +56312,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56343,7 +56343,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56374,7 +56374,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56405,7 +56405,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56436,7 +56436,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56467,7 +56467,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56498,7 +56498,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56529,7 +56529,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56560,7 +56560,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56591,7 +56591,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56622,7 +56622,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56653,7 +56653,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56684,7 +56684,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56715,7 +56715,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56746,7 +56746,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56777,7 +56777,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56808,7 +56808,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56839,7 +56839,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56870,7 +56870,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56901,7 +56901,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56932,7 +56932,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56963,7 +56963,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -56994,7 +56994,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -57025,7 +57025,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -57056,7 +57056,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -57087,7 +57087,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -57118,7 +57118,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -57149,7 +57149,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -57180,7 +57180,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -57211,7 +57211,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -57242,7 +57242,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -57273,7 +57273,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -57304,7 +57304,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -57335,7 +57335,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -57366,7 +57366,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -57397,7 +57397,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -57428,7 +57428,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -57459,7 +57459,7 @@
    "shipping": "Liste indicative d’un atelier de fabrication : on ne commande pas la matière seule.",
    "availability": "",
    "url": "https://unitedstainless.ca/live-prices",
-   "fetched_at": "2026-11-26T10:55:13-05:00",
+   "fetched_at": "2026-11-26T11:08:09-05:00",
    "source_updated": "2026-10-22",
    "notes": "Coût indicatif publié par un atelier de fabrication; pas un prix de vente de matière; min. 10 pi linéaires"
   },
@@ -57490,7 +57490,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "En rupture d'inventaire",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-36po-x-120po-x-0-075po-m11-09899",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -57521,7 +57521,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "En rupture d'inventaire",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-36po-x-96po-x-0-075po-m11-09901",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -57552,7 +57552,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "En rupture d'inventaire",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-48po-x-144po-x-0-075po-m11-09908",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -57583,7 +57583,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "En rupture d'inventaire",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-48po-x-80po-x-0-188po-violet-m11-10720",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -57614,7 +57614,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "Quantité à titre indicatif seulement.",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-48po-x-96po-x-0-250po-m11-09913",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -57645,7 +57645,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "Quantité à titre indicatif seulement.",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-48po-x-96po-x-14-jauges-0-075po-1-9mm-m11-09916",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -57676,7 +57676,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "Quantité à titre indicatif seulement.",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-48po-x-96po-x-16-jauges-0-060po-1-5mm-m11-09915",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -57707,7 +57707,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "En rupture d'inventaire",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-50po-x-120po-x-0-188po-violet-m11-09948",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -57738,7 +57738,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "En rupture d'inventaire",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-59po-x-115po-x-0-313po-m11-09917",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -57769,7 +57769,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "En rupture d'inventaire",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-60po-x-119po-x-0-375po-m11-09918",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -57800,7 +57800,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "Quantité à titre indicatif seulement.",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-60po-x-120po-x-0-105po-orange-m11-09958",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -57831,7 +57831,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "Quantité à titre indicatif seulement.",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-60po-x-120po-x-0-188po-4-76mm-m11-09921",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -57862,7 +57862,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "Quantité à titre indicatif seulement.",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-60po-x-120po-x-0-250po-6-35mm-m11-09922",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -57893,7 +57893,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "Quantité à titre indicatif seulement.",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-60po-x-120po-x-0-313po-blanc-m11-09965",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -57924,7 +57924,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "Quantité à titre indicatif seulement.",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-60po-x-120po-x-0-375po-m11-09923",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -57955,7 +57955,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "Quantité à titre indicatif seulement.",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-60po-x-120po-x-0-500po-m11-11927",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -57986,7 +57986,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "Quantité à titre indicatif seulement.",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-60po-x-120po-x-14-jauges-0-075po-1-9mm-m11-09925",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -58017,7 +58017,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "Quantité à titre indicatif seulement.",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-60po-x-120po-x-16-jauges-0-060po-1-5mm-m11-09924",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -58048,7 +58048,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "En rupture d'inventaire",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-60po-x-144po-x-0-188po-m11-09927",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -58079,7 +58079,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "Quantité à titre indicatif seulement.",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-60po-x-144po-x-14-jauges-0-075po-1-9mm-m11-09964",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -58110,7 +58110,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "En rupture d'inventaire",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-60po-x-96po-x-0-188po-m11-09930",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -58141,7 +58141,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "En rupture d'inventaire",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-60po-x-96po-x-0-500po-khaki-m11-09972",
-   "fetched_at": "2026-11-26T10:46:02-05:00",
+   "fetched_at": "2026-11-26T11:08:10-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -58172,7 +58172,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "Quantité à titre indicatif seulement.",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-60po-x-96po-x-14-jauges-0-075po-1-9mm-m11-09995",
-   "fetched_at": "2026-11-26T10:46:03-05:00",
+   "fetched_at": "2026-11-26T11:08:12-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -58203,7 +58203,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "En rupture d'inventaire",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-67po-x-120po-x-0-135po-bleu-m11-10721",
-   "fetched_at": "2026-11-26T10:46:03-05:00",
+   "fetched_at": "2026-11-26T11:08:12-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -58234,7 +58234,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "En rupture d'inventaire",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-72po-x-120po-x-0-120po-rose-m11-09968",
-   "fetched_at": "2026-11-26T10:46:03-05:00",
+   "fetched_at": "2026-11-26T11:08:12-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -58265,7 +58265,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "En rupture d'inventaire",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-72po-x-120po-x-0-188po-violet-m11-09970",
-   "fetched_at": "2026-11-26T10:46:03-05:00",
+   "fetched_at": "2026-11-26T11:08:12-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -58296,7 +58296,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "En rupture d'inventaire",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-72po-x-120po-x-12-jauges-0-105po-2-7mm-m11-10592",
-   "fetched_at": "2026-11-26T10:46:03-05:00",
+   "fetched_at": "2026-11-26T11:08:12-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -58327,7 +58327,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "En rupture d'inventaire",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-72po-x-144po-x-0-120po-rose-m11-09954",
-   "fetched_at": "2026-11-26T10:46:03-05:00",
+   "fetched_at": "2026-11-26T11:08:12-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -58358,7 +58358,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "En rupture d'inventaire",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-72po-x-144po-x-0-250po-gris-m11-09966",
-   "fetched_at": "2026-11-26T10:46:03-05:00",
+   "fetched_at": "2026-11-26T11:08:12-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -58389,7 +58389,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "En rupture d'inventaire",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-72po-x-177po-x-0-135po-bleu-m11-09952",
-   "fetched_at": "2026-11-26T10:46:03-05:00",
+   "fetched_at": "2026-11-26T11:08:12-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -58420,7 +58420,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "Quantité à titre indicatif seulement.",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-72po-x-76po-x-0-105po-orange-m11-09950",
-   "fetched_at": "2026-11-26T10:46:03-05:00",
+   "fetched_at": "2026-11-26T11:08:12-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -58451,7 +58451,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "En rupture d'inventaire",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-72po-x-84po-x-0-135po-bleu-m11-09961",
-   "fetched_at": "2026-11-26T10:46:03-05:00",
+   "fetched_at": "2026-11-26T11:08:12-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -58482,7 +58482,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "En rupture d'inventaire",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-72po-x-91po-x-0-135po-bleu-m11-09962",
-   "fetched_at": "2026-11-26T10:46:03-05:00",
+   "fetched_at": "2026-11-26T11:08:12-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -58513,7 +58513,7 @@
    "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
    "availability": "En rupture d'inventaire",
    "url": "https://mercier40.ca/acier-en-plaque/acier-plaque-neuf-72po-x-96po-x-0-188po-violet-m11-09955",
-   "fetched_at": "2026-11-26T10:46:03-05:00",
+   "fetched_at": "2026-11-26T11:08:12-05:00",
    "source_updated": "",
    "notes": "Plaque neuve « coin rouge » (décapé huilé) selon la fiche"
   },
@@ -58851,7 +58851,7 @@
    "price_per_sqft_cad": 6.573,
    "price_per_ft_cad": null,
    "weight_lb": 49.94,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/sss304-4-alloy-304-stainless-sheet-22ga-0-03in-x-4ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -58882,7 +58882,7 @@
    "price_per_sqft_cad": 7.627,
    "price_per_ft_cad": null,
    "weight_lb": 59.93,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/sss304-8-alloy-304-stainless-sheet-20ga-0-036in-x-4ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -58913,7 +58913,7 @@
    "price_per_sqft_cad": 7.393,
    "price_per_ft_cad": null,
    "weight_lb": 47.94,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/sss304-4-alloy-304-stainless-sheet-20ga-0-036in-x-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -58944,7 +58944,7 @@
    "price_per_sqft_cad": 7.627,
    "price_per_ft_cad": null,
    "weight_lb": 59.93,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/sss304-4-alloy-304-stainless-sheet-20ga-0-036in-x-4ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -58975,7 +58975,7 @@
    "price_per_sqft_cad": 10.185,
    "price_per_ft_cad": null,
    "weight_lb": 63.92,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/sss304-4-alloy-304-stainless-sheet-18ga-0-048in-x-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59006,7 +59006,7 @@
    "price_per_sqft_cad": 10.186,
    "price_per_ft_cad": null,
    "weight_lb": 79.9,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/sss304-4-alloy-304-stainless-sheet-18ga-0-048in-x-4ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59037,7 +59037,7 @@
    "price_per_sqft_cad": 12.8,
    "price_per_ft_cad": null,
    "weight_lb": 124.85,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/sss304-4-alloy-304-stainless-sheet-16ga-0-06in-x-5ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59068,7 +59068,7 @@
    "price_per_sqft_cad": 12.8,
    "price_per_ft_cad": null,
    "weight_lb": 79.9,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/sss304-4-alloy-304-stainless-sheet-16ga-0-06in-x-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59099,7 +59099,7 @@
    "price_per_sqft_cad": 12.8,
    "price_per_ft_cad": null,
    "weight_lb": 99.88,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/sss304-4-alloy-304-stainless-sheet-16ga-0-06in-x-4ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59130,7 +59130,7 @@
    "price_per_sqft_cad": 15.999,
    "price_per_ft_cad": null,
    "weight_lb": 99.88,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/sss304-4-alloy-304-stainless-sheet-14ga-0-075in-x-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59161,7 +59161,7 @@
    "price_per_sqft_cad": 22.399,
    "price_per_ft_cad": null,
    "weight_lb": 139.83,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/sss304-4-alloy-304-stainless-sheet-12ga-0-105in-x-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59192,7 +59192,7 @@
    "price_per_sqft_cad": 25.589,
    "price_per_ft_cad": null,
    "weight_lb": 159.81,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/sss304-4-alloy-304-stainless-sheet-11ga-0-12in-x-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59223,7 +59223,7 @@
    "price_per_sqft_cad": 25.599,
    "price_per_ft_cad": null,
    "weight_lb": 199.76,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/sss304-4-alloy-304-stainless-sheet-11ga-0-12in-x-4ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59254,7 +59254,7 @@
    "price_per_sqft_cad": 2.511,
    "price_per_ft_cad": null,
    "weight_lb": 31.23,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/24g-cold-rolled-sheets-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59285,7 +59285,7 @@
    "price_per_sqft_cad": 2.678,
    "price_per_ft_cad": null,
    "weight_lb": 39.07,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/22g-cold-rolled-sheets-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59316,7 +59316,7 @@
    "price_per_sqft_cad": 3.213,
    "price_per_ft_cad": null,
    "weight_lb": 58.64,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/20g-cold-rolled-sheets-4ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59347,7 +59347,7 @@
    "price_per_sqft_cad": 4.447,
    "price_per_ft_cad": null,
    "weight_lb": 46.92,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/20g-cold-rolled-sheets-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59378,7 +59378,7 @@
    "price_per_sqft_cad": 4.499,
    "price_per_ft_cad": null,
    "weight_lb": 78.08,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/18g-cold-rolled-sheets-4ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59409,7 +59409,7 @@
    "price_per_sqft_cad": 4.499,
    "price_per_ft_cad": null,
    "weight_lb": 62.47,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/18g-cold-rolled-sheets-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59440,7 +59440,7 @@
    "price_per_sqft_cad": 5.624,
    "price_per_ft_cad": null,
    "weight_lb": 97.69,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/16g-cold-rolled-sheets-4ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59471,7 +59471,7 @@
    "price_per_sqft_cad": 4.345,
    "price_per_ft_cad": null,
    "weight_lb": 78.15,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/16g-cold-rolled-sheets-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59502,7 +59502,7 @@
    "price_per_sqft_cad": 5.407,
    "price_per_ft_cad": null,
    "weight_lb": 97.62,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/14g-cold-rolled-sheets-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59533,7 +59533,7 @@
    "price_per_sqft_cad": 8.738,
    "price_per_ft_cad": null,
    "weight_lb": 156.3,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/11ga-cold-rolled-sheets-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59564,7 +59564,7 @@
    "price_per_sqft_cad": 6.75,
    "price_per_ft_cad": null,
    "weight_lb": 22.46,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/5005-h14-anodized-aluminum-sheet-clear-0-04in-x-4ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59595,7 +59595,7 @@
    "price_per_sqft_cad": 37.974,
    "price_per_ft_cad": null,
    "weight_lb": 224.64,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-5in-x-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59626,7 +59626,7 @@
    "price_per_sqft_cad": 28.481,
    "price_per_ft_cad": null,
    "weight_lb": 263.25,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-375in-x-5ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59657,7 +59657,7 @@
    "price_per_sqft_cad": 28.481,
    "price_per_ft_cad": null,
    "weight_lb": 168.48,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-375in-x-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59688,7 +59688,7 @@
    "price_per_sqft_cad": 18.987,
    "price_per_ft_cad": null,
    "weight_lb": 175.5,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-250in-x-5ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59719,7 +59719,7 @@
    "price_per_sqft_cad": 18.987,
    "price_per_ft_cad": null,
    "weight_lb": 112.32,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-250in-x-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59750,7 +59750,7 @@
    "price_per_sqft_cad": 10.062,
    "price_per_ft_cad": null,
    "weight_lb": 105.58,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-188in-x-5ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59781,7 +59781,7 @@
    "price_per_sqft_cad": 12.581,
    "price_per_ft_cad": null,
    "weight_lb": 84.46,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-188in-x-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59812,7 +59812,7 @@
    "price_per_sqft_cad": 12.566,
    "price_per_ft_cad": null,
    "weight_lb": 105.58,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-188in-x-4ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59843,7 +59843,7 @@
    "price_per_sqft_cad": 10.414,
    "price_per_ft_cad": null,
    "weight_lb": 70.09,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-156in-x-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59874,7 +59874,7 @@
    "price_per_sqft_cad": 8.345,
    "price_per_ft_cad": null,
    "weight_lb": 105.3,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-125in-x-6ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59905,7 +59905,7 @@
    "price_per_sqft_cad": 8.345,
    "price_per_ft_cad": null,
    "weight_lb": 87.75,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-125in-x-5ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59936,7 +59936,7 @@
    "price_per_sqft_cad": 8.349,
    "price_per_ft_cad": null,
    "weight_lb": 56.16,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-125in-x-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59967,7 +59967,7 @@
    "price_per_sqft_cad": 8.345,
    "price_per_ft_cad": null,
    "weight_lb": 70.2,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-125in-x-4ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -59998,7 +59998,7 @@
    "price_per_sqft_cad": 6.676,
    "price_per_ft_cad": null,
    "weight_lb": 44.93,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-1in-x-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -60029,7 +60029,7 @@
    "price_per_sqft_cad": 6.676,
    "price_per_ft_cad": null,
    "weight_lb": 56.16,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-1in-x-4ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -60060,7 +60060,7 @@
    "price_per_sqft_cad": 5.341,
    "price_per_ft_cad": null,
    "weight_lb": 56.16,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-08in-x-5ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -60091,7 +60091,7 @@
    "price_per_sqft_cad": 5.376,
    "price_per_ft_cad": null,
    "weight_lb": 35.94,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-08in-x-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -60122,7 +60122,7 @@
    "price_per_sqft_cad": 5.341,
    "price_per_ft_cad": null,
    "weight_lb": 44.93,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-08in-x-4ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -60153,7 +60153,7 @@
    "price_per_sqft_cad": 4.451,
    "price_per_ft_cad": null,
    "weight_lb": 44.23,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-063in-x-5ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -60184,7 +60184,7 @@
    "price_per_sqft_cad": 6.954,
    "price_per_ft_cad": null,
    "weight_lb": 28.3,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-063in-x-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -60215,7 +60215,7 @@
    "price_per_sqft_cad": 3.447,
    "price_per_ft_cad": null,
    "weight_lb": 35.38,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-063in-x-4ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -60246,7 +60246,7 @@
    "price_per_sqft_cad": 2.736,
    "price_per_ft_cad": null,
    "weight_lb": 22.46,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-05in-x-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -60277,7 +60277,7 @@
    "price_per_sqft_cad": 2.219,
    "price_per_ft_cad": null,
    "weight_lb": 17.97,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-04in-x-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -60308,7 +60308,7 @@
    "price_per_sqft_cad": 2.189,
    "price_per_ft_cad": null,
    "weight_lb": 22.46,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-04in-x-4ft-x-10ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -60339,7 +60339,7 @@
    "price_per_sqft_cad": 2.68,
    "price_per_ft_cad": null,
    "weight_lb": 14.38,
-   "shipping": "Prix publiés, commande par téléphone; expédition vers le Québec à confirmer.",
+   "shipping": "Repère de prix canadien (masqué par défaut) : prix publiés, commande par téléphone, expédition vers le Québec non confirmée.",
    "availability": "",
    "url": "https://millenniumalloys.ca/product/as052-5052-h32-aluminum-sheet-0-032in-x-4ft-x-8ft/",
    "fetched_at": "2026-11-26T10:44:51-05:00",
@@ -60373,7 +60373,7 @@
    "shipping": "Cueillette à Lethbridge (Alberta) seulement : repère de prix canadien, pas une source d’achat au Québec.",
    "availability": "",
    "url": "https://shop.nationalsalvage.ca/products/steel-sh10ga-4x8",
-   "fetched_at": "2026-11-26T10:33:57-05:00",
+   "fetched_at": "2026-11-26T11:08:14-05:00",
    "source_updated": "",
    "notes": "Feuille pleine; cueillette Lethbridge (AB)"
   },
@@ -60404,7 +60404,7 @@
    "shipping": "Cueillette à Lethbridge (Alberta) seulement : repère de prix canadien, pas une source d’achat au Québec.",
    "availability": "",
    "url": "https://shop.nationalsalvage.ca/products/steel-sh14ga-4x8",
-   "fetched_at": "2026-11-26T10:33:57-05:00",
+   "fetched_at": "2026-11-26T11:08:14-05:00",
    "source_updated": "",
    "notes": "Feuille pleine; cueillette Lethbridge (AB)"
   },
@@ -60435,7 +60435,7 @@
    "shipping": "Cueillette à Lethbridge (Alberta) seulement : repère de prix canadien, pas une source d’achat au Québec.",
    "availability": "",
    "url": "https://shop.nationalsalvage.ca/products/steel-sh12ga-4x8",
-   "fetched_at": "2026-11-26T10:33:57-05:00",
+   "fetched_at": "2026-11-26T11:08:14-05:00",
    "source_updated": "",
    "notes": "Feuille pleine; cueillette Lethbridge (AB)"
   },
@@ -60466,7 +60466,7 @@
    "shipping": "Cueillette à Lethbridge (Alberta) seulement : repère de prix canadien, pas une source d’achat au Québec.",
    "availability": "",
    "url": "https://shop.nationalsalvage.ca/products/steel-pl316-4x8",
-   "fetched_at": "2026-11-26T10:33:57-05:00",
+   "fetched_at": "2026-11-26T11:08:14-05:00",
    "source_updated": "",
    "notes": "Feuille pleine; cueillette Lethbridge (AB)"
   },
@@ -60497,7 +60497,7 @@
    "shipping": "Cueillette à Lethbridge (Alberta) seulement : repère de prix canadien, pas une source d’achat au Québec.",
    "availability": "",
    "url": "https://shop.nationalsalvage.ca/products/steel-sh16ga-4x8",
-   "fetched_at": "2026-11-26T10:33:57-05:00",
+   "fetched_at": "2026-11-26T11:08:14-05:00",
    "source_updated": "",
    "notes": "Feuille pleine; cueillette Lethbridge (AB)"
   },
@@ -60528,7 +60528,7 @@
    "shipping": "Cueillette à Lethbridge (Alberta) seulement : repère de prix canadien, pas une source d’achat au Québec.",
    "availability": "",
    "url": "https://shop.nationalsalvage.ca/products/steel-pl38-4x8",
-   "fetched_at": "2026-11-26T10:33:57-05:00",
+   "fetched_at": "2026-11-26T11:08:14-05:00",
    "source_updated": "",
    "notes": "Feuille pleine; cueillette Lethbridge (AB)"
   },
@@ -60559,7 +60559,7 @@
    "shipping": "Cueillette à Lethbridge (Alberta) seulement : repère de prix canadien, pas une source d’achat au Québec.",
    "availability": "",
    "url": "https://shop.nationalsalvage.ca/products/steel-pl14-4x8",
-   "fetched_at": "2026-11-26T10:33:57-05:00",
+   "fetched_at": "2026-11-26T11:08:14-05:00",
    "source_updated": "",
    "notes": "Feuille pleine; cueillette Lethbridge (AB)"
   },
@@ -60590,7 +60590,7 @@
    "shipping": "Cueillette à Lethbridge (Alberta) seulement : repère de prix canadien, pas une source d’achat au Québec.",
    "availability": "",
    "url": "https://shop.nationalsalvage.ca/products/steel-pl12-4x8",
-   "fetched_at": "2026-11-26T10:33:57-05:00",
+   "fetched_at": "2026-11-26T11:08:14-05:00",
    "source_updated": "",
    "notes": "Feuille pleine; cueillette Lethbridge (AB)"
   }
