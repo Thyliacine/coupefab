@@ -1,0 +1,314 @@
+{
+ "_note": "Quebec job shops per process guide. Every entry checked on the shop's official site (2026-11-26). Partner = linked to the CoupeFab team. SMF listed only where smfmecanique.com/services-offerts/ shows the service.",
+ "shops": {
+  "amicx": {
+   "name": "Amicx",
+   "city": "Boucherville",
+   "url": "https://amicx.ca/fr/service/decoupage-cnc/",
+   "fr": "Découpe CNC (routeur) et découpe/gravure laser CO2 de plastiques et bois ; prototypes et séries.",
+   "en": "CNC routing plus CO2 laser cutting/engraving of plastics and wood; prototypes and runs."
+  },
+  "argo": {
+   "name": "Argo Machine Tools",
+   "city": "Saint-Léonard (Montréal)",
+   "url": "https://www.argomachinetools.ca/fr",
+   "fr": "Usinage de précision de type suisse, tournage et fraisage CNC.",
+   "en": "Swiss-type precision machining, CNC turning and milling."
+  },
+  "bolduc": {
+   "name": "Bolduc Leroux",
+   "city": "Terrebonne",
+   "url": "https://www.bolducleroux.ca/service/decoupe/",
+   "fr": "Découpe de plaques d’acier au plasma et par oxycoupage.",
+   "en": "Steel plate cutting by plasma and oxyfuel."
+  },
+  "carbon": {
+   "name": "Carbon Steel Profiles",
+   "city": "Châteauguay",
+   "url": "https://www.carbon.ca/oxycoupage/?lang=fr",
+   "fr": "Oxycoupage de plaques d’acier épaisses.",
+   "en": "Oxyfuel cutting of thick steel plate."
+  },
+  "deburex": {
+   "name": "Deburex",
+   "city": "Lanoraie",
+   "url": "https://www.deburex.com/",
+   "fr": "Ébavurage de pièces usinées en sous-traitance.",
+   "en": "Contract deburring of machined parts."
+  },
+  "dp": {
+   "name": "DP Digital Precision",
+   "city": "Terrebonne",
+   "url": "https://dpdigitalprecision.ca/electroerosion-fil.php",
+   "fr": "Électroérosion à fil et usinage CNC 5 axes ; certifié AS9100.",
+   "en": "Wire EDM and 5-axis CNC machining; AS9100 certified.",
+   "urls": {
+    "five-axis": "https://dpdigitalprecision.ca/usinage-cnc-5-axes.php"
+   }
+  },
+  "fabmec": {
+   "name": "Fabmec",
+   "city": "Jonquière (Saguenay)",
+   "url": "https://fabmec.ca/service-de-decoupe-au-plasma-industriel/",
+   "fr": "Découpe plasma industrielle, y compris chanfreins pour la préparation au soudage.",
+   "en": "Industrial plasma cutting, including bevels for weld preparation."
+  },
+  "gm": {
+   "name": "G.M. Précision",
+   "city": "Saint-Jean-sur-Richelieu",
+   "url": "https://gmprecision.ca/sous-traitance-usinage/",
+   "fr": "Sous-traitance d’usinage CNC : fraisage, tournage, 5 axes et tournage suisse ; AS9100D.",
+   "en": "Contract CNC machining: milling, turning, 5-axis and Swiss turning; AS9100D.",
+   "urls": {
+    "cnc-lathe": "https://gmprecision.ca/usinage-sur-tour/",
+    "five-axis": "https://gmprecision.ca/usinage-a-5-axes/",
+    "swiss-turn-mill": "https://gmprecision.ca/tournage-suisse/"
+   }
+  },
+  "iel": {
+   "name": "IEL",
+   "city": "Sainte-Claire",
+   "url": "https://www.iel.ca/nos-services/pliage/",
+   "fr": "Pliage de tôle sur presse plieuse.",
+   "en": "Sheet-metal bending on press brakes."
+  },
+  "jnov": {
+   "name": "JNOV Usinage",
+   "city": "Québec",
+   "url": "https://www.jnovusinage.com/",
+   "fr": "Atelier d’usinage numérique, dont l’usinage 5 axes.",
+   "en": "CNC machine shop, including 5-axis machining."
+  },
+  "ladecoupe": {
+   "name": "LaDécoupe",
+   "city": "Saint-Prosper",
+   "url": "https://ladecoupeinc.com/nos-services/",
+   "fr": "Découpe au jet d’eau (6 × 10 pi) et découpe CNC de plastiques, bois et aluminium.",
+   "en": "Waterjet cutting (6 × 10 ft) and CNC cutting of plastics, wood and aluminum."
+  },
+  "mag": {
+   "name": "Machinerie MAG",
+   "city": "Drummondville",
+   "url": "https://machineriemag.com/",
+   "fr": "Atelier d’usinage de précision : tournage et fraisage.",
+   "en": "Precision machine shop: turning and milling."
+  },
+  "mg": {
+   "name": "MG Metal MFG",
+   "city": "Québec",
+   "url": "https://www.mgmetalmfg.com/",
+   "fr": "Fraisage, tournage, électroérosion à fil, inspection MMT et finition.",
+   "en": "Milling, turning, wire EDM, CMM inspection and finishing."
+  },
+  "nitek": {
+   "name": "Nitek Laser",
+   "city": "Nicolet",
+   "url": "https://niteklaser.com/",
+   "fr": "Découpe laser et chanfreinage de précision pour le soudage.",
+   "en": "Laser cutting and precision chamfering for welding.",
+   "urls": {
+    "weld-prep": "https://niteklaser.com/usinage/chanfreinage"
+   }
+  },
+  "omnifab": {
+   "name": "Omnifab",
+   "city": "Louiseville",
+   "url": "https://omnifab.ca/services-en-usine/metal-en-feuille/decoupe-plasma",
+   "fr": "Découpe plasma (table 60 × 120 po) et oxycoupage, pliage et soudure.",
+   "en": "Plasma cutting (60 × 120 in table) and oxyfuel, bending and welding.",
+   "urls": {
+    "oxyfuel": "https://omnifab.ca/services-en-usine/metal-en-feuille/oxycoupage"
+   }
+  },
+  "patt": {
+   "name": "Patt",
+   "city": "Saint-Eustache",
+   "url": "https://patt-technologies.com/fr/usinage-precision/",
+   "fr": "Électroérosion à fil, rectification, fraisage et tournage CNC de grandes pièces.",
+   "en": "Wire EDM, grinding, CNC milling and turning of large parts."
+  },
+  "plastiver": {
+   "name": "Plastiver",
+   "city": "Québec",
+   "url": "https://www.plastiver.com/decoupe-jet-eau",
+   "fr": "Découpe au jet d’eau (OMAX) et découpe/gravure CNC.",
+   "en": "Waterjet cutting (OMAX) and CNC cutting/engraving.",
+   "urls": {
+    "cnc-router": "https://www.plastiver.com/decoupe-cnc"
+   }
+  },
+  "polisseur": {
+   "name": "Maître Polisseur",
+   "city": "Laval",
+   "url": "https://polisseur.ca/services/ebavurage/",
+   "fr": "Ébavurage manuel et mécanique pour usineurs et fabricants.",
+   "en": "Manual and mechanical deburring for machine shops and fabricators."
+  },
+  "psmetal": {
+   "name": "PS Métal",
+   "city": "Québec",
+   "url": "https://www.psmetal.com/fr/nos-services/service/decoupe-plasma-cnc",
+   "fr": "Table CNC oxy/plasma 5 × 10 pi (jusqu’à 1 ½ po d’acier) et pliage CNC.",
+   "en": "5 × 10 ft CNC oxy/plasma table (up to 1½ in steel) and CNC bending.",
+   "urls": {
+    "press-brake": "https://www.psmetal.com/fr/nos-services/service/pliage"
+   }
+  },
+  "qcsoudure": {
+   "name": "Québec Soudure",
+   "city": "Québec",
+   "url": "https://www.quebecsoudure.com/nos-services/soudure-quebec",
+   "fr": "Soudure et fabrication métallique.",
+   "en": "Welding and metal fabrication."
+  },
+  "quefer": {
+   "name": "Quéfer",
+   "city": "Saint-Pie",
+   "url": "https://www.quefer.com/nos-expertises/decoupe-laser/",
+   "fr": "Découpe laser fibre de tôle, formats jusqu’à 60 × 120 po.",
+   "en": "Fiber laser sheet cutting, formats up to 60 × 120 in."
+  },
+  "satellite": {
+   "name": "Satellite Métal",
+   "city": "Saint-Laurent (Montréal)",
+   "url": "https://satellitemetal.com/services/ebavure-tribofinition/",
+   "fr": "Ébavurage et tribofinition par vibration.",
+   "en": "Deburring and vibratory mass finishing."
+  },
+  "smf": {
+   "name": "SMF Mécanique (Services Mécanique Fabrication)",
+   "city": "Berthierville",
+   "url": "https://smfmecanique.com/services-offerts/",
+   "partner": true,
+   "fr": "Usinage CNC (tournage, fraisage, perçage, grande dimension), soudure TIG/MIG/arc en atelier ou sur site, fabrication sur mesure et finition de surfaces.",
+   "en": "CNC machining (turning, milling, drilling, large parts), TIG/MIG/stick welding in shop or on site, custom fabrication and surface finishing."
+  },
+  "soudex": {
+   "name": "Soudex Métal",
+   "city": "Grand-Saint-Esprit",
+   "url": "https://www.soudexmetal.ca/services-conception-metallique/decoupe-metal/",
+   "fr": "Découpe plasma (Hypertherm HPR260XD) et presse plieuse 590 t.",
+   "en": "Plasma cutting (Hypertherm HPR260XD) and a 590-ton press brake."
+  },
+  "soudurent": {
+   "name": "Soudure NT",
+   "city": "Saint-Télesphore",
+   "url": "https://soudurent.com/",
+   "fr": "Laser fibre 3000 W (5 × 10 pi), pliage CNC 160 t et soudure MIG/TIG.",
+   "en": "3000 W fiber laser (5 × 10 ft), 160-ton CNC bending and MIG/TIG welding."
+  },
+  "umake": {
+   "name": "uMake",
+   "city": "Montréal",
+   "url": "https://www.umake.ca/fr",
+   "fr": "Usine en ligne : découpe laser, jet d’eau, routeur CNC et pliage, soumission instantanée.",
+   "en": "Online factory: laser, waterjet, CNC routing and bending with instant quotes.",
+   "urls": {
+    "waterjet": "https://www.umake.ca/fr/decoupe-jet-d-eau-quebec",
+    "cnc-router": "https://www.umake.ca/fr/cnc-routeur-quebec",
+    "press-brake": "https://www.umake.ca/fr/pliage-du-metal-quebec"
+   }
+  },
+  "usimetal": {
+   "name": "Usimétal",
+   "city": "Drummondville",
+   "url": "https://usimetal.ca/usinage-cnc/",
+   "fr": "Usinage CNC : tournage et fraisage.",
+   "en": "CNC machining: turning and milling."
+  },
+  "vohl": {
+   "name": "Vohl",
+   "city": "Saint-Marc-des-Carrières",
+   "url": "https://www.vohl.ca/sous-traitance-industrielle",
+   "fr": "Sous-traitance industrielle : oxycoupage jusqu’à 11 po, usinage CNC ; CSA W47.1.",
+   "en": "Contract manufacturing: oxyfuel cutting up to 11 in, CNC machining; CSA W47.1."
+  }
+ },
+ "by_guide": {
+  "plasma-cutting": [
+   "bolduc",
+   "fabmec",
+   "omnifab",
+   "psmetal",
+   "soudex"
+  ],
+  "fiber-laser": [
+   "nitek",
+   "quefer",
+   "soudurent",
+   "umake"
+  ],
+  "waterjet": [
+   "ladecoupe",
+   "plastiver",
+   "umake"
+  ],
+  "cnc-router": [
+   "amicx",
+   "ladecoupe",
+   "plastiver",
+   "umake"
+  ],
+  "cnc-mill": [
+   "smf",
+   "gm",
+   "mag",
+   "mg",
+   "patt",
+   "usimetal"
+  ],
+  "cnc-lathe": [
+   "smf",
+   "argo",
+   "gm",
+   "mag",
+   "mg",
+   "patt",
+   "usimetal"
+  ],
+  "press-brake": [
+   "iel",
+   "psmetal",
+   "soudex",
+   "soudurent",
+   "umake"
+  ],
+  "plasma-bevel": [
+   "fabmec"
+  ],
+  "oxyfuel": [
+   "bolduc",
+   "carbon",
+   "omnifab",
+   "psmetal",
+   "vohl"
+  ],
+  "edm": [
+   "dp",
+   "mg",
+   "patt"
+  ],
+  "five-axis": [
+   "dp",
+   "gm",
+   "jnov"
+  ],
+  "swiss-turn-mill": [
+   "argo",
+   "gm"
+  ],
+  "weld-prep": [
+   "smf",
+   "fabmec",
+   "nitek",
+   "qcsoudure",
+   "soudurent"
+  ],
+  "deburring": [
+   "smf",
+   "deburex",
+   "polisseur",
+   "satellite"
+  ]
+ }
+}
