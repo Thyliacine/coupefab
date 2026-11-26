@@ -398,6 +398,7 @@ def fetch_metalsdepot(fx, quick=False):
                          form_hint="sheet", width_in=w, length_in=l, size_label=f"{w:g} × {l:g} po",
                          notes="Prix à l’unité (qté 1), format standard")
             if r:
+                r["buy_url"] = f"{url}#{pr['data-product-id']}"  # the product's own row on the category page
                 rows.append(r)
             if quick and len(rows) > 10:
                 break

@@ -1,227 +1,372 @@
-/* CoupeFab — comparateur de prix (vanilla JS, no deps) */
+/* CoupeFab — comparateur de prix des métaux (vanilla JS, no deps).
+   Loads the sheet/plate file first (small), the full file only when bar/tube/pipe are asked for. */
 (function () {
+  "use strict";
   var app = document.getElementById("prix-app");
   if (!app) return;
   var FR = app.getAttribute("data-lang") !== "en";
   var T = function (fr, en) { return FR ? fr : en; };
-  var D, ROWS = [], K = {};
-  var sortKey = "spec", sortDir = 1;
+  var D = null, ROWS = [], FULL = false, loadingFull = null;
+  var sortKey = "spec", sortDir = 1, LIMIT = 150, shown = LIMIT;
+  var SHEET = { tole: 1, plaque: 1 };
+  var TABS = [["comparer", "compare"], ["calculateur", "calculator"], ["tendances", "trends"], ["nuances", "grades"], ["methode", "method"]];
+  var ALIAS = { comparateur: 0, meilleurs: 0, tendance: 2, catalogue: 3, calibres: 3, fournisseurs: 4, alerte: 4 };
+  var TIER = {
+    best: T("Meilleur prix", "Best price"), good: T("Bon prix", "Good price"), avg: T("Dans la moyenne", "Average"),
+    high: T("Cher", "Expensive"), ref: T("Repère", "Benchmark"), oos: T("Rupture", "Out of stock"), check: T("À vérifier", "To check")
+  };
+  var SHIP = {
+    oui: T("Livre au Québec", "Ships to Quebec"), cueillette: T("Cueillette au Québec", "Pickup in Quebec"),
+    indicatif: T("Prix indicatif", "Indicative price"), a_confirmer: T("Livraison à confirmer", "Shipping TBC"),
+    non: T("Repère hors Québec", "Benchmark, outside QC"), repere: T("Repère hors Québec", "Benchmark, outside QC")
+  };
 
+  /* ---------- formatting ---------- */
   function num(x, d) {
-    if (x === null || x === undefined || x === "") return "—";
+    if (x === null || x === undefined || x === "" || isNaN(x)) return "—";
     d = d === undefined ? 2 : d;
-    var s = Number(x).toFixed(d);
-    if (FR) { s = s.replace(".", ","); }
-    return s.replace(/\B(?=(\d{3})+(?!\d))/g, FR ? "\u202f" : ",");
+    var s = Number(x).toFixed(d), parts = s.split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, FR ? "\u202f" : ",");
+    return parts.join(FR ? "," : ".");
   }
-  function money(x) { return x === null || x === undefined ? "—" : (FR ? num(x) + " $" : "$" + num(x)); }
+  function money(x, d) { return x == null ? "—" : (FR ? num(x, d) + "\u00a0$" : "$" + num(x, d)); }
+  function pctTxt(p) { if (p == null) return ""; var s = (p > 0 ? "+" : p < 0 ? "−" : "±") + num(Math.abs(p), 0); return FR ? s + "\u00a0%" : s + "%"; }
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
-  function el(sel) { return app.querySelector(sel); }
+  function inch(s) { return FR ? s : String(s || "").replace(/ po\b/g, " in"); }
+  function uniq(arr) { var s = {}; return arr.filter(function (x) { if (x == null || s[x]) return false; s[x] = 1; return true; }); }
+  function dateShort(iso) {
+    if (!iso) return "";
+    var d = new Date(iso.slice(0, 10) + "T12:00:00");
+    return d.toLocaleDateString(FR ? "fr-CA" : "en-CA", { day: "numeric", month: "short", year: "numeric" });
+  }
 
-  fetch("/prix/donnees.json").then(function (r) { return r.json(); }).then(function (d) {
-    D = d;
-    D.keys.forEach(function (k, i) { K[k] = i; });
-    ROWS = D.rows.map(function (a) {
-      var o = {}; D.keys.forEach(function (k, i) { o[k] = a[i]; }); return o;
+  /* ---------- tabs (hash per tab, ARIA, arrow keys) ---------- */
+  var tabs = [].slice.call(app.querySelectorAll('[role="tab"]'));
+  var panels = [].slice.call(app.querySelectorAll(".px-panel"));
+  var cur = +(app.getAttribute("data-tab") || 0);
+  function hashParts() {
+    var h = location.hash.slice(1), i = h.indexOf("?");
+    return { tab: (i < 0 ? h : h.slice(0, i)).toLowerCase(), q: new URLSearchParams(i < 0 ? "" : h.slice(i + 1)) };
+  }
+  function tabIndex(name) {
+    for (var i = 0; i < TABS.length; i++) if (TABS[i][0] === name || TABS[i][1] === name) return i;
+    return ALIAS[name] !== undefined ? ALIAS[name] : -1;
+  }
+  function tabId(i) { return TABS[i][FR ? 0 : 1]; }
+  function show(i, opts) {
+    opts = opts || {};
+    cur = i; app.setAttribute("data-tab", i);
+    tabs.forEach(function (t, k) { t.setAttribute("aria-selected", k === i ? "true" : "false"); t.tabIndex = k === i ? 0 : -1; });
+    panels.forEach(function (p, k) { p.classList.toggle("is-active", k === i); });
+    if (opts.focus) tabs[i].focus();
+    if (opts.push !== false) writeHash(opts.push === "push");
+    if (i === 2) drawChart();
+    if (opts.scroll) { var nav = app.querySelector(".px-tabs"); var y = nav.getBoundingClientRect().top + window.scrollY - headerH() - 8; if (window.scrollY > y || opts.scroll === "force") window.scrollTo({ top: y, behavior: "smooth" }); }
+  }
+  tabs.forEach(function (t, k) {
+    t.addEventListener("click", function (e) { e.preventDefault(); show(k, { push: "push" }); });
+    t.addEventListener("keydown", function (e) {
+      var n = { ArrowRight: k + 1, ArrowLeft: k - 1, Home: 0, End: tabs.length - 1 }[e.key];
+      if (n === undefined) return;
+      e.preventDefault(); show((n + tabs.length) % tabs.length, { focus: true });
     });
-    initFilters(); render(); initCalc(); drawChart(); initCoverage();
-  }).catch(function () {
-    el("#cmp tbody").innerHTML = '<tr><td colspan="10">' + T("Impossible de charger les données.", "Could not load the data.") + "</td></tr>";
+  });
+  window.addEventListener("popstate", function () { var hp = hashParts(), i = tabIndex(hp.tab); if (i >= 0) { show(i, { push: false }); if (i === 0 && D) { applyQuery(hp.q); refreshOptions(); render(); } } });
+  function headerH() { var h = document.querySelector(".hdr, .site-header, body > header"); if (!h) return 0; var cs = getComputedStyle(h); return cs.position === "sticky" || cs.position === "fixed" ? h.offsetHeight : 0; }
+  function setHeaderVar() { app.style.setProperty("--px-top", headerH() + "px"); }
+  setHeaderVar(); window.addEventListener("resize", setHeaderVar);
+
+  /* ---------- data ---------- */
+  var S = document.getElementById("px-search");
+  var F = { q: S.q, family: S.family, grade: S.grade, form: S.form, spec: S.spec, size: S.size, qc: S.qc, cmp: S.cmp, cat: S.cat };
+  function ingest(d) {
+    D = d; FULL = d.part === "all";
+    ROWS = d.rows.map(function (a) { var o = {}; d.keys.forEach(function (k, i) { o[k] = a[i]; }); return o; });
+  }
+  function needFull() { var v = F.form.value; return v && !SHEET[v]; }
+  function ensureFull() {
+    if (FULL) return Promise.resolve();
+    if (!loadingFull) {
+      setCount(T("Chargement des barres, tubes et tuyaux…", "Loading bar, tube and pipe…"));
+      loadingFull = fetch("/prix/donnees.json").then(function (r) { return r.json(); }).then(function (d) { ingest(d); initFormOptions(); });
+    }
+    return loadingFull;
+  }
+  (window.__pxData || fetch("/prix/donnees-toles.json").then(function (r) { return r.json(); })).then(function (d) {
+    ingest(d);
+    initFormOptions();
+    var hp = hashParts();
+    applyQuery(hp.q);
+    var go = needFull() ? ensureFull() : Promise.resolve();
+    go.then(function () { applyQuery(hp.q); refreshOptions(); applyQuery(hp.q); render(); });
+    initCalc(); initCoverage(); initCards();
+    if (cur === 2) drawChart();
+  }).catch(function (e) {
+    app.querySelector("#px-table tbody").innerHTML = '<tr><td colspan="7">' + T("Impossible de charger les données. Le CSV reste disponible plus bas.", "Could not load the data. The CSV is still available below.") + "</td></tr>";
+    if (window.console) console.error(e);
   });
 
-  var SHEET = { tole: 1, plaque: 1 };
+  function sup(r) { return D.suppliers[r.supplier] || {}; }
+  function supName(r) { return sup(r).name || r.supplier; }
   function famLabel(f) { return (D.families[f] || [f, f])[FR ? 0 : 1]; }
   function formLabel(f) { return (D.forms[f] || [f, f])[FR ? 0 : 1]; }
-  function supName(s) { return (D.suppliers[s] || {}).name || s; }
   function specLabel(r) { return FR ? r.spec_fr : r.spec_en; }
-  function buyable(r) { var s = (D.suppliers[r.supplier] || {}).ships_qc; return s === "oui" || s === "cueillette" || s === "a_confirmer"; }
-
-  function opts(select, list, keep) {
-    var cur = select.value;
-    var first = select.options[0].outerHTML;
-    select.innerHTML = first + list.map(function (o) { return '<option value="' + esc(o[0]) + '">' + esc(o[1]) + "</option>"; }).join("");
-    if (keep && list.some(function (o) { return o[0] === cur; })) select.value = cur;
+  function buyable(r) { var s = sup(r).ships_qc; return s === "oui" || s === "cueillette" || s === "a_confirmer"; }
+  function sizeOf(r) {
+    if (r.width_in && r.length_in) return num(r.width_in, r.width_in % 1 ? 1 : 0) + " × " + num(r.length_in, r.length_in % 1 ? 1 : 0) + T(" po", " in");
+    if (r.length_ft) return num(r.length_ft, r.length_ft % 1 ? 1 : 0) + T(" pi", " ft");
+    return inch(r.size_label || "");
   }
-  function uniq(arr) { var s = {}; return arr.filter(function (x) { if (s[x]) return false; s[x] = 1; return true; }); }
+  function munit(r) { return r.munit === "sqft" ? T("/pi²", "/sq ft") : r.munit === "ft" ? T("/pi", "/ft") : "/lb"; }
+  function action(r) {
+    var s = sup(r);
+    if (s.ships_qc === "indicatif") return { kind: "quote", url: s.quote_url || r.url, label: T("Demander un prix", "Request a quote") };
+    if (s.ships_qc === "oui") return { kind: "buy", url: r.buy_url || r.url, label: T("Acheter", "Buy") };
+    return { kind: "see", url: r.buy_url || r.url, label: T("Voir chez ", "View at ") + s.name };
+  }
 
-  var F;
+  /* ---------- filters ---------- */
+  function opts(select, list) {
+    var v = select.value, first = select.options[0].outerHTML;
+    select.innerHTML = first + list.map(function (o) { return '<option value="' + esc(o[0]) + '">' + esc(o[1]) + "</option>"; }).join("");
+    if (list.some(function (o) { return o[0] === v; })) select.value = v;
+  }
+  function initFormOptions() {
+    var forms = uniq(ROWS.map(function (r) { return r.form; }));
+    var v = F.form.value;
+    var all = Object.keys(D.forms).filter(function (k) { return !FULL || forms.indexOf(k) >= 0; });
+    F.form.innerHTML = '<option value="">' + T("Tôle et plaque", "Sheet and plate") + '</option><option value="all">' + T("Toutes les formes", "All forms") + "</option>" +
+      all.map(function (k) { return '<option value="' + k + '">' + esc(formLabel(k)) + "</option>"; }).join("");
+    if (v) F.form.value = v;
+  }
   function filtered(ignore) {
-    var v = {
-      family: F.family.value, grade: F.grade.value, form: F.form.value, spec: F.spec.value,
-      supplier: F.supplier.value, q: F.q.value.trim().toLowerCase(), qc: F.qc.checked, cat: F.cat.checked
-    };
+    var v = { family: F.family.value, grade: F.grade.value, form: F.form.value, spec: F.spec.value, size: F.size.value, q: F.q.value.trim().toLowerCase() };
+    var words = v.q ? v.q.replace(/,/g, ".").split(/\s+/) : [];
     return ROWS.filter(function (r) {
       if (v.family && ignore !== "family" && r.family !== v.family) return false;
       if (v.grade && ignore !== "grade" && r.grade !== v.grade && !(v.grade.indexOf("A500") === 0 && r.grade === "A500")) return false;
       if (ignore !== "form") {
-        if (v.form === "all") { /* all forms */ }
-        else if (v.form) { if (r.form !== v.form) return false; }
-        else if (!SHEET[r.form]) return false;
+        if (v.form === "all") { /* all */ } else if (v.form) { if (r.form !== v.form) return false; } else if (!SHEET[r.form]) return false;
       }
       if (v.spec && ignore !== "spec" && r.spec !== v.spec) return false;
-      if (v.supplier && ignore !== "supplier" && r.supplier !== v.supplier) return false;
-      if (v.qc && !buyable(r)) return false;
-      if (v.cat && !r.in_catalogue) return false;
-      if (v.q) {
-        var hay = (r.description + " " + r.grade + " " + specLabel(r) + " " + supName(r.supplier) + " " + r.size_label).toLowerCase();
-        if (v.q.split(/\s+/).some(function (w) { return hay.indexOf(w) < 0; })) return false;
+      if (v.size && ignore !== "size" && sizeOf(r) !== v.size) return false;
+      if (F.qc.checked && !buyable(r)) return false;
+      if (F.cat.checked && !r.in_catalogue) return false;
+      if (F.cmp.checked && !r.tier) return false;
+      if (words.length) {
+        var hay = (r.description + " " + r.grade + " " + specLabel(r) + " " + supName(r) + " " + r.size_label + " " + (r.gauge ? r.gauge + " ga" : "")).toLowerCase().replace(/,/g, ".");
+        for (var i = 0; i < words.length; i++) if (hay.indexOf(words[i]) < 0 && hay.indexOf(words[i].replace(/^0\./, ".")) < 0) return false;
       }
       return true;
     });
   }
-
   function refreshOptions() {
-    opts(F.family, uniq(filtered("family").map(function (r) { return r.family; })).map(function (f) { return [f, famLabel(f)]; }), true);
-    opts(F.grade, uniq(filtered("grade").map(function (r) { return r.grade; }).filter(Boolean)).sort().map(function (g) { return [g, g]; }), true);
+    opts(F.family, uniq(filtered("family").map(function (r) { return r.family; })).sort(function (a, b) { return a === "acier" ? -1 : b === "acier" ? 1 : famLabel(a).localeCompare(famLabel(b)); }).map(function (f) { return [f, famLabel(f)]; }));
+    opts(F.grade, uniq(filtered("grade").map(function (r) { return r.grade; })).sort().map(function (g) { return [g, g]; }));
     var specs = {};
     filtered("spec").forEach(function (r) { if (r.spec) specs[r.spec] = [r.spec, specLabel(r), r.thickness_in || 0]; });
-    opts(F.spec, Object.keys(specs).map(function (k) { return specs[k]; }).sort(function (a, b) { return a[2] - b[2] || (a[1] < b[1] ? -1 : 1); }), true);
-    opts(F.supplier, uniq(filtered("supplier").map(function (r) { return r.supplier; })).map(function (s) { return [s, supName(s)]; }), true);
+    opts(F.spec, Object.keys(specs).map(function (k) { return specs[k]; }).sort(function (a, b) { return a[2] - b[2] || (a[1] < b[1] ? -1 : 1); }));
+    var sizes = {};
+    filtered("size").forEach(function (r) { var s = sizeOf(r); if (s) sizes[s] = (r.width_in || 0) * (r.length_in || 0) || (r.length_ft || 0); });
+    opts(F.size, Object.keys(sizes).sort(function (a, b) { return sizes[a] - sizes[b]; }).map(function (s) { return [s, s]; }));
+  }
+  function applyQuery(q) {
+    ["family", "grade", "form", "spec", "size", "q"].forEach(function (k) { if (q.has(k)) F[k].value = q.get(k); });
+    if (q.get("form") && F.form.value !== q.get("form")) { F.form.insertAdjacentHTML("beforeend", '<option value="' + esc(q.get("form")) + '">' + esc(q.get("form")) + "</option>"); F.form.value = q.get("form"); }
+    if (q.get("spec") && F.spec.value !== q.get("spec")) { F.spec.insertAdjacentHTML("beforeend", '<option value="' + esc(q.get("spec")) + '"></option>'); F.spec.value = q.get("spec"); }
+    if (q.get("grade") && F.grade.value !== q.get("grade")) { F.grade.insertAdjacentHTML("beforeend", '<option value="' + esc(q.get("grade")) + '"></option>'); F.grade.value = q.get("grade"); }
+    if (q.has("all")) F.qc.checked = false;
+  }
+  function writeHash(push) {
+    var p = new URLSearchParams();
+    if (cur === 0) ["family", "grade", "form", "spec", "size", "q"].forEach(function (k) { if (F[k].value) p.set(k, F[k].value); });
+    if (cur === 0 && !F.qc.checked) p.set("all", "1");
+    var h = "#" + tabId(cur) + (p.toString() ? "?" + p.toString() : "");
+    if (h !== location.hash) history[push ? "pushState" : "replaceState"](null, "", h);
+  }
+  var tmr;
+  S.addEventListener("input", function (e) {
+    if (cur !== 0) show(0, { push: "push", scroll: true });
+    clearTimeout(tmr);
+    var go = function () {
+      shown = LIMIT;
+      (needFull() ? ensureFull() : Promise.resolve()).then(function () { refreshOptions(); render(); writeHash(false); });
+    };
+    if (e.target.name === "q") tmr = setTimeout(go, 120); else go();
+  });
+  [F.qc, F.cmp, F.cat].forEach(function (cb) { cb.addEventListener("change", function () { shown = LIMIT; refreshOptions(); render(); writeHash(false); }); });
+  app.querySelector("[data-reset]").addEventListener("click", function () {
+    ["family", "grade", "form", "spec", "size", "q"].forEach(function (k) { F[k].value = ""; });
+    F.cmp.checked = false; F.cat.checked = false; F.qc.checked = true;
+    shown = LIMIT; refreshOptions(); render(); writeHash(false);
+  });
+  var sortSel = document.getElementById("px-sort");
+  function setSort(k, dir) {
+    sortKey = k; sortDir = dir || 1; sortSel.value = k;
+    app.querySelectorAll("#px-table th[data-k]").forEach(function (th) {
+      if (th.getAttribute("data-k") === k) th.setAttribute("aria-sort", sortDir > 0 ? "ascending" : "descending"); else th.removeAttribute("aria-sort");
+    });
+    render();
+  }
+  sortSel.addEventListener("change", function () { setSort(sortSel.value, 1); });
+  app.querySelectorAll("#px-table th[data-k] button").forEach(function (b) {
+    b.addEventListener("click", function () { var k = b.parentNode.getAttribute("data-k"); setSort(k, sortKey === k ? -sortDir : 1); });
+  });
+  document.getElementById("px-more").addEventListener("click", function () { shown += LIMIT * 2; render(); });
+
+  /* ---------- table ---------- */
+  var SUBORD = { noir: "0", galv: "1", ar: "2" };
+  function inf(x) { return x == null ? Infinity : x; }
+  function val(r, k) {
+    switch (k) {
+      case "spec": return [r.spec ? 0 : 1, r.family === "acier" ? "0" : r.family, SHEET[r.form] ? "0" : r.form, SHEET[r.form] ? (SUBORD[(r.spec || "").split("|")[1]] || (r.spec || "").split("|")[1] || "") : (r.grade || ""), r.thickness_in || 0, specLabel(r) || ""];
+      case "supplier": return supName(r);
+      case "size": return (r.width_in || 0) * (r.length_in || 0) || r.length_ft || 0;
+      case "price": return inf(r.price_cad);
+      case "metric": return inf(r.metric);
+      case "pct": return inf(r.pct);
+      case "lb": return inf(r.price_per_lb_cad);
+    }
+  }
+  function sink(r) { return (r.tier === "check" || r.tier === "oos" || /rupture/i.test(r.availability || "")) ? 1 : 0; }
+  function cmp(a, b) {
+    var sa = sink(a), sb = sink(b);
+    if (sa !== sb) return sa - sb;
+    var x = val(a, sortKey), y = val(b, sortKey), c = 0;
+    if (Array.isArray(x)) { for (var i = 0; i < x.length && !c; i++) c = x[i] < y[i] ? -1 : x[i] > y[i] ? 1 : 0; c *= sortDir; }
+    else if (x !== y) c = x === Infinity ? 1 : y === Infinity ? -1 : (x < y ? -1 : 1) * sortDir;
+    if (!c) { var ma = inf(a.metric), mb = inf(b.metric); c = ma < mb ? -1 : ma > mb ? 1 : 0; }
+    return c;
+  }
+  function setCount(t) { document.getElementById("px-count").textContent = t; }
+  function badge(r) {
+    if (!r.tier) return '<span class="px-solo">' + T("1 fournisseur", "1 supplier") + "</span>";
+    var p = r.pct != null && r.tier !== "check" ? '<span class="px-pct">' + pctTxt(r.pct) + "</span>" : "";
+    var title = r.median ? ' title="' + esc(T("Médiane ", "Median ") + money(r.median) + munit(r) + " · " + r.n_suppliers + T(" fournisseurs", " suppliers")) + '"' : "";
+    return '<span class="px-tier px-t-' + r.tier + '"' + title + ">" + TIER[r.tier] + "</span>" + p;
+  }
+  function row(r) {
+    var s = sup(r), a = action(r);
+    var usd = r.currency === "USD";
+    var listed = usd ? '<small>US' + money(r.price) + (r.unit && r.unit !== "each" ? munitRaw(r.unit) : "") + "</small>" : (r.unit && r.unit !== "each" ? "<small>" + money(r.price) + munitRaw(r.unit) + "</small>" : "");
+    var chips = '<span class="px-chip px-ship-' + esc(s.ships_qc) + '">' + esc(SHIP[s.ships_qc] || "") + "</span>" + (usd ? ' <span class="px-chip px-chip-usd" title="' + esc(T("Converti en CAD. Ajoutez transport transfrontalier, courtage et droits/surtaxes éventuels.", "Converted to CAD. Add cross-border freight, brokerage and any duties/surtaxes.")) + '">USD</span>' : "");
+    var lb = r.price_per_lb_cad != null && r.munit !== "lb" ? "<small>" + money(r.price_per_lb_cad) + "/lb</small>" : "";
+    var btn = '<a class="px-btn px-btn-' + a.kind + '" href="' + esc(a.url) + '" target="_blank" rel="noopener nofollow">' + esc(a.label) + ' <span aria-hidden="true">↗</span></a>';
+    var src = '<a class="px-src" href="' + esc(r.url) + '" target="_blank" rel="noopener nofollow">' + T("source", "source") + "</a> · " + esc(dateShort(r.fetched_at)) + (r.source_updated ? T(" (liste du ", " (list of ") + esc(r.source_updated) + ")" : "");
+    var cls = "px-r px-r-" + (r.tier || "none");
+    return '<tr class="' + cls + '">' +
+      '<td class="px-c-spec"><b>' + esc(specLabel(r) || r.description) + '</b><span class="px-desc">' + esc(r.description) + "</span></td>" +
+      '<td class="px-c-sup" data-l="' + T("Fournisseur", "Supplier") + '"><b>' + esc(s.name) + "</b>" + chips + "</td>" +
+      '<td class="px-c-size" data-l="' + T("Format", "Size") + '">' + esc(sizeOf(r)) + (r.availability && /rupture|out of stock/i.test(r.availability) ? '<small class="px-oos">' + T("rupture", "out of stock") + "</small>" : "") + "</td>" +
+      '<td class="num px-c-price" data-l="' + T("Prix CAD", "CAD price") + '"><b>' + money(r.price_cad) + "</b>" + listed + "</td>" +
+      '<td class="num px-c-unit" data-l="' + T("Prix unitaire", "Unit price") + '"><b>' + (r.metric != null ? money(r.metric) + "<i>" + munit(r) + "</i>" : "—") + "</b>" + lb + "</td>" +
+      '<td class="px-c-tier">' + badge(r) + "</td>" +
+      '<td class="px-c-buy">' + btn + '<span class="px-meta">' + src + "</span></td></tr>";
+  }
+  function munitRaw(u) { return { lb: "/lb", sqft: T("/pi²", "/sq ft"), ft: T("/pi", "/ft") }[u] || ""; }
+  function render() {
+    if (!D) return;
+    app.classList.toggle("px-filtering", ["family", "grade", "spec", "size", "q"].some(function (k) { return F[k].value; }) || (F.form.value !== ""));
+    var rows = filtered().sort(cmp);
+    var html = rows.slice(0, shown).map(row).join("");
+    var tb = app.querySelector("#px-table tbody");
+    tb.innerHTML = html || '<tr><td colspan="7" class="px-empty">' + T("Aucun prix publié pour ces filtres. Cette combinaison est « sur demande » : voyez l’onglet Méthode & sources pour demander un prix.", "No published price for these filters. This combination is “quote only”: see the Method & sources tab to request a quote.") + "</td></tr>";
+    var n = rows.length, cmpN = rows.filter(function (r) { return r.tier && r.tier !== "ref" && r.tier !== "oos" && r.tier !== "check"; }).length;
+    setCount(num(n, 0) + T(" prix", " prices") + (cmpN ? " · " + num(cmpN, 0) + T(" comparables", " comparable") : "") + (n > shown ? T(" · " + shown + " affichés", " · " + shown + " shown") : ""));
+    document.getElementById("px-more").hidden = n <= shown;
   }
 
-  function initFilters() {
-    var f = document.getElementById("filters");
-    F = { family: f.family, grade: f.grade, form: f.form, spec: f.spec, supplier: f.supplier, q: f.q, qc: f.qc, cat: f.cat };
-    var forms = uniq(ROWS.map(function (r) { return r.form; }));
-    F.form.innerHTML = '<option value="">' + T("Tôle et plaque", "Sheet and plate") + '</option><option value="all">' + T("Toutes les formes", "All forms") + "</option>" +
-      Object.keys(D.forms).filter(function (k) { return forms.indexOf(k) >= 0; }).map(function (k) { return '<option value="' + k + '">' + esc(formLabel(k)) + "</option>"; }).join("");
-    var params = new URLSearchParams(location.hash.slice(1));
-    ["family", "grade", "form", "supplier", "q"].forEach(function (k) { if (params.get(k)) F[k].value = params.get(k); });
-    refreshOptions();
-    if (params.get("grade")) F.grade.value = params.get("grade");
-    f.addEventListener("input", function (e) { if (e.target.name !== "q") refreshOptions(); render(); });
-    document.querySelectorAll("#cmp th[data-k] button").forEach(function (b) {
-      b.addEventListener("click", function () {
-        var k = b.parentNode.getAttribute("data-k");
-        if (sortKey === k) sortDir = -sortDir; else { sortKey = k; sortDir = 1; }
-        document.querySelectorAll("#cmp th").forEach(function (th) { th.removeAttribute("aria-sort"); });
-        b.parentNode.setAttribute("aria-sort", sortDir > 0 ? "ascending" : "descending");
-        render();
+  /* ---------- cards: "compare all" ---------- */
+  function initCards() {
+    app.querySelectorAll("[data-goto]").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        ["family", "grade", "form", "size", "q"].forEach(function (k) { F[k].value = ""; });
+        var sp = a.getAttribute("data-goto"), parts = sp.split("|");
+        F.family.value = parts[0]; F.qc.checked = true; refreshOptions();
+        F.spec.value = sp; F.q.value = a.getAttribute("data-q") || "";
+        shown = LIMIT; refreshOptions(); render(); writeHash(true);
+        document.getElementById("px-results-title").scrollIntoView({ behavior: "smooth", block: "start" });
       });
     });
   }
 
-  function val(r, k) {
-    switch (k) {
-      case "spec": return [r.spec ? 0 : 1, r.family, SHEET[r.form] ? ({ noir: "0", galv: "1", ar: "2" }[(r.spec || "").split("|")[1]] || (r.spec || "").split("|")[1] || "") : r.form, r.thickness_in || 0, specLabel(r) || ""];
-      case "supplier": return supName(r.supplier);
-      case "size": return (r.width_in || 0) * (r.length_in || 0) || r.length_ft || 0;
-      case "price": return r.price_cad;
-      case "cad": return r.price_cad;
-      case "sqft": return r.price_per_sqft_cad == null ? Infinity : r.price_per_sqft_cad;
-      case "lb": return r.price_per_lb_cad == null ? Infinity : r.price_per_lb_cad;
-      case "kg": return r.price_per_kg_cad == null ? Infinity : r.price_per_kg_cad;
-      case "ft": return r.price_per_ft_cad == null ? Infinity : r.price_per_ft_cad;
-    }
-  }
-  function sink(r) { return (r.outlier || /rupture/i.test(r.availability || "")) ? 1 : 0; }
-  function metric(r) { var m = SHEET[r.form] ? r.price_per_sqft_cad : (r.price_per_ft_cad || r.price_per_lb_cad); return m == null ? Infinity : m; }
-  function cmp(a, b) {
-    var sa = sink(a), sb = sink(b);
-    if (sa !== sb) return sa - sb;
-    var c = cmp0(a, b);
-    if (c === 0 && sortKey === "spec") { var ma = metric(a), mb = metric(b); return ma < mb ? -1 : ma > mb ? 1 : 0; }
-    return c;
-  }
-  function cmp0(a, b) {
-    var x = val(a, sortKey), y = val(b, sortKey);
-    if (Array.isArray(x)) {
-      for (var i = 0; i < x.length; i++) { if (x[i] < y[i]) return -sortDir; if (x[i] > y[i]) return sortDir; }
-      return 0;
-    }
-    if (x === y) return 0;
-    if (x === Infinity) return 1; if (y === Infinity) return -1;
-    return (x < y ? -1 : 1) * sortDir;
-  }
-
-  var LIMIT = 300;
-  function render() {
-    var rows = filtered().sort(cmp);
-    var shown = rows.slice(0, LIMIT);
-    var unitLbl = { each: T("/ unité", "/ each"), lb: "/lb", sqft: T("/pi²", "/sq ft"), ft: T("/pi", "/ft") };
-    var html = shown.map(function (r) {
-      var cls = r.best ? ' class="is-best"' : (r.outlier ? ' class="is-outlier"' : "");
-      var flag = r.best ? ' <span class="badge best">' + T("meilleur prix", "best price") + "</span>" : "";
-      if (r.outlier) flag += ' <span class="badge warn">' + T("à vérifier", "to check") + "</span>";
-      if (r.availability && /rupture/i.test(r.availability)) flag += ' <span class="badge muted">' + T("rupture", "out of stock") + "</span>";
-      var size = r.width_in && r.length_in ? (num(r.width_in, 0) + " × " + num(r.length_in, 0) + T(" po", " in")) : (r.size_label || "");
-      var listed = (r.currency === "USD" ? "US" : "") + money(r.price) + " " + (unitLbl[r.unit] || "");
-      var date = (r.fetched_at || "").slice(0, 10);
-      return "<tr" + cls + "><td><span class=\"spec\">" + esc(specLabel(r) || r.description) + "</span>" + flag +
-        '<br><span class="desc">' + esc(r.grade ? r.grade + " · " : "") + esc(r.description) + "</span></td>" +
-        "<td>" + esc(supName(r.supplier)) + "</td><td>" + esc(size) + "</td>" +
-        '<td class="num">' + esc(listed) + '</td><td class="num">' + money(r.price_cad) + "</td>" +
-        '<td class="num">' + num(r.price_per_sqft_cad) + '</td><td class="num">' + num(r.price_per_lb_cad) + "</td>" +
-        '<td class="num">' + num(r.price_per_kg_cad) + '</td><td class="num">' + num(r.price_per_ft_cad) + "</td>" +
-        '<td><a href="' + esc(r.url) + '" rel="nofollow noopener" target="_blank">' + T("source", "source") + "</a><br><span class=\"desc\">" + date +
-        (r.source_updated ? T(" · liste du ", " · list of ") + esc(r.source_updated) : "") + "</span></td></tr>";
-    }).join("");
-    document.querySelector("#cmp tbody").innerHTML = html || '<tr><td colspan="10">' + T("Aucun prix publié pour ces filtres : sur demande.", "No published price for these filters: quote only.") + "</td></tr>";
-    document.getElementById("count").textContent = rows.length + T(" prix", " prices") + (rows.length > LIMIT ? T(" (300 premiers affichés : précisez les filtres)", " (first 300 shown: narrow the filters)") : "");
-  }
-
-  /* ---------- Calculator ---------- */
+  /* ---------- calculator ---------- */
   function initCalc() {
-    var c = document.getElementById("calc");
+    var c = document.getElementById("px-calc");
     var fams = uniq(ROWS.filter(function (r) { return SHEET[r.form] && r.price_per_sqft_cad; }).map(function (r) { return r.family; }));
     fams.sort(function (a, b) { return a === "acier" ? -1 : b === "acier" ? 1 : 0; });
     c.family.innerHTML = fams.map(function (f) { return '<option value="' + f + '">' + esc(famLabel(f)) + "</option>"; }).join("");
     function fillSpecs() {
       var specs = {};
-      ROWS.forEach(function (r) {
-        if (r.family === c.family.value && SHEET[r.form] && r.spec && r.price_per_sqft_cad && !r.outlier) specs[r.spec] = [r.spec, specLabel(r), r.thickness_in];
-      });
+      ROWS.forEach(function (r) { if (r.family === c.family.value && SHEET[r.form] && r.spec && r.price_per_sqft_cad && r.tier !== "check") specs[r.spec] = [r.spec, specLabel(r), r.thickness_in]; });
       var list = Object.keys(specs).map(function (k) { return specs[k]; }).sort(function (a, b) { return a[2] - b[2]; });
-      var cur = c.spec.value;
+      var v = c.spec.value;
       c.spec.innerHTML = list.map(function (s) { return '<option value="' + esc(s[0]) + '">' + esc(s[1]) + "</option>"; }).join("");
       var dflt = list.filter(function (s) { return Math.abs(s[2] - 0.0747) < 0.003; })[0];
-      if (list.some(function (s) { return s[0] === cur; })) c.spec.value = cur; else if (dflt) c.spec.value = dflt[0];
+      if (list.some(function (s) { return s[0] === v; })) c.spec.value = v; else if (dflt) c.spec.value = dflt[0];
     }
     function calc() {
-      var unit = c.unit.value, k = unit === "mm" ? 1 / 25.4 : 1;
+      var k = c.unit.value === "mm" ? 1 / 25.4 : 1;
       var w = parseFloat(c.w.value) * k, l = parseFloat(c.l.value) * k, q = Math.max(1, parseInt(c.qty.value, 10) || 1);
-      var kerf = (parseFloat(c.kerf.value) || 0) / 25.4, waste = (parseFloat(c.waste.value) || 0) / 100;
-      var rows = ROWS.filter(function (r) { return r.spec === c.spec.value && r.price_per_sqft_cad && !r.outlier && !/rupture/i.test(r.availability || ""); });
-      var out = document.getElementById("calc-out");
-      if (!(w > 0 && l > 0) || !rows.length) { out.innerHTML = ""; return; }
-      var t = rows[0].thickness_in, fam = c.family.value;
-      var dens = D.density[fam];
+      var kerf = (parseFloat(c.kerf.value) || 0) / 25.4, waste = Math.min(0.9, (parseFloat(c.waste.value) || 0) / 100);
+      var rows = ROWS.filter(function (r) { return r.spec === c.spec.value && r.price_per_sqft_cad && r.tier !== "check" && !/rupture/i.test(r.availability || ""); });
+      var out = document.getElementById("px-calc-out");
+      if (!(w > 0 && l > 0) || !rows.length) { out.innerHTML = '<p class="px-empty">' + T("Entrez des dimensions.", "Enter dimensions.") + "</p>"; return; }
+      var t = rows[0].thickness_in, dens = D.density[c.family.value];
       var partLb = dens * t * w * l, totLb = partLb * q;
-      var areaSqft = (w + kerf) * (l + kerf) * q / 144 / Math.max(0.1, 1 - waste);
+      var area = (w + kerf) * (l + kerf) * q / 144 / (1 - waste);
       var per = {};
-      rows.forEach(function (r) {
-        var p = per[r.supplier];
-        if (!p || r.price_per_sqft_cad < p.price_per_sqft_cad) per[r.supplier] = r;
-      });
+      rows.forEach(function (r) { var p = per[r.supplier]; if (!p || r.price_per_sqft_cad < p.price_per_sqft_cad) per[r.supplier] = r; });
       var list = Object.keys(per).map(function (s) { return per[s]; }).sort(function (a, b) { return a.price_per_sqft_cad - b.price_per_sqft_cad; });
-      var sheets = Math.ceil(areaSqft / 32);
-      var h = '<div class="calc-kpis"><div><b>' + num(totLb, 1) + " lb</b><span>" + num(totLb / 2.20462, 1) + " kg " + T("net (", "net (") + q + " × " + num(partLb, 2) + " lb)</span></div>" +
-        "<div><b>" + num(areaSqft, 2) + T(" pi²", " sq ft") + "</b><span>" + T("surface consommée", "consumed area") + " (" + num(areaSqft * 0.092903, 3) + " m²)</span></div>" +
-        "<div><b>" + sheets + "</b><span>" + T("feuille(s) 48 × 96 po équivalente(s)", "equivalent 48 × 96 in sheet(s)") + "</span></div></div>";
-      h += '<div class="table-wrap"><table><thead><tr><th>' + T("Fournisseur", "Supplier") + "</th><th>" + T("Nuance · format", "Grade · size") + '</th><th class="num">$/' + T("pi²", "sq ft") + '</th><th class="num">' + T("Coût matière estimé", "Estimated material cost") + "</th></tr></thead><tbody>";
+      var h = '<div class="px-kpis"><div><b>' + num(totLb, 1) + " lb</b><span>" + num(totLb / 2.20462, 1) + " kg · " + q + " × " + num(partLb, 2) + " lb</span></div>" +
+        "<div><b>" + num(area, 2) + T(" pi²", " sq ft") + "</b><span>" + T("surface consommée", "consumed area") + " (" + num(area * 0.092903, 3) + " m²)</span></div>" +
+        "<div><b>" + Math.ceil(area / 32) + "</b><span>" + T("feuille(s) 48 × 96 po équivalente(s)", "equivalent 48 × 96 in sheet(s)") + "</span></div></div>";
+      h += '<ol class="px-calc-list">';
       list.forEach(function (r, i) {
-        h += "<tr" + (i === 0 ? ' class="is-best"' : "") + "><td>" + esc(supName(r.supplier)) + (buyable(r) ? "" : ' <span class="badge muted">' + T("hors QC", "outside QC") + "</span>") + "</td><td>" + esc(r.grade) + " · " + esc(FR ? r.size_label : String(r.size_label).replace(/ po\b/g, " in")) + '</td><td class="num">' + num(r.price_per_sqft_cad) + '</td><td class="num"><b>' + money(areaSqft * r.price_per_sqft_cad) + "</b></td></tr>";
+        var a = action(r), cost = area * r.price_per_sqft_cad;
+        h += '<li class="' + (i === 0 ? "is-best" : "") + '"><div><b>' + esc(supName(r)) + "</b>" + (i === 0 && list.length > 1 ? ' <span class="px-tier px-t-best">' + T("Le moins cher", "Cheapest") + "</span>" : "") +
+          (buyable(r) ? "" : ' <span class="px-chip">' + T("hors Québec", "outside QC") + "</span>") +
+          '<span class="px-desc">' + esc(r.grade) + " · " + esc(sizeOf(r)) + " · " + money(r.price_per_sqft_cad) + T("/pi²", "/sq ft") + (r.currency === "USD" ? " · USD→CAD" : "") + "</span></div>" +
+          '<div class="px-calc-cost"><b>' + money(cost) + "</b>" + (i > 0 ? "<small>+" + money(cost - area * list[0].price_per_sqft_cad) + "</small>" : "") + "</div>" +
+          '<a class="px-btn px-btn-' + a.kind + '" href="' + esc(a.url) + '" target="_blank" rel="noopener nofollow">' + esc(a.label) + ' <span aria-hidden="true">↗</span></a></li>';
       });
-      h += "</tbody></table></div>";
-      out.innerHTML = h;
+      out.innerHTML = h + "</ol>";
     }
     c.family.addEventListener("change", function () { fillSpecs(); calc(); });
     c.addEventListener("input", calc);
     fillSpecs(); calc();
   }
 
-  /* ---------- Trend chart (SVG) ---------- */
+  /* ---------- coverage (grades tab) ---------- */
+  function initCoverage() {
+    app.querySelectorAll(".grade-pick").forEach(function (b) {
+      b.addEventListener("click", function () {
+        ["family", "grade", "spec", "size", "q"].forEach(function (k) { F[k].value = ""; });
+        F.form.value = "all"; F.cat.checked = false; F.cmp.checked = false;
+        show(0, { push: "push", scroll: "force" });
+        ensureFull().then(function () {
+          F.form.value = "all"; F.family.value = b.getAttribute("data-family"); refreshOptions();
+          F.grade.value = b.getAttribute("data-grade"); shown = LIMIT; refreshOptions(); render(); writeHash(false);
+        });
+      });
+    });
+  }
+
+  /* ---------- trend chart (SVG) + supplier spread ---------- */
+  var drawn = false;
   function drawChart() {
-    var box = document.getElementById("chart");
+    if (!D || drawn) return; drawn = true;
+    var box = document.getElementById("px-chart");
     var idx = (D.index || []).filter(function (x) { return x.form_group === "feuille_plaque"; });
     if (!idx.length) { box.textContent = T("Pas encore d’historique.", "No history yet."); return; }
     var dates = uniq(idx.map(function (x) { return x.date; })).sort();
     var fams = uniq(idx.map(function (x) { return x.family; }));
     var colors = { acier: "#2e3a3a", inox: "#1b4f8a", aluminium: "#b54300", cuivre: "#8c5a00", laiton: "#a68a00", bronze: "#6b3e26", bronze_alu: "#5c6b00" };
     var W = 720, H = 260, P = { l: 52, r: 16, t: 16, b: 36 };
-    var ys = idx.map(function (x) { return +x.median_cad_per_lb; });
-    var ymax = Math.max.apply(null, ys) * 1.1, ymin = 0;
-    var step = Math.pow(10, Math.floor(Math.log10(ymax / 4))); var st = [1, 2, 2.5, 5, 10].map(function (m) { return m * step; }).filter(function (v) { return v * 4 >= ymax; })[0] || step * 10; ymax = st * 4;
+    var ymax = Math.max.apply(null, idx.map(function (x) { return +x.median_cad_per_lb; })) * 1.1, ymin = 0;
+    var step = Math.pow(10, Math.floor(Math.log10(ymax / 4)));
+    var st = [1, 2, 2.5, 5, 10].map(function (m) { return m * step; }).filter(function (v) { return v * 4 >= ymax; })[0] || step * 10; ymax = st * 4;
     var xs = function (d) { var i = dates.indexOf(d); return dates.length === 1 ? (P.l + (W - P.l - P.r) / 2) : P.l + i * (W - P.l - P.r) / (dates.length - 1); };
     var yv = function (v) { return H - P.b - (v - ymin) / (ymax - ymin) * (H - P.t - P.b); };
     var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" preserveAspectRatio="xMidYMid meet">';
@@ -230,9 +375,7 @@
       s += '<line x1="' + P.l + '" x2="' + (W - P.r) + '" y1="' + y + '" y2="' + y + '" stroke="#d5d0c4"/>';
       s += '<text x="' + (P.l - 6) + '" y="' + (y + 4) + '" text-anchor="end" font-size="11" fill="#5a5f57">' + num(v) + "</text>";
     }
-    dates.forEach(function (d, i) {
-      if (dates.length < 8 || i % Math.ceil(dates.length / 6) === 0) s += '<text x="' + xs(d) + '" y="' + (H - 12) + '" text-anchor="middle" font-size="11" fill="#5a5f57">' + d + "</text>";
-    });
+    dates.forEach(function (d, i) { if (dates.length < 8 || i % Math.ceil(dates.length / 6) === 0) s += '<text x="' + xs(d) + '" y="' + (H - 12) + '" text-anchor="middle" font-size="11" fill="#5a5f57">' + d + "</text>"; });
     var legend = "";
     fams.forEach(function (f) {
       var pts = idx.filter(function (x) { return x.family === f; }).sort(function (a, b) { return a.date < b.date ? -1 : 1; });
@@ -240,23 +383,14 @@
       if (pts.length > 1) s += '<polyline fill="none" stroke="' + col + '" stroke-width="2.5" points="' + pts.map(function (p) { return xs(p.date) + "," + yv(+p.median_cad_per_lb); }).join(" ") + '"/>';
       pts.forEach(function (p) { s += '<circle cx="' + xs(p.date) + '" cy="' + yv(+p.median_cad_per_lb) + '" r="4" fill="' + col + '"><title>' + esc(famLabel(f)) + " " + p.date + " : " + num(+p.median_cad_per_lb) + " $/lb (n=" + p.n_rows + ")</title></circle>"; });
       var last = pts[pts.length - 1];
-      legend += '<span><i style="background:' + col + '"></i>' + esc(famLabel(f)) + " " + num(+last.median_cad_per_lb) + " $/lb</span>";
+      legend += '<span><i style="background:' + col + '"></i>' + esc(famLabel(f)) + " " + money(+last.median_cad_per_lb) + "/lb</span>";
     });
-    s += "</svg>";
-    box.innerHTML = s + '<div class="legend">' + legend + "</div>";
-  }
-
-  function initCoverage() {
-    document.querySelectorAll(".grade-pick").forEach(function (b) {
-      b.addEventListener("click", function () {
-        F.family.value = ""; F.grade.value = ""; F.spec.value = ""; F.supplier.value = ""; F.q.value = "";
-        F.form.value = "all"; F.cat.checked = false;
-        refreshOptions();
-        F.family.value = b.getAttribute("data-family"); refreshOptions();
-        F.grade.value = b.getAttribute("data-grade"); refreshOptions();
-        render();
-        document.getElementById("comparateur").scrollIntoView({ behavior: "smooth" });
-      });
-    });
+    box.innerHTML = s + '</svg><div class="px-chart-legend">' + legend + "</div>";
+    // spread: cheapest vs priciest supplier per family (sheet & plate, comparable specs)
+    var fam = {};
+    ROWS.forEach(function (r) { if (SHEET[r.form] && r.tier && r.tier !== "ref" && r.tier !== "oos" && r.tier !== "check" && r.pct != null) (fam[r.family] = fam[r.family] || []).push(r.pct); });
+    var t = '<h3 class="px-h3">' + T("Écart entre fournisseurs aujourd’hui", "Supplier spread today") + '</h3><table class="px-mini"><thead><tr><th>' + T("Famille", "Family") + '</th><th class="num">' + T("Lignes comparables", "Comparable rows") + '</th><th class="num">' + T("Le moins cher vs médiane", "Cheapest vs median") + '</th><th class="num">' + T("Le plus cher vs médiane", "Priciest vs median") + "</th></tr></thead><tbody>";
+    Object.keys(fam).forEach(function (f) { var a = fam[f]; t += "<tr><td>" + esc(famLabel(f)) + '</td><td class="num">' + a.length + '</td><td class="num px-down">' + pctTxt(Math.min.apply(null, a)) + '</td><td class="num px-up">' + pctTxt(Math.max.apply(null, a)) + "</td></tr>"; });
+    document.getElementById("px-spread").innerHTML = t + "</tbody></table>";
   }
 })();
