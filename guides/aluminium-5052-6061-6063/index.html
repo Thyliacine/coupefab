@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aluminium en atelier : 5052, 6061 et 6063, états (T6, H32) et comment les couper, plier, souder et usiner — CoupeFab</title>
+<meta name="description" content="Quelle nuance pour quelle pièce : 5052-H32 pour la tôle pliée, 6061-T6 pour l’usinage et la structure, 6063 pour les profilés. Désignation des états, pliage, soudage, coupe plasma/laser et usinage, avec lien vers les prix publiés.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/guides/aluminium-5052-6061-6063/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/aluminium-5052-6061-6063/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/aluminum-5052-6061-6063/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/aluminium-5052-6061-6063/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Aluminium en atelier : 5052, 6061 et 6063, états (T6, H32) et comment les couper, plier, souder et usiner — CoupeFab">
+<meta property="og:description" content="Quelle nuance pour quelle pièce : 5052-H32 pour la tôle pliée, 6061-T6 pour l’usinage et la structure, 6063 pour les profilés. Désignation des états, pliage, soudage, coupe plasma/laser et usinage, avec lien vers les prix publiés.">
+<meta property="og:url" content="https://coupefab.vercel.app/guides/aluminium-5052-6061-6063/">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:locale:alternate" content="en_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="fr">
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/" aria-label="CoupeFab — Accueil"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Navigation principale">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/guides/logiciels/">Par logiciel</a></p>
+            <ul class="mega-list two"><li><a href="/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/guides/debuter-sheetcam/">SheetCam</a></li><li><a href="/guides/solidworks-tolerie-dxf/">SOLIDWORKS tôlerie</a></li><li><a href="/guides/autocad-nettoyer-dxf/">AutoCAD (DXF)</a></li><li><a href="/guides/fusion-fao-debuter/">Fusion (FAO)</a></li><li><a href="/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/guides/bricscad-dxf/">BricsCAD → DXF</a></li><li><a href="/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/guides/inventor-tolerie-cam/">Inventor</a></li><li><a href="/guides/mastercam-parcours-2d-dynamic/">Mastercam 2D</a></li><li><a href="/guides/mastercam-post-tour/">Mastercam post et tour</a></li><li><a href="/guides/camworks-fao-solidworks/">CAMWorks</a></li><li><a href="/guides/fusion-plasma-post-par-table/">Fusion plasma : posts par table</a></li><li><a href="/guides/esprit-cam-multitache/">ESPRIT CAM</a></li><li><a href="/guides/onshape-tolerie-cam/">Onshape</a></li><li><a href="/guides/solidworks-mises-en-plan-cam/">SOLIDWORKS CAM et mises en plan</a></li><li><a href="/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/guides/gibbscam-fao/">GibbsCAM</a></li></ul>
+            <p class="mega-all"><a href="/guides/logiciels/">Tous les logiciels →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/procedes/">Par procédé</a></p>
+            <ul class="mega-list"><li><a href="/guides/decoupe-plasma-cnc/">Plasma CNC</a></li><li><a href="/guides/laser-fibre/">Laser fibre</a></li><li><a href="/guides/jet-d-eau/">Jet d’eau</a></li><li><a href="/guides/routeur-cnc/">Routeur CNC</a></li><li><a href="/guides/fraiseuse-cnc/">Fraiseuse CNC</a></li><li><a href="/guides/tour-cnc/">Tour CNC</a></li><li><a href="/guides/presse-plieuse/">Presse plieuse</a></li><li><a href="/guides/plasma-biseau-chanfrein/">Plasma biseau (chanfrein)</a></li><li><a href="/guides/oxycoupage/">Oxycoupage</a></li><li><a href="/guides/electroerosion-fil-enfoncage/">Électroérosion (fil et enfonçage)</a></li><li><a href="/guides/usinage-5-axes/">Usinage 5 axes</a></li><li><a href="/guides/tour-fraiseur-decolleteuse-suisse/">Tour-fraiseur et décolleteuse suisse</a></li><li><a href="/guides/preparation-soudure-chanfrein/">Préparation de soudure</a></li><li><a href="/guides/ebavurage-finition/">Ébavurage et finition</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/fondamentaux/">Par sujet</a></p>
+            <ul class="mega-list"><li><a href="/guides/reference-g-code-m-code/">G-code et M-code</a></li><li><a href="/guides/avances-vitesses/">Avances et vitesses</a></li><li><a href="/guides/kerf-qualite-coupe/">Kerf et qualité de coupe</a></li><li><a href="/guides/pliage-k-factor/">Pliage : K-factor et déduction</a></li><li><a href="/guides/nuances-metaux/">Nuances de métaux</a></li><li><a href="/guides/dxf-bonnes-pratiques/">DXF : bonnes pratiques</a></li><li class="more"><a href="/guides/fondamentaux/">Fondamentaux CNC →</a></li><li class="more"><a href="/guides/materiaux/">Matériaux et nuances →</a></li><li class="more"><a href="/guides/depannage/">Dépannage →</a></li><li class="more"><a href="/guides/atelier/">Atelier : sécurité, soumissions, métrologie, formation →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/prix/">
+              <span class="feature-k">Outil</span>
+              <strong>Prix des tôles</strong>
+              <span>Tôle, plaque, barre et tube : prix publiés chez les fournisseurs qui livrent au Québec, mis à jour chaque jour ouvrable.</span>
+            </a>
+            <a class="mega-allguides" href="/guides/">Tous les guides (71) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/prix/">Prix des tôles</a></li>
+    <li><a class="nav-link" href="/occasions/">Occasions</a></li>
+    <li><a class="nav-link" href="/infolettre/">Infolettre</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Rechercher"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Rechercher</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Langue">
+        <a href="/guides/aluminium-5052-6061-6063/" hreflang="fr-CA" lang="fr-CA" aria-current="true">FR</a><a href="/en/guides/aluminum-5052-6061-6063/" hreflang="en-CA" lang="en-CA">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Rechercher">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Rechercher un guide (ex. SheetCam, K-factor, scories)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Fermer</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>Aucun guide trouvé. Essayez un autre mot (logiciel, procédé, matériau).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Fil d’Ariane"><ol><li><a href="/">Accueil</a></li><li><a href="/guides/">Guides</a></li><li><a href="/guides/materiaux/">Matériaux et nuances</a></li><li aria-current="page">Aluminium : 5052, 6061, 6063</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://coupefab.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/guides/"}, {"@type": "ListItem", "position": 3, "name": "Matériaux et nuances", "item": "https://coupefab.vercel.app/guides/materiaux/"}, {"@type": "ListItem", "position": 4, "name": "Aluminium : 5052, 6061, 6063"}]}</script>
+<article class="guide" data-guide="aluminum">
+  <header class="guide-head">
+    <p class="kicker">Matériaux · aluminium</p>
+    <h1>Aluminium en atelier : 5052, 6061 et 6063, états (T6, H32) et comment les couper, plier, souder et usiner</h1>
+    <p class="guide-lede">Quelle nuance pour quelle pièce : 5052-H32 pour la tôle pliée, 6061-T6 pour l’usinage et la structure, 6063 pour les profilés. Désignation des états, pliage, soudage, coupe plasma/laser et usinage, avec lien vers les prix publiés.</p>
+    <p class="guide-meta">
+      <span>Révisé le <time datetime="2026-11-26">26 novembre 2026</time></span>
+      <span>3 min de lecture</span>
+      <span>Niveau : Débutant</span>
+      <span class="pill pill-draft" tabindex="0" title="Rédigé par CoupeFab à partir des documents officiels cités. Révision technique par Michaël Brassard en attente.">Brouillon<span class="pill-tip" role="tooltip">Rédigé par CoupeFab à partir des documents officiels cités. Révision technique par Michaël Brassard en attente.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>Sur cette page</summary><ol><li><a href="#lire-une-designation-alliage-etat">Lire une désignation : alliage + état</a></li><li><a href="#comparatif-des-trois-nuances">Comparatif des trois nuances</a></li><li><a href="#couper-l-aluminium">Couper l’aluminium</a></li><li><a href="#plier-l-aluminium">Plier l’aluminium</a></li><li><a href="#usiner-l-aluminium">Usiner l’aluminium</a></li><li><a href="#commander">Commander</a></li><li><a href="#erreurs-frequentes">Erreurs fréquentes</a></li><li><a href="#faq">FAQ</a></li><li><a href="#a-valider-en-atelier-michael">À valider en atelier (Michaël)</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p>L’aluminium d’atelier se résume souvent à trois nuances : <strong>5052</strong> (tôle à plier), <strong>6061</strong> (plaque, barres, usinage, structure) et <strong>6063</strong> (profilés extrudés, architecture). Les choisir correctement évite les fissures au pliage, les pièces trop molles et les surcoûts.</p>
+<h2 id="lire-une-designation-alliage-etat">Lire une désignation : alliage + état</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Partie</th><th>Exemple</th><th>Signification</th></tr></thead><tbody>
+<tr><td>Série</td><td>5xxx</td><td>Alliage au magnésium, <strong>non traitable thermiquement</strong> (durci par écrouissage)</td></tr>
+<tr><td>Série</td><td>6xxx</td><td>Alliage magnésium-silicium, <strong>traitable thermiquement</strong></td></tr>
+<tr><td>État H</td><td>H32</td><td>Écroui puis stabilisé (5052-H32 est l’état de tôle le plus courant)</td></tr>
+<tr><td>État T</td><td>T6</td><td>Mis en solution et vieilli artificiellement (résistance maximale du 6061)</td></tr>
+<tr><td>État T</td><td>T5, T52</td><td>Refroidi à la sortie de la presse puis vieilli (courant pour 6063 extrudé)</td></tr>
+<tr><td>État O</td><td>O</td><td>Recuit, le plus mou et le plus formable</td></tr>
+</tbody></table></div>
+<h2 id="comparatif-des-trois-nuances">Comparatif des trois nuances</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Critère</th><th>5052-H32</th><th>6061-T6</th><th>6063-T5/T6</th></tr></thead><tbody>
+<tr><td>Usage typique</td><td>Tôle pliée, boîtiers, réservoirs, marine</td><td>Plaque et barre usinées, pièces structurales</td><td>Profilés, cadres, architecture, pièces anodisées décoratives</td></tr>
+<tr><td>Pliage</td><td><strong>Excellent</strong>, rayons serrés possibles</td><td>Médiocre en T6 : risque de fissure, rayons généreux ou état O/T4</td><td>Bon pour les profilés selon l’état</td></tr>
+<tr><td>Soudage</td><td>Très bon</td><td>Bon, mais <strong>perte de résistance</strong> dans la zone soudée</td><td>Bon, même remarque</td></tr>
+<tr><td>Usinage</td><td>Plus « gommeux »</td><td><strong>Très bon</strong> (copeaux nets)</td><td>Correct</td></tr>
+<tr><td>Anodisation</td><td>Bonne</td><td>Bonne</td><td><strong>Excellente</strong> (aspect décoratif)</td></tr>
+<tr><td>Résistance</td><td>Moyenne</td><td>La plus élevée des trois</td><td>Moyenne</td></tr>
+</tbody></table></div>
+<p>Pour les propriétés exactes (limite élastique, allongement), utilisez les fiches techniques des producteurs (Hydro, etc.) et les certificats d’usine.</p>
+<h2 id="couper-l-aluminium">Couper l’aluminium</h2>
+<ul><li><strong>Plasma</strong> : fonctionne, avec les chartes aluminium (air ou gaz spécifiques selon la source). Bord moins net que sur l’acier ; voir <a href="/guides/lire-charte-de-coupe/">Lire une charte de coupe</a>.</li><li><strong>Laser fibre</strong> : coupe propre à l’<strong>azote</strong> ; matière réfléchissante, suivez les recettes du fabricant. Voir <a href="/guides/depannage-laser-scories-brulures/">Laser : scories et brûlures</a>.</li><li><strong>Jet d’eau</strong> : aucune zone affectée thermiquement ; idéal pour les plaques épaisses ou les pièces sensibles. Voir <a href="/guides/jet-d-eau/">Jet d’eau</a>.</li><li><strong>Routeur</strong> : très efficace en tôle et plaque avec des fraises à une ou deux dents pour l’alu ; voir <a href="/guides/routeur-cnc/">Routeur CNC</a>.</li></ul>
+<h2 id="plier-l-aluminium">Plier l’aluminium</h2>
+<ul><li>Le sens du laminage compte : plier <strong>perpendiculairement</strong> au laminage quand c’est possible.</li><li>Le 6061-T6 se plie mal à rayon serré ; demandez du 5052-H32 pour la tôle pliée, ou du 6061 en état plus doux.</li><li>Le K-factor et le retour élastique diffèrent de l’acier ; voir <a href="/guides/pliage-k-factor/">Pliage : K-factor et déduction</a> et <a href="/guides/presse-plieuse/">Presse plieuse</a>.</li></ul>
+<h2 id="usiner-l-aluminium">Usiner l’aluminium</h2>
+<ul><li>Fraises à 2 ou 3 dents, goujures polies, grandes vitesses : suivez les fiches des fabricants d’outils (voir <a href="/guides/avances-vitesses/">Avances et vitesses</a>).</li><li>L’ennemi est l’<strong>arête rapportée</strong> (copeau collé) : lubrification ou air comprimé, évacuation des copeaux.</li><li>Le 6061-T6 et le 7075 s’usinent mieux que le 5052 ou les états mous.</li></ul>
+<h2 id="commander">Commander</h2>
+<ul class="checklist"><li>Nuance <strong>et</strong> état (ex. 5052-H32, 6061-T6511 pour barre détendue par étirage)</li><li>Épaisseur en décimale (les calibres aluminium suivent Brown &amp; Sharpe, voir <a href="/guides/calibres-tole-jauges/">Calibres de tôle (jauges)</a>)</li><li>Film protecteur si la face est visible</li><li>Certificat d’usine si la pièce est structurale</li><li>Comparer les prix publiés dans le <a href="/prix/">comparateur de prix</a></li></ul>
+<h2 id="erreurs-frequentes">Erreurs fréquentes</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Erreur</th><th>Conséquence</th></tr></thead><tbody>
+<tr><td>Plier du 6061-T6 à rayon serré</td><td>Fissures à l’extérieur du pli</td></tr>
+<tr><td>Utiliser la table de calibres acier</td><td>Épaisseur fausse</td></tr>
+<tr><td>Souder une pièce 6061-T6 « structurale » sans en tenir compte au calcul</td><td>Zone soudée moins résistante</td></tr>
+<tr><td>Mêmes brosses que pour l’acier</td><td>Contamination, porosités au soudage</td></tr>
+</tbody></table></div>
+<h2 id="faq">FAQ</h2>
+<h3 id="6061-ou-6063-pour-un-cadre">6061 ou 6063 pour un cadre ?</h3>
+<p>6063 pour les profilés d’apparence (anodisation, formes complexes) ; 6061 si la résistance prime. Les deux existent en tubes et profilés.</p>
+<h3 id="peut-on-tremper-le-5052">Peut-on tremper le 5052 ?</h3>
+<p>Non : il ne durcit pas par traitement thermique, seulement par écrouissage (états H).</p>
+<section class="review-box"><h2 id="a-valider-en-atelier-michael">À valider en atelier (Michaël)</h2>
+<ul><li>Les nuances et états que vous tenez en stock et leurs rayons de pliage minimaux pratiques.</li></ul>
+</section><section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://www.aluminum.org/" class="ext" rel="noopener">The Aluminum Association — Alloy and temper designation</a>, consulté le 26 novembre 2026.</li><li><a href="https://www.hydro.com/globalassets/01-products--services/extruded-profiles/americas/ena-resources/alloy-data-sheets/hydro_2026_data_sheet_6063-rev-062026.pdf" class="ext" rel="noopener">Hydro — Alloy 6063 data sheet (PDF)</a>, consulté le 26 novembre 2026.</li><li><a href="https://alum-ext.com/learn/aluminum-grades-for-extrusions/" class="ext" rel="noopener">AES — Aluminum grades for extrusions</a>, consulté le 26 novembre 2026.</li><li><a href="https://www.winstonmaterials.com/resources/aluminum-alloy-temper-guide/" class="ext" rel="noopener">Winston Materials — Aluminum alloy &amp; temper guide</a>, consulté le 26 novembre 2026.</li></ul></section>
+<aside class="price-cta"><div><p class="price-cta-k">Outil CoupeFab</p><p class="price-cta-t">Comparer le prix de la matière</p><p>Tôle, plaque, barre et tube : prix publiés chez les fournisseurs qui livrent au Québec, mis à jour chaque jour ouvrable.</p></div><a class="btn" href="/prix/">Ouvrir le comparateur</a></aside>
+      <p class="report"><a href="/a-propos/#contact">Une erreur, un ajout ? Écrivez-nous →</a></p>
+    </div>
+  </div>
+  <section class="related"><h2>Guides connexes</h2><div class="gcards"><a class="gcard" href="/guides/nuances-metaux/" data-hub="materials"><span class="card-meta">Fondamentaux · matériaux · Débutant · 4 min de lecture</span><strong>Nuances de métaux en atelier : acier, inox, aluminium, cuivre, laiton, bronze</strong><span class="card-desc">A36, 44W, 1018, 4140, A500, 304, 316, 17-4PH, 5052, 6061, C110, C360, C932 : à quoi sert chaque nuance, comment elle se coupe, se plie, se soude et s’usine, avec lien vers les prix publiés.</span></a><a class="gcard" href="/guides/calibres-tole-jauges/" data-hub="materials"><span class="card-meta">Matériaux · référence · Débutant · 4 min de lecture</span><strong>Calibres de tôle (jauges) : tableau acier, galvanisé, inox et aluminium en pouces et en mm</strong><span class="card-desc">Le même calibre n’a pas la même épaisseur selon la matière : 16 ga = 0,0598 po en acier, 0,0635 po en galvanisé, 0,0625 po en inox et 0,0508 po en aluminium. Tableau complet, pièges et conseils pour commander.</span></a><a class="gcard" href="/guides/pliage-k-factor/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · tôlerie · Intermédiaire · 4 min de lecture</span><strong>Pliage : longueur développée, K-factor et déduction de pli, avec les formules</strong><span class="card-desc">Calculer un déplié juste : formules de la longueur de pli (BA), du retrait extérieur (OSSB) et de la déduction (BD), retrouver le K-factor réel à partir d’un pli d’essai, et le saisir dans la CAO.</span></a><a class="gcard" href="/guides/avances-vitesses/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · usinage · Intermédiaire · 4 min de lecture</span><strong>Avances et vitesses : les formules, la méthode, et d’où viennent les chiffres</strong><span class="card-desc">Vitesse de coupe, tr/min, avance par dent, amincissement des copeaux, débit de copeaux : les formules exactes en métrique et en impérial, et comment partir des données du fabricant d’outils.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">Un guide par semaine, en français d’abord</p><p>Nouveaux guides, occasions au Québec et mouvements de prix. Pas de pub tierce.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="fr" novalidate>
+  <div class="hp" aria-hidden="true"><label>Site web<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Prénom ou atelier (facultatif)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Courriel
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="oui">
+    <span>J’accepte de recevoir l’infolettre de CoupeFab (guides, digest d’occasions et suivi des prix des tôles). Je peux me désabonner en tout temps. Voir la <a href="/confidentialite/">politique de confidentialité</a>.</span>
+  </label>
+  <button type="submit">S’inscrire</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">Conformité CASL : la case n’est pas précochée. Aucun envoi sans ce consentement exprès.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Aluminium en atelier : 5052, 6061 et 6063, états (T6, H32) et comment les couper, plier, souder et usiner", "description": "Quelle nuance pour quelle pièce : 5052-H32 pour la tôle pliée, 6061-T6 pour l’usinage et la structure, 6063 pour les profilés. Désignation des états, pliage, soudage, coupe plasma/laser et usinage, avec lien vers les prix publiés.", "inLanguage": "fr-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/guides/aluminium-5052-6061-6063/", "mainEntityOfPage": "https://coupefab.vercel.app/guides/aluminium-5052-6061-6063/", "proficiencyLevel": "Beginner", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["aluminum", "aluminium", "5052", "6061", "6063", "3003", "7075", "t6", "t5", "h32", "temper", "extrusion", "bending", "welding", "machining", "plasma", "laser"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "6061 ou 6063 pour un cadre ?", "acceptedAnswer": {"@type": "Answer", "text": "6063 pour les profilés d’apparence (anodisation, formes complexes) ; 6061 si la résistance prime. Les deux existent en tubes et profilés."}}, {"@type": "Question", "name": "Peut-on tremper le 5052 ?", "acceptedAnswer": {"@type": "Answer", "text": "Non : il ne durcit pas par traitement thermique, seulement par écrouissage (états H)."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>La référence francophone de la découpe CNC et de la fabrication métallique : guides vérifiés, prix des tôles comparés, occasions au Québec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/guides/logiciels/">Logiciels CAO / FAO et commandes</a></li>
+        <li><a href="/guides/procedes/">Procédés de coupe et d’usinage</a></li>
+        <li><a href="/guides/fondamentaux/">Fondamentaux CNC</a></li>
+        <li><a href="/guides/materiaux/">Matériaux et nuances</a></li>
+        <li><a href="/guides/depannage/">Dépannage</a></li>
+        <li><a href="/guides/atelier/">Atelier : sécurité, soumissions, métrologie, formation</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explorer</p>
+      <ul>
+        <li><a href="/prix/">Prix des tôles</a></li>
+        <li><a href="/occasions/">Occasions</a></li>
+        <li><a href="/infolettre/">Infolettre</a></li>
+        <li><a href="/a-propos/">À propos</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Mentions</p>
+      <ul>
+        <li><a href="/divulgation/">Divulgation (affiliations)</a></li>
+        <li><a href="/confidentialite/">Confidentialité et LCAP</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Québec, Canada. Aucun lien d’affiliation. Les marques citées appartiennent à leurs propriétaires et sont mentionnées à titre descriptif.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>
