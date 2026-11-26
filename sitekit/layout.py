@@ -5,7 +5,7 @@ from .taxonomy import T, PATHS, HUBS, HUB_ORDER, hub_path
 
 SITE = "https://coupefab.vercel.app"
 YEAR = "2026"
-ASSET_V = "20261126c"  # bump to bust CSS/JS caches
+ASSET_V = "20261126u"  # bump to bust CSS/JS caches
 
 
 def esc(s: str) -> str:
@@ -82,7 +82,7 @@ def mega_nav(lang: str, path: str) -> str:
 </nav>"""
 
 
-def layout(*, lang, title, description, path, alt, body, draft=False, article=False, crumbs="", **_):
+def layout(*, lang, title, description, path, alt, body, draft=False, article=False, crumbs="", noindex=False, **_):
     fr = lang == "fr"
     t, p = T[lang], PATHS[lang]
     in_lang = "fr-CA" if fr else "en-CA"
@@ -113,6 +113,9 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
         draft_banner = (f'<div class="draft-strip" role="note"><span class="pill pill-draft">{t["draft"]}</span> '
                         + ("Page en révision par Michaël. Les chiffres viennent des sources citées."
                            if fr else "Page under review by Michaël. Figures come from the cited sources.") + "</div>")
+    is_guide = 'class="guide" data-guide=' in body
+    progress_attr = ' class="is-guide"' if is_guide else ""
+    progress = '<div class="readbar" aria-hidden="true"><span></span></div>' if is_guide else ""
     fr_href = path if fr else alt
     en_href = alt if fr else path
     year = YEAR
@@ -123,7 +126,7 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(description)}">
-<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="robots" content="{'noindex' if noindex else 'index,follow,max-image-preview:large'}">
 <meta name="theme-color" content="#15191c">
 <link rel="canonical" href="{canonical}">
 <link rel="alternate" hreflang="{in_lang}" href="{canonical}">
@@ -136,16 +139,22 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
 <meta property="og:url" content="{canonical}">
 <meta property="og:locale" content="{'fr_CA' if fr else 'en_CA'}">
 <meta property="og:locale:alternate" content="{'en_CA' if fr else 'fr_CA'}">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="{SITE}/og/og-{lang}.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{'CoupeFab — guides CNC et prix des tôles' if fr else 'CoupeFab — CNC guides and sheet prices'}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{SITE}/og/og-{lang}.png">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/fonts/plex-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/style.css?v={ASSET_V}">
 <link rel="stylesheet" href="/css/site.css?v={ASSET_V}">
 {schema}
 </head>
-<body data-lang="{lang}">
+<body data-lang="{lang}"{progress_attr}>
+{progress}
 <a class="skip" href="#contenu">{t['skip']}</a>
 <header class="hdr">
   <div class="hdr-inner">
@@ -208,6 +217,7 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
   </div>
   <p class="ftr-legal">© {year} CoupeFab · {'Québec, Canada. Aucun lien d’affiliation. Les marques citées appartiennent à leurs propriétaires et sont mentionnées à titre descriptif.' if fr else 'Quebec, Canada. No affiliate links. Trademarks belong to their owners and are used descriptively.'}</p>
 </footer>
+<button class="totop" type="button" hidden aria-label="{'Retour en haut' if fr else 'Back to top'}"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/site.js?v={ASSET_V}" defer></script>
 </body>
 </html>

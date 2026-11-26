@@ -202,10 +202,67 @@ def _wrap_sections(body_html, lang):
     return body_html
 
 
+_SHOPS = None
+
+
+def _shops_data():
+    global _SHOPS
+    if _SHOPS is None:
+        f = Path(__file__).resolve().parent.parent / "content" / "shops.json"
+        _SHOPS = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {"shops": {}, "by_guide": {}}
+    return _SHOPS
+
+
+def _shops_section(g, lang):
+    """'Quebec shops offering this service' block (data: content/shops.json). Returns (html, toc_entry) or ("", None)."""
+    d = _shops_data()
+    keys = d["by_guide"].get(g.id)
+    if not keys:
+        return "", None
+    fr = lang == "fr"
+    shops = [(k, d["shops"][k]) for k in keys]
+    partners = [x for x in shops if x[1].get("partner")]
+    others = sorted([x for x in shops if not x[1].get("partner")], key=lambda x: x[1]["name"].lower())
+    hid = "ateliers-quebec" if fr else "quebec-shops"
+    title = "Ateliers au Québec qui offrent ce service" if fr else "Quebec shops offering this service"
+    cards = []
+    for k, s in partners + others:
+        url = s.get("urls", {}).get(g.id, s["url"])
+        badge = (f' <span class="pill pill-partner">{"Partenaire" if fr else "Partner"}</span>' if s.get("partner") else "")
+        host = re.sub(r"^https?://(www\.)?", "", url).split("/")[0]
+        cards.append(f'<li class="shop{" shop-partner" if s.get("partner") else ""}"><div class="shop-h"><strong>{esc(s["name"])}</strong>{badge}</div>'
+                     f'<p class="shop-city">{esc(s["city"])}, QC</p><p class="shop-d">{esc(s["fr" if fr else "en"])}</p>'
+                     f'<a class="shop-link" href="{esc(url)}" rel="noopener" target="_blank">{esc(host)} <span aria-hidden="true">↗</span>'
+                     f'<span class="vh"> {"(nouvel onglet)" if fr else "(opens in a new tab)"}</span></a></li>')
+    note = []
+    if partners:
+        note.append("Partenaire : entreprise liée à l’équipe CoupeFab. Les autres ateliers sont listés sans frais ni ordre de préférence."
+                    if fr else "Partner: a company linked to the CoupeFab team. The other shops are listed free of charge and in no order of preference.")
+    else:
+        note.append("Ateliers listés sans frais ni ordre de préférence (ordre alphabétique)." if fr
+                    else "Shops are listed free of charge and in no order of preference (alphabetical).")
+    note.append("Services vérifiés sur le site officiel de chaque atelier le 26 novembre 2026 ; confirmez capacité et délais avant de commander."
+                if fr else "Services checked on each shop’s official website on November 26, 2026; confirm capacity and lead time before ordering.")
+    if len(shops) < 3:
+        note.append("Peu d’ateliers québécois annoncent publiquement ce service ; nous n’en listons aucun que nous n’avons pas pu vérifier."
+                    if fr else "Few Quebec shops advertise this service publicly; we list none we could not verify.")
+    html_ = (f'<section class="shops"><h2 id="{hid}">{title}</h2><ul class="shop-grid">{"".join(cards)}</ul>'
+             f'<p class="shop-note">{" ".join(note)}</p></section>')
+    return html_, (2, hid, title)
+
+
 def guide_page(g, lang, form_newsletter):
     t, p = T[lang], PATHS[lang]
     body_html, toc = render(g.body[lang], lang)
     body_html = _wrap_sections(body_html, lang)
+    shops_html, shops_toc = _shops_section(g, lang)
+    if shops_html:
+        m = re.search(r'<section class="(?:review-box|sources)">', body_html)
+        pos = m.start() if m else len(body_html)
+        body_html = body_html[:pos] + shops_html + body_html[pos:]
+        idx = next((i for i, (lvl, hid, txt) in enumerate(toc) if lvl == 2 and (hid.startswith(("sources", "a-valider", "for-michael")))), len(toc))
+        toc = list(toc)
+        toc.insert(idx, shops_toc)
     url = g.url(lang)
     lv = LEVELS.get(g.level, LEVELS["debutant"])[0 if lang == "fr" else 1]
     mins = max(3, round(g.words(lang) / 210))
