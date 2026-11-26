@@ -451,3 +451,6 @@ img, svg { max-width: 100%; }
 .shop-link { font-size: .86rem; font-weight: 600; margin-top: .2rem; }
 .shop-note { margin-top: .8rem !important; font-size: .84rem; color: var(--muted); }
 @media print { .shop-link::after { content: " (" attr(href) ")"; font-weight: 400; font-size: .8em; } }
+
+/* brand accent on dark header/footer: AA contrast */
+.hdr .brand-word b, .ftr .brand-word b { color: #f97316; }
