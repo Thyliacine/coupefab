@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CAMWorks (et SOLIDWORKS CAM) : reconnaissance d’entités et base technologique — CoupeFab</title>
+<meta name="description" content="Démarche CAMWorks en 2,5 axes : machine, brut, extraction des entités usinables (AFR), règles de la TechDB, génération des opérations, simulation et post. Comment bâtir sa base technologique sans tout casser.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/guides/camworks-fao-solidworks/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/camworks-fao-solidworks/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/camworks-cam-solidworks/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/camworks-fao-solidworks/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CAMWorks (et SOLIDWORKS CAM) : reconnaissance d’entités et base technologique — CoupeFab">
+<meta property="og:description" content="Démarche CAMWorks en 2,5 axes : machine, brut, extraction des entités usinables (AFR), règles de la TechDB, génération des opérations, simulation et post. Comment bâtir sa base technologique sans tout casser.">
+<meta property="og:url" content="https://coupefab.vercel.app/guides/camworks-fao-solidworks/">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:locale:alternate" content="en_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="fr">
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/" aria-label="CoupeFab — Accueil"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Navigation principale">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/guides/logiciels/">Par logiciel</a></p>
+            <ul class="mega-list two"><li><a href="/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/guides/debuter-sheetcam/">SheetCam</a></li><li><a href="/guides/solidworks-tolerie-dxf/">SOLIDWORKS tôlerie</a></li><li><a href="/guides/autocad-nettoyer-dxf/">AutoCAD (DXF)</a></li><li><a href="/guides/fusion-fao-debuter/">Fusion (FAO)</a></li><li><a href="/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/guides/bricscad-dxf/">BricsCAD → DXF</a></li><li><a href="/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/guides/inventor-tolerie-cam/">Inventor</a></li><li><a href="/guides/mastercam-parcours-2d-dynamic/">Mastercam 2D</a></li><li><a href="/guides/mastercam-post-tour/">Mastercam post et tour</a></li><li><a href="/guides/camworks-fao-solidworks/">CAMWorks</a></li><li><a href="/guides/fusion-plasma-post-par-table/">Fusion plasma : posts par table</a></li><li><a href="/guides/esprit-cam-multitache/">ESPRIT CAM</a></li><li><a href="/guides/onshape-tolerie-cam/">Onshape</a></li><li><a href="/guides/solidworks-mises-en-plan-cam/">SOLIDWORKS CAM et mises en plan</a></li><li><a href="/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/guides/gibbscam-fao/">GibbsCAM</a></li></ul>
+            <p class="mega-all"><a href="/guides/logiciels/">Tous les logiciels →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/procedes/">Par procédé</a></p>
+            <ul class="mega-list"><li><a href="/guides/decoupe-plasma-cnc/">Plasma CNC</a></li><li><a href="/guides/laser-fibre/">Laser fibre</a></li><li><a href="/guides/jet-d-eau/">Jet d’eau</a></li><li><a href="/guides/routeur-cnc/">Routeur CNC</a></li><li><a href="/guides/fraiseuse-cnc/">Fraiseuse CNC</a></li><li><a href="/guides/tour-cnc/">Tour CNC</a></li><li><a href="/guides/presse-plieuse/">Presse plieuse</a></li><li><a href="/guides/plasma-biseau-chanfrein/">Plasma biseau (chanfrein)</a></li><li><a href="/guides/oxycoupage/">Oxycoupage</a></li><li><a href="/guides/electroerosion-fil-enfoncage/">Électroérosion (fil et enfonçage)</a></li><li><a href="/guides/usinage-5-axes/">Usinage 5 axes</a></li><li><a href="/guides/tour-fraiseur-decolleteuse-suisse/">Tour-fraiseur et décolleteuse suisse</a></li><li><a href="/guides/preparation-soudure-chanfrein/">Préparation de soudure</a></li><li><a href="/guides/ebavurage-finition/">Ébavurage et finition</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/fondamentaux/">Par sujet</a></p>
+            <ul class="mega-list"><li><a href="/guides/reference-g-code-m-code/">G-code et M-code</a></li><li><a href="/guides/avances-vitesses/">Avances et vitesses</a></li><li><a href="/guides/kerf-qualite-coupe/">Kerf et qualité de coupe</a></li><li><a href="/guides/pliage-k-factor/">Pliage : K-factor et déduction</a></li><li><a href="/guides/nuances-metaux/">Nuances de métaux</a></li><li><a href="/guides/dxf-bonnes-pratiques/">DXF : bonnes pratiques</a></li><li class="more"><a href="/guides/fondamentaux/">Fondamentaux CNC →</a></li><li class="more"><a href="/guides/materiaux/">Matériaux et nuances →</a></li><li class="more"><a href="/guides/depannage/">Dépannage →</a></li><li class="more"><a href="/guides/atelier/">Atelier : sécurité, soumissions, métrologie, formation →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/prix/">
+              <span class="feature-k">Outil</span>
+              <strong>Prix des tôles</strong>
+              <span>Tôle, plaque, barre et tube : prix publiés chez les fournisseurs qui livrent au Québec, mis à jour chaque jour ouvrable.</span>
+            </a>
+            <a class="mega-allguides" href="/guides/">Tous les guides (71) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/prix/">Prix des tôles</a></li>
+    <li><a class="nav-link" href="/occasions/">Occasions</a></li>
+    <li><a class="nav-link" href="/infolettre/">Infolettre</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Rechercher"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Rechercher</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Langue">
+        <a href="/guides/camworks-fao-solidworks/" hreflang="fr-CA" lang="fr-CA" aria-current="true">FR</a><a href="/en/guides/camworks-cam-solidworks/" hreflang="en-CA" lang="en-CA">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Rechercher">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Rechercher un guide (ex. SheetCam, K-factor, scories)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Fermer</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>Aucun guide trouvé. Essayez un autre mot (logiciel, procédé, matériau).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Fil d’Ariane"><ol><li><a href="/">Accueil</a></li><li><a href="/guides/">Guides</a></li><li><a href="/guides/logiciels/">Logiciels CAO / FAO et commandes</a></li><li aria-current="page">CAMWorks</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://coupefab.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/guides/"}, {"@type": "ListItem", "position": 3, "name": "Logiciels CAO / FAO et commandes", "item": "https://coupefab.vercel.app/guides/logiciels/"}, {"@type": "ListItem", "position": 4, "name": "CAMWorks"}]}</script>
+<article class="guide" data-guide="camworks">
+  <header class="guide-head">
+    <p class="kicker">Logiciel · FAO intégrée</p>
+    <h1>CAMWorks (et SOLIDWORKS CAM) : reconnaissance d’entités et base technologique</h1>
+    <p class="guide-lede">Démarche CAMWorks en 2,5 axes : machine, brut, extraction des entités usinables (AFR), règles de la TechDB, génération des opérations, simulation et post. Comment bâtir sa base technologique sans tout casser.</p>
+    <p class="guide-meta">
+      <span>Révisé le <time datetime="2026-11-26">26 novembre 2026</time></span>
+      <span>3 min de lecture</span>
+      <span>Niveau : Intermédiaire</span>
+      <span class="pill pill-draft" tabindex="0" title="Rédigé par CoupeFab à partir des documents officiels cités. Révision technique par Michaël Brassard en attente.">Brouillon<span class="pill-tip" role="tooltip">Rédigé par CoupeFab à partir des documents officiels cités. Révision technique par Michaël Brassard en attente.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>Sur cette page</summary><ol><li><a href="#les-deux-piliers">Les deux piliers</a></li><li><a href="#demarche-type-fraisage-2-5-axes">Démarche type (fraisage 2,5 axes)</a></li><li><a href="#batir-sa-techdb-sans-se-perdre">Bâtir sa TechDB sans se perdre</a></li><li><a href="#usinage-base-sur-les-tolerances-tbm">Usinage basé sur les tolérances (TBM)</a></li><li><a href="#erreurs-frequentes">Erreurs fréquentes</a></li><li><a href="#liste-de-verification-avant-post">Liste de vérification avant post</a></li><li><a href="#faq">FAQ</a></li><li><a href="#a-valider-en-atelier-michael">À valider en atelier (Michaël)</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p>CAMWorks (HCL) est une FAO intégrée à SOLIDWORKS (et à Solid Edge). <strong>SOLIDWORKS CAM</strong> en est une version dérivée, livrée par Dassault avec certaines licences SOLIDWORKS. L’idée centrale : on n’usine que des <strong>entités usinables</strong> (poches, trous, rainures, bossages…) reconnues sur le modèle, et une <strong>base technologique</strong> (TechDB) décide des opérations, outils et paramètres.</p>
+<h2 id="les-deux-piliers">Les deux piliers</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Pilier</th><th>Ce que ça fait</th><th>À retenir</th></tr></thead><tbody>
+<tr><td><strong>AFR</strong> (<em>Automatic Feature Recognition</em>)</td><td>Analyse le modèle et crée les entités 2,5 axes courantes</td><td>Ce qu’AFR ne trouve pas se crée à la main (<em>New 2.5 Axis Feature</em>)</td></tr>
+<tr><td><strong>TechDB</strong> (<em>Technology Database</em>)</td><td>Usinage basé sur la connaissance : règles « telle entité, telle matière → telles opérations dans tel ordre »</td><td>Faites une <strong>copie de sauvegarde</strong> de la base par défaut avant toute modification</td></tr>
+</tbody></table></div>
+<p>La TechDB est organisée en quatre couches selon HCL : <strong>machines</strong>, <strong>magasin d’outils</strong> (<em>tool crib</em>), <strong>paramètres d’opération</strong> (avances, vitesses, profondeurs, pas) et <strong>règles d’usinage</strong> (stratégies).</p>
+<h2 id="demarche-type-fraisage-2-5-axes">Démarche type (fraisage 2,5 axes)</h2>
+<ol class="steps"><li><strong>Machine</strong> : choisir la définition de machine (et son post) dans l’onglet CAMWorks.</li><li><strong>Magasin d’outils</strong> : associer le bon magasin à la machine.</li><li><strong>Brut</strong> (<em>Stock Manager</em>) : boîte englobante, esquisse extrudée ou pièce brute.</li><li><strong>Setups / plans de travail</strong> : origine et orientation cohérentes avec votre G54 (voir <a href="/guides/decalages-origine-g54/">Décalages d’origine (G54)</a>).</li><li><strong>Extraire les entités</strong> (<em>Extract Machinable Features</em>) : AFR crée poches, trous, rainures, etc.</li><li><strong>Compléter</strong> les entités manquantes à la main ; vérifier les attributs (borgne/débouchant, filetage).</li><li><strong>Générer le plan d’opérations</strong> : la TechDB propose ébauche, finition, pointage, perçage…</li><li><strong>Générer les parcours</strong>, puis <strong>simuler</strong> (matière et collisions).</li><li><strong>Post-traiter</strong> et relire le G-code (voir <a href="/guides/post-processeurs/">Post-processeurs</a>).</li></ol>
+<h2 id="batir-sa-techdb-sans-se-perdre">Bâtir sa TechDB sans se perdre</h2>
+<ul><li>Commencer par <strong>une machine</strong> réelle (nom descriptif, course de broche, avance max, nombre d’outils).</li><li>Entrer les outils qui couvrent la majorité des travaux, avec leur vraie géométrie ; compléter au fil des jobs.</li><li>Définir les paramètres pour <strong>vos</strong> matières courantes à partir des fiches des fabricants d’outils (voir <a href="/guides/avances-vitesses/">Avances et vitesses</a>).</li><li>Écrire des règles simples pour les entités les plus fréquentes (trou taraudé, poche rectangulaire), puis raffiner.</li></ul>
+<aside class="callout callout-tip"><p class="callout-label">Astuce d’atelier</p><p>Un magasin d’outils incomplet mais exact vaut mieux qu’un magasin complet mais faux : CAMWorks choisira des outils que vous n’avez pas.</p></aside>
+<h2 id="usinage-base-sur-les-tolerances-tbm">Usinage basé sur les tolérances (TBM)</h2>
+<p>Les éditions qui l’incluent lisent les tolérances et le fini de surface du modèle (annotations 3D, MBD) pour choisir la stratégie : par exemple un trou à tolérance serrée reçoit un alésage plutôt qu’un simple perçage. Utile si le bureau d’études annote correctement ; voir <a href="/guides/tolerances-cnc/">Tolérances</a>.</p>
+<h2 id="erreurs-frequentes">Erreurs fréquentes</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Erreur</th><th>Correctif</th></tr></thead><tbody>
+<tr><td>Modifier la TechDB par défaut sans sauvegarde</td><td>Copier le fichier de base avant de commencer ; travailler sur une copie active</td></tr>
+<tr><td>Entités mal reconnues sur une pièce importée (STEP)</td><td>Réparer le modèle ; créer les entités à la main</td></tr>
+<tr><td>Origine du setup différente du G54 réel</td><td>Aligner le plan de travail sur l’origine de montage</td></tr>
+<tr><td>Faire confiance aux avances par défaut</td><td>Les remplacer par les données de vos outils</td></tr>
+</tbody></table></div>
+<h2 id="liste-de-verification-avant-post">Liste de vérification avant post</h2>
+<ul class="checklist"><li>Bonne machine et bon post sélectionnés</li><li>Brut et origine vérifiés</li><li>Toutes les entités présentes (rien d’oublié par AFR)</li><li>Simulation sans collision ni matière restante non voulue</li><li>G-code relu : unités, G54, changements d’outil, arrosage</li></ul>
+<h2 id="faq">FAQ</h2>
+<h3 id="solidworks-cam-ou-camworks">SOLIDWORKS CAM ou CAMWorks ?</h3>
+<p>SOLIDWORKS CAM est construit sur la technologie CAMWorks avec un périmètre adapté aux licences SOLIDWORKS ; CAMWorks ajoute des modules (tournage avancé, multi-axes, etc.) selon l’édition. Comparez les éditions auprès d’un revendeur.</p>
+<h3 id="camworks-fait-il-du-plasma">CAMWorks fait-il du plasma ?</h3>
+<p>Il existe des options de découpe selon les versions, mais pour un atelier de découpe de tôle, un logiciel dédié reste souvent plus direct ; voir <a href="/guides/debuter-sheetcam/">SheetCam</a> et <a href="/guides/pronest-imbrication/">ProNest</a>.</p>
+<section class="review-box"><h2 id="a-valider-en-atelier-michael">À valider en atelier (Michaël)</h2>
+<ul><li>Les règles TechDB qui vous font gagner le plus de temps.</li><li>Votre expérience SOLIDWORKS CAM vs CAMWorks.</li></ul>
+</section><section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://camworks.s3.amazonaws.com/Website/Docs/Manuals/Mill_Tutorial.pdf" class="ext" rel="noopener">HCL CAMWorks — Mill Tutorial (PDF)</a>, consulté le 26 novembre 2026.</li><li><a href="https://camworks.com/blog/building-your-first-technology-database-from-scratch-in-camworks/" class="ext" rel="noopener">HCL CAMWorks — Building your first Technology Database from scratch</a>, consulté le 26 novembre 2026.</li><li><a href="https://camworks.com/modules/25axis-milling/" class="ext" rel="noopener">HCL CAMWorks — 2.5 Axis Milling</a>, consulté le 26 novembre 2026.</li><li><a href="https://www.solidworks.com/product/solidworks-cam" class="ext" rel="noopener">SOLIDWORKS — SOLIDWORKS CAM</a>, consulté le 26 novembre 2026.</li></ul></section>
+
+      <p class="report"><a href="/a-propos/#contact">Une erreur, un ajout ? Écrivez-nous →</a></p>
+    </div>
+  </div>
+  <section class="related"><h2>Guides connexes</h2><div class="gcards"><a class="gcard" href="/guides/solidworks-mises-en-plan-cam/" data-hub="software"><span class="card-meta">Logiciel · FAO · Intermédiaire · 3 min de lecture</span><strong>SOLIDWORKS : mises en plan pour l’atelier et SOLIDWORKS CAM (Standard ou Professional)</strong><span class="card-desc">Ce qu’une mise en plan doit contenir pour l’usinage et le pliage, la différence entre SOLIDWORKS CAM Standard et Professional, l’usinage basé sur les fonctions et la base de données technologique.</span></a><a class="gcard" href="/guides/mastercam-parcours-2d-dynamic/" data-hub="software"><span class="card-meta">Logiciel · FAO · Intermédiaire · 3 min de lecture</span><strong>Mastercam : parcours 2D et fraisage dynamique (Dynamic Motion) sans se tromper</strong><span class="card-desc">Définition machine, brut, chaînage, Dynamic Mill, Peel Mill, Dynamic Contour, Face et vérification : la démarche Mastercam en 2D, les niveaux de licence et les pièges de chaînage les plus courants.</span></a><a class="gcard" href="/guides/avances-vitesses/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · usinage · Intermédiaire · 4 min de lecture</span><strong>Avances et vitesses : les formules, la méthode, et d’où viennent les chiffres</strong><span class="card-desc">Vitesse de coupe, tr/min, avance par dent, amincissement des copeaux, débit de copeaux : les formules exactes en métrique et en impérial, et comment partir des données du fabricant d’outils.</span></a><a class="gcard" href="/guides/post-processeurs/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · FAO · Intermédiaire · 3 min de lecture</span><strong>Post-processeurs : choisir, tester et modifier sans casser la machine</strong><span class="card-desc">Ce que fait un post-processeur, où trouver le bon pour votre commande (Fusion, Mastercam, SheetCam…), comment le valider à blanc et quelles modifications sont sûres.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">Un guide par semaine, en français d’abord</p><p>Nouveaux guides, occasions au Québec et mouvements de prix. Pas de pub tierce.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="fr" novalidate>
+  <div class="hp" aria-hidden="true"><label>Site web<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Prénom ou atelier (facultatif)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Courriel
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="oui">
+    <span>J’accepte de recevoir l’infolettre de CoupeFab (guides, digest d’occasions et suivi des prix des tôles). Je peux me désabonner en tout temps. Voir la <a href="/confidentialite/">politique de confidentialité</a>.</span>
+  </label>
+  <button type="submit">S’inscrire</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">Conformité CASL : la case n’est pas précochée. Aucun envoi sans ce consentement exprès.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "CAMWorks (et SOLIDWORKS CAM) : reconnaissance d’entités et base technologique", "description": "Démarche CAMWorks en 2,5 axes : machine, brut, extraction des entités usinables (AFR), règles de la TechDB, génération des opérations, simulation et post. Comment bâtir sa base technologique sans tout casser.", "inLanguage": "fr-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/guides/camworks-fao-solidworks/", "mainEntityOfPage": "https://coupefab.vercel.app/guides/camworks-fao-solidworks/", "proficiencyLevel": "Intermediate", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["camworks", "solidworks cam", "afr", "automatic feature recognition", "techdb", "technology database", "knowledge-based machining", "2.5 axis", "tolerance based machining"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "CAMWorks (et SOLIDWORKS CAM) : reconnaissance d’entités et base technologique", "description": "Démarche CAMWorks en 2,5 axes : machine, brut, extraction des entités usinables (AFR), règles de la TechDB, génération des opérations, simulation et post. Comment bâtir sa base technologique sans tout casser.", "inLanguage": "fr-CA", "step": [{"@type": "HowToStep", "name": "Machine ", "text": "Machine : choisir la définition de machine (et son post) dans l’onglet CAMWorks."}, {"@type": "HowToStep", "name": "Magasin d’outils ", "text": "Magasin d’outils : associer le bon magasin à la machine."}, {"@type": "HowToStep", "name": "Brut ( Stock Manager ) ", "text": "Brut ( Stock Manager ) : boîte englobante, esquisse extrudée ou pièce brute."}, {"@type": "HowToStep", "name": "Setups / plans de travail ", "text": "Setups / plans de travail : origine et orientation cohérentes avec votre G54 (voir Décalages d’origine (G54) )."}, {"@type": "HowToStep", "name": "Extraire les entités ( Extract Machinable Features ) ", "text": "Extraire les entités ( Extract Machinable Features ) : AFR crée poches, trous, rainures, etc."}, {"@type": "HowToStep", "name": "Compléter les entités manquantes à la main ; vérifier les attributs (borgne/débouchant, filetage)", "text": "Compléter les entités manquantes à la main ; vérifier les attributs (borgne/débouchant, filetage)."}, {"@type": "HowToStep", "name": "Générer le plan d’opérations ", "text": "Générer le plan d’opérations : la TechDB propose ébauche, finition, pointage, perçage…"}, {"@type": "HowToStep", "name": "Générer les parcours , puis simuler (matière et collisions)", "text": "Générer les parcours , puis simuler (matière et collisions)."}, {"@type": "HowToStep", "name": "Post-traiter et relire le G-code (voir Post-processeurs )", "text": "Post-traiter et relire le G-code (voir Post-processeurs )."}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "SOLIDWORKS CAM ou CAMWorks ?", "acceptedAnswer": {"@type": "Answer", "text": "SOLIDWORKS CAM est construit sur la technologie CAMWorks avec un périmètre adapté aux licences SOLIDWORKS ; CAMWorks ajoute des modules (tournage avancé, multi-axes, etc.) selon l’édition. Comparez les éditions auprès d’un revendeur."}}, {"@type": "Question", "name": "CAMWorks fait-il du plasma ?", "acceptedAnswer": {"@type": "Answer", "text": "Il existe des options de découpe selon les versions, mais pour un atelier de découpe de tôle, un logiciel dédié reste souvent plus direct ; voir SheetCam et ProNest ."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>La référence francophone de la découpe CNC et de la fabrication métallique : guides vérifiés, prix des tôles comparés, occasions au Québec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/guides/logiciels/">Logiciels CAO / FAO et commandes</a></li>
+        <li><a href="/guides/procedes/">Procédés de coupe et d’usinage</a></li>
+        <li><a href="/guides/fondamentaux/">Fondamentaux CNC</a></li>
+        <li><a href="/guides/materiaux/">Matériaux et nuances</a></li>
+        <li><a href="/guides/depannage/">Dépannage</a></li>
+        <li><a href="/guides/atelier/">Atelier : sécurité, soumissions, métrologie, formation</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explorer</p>
+      <ul>
+        <li><a href="/prix/">Prix des tôles</a></li>
+        <li><a href="/occasions/">Occasions</a></li>
+        <li><a href="/infolettre/">Infolettre</a></li>
+        <li><a href="/a-propos/">À propos</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Mentions</p>
+      <ul>
+        <li><a href="/divulgation/">Divulgation (affiliations)</a></li>
+        <li><a href="/confidentialite/">Confidentialité et LCAP</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Québec, Canada. Aucun lien d’affiliation. Les marques citées appartiennent à leurs propriétaires et sont mentionnées à titre descriptif.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>
