@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fondamentaux CNC — Guides CoupeFab</title>
+<meta name="description" content="G-code, post-processeurs, décalages d’origine, avances et vitesses, kerf, entrées, imbrication, DXF, tolérances, pliage, nuances.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/guides/fondamentaux/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/fondamentaux/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/fundamentals/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/fondamentaux/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fondamentaux CNC — Guides CoupeFab">
+<meta property="og:description" content="G-code, post-processeurs, décalages d’origine, avances et vitesses, kerf, entrées, imbrication, DXF, tolérances, pliage, nuances.">
+<meta property="og:url" content="https://coupefab.vercel.app/guides/fondamentaux/">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:locale:alternate" content="en_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="fr">
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/" aria-label="CoupeFab — Accueil"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Navigation principale">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/guides/logiciels/">Par logiciel</a></p>
+            <ul class="mega-list two"><li><a href="/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/guides/debuter-sheetcam/">SheetCam</a></li><li><a href="/guides/solidworks-tolerie-dxf/">SOLIDWORKS tôlerie</a></li><li><a href="/guides/autocad-nettoyer-dxf/">AutoCAD (DXF)</a></li><li><a href="/guides/fusion-fao-debuter/">Fusion (FAO)</a></li><li><a href="/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/guides/bricscad-dxf/">BricsCAD → DXF</a></li><li><a href="/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/guides/inventor-tolerie-cam/">Inventor</a></li><li><a href="/guides/mastercam-parcours-2d-dynamic/">Mastercam 2D</a></li><li><a href="/guides/mastercam-post-tour/">Mastercam post et tour</a></li><li><a href="/guides/onshape-tolerie-cam/">Onshape</a></li><li><a href="/guides/solidworks-mises-en-plan-cam/">SOLIDWORKS CAM et mises en plan</a></li><li><a href="/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/guides/freecad-cam/">FreeCAD (CAM)</a></li><li><a href="/guides/vectric-vcarve-aspire/">Vectric VCarve / Aspire</a></li><li><a href="/guides/lightburn-laser/">LightBurn</a></li><li><a href="/guides/pronest-imbrication/">ProNest</a></li></ul>
+            <p class="mega-all"><a href="/guides/logiciels/">Tous les logiciels →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/procedes/">Par procédé</a></p>
+            <ul class="mega-list"><li><a href="/guides/decoupe-plasma-cnc/">Plasma CNC</a></li><li><a href="/guides/laser-fibre/">Laser fibre</a></li><li><a href="/guides/jet-d-eau/">Jet d’eau</a></li><li><a href="/guides/routeur-cnc/">Routeur CNC</a></li><li><a href="/guides/fraiseuse-cnc/">Fraiseuse CNC</a></li><li><a href="/guides/tour-cnc/">Tour CNC</a></li><li><a href="/guides/presse-plieuse/">Presse plieuse</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/fondamentaux/">Par sujet</a></p>
+            <ul class="mega-list"><li><a href="/guides/reference-g-code-m-code/">G-code et M-code</a></li><li><a href="/guides/avances-vitesses/">Avances et vitesses</a></li><li><a href="/guides/kerf-qualite-coupe/">Kerf et qualité de coupe</a></li><li><a href="/guides/pliage-k-factor/">Pliage : K-factor et déduction</a></li><li><a href="/guides/nuances-metaux/">Nuances de métaux</a></li><li><a href="/guides/dxf-bonnes-pratiques/">DXF : bonnes pratiques</a></li><li class="more"><a href="/guides/fondamentaux/">Fondamentaux CNC →</a></li><li class="more"><a href="/guides/depannage/">Dépannage →</a></li><li class="more"><a href="/guides/atelier/">Atelier : sécurité, achats, consommables →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/prix/">
+              <span class="feature-k">Outil</span>
+              <strong>Prix des tôles</strong>
+              <span>Tôle, plaque, barre et tube : prix publiés chez les fournisseurs qui livrent au Québec, mis à jour chaque jour ouvrable.</span>
+            </a>
+            <a class="mega-allguides" href="/guides/">Tous les guides (41) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/prix/">Prix des tôles</a></li>
+    <li><a class="nav-link" href="/occasions/">Occasions</a></li>
+    <li><a class="nav-link" href="/infolettre/">Infolettre</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Rechercher"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Rechercher</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Langue">
+        <a href="/guides/fondamentaux/" hreflang="fr-CA" lang="fr-CA" aria-current="true">FR</a><a href="/en/guides/fundamentals/" hreflang="en-CA" lang="en-CA">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Rechercher">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Rechercher un guide (ex. SheetCam, K-factor, scories)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Fermer</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>Aucun guide trouvé. Essayez un autre mot (logiciel, procédé, matériau).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<div class="page">
+<nav class="crumbs" aria-label="Fil d’Ariane"><ol><li><a href="/">Accueil</a></li><li><a href="/guides/">Guides</a></li><li aria-current="page">Fondamentaux CNC</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://coupefab.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/guides/"}, {"@type": "ListItem", "position": 3, "name": "Fondamentaux CNC"}]}</script>
+<header class="page-head">
+  <p class="kicker">Guides · 11</p>
+  <h1>Fondamentaux CNC</h1>
+  <p class="lede">G-code, post-processeurs, décalages d’origine, avances et vitesses, kerf, entrées, imbrication, DXF, tolérances, pliage, nuances.</p>
+</header>
+<div class="gcards"><a class="gcard" href="/guides/reference-g-code-m-code/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · référence · Débutant · 5 min de lecture</span><strong>Référence G-code et M-code : les codes à connaître par cœur</strong><span class="card-desc">Les codes G et M courants (mouvements, plans, unités, compensation, cycles, broche, arrosage) avec leur sens, un exemple commenté et les pièges entre commandes.</span></a><a class="gcard" href="/guides/post-processeurs/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · FAO · Intermédiaire · 3 min de lecture</span><strong>Post-processeurs : choisir, tester et modifier sans casser la machine</strong><span class="card-desc">Ce que fait un post-processeur, où trouver le bon pour votre commande (Fusion, Mastercam, SheetCam…), comment le valider à blanc et quelles modifications sont sûres.</span></a><a class="gcard" href="/guides/decalages-origine-g54/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · usinage · Débutant · 4 min de lecture</span><strong>Décalages d’origine (G54 à G59) et longueurs d’outil, sans se tromper</strong><span class="card-desc">Coordonnées machine, origine pièce, G54–G59, longueur d’outil G43 : comment ils s’additionnent, comment prendre une origine, et les erreurs qui cassent des outils.</span></a><a class="gcard" href="/guides/avances-vitesses/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · usinage · Intermédiaire · 4 min de lecture</span><strong>Avances et vitesses : les formules, la méthode, et d’où viennent les chiffres</strong><span class="card-desc">Vitesse de coupe, tr/min, avance par dent, amincissement des copeaux, débit de copeaux : les formules exactes en métrique et en impérial, et comment partir des données du fabricant d’outils.</span></a><a class="gcard" href="/guides/dxf-bonnes-pratiques/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · DAO/FAO · Débutant · 3 min de lecture</span><strong>DXF pour la découpe : les règles qui évitent 90 % des problèmes</strong><span class="card-desc">Unités, échelle 1:1, contours fermés, doublons, splines, calques, textes et petits détails : la liste de règles à suivre avant d’envoyer un DXF à un FAO ou à un sous-traitant de découpe.</span></a><a class="gcard" href="/guides/kerf-qualite-coupe/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · plasma · Débutant · 4 min de lecture</span><strong>Kerf et qualité de coupe : lire une charte, mesurer, compenser</strong><span class="card-desc">Ce qu’est le kerf, comment lire une charte de coupe de fabricant sans mélanger les manuels, et comment mesurer puis compenser le kerf réel de votre table.</span></a><a class="gcard" href="/guides/entrees-sorties-percage-plasma/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · plasma · Intermédiaire · 4 min de lecture</span><strong>Entrées, sorties, hauteur et délai de perçage en découpe plasma</strong><span class="card-desc">Où placer l’entrée, quelle forme lui donner, pourquoi percer plus haut que la hauteur de coupe, comment régler le délai, et les trous propres — avec les valeurs qui viennent de votre charte.</span></a><a class="gcard" href="/guides/imbrication/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · tôlerie · Intermédiaire · 3 min de lecture</span><strong>Imbrication : placer plus de pièces par tôle sans risquer la coupe</strong><span class="card-desc">Espacement, marge de bord, rotation, chutes réutilisables, coupe en ligne commune et ordre de coupe : la méthode pour mieux utiliser chaque tôle, en SheetCam, ProNest ou autre.</span></a><a class="gcard" href="/guides/pliage-k-factor/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · tôlerie · Intermédiaire · 4 min de lecture</span><strong>Pliage : longueur développée, K-factor et déduction de pli, avec les formules</strong><span class="card-desc">Calculer un déplié juste : formules de la longueur de pli (BA), du retrait extérieur (OSSB) et de la déduction (BD), retrouver le K-factor réel à partir d’un pli d’essai, et le saisir dans la CAO.</span></a><a class="gcard" href="/guides/tolerances-cnc/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · dessin · Intermédiaire · 3 min de lecture</span><strong>Tolérances en fabrication : ISO 2768, ajustements et ce que chaque procédé tient</strong><span class="card-desc">Tolérances générales ISO 2768-1, ajustements ISO 286, cotation fonctionnelle et tolérances réalistes selon le procédé (plasma, laser, pliage, usinage) — pour des dessins qui coûtent le juste prix.</span></a><a class="gcard" href="/guides/nuances-metaux/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · matériaux · Débutant · 4 min de lecture</span><strong>Nuances de métaux en atelier : acier, inox, aluminium, cuivre, laiton, bronze</strong><span class="card-desc">A36, 44W, 1018, 4140, A500, 304, 316, 17-4PH, 5052, 6061, C110, C360, C932 : à quoi sert chaque nuance, comment elle se coupe, se plie, se soude et s’usine, avec lien vers les prix publiés.</span></a></div>
+<nav class="chips other-hubs" aria-label="Autres sections"><a class="chip" href="/guides/logiciels/">Logiciels CAO / FAO et commandes</a><a class="chip" href="/guides/procedes/">Procédés de coupe et d’usinage</a><a class="chip" href="/guides/depannage/">Dépannage</a><a class="chip" href="/guides/atelier/">Atelier : sécurité, achats, consommables</a></nav>
+</div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Fondamentaux CNC", "description": "G-code, post-processeurs, décalages d’origine, avances et vitesses, kerf, entrées, imbrication, DXF, tolérances, pliage, nuances.", "inLanguage": "fr-CA", "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://coupefab.vercel.app/guides/reference-g-code-m-code/", "name": "Référence G-code et M-code : les codes à connaître par cœur"}, {"@type": "ListItem", "position": 2, "url": "https://coupefab.vercel.app/guides/post-processeurs/", "name": "Post-processeurs : choisir, tester et modifier sans casser la machine"}, {"@type": "ListItem", "position": 3, "url": "https://coupefab.vercel.app/guides/decalages-origine-g54/", "name": "Décalages d’origine (G54 à G59) et longueurs d’outil, sans se tromper"}, {"@type": "ListItem", "position": 4, "url": "https://coupefab.vercel.app/guides/avances-vitesses/", "name": "Avances et vitesses : les formules, la méthode, et d’où viennent les chiffres"}, {"@type": "ListItem", "position": 5, "url": "https://coupefab.vercel.app/guides/dxf-bonnes-pratiques/", "name": "DXF pour la découpe : les règles qui évitent 90 % des problèmes"}, {"@type": "ListItem", "position": 6, "url": "https://coupefab.vercel.app/guides/kerf-qualite-coupe/", "name": "Kerf et qualité de coupe : lire une charte, mesurer, compenser"}, {"@type": "ListItem", "position": 7, "url": "https://coupefab.vercel.app/guides/entrees-sorties-percage-plasma/", "name": "Entrées, sorties, hauteur et délai de perçage en découpe plasma"}, {"@type": "ListItem", "position": 8, "url": "https://coupefab.vercel.app/guides/imbrication/", "name": "Imbrication : placer plus de pièces par tôle sans risquer la coupe"}, {"@type": "ListItem", "position": 9, "url": "https://coupefab.vercel.app/guides/pliage-k-factor/", "name": "Pliage : longueur développée, K-factor et déduction de pli, avec les formules"}, {"@type": "ListItem", "position": 10, "url": "https://coupefab.vercel.app/guides/tolerances-cnc/", "name": "Tolérances en fabrication : ISO 2768, ajustements et ce que chaque procédé tient"}, {"@type": "ListItem", "position": 11, "url": "https://coupefab.vercel.app/guides/nuances-metaux/", "name": "Nuances de métaux en atelier : acier, inox, aluminium, cuivre, laiton, bronze"}]}}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>La référence francophone de la découpe CNC et de la fabrication métallique : guides vérifiés, prix des tôles comparés, occasions au Québec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/guides/logiciels/">Logiciels CAO / FAO et commandes</a></li>
+        <li><a href="/guides/procedes/">Procédés de coupe et d’usinage</a></li>
+        <li><a href="/guides/fondamentaux/">Fondamentaux CNC</a></li>
+        <li><a href="/guides/depannage/">Dépannage</a></li>
+        <li><a href="/guides/atelier/">Atelier : sécurité, achats, consommables</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explorer</p>
+      <ul>
+        <li><a href="/prix/">Prix des tôles</a></li>
+        <li><a href="/occasions/">Occasions</a></li>
+        <li><a href="/infolettre/">Infolettre</a></li>
+        <li><a href="/a-propos/">À propos</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Mentions</p>
+      <ul>
+        <li><a href="/divulgation/">Divulgation (affiliations)</a></li>
+        <li><a href="/confidentialite/">Confidentialité et LCAP</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Québec, Canada. Aucun lien d’affiliation. Les marques citées appartiennent à leurs propriétaires et sont mentionnées à titre descriptif.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>
