@@ -82,13 +82,22 @@ Comparateur généré à partir de prix **publiés en ligne** — jamais de prix
 
 ```bash
 # dépendances (une fois) : python3 -m venv /workspace/coupefab-venv-tools && /workspace/coupefab-venv-tools/bin/pip install requests beautifulsoup4 lxml
-scripts/refresh.sh                      # tous les fournisseurs (~6-8 min, Metals Depot est le plus lent)
+scripts/refresh.sh                      # QUOTIDIEN : tôle et plaque, tous les fournisseurs (~6-8 min, Metals Depot est le plus lent)
+scripts/refresh.sh --weekly             # HEBDOMADAIRE : ajoute barres, tubes et tuyaux (collections Metals 'R' Us, ~+1 min, plus lourd)
 scripts/refresh.sh --only metalsrus     # un ou plusieurs fournisseurs; les autres sont repris de latest.json
 ```
 
 `refresh.sh` relève les prix, régénère le site (`build.py`), fait un commit local et écrit `/tmp/coupefab-deploy.json`.
-Déploiement : `create_deployment` du connecteur Vercel (équipe `micro-bot`, projet `coupefab`) avec `/tmp/coupefab-deploy/create_deployment.json`; si Vercel répond `missing_files`, `upload_file` pour chaque SHA manquant (voir `uploads.json`), puis relancer.
+Déploiement : `create_deployment` du connecteur Vercel (équipe `micro-bot` = `team_51rPr828F5cibUCQd4qzdhyb`, projet `coupefab`) avec `/tmp/coupefab-deploy/create_deployment.json`; si Vercel répond `missing_files`, `upload_file` pour chaque SHA manquant (voir `uploads.json`), puis relancer.
 Puis pousser les fichiers modifiés sur GitHub (`Thyliacine/coupefab`).
 Vérifier ensuite : `curl -s https://coupefab.vercel.app/prix/ | grep -o 'Mis à jour[^<]*'`.
+
+En quotidien, les lignes barre/tube/tuyau sont reprises du dernier relevé hebdomadaire avec leur propre date.
+Millennium Alloys (C.-B.) et National Salvage (Alb.) sont des repères canadiens masqués par défaut (filtre « Achetable au Québec ») et jamais « meilleur prix ».
+
+### Licence des données
+
+Les données compilées (`data/prices/`, `prix/donnees.json`, `prix/coupefab-prix-metaux.csv`) sont publiées sous
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) — réutilisation libre en citant CoupeFab. Les prix restent ceux des fournisseurs cités.
 
 Un fournisseur en échec garde ses lignes de la veille, marquées « [relevé précédent] », et son erreur est inscrite dans `latest.json` → `status`.
