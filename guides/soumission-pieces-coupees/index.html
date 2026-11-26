@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Soumissionner des pièces coupées au laser ou au plasma : méthode de calcul complète — CoupeFab</title>
+<meta name="description" content="Matière avec taux d’utilisation réel, temps de coupe (longueur + perçages), taux horaire machine, consommables, mise en course, ébavurage, pliage et marge : la méthode pas à pas avec une feuille de calcul type, sans chiffres inventés.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/guides/soumission-pieces-coupees/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/soumission-pieces-coupees/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/quoting-cut-parts/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/soumission-pieces-coupees/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Soumissionner des pièces coupées au laser ou au plasma : méthode de calcul complète — CoupeFab">
+<meta property="og:description" content="Matière avec taux d’utilisation réel, temps de coupe (longueur + perçages), taux horaire machine, consommables, mise en course, ébavurage, pliage et marge : la méthode pas à pas avec une feuille de calcul type, sans chiffres inventés.">
+<meta property="og:url" content="https://coupefab.vercel.app/guides/soumission-pieces-coupees/">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:locale:alternate" content="en_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="fr">
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/" aria-label="CoupeFab — Accueil"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Navigation principale">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/guides/logiciels/">Par logiciel</a></p>
+            <ul class="mega-list two"><li><a href="/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/guides/debuter-sheetcam/">SheetCam</a></li><li><a href="/guides/solidworks-tolerie-dxf/">SOLIDWORKS tôlerie</a></li><li><a href="/guides/autocad-nettoyer-dxf/">AutoCAD (DXF)</a></li><li><a href="/guides/fusion-fao-debuter/">Fusion (FAO)</a></li><li><a href="/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/guides/bricscad-dxf/">BricsCAD → DXF</a></li><li><a href="/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/guides/inventor-tolerie-cam/">Inventor</a></li><li><a href="/guides/mastercam-parcours-2d-dynamic/">Mastercam 2D</a></li><li><a href="/guides/mastercam-post-tour/">Mastercam post et tour</a></li><li><a href="/guides/camworks-fao-solidworks/">CAMWorks</a></li><li><a href="/guides/fusion-plasma-post-par-table/">Fusion plasma : posts par table</a></li><li><a href="/guides/esprit-cam-multitache/">ESPRIT CAM</a></li><li><a href="/guides/onshape-tolerie-cam/">Onshape</a></li><li><a href="/guides/solidworks-mises-en-plan-cam/">SOLIDWORKS CAM et mises en plan</a></li><li><a href="/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/guides/gibbscam-fao/">GibbsCAM</a></li></ul>
+            <p class="mega-all"><a href="/guides/logiciels/">Tous les logiciels →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/procedes/">Par procédé</a></p>
+            <ul class="mega-list"><li><a href="/guides/decoupe-plasma-cnc/">Plasma CNC</a></li><li><a href="/guides/laser-fibre/">Laser fibre</a></li><li><a href="/guides/jet-d-eau/">Jet d’eau</a></li><li><a href="/guides/routeur-cnc/">Routeur CNC</a></li><li><a href="/guides/fraiseuse-cnc/">Fraiseuse CNC</a></li><li><a href="/guides/tour-cnc/">Tour CNC</a></li><li><a href="/guides/presse-plieuse/">Presse plieuse</a></li><li><a href="/guides/plasma-biseau-chanfrein/">Plasma biseau (chanfrein)</a></li><li><a href="/guides/oxycoupage/">Oxycoupage</a></li><li><a href="/guides/electroerosion-fil-enfoncage/">Électroérosion (fil et enfonçage)</a></li><li><a href="/guides/usinage-5-axes/">Usinage 5 axes</a></li><li><a href="/guides/tour-fraiseur-decolleteuse-suisse/">Tour-fraiseur et décolleteuse suisse</a></li><li><a href="/guides/preparation-soudure-chanfrein/">Préparation de soudure</a></li><li><a href="/guides/ebavurage-finition/">Ébavurage et finition</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/fondamentaux/">Par sujet</a></p>
+            <ul class="mega-list"><li><a href="/guides/reference-g-code-m-code/">G-code et M-code</a></li><li><a href="/guides/avances-vitesses/">Avances et vitesses</a></li><li><a href="/guides/kerf-qualite-coupe/">Kerf et qualité de coupe</a></li><li><a href="/guides/pliage-k-factor/">Pliage : K-factor et déduction</a></li><li><a href="/guides/nuances-metaux/">Nuances de métaux</a></li><li><a href="/guides/dxf-bonnes-pratiques/">DXF : bonnes pratiques</a></li><li class="more"><a href="/guides/fondamentaux/">Fondamentaux CNC →</a></li><li class="more"><a href="/guides/materiaux/">Matériaux et nuances →</a></li><li class="more"><a href="/guides/depannage/">Dépannage →</a></li><li class="more"><a href="/guides/atelier/">Atelier : sécurité, soumissions, métrologie, formation →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/prix/">
+              <span class="feature-k">Outil</span>
+              <strong>Prix des tôles</strong>
+              <span>Tôle, plaque, barre et tube : prix publiés chez les fournisseurs qui livrent au Québec, mis à jour chaque jour ouvrable.</span>
+            </a>
+            <a class="mega-allguides" href="/guides/">Tous les guides (71) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/prix/">Prix des tôles</a></li>
+    <li><a class="nav-link" href="/occasions/">Occasions</a></li>
+    <li><a class="nav-link" href="/infolettre/">Infolettre</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Rechercher"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Rechercher</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Langue">
+        <a href="/guides/soumission-pieces-coupees/" hreflang="fr-CA" lang="fr-CA" aria-current="true">FR</a><a href="/en/guides/quoting-cut-parts/" hreflang="en-CA" lang="en-CA">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Rechercher">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Rechercher un guide (ex. SheetCam, K-factor, scories)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Fermer</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>Aucun guide trouvé. Essayez un autre mot (logiciel, procédé, matériau).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Fil d’Ariane"><ol><li><a href="/">Accueil</a></li><li><a href="/guides/">Guides</a></li><li><a href="/guides/atelier/">Atelier : sécurité, soumissions, métrologie, formation</a></li><li aria-current="page">Soumission de pièces coupées</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://coupefab.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/guides/"}, {"@type": "ListItem", "position": 3, "name": "Atelier : sécurité, soumissions, métrologie, formation", "item": "https://coupefab.vercel.app/guides/atelier/"}, {"@type": "ListItem", "position": 4, "name": "Soumission de pièces coupées"}]}</script>
+<article class="guide" data-guide="quoting">
+  <header class="guide-head">
+    <p class="kicker">Atelier · prix de revient</p>
+    <h1>Soumissionner des pièces coupées au laser ou au plasma : méthode de calcul complète</h1>
+    <p class="guide-lede">Matière avec taux d’utilisation réel, temps de coupe (longueur + perçages), taux horaire machine, consommables, mise en course, ébavurage, pliage et marge : la méthode pas à pas avec une feuille de calcul type, sans chiffres inventés.</p>
+    <p class="guide-meta">
+      <span>Révisé le <time datetime="2026-11-26">26 novembre 2026</time></span>
+      <span>4 min de lecture</span>
+      <span>Niveau : Intermédiaire</span>
+      <span class="pill pill-draft" tabindex="0" title="Rédigé par CoupeFab à partir des documents officiels cités. Révision technique par Michaël Brassard en attente.">Brouillon<span class="pill-tip" role="tooltip">Rédigé par CoupeFab à partir des documents officiels cités. Révision technique par Michaël Brassard en attente.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>Sur cette page</summary><ol><li><a href="#la-formule-de-base">La formule de base</a></li><li><a href="#demarche-pas-a-pas">Démarche pas à pas</a></li><li><a href="#feuille-de-calcul-type-colonnes">Feuille de calcul type (colonnes)</a></li><li><a href="#liste-de-verification-avant-d-envoyer">Liste de vérification avant d’envoyer</a></li><li><a href="#erreurs-frequentes">Erreurs fréquentes</a></li><li><a href="#faq">FAQ</a></li><li><a href="#a-valider-en-atelier-michael">À valider en atelier (Michaël)</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p>Un prix de pièce coupée n’est pas « le poids de la pièce fois le prix de l’acier ». Il additionne la <strong>matière réellement consommée</strong>, le <strong>temps machine</strong>, les <strong>opérations secondaires</strong> et la <strong>mise en course</strong>, puis une <strong>marge</strong>. Les logiciels de soumission spécialisés utilisent la même logique ; la voici à la main.</p>
+<h2 id="la-formule-de-base">La formule de base</h2>
+<p><strong>Coût par pièce = matière + temps de coupe × taux machine + consommables + (mise en course ÷ quantité) + secondaires</strong></p>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Bloc</th><th>Comment le calculer</th><th>D’où vient la donnée</th></tr></thead><tbody>
+<tr><td>Matière</td><td>Surface de la pièce ÷ <strong>taux d’utilisation</strong> de l’imbrication × épaisseur × densité × prix au poids</td><td>Imbrication réelle (voir <a href="/guides/imbrication/">Imbrication</a>) ; densité et prix publiés dans le <a href="/prix/">comparateur de prix</a></td></tr>
+<tr><td>Temps de coupe</td><td>Longueur de coupe ÷ vitesse <strong>+</strong> nombre de perçages × temps de perçage <strong>+</strong> déplacements rapides</td><td>Charte de coupe (voir <a href="/guides/lire-charte-de-coupe/">Lire une charte de coupe</a>) ou estimation de la FAO</td></tr>
+<tr><td>Taux machine</td><td>$/h incluant amortissement, énergie, gaz, entretien, opérateur, frais généraux</td><td>Vos propres chiffres (voir <a href="/guides/taux-horaire-atelier-quebec/">Taux horaire d’atelier (Québec)</a>)</td></tr>
+<tr><td>Consommables</td><td>Coût par perçage ou par heure d’arc (plasma), buses et fenêtres (laser)</td><td>Vos relevés d’usure</td></tr>
+<tr><td>Mise en course</td><td>Programmation, chargement de la tôle, réglage, première pièce</td><td>Temps réel mesuré</td></tr>
+<tr><td>Secondaires</td><td>Ébavurage, pliage, taraudage, soudure, peinture, emballage</td><td>Temps standard par opération</td></tr>
+</tbody></table></div>
+<aside class="callout callout-tip"><p class="callout-label">Astuce d’atelier</p><p>Une pièce compte <strong>un perçage par contour fermé</strong> (contour extérieur + chaque trou). Une pièce avec 40 petits trous peut coûter plus cher en perçages qu’en longueur de coupe.</p></aside>
+<h2 id="demarche-pas-a-pas">Démarche pas à pas</h2>
+<ol class="steps"><li><strong>Lire le dessin</strong> : matière, nuance, épaisseur (calibre <strong>et</strong> décimale, voir <a href="/guides/calibres-tole-jauges/">Calibres de tôle (jauges)</a>), quantité, tolérances, fini.</li><li><strong>Mesurer la géométrie</strong> : longueur totale de coupe et nombre de contours (la FAO ou le logiciel d’imbrication les donne).</li><li><strong>Imbriquer</strong> sur le format de tôle réel pour obtenir le taux d’utilisation et le nombre de pièces par tôle.</li><li><strong>Chiffrer la matière</strong> : décider si la chute est facturée (souvent oui, en tout ou en partie) ; utiliser un <strong>prix courant</strong> du fournisseur.</li><li><strong>Chiffrer le temps</strong> : vitesse de la charte pour l’épaisseur, temps de perçage, marge pour les ralentissements (coins, petits trous).</li><li><strong>Ajouter consommables, mise en course, secondaires.</strong></li><li><strong>Appliquer la marge</strong> et vérifier le prix au marché.</li><li><strong>Écrire les hypothèses</strong> sur la soumission (matière fournie ou non, tolérances, fini d’arête, délai, validité du prix matière).</li></ol>
+<h2 id="feuille-de-calcul-type-colonnes">Feuille de calcul type (colonnes)</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Colonne</th><th>Exemple de contenu</th></tr></thead><tbody>
+<tr><td>Pièce / révision</td><td>P-1024 rév. B</td></tr>
+<tr><td>Matière, nuance, épaisseur</td><td>A36, 1/4 po</td></tr>
+<tr><td>Quantité</td><td>50</td></tr>
+<tr><td>Surface pièce</td><td>(de la FAO)</td></tr>
+<tr><td>Taux d’utilisation</td><td>(de l’imbrication)</td></tr>
+<tr><td>Longueur de coupe</td><td>(de la FAO)</td></tr>
+<tr><td>Nombre de perçages</td><td>(de la FAO)</td></tr>
+<tr><td>Temps de coupe calculé</td><td>formule</td></tr>
+<tr><td>Taux machine</td><td>votre valeur</td></tr>
+<tr><td>Coût matière</td><td>formule</td></tr>
+<tr><td>Secondaires</td><td>minutes × taux</td></tr>
+<tr><td>Mise en course répartie</td><td>minutes ÷ quantité</td></tr>
+<tr><td>Prix unitaire, prix total</td><td>formule + marge</td></tr>
+</tbody></table></div>
+<h2 id="liste-de-verification-avant-d-envoyer">Liste de vérification avant d’envoyer</h2>
+<ul class="checklist"><li>Prix de la matière vérifié <strong>cette semaine</strong> (les prix publiés bougent ; voir le <a href="/prix/">comparateur de prix</a>)</li><li>Format de tôle disponible chez le fournisseur</li><li>Ébavurage et tolérances d’arête compris (voir <a href="/guides/ebavurage-finition/">Ébavurage et finition</a>)</li><li>Quantité minimale ou frais de mise en course indiqués</li><li>Validité de la soumission et conditions de transport</li></ul>
+<h2 id="erreurs-frequentes">Erreurs fréquentes</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Erreur</th><th>Effet</th></tr></thead><tbody>
+<tr><td>Matière au poids net de la pièce</td><td>Chute non payée, marge perdue</td></tr>
+<tr><td>Ignorer les perçages</td><td>Pièces très perforées sous-évaluées</td></tr>
+<tr><td>Utiliser la vitesse maximale de la charte</td><td>Temps sous-estimé ; la machine ralentit dans les détails</td></tr>
+<tr><td>Oublier l’ébavurage</td><td>Temps de main-d’œuvre non facturé</td></tr>
+<tr><td>Prix matière périmé</td><td>Perte quand le prix monte entre soumission et achat</td></tr>
+</tbody></table></div>
+<h2 id="faq">FAQ</h2>
+<h3 id="faut-il-facturer-la-chute">Faut-il facturer la chute ?</h3>
+<p>C’est une décision commerciale ; beaucoup d’ateliers facturent la tôle entière pour les petites séries et un pourcentage d’utilisation pour les grandes. Écrivez-le dans la soumission.</p>
+<h3 id="comment-obtenir-mon-taux-horaire">Comment obtenir mon taux horaire ?</h3>
+<p>En divisant tous les coûts annuels de la machine et de son opérateur par les heures réellement facturables ; voir <a href="/guides/taux-horaire-atelier-quebec/">Taux horaire d’atelier (Québec)</a>.</p>
+<section class="review-box"><h2 id="a-valider-en-atelier-michael">À valider en atelier (Michaël)</h2>
+<ul><li>Votre structure de soumission réelle (logiciel ou feuille Excel).</li><li>Vos règles pour la chute et la mise en course minimale.</li></ul>
+</section><section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://www.quotationfactory.com/en/blog/how-to-quote-a-laser-cutting-job" class="ext" rel="noopener">Quotation Factory — How to quote a laser cutting job</a>, consulté le 26 novembre 2026.</li><li><a href="https://quotometry.com/learn/laser-cutting-cost/" class="ext" rel="noopener">Quotometry — How to price laser cutting: cut length, pierces, material and sheet use</a>, consulté le 26 novembre 2026.</li><li><a href="https://xnet.hypertherm.com/Xnet/library/download/?file=HYP254756" class="ext" rel="noopener">Hypertherm — Powermax cut charts (vitesses de référence)</a>, consulté le 26 novembre 2026.</li></ul></section>
+<aside class="price-cta"><div><p class="price-cta-k">Outil CoupeFab</p><p class="price-cta-t">Comparer le prix de la matière</p><p>Tôle, plaque, barre et tube : prix publiés chez les fournisseurs qui livrent au Québec, mis à jour chaque jour ouvrable.</p></div><a class="btn" href="/prix/">Ouvrir le comparateur</a></aside>
+      <p class="report"><a href="/a-propos/#contact">Une erreur, un ajout ? Écrivez-nous →</a></p>
+    </div>
+  </div>
+  <section class="related"><h2>Guides connexes</h2><div class="gcards"><a class="gcard" href="/guides/imbrication/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · tôlerie · Intermédiaire · 3 min de lecture</span><strong>Imbrication : placer plus de pièces par tôle sans risquer la coupe</strong><span class="card-desc">Espacement, marge de bord, rotation, chutes réutilisables, coupe en ligne commune et ordre de coupe : la méthode pour mieux utiliser chaque tôle, en SheetCam, ProNest ou autre.</span></a><a class="gcard" href="/guides/taux-horaire-atelier-quebec/" data-hub="shop"><span class="card-meta">Atelier · prix de revient · Intermédiaire · 4 min de lecture</span><strong>Calculer son taux horaire d’atelier au Québec (machine + main-d’œuvre), avec des sources honnêtes</strong><span class="card-desc">Méthode pour bâtir un taux horaire machine et main-d’œuvre : salaires publiés par Guichet-Emplois (CNP 72100), charges sociales, amortissement, énergie, entretien, frais généraux et heures réellement facturables. Pourquoi aucun « taux du marché » publié n’est fiable.</span></a><a class="gcard" href="/guides/ebavurage-finition/" data-hub="process"><span class="card-meta">Procédé · après la coupe · Débutant · 3 min de lecture</span><strong>Ébavurage et finition des pièces coupées : scories, bavures, arêtes et oxyde</strong><span class="card-desc">Quoi enlever (scories, bavure, arête vive, oxyde de coupe), dans quel ordre, avec quelle méthode (marteau, ponceuse à bande, brosses, tribofinition, machine à large bande), et comment le spécifier sur un dessin.</span></a><a class="gcard" href="/guides/calibres-tole-jauges/" data-hub="materials"><span class="card-meta">Matériaux · référence · Débutant · 4 min de lecture</span><strong>Calibres de tôle (jauges) : tableau acier, galvanisé, inox et aluminium en pouces et en mm</strong><span class="card-desc">Le même calibre n’a pas la même épaisseur selon la matière : 16 ga = 0,0598 po en acier, 0,0635 po en galvanisé, 0,0625 po en inox et 0,0508 po en aluminium. Tableau complet, pièges et conseils pour commander.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">Un guide par semaine, en français d’abord</p><p>Nouveaux guides, occasions au Québec et mouvements de prix. Pas de pub tierce.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="fr" novalidate>
+  <div class="hp" aria-hidden="true"><label>Site web<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Prénom ou atelier (facultatif)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Courriel
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="oui">
+    <span>J’accepte de recevoir l’infolettre de CoupeFab (guides, digest d’occasions et suivi des prix des tôles). Je peux me désabonner en tout temps. Voir la <a href="/confidentialite/">politique de confidentialité</a>.</span>
+  </label>
+  <button type="submit">S’inscrire</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">Conformité CASL : la case n’est pas précochée. Aucun envoi sans ce consentement exprès.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Soumissionner des pièces coupées au laser ou au plasma : méthode de calcul complète", "description": "Matière avec taux d’utilisation réel, temps de coupe (longueur + perçages), taux horaire machine, consommables, mise en course, ébavurage, pliage et marge : la méthode pas à pas avec une feuille de calcul type, sans chiffres inventés.", "inLanguage": "fr-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/guides/soumission-pieces-coupees/", "mainEntityOfPage": "https://coupefab.vercel.app/guides/soumission-pieces-coupees/", "proficiencyLevel": "Intermediate", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["quoting", "quote", "costing", "cost per part", "machine hourly rate", "cut length", "pierce count", "nesting utilization", "material cost", "setup", "deburring", "margin", "laser", "plasma"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Soumissionner des pièces coupées au laser ou au plasma : méthode de calcul complète", "description": "Matière avec taux d’utilisation réel, temps de coupe (longueur + perçages), taux horaire machine, consommables, mise en course, ébavurage, pliage et marge : la méthode pas à pas avec une feuille de calcul type, sans chiffres inventés.", "inLanguage": "fr-CA", "step": [{"@type": "HowToStep", "name": "Lire le dessin ", "text": "Lire le dessin : matière, nuance, épaisseur (calibre et décimale, voir Calibres de tôle (jauges) ), quantité, tolérances, fini."}, {"@type": "HowToStep", "name": "Mesurer la géométrie ", "text": "Mesurer la géométrie : longueur totale de coupe et nombre de contours (la FAO ou le logiciel d’imbrication les donne)."}, {"@type": "HowToStep", "name": "Imbriquer sur le format de tôle réel pour obtenir le taux d’utilisation et le nombre de pièces par tôle", "text": "Imbriquer sur le format de tôle réel pour obtenir le taux d’utilisation et le nombre de pièces par tôle."}, {"@type": "HowToStep", "name": "Chiffrer la matière ", "text": "Chiffrer la matière : décider si la chute est facturée (souvent oui, en tout ou en partie) ; utiliser un prix courant du fournisseur."}, {"@type": "HowToStep", "name": "Chiffrer le temps ", "text": "Chiffrer le temps : vitesse de la charte pour l’épaisseur, temps de perçage, marge pour les ralentissements (coins, petits trous)."}, {"@type": "HowToStep", "name": "Ajouter consommables, mise en course, secondaires", "text": "Ajouter consommables, mise en course, secondaires."}, {"@type": "HowToStep", "name": "Appliquer la marge et vérifier le prix au marché", "text": "Appliquer la marge et vérifier le prix au marché."}, {"@type": "HowToStep", "name": "Écrire les hypothèses sur la soumission (matière fournie ou non, tolérances, fini d’arête, délai, validité du ", "text": "Écrire les hypothèses sur la soumission (matière fournie ou non, tolérances, fini d’arête, délai, validité du prix matière)."}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Faut-il facturer la chute ?", "acceptedAnswer": {"@type": "Answer", "text": "C’est une décision commerciale ; beaucoup d’ateliers facturent la tôle entière pour les petites séries et un pourcentage d’utilisation pour les grandes. Écrivez-le dans la soumission."}}, {"@type": "Question", "name": "Comment obtenir mon taux horaire ?", "acceptedAnswer": {"@type": "Answer", "text": "En divisant tous les coûts annuels de la machine et de son opérateur par les heures réellement facturables ; voir Taux horaire d’atelier (Québec) ."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>La référence francophone de la découpe CNC et de la fabrication métallique : guides vérifiés, prix des tôles comparés, occasions au Québec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/guides/logiciels/">Logiciels CAO / FAO et commandes</a></li>
+        <li><a href="/guides/procedes/">Procédés de coupe et d’usinage</a></li>
+        <li><a href="/guides/fondamentaux/">Fondamentaux CNC</a></li>
+        <li><a href="/guides/materiaux/">Matériaux et nuances</a></li>
+        <li><a href="/guides/depannage/">Dépannage</a></li>
+        <li><a href="/guides/atelier/">Atelier : sécurité, soumissions, métrologie, formation</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explorer</p>
+      <ul>
+        <li><a href="/prix/">Prix des tôles</a></li>
+        <li><a href="/occasions/">Occasions</a></li>
+        <li><a href="/infolettre/">Infolettre</a></li>
+        <li><a href="/a-propos/">À propos</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Mentions</p>
+      <ul>
+        <li><a href="/divulgation/">Divulgation (affiliations)</a></li>
+        <li><a href="/confidentialite/">Confidentialité et LCAP</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Québec, Canada. Aucun lien d’affiliation. Les marques citées appartiennent à leurs propriétaires et sont mentionnées à titre descriptif.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>
