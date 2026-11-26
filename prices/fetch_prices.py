@@ -85,6 +85,14 @@ def get(url, *, method="GET", data=None, headers=None, timeout=40):
     return r
 
 
+def dump_latest(d):
+    """latest.json: metadata indented, one price row per line (compact yet diff-friendly)."""
+    meta = {k: v for k, v in d.items() if k != "rows"}
+    head = json.dumps(meta, ensure_ascii=False, indent=1)[:-2]
+    rows = ",\n".join(json.dumps(r, ensure_ascii=False, separators=(",", ":")) for r in d.get("rows", []))
+    return head + ',\n "rows": [\n' + rows + "\n ]\n}\n"
+
+
 def now_iso():
     return dt.datetime.now(TZ).isoformat(timespec="seconds")
 
@@ -894,7 +902,7 @@ def main():
                         r["weight_lb"] = round(wl, 2)
                         r["price_per_lb_cad"] = round(r["price_cad"] / wl, 3)
                         r["price_per_kg_cad"] = round(r["price_per_lb_cad"] * 2.20462, 3)
-        (OUT / "latest.json").write_text(json.dumps(prev, ensure_ascii=False, indent=1))
+        (OUT / "latest.json").write_text(dump_latest(prev))
         print(f"rederived {n} rows")
         return
     fx = fx_usdcad()
@@ -924,7 +932,7 @@ def main():
     latest = {"generated_at": now_iso(), "date": today, "fx": fx, "suppliers": SUPPLIERS,
               "suppliers_static": SUPPLIERS_STATIC, "status": status, "catalogue": N.CATALOGUE,
               "rows": all_rows}
-    (OUT / "latest.json").write_text(json.dumps(latest, ensure_ascii=False, indent=1))
+    (OUT / "latest.json").write_text(dump_latest(latest))
     write_history(prev.get("rows", []), all_rows, today)
     write_index(all_rows, today)
     print(f"total {len(all_rows)} rows -> {OUT/'latest.json'}")
