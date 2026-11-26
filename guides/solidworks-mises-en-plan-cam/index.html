@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOLIDWORKS : mises en plan pour l’atelier et SOLIDWORKS CAM (Standard ou Professional) — CoupeFab</title>
+<meta name="description" content="Ce qu’une mise en plan doit contenir pour l’usinage et le pliage, la différence entre SOLIDWORKS CAM Standard et Professional, l’usinage basé sur les fonctions et la base de données technologique.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/guides/solidworks-mises-en-plan-cam/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/solidworks-mises-en-plan-cam/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/solidworks-drawings-and-cam/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/solidworks-mises-en-plan-cam/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SOLIDWORKS : mises en plan pour l’atelier et SOLIDWORKS CAM (Standard ou Professional) — CoupeFab">
+<meta property="og:description" content="Ce qu’une mise en plan doit contenir pour l’usinage et le pliage, la différence entre SOLIDWORKS CAM Standard et Professional, l’usinage basé sur les fonctions et la base de données technologique.">
+<meta property="og:url" content="https://coupefab.vercel.app/guides/solidworks-mises-en-plan-cam/">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:locale:alternate" content="en_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="fr">
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/" aria-label="CoupeFab — Accueil"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Navigation principale">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/guides/logiciels/">Par logiciel</a></p>
+            <ul class="mega-list two"><li><a href="/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/guides/debuter-sheetcam/">SheetCam</a></li><li><a href="/guides/solidworks-tolerie-dxf/">SOLIDWORKS tôlerie</a></li><li><a href="/guides/autocad-nettoyer-dxf/">AutoCAD (DXF)</a></li><li><a href="/guides/fusion-fao-debuter/">Fusion (FAO)</a></li><li><a href="/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/guides/bricscad-dxf/">BricsCAD → DXF</a></li><li><a href="/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/guides/inventor-tolerie-cam/">Inventor</a></li><li><a href="/guides/mastercam-parcours-2d-dynamic/">Mastercam 2D</a></li><li><a href="/guides/mastercam-post-tour/">Mastercam post et tour</a></li><li><a href="/guides/onshape-tolerie-cam/">Onshape</a></li><li><a href="/guides/solidworks-mises-en-plan-cam/">SOLIDWORKS CAM et mises en plan</a></li><li><a href="/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/guides/freecad-cam/">FreeCAD (CAM)</a></li><li><a href="/guides/vectric-vcarve-aspire/">Vectric VCarve / Aspire</a></li><li><a href="/guides/lightburn-laser/">LightBurn</a></li><li><a href="/guides/pronest-imbrication/">ProNest</a></li></ul>
+            <p class="mega-all"><a href="/guides/logiciels/">Tous les logiciels →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/procedes/">Par procédé</a></p>
+            <ul class="mega-list"><li><a href="/guides/decoupe-plasma-cnc/">Plasma CNC</a></li><li><a href="/guides/laser-fibre/">Laser fibre</a></li><li><a href="/guides/jet-d-eau/">Jet d’eau</a></li><li><a href="/guides/routeur-cnc/">Routeur CNC</a></li><li><a href="/guides/fraiseuse-cnc/">Fraiseuse CNC</a></li><li><a href="/guides/tour-cnc/">Tour CNC</a></li><li><a href="/guides/presse-plieuse/">Presse plieuse</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/fondamentaux/">Par sujet</a></p>
+            <ul class="mega-list"><li><a href="/guides/reference-g-code-m-code/">G-code et M-code</a></li><li><a href="/guides/avances-vitesses/">Avances et vitesses</a></li><li><a href="/guides/kerf-qualite-coupe/">Kerf et qualité de coupe</a></li><li><a href="/guides/pliage-k-factor/">Pliage : K-factor et déduction</a></li><li><a href="/guides/nuances-metaux/">Nuances de métaux</a></li><li><a href="/guides/dxf-bonnes-pratiques/">DXF : bonnes pratiques</a></li><li class="more"><a href="/guides/fondamentaux/">Fondamentaux CNC →</a></li><li class="more"><a href="/guides/depannage/">Dépannage →</a></li><li class="more"><a href="/guides/atelier/">Atelier : sécurité, achats, consommables →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/prix/">
+              <span class="feature-k">Outil</span>
+              <strong>Prix des tôles</strong>
+              <span>Tôle, plaque, barre et tube : prix publiés chez les fournisseurs qui livrent au Québec, mis à jour chaque jour ouvrable.</span>
+            </a>
+            <a class="mega-allguides" href="/guides/">Tous les guides (41) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/prix/">Prix des tôles</a></li>
+    <li><a class="nav-link" href="/occasions/">Occasions</a></li>
+    <li><a class="nav-link" href="/infolettre/">Infolettre</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Rechercher"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Rechercher</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Langue">
+        <a href="/guides/solidworks-mises-en-plan-cam/" hreflang="fr-CA" lang="fr-CA" aria-current="true">FR</a><a href="/en/guides/solidworks-drawings-and-cam/" hreflang="en-CA" lang="en-CA">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Rechercher">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Rechercher un guide (ex. SheetCam, K-factor, scories)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Fermer</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>Aucun guide trouvé. Essayez un autre mot (logiciel, procédé, matériau).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Fil d’Ariane"><ol><li><a href="/">Accueil</a></li><li><a href="/guides/">Guides</a></li><li><a href="/guides/logiciels/">Logiciels CAO / FAO et commandes</a></li><li aria-current="page">SOLIDWORKS CAM et mises en plan</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://coupefab.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/guides/"}, {"@type": "ListItem", "position": 3, "name": "Logiciels CAO / FAO et commandes", "item": "https://coupefab.vercel.app/guides/logiciels/"}, {"@type": "ListItem", "position": 4, "name": "SOLIDWORKS CAM et mises en plan"}]}</script>
+<article class="guide" data-guide="solidworks-drawings-cam">
+  <header class="guide-head">
+    <p class="kicker">Logiciel · FAO</p>
+    <h1>SOLIDWORKS : mises en plan pour l’atelier et SOLIDWORKS CAM (Standard ou Professional)</h1>
+    <p class="guide-lede">Ce qu’une mise en plan doit contenir pour l’usinage et le pliage, la différence entre SOLIDWORKS CAM Standard et Professional, l’usinage basé sur les fonctions et la base de données technologique.</p>
+    <p class="guide-meta">
+      <span>Révisé le <time datetime="2026-11-26">26 novembre 2026</time></span>
+      <span>3 min de lecture</span>
+      <span>Niveau : Intermédiaire</span>
+      <span class="pill pill-draft" tabindex="0" title="Rédigé par CoupeFab à partir des documents officiels cités. Révision technique par Michaël Brassard en attente.">Brouillon<span class="pill-tip" role="tooltip">Rédigé par CoupeFab à partir des documents officiels cités. Révision technique par Michaël Brassard en attente.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>Sur cette page</summary><ol><li><a href="#une-mise-en-plan-prete-pour-l-atelier">Une mise en plan prête pour l’atelier</a></li><li><a href="#solidworks-cam-standard-ou-professional">SOLIDWORKS CAM : Standard ou Professional</a></li><li><a href="#comment-solidworks-cam-raisonne">Comment SOLIDWORKS CAM raisonne</a></li><li><a href="#erreurs-frequentes">Erreurs fréquentes</a></li><li><a href="#faq">FAQ</a></li><li><a href="#a-valider-en-atelier-michael">À valider en atelier (Michaël)</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p>SOLIDWORKS sert à deux choses en atelier : produire des <strong>mises en plan</strong> que l’atelier peut lire sans appeler le dessinateur, et, avec <strong>SOLIDWORKS CAM</strong>, programmer l’usinage directement depuis le modèle.</p>
+<h2 id="une-mise-en-plan-prete-pour-l-atelier">Une mise en plan prête pour l’atelier</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Élément</th><th>Pourquoi</th></tr></thead><tbody>
+<tr><td>Matière, nuance, épaisseur, fini</td><td>Achat et choix des paramètres — voir <a href="/guides/nuances-metaux/">Nuances</a></td></tr>
+<tr><td>Tolérance générale (ex. ISO 2768-m)</td><td>Évite de coter chaque tolérance — voir <a href="/guides/tolerances-cnc/">Tolérances</a></td></tr>
+<tr><td>Cotes fonctionnelles seulement tolérancées serré</td><td>Le serré coûte cher</td></tr>
+<tr><td>Vue dépliée et tableau de pliage (tôlerie)</td><td>Angle, sens, rayon, ordre</td></tr>
+<tr><td>Révision et date</td><td>L’atelier doit savoir quelle version il fabrique</td></tr>
+<tr><td>Ébavurage, arêtes vives</td><td>Une note évite des retours</td></tr>
+</tbody></table></div>
+<aside class="callout callout-tip"><p class="callout-label">Astuce d’atelier</p><p>Une cote sans tolérance n’est pas « exacte » : elle relève de la tolérance générale indiquée dans le cartouche. Sans tolérance générale, l’atelier devine.</p></aside>
+<h2 id="solidworks-cam-standard-ou-professional">SOLIDWORKS CAM : Standard ou Professional</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th></th><th>Standard</th><th>Professional</th></tr></thead><tbody>
+<tr><td>Disponibilité</td><td>Inclus avec un abonnement SOLIDWORKS actif</td><td>Achat séparé</td></tr>
+<tr><td>Fraisage 2,5 axes</td><td>Oui</td><td>Oui</td></tr>
+<tr><td>Fraisage 3 axes, usinage haute vitesse (VoluMill)</td><td>—</td><td>Oui</td></tr>
+<tr><td>Tournage</td><td>—</td><td>Oui</td></tr>
+<tr><td>Usinage d’assemblages, 3+2</td><td>—</td><td>Oui</td></tr>
+</tbody></table></div>
+<p>SOLIDWORKS CAM est propulsé par la technologie <strong>CAMWorks</strong> ; HCL commercialise aussi CAMWorks comme produit distinct, avec davantage d’options.</p>
+<h2 id="comment-solidworks-cam-raisonne">Comment SOLIDWORKS CAM raisonne</h2>
+<ol class="steps"><li><strong>Reconnaissance des fonctions</strong> : le logiciel identifie poches, trous, bossages, contours dans le modèle.</li><li><strong>Base de données technologique (TechDB)</strong> : des règles associent chaque type de fonction à des opérations, des outils et des paramètres.</li><li><strong>Usinage basé sur les tolérances</strong> (TBM) : les tolérances et états de surface du modèle orientent le choix des opérations (par exemple alésage plutôt que perçage).</li><li>Génération des parcours, simulation, post-traitement.</li></ol>
+<aside class="callout callout-note"><p class="callout-label">À savoir</p><p>La qualité du résultat dépend surtout de la TechDB. Investir quelques jours à y entrer vos outils, matières et stratégies est ce qui rend le logiciel rapide ensuite.</p></aside>
+<h2 id="erreurs-frequentes">Erreurs fréquentes</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Erreur</th><th>Correctif</th></tr></thead><tbody>
+<tr><td>TechDB par défaut jamais adaptée</td><td>Entrer vos outils et vos avances</td></tr>
+<tr><td>Mauvaise machine ou post</td><td>Choisir la machine avant de générer</td></tr>
+<tr><td>Plan sans tolérance générale</td><td>Ajouter la norme dans le cartouche</td></tr>
+</tbody></table></div>
+<h2 id="faq">FAQ</h2>
+<h3 id="solidworks-cam-remplace-t-il-mastercam">SOLIDWORKS CAM remplace-t-il Mastercam ?</h3>
+<p>Pour des pièces prismatiques simples en 2,5 axes, il peut suffire. Pour du 3 axes avancé, du tournage poussé ou du multiaxe, comparez avec <a href="/guides/mastercam-parcours-2d-dynamic/">Mastercam</a>.</p>
+<section class="review-box"><h2 id="a-valider-en-atelier-michael">À valider en atelier (Michaël)</h2>
+<ul><li>Modèle de cartouche et notes générales que vous recommandez.</li></ul>
+</section><section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://www.solidworks.com/product/solidworks-cam" class="ext" rel="noopener">SOLIDWORKS — SOLIDWORKS CAM</a>, consulté le 26 novembre 2026.</li><li><a href="https://camworks.com/" class="ext" rel="noopener">HCL CAMWorks</a>.</li><li><a href="https://www.iso.org/standard/7748.html" class="ext" rel="noopener">ISO 2768-1 — Tolérances générales</a>.</li></ul></section>
+
+      <p class="report"><a href="/a-propos/#contact">Une erreur, un ajout ? Écrivez-nous →</a></p>
+    </div>
+  </div>
+  <section class="related"><h2>Guides connexes</h2><div class="gcards"><a class="gcard" href="/guides/solidworks-tolerie-dxf/" data-hub="software"><span class="card-meta">Logiciel · CAO · Intermédiaire · 3 min de lecture</span><strong>SOLIDWORKS tôlerie : paramètres de pliage, déplié et export DXF propre pour la découpe</strong><span class="card-desc">Tôle de base, facteur K, tableau de pliage ou déduction, déplié, puis export DXF/DWG du déplié avec lignes de pliage sur leur propre calque : la démarche pour envoyer un fichier qui se coupe du premier coup.</span></a><a class="gcard" href="/guides/tolerances-cnc/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · dessin · Intermédiaire · 3 min de lecture</span><strong>Tolérances en fabrication : ISO 2768, ajustements et ce que chaque procédé tient</strong><span class="card-desc">Tolérances générales ISO 2768-1, ajustements ISO 286, cotation fonctionnelle et tolérances réalistes selon le procédé (plasma, laser, pliage, usinage) — pour des dessins qui coûtent le juste prix.</span></a><a class="gcard" href="/guides/post-processeurs/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · FAO · Intermédiaire · 3 min de lecture</span><strong>Post-processeurs : choisir, tester et modifier sans casser la machine</strong><span class="card-desc">Ce que fait un post-processeur, où trouver le bon pour votre commande (Fusion, Mastercam, SheetCam…), comment le valider à blanc et quelles modifications sont sûres.</span></a><a class="gcard" href="/guides/mastercam-parcours-2d-dynamic/" data-hub="software"><span class="card-meta">Logiciel · FAO · Intermédiaire · 3 min de lecture</span><strong>Mastercam : parcours 2D et fraisage dynamique (Dynamic Motion) sans se tromper</strong><span class="card-desc">Définition machine, brut, chaînage, Dynamic Mill, Peel Mill, Dynamic Contour, Face et vérification : la démarche Mastercam en 2D, les niveaux de licence et les pièges de chaînage les plus courants.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">Un guide par semaine, en français d’abord</p><p>Nouveaux guides, occasions au Québec et mouvements de prix. Pas de pub tierce.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="fr" novalidate>
+  <div class="hp" aria-hidden="true"><label>Site web<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Prénom ou atelier (facultatif)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Courriel
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="oui">
+    <span>J’accepte de recevoir l’infolettre de CoupeFab (guides, digest d’occasions et suivi des prix des tôles). Je peux me désabonner en tout temps. Voir la <a href="/confidentialite/">politique de confidentialité</a>.</span>
+  </label>
+  <button type="submit">S’inscrire</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">Conformité CASL : la case n’est pas précochée. Aucun envoi sans ce consentement exprès.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "SOLIDWORKS : mises en plan pour l’atelier et SOLIDWORKS CAM (Standard ou Professional)", "description": "Ce qu’une mise en plan doit contenir pour l’usinage et le pliage, la différence entre SOLIDWORKS CAM Standard et Professional, l’usinage basé sur les fonctions et la base de données technologique.", "inLanguage": "fr-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/guides/solidworks-mises-en-plan-cam/", "mainEntityOfPage": "https://coupefab.vercel.app/guides/solidworks-mises-en-plan-cam/", "proficiencyLevel": "Intermediate", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["solidworks", "solidworks cam", "camworks", "drawings", "mbd", "technology database", "tolerance based machining", "setup sheet"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "SOLIDWORKS CAM remplace-t-il Mastercam ?", "acceptedAnswer": {"@type": "Answer", "text": "Pour des pièces prismatiques simples en 2,5 axes, il peut suffire. Pour du 3 axes avancé, du tournage poussé ou du multiaxe, comparez avec Mastercam ."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>La référence francophone de la découpe CNC et de la fabrication métallique : guides vérifiés, prix des tôles comparés, occasions au Québec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/guides/logiciels/">Logiciels CAO / FAO et commandes</a></li>
+        <li><a href="/guides/procedes/">Procédés de coupe et d’usinage</a></li>
+        <li><a href="/guides/fondamentaux/">Fondamentaux CNC</a></li>
+        <li><a href="/guides/depannage/">Dépannage</a></li>
+        <li><a href="/guides/atelier/">Atelier : sécurité, achats, consommables</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explorer</p>
+      <ul>
+        <li><a href="/prix/">Prix des tôles</a></li>
+        <li><a href="/occasions/">Occasions</a></li>
+        <li><a href="/infolettre/">Infolettre</a></li>
+        <li><a href="/a-propos/">À propos</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Mentions</p>
+      <ul>
+        <li><a href="/divulgation/">Divulgation (affiliations)</a></li>
+        <li><a href="/confidentialite/">Confidentialité et LCAP</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Québec, Canada. Aucun lien d’affiliation. Les marques citées appartiennent à leurs propriétaires et sont mentionnées à titre descriptif.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>
