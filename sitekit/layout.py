@@ -40,7 +40,7 @@ def mega_nav(lang: str, path: str) -> str:
     topics = [g for tid in topic_ids for g in reg if g.id == tid]
     hubs_more = "".join(
         f'<li class="more"><a href="{hub_path(h, lang)}">{esc(HUBS[h][2] if lang == "fr" else HUBS[h][3])} →</a></li>'
-        for h in ("fundamentals", "troubleshooting", "shop"))
+        for h in ("fundamentals", "materials", "troubleshooting", "shop"))
     guides_active = path.startswith(p["guides"])
     def cur(key):
         return ' aria-current="page"' if path.startswith(p[key]) and (key != "home") else ""
@@ -184,6 +184,7 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
         <li><a href="{hub_path('software', lang)}">{HUBS['software'][2] if fr else HUBS['software'][3]}</a></li>
         <li><a href="{hub_path('process', lang)}">{HUBS['process'][2] if fr else HUBS['process'][3]}</a></li>
         <li><a href="{hub_path('fundamentals', lang)}">{HUBS['fundamentals'][2] if fr else HUBS['fundamentals'][3]}</a></li>
+        <li><a href="{hub_path('materials', lang)}">{HUBS['materials'][2] if fr else HUBS['materials'][3]}</a></li>
         <li><a href="{hub_path('troubleshooting', lang)}">{HUBS['troubleshooting'][2] if fr else HUBS['troubleshooting'][3]}</a></li>
         <li><a href="{hub_path('shop', lang)}">{HUBS['shop'][2] if fr else HUBS['shop'][3]}</a></li>
       </ul>

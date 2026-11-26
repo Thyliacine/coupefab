@@ -11,14 +11,17 @@ HUBS = {
     "fundamentals": ("fondamentaux", "fundamentals", "Fondamentaux CNC", "CNC fundamentals",
                      "G-code, post-processeurs, décalages d’origine, avances et vitesses, kerf, entrées, imbrication, DXF, tolérances, pliage, nuances.",
                      "G-code, post processors, work offsets, feeds and speeds, kerf, lead-ins, nesting, DXF, tolerances, bending, grades."),
+    "materials": ("materiaux", "materials", "Matériaux et nuances", "Materials and grades",
+                  "Acier doux, inox, aluminium, cuivre, laiton, bronze, alliages de nickel : usinabilité, coupe, pliage, soudage et calibres, avec lien vers les prix publiés.",
+                  "Mild steel, stainless, aluminum, copper, brass, bronze, nickel alloys: machinability, cutting, bending, welding and gauges, linked to published prices."),
     "troubleshooting": ("depannage", "troubleshooting", "Dépannage", "Troubleshooting",
-                        "Scories, biseau, perte d’arc, broutage, bris d’outil : symptôme → cause → correctif.",
-                        "Dross, bevel, arc loss, chatter, tool breakage: symptom → cause → fix."),
-    "shop": ("atelier", "shop", "Atelier : sécurité, achats, consommables", "Shop: safety, buying, consumables",
-             "EPI, fumées et CNESST, acheter une CNC au Canada, table usagée, consommables.",
-             "PPE, fumes and CNESST, buying a CNC in Canada, used tables, consumables."),
+                        "Scories plasma et laser, biseau, THC qui oscille, broutage, arrachement au routeur, erreurs de post : symptôme → cause → correctif.",
+                        "Plasma and laser dross, bevel, THC hunting, chatter, router tear-out, post errors: symptom → cause → fix."),
+    "shop": ("atelier", "shop", "Atelier : sécurité, soumissions, métrologie, formation", "Shop: safety, quoting, inspection, training",
+             "EPI, fumées et CNESST, soumissions et taux horaires, montage et métrologie, formation au Québec, achats et consommables.",
+             "PPE, fumes and CNESST, quoting and shop rates, fixturing and inspection, training in Quebec, buying and consumables."),
 }
-HUB_ORDER = ["software", "process", "fundamentals", "troubleshooting", "shop"]
+HUB_ORDER = ["software", "process", "fundamentals", "materials", "troubleshooting", "shop"]
 
 SOFTWARE_GROUPS = [
     ("cad", "CAO / DAO", "CAD"),
