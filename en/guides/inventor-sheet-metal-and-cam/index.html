@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Autodesk Inventor: sheet metal rules, flat pattern, DXF and Inventor CAM — CoupeFab</title>
+<meta name="description" content="Sheet metal styles and unfold rules (K-factor, bend table), creating the flat pattern, exporting the flat face to DXF with layers, and where Inventor CAM sits compared to Fusion.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/en/guides/inventor-sheet-metal-and-cam/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/inventor-sheet-metal-and-cam/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/inventor-tolerie-cam/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/inventor-tolerie-cam/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Autodesk Inventor: sheet metal rules, flat pattern, DXF and Inventor CAM — CoupeFab">
+<meta property="og:description" content="Sheet metal styles and unfold rules (K-factor, bend table), creating the flat pattern, exporting the flat face to DXF with layers, and where Inventor CAM sits compared to Fusion.">
+<meta property="og:url" content="https://coupefab.vercel.app/en/guides/inventor-sheet-metal-and-cam/">
+<meta property="og:locale" content="en_CA">
+<meta property="og:locale:alternate" content="fr_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="en">
+<a class="skip" href="#contenu">Skip to content</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/en/" aria-label="CoupeFab — Home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Main navigation">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/en/guides/software/">By software</a></p>
+            <ul class="mega-list two"><li><a href="/en/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/en/guides/getting-started-sheetcam/">SheetCam</a></li><li><a href="/en/guides/solidworks-sheet-metal-flat-pattern-dxf/">SOLIDWORKS sheet metal</a></li><li><a href="/en/guides/autocad-dxf-cleanup/">AutoCAD (DXF)</a></li><li><a href="/en/guides/fusion-cam-getting-started/">Fusion CAM</a></li><li><a href="/en/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/en/guides/bricscad-to-clean-dxf/">BricsCAD → DXF</a></li><li><a href="/en/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/en/guides/inventor-sheet-metal-and-cam/">Inventor</a></li><li><a href="/en/guides/mastercam-2d-toolpaths-dynamic-milling/">Mastercam 2D</a></li><li><a href="/en/guides/mastercam-posts-and-lathe/">Mastercam posts and lathe</a></li><li><a href="/en/guides/onshape-sheet-metal-cam/">Onshape</a></li><li><a href="/en/guides/solidworks-drawings-and-cam/">SOLIDWORKS CAM and drawings</a></li><li><a href="/en/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/en/guides/freecad-cam/">FreeCAD CAM</a></li><li><a href="/en/guides/vectric-vcarve-aspire/">Vectric VCarve / Aspire</a></li><li><a href="/en/guides/lightburn-laser/">LightBurn</a></li><li><a href="/en/guides/pronest-nesting/">ProNest</a></li></ul>
+            <p class="mega-all"><a href="/en/guides/software/">All software →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/processes/">By process</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/cnc-plasma-cutting/">CNC plasma</a></li><li><a href="/en/guides/fiber-laser-cutting/">Fiber laser</a></li><li><a href="/en/guides/waterjet-cutting/">Waterjet</a></li><li><a href="/en/guides/cnc-router/">CNC router</a></li><li><a href="/en/guides/cnc-mill/">CNC mill</a></li><li><a href="/en/guides/cnc-lathe/">CNC lathe</a></li><li><a href="/en/guides/press-brake-bending/">Press brake</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/fundamentals/">By topic</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/g-code-m-code-reference/">G-code &amp; M-code</a></li><li><a href="/en/guides/feeds-and-speeds/">Feeds and speeds</a></li><li><a href="/en/guides/kerf-and-cut-quality/">Kerf and cut quality</a></li><li><a href="/en/guides/bend-allowance-k-factor/">Bending: K-factor and deduction</a></li><li><a href="/en/guides/metal-grades/">Metal grades</a></li><li><a href="/en/guides/dxf-best-practices/">DXF best practices</a></li><li class="more"><a href="/en/guides/fundamentals/">CNC fundamentals →</a></li><li class="more"><a href="/en/guides/troubleshooting/">Troubleshooting →</a></li><li class="more"><a href="/en/guides/shop/">Shop: safety, buying, consumables →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/en/sheet-prices/">
+              <span class="feature-k">Tool</span>
+              <strong>Sheet prices</strong>
+              <span>Sheet, plate, bar and tube: published prices from suppliers serving Quebec, refreshed every business day.</span>
+            </a>
+            <a class="mega-allguides" href="/en/guides/">All guides (41) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/en/sheet-prices/">Sheet prices</a></li>
+    <li><a class="nav-link" href="/en/used-equipment/">Used equipment</a></li>
+    <li><a class="nav-link" href="/en/newsletter/">Newsletter</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Search</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Language">
+        <a href="/guides/inventor-tolerie-cam/" hreflang="fr-CA" lang="fr-CA">FR</a><a href="/en/guides/inventor-sheet-metal-and-cam/" hreflang="en-CA" lang="en-CA" aria-current="true">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Search guides (e.g. SheetCam, K-factor, dross)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Close</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>No guide found. Try another word (software, process, material).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/en/">Home</a></li><li><a href="/en/guides/">Guides</a></li><li><a href="/en/guides/software/">CAD/CAM software and controls</a></li><li aria-current="page">Inventor</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coupefab.vercel.app/en/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/en/guides/"}, {"@type": "ListItem", "position": 3, "name": "CAD/CAM software and controls", "item": "https://coupefab.vercel.app/en/guides/software/"}, {"@type": "ListItem", "position": 4, "name": "Inventor"}]}</script>
+<article class="guide" data-guide="inventor">
+  <header class="guide-head">
+    <p class="kicker">Software · CAD</p>
+    <h1>Autodesk Inventor: sheet metal rules, flat pattern, DXF and Inventor CAM</h1>
+    <p class="guide-lede">Sheet metal styles and unfold rules (K-factor, bend table), creating the flat pattern, exporting the flat face to DXF with layers, and where Inventor CAM sits compared to Fusion.</p>
+    <p class="guide-meta">
+      <span>Reviewed <time datetime="2026-11-26">November 26, 2026</time></span>
+      <span>3 min read</span>
+      <span>Level : Intermediate</span>
+      <span class="pill pill-draft" tabindex="0" title="Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.">Draft<span class="pill-tip" role="tooltip">Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>On this page</summary><ol><li><a href="#1-sheet-metal-and-unfold-rules">1. Sheet metal and unfold rules</a></li><li><a href="#2-model-and-unfold">2. Model and unfold</a></li><li><a href="#3-export-to-dxf">3. Export to DXF</a></li><li><a href="#4-inventor-cam">4. Inventor CAM</a></li><li><a href="#checklist">Checklist</a></li><li><a href="#faq">FAQ</a></li><li><a href="#for-michael-to-review">For Michaël to review</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p>Inventor handles sheet metal with centralized <strong>rules</strong>: once the shop’s rule is defined, every flat pattern uses it. That step decides whether bent parts come out to size.</p>
+<h2 id="1-sheet-metal-and-unfold-rules">1. Sheet metal and unfold rules</h2>
+<p>In <strong>Sheet Metal Defaults</strong>, you choose:</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Item</th><th>Contents</th></tr></thead><tbody>
+<tr><td>Sheet metal rule</td><td>Material, thickness, bend radius, reliefs</td></tr>
+<tr><td>Unfold rule</td><td>Linear K-factor, <strong>bend table</strong> or custom equation</td></tr>
+</tbody></table></div>
+<aside class="callout callout-tip"><p class="callout-label">Shop tip</p><p>Create one rule per material / thickness / tooling combination, with values measured by your bender. See <a href="/en/guides/bend-allowance-k-factor/">Bend allowance and K-factor</a>.</p></aside>
+<h2 id="2-model-and-unfold">2. Model and unfold</h2>
+<ol class="steps"><li>Create the part from the <strong>Sheet Metal</strong> template.</li><li>Native features: Face, Contour Flange, Flange, Hem, Bend.</li><li><strong>Create Flat Pattern</strong>; fix any reported errors.</li><li>Check the flat pattern orientation and size.</li></ol>
+<h2 id="3-export-to-dxf">3. Export to DXF</h2>
+<ol class="steps"><li>In the flat pattern, right-click the face (or “Flat Pattern” in the browser) → <strong>Save Copy As / Export Face As DXF</strong>.</li><li>Choose the DXF version.</li><li><strong>Layer</strong> tab: turn the outer profile, inner profiles, bend up and down lines, and etching on or off, and name their layers.</li><li>Turn off layers not needed for cutting (tangent lines, bend centrelines if not wanted).</li></ol>
+<aside class="callout callout-warn"><p class="callout-label">Caution</p><p>Exporting bend lines on the same layer as the cut may get them cut. Keep them on dedicated layers or turn them off.</p></aside>
+<h2 id="4-inventor-cam">4. Inventor CAM</h2>
+<p>Inventor CAM (from Inventor HSM) builds CAM into Inventor, with logic close to <a href="/en/guides/fusion-cam-getting-started/">Fusion</a>: setup, 2D / 3D operations, simulation, posting with the same Autodesk post library. It is offered with the <strong>Product Design &amp; Manufacturing Collection</strong>; check which level your subscription includes.</p>
+<h2 id="checklist">Checklist</h2>
+<ul class="checklist"><li>Shop unfold rule applied</li><li>Flat pattern without errors</li><li>DXF: cut, bend and etch layers separate</li><li>1:1 scale checked in a viewer</li></ul>
+<h2 id="faq">FAQ</h2>
+<h3 id="inventor-or-fusion-for-a-small-shop">Inventor or Fusion for a small shop?</h3>
+<p>Inventor is strong in large assemblies and production sheet metal; Fusion is more affordable and builds CAM into the same environment. The choice depends mostly on your customers and their file formats.</p>
+<section class="review-box"><h2 id="for-michael-to-review">For Michaël to review</h2>
+<ul><li>Your unfold rule and the DXF layers your CAM expects.</li></ul>
+</section><section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://help.autodesk.com/view/INVNTOR/2025/ENU/" class="ext" rel="noopener">Autodesk — Inventor help: sheet metal and unfold rules</a>, consulted November 26, 2026.</li><li><a href="https://www.autodesk.com/products/inventor-cam/overview" class="ext" rel="noopener">Autodesk — Inventor CAM</a>.</li><li><a href="https://www.autodesk.com/collections/product-design-manufacturing/overview" class="ext" rel="noopener">Autodesk — Product Design &amp; Manufacturing Collection</a>.</li></ul></section>
+
+      <p class="report"><a href="/en/about/#contact">Spotted an error or want something added? Tell us →</a></p>
+    </div>
+  </div>
+  <section class="related"><h2>Related guides</h2><div class="gcards"><a class="gcard" href="/en/guides/solidworks-sheet-metal-flat-pattern-dxf/" data-hub="software"><span class="card-meta">Software · CAD · Intermediate · 3 min read</span><strong>SOLIDWORKS sheet metal: bend parameters, flat pattern and a clean DXF for cutting</strong><span class="card-desc">Base flange, K-factor, bend table or deduction, flat pattern, then DXF/DWG export of the flat pattern with bend lines on their own layer: the workflow to send a file that cuts right the first time.</span></a><a class="gcard" href="/en/guides/bend-allowance-k-factor/" data-hub="fundamentals"><span class="card-meta">Fundamentals · sheet metal · Intermediate · 3 min read</span><strong>Bending: bend allowance, K-factor and bend deduction, with the formulas</strong><span class="card-desc">Get the flat pattern right: formulas for bend allowance (BA), outside setback (OSSB) and bend deduction (BD), back-calculate the real K-factor from a test bend, and enter it in CAD.</span></a><a class="gcard" href="/en/guides/dxf-best-practices/" data-hub="fundamentals"><span class="card-meta">Fundamentals · CAD/CAM · Beginner · 3 min read</span><strong>DXF for cutting: the rules that prevent 90% of problems</strong><span class="card-desc">Units, 1:1 scale, closed contours, duplicates, splines, layers, text and tiny features: the rules to follow before sending a DXF to CAM or to a cutting job shop.</span></a><a class="gcard" href="/en/guides/fusion-cam-getting-started/" data-hub="software"><span class="card-meta">Software · CAM · Beginner · 3 min read</span><strong>Getting started with Autodesk Fusion CAM: 2D milling, plasma cutting and posting</strong><span class="card-desc">Setup, 2D operations, Adaptive, plasma or laser profiling, simulation and post processing in Fusion’s Manufacture workspace, plus the real limits of the Personal Use licence.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">One guide a week, French-first</p><p>New guides, used equipment in Quebec and price moves. No third-party ads.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="en" novalidate>
+  <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Name or shop (optional)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Email
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="yes">
+    <span>I agree to receive the CoupeFab newsletter (guides, used-equipment digest, and sheet-price updates). I may unsubscribe at any time. See the <a href="/en/privacy/">privacy policy</a>.</span>
+  </label>
+  <button type="submit">Subscribe</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">CASL compliance: the box is not pre-checked. Nothing is sent without this express consent.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Autodesk Inventor: sheet metal rules, flat pattern, DXF and Inventor CAM", "description": "Sheet metal styles and unfold rules (K-factor, bend table), creating the flat pattern, exporting the flat face to DXF with layers, and where Inventor CAM sits compared to Fusion.", "inLanguage": "en-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/en/guides/inventor-sheet-metal-and-cam/", "mainEntityOfPage": "https://coupefab.vercel.app/en/guides/inventor-sheet-metal-and-cam/", "proficiencyLevel": "Intermediate", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["inventor", "sheet metal", "unfold rule", "k-factor", "flat pattern", "dxf", "inventor cam", "autodesk"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Autodesk Inventor: sheet metal rules, flat pattern, DXF and Inventor CAM", "description": "Sheet metal styles and unfold rules (K-factor, bend table), creating the flat pattern, exporting the flat face to DXF with layers, and where Inventor CAM sits compared to Fusion.", "inLanguage": "en-CA", "step": [{"@type": "HowToStep", "name": "Create the part from the Sheet Metal template", "text": "Create the part from the Sheet Metal template."}, {"@type": "HowToStep", "name": "Native features", "text": "Native features: Face, Contour Flange, Flange, Hem, Bend."}, {"@type": "HowToStep", "name": "Create Flat Pattern ; fix any reported errors", "text": "Create Flat Pattern ; fix any reported errors."}, {"@type": "HowToStep", "name": "Check the flat pattern orientation and size", "text": "Check the flat pattern orientation and size."}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Inventor or Fusion for a small shop?", "acceptedAnswer": {"@type": "Answer", "text": "Inventor is strong in large assemblies and production sheet metal; Fusion is more affordable and builds CAM into the same environment. The choice depends mostly on your customers and their file formats."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/en/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>A French-first reference for CNC cutting and metal fabrication: sourced guides, compared sheet prices, used equipment in Quebec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/en/guides/software/">CAD/CAM software and controls</a></li>
+        <li><a href="/en/guides/processes/">Cutting and machining processes</a></li>
+        <li><a href="/en/guides/fundamentals/">CNC fundamentals</a></li>
+        <li><a href="/en/guides/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/en/guides/shop/">Shop: safety, buying, consumables</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explore</p>
+      <ul>
+        <li><a href="/en/sheet-prices/">Sheet prices</a></li>
+        <li><a href="/en/used-equipment/">Used equipment</a></li>
+        <li><a href="/en/newsletter/">Newsletter</a></li>
+        <li><a href="/en/about/">About</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Legal</p>
+      <ul>
+        <li><a href="/en/affiliate-disclosure/">Affiliate disclosure</a></li>
+        <li><a href="/en/privacy/">Privacy and CASL</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Quebec, Canada. No affiliate links. Trademarks belong to their owners and are used descriptively.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>
