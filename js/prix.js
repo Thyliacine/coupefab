@@ -13,7 +13,8 @@
   var ALIAS = { comparateur: 0, meilleurs: 0, tendance: 2, catalogue: 3, calibres: 3, fournisseurs: 4, alerte: 4 };
   var TIER = {
     best: T("Meilleur prix", "Best price"), good: T("Bon prix", "Good price"), avg: T("Dans la moyenne", "Average"),
-    high: T("Cher", "Expensive"), ref: T("Repère", "Benchmark"), oos: T("Rupture", "Out of stock"), check: T("À vérifier", "To check")
+    high: T("Cher", "Expensive"), ref: T("Repère", "Benchmark"), oos: T("Rupture", "Out of stock"), check: T("À vérifier", "To check"),
+    surplus: T("Surplus / indicatif", "Surplus / indicative")
   };
   var SHIP = {
     oui: T("Livre au Québec", "Ships to Quebec"), cueillette: T("Cueillette au Québec", "Pickup in Quebec"),
@@ -71,7 +72,7 @@
       e.preventDefault(); show((n + tabs.length) % tabs.length, { focus: true });
     });
   });
-  window.addEventListener("popstate", function () { var hp = hashParts(), i = tabIndex(hp.tab); if (i >= 0) { show(i, { push: false }); if (i === 0 && D) { applyQuery(hp.q); refreshOptions(); render(); } } });
+  window.addEventListener("popstate", function () { var hp = hashParts(), i = tabIndex(hp.tab); if (i >= 0) { show(i, { push: false }); if (i === 0 && D) { applyQuery(hp.q); (needFull() ? ensureFull() : Promise.resolve()).then(function () { applyQuery(hp.q); refreshOptions(); applyQuery(hp.q); render(); }); } } });
   function headerH() { var h = document.querySelector(".hdr, .site-header, body > header"); if (!h) return 0; var cs = getComputedStyle(h); return cs.position === "sticky" || cs.position === "fixed" ? h.offsetHeight : 0; }
   function setHeaderVar() { app.style.setProperty("--px-top", headerH() + "px"); }
   setHeaderVar(); window.addEventListener("resize", setHeaderVar);
@@ -83,7 +84,11 @@
     D = d; FULL = d.part === "all";
     ROWS = d.rows.map(function (a) { var o = {}; d.keys.forEach(function (k, i) { o[k] = a[i]; }); return o; });
   }
-  function needFull() { var v = F.form.value; return v && !SHEET[v]; }
+  function needFull() {
+    var v = F.form.value;
+    // a bar/tube spec (family|group|form|section), a non-sheet form, or a free-text search needs the full file
+    return (v && !SHEET[v]) || (F.spec.value.split("|").length > 3) || !!F.q.value.trim();
+  }
   function ensureFull() {
     if (FULL) return Promise.resolve();
     if (!loadingFull) {
@@ -146,13 +151,13 @@
       if (v.family && ignore !== "family" && r.family !== v.family) return false;
       if (v.grade && ignore !== "grade" && r.grade !== v.grade && !(v.grade.indexOf("A500") === 0 && r.grade === "A500")) return false;
       if (ignore !== "form") {
-        if (v.form === "all") { /* all */ } else if (v.form) { if (r.form !== v.form) return false; } else if (!SHEET[r.form]) return false;
+        if (v.form === "all") { /* all */ } else if (v.form) { if (r.form !== v.form) return false; } else if (!SHEET[r.form] && !(v.spec && v.spec.split("|").length > 3) && !words.length) return false;
       }
       if (v.spec && ignore !== "spec" && r.spec !== v.spec) return false;
       if (v.size && ignore !== "size" && sizeOf(r) !== v.size) return false;
       if (F.qc.checked && !buyable(r)) return false;
       if (F.cat.checked && !r.in_catalogue) return false;
-      if (F.cmp.checked && !r.tier) return false;
+      if (F.cmp.checked && (!r.tier || r.tier === "surplus")) return false;
       if (words.length) {
         var hay = (r.description + " " + r.grade + " " + specLabel(r) + " " + supName(r) + " " + r.size_label + " " + (r.gauge ? r.gauge + " ga" : "")).toLowerCase().replace(/,/g, ".");
         for (var i = 0; i < words.length; i++) if (hay.indexOf(words[i]) < 0 && hay.indexOf(words[i].replace(/^0\./, ".")) < 0) return false;
@@ -164,7 +169,12 @@
     opts(F.family, uniq(filtered("family").map(function (r) { return r.family; })).sort(function (a, b) { return a === "acier" ? -1 : b === "acier" ? 1 : famLabel(a).localeCompare(famLabel(b)); }).map(function (f) { return [f, famLabel(f)]; }));
     opts(F.grade, uniq(filtered("grade").map(function (r) { return r.grade; })).sort().map(function (g) { return [g, g]; }));
     var specs = {};
-    filtered("spec").forEach(function (r) { if (r.spec) specs[r.spec] = [r.spec, specLabel(r), r.thickness_in || 0]; });
+    filtered("spec").forEach(function (r) {
+      if (!r.spec) return;
+      var n = Math.max(r.n_src || 1, specs[r.spec] ? specs[r.spec][3] : 0);
+      specs[r.spec] = [r.spec, specLabel(r), r.thickness_in || 0, n];
+    });
+    Object.keys(specs).forEach(function (k) { var s = specs[k]; s[1] = s[1] + " · " + s[3] + T(s[3] > 1 ? " fournisseurs" : " fournisseur", s[3] > 1 ? " suppliers" : " supplier"); });
     opts(F.spec, Object.keys(specs).map(function (k) { return specs[k]; }).sort(function (a, b) { return a[2] - b[2] || (a[1] < b[1] ? -1 : 1); }));
     var sizes = {};
     filtered("size").forEach(function (r) { var s = sizeOf(r); if (s) sizes[s] = (r.width_in || 0) * (r.length_in || 0) || (r.length_ft || 0); });
@@ -172,6 +182,8 @@
   }
   function applyQuery(q) {
     ["family", "grade", "form", "spec", "size", "q"].forEach(function (k) { if (q.has(k)) F[k].value = q.get(k); });
+    var sp = (q.get("spec") || "").split("|");
+    if (sp.length > 3 && !q.get("form")) q.set("form", sp[2]);
     if (q.get("form") && F.form.value !== q.get("form")) { F.form.insertAdjacentHTML("beforeend", '<option value="' + esc(q.get("form")) + '">' + esc(q.get("form")) + "</option>"); F.form.value = q.get("form"); }
     if (q.get("spec") && F.spec.value !== q.get("spec")) { F.spec.insertAdjacentHTML("beforeend", '<option value="' + esc(q.get("spec")) + '"></option>'); F.spec.value = q.get("spec"); }
     if (q.get("grade") && F.grade.value !== q.get("grade")) { F.grade.insertAdjacentHTML("beforeend", '<option value="' + esc(q.get("grade")) + '"></option>'); F.grade.value = q.get("grade"); }
@@ -239,11 +251,23 @@
     return c;
   }
   function setCount(t) { document.getElementById("px-count").textContent = t; }
+  function nsrc(r) {
+    var n = r.n_src || 1;
+    return '<span class="px-nsrc" title="' + esc(T("Nombre de fournisseurs qui publient un prix pour cette spécification", "Number of suppliers publishing a price for this spec")) + '">' + n + T(n > 1 ? " fournisseurs" : " fournisseur", n > 1 ? " suppliers" : " supplier") + "</span>";
+  }
+  function nearHtml(r) {
+    var list = (D.near || {})[r.spec];
+    if (!list || !list.length) return "";
+    return '<details class="px-near"><summary>' + T("Specs proches comparables", "Nearby comparable specs") + "</summary><ul>" + list.map(function (m) {
+      return '<li><a href="#" data-spec="' + esc(m[0]) + '">' + esc(FR ? m[1] : m[2]) + "</a> <small>" + T("dès ", "from ") + money(m[3]) + munitRaw(m[4]) + " · " + m[5] + T(" fourn.", " suppl.") + "</small></li>";
+    }).join("") + "</ul></details>";
+  }
   function badge(r) {
-    if (!r.tier) return '<span class="px-solo">' + T("1 fournisseur", "1 supplier") + "</span>";
+    if (!r.tier) return '<span class="px-solo">' + T("Seul prix publié", "Only published price") + "</span>" + nsrc(r) + nearHtml(r);
+    if (r.tier === "surplus") return '<span class="px-tier px-t-surplus" title="' + esc(T("Surplus / déstockage : affiché, mais exclu de la médiane et du « Meilleur prix »", "Surplus / clearance: shown, but excluded from the median and from “Best price”")) + '">' + TIER.surplus + "</span>" + nsrc(r) + nearHtml(r);
     var p = r.pct != null && r.tier !== "check" ? '<span class="px-pct">' + pctTxt(r.pct) + "</span>" : "";
     var title = r.median ? ' title="' + esc(T("Médiane ", "Median ") + money(r.median) + munit(r) + " · " + r.n_suppliers + T(" fournisseurs", " suppliers")) + '"' : "";
-    return '<span class="px-tier px-t-' + r.tier + '"' + title + ">" + TIER[r.tier] + "</span>" + p;
+    return '<span class="px-tier px-t-' + r.tier + '"' + title + ">" + TIER[r.tier] + "</span>" + p + nsrc(r);
   }
   function row(r) {
     var s = sup(r), a = action(r);
@@ -271,10 +295,25 @@
     var html = rows.slice(0, shown).map(row).join("");
     var tb = app.querySelector("#px-table tbody");
     tb.innerHTML = html || '<tr><td colspan="7" class="px-empty">' + T("Aucun prix publié pour ces filtres. Cette combinaison est « sur demande » : voyez l’onglet Méthode & sources pour demander un prix.", "No published price for these filters. This combination is “quote only”: see the Method & sources tab to request a quote.") + "</td></tr>";
-    var n = rows.length, cmpN = rows.filter(function (r) { return r.tier && r.tier !== "ref" && r.tier !== "oos" && r.tier !== "check"; }).length;
+    var n = rows.length, cmpN = rows.filter(function (r) { return r.tier && r.tier !== "ref" && r.tier !== "oos" && r.tier !== "check" && r.tier !== "surplus"; }).length;
     setCount(num(n, 0) + T(" prix", " prices") + (cmpN ? " · " + num(cmpN, 0) + T(" comparables", " comparable") : "") + (n > shown ? T(" · " + shown + " affichés", " · " + shown + " shown") : ""));
     document.getElementById("px-more").hidden = n <= shown;
   }
+
+  app.querySelector("#px-table").addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[data-spec]");
+    if (!a) return;
+    e.preventDefault();
+    var sp = a.getAttribute("data-spec");
+    ["grade", "form", "size", "q"].forEach(function (k) { F[k].value = ""; });
+    var parts = sp.split("|");
+    F.family.value = parts[0]; F.spec.value = "";
+    if (parts.length > 3) F.form.value = parts[2];
+    refreshOptions();
+    if (![].some.call(F.spec.options, function (o) { return o.value === sp; })) F.spec.insertAdjacentHTML("beforeend", '<option value="' + esc(sp) + '"></option>');
+    F.spec.value = sp; refreshOptions(); F.spec.value = sp; shown = LIMIT; render(); writeHash(true);
+    document.getElementById("px-results-title").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
 
   /* ---------- cards: "compare all" ---------- */
   function initCards() {

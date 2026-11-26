@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 # Daily CoupeFab price refresh: fetch -> build -> deploy manifest -> local commit.
-# Usage: scripts/refresh.sh            daily: sheet & plate (bar/tube/pipe rows kept from the last weekly run)
-#        scripts/refresh.sh --weekly   weekly: also bar/tube/pipe (Metals 'R' Us bar, tube and pipe collections)
+# Usage: scripts/refresh.sh            daily: sheet & plate of every supplier + the small Shopify stores
+#                                      (Aluminox, Forces Inc, Valmont, WeMachine, Smith Metal Shop, OptiKutz,
+#                                      Canadian Laser Supply); weekly rows are kept from the last weekly run
+#        scripts/refresh.sh --weekly   weekly: also bar/tube/pipe/angle (Metals 'R' Us collections, Metals Depot
+#                                      39 categories, Acier Terrebonne WooCommerce variations)
 #        scripts/refresh.sh --only metalsrus mercier40   only those suppliers
 set -euo pipefail
 cd "$(dirname "$0")/.."

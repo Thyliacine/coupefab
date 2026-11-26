@@ -221,3 +221,12 @@
   .px-suppliers li { flex-direction: column; }
   .px-alert { grid-template-columns: 1fr; }
 }
+
+/* supplier count per spec, surplus tier, nearest comparable specs (coverage update, 26 Nov 2026) */
+.px .px-t-surplus { background: transparent; color: var(--muted); border: 1px dashed var(--line); }
+.px .px-nsrc { display: block; margin-top: .2rem; font-size: .72rem; color: var(--faint); white-space: nowrap; }
+.px .px-near { margin-top: .3rem; font-size: .75rem; }
+.px .px-near summary { cursor: pointer; color: var(--accent, inherit); }
+.px .px-near ul { margin: .3rem 0 0; padding-left: 1rem; }
+.px .px-near li { margin: .15rem 0; }
+.px .px-near small { color: var(--faint); }
