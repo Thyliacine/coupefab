@@ -104,3 +104,14 @@ Les données compilées (`data/prices/`, `prix/donnees.json`, `prix/coupefab-pri
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) — réutilisation libre en citant CoupeFab. Les prix restent ceux des fournisseurs cités.
 
 Un fournisseur en échec garde ses lignes de la veille, marquées « [relevé précédent] », et son erreur est inscrite dans `latest.json` → `status`.
+
+
+## Design et bibliothèque de guides (`sitekit/`, `content/guides/`)
+
+- `sitekit/` (Python, sans dépendance) : gabarit commun (`layout.py` — en-tête avec méga-menu, recherche, sélecteur FR/EN, pied de page), rendu Markdown maison (`md.py`), taxonomie et chaînes FR/EN (`taxonomy.py`), pages guides / pôles / index (`guides.py`) et accueil (`home.py`). `build.py` l’appelle via `sitekit.extend_pages()` et `sitekit.write_assets()` ; les anciennes chaînes HOME/GUIDES de `build.py` ne servent plus.
+- `content/guides/*.md` : un fichier par guide, en-tête (id, hub, group, slugs, titres, description, related, tags…) puis sections `=== fr` et `=== en`. Encadrés `> [!NOTE|TIP|WARN|SHOP]`, listes `- [ ]`, tableaux, `## FAQ` (schema FAQPage), `## Sources`, `## À valider en atelier (Michaël)` / `## For Michaël to review`.
+- Pôles : logiciels/software, procedes/processes, fondamentaux/fundamentals, depannage/troubleshooting, atelier/shop. Index de recherche client : `/guides/recherche.json`, `/en/guides/search.json`.
+- Styles : `css/site.css` (système de design) par-dessus `css/style.css` ; JS : `js/site.js`.
+- Tous les guides sont marqués « Brouillon » jusqu’à la révision de Michaël. Aucun chiffre sans source.
+
+Ajouter un guide : créer `content/guides/<id>.md`, lancer `python3 build.py`, vérifier les liens internes.
