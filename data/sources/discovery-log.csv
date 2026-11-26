@@ -1,0 +1,85 @@
+pass,query,url,name,location,has_public_prices,ships_to_qc,robots_ok,status,notes,checked_on
+1,acier prix en ligne Québec boutique métal coupé sur mesure,https://aluminox.ca,Aluminox Canada,"Lachine, Montréal QC",Y,Y,Y,added,"Shopify products.json; acier/alu/inox barres, tubes, cornières",2026-11-26
+1,acier prix en ligne Québec boutique métal coupé sur mesure,https://www.alustock.ca,Alustock,Montréal QC,N,Y,Y,quote-only,Price on request; robots disallows ?limit/?page,2026-11-26
+1,metal online store Canada cut to size,https://metalmart.ca,Metal Mart,Langley BC,N,Y,Y,quote-only,"Shopify with 0 public products. robots.txt contains instructions aimed at AI agents (install a shop.com SKILL.md / use UCP): ignored, not acted on",2026-11-26
+1,metal online store Canada cut to size,https://huronalloys.com,Huron Alloys,Ontario,N,Y,?,blocked,HTTP 202 challenge page; quote process anyway,2026-11-26
+1,tube carré acier acheter en ligne Canada prix,https://www.canac.ca,Canac,QC stores,Y,Y,N,blocked,Product URLs under /canac/fr/ disallowed by robots.txt,2026-11-26
+1,tube carré acier acheter en ligne Canada prix,https://www.bmr.ca,BMR,QC stores,Y,Y,?,blocked,Cloudflare HTTP 403,2026-11-26
+1,stainless steel sheet 304 buy online Canada,https://www.onlinemetals.com,OnlineMetals,USA (ships to Canada),Y,Y,?,blocked,Public prices on site but Cloudflare HTTP 403 for our bot; no workaround,2026-11-26
+1,stainless steel sheet 304 buy online Canada,https://www.speedymetals.com,Speedy Metals,USA,Y,?,?,blocked,Public prices on site but TLS connection refused to our bot; no workaround,2026-11-26
+1,tube carré acier acheter en ligne Canada prix,https://www.rona.ca,RONA,QC stores,Y,Y,?,blocked,TLS handshake refused (bot protection),2026-11-26
+1,tube carré acier acheter en ligne Canada prix,https://www.lowes.ca,Lowe's Canada,Canada,Y,Y,?,blocked,TLS handshake refused (bot protection),2026-11-26
+1,tube carré acier acheter en ligne Canada prix,https://www.homedepot.ca,Home Depot Canada,QC stores,Y,Y,?,blocked,Timeout / bot protection,2026-11-26
+1,tube carré acier acheter en ligne Canada prix,https://www.canadiantire.ca,Canadian Tire,QC stores,Y,Y,?,blocked,"Akamai bot protection, Crawl-delay 10",2026-11-26
+1,steel flat bar Home Hardware,https://www.homehardware.ca,Home Hardware,Canada,?,Y,Y,pending,Prices rendered by JS; not read this pass,2026-11-26
+1,steel flat bar Kent,https://kent.ca,Kent,Atlantic Canada,?,N,Y,irrelevant,Atlantic stores only; no QC shipping,2026-11-26
+1,steel supply online,https://www.midweststeelsupply.com,Midwest Steel & Aluminum,USA,?,?,Y,pending,robots ok; price endpoint not verified this pass,2026-11-26
+1,metal online store,https://www.industrialmetalsupply.com,Industrial Metal Supply,USA (CA/AZ),?,N,partial,irrelevant,/api/ disallowed; JS prices; US West only,2026-11-26
+1,metal online store,https://www.alro.com,Alro,USA,N,?,Y,quote-only,Prices need account,2026-11-26
+1,metal online store,https://www.metals4u.co.uk,Metals4U,UK,Y,N,Y,irrelevant,UK only,2026-11-26
+1,metal online store,https://www.discountsteel.com,Discount Steel,USA,?,?,?,blocked,HTTP 500,2026-11-26
+1,metal online store,https://www.tcimetals.com,TCI Industrial Metals,USA,?,?,?,blocked,TLS refused,2026-11-26
+1,metal online store,https://www.steelsupplylp.com,Steel Supply LP,USA,N,?,Y,quote-only,No prices,2026-11-26
+1,Metals Depot all categories,https://www.metalsdepot.com,Metals Depot,Winchester KY USA,Y,Y,Y,added,Expanded from sheets to 39 bar/tube/pipe/angle categories (weekly); USD converted,2026-11-26
+1,Princess Auto steel,https://www.princessauto.com,Princess Auto,Canada stores (QC),Y,Y,Y,pending,Already tracked: cold-rolled/galv sheets; full range expansion not done this pass,2026-11-26
+1,plaque acier vente en ligne prix Montréal livraison,https://acierterrebonne.com/boutique/,Acier Terrebonne,Terrebonne QC,Y,Y (Grand Montréal),Y,added,WooCommerce Store API variations; weekly,2026-11-26
+1,stainless steel sheet 304 buy online Canada,https://store.krogman.ca,Krogman Store,BC,Y,?,?,blocked,Wix store; robots/home 404 for our bot,2026-11-26
+1,stainless steel sheet 304 buy online Canada,https://optikutz.com,OptiKutz,Niagara Falls ON,Y,Y,Y,added,Shopify sheets 304/316/430/5052/6061,2026-11-26
+1,stainless steel sheet 304 buy online Canada,https://lasersupply.ca,Canadian Laser Supply,Kingsville ON,Y,Y,Y,added,Shopify; 12x12 to 24x24 metal sheets,2026-11-26
+1,aluminum flat bar 6061 buy online Canada,https://smithmetalshop.com,Smith Metal Shop,Severn ON,Y,Y,Y,added,Shopify; 6061-T6 bars/tubes/angles,2026-11-26
+1,aluminum flat bar 6061 buy online Canada,https://dotcommetals.com,DotCom Metals,Bolton ON,N,?,?,quote-only,Add to Quote; 202 challenge,2026-11-26
+1,metal online pricing Ottawa,https://www.metalpros.com,Metal Pros,Ottawa ON,Y,Y,Y,blocked,Pricing app quote.metalpros.com returns HTTP 500 to our bot; not read,2026-11-26
+1,tube carré acier acheter en ligne,https://materiauxjls.ca,Matériaux JLS,Bryson QC,Y,Y,Y,irrelevant,"Hardware store Shopify (7,141 products); no comparable metal stock found",2026-11-26
+1,laser cutting instant quote,https://laseo.ca,Laseo / uMake / Acier Lab,QC,N,Y,?,irrelevant,"Cut-part services (instant quotes), not stock prices; URL non vérifiée (nom trouvé en recherche web)",2026-11-26
+1,acier vente,https://dupontmetal.com,Dupont Métal,QC,N,Y,?,quote-only,URL non vérifiée (nom trouvé en recherche web),2026-11-26
+1,acier vente,https://www.fxlange.com,FX Lange,QC,N,Y,?,quote-only,URL non vérifiée (nom trouvé en recherche web),2026-11-26
+1,acier vente,https://www.acierpacifique.com,Acier Pacifique,QC,N,Y,?,quote-only,URL non vérifiée (nom trouvé en recherche web),2026-11-26
+1,acier vente,https://www.acierlachine.com,Acier Lachine,Lachine QC,N,Y,Y,quote-only,Already listed as quote-only,2026-11-26
+1,tôle aluminium acheter en ligne Québec,https://boutique.roulotteslupien.ca,Roulottes Lupien,QC,Y,Y,Y,irrelevant,RV parts store; aluminium sheet grade not stated,2026-11-26
+1,tôle aluminium acheter en ligne Québec,https://remorquesgt.com,Remorques GT,QC,Y,Y,?,blocked,HTTP 202 challenge; trailer roof sheet only,2026-11-26
+1,tôle aluminium acheter en ligne Québec,https://arcanaluminium.com,Arcan Aluminium,Laval QC,N,Y,Y,quote-only,Already listed,2026-11-26
+1,tôle aluminium acheter en ligne Québec,https://www.aircraftspruce.ca,Aircraft Spruce Canada,Brantford ON,Y,Y,Y,pending,2024-T3 aircraft sheet; not in catalogue grades; not added this pass,2026-11-26
+1,barre ronde acier 1018 acheter en ligne Canada,https://publicmetal.ca,Public Metal,Welland ON,Y,Y,Y,blocked,"1,474 products with public prices but the unit (per foot? per bar?) is not stated anywhere; not added rather than guess",2026-11-26
+1,hot rolled steel plate A36 1/4 4x8 price Canada,https://fasteel.ca,Fasteel,BC,N,?,?,quote-only,,2026-11-26
+1,hot rolled steel plate A36 1/4 4x8 price Canada,https://www.materialsbroker.com,MaterialsBroker,online,N,?,?,quote-only,Pricing request,2026-11-26
+1,hot rolled steel plate A36 1/4 4x8 price Canada,https://wemachine.ca,WeMachine & Fabricate,Aylmer ON,Y,Y,Y,added,Shopify; steel bars/tubes/angles/sheet cut to length,2026-11-26
+1,galvanized steel sheet 4x8 price Canada,https://shop.forcesinc.ca,Forces Inc,Blainville QC,Y,Y,Y,added,"Shopify Raw Materials: CR/HR/galv/3003/304 sheets, angles",2026-11-26
+1,galvanized steel sheet 4x8 price Canada,https://www.calgarymetalmarket.com,Calgary Metal Market,Calgary AB,N,?,?,quote-only,Call for pricing,2026-11-26
+1,galvanized steel sheet 4x8 price Canada,https://canadiansupersteel.com,Canadian Super Steel,Toronto ON,N,?,Y,quote-only,,2026-11-26
+1,galvanized steel sheet 4x8 price Canada,https://store.steelandpipes.com,Steel and Pipes Inc.,Puerto Rico,Y,N (freight),Y,irrelevant,USD store in Puerto Rico; not a realistic Quebec source,2026-11-26
+1,stainless steel round bar 316 buy online Canada,https://valmontmetal.com,Valmont Metal,Montréal QC,Y,Y,Y,added,Shopify; metric 304/316 round bars 6 ft,2026-11-26
+1,brass C360 round bar buy online Canada,https://www.cbcmetals.ca,CBC Metals,Ontario,N,?,Y,quote-only,,2026-11-26
+1,copper sheet C110 buy online Canada,https://copperblock.ca,Copper Block,?,Y,?,?,irrelevant,"Template-like storefront text, no address; not trusted",2026-11-26
+1,AR500 steel plate buy online Canada,https://www.terranovasteel.com,Terra Nova Steel,Delta BC,N,?,?,quote-only,,2026-11-26
+1,AR500 steel plate buy online Canada,https://www.aciersimmonds.com,Groupe David (Aciers Simmonds),Estrie/Montérégie QC,N,Y,?,quote-only,Quote recommended,2026-11-26
+1,AR500 steel plate buy online Canada,https://gampindustries.com,Gamp Industries,?,Y,?,?,pending,AR plate prices but size not identified per listing,2026-11-26
+1,buy aluminum angle 6061 online Canada,https://millenniumalloys.ca,Millennium Alloys,BC,Y,?,Y (Crawl-delay 30),pending,Benchmark already (sheets); angle/flat per-ft categories to add weekly,2026-11-26
+2,Shopify metal shop Canada flat bar angle CAD,https://a2bperformance.ca,A2B Performance,QC,Y,Y,Y,irrelevant,Exhaust parts; 304 flat bar per foot only a couple of items,2026-11-26
+2,Shopify metal shop Canada flat bar angle CAD,https://shop.nationalsalvage.ca,National Salvage,Lethbridge AB,Y,N,Y,added,Already tracked as hidden benchmark,2026-11-26
+2,metal supply online Ottawa Gatineau Sherbrooke,https://www.metalsupermarkets.com/location/ottawa/,Metal Supermarkets Ottawa,Ottawa ON (serves Gatineau); no Quebec store,N,Y (Gatineau),Y,quote-only,No QC store per official locator,2026-11-26
+2,metal supply Sherbrooke,https://www.metauxgherbavaz.com,Métaux Gherbavaz,Sherbrooke QC,N,Y,Y,quote-only,,2026-11-26
+2,acier Cookshire,https://www.dolbec.com/vente-acier-metaux,Entreprises Dolbec,Cookshire-Eaton QC,N,Y,?,quote-only,In-store,2026-11-26
+2,métal Outaouais,https://ottawavalleymetalinc.com/fr/,Ottawa Valley Metal,Outaouais,N,Y,?,quote-only,,2026-11-26
+2,acier Mauricie Trois-Rivières,https://www.metauxlamy.com/services/vente-de-metaux,Métaux Lamy,Trois-Rivières QC,N,Y,Y,quote-only,,2026-11-26
+2,acier Saguenay,https://www.metallisationdunord.com,Métallisation du Nord,Saguenay QC,N,Y,Y,quote-only,,2026-11-26
+2,acier Estrie,https://www.usinagesh.com/vente-au-detail-dacier,Solutions d'Usinage SH,QC,N,Y,Y,quote-only,"Retail steel, no prices online",2026-11-26
+2,acier Lanaudière,https://mercier40.ca,Mercier 40,Champlain QC,Y,pickup,Y,added,Already tracked; now 'Surplus / indicatif',2026-11-26
+2,fournisseur acier Québec Lévis,https://www.acier-bouchard.qc.ca,Acier Bouchard,Saint-Nicolas (Lévis) QC,N,Y,?,quote-only,,2026-11-26
+2,fournisseur acier Québec Lévis,https://patrickmorin.com,Patrick Morin,QC stores,Y,Y,Y,pending,Product pages public (schema.org price) but thickness/size not stated on the metal pages; not comparable yet,2026-11-26
+2,boutique en ligne acier Québec ajouter au panier,https://www.potvinbouchard.ca,Potvin & Bouchard,QC stores,Y,Y,?,blocked,Cloudflare HTTP 403,2026-11-26
+2,boutique en ligne aluminium Québec,https://boutique.aluminiumbbouchard.ca,Aluminium B. Bouchard,QC,Y,Y,?,irrelevant,"Siding/building products, not metal stock",2026-11-26
+2,metal Montréal,https://www.rapidometal.com,Rapido Métal,Québec,N,Y,Y,quote-only,Non-ferrous distributor; no prices,2026-11-26
+2,metal Montréal,https://vanguardsteel.com,Vanguard Steel,Dorval QC,N,Y,?,quote-only,,2026-11-26
+2,Ontario steel online instant pricing,https://www.steadysteel.org,Steady Steel,Newmarket ON,Y,N,Y,irrelevant,GTA/York delivery only,2026-11-26
+2,Ontario steel,https://magnumsteel.ca,Magnum Steel & Tube,Ontario,N,?,Y,quote-only,,2026-11-26
+2,Amazon.ca brand stores,https://www.amazon.ca,Amazon.ca,online,Y,Y,N,blocked,Only via official PA-API (needs affiliate credentials + Michaël's approval); not scraped,2026-11-26
+2,eBay brand stores,https://www.ebay.ca,eBay,online,Y,Y,?,blocked,Browse API needs developer credentials; skipped,2026-11-26
+2,Kijiji / Marketplace storefronts,https://www.kijiji.ca,Kijiji,QC,Y,Y,N,irrelevant,Classifieds; out of scope (and Facebook/Etsy out of scope),2026-11-26
+3,Metals R Us guide: where to buy metal online Canada,https://www.mrmetal.ca,Mr. Metal,Toronto ON,N,?,Y,quote-only,Listed alongside Metals R Us,2026-11-26
+3,Metals R Us guide: where to buy metal online Canada,https://www.mckinnonmetals.com,McKinnon Metals,Woodbridge ON,N,?,Y,quote-only,Listed alongside Metals R Us,2026-11-26
+3,reddit where to buy metal online Canada (r/Machinists),https://metalsrus.ca,Metals 'R' Us,Dartmouth NS,Y,Y,Y,added,Already tracked,2026-11-26
+3,reddit Montreal steel stock,https://www.acierlachine.com/en/,Acier Lachine,Lachine QC,N,Y,Y,quote-only,Recommended on r/montreal,2026-11-26
+3,US online metal supplier ships to Canada,https://sidecuts.com,Sidecuts (Brown Metals),California USA,Y,Y,Y,irrelevant,Coil remnants/odd lots by tag; not comparable stock sizes,2026-11-26
+3,US online metal supplier ships to Canada,https://us.abrams-industries.com,ABRAMS Industries,USA,Y,Y,partial,pending,Magento; store API 403; product pages not verified this pass,2026-11-26
+3,US online metal supplier ships to Canada,https://sendcutsend.com/canada/,SendCutSend,USA,N,Y,?,irrelevant,"Cut parts from DXF, not stock prices",2026-11-26
+3,r/Welding Canada where to buy steel tube,https://millenniumalloys.ca/product-category/structural/,Millennium Alloys (structural),BC,Y,?,Y (Crawl-delay 30),pending,See pass 1,2026-11-26
