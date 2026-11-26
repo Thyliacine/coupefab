@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feeds and speeds: the formulas, the method, and where the numbers come from — CoupeFab</title>
+<meta name="description" content="Cutting speed, RPM, chip load, chip thinning, removal rate: the exact formulas in metric and imperial, and how to start from the tool maker’s data.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/en/guides/feeds-and-speeds/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/feeds-and-speeds/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/avances-vitesses/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/avances-vitesses/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Feeds and speeds: the formulas, the method, and where the numbers come from — CoupeFab">
+<meta property="og:description" content="Cutting speed, RPM, chip load, chip thinning, removal rate: the exact formulas in metric and imperial, and how to start from the tool maker’s data.">
+<meta property="og:url" content="https://coupefab.vercel.app/en/guides/feeds-and-speeds/">
+<meta property="og:locale" content="en_CA">
+<meta property="og:locale:alternate" content="fr_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="en">
+<a class="skip" href="#contenu">Skip to content</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/en/" aria-label="CoupeFab — Home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Main navigation">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/en/guides/software/">By software</a></p>
+            <ul class="mega-list two"><li><a href="/en/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/en/guides/getting-started-sheetcam/">SheetCam</a></li><li><a href="/en/guides/solidworks-sheet-metal-flat-pattern-dxf/">SOLIDWORKS sheet metal</a></li><li><a href="/en/guides/autocad-dxf-cleanup/">AutoCAD (DXF)</a></li><li><a href="/en/guides/fusion-cam-getting-started/">Fusion CAM</a></li><li><a href="/en/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/en/guides/bricscad-to-clean-dxf/">BricsCAD → DXF</a></li><li><a href="/en/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/en/guides/inventor-sheet-metal-and-cam/">Inventor</a></li><li><a href="/en/guides/mastercam-2d-toolpaths-dynamic-milling/">Mastercam 2D</a></li><li><a href="/en/guides/mastercam-posts-and-lathe/">Mastercam posts and lathe</a></li><li><a href="/en/guides/onshape-sheet-metal-cam/">Onshape</a></li><li><a href="/en/guides/solidworks-drawings-and-cam/">SOLIDWORKS CAM and drawings</a></li><li><a href="/en/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/en/guides/freecad-cam/">FreeCAD CAM</a></li><li><a href="/en/guides/vectric-vcarve-aspire/">Vectric VCarve / Aspire</a></li><li><a href="/en/guides/lightburn-laser/">LightBurn</a></li><li><a href="/en/guides/pronest-nesting/">ProNest</a></li></ul>
+            <p class="mega-all"><a href="/en/guides/software/">All software →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/processes/">By process</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/cnc-plasma-cutting/">CNC plasma</a></li><li><a href="/en/guides/fiber-laser-cutting/">Fiber laser</a></li><li><a href="/en/guides/waterjet-cutting/">Waterjet</a></li><li><a href="/en/guides/cnc-router/">CNC router</a></li><li><a href="/en/guides/cnc-mill/">CNC mill</a></li><li><a href="/en/guides/cnc-lathe/">CNC lathe</a></li><li><a href="/en/guides/press-brake-bending/">Press brake</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/fundamentals/">By topic</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/g-code-m-code-reference/">G-code &amp; M-code</a></li><li><a href="/en/guides/feeds-and-speeds/">Feeds and speeds</a></li><li><a href="/en/guides/kerf-and-cut-quality/">Kerf and cut quality</a></li><li><a href="/en/guides/bend-allowance-k-factor/">Bending: K-factor and deduction</a></li><li><a href="/en/guides/metal-grades/">Metal grades</a></li><li><a href="/en/guides/dxf-best-practices/">DXF best practices</a></li><li class="more"><a href="/en/guides/fundamentals/">CNC fundamentals →</a></li><li class="more"><a href="/en/guides/troubleshooting/">Troubleshooting →</a></li><li class="more"><a href="/en/guides/shop/">Shop: safety, buying, consumables →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/en/sheet-prices/">
+              <span class="feature-k">Tool</span>
+              <strong>Sheet prices</strong>
+              <span>Sheet, plate, bar and tube: published prices from suppliers serving Quebec, refreshed every business day.</span>
+            </a>
+            <a class="mega-allguides" href="/en/guides/">All guides (41) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/en/sheet-prices/">Sheet prices</a></li>
+    <li><a class="nav-link" href="/en/used-equipment/">Used equipment</a></li>
+    <li><a class="nav-link" href="/en/newsletter/">Newsletter</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Search</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Language">
+        <a href="/guides/avances-vitesses/" hreflang="fr-CA" lang="fr-CA">FR</a><a href="/en/guides/feeds-and-speeds/" hreflang="en-CA" lang="en-CA" aria-current="true">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Search guides (e.g. SheetCam, K-factor, dross)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Close</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>No guide found. Try another word (software, process, material).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/en/">Home</a></li><li><a href="/en/guides/">Guides</a></li><li><a href="/en/guides/fundamentals/">CNC fundamentals</a></li><li aria-current="page">Feeds and speeds</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coupefab.vercel.app/en/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/en/guides/"}, {"@type": "ListItem", "position": 3, "name": "CNC fundamentals", "item": "https://coupefab.vercel.app/en/guides/fundamentals/"}, {"@type": "ListItem", "position": 4, "name": "Feeds and speeds"}]}</script>
+<article class="guide" data-guide="feeds-speeds">
+  <header class="guide-head">
+    <p class="kicker">Fundamentals · machining</p>
+    <h1>Feeds and speeds: the formulas, the method, and where the numbers come from</h1>
+    <p class="guide-lede">Cutting speed, RPM, chip load, chip thinning, removal rate: the exact formulas in metric and imperial, and how to start from the tool maker’s data.</p>
+    <p class="guide-meta">
+      <span>Reviewed <time datetime="2026-11-26">November 26, 2026</time></span>
+      <span>3 min read</span>
+      <span>Level : Intermediate</span>
+      <span class="pill pill-draft" tabindex="0" title="Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.">Draft<span class="pill-tip" role="tooltip">Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>On this page</summary><ol><li><a href="#the-quantities">The quantities</a></li><li><a href="#the-formulas">The formulas</a></li><li><a href="#chip-thinning">Chip thinning</a></li><li><a href="#the-method-step-by-step">The method, step by step</a></li><li><a href="#worked-example-hypothetical-values">Worked example (hypothetical values)</a></li><li><a href="#cnc-router">CNC router</a></li><li><a href="#common-mistakes">Common mistakes</a></li><li><a href="#faq">FAQ</a></li><li><a href="#for-michael-to-review">For Michaël to review</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p>The “right” feeds and speeds are not in a universal table: they depend on the tool (diameter, flutes, coating, substrate), the workpiece material, machine rigidity and engagement. This guide gives the <strong>exact formulas</strong> and a <strong>method</strong>; starting values always come from the <strong>tool maker’s</strong> data.</p>
+<h2 id="the-quantities">The quantities</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Symbol</th><th>Quantity</th><th>Units</th></tr></thead><tbody>
+<tr><td>Vc (or SFM)</td><td>Cutting speed at the tool periphery</td><td>m/min (or ft/min)</td></tr>
+<tr><td>n</td><td>Spindle speed</td><td>rpm</td></tr>
+<tr><td>D</td><td>Tool diameter (milling) or part diameter (turning)</td><td>mm (or in)</td></tr>
+<tr><td>z</td><td>Number of flutes</td><td>—</td></tr>
+<tr><td>fz</td><td>Feed per tooth (chip load)</td><td>mm/tooth (or in/tooth)</td></tr>
+<tr><td>vf</td><td>Table feed</td><td>mm/min (or in/min)</td></tr>
+<tr><td>ap / ae</td><td>Axial depth / radial engagement</td><td>mm</td></tr>
+</tbody></table></div>
+<h2 id="the-formulas">The formulas</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Calculation</th><th>Metric</th><th>Imperial</th></tr></thead><tbody>
+<tr><td>Spindle speed</td><td>n = (Vc × 1000) / (π × D)</td><td>n = (SFM × 12) / (π × D) ≈ 3.82 × SFM / D</td></tr>
+<tr><td>Table feed (milling)</td><td>vf = n × z × fz</td><td>vf = n × z × fz</td></tr>
+<tr><td>Feed (turning)</td><td>vf = n × fn (fn in mm/rev)</td><td>vf = n × fn (in/rev)</td></tr>
+<tr><td>Removal rate (milling)</td><td>Q = ap × ae × vf / 1000 (cm³/min)</td><td>Q = ap × ae × vf (in³/min)</td></tr>
+</tbody></table></div>
+<h2 id="chip-thinning">Chip thinning</h2>
+<p>When radial engagement ae is <strong>less than half the diameter</strong>, the real chip is thinner than fz. For a square-shoulder end mill:</p>
+<p>max chip thickness ≈ fz × 2 × √( (ae/D) × (1 − ae/D) )</p>
+<p>To keep the target chip thickness, <strong>increase fz</strong> accordingly. That is the principle behind constant-engagement toolpaths (Dynamic Motion in Mastercam, Adaptive in Fusion): low ae, deep ap, higher fz.</p>
+<aside class="callout callout-tip"><p class="callout-label">Shop tip</p><p>A chip that is too thin rubs instead of cutting: heat, fast wear, work-hardened stainless. If a tool runs hot for no reason, first check the real chip thickness is not too low.</p></aside>
+<h2 id="the-method-step-by-step">The method, step by step</h2>
+<ol class="steps"><li><strong>Find the tool maker’s data</strong> for the material (ISO group P steel, M stainless, K cast iron, N aluminum…): it gives starting Vc and fz by diameter.</li><li><strong>Compute n</strong> with the formula; cap at spindle max. If n is capped, recompute the real Vc.</li><li><strong>Compute vf</strong> = n × z × fz, corrected for chip thinning when ae &lt; D/2.</li><li><strong>Check the machine</strong>: spindle power and torque at that speed, max feed, rigidity (small machine = less engagement, not blindly less feed).</li><li><strong>Start conservatively</strong>: for example a fraction of catalogue values on a light machine, then step up while listening and watching chips.</li><li><strong>Read the chips</strong>: colour, shape, sound. Save what works in your CAM tool library.</li></ol>
+<h2 id="worked-example-hypothetical-values">Worked example (hypothetical values)</h2>
+<p>Suppose a tool sheet gives, for a 10 mm 3-flute carbide end mill in an aluminum alloy, Vc = 300 m/min and fz = 0.05 mm/tooth (example numbers, <strong>not</strong> a recommendation):</p>
+<ul><li>n = 300 × 1000 / (π × 10) ≈ 9,549 rpm</li><li>vf = 9,549 × 3 × 0.05 ≈ 1,432 mm/min</li><li>At ae = 1 mm (10% of diameter): thinning factor = 2 × √(0.1 × 0.9) = 0.6 → to keep a real 0.05 mm chip, fz ≈ 0.05 / 0.6 ≈ 0.083 mm/tooth, so vf ≈ 2,387 mm/min.</li></ul>
+<h2 id="cnc-router">CNC router</h2>
+<p>On a router the spindle is fast and the machine less rigid: think mainly in <strong>chip load</strong> (fz), from the bit maker’s charts (Onsrud, Amana, Harvey…). Too slow a feed for the rpm makes dust and heat, not a “gentler” cut.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<ul><li>Lowering feed without lowering rpm: chip too thin, rubbing, wear.</li><li>Ignoring chip thinning in adaptive paths: the tool runs well below its design load.</li><li>Confusing feed per tooth with feed per revolution.</li><li>Applying a carbide Vc to an HSS tool (or vice versa).</li></ul>
+<h2 id="faq">FAQ</h2>
+<h3 id="where-can-i-find-reliable-data-for-free">Where can I find reliable data for free?</h3>
+<p>Tool makers’ catalogues and calculators (Sandvik Coromant, Kennametal, Harvey Tool, Iscar…). They are starting points for rigid machines: adapt to yours.</p>
+<h3 id="what-about-plasma-or-laser">What about plasma or laser?</h3>
+<p>Those are not cutting-tool feeds and speeds: cut speed comes from the power source maker’s chart. See <a href="/en/guides/kerf-and-cut-quality/">Kerf and cut quality</a>.</p>
+<section class="review-box"><h2 id="for-michael-to-review">For Michaël to review</h2>
+<ul><li>One or two proven tool–material combinations to give as examples, with the machine.</li><li>Tool brands actually bought in Quebec.</li></ul>
+</section><section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://www.sandvik.coromant.com/en-us/knowledge/machining-formulas-definitions/milling-formulas-definitions" class="ext" rel="noopener">Sandvik Coromant — Milling formulas and definitions</a>, consulted November 26, 2026.</li><li><a href="https://www.sandvik.coromant.com/en-us/knowledge/machining-formulas-definitions/turning-formulas-definitions" class="ext" rel="noopener">Sandvik Coromant — Turning formulas and definitions</a>.</li><li><a href="https://www.harveyperformance.com/in-the-loupe/combat-chip-thinning/" class="ext" rel="noopener">Harvey Performance — Chip thinning</a>.</li></ul></section>
+<aside class="price-cta"><div><p class="price-cta-k">CoupeFab tool</p><p class="price-cta-t">Compare material prices</p><p>Sheet, plate, bar and tube: published prices from suppliers serving Quebec, refreshed every business day.</p></div><a class="btn" href="/en/sheet-prices/">Open the price tool</a></aside>
+      <p class="report"><a href="/en/about/#contact">Spotted an error or want something added? Tell us →</a></p>
+    </div>
+  </div>
+  <section class="related"><h2>Related guides</h2><div class="gcards"><a class="gcard" href="/en/guides/cnc-mill/" data-hub="process"><span class="card-meta">Process · machining · Intermediate · 3 min read</span><strong>CNC mill: from setup sheet to the first good part</strong><span class="card-desc">The complete flow of a first program on a machining centre: CAM, setup sheet, vise setup, tools, offsets, dry run, first article and inspection.</span></a><a class="gcard" href="/en/guides/cnc-router/" data-hub="process"><span class="card-meta">Process · machining · Beginner · 3 min read</span><strong>CNC router: wood, plastics and aluminum, from workholding to the first file</strong><span class="card-desc">How a CNC router works, choosing bits, holding the work (vacuum table, spoilboard, clamps), setting zero, computing chip load and avoiding burns and moving parts.</span></a><a class="gcard" href="/en/guides/milling-troubleshooting-chatter/" data-hub="troubleshooting"><span class="card-meta">Troubleshooting · machining · Intermediate · 3 min read</span><strong>Machining troubleshooting: chatter, tool breakage, poor finish, drifting sizes</strong><span class="card-desc">Symptom → cause → fix for milling and routing: vibration, broken tools, built-up edge, poor surface finish, chip recutting and sizes that change during a run.</span></a><a class="gcard" href="/en/guides/metal-grades/" data-hub="fundamentals"><span class="card-meta">Fundamentals · materials · Beginner · 3 min read</span><strong>Metal grades in the shop: steel, stainless, aluminum, copper, brass, bronze</strong><span class="card-desc">A36, 44W, 1018, 4140, A500, 304, 316, 17-4PH, 5052, 6061, C110, C360, C932: what each grade is for, how it cuts, bends, welds and machines, linked to published prices.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">One guide a week, French-first</p><p>New guides, used equipment in Quebec and price moves. No third-party ads.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="en" novalidate>
+  <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Name or shop (optional)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Email
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="yes">
+    <span>I agree to receive the CoupeFab newsletter (guides, used-equipment digest, and sheet-price updates). I may unsubscribe at any time. See the <a href="/en/privacy/">privacy policy</a>.</span>
+  </label>
+  <button type="submit">Subscribe</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">CASL compliance: the box is not pre-checked. Nothing is sent without this express consent.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Feeds and speeds: the formulas, the method, and where the numbers come from", "description": "Cutting speed, RPM, chip load, chip thinning, removal rate: the exact formulas in metric and imperial, and how to start from the tool maker’s data.", "inLanguage": "en-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/en/guides/feeds-and-speeds/", "mainEntityOfPage": "https://coupefab.vercel.app/en/guides/feeds-and-speeds/", "proficiencyLevel": "Intermediate", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["feeds", "speeds", "rpm", "chip load", "sfm", "chip thinning", "mill", "router", "lathe", "aluminum", "steel", "stainless"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Feeds and speeds: the formulas, the method, and where the numbers come from", "description": "Cutting speed, RPM, chip load, chip thinning, removal rate: the exact formulas in metric and imperial, and how to start from the tool maker’s data.", "inLanguage": "en-CA", "step": [{"@type": "HowToStep", "name": "Find the tool maker’s data for the material (ISO group P steel, M stainless, K cast iron, N aluminum…)", "text": "Find the tool maker’s data for the material (ISO group P steel, M stainless, K cast iron, N aluminum…): it gives starting Vc and fz by diameter."}, {"@type": "HowToStep", "name": "Compute n with the formula; cap at spindle max", "text": "Compute n with the formula; cap at spindle max. If n is capped, recompute the real Vc."}, {"@type": "HowToStep", "name": "Compute vf = n × z × fz, corrected for chip thinning when ae &lt; D/2", "text": "Compute vf = n × z × fz, corrected for chip thinning when ae &lt; D/2."}, {"@type": "HowToStep", "name": "Check the machine ", "text": "Check the machine : spindle power and torque at that speed, max feed, rigidity (small machine = less engagement, not blindly less feed)."}, {"@type": "HowToStep", "name": "Start conservatively ", "text": "Start conservatively : for example a fraction of catalogue values on a light machine, then step up while listening and watching chips."}, {"@type": "HowToStep", "name": "Read the chips ", "text": "Read the chips : colour, shape, sound. Save what works in your CAM tool library."}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Where can I find reliable data for free?", "acceptedAnswer": {"@type": "Answer", "text": "Tool makers’ catalogues and calculators (Sandvik Coromant, Kennametal, Harvey Tool, Iscar…). They are starting points for rigid machines: adapt to yours."}}, {"@type": "Question", "name": "What about plasma or laser?", "acceptedAnswer": {"@type": "Answer", "text": "Those are not cutting-tool feeds and speeds: cut speed comes from the power source maker’s chart. See Kerf and cut quality ."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/en/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>A French-first reference for CNC cutting and metal fabrication: sourced guides, compared sheet prices, used equipment in Quebec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/en/guides/software/">CAD/CAM software and controls</a></li>
+        <li><a href="/en/guides/processes/">Cutting and machining processes</a></li>
+        <li><a href="/en/guides/fundamentals/">CNC fundamentals</a></li>
+        <li><a href="/en/guides/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/en/guides/shop/">Shop: safety, buying, consumables</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explore</p>
+      <ul>
+        <li><a href="/en/sheet-prices/">Sheet prices</a></li>
+        <li><a href="/en/used-equipment/">Used equipment</a></li>
+        <li><a href="/en/newsletter/">Newsletter</a></li>
+        <li><a href="/en/about/">About</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Legal</p>
+      <ul>
+        <li><a href="/en/affiliate-disclosure/">Affiliate disclosure</a></li>
+        <li><a href="/en/privacy/">Privacy and CASL</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Quebec, Canada. No affiliate links. Trademarks belong to their owners and are used descriptively.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>
