@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tolerances in fabrication: ISO 2768, fits and what each process can hold — CoupeFab</title>
+<meta name="description" content="ISO 2768-1 general tolerances, ISO 286 fits, functional dimensioning and realistic tolerances by process (plasma, laser, bending, machining) — for drawings that cost the right price.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/en/guides/cnc-tolerances/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/cnc-tolerances/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/tolerances-cnc/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/tolerances-cnc/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tolerances in fabrication: ISO 2768, fits and what each process can hold — CoupeFab">
+<meta property="og:description" content="ISO 2768-1 general tolerances, ISO 286 fits, functional dimensioning and realistic tolerances by process (plasma, laser, bending, machining) — for drawings that cost the right price.">
+<meta property="og:url" content="https://coupefab.vercel.app/en/guides/cnc-tolerances/">
+<meta property="og:locale" content="en_CA">
+<meta property="og:locale:alternate" content="fr_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="en">
+<a class="skip" href="#contenu">Skip to content</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/en/" aria-label="CoupeFab — Home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Main navigation">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/en/guides/software/">By software</a></p>
+            <ul class="mega-list two"><li><a href="/en/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/en/guides/getting-started-sheetcam/">SheetCam</a></li><li><a href="/en/guides/solidworks-sheet-metal-flat-pattern-dxf/">SOLIDWORKS sheet metal</a></li><li><a href="/en/guides/autocad-dxf-cleanup/">AutoCAD (DXF)</a></li><li><a href="/en/guides/fusion-cam-getting-started/">Fusion CAM</a></li><li><a href="/en/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/en/guides/bricscad-to-clean-dxf/">BricsCAD → DXF</a></li><li><a href="/en/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/en/guides/inventor-sheet-metal-and-cam/">Inventor</a></li><li><a href="/en/guides/mastercam-2d-toolpaths-dynamic-milling/">Mastercam 2D</a></li><li><a href="/en/guides/mastercam-posts-and-lathe/">Mastercam posts and lathe</a></li><li><a href="/en/guides/onshape-sheet-metal-cam/">Onshape</a></li><li><a href="/en/guides/solidworks-drawings-and-cam/">SOLIDWORKS CAM and drawings</a></li><li><a href="/en/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/en/guides/freecad-cam/">FreeCAD CAM</a></li><li><a href="/en/guides/vectric-vcarve-aspire/">Vectric VCarve / Aspire</a></li><li><a href="/en/guides/lightburn-laser/">LightBurn</a></li><li><a href="/en/guides/pronest-nesting/">ProNest</a></li></ul>
+            <p class="mega-all"><a href="/en/guides/software/">All software →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/processes/">By process</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/cnc-plasma-cutting/">CNC plasma</a></li><li><a href="/en/guides/fiber-laser-cutting/">Fiber laser</a></li><li><a href="/en/guides/waterjet-cutting/">Waterjet</a></li><li><a href="/en/guides/cnc-router/">CNC router</a></li><li><a href="/en/guides/cnc-mill/">CNC mill</a></li><li><a href="/en/guides/cnc-lathe/">CNC lathe</a></li><li><a href="/en/guides/press-brake-bending/">Press brake</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/fundamentals/">By topic</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/g-code-m-code-reference/">G-code &amp; M-code</a></li><li><a href="/en/guides/feeds-and-speeds/">Feeds and speeds</a></li><li><a href="/en/guides/kerf-and-cut-quality/">Kerf and cut quality</a></li><li><a href="/en/guides/bend-allowance-k-factor/">Bending: K-factor and deduction</a></li><li><a href="/en/guides/metal-grades/">Metal grades</a></li><li><a href="/en/guides/dxf-best-practices/">DXF best practices</a></li><li class="more"><a href="/en/guides/fundamentals/">CNC fundamentals →</a></li><li class="more"><a href="/en/guides/troubleshooting/">Troubleshooting →</a></li><li class="more"><a href="/en/guides/shop/">Shop: safety, buying, consumables →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/en/sheet-prices/">
+              <span class="feature-k">Tool</span>
+              <strong>Sheet prices</strong>
+              <span>Sheet, plate, bar and tube: published prices from suppliers serving Quebec, refreshed every business day.</span>
+            </a>
+            <a class="mega-allguides" href="/en/guides/">All guides (41) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/en/sheet-prices/">Sheet prices</a></li>
+    <li><a class="nav-link" href="/en/used-equipment/">Used equipment</a></li>
+    <li><a class="nav-link" href="/en/newsletter/">Newsletter</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Search</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Language">
+        <a href="/guides/tolerances-cnc/" hreflang="fr-CA" lang="fr-CA">FR</a><a href="/en/guides/cnc-tolerances/" hreflang="en-CA" lang="en-CA" aria-current="true">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Search guides (e.g. SheetCam, K-factor, dross)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Close</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>No guide found. Try another word (software, process, material).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/en/">Home</a></li><li><a href="/en/guides/">Guides</a></li><li><a href="/en/guides/fundamentals/">CNC fundamentals</a></li><li aria-current="page">Tolerances</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coupefab.vercel.app/en/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/en/guides/"}, {"@type": "ListItem", "position": 3, "name": "CNC fundamentals", "item": "https://coupefab.vercel.app/en/guides/fundamentals/"}, {"@type": "ListItem", "position": 4, "name": "Tolerances"}]}</script>
+<article class="guide" data-guide="tolerances">
+  <header class="guide-head">
+    <p class="kicker">Fundamentals · drawings</p>
+    <h1>Tolerances in fabrication: ISO 2768, fits and what each process can hold</h1>
+    <p class="guide-lede">ISO 2768-1 general tolerances, ISO 286 fits, functional dimensioning and realistic tolerances by process (plasma, laser, bending, machining) — for drawings that cost the right price.</p>
+    <p class="guide-meta">
+      <span>Reviewed <time datetime="2026-11-26">November 26, 2026</time></span>
+      <span>3 min read</span>
+      <span>Level : Intermediate</span>
+      <span class="pill pill-draft" tabindex="0" title="Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.">Draft<span class="pill-tip" role="tooltip">Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>On this page</summary><ol><li><a href="#iso-2768-1-general-tolerances">ISO 2768-1 general tolerances</a></li><li><a href="#iso-286-fits-shafts-and-holes">ISO 286 fits (shafts and holes)</a></li><li><a href="#what-each-process-holds-orders-of-magnitude">What each process holds (orders of magnitude)</a></li><li><a href="#functional-dimensioning-the-basics">Functional dimensioning: the basics</a></li><li><a href="#common-mistakes">Common mistakes</a></li><li><a href="#faq">FAQ</a></li><li><a href="#for-michael-to-review">For Michaël to review</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p>Too loose a tolerance gives a part that does not assemble; too tight multiplies the price (slower process, inspection, scrap). A good drawing tightens only what is <strong>functional</strong> and sends the rest to a general tolerance.</p>
+<h2 id="iso-2768-1-general-tolerances">ISO 2768-1 general tolerances</h2>
+<p>ISO 2768-1 defines default tolerances for linear dimensions without an indicated tolerance, in four classes: <strong>f</strong> (fine), <strong>m</strong> (medium), <strong>c</strong> (coarse), <strong>v</strong> (very coarse). It is called up in the title block, for example “ISO 2768-m”. Values for linear dimensions (mm):</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Size range (mm)</th><th class="num">f</th><th class="num">m</th><th class="num">c</th><th class="num">v</th></tr></thead><tbody>
+<tr><td>0.5 to 3</td><td class="num">±0.05</td><td class="num">±0.1</td><td class="num">±0.2</td><td class="num">—</td></tr>
+<tr><td>&gt; 3 to 6</td><td class="num">±0.05</td><td class="num">±0.1</td><td class="num">±0.3</td><td class="num">±0.5</td></tr>
+<tr><td>&gt; 6 to 30</td><td class="num">±0.1</td><td class="num">±0.2</td><td class="num">±0.5</td><td class="num">±1</td></tr>
+<tr><td>&gt; 30 to 120</td><td class="num">±0.15</td><td class="num">±0.3</td><td class="num">±0.8</td><td class="num">±1.5</td></tr>
+<tr><td>&gt; 120 to 400</td><td class="num">±0.2</td><td class="num">±0.5</td><td class="num">±1.2</td><td class="num">±2.5</td></tr>
+<tr><td>&gt; 400 to 1000</td><td class="num">±0.3</td><td class="num">±0.8</td><td class="num">±2</td><td class="num">±4</td></tr>
+<tr><td>&gt; 1000 to 2000</td><td class="num">±0.5</td><td class="num">±1.2</td><td class="num">±3</td><td class="num">±6</td></tr>
+<tr><td>&gt; 2000 to 4000</td><td class="num">—</td><td class="num">±2</td><td class="num">±4</td><td class="num">±8</td></tr>
+</tbody></table></div>
+<aside class="callout callout-note"><p class="callout-label">Good to know</p><p>This table reproduces the standard’s values as widely published; the official standard (bought from ISO or the Standards Council of Canada) governs. ISO 2768-2 covers general geometric tolerances (classes H, K, L).</p></aside>
+<h2 id="iso-286-fits-shafts-and-holes">ISO 286 fits (shafts and holes)</h2>
+<p>For a bearing, pin or shaft you use a <strong>fit</strong>: a letter (position) and a number (IT grade). Common examples: <strong>H7/g6</strong> (sliding), <strong>H7/h6</strong> (locational clearance), <strong>H7/p6</strong> (interference). Exact deviations depend on diameter: use the ISO 286-2 table or your bearing supplier’s. These are machining tolerances (boring, grinding), not cutting tolerances.</p>
+<h2 id="what-each-process-holds-orders-of-magnitude">What each process holds (orders of magnitude)</h2>
+<p>Real capability depends on the machine, thickness and shop condition. Always ask the maker or job shop for its published capability; failing that, reason like this:</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Process</th><th>What limits precision</th><th>Drawing advice</th></tr></thead><tbody>
+<tr><td>Plasma</td><td>Kerf width and bevel, heat, torch condition</td><td>Loose tolerances; drill or ream critical holes</td></tr>
+<tr><td>Fiber laser</td><td>Thermal growth, thickness, settings</td><td>Tighter than plasma; confirm with the shop</td></tr>
+<tr><td>Waterjet</td><td>Taper, speed</td><td>State the datum face; taper-compensating head if critical</td></tr>
+<tr><td>Bending</td><td>Angle, radius, thickness variation</td><td>Dimension from one datum; avoid chains across several bends</td></tr>
+<tr><td>Milling / turning</td><td>Machine, tool, fixturing, temperature</td><td>Tighten functional surfaces only</td></tr>
+</tbody></table></div>
+<h2 id="functional-dimensioning-the-basics">Functional dimensioning: the basics</h2>
+<ol class="steps"><li><strong>Choose datums</strong> that match the real assembly.</li><li><strong>Dimension from those datums</strong>, not in a chain: errors add up in a chain.</li><li><strong>Tighten only what touches</strong> another part.</li><li><strong>Send the rest</strong> to a general tolerance in the title block.</li><li><strong>Specify surface finish</strong> only where it matters.</li><li><strong>On bent parts</strong>, dimension flanges outside or inside consistently with the shop’s method.</li></ol>
+<h2 id="common-mistakes">Common mistakes</h2>
+<ul><li>“±0.01” everywhere out of habit: the price explodes, the part is no better.</li><li>Dimension chains across three bends: impossible to hold.</li><li>No general tolerance in the title block: every dimension becomes an argument.</li><li>Asking for an H7 fit on a plasma hole.</li></ul>
+<h2 id="faq">FAQ</h2>
+<h3 id="iso-2768-or-asme-y14-5">ISO 2768 or ASME Y14.5?</h3>
+<p>ISO 2768 gives default general tolerances; ASME Y14.5 (and ISO 1101 / GPS) define geometric dimensioning (GD&amp;T). In North America many drawings follow ASME for geometry and state a block tolerance in the title block.</p>
+<h3 id="which-iso-2768-class-for-cut-sheet-metal">Which ISO 2768 class for cut sheet metal?</h3>
+<p>Often “m” or “c” depending on process and thickness. Confirm against the capability of the shop making it.</p>
+<section class="review-box"><h2 id="for-michael-to-review">For Michaël to review</h2>
+<ul><li>The tolerances actually held on your plasma tables and in bending.</li><li>The tolerance block used on your drawings.</li></ul>
+</section><section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://www.iso.org/standard/7748.html" class="ext" rel="noopener">ISO 2768-1:1989 — General tolerances (ISO page)</a>, consulted November 26, 2026.</li><li><a href="https://www.iso.org/standard/54915.html" class="ext" rel="noopener">ISO 286-2 — ISO code system for tolerances (ISO page)</a>.</li><li><a href="https://www.asme.org/codes-standards/find-codes-standards/y14-5-dimensioning-tolerancing" class="ext" rel="noopener">ASME Y14.5 — Dimensioning and Tolerancing</a>.</li></ul></section>
+
+      <p class="report"><a href="/en/about/#contact">Spotted an error or want something added? Tell us →</a></p>
+    </div>
+  </div>
+  <section class="related"><h2>Related guides</h2><div class="gcards"><a class="gcard" href="/en/guides/solidworks-drawings-and-cam/" data-hub="software"><span class="card-meta">Software · CAM · Intermediate · 3 min read</span><strong>SOLIDWORKS: shop-ready drawings and SOLIDWORKS CAM (Standard or Professional)</strong><span class="card-desc">What a drawing must contain for machining and bending, the difference between SOLIDWORKS CAM Standard and Professional, feature-based machining and the technology database.</span></a><a class="gcard" href="/en/guides/bend-allowance-k-factor/" data-hub="fundamentals"><span class="card-meta">Fundamentals · sheet metal · Intermediate · 3 min read</span><strong>Bending: bend allowance, K-factor and bend deduction, with the formulas</strong><span class="card-desc">Get the flat pattern right: formulas for bend allowance (BA), outside setback (OSSB) and bend deduction (BD), back-calculate the real K-factor from a test bend, and enter it in CAD.</span></a><a class="gcard" href="/en/guides/dxf-best-practices/" data-hub="fundamentals"><span class="card-meta">Fundamentals · CAD/CAM · Beginner · 3 min read</span><strong>DXF for cutting: the rules that prevent 90% of problems</strong><span class="card-desc">Units, 1:1 scale, closed contours, duplicates, splines, layers, text and tiny features: the rules to follow before sending a DXF to CAM or to a cutting job shop.</span></a><a class="gcard" href="/en/guides/cnc-mill/" data-hub="process"><span class="card-meta">Process · machining · Intermediate · 3 min read</span><strong>CNC mill: from setup sheet to the first good part</strong><span class="card-desc">The complete flow of a first program on a machining centre: CAM, setup sheet, vise setup, tools, offsets, dry run, first article and inspection.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">One guide a week, French-first</p><p>New guides, used equipment in Quebec and price moves. No third-party ads.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="en" novalidate>
+  <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Name or shop (optional)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Email
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="yes">
+    <span>I agree to receive the CoupeFab newsletter (guides, used-equipment digest, and sheet-price updates). I may unsubscribe at any time. See the <a href="/en/privacy/">privacy policy</a>.</span>
+  </label>
+  <button type="submit">Subscribe</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">CASL compliance: the box is not pre-checked. Nothing is sent without this express consent.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Tolerances in fabrication: ISO 2768, fits and what each process can hold", "description": "ISO 2768-1 general tolerances, ISO 286 fits, functional dimensioning and realistic tolerances by process (plasma, laser, bending, machining) — for drawings that cost the right price.", "inLanguage": "en-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/en/guides/cnc-tolerances/", "mainEntityOfPage": "https://coupefab.vercel.app/en/guides/cnc-tolerances/", "proficiencyLevel": "Intermediate", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["tolerances", "iso 2768", "fits", "drawings", "gd&t", "plasma", "laser", "machining"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "ISO 2768 or ASME Y14.5?", "acceptedAnswer": {"@type": "Answer", "text": "ISO 2768 gives default general tolerances; ASME Y14.5 (and ISO 1101 / GPS) define geometric dimensioning (GD&amp;T). In North America many drawings follow ASME for geometry and state a block tolerance in the title block."}}, {"@type": "Question", "name": "Which ISO 2768 class for cut sheet metal?", "acceptedAnswer": {"@type": "Answer", "text": "Often “m” or “c” depending on process and thickness. Confirm against the capability of the shop making it."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/en/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>A French-first reference for CNC cutting and metal fabrication: sourced guides, compared sheet prices, used equipment in Quebec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/en/guides/software/">CAD/CAM software and controls</a></li>
+        <li><a href="/en/guides/processes/">Cutting and machining processes</a></li>
+        <li><a href="/en/guides/fundamentals/">CNC fundamentals</a></li>
+        <li><a href="/en/guides/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/en/guides/shop/">Shop: safety, buying, consumables</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explore</p>
+      <ul>
+        <li><a href="/en/sheet-prices/">Sheet prices</a></li>
+        <li><a href="/en/used-equipment/">Used equipment</a></li>
+        <li><a href="/en/newsletter/">Newsletter</a></li>
+        <li><a href="/en/about/">About</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Legal</p>
+      <ul>
+        <li><a href="/en/affiliate-disclosure/">Affiliate disclosure</a></li>
+        <li><a href="/en/privacy/">Privacy and CASL</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Quebec, Canada. No affiliate links. Trademarks belong to their owners and are used descriptively.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>
