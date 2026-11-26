@@ -21,8 +21,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = Path("/tmp/coupefab-deploy")
-INCLUDE_TOP = ["index.html", "404.html", "favicon.svg", "robots.txt", "sitemap.xml", "vercel.json"]
-INCLUDE_DIRS = ["a-propos", "api", "confidentialite", "css", "divulgation", "en", "guides", "infolettre", "js",
+INCLUDE_TOP = ["index.html", "404.html", "favicon.svg", "apple-touch-icon.png", "site.webmanifest", "robots.txt", "sitemap.xml",
+               "vercel.json"]
+INCLUDE_DIRS = ["a-propos", "api", "confidentialite", "css", "divulgation", "en", "fonts", "guides", "infolettre", "js", "og",
                 "occasions", "prix"]
 
 

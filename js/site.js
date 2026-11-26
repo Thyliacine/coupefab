@@ -41,13 +41,49 @@
       indexPromise = fetch(EN ? "/en/guides/search.json" : "/guides/recherche.json")
         .then(function (r) { return r.json(); })
         .then(function (rows) {
-          rows.forEach(function (r) { r._t = norm(r.t); r._all = norm([r.t, r.d, r.h, r.c, r.k].join(" ")); });
+          rows.forEach(function (r) { r._t = norm(r.t); r._k = norm(r.k); r._all = norm([r.t, r.d, r.h, r.c, r.k].join(" ")); });
           return rows;
         })
         .catch(function () { return []; });
     }
     return indexPromise;
   }
+  /* typo tolerance: Damerau-Levenshtein with a cutoff, against the index vocabulary */
+  function dist(a, b, max) {
+    if (Math.abs(a.length - b.length) > max) return max + 1;
+    var prev2 = null, prev = [], cur, i, j;
+    for (j = 0; j <= b.length; j++) prev[j] = j;
+    for (i = 1; i <= a.length; i++) {
+      cur = [i]; var rowMin = i;
+      for (j = 1; j <= b.length; j++) {
+        var c = a[i - 1] === b[j - 1] ? 0 : 1;
+        var v = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + c);
+        if (prev2 && i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) v = Math.min(v, prev2[j - 2] + 1);
+        cur[j] = v; if (v < rowMin) rowMin = v;
+      }
+      if (rowMin > max) return max + 1;
+      prev2 = prev; prev = cur;
+    }
+    return prev[b.length];
+  }
+  function maxEdits(t) { return t.length >= 8 ? 2 : (t.length >= 4 ? 1 : 0); }
+  /* returns the closest vocabulary word for a term, or null */
+  function nearest(term, vocab) {
+    var m = maxEdits(term); if (!m) return null;
+    var best = null, bd = 99;
+    for (var i = 0; i < vocab.length; i++) {
+      var w = vocab[i], d = dist(term, w, m);
+      if (w.length > term.length + 1) d = Math.min(d, dist(term, w.slice(0, term.length), m) + 0.5); /* typo in a prefix */
+      if (d < bd || (d === bd && best && w.length < best.length)) { bd = d; best = w; }
+    }
+    return bd <= m ? best : null;
+  }
+  function vocabOf(texts) {
+    var seen = {}, out = [];
+    texts.forEach(function (t) { t.split(/[^a-z0-9]+/).forEach(function (w) { if (w.length > 2 && !seen[w]) { seen[w] = 1; out.push(w); } }); });
+    return out;
+  }
+  var VOCAB = null;
   function score(r, terms) {
     var s = 0;
     for (var i = 0; i < terms.length; i++) {
@@ -55,7 +91,7 @@
       if (r._all.indexOf(t) === -1) return 0;
       if (r._t.indexOf(t) !== -1) s += r._t.indexOf(t) === 0 ? 12 : 8;
       else s += 2;
-      if (norm(r.k).indexOf(t) !== -1) s += 3;
+      if (r._k.indexOf(t) !== -1) s += 3;
     }
     return s;
   }
@@ -71,15 +107,28 @@
     });
     return out;
   }
+  function rank(rows, terms) {
+    return rows.map(function (r) { return { r: r, s: score(r, terms) }; })
+      .filter(function (h) { return h.s > 0; })
+      .sort(function (a, b) { return b.s - a.s; });
+  }
   function search(q) {
     var terms = norm(q).split(/[^a-z0-9.\-]+/).filter(function (t) { return t.length > 0; });
     return loadIndex().then(function (rows) {
       if (!terms.length) return { terms: terms, hits: [] };
-      var hits = rows.map(function (r) { return { r: r, s: score(r, terms) }; })
-        .filter(function (h) { return h.s > 0; })
-        .sort(function (a, b) { return b.s - a.s; })
-        .slice(0, 10);
-      return { terms: terms, hits: hits };
+      var hits = rank(rows, terms), fixed = null;
+      if (!hits.length) {
+        if (!VOCAB) VOCAB = vocabOf(rows.map(function (r) { return r._all; }));
+        var changed = false;
+        var alt = terms.map(function (t) {
+          var present = rows.some(function (r) { return r._all.indexOf(t) > -1; });
+          if (present) return t;
+          var n = nearest(t, VOCAB); if (n) { changed = true; return n; }
+          return t;
+        });
+        if (changed) { hits = rank(rows, alt); if (hits.length) { fixed = alt.join(" "); terms = alt; } }
+      }
+      return { terms: terms, hits: hits.slice(0, 10), fixed: fixed };
     });
   }
 
@@ -88,9 +137,33 @@
   var list = document.getElementById("search-results");
   var empty = dlg ? dlg.querySelector(".search-empty") : null;
   var sel = -1, lastFocus = null;
+  var SUGG = EN ? ["SheetCam", "Mastercam", "G-code", "K-factor", "dross", "feeds and speeds", "Fusion", "Inconel"]
+                : ["SheetCam", "Mastercam", "G-code", "K-factor", "scories", "avances", "Fusion", "inox"];
+  var fuzzyEl = null, suggEl = null;
+  function ensureExtras() {
+    if (fuzzyEl || !dlg) return;
+    var panel = dlg.querySelector(".search-panel");
+    fuzzyEl = document.createElement("p"); fuzzyEl.className = "search-fuzzy"; fuzzyEl.hidden = true; fuzzyEl.setAttribute("aria-live", "polite");
+    panel.insertBefore(fuzzyEl, list);
+    suggEl = document.createElement("div"); suggEl.className = "search-sugg";
+    suggEl.innerHTML = "<p>" + (EN ? "Popular searches" : "Recherches populaires") + '</p><div class="chips">' +
+      SUGG.map(function (q) { return '<button type="button" data-q="' + escapeHtml(q) + '">' + escapeHtml(q) + "</button>"; }).join("") + "</div>";
+    panel.appendChild(suggEl);
+    suggEl.addEventListener("click", function (e) { var b = e.target.closest("button[data-q]"); if (b) { input.value = b.getAttribute("data-q"); search(input.value).then(render); input.focus(); } });
+    var hint = document.createElement("div"); hint.className = "search-hint";
+    hint.innerHTML = EN ? "<span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>Enter</kbd> open</span><span><kbd>Esc</kbd> close</span><span>Typos are OK</span>"
+                        : "<span><kbd>↑</kbd><kbd>↓</kbd> naviguer</span><span><kbd>Entrée</kbd> ouvrir</span><span><kbd>Échap</kbd> fermer</span><span>Les fautes de frappe sont tolérées</span>";
+    panel.appendChild(hint);
+  }
   function render(res) {
+    ensureExtras();
     list.innerHTML = "";
     sel = -1;
+    if (fuzzyEl) {
+      fuzzyEl.hidden = !res.fixed;
+      if (res.fixed) fuzzyEl.innerHTML = (EN ? "Showing results for " : "Résultats pour ") + "<strong>" + escapeHtml(res.fixed) + "</strong>";
+    }
+    if (suggEl) suggEl.hidden = !!res.terms.length;
     res.hits.forEach(function (h, i) {
       var li = document.createElement("li");
       li.setAttribute("role", "option");
@@ -109,7 +182,7 @@
     loadIndex();
     input.value = q || "";
     input.focus();
-    if (q) search(q).then(render); else { list.innerHTML = ""; if (empty) empty.hidden = true; }
+    if (q) search(q).then(render); else { render({ terms: [], hits: [] }); }
   }
   function closeSearch() {
     if (!dlg || dlg.hidden) return;
@@ -155,8 +228,12 @@
     var fEmpty = document.querySelector(".filter-empty");
     var hub = "all";
     cards.forEach(function (c) { c._n = norm(c.textContent); });
+    var cardVocab = vocabOf(cards.map(function (c) { return c._n; }));
     function apply() {
-      var terms = norm(filter.value).split(/\s+/).filter(Boolean);
+      var terms = norm(filter.value).split(/\s+/).filter(Boolean).map(function (t) {
+        if (cards.some(function (c) { return c._n.indexOf(t) > -1; })) return t;
+        return nearest(t, cardVocab) || t;
+      });
       var shown = 0;
       cards.forEach(function (c) {
         var ok = (hub === "all" || c.getAttribute("data-hub") === hub) && terms.every(function (t) { return c._n.indexOf(t) > -1; });
@@ -197,6 +274,64 @@
     if (window.matchMedia("(max-width: 900px)").matches) {
       var d = document.querySelector(".toc"); if (d) d.removeAttribute("open");
     }
+  }
+
+  /* ---- reading aids: progress, back-to-top, heading anchors, copy buttons, mobile TOC label ---- */
+  var bar = document.querySelector(".readbar span");
+  var article = document.querySelector(".guide-body");
+  var totop = document.querySelector(".totop");
+  if (totop) {
+    totop.hidden = false;
+    totop.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); var h = document.querySelector("h1"); if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); } });
+  }
+  var ticking = false;
+  function onScroll() {
+    ticking = false;
+    var y = window.scrollY || document.documentElement.scrollTop;
+    if (totop) totop.classList.toggle("show", y > 900);
+    if (bar && article) {
+      var r = article.getBoundingClientRect();
+      var total = r.height - window.innerHeight * 0.6;
+      var p = total > 0 ? Math.min(1, Math.max(0, -r.top / total)) : 0;
+      bar.style.transform = "scaleX(" + p.toFixed(4) + ")";
+    }
+  }
+  window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+  document.querySelectorAll(".prose h2[id], .prose h3[id]").forEach(function (h) {
+    if (h.closest(".news-band")) return;
+    var a = document.createElement("a");
+    a.className = "h-anchor"; a.href = "#" + h.id; a.textContent = "#";
+    a.setAttribute("aria-label", (EN ? "Link to section: " : "Lien vers la section : ") + h.textContent);
+    h.appendChild(a);
+  });
+  document.querySelectorAll(".prose pre").forEach(function (pre) {
+    var wrap = document.createElement("div"); wrap.className = "code-wrap";
+    pre.parentNode.insertBefore(wrap, pre); wrap.appendChild(pre);
+    var m = (pre.className || "").match(/lang-([\w+-]+)/);
+    var label = m ? m[1].replace(/^gcode$/i, "G-code") : (/^\s*[%(ON]?\s*[GMNT]\d/m.test(pre.textContent) ? "G-code" : (EN ? "Code" : "Code"));
+    var bar2 = document.createElement("div"); bar2.className = "code-bar";
+    var btn = document.createElement("button"); btn.type = "button"; btn.className = "copy-btn";
+    var idle = EN ? "Copy" : "Copier", done = EN ? "Copied" : "Copié";
+    btn.textContent = idle; btn.setAttribute("aria-label", (EN ? "Copy code: " : "Copier le code : ") + label);
+    bar2.innerHTML = "<span>" + escapeHtml(label) + "</span>"; bar2.appendChild(btn);
+    wrap.insertBefore(bar2, pre);
+    btn.addEventListener("click", function () {
+      var txt = pre.innerText;
+      var ok = function () { btn.textContent = done; btn.classList.add("ok"); setTimeout(function () { btn.textContent = idle; btn.classList.remove("ok"); }, 1600); };
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(txt).then(ok, function () {});
+      else { var ta = document.createElement("textarea"); ta.value = txt; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); ok(); } catch (e) {} ta.remove(); }
+    });
+  });
+  var tocEl = document.querySelector(".toc");
+  if (tocEl) {
+    var sum = tocEl.querySelector("summary");
+    var cur = document.createElement("span"); cur.className = "toc-cur"; cur.setAttribute("aria-hidden", "true");
+    sum.appendChild(cur);
+    var mobile = window.matchMedia("(max-width: 900px)");
+    tocEl.addEventListener("click", function (e) { if (e.target.closest("a") && mobile.matches) tocEl.removeAttribute("open"); });
+    new MutationObserver(function () { var a = tocEl.querySelector("a.is-active"); cur.textContent = a ? a.textContent : ""; })
+      .observe(tocEl, { subtree: true, attributes: true, attributeFilter: ["class"] });
   }
 
   /* ---- forms (newsletter CASL + contact) ---- */
