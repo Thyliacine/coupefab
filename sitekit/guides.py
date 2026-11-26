@@ -95,7 +95,31 @@ def registry():
     dup = {i for i in ids if ids.count(i) > 1}
     if dup:
         raise ValueError(f"duplicate guide ids: {dup}")
+    _expand_wikilinks(guides)
     return guides
+
+
+_WIKI = re.compile(r"\[\[([a-z0-9-]+)(?:\|([^\]]+))?\]\]")
+_PENDING = {"siemens-sinumerik": "Siemens Sinumerik", "lathe-finish-chatter": "Tournage : fini et vibrations"}
+_SPECIAL = {"prix": ("/prix/", "/en/sheet-prices/", "comparateur de prix", "price comparison tool")}
+
+
+def _expand_wikilinks(guides):
+    """[[guide-id]] or [[guide-id|label]] -> markdown link in the body's language."""
+    idx = {g.id: g for g in guides}
+    for g in guides:
+        for lang in ("fr", "en"):
+            def sub(m, lang=lang, g=g):
+                gid, label = m.group(1), m.group(2)
+                if gid in _SPECIAL:
+                    fr_u, en_u, fr_l, en_l = _SPECIAL[gid]
+                    return f"[{label or (fr_l if lang == 'fr' else en_l)}]({fr_u if lang == 'fr' else en_u})"
+                if gid not in idx:  # guide not written yet: plain text for now
+                    print(f"warning: {g.id}: pending wikilink [[{gid}]]")
+                    return label or _PENDING.get(gid, gid.replace("-", " ").title())
+                o = idx[gid]
+                return f"[{label or o.nav(lang)}]({o.url(lang)})"
+            g.body[lang] = _WIKI.sub(sub, g.body[lang])
 
 
 def by_id():
