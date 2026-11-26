@@ -71,12 +71,12 @@ Comparateur généré à partir de prix **publiés en ligne** — jamais de prix
 | --- | --- |
 | `prices/fetch_prices.py` | Robot poli (`CoupeFabPrixBot`, robots.txt + Crawl-delay, aucune connexion, aucun contournement anti-robot). Écrit les données normalisées. |
 | `prices/normalize.py` | Familles/nuances (catalogue d’atelier), calibres → po/mm, densités, détection forme (tôle, plaque, barre, tube, tuyau). |
-| `prices/page.py` | Rendu FR/EN : comparateur filtrable, meilleur prix par spécification, calculateur (kerf + imbrication), indice/tendance, tableau des calibres, schema.org `Dataset`. |
-| `js/prix.js` | Tri, filtres, calculateur et graphique (JS natif). |
+| `prices/page.py` | Rendu FR/EN : recherche rapide, onglets (Comparer, Calculateur, Tendances, Nuances & calibres, Méthode & sources), cartes « meilleure offre », pastilles qualité-prix vs médiane, boutons d’achat, schema.org `Dataset`. |
+| `js/prix.js`, `css/prix.css` | JS natif (onglets avec hash d’URL, filtres, tri, cartes mobiles, calculateur, graphique) et styles propres à la page (préfixe `.px`, ne touche pas au CSS global). |
 | `data/prices/latest.json` | Toutes les lignes du dernier relevé + statut par fournisseur + taux BdC. |
 | `data/prices/history/AAAA-MM.csv` | Journal daté : chaque prix vu pour la première fois et chaque changement de prix/stock. |
 | `data/prices/index.csv` | Indice quotidien : médiane CAD/lb par famille et forme (courbe de tendance). |
-| `prix/donnees.json`, `prix/coupefab-prix-metaux.csv` | Données publiques servies par le site (générées par `build.py`). |
+| `prix/donnees-toles.json`, `prix/donnees.json`, `prix/coupefab-prix-metaux.csv` | Données publiques générées par `build.py` : tôle/plaque seulement (chargé d’abord, ~220 Ko), toutes les formes (chargé à la demande), CSV. |
 
 ### Rafraîchir (routine quotidienne)
 
@@ -87,13 +87,16 @@ scripts/refresh.sh --weekly             # HEBDOMADAIRE : ajoute barres, tubes et
 scripts/refresh.sh --only metalsrus     # un ou plusieurs fournisseurs; les autres sont repris de latest.json
 ```
 
-`refresh.sh` relève les prix, régénère le site (`build.py`), fait un commit local et écrit `/tmp/coupefab-deploy.json`.
-Déploiement : `create_deployment` du connecteur Vercel (équipe `micro-bot` = `team_51rPr828F5cibUCQd4qzdhyb`, projet `coupefab`) avec `/tmp/coupefab-deploy/create_deployment.json`; si Vercel répond `missing_files`, `upload_file` pour chaque SHA manquant (voir `uploads.json`), puis relancer.
+`refresh.sh` relève les prix, régénère **tout** le site (`build.py`), fait un commit local des seuls fichiers de prix et écrit `/tmp/coupefab-deploy/create_deployment.json` + `uploads.json` (tout le site, pour ne pas écraser les autres pages).
+Déploiement : `create_deployment` du connecteur Vercel (équipe `micro-bot` = `team_51rPr828F5cibUCQd4qzdhyb`, projet `coupefab`) en passant le **contenu** de `create_deployment.json` comme objet d’arguments (pas une référence `$file:` en chaîne); si Vercel répond `missing_files`, `upload_file` (`xVercelDigest`=SHA, `contentLength`=taille, `requestBody`=`$file:<b64_path>`) pour les fichiers modifiés listés dans `uploads.json` (au minimum `prix/*`, `en/sheet-prices/index.html`, `js/prix.js`, `css/prix.css`, `sitemap.xml`), puis relancer.
 Puis pousser les fichiers modifiés sur GitHub (`Thyliacine/coupefab`).
 Vérifier ensuite : `curl -s https://coupefab.vercel.app/prix/ | grep -o 'Mis à jour[^<]*'`.
 
 En quotidien, les lignes barre/tube/tuyau sont reprises du dernier relevé hebdomadaire avec leur propre date.
 Millennium Alloys (C.-B.) et National Salvage (Alb.) sont des repères canadiens masqués par défaut (filtre « Achetable au Québec ») et jamais « meilleur prix ».
+
+Pastilles : pour chaque spécification (famille + sous-classe + épaisseur; $/pi² pour tôle/plaque, $/pi ou $/lb pour barres/tubes, jamais mélangés), médiane du meilleur prix unitaire de chaque fournisseur achetable au Québec; ≥ 2 fournisseurs requis. « Meilleur prix » = le plus bas; « Bon prix » ≤ −10 %; « Dans la moyenne » ±10 %; « Cher » ≥ +10 % (`TIER_PCT` dans `page.py`). Repères, ruptures et valeurs « à vérifier » affichent l’écart sans pastille de classement.
+Boutons : « Acheter » (fournisseur qui livre au Québec) ou « Voir chez … » (cueillette, repères) mènent à la fiche produit (`buy_url`; pour Metals Depot, l’ancre `#id` de la ligne produit sur la page catégorie); « Demander un prix » mène à la page contact/soumission (`QUOTE_URL` dans `page.py`). Aucun paramètre d’affiliation.
 
 ### Licence des données
 
