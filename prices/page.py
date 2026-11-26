@@ -6,6 +6,7 @@ weights) are labelled as calculations on the page.
 import csv
 import datetime as dt
 import json
+import re
 import statistics
 from pathlib import Path
 
@@ -17,6 +18,9 @@ MONTHS_FR = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "
              "octobre", "novembre", "décembre"]
 ELIGIBLE = {"oui", "cueillette", "a_confirmer"}  # can actually be bought by a Quebec shop
 TIER_PCT = 10  # ±10 % around the median: "bon prix" / "cher"
+# Surplus / clearance sellers: shown, but never "Meilleur prix" and never part of the median
+# (decision of 26 Nov 2026: Mercier 40 = new "red corner" plates, grade not stated, stock varies).
+SURPLUS = {"mercier40"}
 
 STEEL_FRACS = [0.1875, 0.25, 0.3125, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 4]
 AL_DEC = [0.016, 0.020, 0.025, 0.032, 0.040, 0.050, 0.063, 0.071, 0.080, 0.090, 0.100, 0.125, 0.160, 0.1875,
@@ -79,6 +83,23 @@ SUB_LABEL = {"ar": ("plaque dure AR", "AR hard plate"), "noir": ("noir (HR/CR/A3
              "galv": ("galvanisé", "galvanized"), "304": ("304/304L", "304/304L"), "316": ("316/316L", "316/316L")}
 
 
+def spec_dims(r):
+    """Numeric dimensions behind a spec key, for the nearest-spec search."""
+    parts = (r.get("spec") or "").split("|")
+    if r["form"] in ("tole", "plaque"):
+        try:
+            return [float(parts[2])]
+        except (IndexError, ValueError):
+            return None
+    if len(parts) < 4 or ":" not in parts[3]:
+        return None
+    body = parts[3].split(":", 1)[1].replace("mm", "")
+    try:
+        return [float(x) for x in re.split(r"[x/]", body) if re.fullmatch(r"[\d.]+", x)]
+    except ValueError:
+        return None
+
+
 def load():
     latest = json.loads((DATA / "latest.json").read_text())
     rows = latest["rows"]
@@ -92,7 +113,8 @@ def load():
         r["outlier"] = bool(r["form"] in ("tole", "plaque") and lb and not (lo <= lb <= hi))
         ships = sup.get(r["supplier"], {}).get("ships_qc", "")
         avail = (r.get("availability") or "").lower()
-        r["eligible"] = ships in ELIGIBLE and "rupture" not in avail and not r["outlier"]
+        r["surplus"] = r["supplier"] in SURPLUS
+        r["eligible"] = ships in ELIGIBLE and "rupture" not in avail and not r["outlier"] and not r["surplus"]
         # spec key
         if r["form"] in ("tole", "plaque"):
             k, lf, le = canon_thickness(r["family"], r["grade"], r.get("thickness_in"))
@@ -106,11 +128,23 @@ def load():
             r["metric"], r["munit"] = r.get("price_per_sqft_cad"), "sqft"
         else:
             sz = (r.get("size_label") or "").split(" — ")[0].strip()
-            r["spec"] = f"{r['family']}|{r['grade'] or '?'}|{r['form']}|{sz}"
             fl = N.FAMILY_LABELS[r["family"]]
             fo = N.FORM_LABELS[r["form"]]
-            r["spec_fr"] = f"{fl[0]} {r['grade'] or ''} — {fo[0].lower()} {sz}".replace("  ", " ")
-            r["spec_en"] = f"{fl[1]} {r['grade'] or ''} — {fo[1].lower()} {sz}".replace("  ", " ")
+            # normalized section + comparable grade group, so the same bar from different
+            # suppliers lands in one comparison (see normalize.section_key / grade_group)
+            sk, slab = N.section_key(r["form"], r["description"])
+            if not sk:
+                sk, slab = N.section_key(r["form"], r["description"] + " " + sz)
+            gk, gfr, gen = N.grade_group(r["family"], r["grade"], r["form"], r.get("description"))
+            r["grade_group"] = gk
+            if sk:
+                r["spec"] = f"{r['family']}|{gk}|{r['form']}|{sk}"
+                r["spec_fr"] = f"{fl[0]} {gfr} — {fo[0].lower()} {slab}"
+                r["spec_en"] = f"{fl[1]}, {gen} — {fo[1].lower()} {slab.replace(' po', ' in').replace('paroi', 'wall')}"
+            else:
+                r["spec"] = f"{r['family']}|{r['grade'] or '?'}|{r['form']}|{sz}"
+                r["spec_fr"] = f"{fl[0]} {r['grade'] or ''} — {fo[0].lower()} {sz}".replace("  ", " ")
+                r["spec_en"] = f"{fl[1]} {r['grade'] or ''} — {fo[1].lower()} {sz}".replace("  ", " ")
             r["metric"], r["munit"] = (r["price_per_ft_cad"], "ft") if r.get("price_per_ft_cad") else (r.get("price_per_lb_cad"), "lb")
         r["pool"] = f"{r.get('spec')}|{r.get('munit')}"  # never compare $/ft with $/lb
     # price-quality signals: compare each row's unit price to the median across suppliers of the same spec
@@ -129,13 +163,15 @@ def load():
     for r in rows:
         st = stats.get(r.get("pool"))
         if not (st and r.get("metric")):
-            r["tier"] = "check" if r["outlier"] else None
+            r["tier"] = "check" if r["outlier"] else ("surplus" if r.get("surplus") else None)
             continue
         med, n, _ = st
         r["median"], r["n_suppliers"] = round(med, 4), n
         r["pct"] = round((r["metric"] / med - 1) * 100, 1)
         if r["outlier"]:
             r["tier"], r["pct"] = "check", None
+        elif r.get("surplus"):
+            r["tier"] = "surplus"
         elif not r["eligible"]:
             r["tier"] = "oos" if "rupture" in (r.get("availability") or "").lower() else "ref"
         elif r.get("best"):
@@ -146,6 +182,36 @@ def load():
             r["tier"] = "high"
         else:
             r["tier"] = "avg"
+    # how many distinct suppliers publish a price for each spec (any shipping status), and,
+    # for a spec with a single supplier, the closest specs (same family/grade group/form/unit)
+    # that do have several suppliers, so a lone price can still be put in context.
+    src = {}
+    for r in rows:
+        if r.get("spec") and r.get("metric"):
+            src.setdefault(r["pool"], set()).add(r["supplier"])
+    for r in rows:
+        r["n_src"] = len(src.get(r.get("pool"), ()))
+    specs = {}
+    for r in rows:
+        if not (r.get("spec") and r.get("metric")):
+            continue
+        e = specs.setdefault(r["pool"], {"spec": r["spec"], "fr": r["spec_fr"], "en": r["spec_en"], "munit": r["munit"],
+                                         "n": r["n_src"], "min": None, "fam": r["family"], "form": r["form"],
+                                         "grp": r["spec"].split("|")[1], "dims": spec_dims(r)})
+        if r["eligible"] and (e["min"] is None or r["metric"] < e["min"]):
+            e["min"] = round(r["metric"], 3)
+    near = {}
+    multi = [e for e in specs.values() if e["n"] >= 2 and e["min"] is not None and e["dims"]]
+    for pool, e in specs.items():
+        if e["n"] != 1 or not e["dims"]:
+            continue
+        cands = [m for m in multi if m["fam"] == e["fam"] and m["grp"] == e["grp"] and m["form"] == e["form"]
+                 and m["munit"] == e["munit"] and len(m["dims"]) == len(e["dims"])]
+        cands.sort(key=lambda m: sum(abs(a - b) / max(a, b, 1e-6) for a, b in zip(m["dims"], e["dims"])))
+        if cands:
+            near[e["spec"]] = [[m["spec"], m["fr"], m["en"], m["min"], m["munit"], m["n"]] for m in cands[:3]
+                               if sum(abs(a - b) / max(a, b, 1e-6) for a, b in zip(m["dims"], e["dims"])) < 1.2]
+    latest["_near"] = {k: v for k, v in near.items() if v}
     index = []
     if (DATA / "index.csv").exists():
         with (DATA / "index.csv").open() as f:
@@ -179,7 +245,7 @@ SHIP_LBL = {"oui": ("Livre au Québec", "Ships to Quebec"), "cueillette": ("Cuei
             "non": ("Repère hors Québec", "Benchmark, outside QC"), "repere": ("Repère hors Québec", "Benchmark, outside QC")}
 TIER_LBL = {"best": ("Meilleur prix", "Best price"), "good": ("Bon prix", "Good price"), "avg": ("Dans la moyenne", "Average"),
             "high": ("Cher", "Expensive"), "ref": ("Repère", "Benchmark"), "oos": ("Rupture", "Out of stock"),
-            "check": ("À vérifier", "To check")}
+            "check": ("À vérifier", "To check"), "surplus": ("Surplus / indicatif", "Surplus / indicative")}
 
 # Popular specs shown as "best deal" cards at the top of Comparer.
 CARDS = [
@@ -211,7 +277,7 @@ def compact(latest, rows, index):
             "thickness_mm", "gauge", "width_in", "length_in", "length_ft", "price", "currency", "unit", "price_cad",
             "price_per_lb_cad", "price_per_kg_cad", "price_per_sqft_cad", "price_per_ft_cad", "weight_lb",
             "availability", "url", "buy_url", "fetched_at", "source_updated", "notes", "outlier", "eligible", "spec",
-            "spec_fr", "spec_en", "best", "metric", "munit", "median", "pct", "tier", "n_suppliers"]
+            "spec_fr", "spec_en", "best", "metric", "munit", "median", "pct", "tier", "n_suppliers", "n_src"]
     sups = {}
     for k, v in latest["suppliers"].items():
         sups[k] = {kk: v.get(kk) for kk in ("name", "city", "region", "currency", "ships_qc", "shipping", "shipping_en", "site")}
@@ -222,9 +288,11 @@ def compact(latest, rows, index):
         "families": {k: list(v) for k, v in N.FAMILY_LABELS.items()},
         "forms": {k: list(v) for k, v in N.FORM_LABELS.items()},
         "density": N.DENSITY, "keys": keys, "tier_pct": TIER_PCT, "index": index,
+        "near": latest.get("_near", {}),
     }
     full = dict(base, part="all", rows=[[r.get(k) for k in keys] for r in rows])
-    light = dict(base, part="sheet", rows=[[r.get(k) for k in keys] for r in rows if r["form"] in ("tole", "plaque")])
+    light = dict(base, part="sheet", rows=[[r.get(k) for k in keys] for r in rows if r["form"] in ("tole", "plaque")],
+                 near={k: v for k, v in base["near"].items() if k.count("|") == 2})
     return full, light
 
 

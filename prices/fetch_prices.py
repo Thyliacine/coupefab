@@ -35,6 +35,7 @@ from bs4 import BeautifulSoup
 
 sys.path.insert(0, str(Path(__file__).parent))
 import normalize as N  # noqa: E402
+import fetch_more as M  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "prices"
@@ -212,8 +213,8 @@ SUPPLIERS = {
                         "method": "Page publique « Indicative Material Costs »"},
     "mercier40": {"id": "mercier40", "name": "Mercier 40", "city": "Champlain (QC)", "region": "QC",
                   "site": "https://mercier40.ca", "currency": "CAD", "ships_qc": "cueillette",
-                  "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée.",
-                  "shipping_en": "Pickup in Champlain (Mauricie). New ‘red corner’ plates (pickled & oiled), grade not stated.",
+                  "shipping": "Cueillette à Champlain (Mauricie). Plaques neuves « coin rouge » (décapé huilé), nuance non précisée. Classé « Surplus / indicatif » : affiché, mais exclu de la médiane et du « Meilleur prix ».",
+                  "shipping_en": "Pickup in Champlain (Mauricie). New ‘red corner’ plates (pickled & oiled), grade not stated. Tagged ‘Surplus / indicative’: shown, but excluded from the median and from ‘Best price’.",
                   "method": "Page catégorie publique"},
     "princessauto": {"id": "princessauto", "name": "Princess Auto", "city": "Magasins au Canada (dont QC)", "region": "CA",
                      "site": "https://www.princessauto.com", "currency": "CAD", "ships_qc": "oui",
@@ -230,13 +231,54 @@ SUPPLIERS = {
                         "shipping": "Cueillette à Lethbridge (Alberta) seulement : repère de prix canadien, pas une source d’achat au Québec.",
                         "shipping_en": "Pickup in Lethbridge (Alberta) only: a Canadian price benchmark, not a Quebec buying option.",
                         "method": "Vitrine Shopify publique (products.json)"},
+    # --- added by the 26 Nov 2026 coverage sweep (data/sources/discovery-log.csv) ---
+    "aluminox": {"id": "aluminox", "name": "Aluminox Canada", "city": "Lachine, Montréal (QC)", "region": "QC",
+                 "site": "https://aluminox.ca", "currency": "CAD", "ships_qc": "oui",
+                 "shipping": "Coupe sur mesure à Montréal; expédition au Canada (vitrine Shopify).",
+                 "shipping_en": "Cut to size in Montreal; ships within Canada (Shopify storefront).",
+                 "method": "Vitrine Shopify publique (products.json)"},
+    "forcesinc": {"id": "forcesinc", "name": "Forces Inc", "city": "Blainville (QC)", "region": "QC",
+                  "site": "https://shop.forcesinc.ca", "currency": "CAD", "ships_qc": "oui",
+                  "shipping": "Fournisseur industriel de Blainville; petits formats (jusqu’à 24 × 24 po) expédiés.",
+                  "shipping_en": "Industrial supplier in Blainville; small sizes (up to 24 × 24 in) shipped.",
+                  "method": "Vitrine Shopify publique (collection Raw Materials)"},
+    "valmont": {"id": "valmont", "name": "Valmont Metal", "city": "Montréal (QC)", "region": "QC",
+                "site": "https://valmontmetal.com", "currency": "CAD", "ships_qc": "oui",
+                "shipping": "Barres inox métriques de 6 pi; expédition au Canada.",
+                "shipping_en": "Metric 6 ft stainless bars; ships within Canada.",
+                "method": "Vitrine Shopify publique (products.json)"},
+    "acierterrebonne": {"id": "acierterrebonne", "name": "Acier Terrebonne", "city": "Terrebonne (QC)", "region": "QC",
+                        "site": "https://acierterrebonne.com", "currency": "CAD", "ships_qc": "cueillette",
+                        "shipping": "Boutique en ligne; cueillette ou livraison dans la grande région de Montréal.",
+                        "shipping_en": "Online shop; pickup or delivery in Greater Montreal.",
+                        "method": "API publique WooCommerce Store (variations)"},
+    "wemachine": {"id": "wemachine", "name": "WeMachine & Fabricate", "city": "Aylmer (ON)", "region": "CA",
+                  "site": "https://wemachine.ca", "currency": "CAD", "ships_qc": "oui",
+                  "shipping": "Ontario; expédie au Canada. Coupe à la longueur.",
+                  "shipping_en": "Ontario; ships within Canada. Cut to length.",
+                  "method": "Vitrine Shopify publique (products.json)"},
+    "smithmetal": {"id": "smithmetal", "name": "Smith Metal Shop", "city": "Severn (ON)", "region": "CA",
+                   "site": "https://smithmetalshop.com", "currency": "CAD", "ships_qc": "oui",
+                   "shipping": "Ontario; expédie au Canada. Aluminium 6061-T6 coupé à la longueur.",
+                   "shipping_en": "Ontario; ships within Canada. 6061-T6 aluminum cut to length.",
+                   "method": "Vitrine Shopify publique (products.json)"},
+    "optikutz": {"id": "optikutz", "name": "OptiKutz", "city": "Niagara Falls (ON)", "region": "CA",
+                 "site": "https://optikutz.com", "currency": "CAD", "ships_qc": "oui",
+                 "shipping": "Ontario; tôles coupées au laser jusqu’à 2 × 4 pi, expédiées au Canada.",
+                 "shipping_en": "Ontario; laser-cut sheets up to 2 × 4 ft, shipped within Canada.",
+                 "method": "Vitrine Shopify publique (products.json)"},
+    "lasersupply": {"id": "lasersupply", "name": "Canadian Laser Supply", "city": "Kingsville (ON)", "region": "CA",
+                    "site": "https://lasersupply.ca", "currency": "CAD", "ships_qc": "oui",
+                    "shipping": "Ontario; petites tôles (jusqu’à 24 × 24 po) expédiées au Canada.",
+                    "shipping_en": "Ontario; small sheets (up to 24 × 24 in) shipped within Canada.",
+                    "method": "Vitrine Shopify publique (products.json)"},
 }
 
 # Suppliers we checked that do not publish prices, or that we cannot read politely.
 SUPPLIERS_STATIC = [
-    {"name": "Metal Supermarkets", "city": "Montréal, Laval, Québec…", "status": "sur_demande",
-     "url": "https://www.metalsupermarkets.com/", "note": "Pas de prix en ligne : soumission en magasin ou en ligne.",
-     "note_en": "No online prices: quote in store or online."},
+    {"name": "Metal Supermarkets", "city": "Ottawa (ON), dessert Gatineau — aucun magasin au Québec", "status": "sur_demande",
+     "url": "https://www.metalsupermarkets.com/location/ottawa/", "note": "Aucun magasin au Québec (localisateur officiel); le plus proche est à Ottawa. Pas de prix publics lisibles : soumission en magasin ou en ligne.",
+     "note_en": "No Quebec store (official locator); closest is Ottawa. No readable public prices: quote in store or online."},
     {"name": "Russel Metals", "city": "Québec (plusieurs centres)", "status": "sur_demande",
      "url": "https://www.russelmetals.com/", "note": "Centre de service : prix sur soumission.", "note_en": "Service centre: quoted prices."},
     {"name": "Acier Leroux (Leroux Steel)", "city": "Boucherville et régions", "status": "sur_demande",
@@ -257,17 +299,32 @@ SUPPLIERS_STATIC = [
     {"name": "GTA Steel", "city": "Toronto (ON)", "status": "sur_demande",
      "url": "https://gtasteel.com/products/hot-rolled-sheets", "note": "Tailles et poids publiés, prix par soumission.", "note_en": "Sizes and weights published, quoted prices."},
     {"name": "OnlineMetals", "city": "É.-U. (expédie au Canada)", "status": "bloque",
-     "url": "https://www.onlinemetals.com/", "note": "HTTP 403 (protection anti-robot) : non lu, pas de contournement.",
-     "note_en": "HTTP 403 (bot protection): not read, no workaround."},
+     "url": "https://www.onlinemetals.com/", "note": "Prix publics sur le site, mais HTTP 403 (protection anti-robot) pour notre robot : non lu, pas de contournement.",
+     "note_en": "Public prices on the site, but HTTP 403 (bot protection) for our bot: not read, no workaround."},
     {"name": "Speedy Metals", "city": "É.-U.", "status": "bloque",
-     "url": "https://www.speedymetals.com/", "note": "Connexion refusée à notre robot : non lu.", "note_en": "Connection refused to our bot: not read."},
+     "url": "https://www.speedymetals.com/", "note": "Prix publics sur le site, mais connexion refusée à notre robot : non lu, pas de contournement.", "note_en": "Public prices on the site, but connection refused to our bot: not read, no workaround."},
     {"name": "Home Depot Canada", "city": "Magasins QC", "status": "bloque",
      "url": "https://www.homedepot.ca/", "note": "Protection anti-robot (aucune réponse) : non lu.", "note_en": "Bot protection (no response): not read."},
     {"name": "Cangard Supplies", "city": "Canada", "status": "bloque",
      "url": "https://cangardsupplies.com/", "note": "robots.txt interdit les robots génériques : non lu.", "note_en": "robots.txt disallows generic bots: not read."},
-    {"name": "RONA / Canac / BMR", "city": "Magasins QC", "status": "non_couvert",
-     "url": "https://www.rona.ca/", "note": "Petites feuilles de quincaillerie (24 × 36 po ou moins); pas encore relevées.",
-     "note_en": "Small hardware-store sheets (24 × 36 in or less); not tracked yet."},
+    {"name": "RONA / Lowe’s / BMR", "city": "Magasins QC", "status": "bloque",
+     "url": "https://www.rona.ca/", "note": "Prix publics, mais protection anti-robot (RONA et Lowe’s refusent la connexion, BMR répond 403) : non lus, pas de contournement.",
+     "note_en": "Public prices, but bot protection (RONA and Lowe’s refuse the connection, BMR answers 403): not read, no workaround."},
+    {"name": "Canac", "city": "Magasins QC", "status": "bloque",
+     "url": "https://www.canac.ca/", "note": "robots.txt interdit les pages produits (/canac/fr/) : non lu.",
+     "note_en": "robots.txt disallows product pages (/canac/fr/): not read."},
+    {"name": "Potvin & Bouchard", "city": "Magasins QC", "status": "bloque",
+     "url": "https://www.potvinbouchard.ca/", "note": "Prix publics, mais HTTP 403 (Cloudflare) pour notre robot : non lu.",
+     "note_en": "Public prices, but HTTP 403 (Cloudflare) for our bot: not read."},
+    {"name": "Patrick Morin", "city": "Magasins QC", "status": "non_couvert",
+     "url": "https://patrickmorin.com/", "note": "Prix publics, mais les fiches de barres/tubes n’indiquent pas l’épaisseur : non comparables pour l’instant.",
+     "note_en": "Public prices, but bar/tube pages do not state the thickness: not comparable yet."},
+    {"name": "Public Metal", "city": "Welland (ON)", "status": "non_couvert",
+     "url": "https://publicmetal.ca/", "note": "≈1 500 prix publics, mais l’unité (pied? barre?) n’est indiquée nulle part : non ajoutés plutôt que deviner.",
+     "note_en": "≈1,500 public prices, but the unit (per foot? per bar?) is not stated anywhere: not added rather than guess."},
+    {"name": "Metal Pros", "city": "Ottawa (ON)", "status": "bloque",
+     "url": "https://www.metalpros.com/", "note": "Outil de prix en ligne (quote.metalpros.com) en erreur HTTP 500 pour notre robot : non lu.",
+     "note_en": "Online pricing tool (quote.metalpros.com) returns HTTP 500 to our bot: not read."},
     {"name": "Amazon.ca", "city": "En ligne", "status": "non_couvert",
      "url": "https://www.amazon.ca/", "note": "Pas d’aspiration (conditions d’Amazon). Liens affiliés possibles plus tard, si approuvés.",
      "note_en": "Not scraped (Amazon terms). Affiliate links possible later, if approved."},
@@ -357,6 +414,77 @@ MD_PAGES = [
 ]
 
 
+# Bars, tubes, pipe and angles (weekly, --with-bars): one public price request per product.
+MD_BAR_PAGES = [
+    "/steel-products/steel-angle", "/steel-products/steel-flat-bar", "/steel-products/steel-square-bar",
+    "/steel-products/steel-round-bar", "/steel-products/steel-square-tube", "/steel-products/steel-rectangle-tube",
+    "/steel-products/steel-round-tube-dom", "/steel-products/steel-round-tube-welded", "/steel-products/steel-pipe",
+    "/cold-finish-steel-products/cold-finish-steel-flat", "/cold-finish-steel-products/cold-finish-steel-round",
+    "/cold-finish-steel-products/cold-finish-steel-square", "/cold-finish-steel-products/cold-finish-steel-hexagon",
+    "/galvanized-steel-products/galvanized-angle-", "/galvanized-steel-products/galvanized-square-tube",
+    "/galvanized-steel-products/galvanized-pipe", "/galvanized-steel-products/galvanized-flat-bar-",
+    "/aluminum-products/aluminum-angle-6061", "/aluminum-products/aluminum-angle-6063",
+    "/aluminum-products/aluminum-flat-bar", "/aluminum-products/aluminum-square-bar",
+    "/aluminum-products/aluminum-round-bar", "/aluminum-products/aluminum-square-tube",
+    "/aluminum-products/aluminum-rectangle-tube", "/aluminum-products/aluminum-round-tube",
+    "/aluminum-products/aluminum-pipe",
+    "/stainless-steel-products/stainless-steel-angle", "/stainless-steel-products/stainless-steel-flat",
+    "/stainless-steel-products/stainless-steel-square", "/stainless-steel-products/stainless-steel-round",
+    "/stainless-steel-products/stainless-steel-round-316-", "/stainless-steel-products/stainless-steel-square-tube",
+    "/stainless-steel-products/stainless-rectangle-tube", "/stainless-steel-products/stainless-steel-round-tube",
+    "/stainless-steel-products/stainless-steel-pipe",
+    "/brass-products/brass-flat-bar", "/brass-products/brass-round-bar",
+    "/brass-products/copper-flat-bar", "/brass-products/copper-round-bar",
+]
+MD_HINT = [("galvanized", "Galvanized steel"), ("cold-finish", "Cold finish steel"), ("aluminum", "Aluminum"),
+           ("316", "Stainless 316"), ("stainless", "Stainless"), ("copper", "Copper"), ("brass", "Brass"), ("steel", "Steel")]
+MD_FORM = [("angle", "angle"), ("pipe", "pipe"), ("rectangle-tube", "rectangular tube"), ("square-tube", "square tube"),
+           ("round-tube", "round tube"), ("flat", "flat bar"), ("square", "square bar"), ("hexagon", "hex bar"),
+           ("round", "round bar")]
+
+
+def fetch_metalsdepot_bars(fx, quick=False):
+    sup = SUPPLIERS["metalsdepot"]
+    rows = []
+    for path in (MD_BAR_PAGES[:2] if quick else MD_BAR_PAGES):
+        url = sup["site"] + path
+        try:
+            soup = BeautifulSoup(get(url).text, "lxml")
+        except requests.HTTPError:
+            continue
+        fam_hint = next(h for k, h in MD_HINT if k in path)
+        form_hint = next(h for k, h in MD_FORM if k in path)
+        for pr in soup.select(".product-row[data-product-id]"):
+            ps = pr.select_one(".product-size")
+            if not ps:
+                continue
+            text = ps.get_text(" ", strip=True)
+            opts = []
+            for o in pr.select("select.length-select option[data-skuid]"):
+                m = re.search(r"([\d.]+)\s*Ft", o.get_text(strip=True), re.I)
+                if m:
+                    opts.append((float(m.group(1)), o["data-skuid"]))
+            if not opts:
+                continue
+            L, sku = max(opts)
+            resp = get(sup["site"] + "/system/modrequest", method="POST",
+                       data={"request": "metals.getPrice", "data[product_id]": pr["data-product-id"],
+                             "data[qty]": "1", "data[sku_id]": sku},
+                       headers={"X-Requested-With": "XMLHttpRequest", "Referer": url})
+            try:
+                price = float(resp.text.strip().strip('"'))
+            except ValueError:
+                continue
+            full = text if N.detect_family(text) and ("galv" not in path or "galv" in text.lower()) else f"{fam_hint} {text}"
+            r = make_row(supplier=sup, text=full, price=price, currency="USD", url=url, fx=fx, form_hint=form_hint,
+                         length_ft=L, size_label=f"{text} — {L * 12:g} po",
+                         notes="Prix à l’unité (qté 1), plus grande longueur offerte")
+            if r:
+                r["buy_url"] = f"{url}#{pr['data-product-id']}"
+                rows.append(r)
+    return rows
+
+
 def _md_size(label):
     m = re.search(r"([\d.]+)\s*(Ft|In)\.?\s*x\s*([\d.]+)\s*(Ft|In)", label, re.I)
     if not m:
@@ -402,6 +530,8 @@ def fetch_metalsdepot(fx, quick=False):
                 rows.append(r)
             if quick and len(rows) > 10:
                 break
+    if WITH_BARS:
+        rows += fetch_metalsdepot_bars(fx, quick)
     return rows
 
 
@@ -579,11 +709,61 @@ def fetch_nationalsalvage(fx, quick=False):
     return rows
 
 
+def fetch_aluminox(fx, quick=False):
+    sup = SUPPLIERS["aluminox"]
+    return M.shopify_rows(make_row, sup, M.shopify_products(get, sup["site"]), fx,
+                          exclude=r"drain|dock|configurat|base plate|frame|beam|channel|column|cover|garage")
+
+
+def fetch_forcesinc(fx, quick=False):
+    sup = SUPPLIERS["forcesinc"]
+    prods = M.shopify_products(get, sup["site"], ["raw-material-sheets-and-plates", "angle-stocks"])
+    return M.shopify_rows(make_row, sup, prods, fx)
+
+
+def fetch_valmont(fx, quick=False):
+    sup = SUPPLIERS["valmont"]
+    return M.shopify_rows(make_row, sup, M.shopify_products(get, sup["site"]), fx, exclude=r"\d+\s*bars?\s.*&")
+
+
+def fetch_acierterrebonne(fx, quick=False):
+    return M.woo_variable_rows(get, make_row, SUPPLIERS["acierterrebonne"], fx)
+
+
+def fetch_wemachine(fx, quick=False):
+    sup = SUPPLIERS["wemachine"]
+    rows = M.shopify_rows(make_row, sup, M.shopify_products(get, sup["site"]), fx, family="acier",
+                          note="Acier, nuance non précisée par le vendeur.")
+    return rows
+
+
+def fetch_smithmetal(fx, quick=False):
+    sup = SUPPLIERS["smithmetal"]
+    return M.shopify_rows(make_row, sup, M.shopify_products(get, sup["site"]), fx,
+                          keep=r"^(Round|Square|Rectangular|Flat|Hex)?\s*(Tube|Bar|Angle|Sheet|Plate|Pipe)\s*-")
+
+
+def fetch_optikutz(fx, quick=False):
+    sup = SUPPLIERS["optikutz"]
+    return M.shopify_rows(make_row, sup, M.shopify_products(get, sup["site"]), fx, keep=r"sheet")
+
+
+def fetch_lasersupply(fx, quick=False):
+    sup = SUPPLIERS["lasersupply"]
+    return M.shopify_rows(make_row, sup, M.shopify_products(get, sup["site"]), fx,
+                          keep=r"(stainless|alumin|steel|copper|brass).*sheet", exclude=r"acrylic|rowmark|2-ply")
+
+
 FETCHERS = {
     "metalsrus": fetch_metalsrus, "metalsdepot": fetch_metalsdepot, "unitedstainless": fetch_unitedstainless,
     "mercier40": fetch_mercier40, "princessauto": fetch_princessauto, "millennium": fetch_millennium,
     "nationalsalvage": fetch_nationalsalvage,
+    "aluminox": fetch_aluminox, "forcesinc": fetch_forcesinc, "valmont": fetch_valmont,
+    "acierterrebonne": fetch_acierterrebonne, "wemachine": fetch_wemachine, "smithmetal": fetch_smithmetal,
+    "optikutz": fetch_optikutz, "lasersupply": fetch_lasersupply,
 }
+# Weekly set (bars/tubes, many requests): on a daily run their rows are kept from the last weekly run.
+WEEKLY = {"acierterrebonne"}
 
 CSV_FIELDS = ["supplier", "family", "grade", "in_catalogue", "form", "description", "size_label", "thickness_in",
               "thickness_mm", "gauge", "width_in", "length_in", "length_ft", "price", "currency", "unit", "fx_rate",
@@ -684,7 +864,8 @@ def main():
     fx = fx_usdcad()
     all_rows, status = [], {}
     for sid, fn in FETCHERS.items():
-        if args.only and sid not in args.only:
+        if (args.only and sid not in args.only) or (sid in WEEKLY and not WITH_BARS and not args.only
+                                                    and any(r["supplier"] == sid for r in prev.get("rows", []))):
             all_rows += [r for r in prev.get("rows", []) if r["supplier"] == sid]
             if sid in prev.get("status", {}):
                 status[sid] = prev["status"][sid]
@@ -692,7 +873,7 @@ def main():
         t0 = time.time()
         try:
             rows = fn(fx, quick=args.quick)
-            if sid == "metalsrus" and not WITH_BARS:
+            if sid in ("metalsrus", "metalsdepot") and not WITH_BARS:
                 kept = [r for r in prev.get("rows", []) if r["supplier"] == sid and r["form"] not in ("tole", "plaque")]
                 rows += kept  # weekly bar/tube/pipe rows keep their own fetched_at date
             status[sid] = {"ok": True, "rows": len(rows), "fetched_at": now_iso(), "error": ""}
