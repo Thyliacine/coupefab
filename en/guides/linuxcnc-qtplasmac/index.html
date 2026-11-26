@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LinuxCNC and QtPlasmaC: open-source control for plasma tables, with height control — CoupeFab</title>
+<meta name="description" content="What LinuxCNC is, typical hardware (Mesa cards), the QtPlasmaC interface for plasma, its torch height control (THC), the VAD anti-dive threshold and the commissioning steps.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/en/guides/linuxcnc-qtplasmac/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/linuxcnc-qtplasmac/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/linuxcnc-qtplasmac/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/linuxcnc-qtplasmac/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LinuxCNC and QtPlasmaC: open-source control for plasma tables, with height control — CoupeFab">
+<meta property="og:description" content="What LinuxCNC is, typical hardware (Mesa cards), the QtPlasmaC interface for plasma, its torch height control (THC), the VAD anti-dive threshold and the commissioning steps.">
+<meta property="og:url" content="https://coupefab.vercel.app/en/guides/linuxcnc-qtplasmac/">
+<meta property="og:locale" content="en_CA">
+<meta property="og:locale:alternate" content="fr_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="en">
+<a class="skip" href="#contenu">Skip to content</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/en/" aria-label="CoupeFab — Home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Main navigation">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/en/guides/software/">By software</a></p>
+            <ul class="mega-list two"><li><a href="/en/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/en/guides/getting-started-sheetcam/">SheetCam</a></li><li><a href="/en/guides/solidworks-sheet-metal-flat-pattern-dxf/">SOLIDWORKS sheet metal</a></li><li><a href="/en/guides/autocad-dxf-cleanup/">AutoCAD (DXF)</a></li><li><a href="/en/guides/fusion-cam-getting-started/">Fusion CAM</a></li><li><a href="/en/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/en/guides/bricscad-to-clean-dxf/">BricsCAD → DXF</a></li><li><a href="/en/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/en/guides/inventor-sheet-metal-and-cam/">Inventor</a></li><li><a href="/en/guides/mastercam-2d-toolpaths-dynamic-milling/">Mastercam 2D</a></li><li><a href="/en/guides/mastercam-posts-and-lathe/">Mastercam posts and lathe</a></li><li><a href="/en/guides/onshape-sheet-metal-cam/">Onshape</a></li><li><a href="/en/guides/solidworks-drawings-and-cam/">SOLIDWORKS CAM and drawings</a></li><li><a href="/en/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/en/guides/freecad-cam/">FreeCAD CAM</a></li><li><a href="/en/guides/vectric-vcarve-aspire/">Vectric VCarve / Aspire</a></li><li><a href="/en/guides/lightburn-laser/">LightBurn</a></li><li><a href="/en/guides/pronest-nesting/">ProNest</a></li></ul>
+            <p class="mega-all"><a href="/en/guides/software/">All software →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/processes/">By process</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/cnc-plasma-cutting/">CNC plasma</a></li><li><a href="/en/guides/fiber-laser-cutting/">Fiber laser</a></li><li><a href="/en/guides/waterjet-cutting/">Waterjet</a></li><li><a href="/en/guides/cnc-router/">CNC router</a></li><li><a href="/en/guides/cnc-mill/">CNC mill</a></li><li><a href="/en/guides/cnc-lathe/">CNC lathe</a></li><li><a href="/en/guides/press-brake-bending/">Press brake</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/fundamentals/">By topic</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/g-code-m-code-reference/">G-code &amp; M-code</a></li><li><a href="/en/guides/feeds-and-speeds/">Feeds and speeds</a></li><li><a href="/en/guides/kerf-and-cut-quality/">Kerf and cut quality</a></li><li><a href="/en/guides/bend-allowance-k-factor/">Bending: K-factor and deduction</a></li><li><a href="/en/guides/metal-grades/">Metal grades</a></li><li><a href="/en/guides/dxf-best-practices/">DXF best practices</a></li><li class="more"><a href="/en/guides/fundamentals/">CNC fundamentals →</a></li><li class="more"><a href="/en/guides/troubleshooting/">Troubleshooting →</a></li><li class="more"><a href="/en/guides/shop/">Shop: safety, buying, consumables →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/en/sheet-prices/">
+              <span class="feature-k">Tool</span>
+              <strong>Sheet prices</strong>
+              <span>Sheet, plate, bar and tube: published prices from suppliers serving Quebec, refreshed every business day.</span>
+            </a>
+            <a class="mega-allguides" href="/en/guides/">All guides (41) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/en/sheet-prices/">Sheet prices</a></li>
+    <li><a class="nav-link" href="/en/used-equipment/">Used equipment</a></li>
+    <li><a class="nav-link" href="/en/newsletter/">Newsletter</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Search</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Language">
+        <a href="/guides/linuxcnc-qtplasmac/" hreflang="fr-CA" lang="fr-CA">FR</a><a href="/en/guides/linuxcnc-qtplasmac/" hreflang="en-CA" lang="en-CA" aria-current="true">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Search guides (e.g. SheetCam, K-factor, dross)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Close</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>No guide found. Try another word (software, process, material).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/en/">Home</a></li><li><a href="/en/guides/">Guides</a></li><li><a href="/en/guides/software/">CAD/CAM software and controls</a></li><li aria-current="page">LinuxCNC / QtPlasmaC</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coupefab.vercel.app/en/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/en/guides/"}, {"@type": "ListItem", "position": 3, "name": "CAD/CAM software and controls", "item": "https://coupefab.vercel.app/en/guides/software/"}, {"@type": "ListItem", "position": 4, "name": "LinuxCNC / QtPlasmaC"}]}</script>
+<article class="guide" data-guide="linuxcnc">
+  <header class="guide-head">
+    <p class="kicker">Open source · control</p>
+    <h1>LinuxCNC and QtPlasmaC: open-source control for plasma tables, with height control</h1>
+    <p class="guide-lede">What LinuxCNC is, typical hardware (Mesa cards), the QtPlasmaC interface for plasma, its torch height control (THC), the VAD anti-dive threshold and the commissioning steps.</p>
+    <p class="guide-meta">
+      <span>Reviewed <time datetime="2026-11-26">November 26, 2026</time></span>
+      <span>3 min read</span>
+      <span>Level : Advanced</span>
+      <span class="pill pill-draft" tabindex="0" title="Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.">Draft<span class="pill-tip" role="tooltip">Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>On this page</summary><ol><li><a href="#typical-hardware">Typical hardware</a></li><li><a href="#qtplasmac-in-brief">QtPlasmaC in brief</a></li><li><a href="#commissioning">Commissioning</a></li><li><a href="#common-mistakes">Common mistakes</a></li><li><a href="#faq">FAQ</a></li><li><a href="#for-michael-to-review">For Michaël to review</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p><strong>LinuxCNC</strong> is <strong>open-source</strong> CNC control software that generates motion in real time. It drives mills, lathes, routers and plasma tables. <strong>QtPlasmaC</strong> is its plasma interface, included in the distribution.</p>
+<h2 id="typical-hardware">Typical hardware</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Item</th><th>Examples</th></tr></thead><tbody>
+<tr><td>PC</td><td>Dedicated PC with real-time kernel (official LinuxCNC image)</td></tr>
+<tr><td>Interface</td><td><strong>Mesa</strong> cards (Ethernet or PCI) — recommended for plasma</td></tr>
+<tr><td>Arc voltage sensing</td><td>Isolated card (for example Mesa THCAD) or a no-sensing mode depending on hardware</td></tr>
+<tr><td>Plasma source</td><td>With divided arc voltage output</td></tr>
+</tbody></table></div>
+<h2 id="qtplasmac-in-brief">QtPlasmaC in brief</h2>
+<ul><li>Touch or keyboard interface, cut settings per <strong>material</strong> (materials file: pierce and cut heights, delay, speed, amperage, voltage).</li><li><strong>Torch height control (THC)</strong>: enabled after a fixed delay or <strong>automatically</strong> when voltage settles.</li><li><strong>Anti-dive</strong>: <strong>VAD</strong> threshold (velocity anti-dive) — THC is frozen when actual speed drops below a percentage of programmed speed (corners, small holes).</li><li>Hole and arc handling, cut from line, recovery after arc loss, initial height probing (ohmic or float).</li></ul>
+<aside class="callout callout-tip"><p class="callout-label">Shop tip</p><p>Freezing THC in corners and small holes stops the torch from diving when arc voltage rises during slowdown. See <a href="/en/guides/lead-ins-pierce-height/">Lead-ins and pierce height</a>.</p></aside>
+<h2 id="commissioning">Commissioning</h2>
+<ol class="steps"><li>Install the official LinuxCNC image; test PC <strong>latency</strong>.</li><li>Configure the Mesa card with the configuration wizard (PnCconf or your card’s tool).</li><li>Run the <strong>QtPlasmaC</strong> configuration wizard: axes, inputs, arc sensing mode.</li><li>Set motors, limits and homing; check dimensions on a test part.</li><li>Build the <strong>materials file</strong> from your source’s cut charts.</li><li>Pick a QtPlasmaC-compatible CAM <strong>post</strong> (SheetCam offers one; Fusion too depending on version).</li><li>Test cuts, then tune THC.</li></ol>
+<h2 id="common-mistakes">Common mistakes</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Mistake</th><th>Fix</th></tr></thead><tbody>
+<tr><td>High-latency PC</td><td>Change PC or use a Mesa Ethernet card</td></tr>
+<tr><td>Noisy arc voltage</td><td>Shielded wiring, proper ground, isolated card</td></tr>
+<tr><td>THC active in corners</td><td>Set the VAD threshold</td></tr>
+<tr><td>Incompatible post</td><td>Use the CAM’s QtPlasmaC post</td></tr>
+</tbody></table></div>
+<h2 id="faq">FAQ</h2>
+<h3 id="is-linuxcnc-harder-than-mach">Is LinuxCNC harder than Mach?</h3>
+<p>Initial setup takes more reading, but QtPlasmaC documentation is detailed and the software is free and maintained.</p>
+<section class="review-box"><h2 id="for-michael-to-review">For Michaël to review</h2>
+<ul><li>Your starter materials file if you use QtPlasmaC.</li></ul>
+</section><section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://linuxcnc.org/docs/stable/html/plasma/qtplasmac.html" class="ext" rel="noopener">LinuxCNC — QtPlasmaC (stable documentation)</a>, consulted November 26, 2026.</li><li><a href="https://linuxcnc.org/" class="ext" rel="noopener">LinuxCNC — Official site</a>.</li><li><a href="https://store.mesanet.com/" class="ext" rel="noopener">Mesa Electronics</a>.</li></ul></section>
+
+      <p class="report"><a href="/en/about/#contact">Spotted an error or want something added? Tell us →</a></p>
+    </div>
+  </div>
+  <section class="related"><h2>Related guides</h2><div class="gcards"><a class="gcard" href="/en/guides/cnc-plasma-cutting/" data-hub="process"><span class="card-meta">Process · thermal cutting · Beginner · 3 min read</span><strong>CNC plasma cutting: how it works and how to start right</strong><span class="card-desc">How the plasma arc works, air versus high-definition plasma, torch height control (THC), water or downdraft table, software chain and settings: the overview to choose well and nail your first cuts.</span></a><a class="gcard" href="/en/guides/lead-ins-pierce-height/" data-hub="fundamentals"><span class="card-meta">Fundamentals · plasma · Intermediate · 3 min read</span><strong>Lead-ins, lead-outs, pierce height and pierce delay in plasma cutting</strong><span class="card-desc">Where to place the lead-in, what shape to give it, why pierce higher than cut height, how to set the delay, and clean holes — with the values that come from your chart.</span></a><a class="gcard" href="/en/guides/mach3-mach4/" data-hub="software"><span class="card-meta">Software · control · Intermediate · 3 min read</span><strong>Mach3, Mach4 and MachPro: where the PC CNC control software stands</strong><span class="card-desc">Current status of Mach3 (no longer updated), Mach4 Hobby and Industrial (maintenance) and MachPro, the role of the motion controller, and what to check before upgrading an old Mach3 machine.</span></a><a class="gcard" href="/en/guides/plasma-troubleshooting-dross-bevel/" data-hub="troubleshooting"><span class="card-meta">Troubleshooting · plasma · Intermediate · 3 min read</span><strong>Plasma troubleshooting: dross, bevel, top spatter, arc loss</strong><span class="card-desc">Identify the dross type (low speed, high speed, top spatter), read the cut angle, correct height, speed and current in small steps, and fix arc loss and fast wear — based on Hypertherm’s guides.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">One guide a week, French-first</p><p>New guides, used equipment in Quebec and price moves. No third-party ads.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="en" novalidate>
+  <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Name or shop (optional)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Email
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="yes">
+    <span>I agree to receive the CoupeFab newsletter (guides, used-equipment digest, and sheet-price updates). I may unsubscribe at any time. See the <a href="/en/privacy/">privacy policy</a>.</span>
+  </label>
+  <button type="submit">Subscribe</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">CASL compliance: the box is not pre-checked. Nothing is sent without this express consent.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "LinuxCNC and QtPlasmaC: open-source control for plasma tables, with height control", "description": "What LinuxCNC is, typical hardware (Mesa cards), the QtPlasmaC interface for plasma, its torch height control (THC), the VAD anti-dive threshold and the commissioning steps.", "inLanguage": "en-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/en/guides/linuxcnc-qtplasmac/", "mainEntityOfPage": "https://coupefab.vercel.app/en/guides/linuxcnc-qtplasmac/", "proficiencyLevel": "Expert", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["linuxcnc", "qtplasmac", "plasma", "thc", "vad", "anti-dive", "mesa", "open source", "control", "hal"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "LinuxCNC and QtPlasmaC: open-source control for plasma tables, with height control", "description": "What LinuxCNC is, typical hardware (Mesa cards), the QtPlasmaC interface for plasma, its torch height control (THC), the VAD anti-dive threshold and the commissioning steps.", "inLanguage": "en-CA", "step": [{"@type": "HowToStep", "name": "Install the official LinuxCNC image; test PC latency ", "text": "Install the official LinuxCNC image; test PC latency ."}, {"@type": "HowToStep", "name": "Configure the Mesa card with the configuration wizard (PnCconf or your card’s tool)", "text": "Configure the Mesa card with the configuration wizard (PnCconf or your card’s tool)."}, {"@type": "HowToStep", "name": "Run the QtPlasmaC configuration wizard", "text": "Run the QtPlasmaC configuration wizard: axes, inputs, arc sensing mode."}, {"@type": "HowToStep", "name": "Set motors, limits and homing; check dimensions on a test part", "text": "Set motors, limits and homing; check dimensions on a test part."}, {"@type": "HowToStep", "name": "Build the materials file from your source’s cut charts", "text": "Build the materials file from your source’s cut charts."}, {"@type": "HowToStep", "name": "Pick a QtPlasmaC-compatible CAM post (SheetCam offers one; Fusion too depending on version)", "text": "Pick a QtPlasmaC-compatible CAM post (SheetCam offers one; Fusion too depending on version)."}, {"@type": "HowToStep", "name": "Test cuts, then tune THC", "text": "Test cuts, then tune THC."}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is LinuxCNC harder than Mach?", "acceptedAnswer": {"@type": "Answer", "text": "Initial setup takes more reading, but QtPlasmaC documentation is detailed and the software is free and maintained."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/en/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>A French-first reference for CNC cutting and metal fabrication: sourced guides, compared sheet prices, used equipment in Quebec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/en/guides/software/">CAD/CAM software and controls</a></li>
+        <li><a href="/en/guides/processes/">Cutting and machining processes</a></li>
+        <li><a href="/en/guides/fundamentals/">CNC fundamentals</a></li>
+        <li><a href="/en/guides/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/en/guides/shop/">Shop: safety, buying, consumables</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explore</p>
+      <ul>
+        <li><a href="/en/sheet-prices/">Sheet prices</a></li>
+        <li><a href="/en/used-equipment/">Used equipment</a></li>
+        <li><a href="/en/newsletter/">Newsletter</a></li>
+        <li><a href="/en/about/">About</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Legal</p>
+      <ul>
+        <li><a href="/en/affiliate-disclosure/">Affiliate disclosure</a></li>
+        <li><a href="/en/privacy/">Privacy and CASL</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Quebec, Canada. No affiliate links. Trademarks belong to their owners and are used descriptively.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>
