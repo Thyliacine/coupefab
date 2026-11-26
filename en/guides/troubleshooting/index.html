@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Troubleshooting — CoupeFab guides</title>
+<meta name="description" content="Dross, bevel, arc loss, chatter, tool breakage: symptom → cause → fix.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/en/guides/troubleshooting/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/troubleshooting/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/depannage/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/depannage/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Troubleshooting — CoupeFab guides">
+<meta property="og:description" content="Dross, bevel, arc loss, chatter, tool breakage: symptom → cause → fix.">
+<meta property="og:url" content="https://coupefab.vercel.app/en/guides/troubleshooting/">
+<meta property="og:locale" content="en_CA">
+<meta property="og:locale:alternate" content="fr_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="en">
+<a class="skip" href="#contenu">Skip to content</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/en/" aria-label="CoupeFab — Home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Main navigation">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/en/guides/software/">By software</a></p>
+            <ul class="mega-list two"><li><a href="/en/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/en/guides/getting-started-sheetcam/">SheetCam</a></li><li><a href="/en/guides/solidworks-sheet-metal-flat-pattern-dxf/">SOLIDWORKS sheet metal</a></li><li><a href="/en/guides/autocad-dxf-cleanup/">AutoCAD (DXF)</a></li><li><a href="/en/guides/fusion-cam-getting-started/">Fusion CAM</a></li><li><a href="/en/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/en/guides/bricscad-to-clean-dxf/">BricsCAD → DXF</a></li><li><a href="/en/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/en/guides/inventor-sheet-metal-and-cam/">Inventor</a></li><li><a href="/en/guides/mastercam-2d-toolpaths-dynamic-milling/">Mastercam 2D</a></li><li><a href="/en/guides/mastercam-posts-and-lathe/">Mastercam posts and lathe</a></li><li><a href="/en/guides/onshape-sheet-metal-cam/">Onshape</a></li><li><a href="/en/guides/solidworks-drawings-and-cam/">SOLIDWORKS CAM and drawings</a></li><li><a href="/en/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/en/guides/freecad-cam/">FreeCAD CAM</a></li><li><a href="/en/guides/vectric-vcarve-aspire/">Vectric VCarve / Aspire</a></li><li><a href="/en/guides/lightburn-laser/">LightBurn</a></li><li><a href="/en/guides/pronest-nesting/">ProNest</a></li></ul>
+            <p class="mega-all"><a href="/en/guides/software/">All software →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/processes/">By process</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/cnc-plasma-cutting/">CNC plasma</a></li><li><a href="/en/guides/fiber-laser-cutting/">Fiber laser</a></li><li><a href="/en/guides/waterjet-cutting/">Waterjet</a></li><li><a href="/en/guides/cnc-router/">CNC router</a></li><li><a href="/en/guides/cnc-mill/">CNC mill</a></li><li><a href="/en/guides/cnc-lathe/">CNC lathe</a></li><li><a href="/en/guides/press-brake-bending/">Press brake</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/fundamentals/">By topic</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/g-code-m-code-reference/">G-code &amp; M-code</a></li><li><a href="/en/guides/feeds-and-speeds/">Feeds and speeds</a></li><li><a href="/en/guides/kerf-and-cut-quality/">Kerf and cut quality</a></li><li><a href="/en/guides/bend-allowance-k-factor/">Bending: K-factor and deduction</a></li><li><a href="/en/guides/metal-grades/">Metal grades</a></li><li><a href="/en/guides/dxf-best-practices/">DXF best practices</a></li><li class="more"><a href="/en/guides/fundamentals/">CNC fundamentals →</a></li><li class="more"><a href="/en/guides/troubleshooting/">Troubleshooting →</a></li><li class="more"><a href="/en/guides/shop/">Shop: safety, buying, consumables →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/en/sheet-prices/">
+              <span class="feature-k">Tool</span>
+              <strong>Sheet prices</strong>
+              <span>Sheet, plate, bar and tube: published prices from suppliers serving Quebec, refreshed every business day.</span>
+            </a>
+            <a class="mega-allguides" href="/en/guides/">All guides (41) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/en/sheet-prices/">Sheet prices</a></li>
+    <li><a class="nav-link" href="/en/used-equipment/">Used equipment</a></li>
+    <li><a class="nav-link" href="/en/newsletter/">Newsletter</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Search</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Language">
+        <a href="/guides/depannage/" hreflang="fr-CA" lang="fr-CA">FR</a><a href="/en/guides/troubleshooting/" hreflang="en-CA" lang="en-CA" aria-current="true">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Search guides (e.g. SheetCam, K-factor, dross)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Close</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>No guide found. Try another word (software, process, material).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<div class="page">
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/en/">Home</a></li><li><a href="/en/guides/">Guides</a></li><li aria-current="page">Troubleshooting</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coupefab.vercel.app/en/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/en/guides/"}, {"@type": "ListItem", "position": 3, "name": "Troubleshooting"}]}</script>
+<header class="page-head">
+  <p class="kicker">Guides · 2</p>
+  <h1>Troubleshooting</h1>
+  <p class="lede">Dross, bevel, arc loss, chatter, tool breakage: symptom → cause → fix.</p>
+</header>
+<div class="gcards"><a class="gcard" href="/en/guides/plasma-troubleshooting-dross-bevel/" data-hub="troubleshooting"><span class="card-meta">Troubleshooting · plasma · Intermediate · 3 min read</span><strong>Plasma troubleshooting: dross, bevel, top spatter, arc loss</strong><span class="card-desc">Identify the dross type (low speed, high speed, top spatter), read the cut angle, correct height, speed and current in small steps, and fix arc loss and fast wear — based on Hypertherm’s guides.</span></a><a class="gcard" href="/en/guides/milling-troubleshooting-chatter/" data-hub="troubleshooting"><span class="card-meta">Troubleshooting · machining · Intermediate · 3 min read</span><strong>Machining troubleshooting: chatter, tool breakage, poor finish, drifting sizes</strong><span class="card-desc">Symptom → cause → fix for milling and routing: vibration, broken tools, built-up edge, poor surface finish, chip recutting and sizes that change during a run.</span></a></div>
+<nav class="chips other-hubs" aria-label="Other sections"><a class="chip" href="/en/guides/software/">CAD/CAM software and controls</a><a class="chip" href="/en/guides/processes/">Cutting and machining processes</a><a class="chip" href="/en/guides/fundamentals/">CNC fundamentals</a><a class="chip" href="/en/guides/shop/">Shop: safety, buying, consumables</a></nav>
+</div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Troubleshooting", "description": "Dross, bevel, arc loss, chatter, tool breakage: symptom → cause → fix.", "inLanguage": "en-CA", "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://coupefab.vercel.app/en/guides/plasma-troubleshooting-dross-bevel/", "name": "Plasma troubleshooting: dross, bevel, top spatter, arc loss"}, {"@type": "ListItem", "position": 2, "url": "https://coupefab.vercel.app/en/guides/milling-troubleshooting-chatter/", "name": "Machining troubleshooting: chatter, tool breakage, poor finish, drifting sizes"}]}}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/en/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>A French-first reference for CNC cutting and metal fabrication: sourced guides, compared sheet prices, used equipment in Quebec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/en/guides/software/">CAD/CAM software and controls</a></li>
+        <li><a href="/en/guides/processes/">Cutting and machining processes</a></li>
+        <li><a href="/en/guides/fundamentals/">CNC fundamentals</a></li>
+        <li><a href="/en/guides/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/en/guides/shop/">Shop: safety, buying, consumables</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explore</p>
+      <ul>
+        <li><a href="/en/sheet-prices/">Sheet prices</a></li>
+        <li><a href="/en/used-equipment/">Used equipment</a></li>
+        <li><a href="/en/newsletter/">Newsletter</a></li>
+        <li><a href="/en/about/">About</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Legal</p>
+      <ul>
+        <li><a href="/en/affiliate-disclosure/">Affiliate disclosure</a></li>
+        <li><a href="/en/privacy/">Privacy and CASL</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Quebec, Canada. No affiliate links. Trademarks belong to their owners and are used descriptively.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>
