@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inconel 625 and 718: what they’re for, machining and cutting nickel superalloys — CoupeFab</title>
+<meta name="description" content="Why Inconel is so hard to machine (work hardening, heat, abrasion), differences between 625 and 718 (age-hardenable), carbide and ceramic tooling strategy, and waterjet, laser or plasma cutting.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/en/guides/inconel-625-718-machining/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/inconel-625-718-machining/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/inconel-625-718-usinage/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/inconel-625-718-usinage/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Inconel 625 and 718: what they’re for, machining and cutting nickel superalloys — CoupeFab">
+<meta property="og:description" content="Why Inconel is so hard to machine (work hardening, heat, abrasion), differences between 625 and 718 (age-hardenable), carbide and ceramic tooling strategy, and waterjet, laser or plasma cutting.">
+<meta property="og:url" content="https://coupefab.vercel.app/en/guides/inconel-625-718-machining/">
+<meta property="og:locale" content="en_CA">
+<meta property="og:locale:alternate" content="fr_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="en">
+<a class="skip" href="#contenu">Skip to content</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/en/" aria-label="CoupeFab — Home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Main navigation">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/en/guides/software/">By software</a></p>
+            <ul class="mega-list two"><li><a href="/en/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/en/guides/getting-started-sheetcam/">SheetCam</a></li><li><a href="/en/guides/solidworks-sheet-metal-flat-pattern-dxf/">SOLIDWORKS sheet metal</a></li><li><a href="/en/guides/autocad-dxf-cleanup/">AutoCAD (DXF)</a></li><li><a href="/en/guides/fusion-cam-getting-started/">Fusion CAM</a></li><li><a href="/en/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/en/guides/bricscad-to-clean-dxf/">BricsCAD → DXF</a></li><li><a href="/en/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/en/guides/inventor-sheet-metal-and-cam/">Inventor</a></li><li><a href="/en/guides/mastercam-2d-toolpaths-dynamic-milling/">Mastercam 2D</a></li><li><a href="/en/guides/mastercam-posts-and-lathe/">Mastercam posts and lathe</a></li><li><a href="/en/guides/camworks-cam-solidworks/">CAMWorks</a></li><li><a href="/en/guides/fusion-plasma-posts-per-table/">Fusion plasma: posts per table</a></li><li><a href="/en/guides/esprit-cam-multitasking/">ESPRIT CAM</a></li><li><a href="/en/guides/onshape-sheet-metal-cam/">Onshape</a></li><li><a href="/en/guides/solidworks-drawings-and-cam/">SOLIDWORKS CAM and drawings</a></li><li><a href="/en/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/en/guides/gibbscam-cam/">GibbsCAM</a></li></ul>
+            <p class="mega-all"><a href="/en/guides/software/">All software →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/processes/">By process</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/cnc-plasma-cutting/">CNC plasma</a></li><li><a href="/en/guides/fiber-laser-cutting/">Fiber laser</a></li><li><a href="/en/guides/waterjet-cutting/">Waterjet</a></li><li><a href="/en/guides/cnc-router/">CNC router</a></li><li><a href="/en/guides/cnc-mill/">CNC mill</a></li><li><a href="/en/guides/cnc-lathe/">CNC lathe</a></li><li><a href="/en/guides/press-brake-bending/">Press brake</a></li><li><a href="/en/guides/plasma-bevel-cutting/">Plasma bevel cutting</a></li><li><a href="/en/guides/oxyfuel-cutting/">Oxyfuel cutting</a></li><li><a href="/en/guides/edm-wire-sinker/">EDM (wire and sinker)</a></li><li><a href="/en/guides/five-axis-machining/">5-axis machining</a></li><li><a href="/en/guides/turn-mill-swiss-type-lathes/">Turn-mill and Swiss-type</a></li><li><a href="/en/guides/weld-preparation-bevels/">Weld preparation</a></li><li><a href="/en/guides/deburring-finishing/">Deburring and finishing</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/fundamentals/">By topic</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/g-code-m-code-reference/">G-code &amp; M-code</a></li><li><a href="/en/guides/feeds-and-speeds/">Feeds and speeds</a></li><li><a href="/en/guides/kerf-and-cut-quality/">Kerf and cut quality</a></li><li><a href="/en/guides/bend-allowance-k-factor/">Bending: K-factor and deduction</a></li><li><a href="/en/guides/metal-grades/">Metal grades</a></li><li><a href="/en/guides/dxf-best-practices/">DXF best practices</a></li><li class="more"><a href="/en/guides/fundamentals/">CNC fundamentals →</a></li><li class="more"><a href="/en/guides/materials/">Materials and grades →</a></li><li class="more"><a href="/en/guides/troubleshooting/">Troubleshooting →</a></li><li class="more"><a href="/en/guides/shop/">Shop: safety, quoting, inspection, training →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/en/sheet-prices/">
+              <span class="feature-k">Tool</span>
+              <strong>Sheet prices</strong>
+              <span>Sheet, plate, bar and tube: published prices from suppliers serving Quebec, refreshed every business day.</span>
+            </a>
+            <a class="mega-allguides" href="/en/guides/">All guides (71) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/en/sheet-prices/">Sheet prices</a></li>
+    <li><a class="nav-link" href="/en/used-equipment/">Used equipment</a></li>
+    <li><a class="nav-link" href="/en/newsletter/">Newsletter</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Search</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Language">
+        <a href="/guides/inconel-625-718-usinage/" hreflang="fr-CA" lang="fr-CA">FR</a><a href="/en/guides/inconel-625-718-machining/" hreflang="en-CA" lang="en-CA" aria-current="true">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Search guides (e.g. SheetCam, K-factor, dross)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Close</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>No guide found. Try another word (software, process, material).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/en/">Home</a></li><li><a href="/en/guides/">Guides</a></li><li><a href="/en/guides/materials/">Materials and grades</a></li><li aria-current="page">Inconel 625 and 718</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coupefab.vercel.app/en/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/en/guides/"}, {"@type": "ListItem", "position": 3, "name": "Materials and grades", "item": "https://coupefab.vercel.app/en/guides/materials/"}, {"@type": "ListItem", "position": 4, "name": "Inconel 625 and 718"}]}</script>
+<article class="guide" data-guide="inconel">
+  <header class="guide-head">
+    <p class="kicker">Materials · nickel superalloys</p>
+    <h1>Inconel 625 and 718: what they’re for, machining and cutting nickel superalloys</h1>
+    <p class="guide-lede">Why Inconel is so hard to machine (work hardening, heat, abrasion), differences between 625 and 718 (age-hardenable), carbide and ceramic tooling strategy, and waterjet, laser or plasma cutting.</p>
+    <p class="guide-meta">
+      <span>Reviewed <time datetime="2026-11-26">November 26, 2026</time></span>
+      <span>3 min read</span>
+      <span>Level : Advanced</span>
+      <span class="pill pill-draft" tabindex="0" title="Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.">Draft<span class="pill-tip" role="tooltip">Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>On this page</summary><ol><li><a href="#625-vs-718">625 vs 718</a></li><li><a href="#machining-strategy">Machining strategy</a></li><li><a href="#cutting-sheet-and-plate">Cutting sheet and plate</a></li><li><a href="#checklist">Checklist</a></li><li><a href="#common-mistakes">Common mistakes</a></li><li><a href="#faq">FAQ</a></li><li><a href="#for-michael-to-review">For Michaël to review</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p>“Inconel” is a brand (Special Metals) that became the common name for <strong>nickel-based superalloys</strong>. They keep their strength at high temperature and resist corrosion — exactly what makes them hard to machine: heat stays in the tool, the material <strong>work-hardens</strong> and it’s abrasive.</p>
+<h2 id="625-vs-718">625 vs 718</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Criterion</th><th>Alloy 625 (UNS N06625)</th><th>Alloy 718 (UNS N07718)</th></tr></thead><tbody>
+<tr><td>Hardening</td><td>Solid-solution strengthened (no aging)</td><td><strong>Age-hardenable</strong> (precipitation)</td></tr>
+<tr><td>Strengths</td><td>Corrosion, weldability, fatigue</td><td>Very high strength up to high temperature</td></tr>
+<tr><td>Typical uses</td><td>Chemical, marine, cladding, bellows</td><td>Aerospace (discs, shafts, fasteners), oil and gas</td></tr>
+<tr><td>Machining</td><td>Difficult</td><td>Difficult; even more so after aging</td></tr>
+</tbody></table></div>
+<h2 id="machining-strategy">Machining strategy</h2>
+<ul><li><strong>718</strong>: rough and semi-finish in the <strong>solution-annealed</strong> condition, age, then finish lightly (Machining Doctor and tooling guides recommend avoiding heavy stock removal in the aged condition).</li><li><strong>Tools</strong>: sharp, positive coated carbide for finishing and for 625; <strong>ceramics</strong> (round, gradual entry) only for roughing in continuous cuts on a rigid machine, per Sandvik Coromant’s heat-resistant superalloy (HRSA) guide.</li><li><strong>Minimum chip thickness</strong>: never “stroke” the material; too light a feed work-hardens the surface and ruins the next tool.</li><li><strong>No dwelling</strong> in the cut, no re-cutting the work-hardened layer.</li><li><strong>Coolant</strong> in volume, high pressure if possible; very rigid setup.</li><li>Speeds: well below stainless; follow the tool’s data (see <a href="/en/guides/feeds-and-speeds/">Feeds and speeds</a>) and track wear (see <a href="/en/guides/tool-life-wear/">Tool life</a>).</li></ul>
+<h2 id="cutting-sheet-and-plate">Cutting sheet and plate</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Process</th><th>Notes</th></tr></thead><tbody>
+<tr><td>Waterjet</td><td>Safest for quality: no heat-affected zone; see <a href="/en/guides/waterjet-cutting/">Waterjet</a></td></tr>
+<tr><td>Fiber laser</td><td>Common on thin material with nitrogen, depending on machine and recipe</td></tr>
+<tr><td>Plasma</td><td>Possible (“stainless/alloy” charts depending on the source), heat zone and edge to clean up</td></tr>
+<tr><td>Saw / abrasive disc</td><td>Slow, high wear</td></tr>
+</tbody></table></div>
+<h2 id="checklist">Checklist</h2>
+<ul class="checklist"><li>Exact alloy and condition (625 annealed; 718 solution-treated or aged, AMS spec)</li><li>Material certificate and traceability (often required in aerospace)</li><li>Dedicated tools, new or in good condition; strategy proven on a test</li><li>Allowance for finishing after aging (718)</li><li>Price checked: nickel is expensive and volatile (see the <a href="/en/sheet-prices/">price comparison tool</a>)</li></ul>
+<h2 id="common-mistakes">Common mistakes</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Mistake</th><th>Consequence</th></tr></thead><tbody>
+<tr><td>Stainless speeds</td><td>Tool destroyed in seconds</td></tr>
+<tr><td>Feed too light “to be safe”</td><td>Work hardening, accelerated wear</td></tr>
+<tr><td>Ceramics in interrupted cuts</td><td>Insert chipping</td></tr>
+<tr><td>Roughing 718 that’s already aged</td><td>Cycle time and tooling cost multiplied</td></tr>
+</tbody></table></div>
+<h2 id="faq">FAQ</h2>
+<h3 id="is-inconel-magnetic">Is Inconel magnetic?</h3>
+<p>Alloys 625 and 718 are essentially non-magnetic at room temperature.</p>
+<h3 id="can-inconel-be-replaced-with-316-stainless">Can Inconel be replaced with 316 stainless?</h3>
+<p>Not without the designer’s approval: at high temperature or in very corrosive environments, 316 doesn’t offer the same properties.</p>
+<section class="review-box"><h2 id="for-michael-to-review">For Michaël to review</h2>
+<ul><li>Your Inconel machining experience (tools, speeds, tool life) and suppliers.</li></ul>
+</section><section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://cdn.sandvik.coromant.com/files/sitecollectiondocuments/downloads/global/technical%20guides/en-gb/c-2920-034.pdf" class="ext" rel="noopener">Sandvik Coromant — Heat resistant super alloys, application guide (PDF)</a>, consulted November 26, 2026.</li><li><a href="https://www.machiningdoctor.com/machining-materials/machining-inconel/" class="ext" rel="noopener">Machining Doctor — Machining Inconel: turning, milling and drilling guide</a>, consulted November 26, 2026.</li><li><a href="https://www.americanmachinist.com/machining-cutting/article/21895460/rx-for-high-nickel-anxiety" class="ext" rel="noopener">American Machinist — Rx for high-nickel anxiety</a>, consulted November 26, 2026.</li><li><a href="https://www.specialmetals.com/documents/technical-bulletins/inconel/inconel-alloy-718.pdf" class="ext" rel="noopener">Special Metals — Inconel alloy 718 (data sheet)</a>, consulted November 26, 2026.</li></ul></section>
+<aside class="price-cta"><div><p class="price-cta-k">CoupeFab tool</p><p class="price-cta-t">Compare material prices</p><p>Sheet, plate, bar and tube: published prices from suppliers serving Quebec, refreshed every business day.</p></div><a class="btn" href="/en/sheet-prices/">Open the price tool</a></aside>
+      <p class="report"><a href="/en/about/#contact">Spotted an error or want something added? Tell us →</a></p>
+    </div>
+  </div>
+  <section class="related"><h2>Related guides</h2><div class="gcards"><a class="gcard" href="/en/guides/17-4ph-stainless-conditions-h900-h1150/" data-hub="materials"><span class="card-meta">Materials · PH stainless · Intermediate · 3 min read</span><strong>17-4PH stainless: conditions A, H900, H1025 and H1150, machining and aging</strong><span class="card-desc">What 17-4PH (UNS S17400) conditions mean, when to machine (in condition A, before aging), dimensional contraction on aging, and which condition to choose between hardness and toughness.</span></a><a class="gcard" href="/en/guides/stainless-steel-303-304-316/" data-hub="materials"><span class="card-meta">Materials · stainless · Beginner · 3 min read</span><strong>Stainless steel in the shop: 303, 304 and 316, work hardening, machining, cutting and finish</strong><span class="card-desc">303 for machining, 304 for general use, 316 for corrosion: differences, sheet finishes (2B, #4), work hardening and how to avoid it, nitrogen laser and plasma cutting, dedicated tools, linked to published prices.</span></a><a class="gcard" href="/en/guides/tool-life-wear/" data-hub="shop"><span class="card-meta">Shop · tooling · Intermediate · 3 min read</span><strong>Cutting tool life: reading wear, extending it and managing it</strong><span class="card-desc">Flank wear, crater, built-up edge, chipping, notch, plastic deformation: how to recognize each mode, its cause and fix, the dominant role of cutting speed, and a simple shop tracking system.</span></a><a class="gcard" href="/en/guides/waterjet-cutting/" data-hub="process"><span class="card-meta">Process · cold cutting · Beginner · 3 min read</span><strong>Waterjet cutting: abrasive, taper, costs and when to choose it</strong><span class="card-desc">Pure or abrasive waterjet, no heat-affected zone, taper and edge quality, running costs and possible materials: when waterjet beats plasma and laser.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">One guide a week, French-first</p><p>New guides, used equipment in Quebec and price moves. No third-party ads.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="en" novalidate>
+  <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Name or shop (optional)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Email
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="yes">
+    <span>I agree to receive the CoupeFab newsletter (guides, used-equipment digest, and sheet-price updates). I may unsubscribe at any time. See the <a href="/en/privacy/">privacy policy</a>.</span>
+  </label>
+  <button type="submit">Subscribe</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">CASL compliance: the box is not pre-checked. Nothing is sent without this express consent.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Inconel 625 and 718: what they’re for, machining and cutting nickel superalloys", "description": "Why Inconel is so hard to machine (work hardening, heat, abrasion), differences between 625 and 718 (age-hardenable), carbide and ceramic tooling strategy, and waterjet, laser or plasma cutting.", "inLanguage": "en-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/en/guides/inconel-625-718-machining/", "mainEntityOfPage": "https://coupefab.vercel.app/en/guides/inconel-625-718-machining/", "proficiencyLevel": "Expert", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["inconel", "625", "718", "nickel alloy", "superalloy", "hrsa", "work hardening", "aging", "solution annealed", "ceramic inserts", "carbide", "waterjet", "laser", "machining"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is Inconel magnetic?", "acceptedAnswer": {"@type": "Answer", "text": "Alloys 625 and 718 are essentially non-magnetic at room temperature."}}, {"@type": "Question", "name": "Can Inconel be replaced with 316 stainless?", "acceptedAnswer": {"@type": "Answer", "text": "Not without the designer’s approval: at high temperature or in very corrosive environments, 316 doesn’t offer the same properties."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/en/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>A French-first reference for CNC cutting and metal fabrication: sourced guides, compared sheet prices, used equipment in Quebec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/en/guides/software/">CAD/CAM software and controls</a></li>
+        <li><a href="/en/guides/processes/">Cutting and machining processes</a></li>
+        <li><a href="/en/guides/fundamentals/">CNC fundamentals</a></li>
+        <li><a href="/en/guides/materials/">Materials and grades</a></li>
+        <li><a href="/en/guides/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/en/guides/shop/">Shop: safety, quoting, inspection, training</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explore</p>
+      <ul>
+        <li><a href="/en/sheet-prices/">Sheet prices</a></li>
+        <li><a href="/en/used-equipment/">Used equipment</a></li>
+        <li><a href="/en/newsletter/">Newsletter</a></li>
+        <li><a href="/en/about/">About</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Legal</p>
+      <ul>
+        <li><a href="/en/affiliate-disclosure/">Affiliate disclosure</a></li>
+        <li><a href="/en/privacy/">Privacy and CASL</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Quebec, Canada. No affiliate links. Trademarks belong to their owners and are used descriptively.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>
