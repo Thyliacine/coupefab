@@ -266,7 +266,7 @@ def form_newsletter(lang: str) -> str:
 def form_contact(lang: str) -> str:
     if lang == "fr":
         return """
-<form class="stack" data-form="contact" data-lang="fr" novalidate>
+<form id="contact" class="stack" data-form="contact" data-lang="fr" novalidate>
   <div class="hp" aria-hidden="true"><label>Site web<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
   <label>Nom
     <input type="text" name="name" autocomplete="name">
@@ -282,7 +282,7 @@ def form_contact(lang: str) -> str:
 </form>
 """
     return """
-<form class="stack" data-form="contact" data-lang="en" novalidate>
+<form id="contact" class="stack" data-form="contact" data-lang="en" novalidate>
   <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
   <label>Name
     <input type="text" name="name" autocomplete="name">
@@ -1391,6 +1391,15 @@ PAGES = [
 ]
 
 
+# --- Shared design + guides library (sitekit/) -------------------------------
+# sitekit owns the page shell (mega-nav, search, footer), the home page, the guides
+# index/hubs and every guide in content/guides/*.md. Pages it regenerates replace the
+# entries above by path; the price page and the other pages are kept as defined here.
+import sitekit  # noqa: E402
+layout = sitekit.layout  # noqa: F811
+PAGES = sitekit.extend_pages(PAGES, form_newsletter, PRIX_META)
+
+
 def path_to_file(path: str) -> Path:
     rel = path.strip("/")
     if not rel:
@@ -1440,6 +1449,8 @@ def main():
         print("wrote", dest.relative_to(ROOT))
     write_sitemap()
     print("wrote sitemap.xml")
+    sitekit.write_assets()
+    print("wrote guides search indexes")
 
 
 if __name__ == "__main__":
