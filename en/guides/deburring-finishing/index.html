@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deburring and finishing cut parts: dross, burrs, edges and oxide — CoupeFab</title>
+<meta name="description" content="What to remove (dross, burr, sharp edge, cutting oxide), in what order, with which method (hammer, belt sander, brushes, tumbling, wide-belt machine), and how to specify it on a drawing.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/en/guides/deburring-finishing/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/deburring-finishing/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/ebavurage-finition/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/ebavurage-finition/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Deburring and finishing cut parts: dross, burrs, edges and oxide — CoupeFab">
+<meta property="og:description" content="What to remove (dross, burr, sharp edge, cutting oxide), in what order, with which method (hammer, belt sander, brushes, tumbling, wide-belt machine), and how to specify it on a drawing.">
+<meta property="og:url" content="https://coupefab.vercel.app/en/guides/deburring-finishing/">
+<meta property="og:locale" content="en_CA">
+<meta property="og:locale:alternate" content="fr_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="en">
+<a class="skip" href="#contenu">Skip to content</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/en/" aria-label="CoupeFab — Home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Main navigation">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/en/guides/software/">By software</a></p>
+            <ul class="mega-list two"><li><a href="/en/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/en/guides/getting-started-sheetcam/">SheetCam</a></li><li><a href="/en/guides/solidworks-sheet-metal-flat-pattern-dxf/">SOLIDWORKS sheet metal</a></li><li><a href="/en/guides/autocad-dxf-cleanup/">AutoCAD (DXF)</a></li><li><a href="/en/guides/fusion-cam-getting-started/">Fusion CAM</a></li><li><a href="/en/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/en/guides/bricscad-to-clean-dxf/">BricsCAD → DXF</a></li><li><a href="/en/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/en/guides/inventor-sheet-metal-and-cam/">Inventor</a></li><li><a href="/en/guides/mastercam-2d-toolpaths-dynamic-milling/">Mastercam 2D</a></li><li><a href="/en/guides/mastercam-posts-and-lathe/">Mastercam posts and lathe</a></li><li><a href="/en/guides/camworks-cam-solidworks/">CAMWorks</a></li><li><a href="/en/guides/fusion-plasma-posts-per-table/">Fusion plasma: posts per table</a></li><li><a href="/en/guides/esprit-cam-multitasking/">ESPRIT CAM</a></li><li><a href="/en/guides/onshape-sheet-metal-cam/">Onshape</a></li><li><a href="/en/guides/solidworks-drawings-and-cam/">SOLIDWORKS CAM and drawings</a></li><li><a href="/en/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/en/guides/gibbscam-cam/">GibbsCAM</a></li></ul>
+            <p class="mega-all"><a href="/en/guides/software/">All software →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/processes/">By process</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/cnc-plasma-cutting/">CNC plasma</a></li><li><a href="/en/guides/fiber-laser-cutting/">Fiber laser</a></li><li><a href="/en/guides/waterjet-cutting/">Waterjet</a></li><li><a href="/en/guides/cnc-router/">CNC router</a></li><li><a href="/en/guides/cnc-mill/">CNC mill</a></li><li><a href="/en/guides/cnc-lathe/">CNC lathe</a></li><li><a href="/en/guides/press-brake-bending/">Press brake</a></li><li><a href="/en/guides/plasma-bevel-cutting/">Plasma bevel cutting</a></li><li><a href="/en/guides/oxyfuel-cutting/">Oxyfuel cutting</a></li><li><a href="/en/guides/edm-wire-sinker/">EDM (wire and sinker)</a></li><li><a href="/en/guides/five-axis-machining/">5-axis machining</a></li><li><a href="/en/guides/turn-mill-swiss-type-lathes/">Turn-mill and Swiss-type</a></li><li><a href="/en/guides/weld-preparation-bevels/">Weld preparation</a></li><li><a href="/en/guides/deburring-finishing/">Deburring and finishing</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/fundamentals/">By topic</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/g-code-m-code-reference/">G-code &amp; M-code</a></li><li><a href="/en/guides/feeds-and-speeds/">Feeds and speeds</a></li><li><a href="/en/guides/kerf-and-cut-quality/">Kerf and cut quality</a></li><li><a href="/en/guides/bend-allowance-k-factor/">Bending: K-factor and deduction</a></li><li><a href="/en/guides/metal-grades/">Metal grades</a></li><li><a href="/en/guides/dxf-best-practices/">DXF best practices</a></li><li class="more"><a href="/en/guides/fundamentals/">CNC fundamentals →</a></li><li class="more"><a href="/en/guides/materials/">Materials and grades →</a></li><li class="more"><a href="/en/guides/troubleshooting/">Troubleshooting →</a></li><li class="more"><a href="/en/guides/shop/">Shop: safety, quoting, inspection, training →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/en/sheet-prices/">
+              <span class="feature-k">Tool</span>
+              <strong>Sheet prices</strong>
+              <span>Sheet, plate, bar and tube: published prices from suppliers serving Quebec, refreshed every business day.</span>
+            </a>
+            <a class="mega-allguides" href="/en/guides/">All guides (71) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/en/sheet-prices/">Sheet prices</a></li>
+    <li><a class="nav-link" href="/en/used-equipment/">Used equipment</a></li>
+    <li><a class="nav-link" href="/en/newsletter/">Newsletter</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Search</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Language">
+        <a href="/guides/ebavurage-finition/" hreflang="fr-CA" lang="fr-CA">FR</a><a href="/en/guides/deburring-finishing/" hreflang="en-CA" lang="en-CA" aria-current="true">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Search guides (e.g. SheetCam, K-factor, dross)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Close</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>No guide found. Try another word (software, process, material).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/en/">Home</a></li><li><a href="/en/guides/">Guides</a></li><li><a href="/en/guides/processes/">Cutting and machining processes</a></li><li aria-current="page">Deburring and finishing</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coupefab.vercel.app/en/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/en/guides/"}, {"@type": "ListItem", "position": 3, "name": "Cutting and machining processes", "item": "https://coupefab.vercel.app/en/guides/processes/"}, {"@type": "ListItem", "position": 4, "name": "Deburring and finishing"}]}</script>
+<article class="guide" data-guide="deburring">
+  <header class="guide-head">
+    <p class="kicker">Process · after cutting</p>
+    <h1>Deburring and finishing cut parts: dross, burrs, edges and oxide</h1>
+    <p class="guide-lede">What to remove (dross, burr, sharp edge, cutting oxide), in what order, with which method (hammer, belt sander, brushes, tumbling, wide-belt machine), and how to specify it on a drawing.</p>
+    <p class="guide-meta">
+      <span>Reviewed <time datetime="2026-11-26">November 26, 2026</time></span>
+      <span>3 min read</span>
+      <span>Level : Beginner</span>
+      <span class="pill pill-draft" tabindex="0" title="Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.">Draft<span class="pill-tip" role="tooltip">Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>On this page</summary><ol><li><a href="#first-reduce-it-at-the-source">First: reduce it at the source</a></li><li><a href="#what-to-remove-and-how">What to remove and how</a></li><li><a href="#equipment-by-volume">Equipment by volume</a></li><li><a href="#specify-it-on-the-drawing">Specify it on the drawing</a></li><li><a href="#pre-shipping-checklist">Pre-shipping checklist</a></li><li><a href="#common-mistakes">Common mistakes</a></li><li><a href="#faq">FAQ</a></li><li><a href="#for-michael-to-review">For Michaël to review</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p>Cutting nearly always leaves something to clean up: <strong>dross</strong> (resolidified metal under the part), a <strong>burr</strong> (small lip), a <strong>sharp edge</strong> that cuts hands and holds paint poorly, and sometimes cutting <strong>oxide</strong> on the edge. Deburring takes time — it must be priced in the quote (see <a href="/en/guides/quoting-cut-parts/">Quoting cut parts</a>) and reduced at the source with good cut settings.</p>
+<h2 id="first-reduce-it-at-the-source">First: reduce it at the source</h2>
+<ul><li>Plasma: speed, height and consumables per the chart; see <a href="/en/guides/plasma-troubleshooting-dross-bevel/">Plasma troubleshooting</a>.</li><li>Laser: nozzle, centering, focus, gas; see <a href="/en/guides/laser-troubleshooting-dross-burning/">Laser: dross and burning</a>.</li><li>A good cut needs only a light pass; a bad cut can cost more to deburr than to cut.</li></ul>
+<h2 id="what-to-remove-and-how">What to remove and how</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Defect</th><th>Common method</th><th>Notes</th></tr></thead><tbody>
+<tr><td>Heavy dross (plasma, oxyfuel)</td><td>Chipping hammer, chisel, impact deslagging station</td><td>Finishing equipment makers recommend removing slag <strong>before</strong> grinding so abrasives don’t wear out</td></tr>
+<tr><td>Fine burr (laser, punching)</td><td>Belt sander, wide-belt machine, rotary brushes</td><td>One or two passes depending on the machine</td></tr>
+<tr><td>Sharp edge → broken or rounded edge</td><td>Brushes, vibratory finishing, file, edge deburring tool</td><td>Specify the radius or chamfer wanted</td></tr>
+<tr><td>Oxide on the edge (O₂ cut)</td><td>Abrasive brushing, grinding</td><td>Important before powder coating or welding per the procedure</td></tr>
+<tr><td>Heat tint on stainless</td><td>Pickling/passivation per good practice, dedicated brushing</td><td>Stainless-only tools</td></tr>
+</tbody></table></div>
+<h2 id="equipment-by-volume">Equipment by volume</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Volume</th><th>Typical equipment</th></tr></thead><tbody>
+<tr><td>A few parts</td><td>File, grinder with flap disc, handheld belt sander</td></tr>
+<tr><td>Small batches</td><td>Stationary belt sander, edge deburring tool, vibratory finishing</td></tr>
+<tr><td>Production</td><td>Wide-belt machine with brushes (deburring and edge rounding, one or both sides depending on model)</td></tr>
+</tbody></table></div>
+<h2 id="specify-it-on-the-drawing">Specify it on the drawing</h2>
+<ul><li><strong>“Break edges”</strong> with no value invites interpretation; prefer a maximum chamfer or radius (e.g. “edges broken 0.2–0.5 mm” if that is your requirement).</li><li>Call out faces where <strong>no</strong> burr is acceptable (bearing faces, visible faces).</li><li>State whether cutting <strong>oxide</strong> must be removed (paint, welding).</li></ul>
+<h2 id="pre-shipping-checklist">Pre-shipping checklist</h2>
+<ul class="checklist"><li>No dross that comes off by hand</li><li>Edges per the drawing (radius/chamfer)</li><li>Visible faces free of deburring scratches if required</li><li>Oxide removed if the part goes to paint</li><li>Stainless parts handled with dedicated tools</li></ul>
+<h2 id="common-mistakes">Common mistakes</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Mistake</th><th>Consequence</th></tr></thead><tbody>
+<tr><td>Sanding heavy dross</td><td>Abrasives worn in minutes, parts heated</td></tr>
+<tr><td>Same brushes for steel and stainless</td><td>Contamination, rust on stainless</td></tr>
+<tr><td>Not pricing deburring</td><td>Margin lost on the job</td></tr>
+<tr><td>Over-rounding edges on precision parts</td><td>Functional dimensions out of tolerance</td></tr>
+</tbody></table></div>
+<h2 id="faq">FAQ</h2>
+<h3 id="is-vibratory-finishing-suitable-for-large-parts">Is vibratory finishing suitable for large parts?</h3>
+<p>It suits small parts in bulk; large sheets go better through a wide-belt machine or by hand.</p>
+<h3 id="should-parts-going-to-powder-coat-be-deburred">Should parts going to powder coat be deburred?</h3>
+<p>Generally yes: powder pulls back from sharp edges (edge effect) and oxide can hurt adhesion. Check with your coater.</p>
+<section class="review-box"><h2 id="for-michael-to-review">For Michaël to review</h2>
+<ul><li>Your equipment and typical deburring times by thickness.</li><li>Your customers’ edge requirements.</li></ul>
+</section><section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://teqram.com/en/insights/sheet-metal-deburring/" class="ext" rel="noopener">Teqram — Sheet metal deburring: methods and process steps</a>, consulted November 26, 2026.</li><li><a href="https://www.timesaversint.com/knowledge-base/dross-removal-machine/" class="ext" rel="noopener">Timesavers — Dross removal machine for sheet metal</a>, consulted November 26, 2026.</li><li><a href="https://www.evotecgroup.com/newsroom/how-to-remove-heavy-slag-after-plasma-cutting-without-damaging-the-part" class="ext" rel="noopener">Evotec — Heavy slag removal guide for plasma-cut parts</a>, consulted November 26, 2026.</li></ul></section>
+
+      <p class="report"><a href="/en/about/#contact">Spotted an error or want something added? Tell us →</a></p>
+    </div>
+  </div>
+  <section class="related"><h2>Related guides</h2><div class="gcards"><a class="gcard" href="/en/guides/laser-troubleshooting-dross-burning/" data-hub="troubleshooting"><span class="card-meta">Troubleshooting · fiber laser · Intermediate · 4 min read</span><strong>Fiber laser troubleshooting: dross, burrs, burning and incomplete cuts</strong><span class="card-desc">Symptom → cause → fix for fiber laser cutting: clinging dross, burrs, burned corners, striations, cuts that don’t go through. Nozzle, centering, focus, gas and protective window, in the right order.</span></a><a class="gcard" href="/en/guides/plasma-troubleshooting-dross-bevel/" data-hub="troubleshooting"><span class="card-meta">Troubleshooting · plasma · Intermediate · 3 min read</span><strong>Plasma troubleshooting: dross, bevel, top spatter, arc loss</strong><span class="card-desc">Identify the dross type (low speed, high speed, top spatter), read the cut angle, correct height, speed and current in small steps, and fix arc loss and fast wear — based on Hypertherm’s guides.</span></a><a class="gcard" href="/en/guides/weld-preparation-bevels/" data-hub="process"><span class="card-meta">Process · before welding · Intermediate · 3 min read</span><strong>Preparing parts for welding: bevels, root face, root opening and cleanliness</strong><span class="card-desc">Groove joint vocabulary (angle, root face, root opening), where dimensions come from (welding procedure, CSA W59, AWS D1.1), how to cut and clean the bevel with plasma, oxyfuel or grinding, and a fit-up checklist.</span></a><a class="gcard" href="/en/guides/quoting-cut-parts/" data-hub="shop"><span class="card-meta">Shop · costing · Intermediate · 3 min read</span><strong>Quoting laser and plasma cut parts: a complete costing method</strong><span class="card-desc">Material with real nesting utilization, cut time (length + pierces), machine hourly rate, consumables, setup, deburring, bending and margin: the step-by-step method with a template worksheet, no made-up numbers.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">One guide a week, French-first</p><p>New guides, used equipment in Quebec and price moves. No third-party ads.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="en" novalidate>
+  <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Name or shop (optional)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Email
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="yes">
+    <span>I agree to receive the CoupeFab newsletter (guides, used-equipment digest, and sheet-price updates). I may unsubscribe at any time. See the <a href="/en/privacy/">privacy policy</a>.</span>
+  </label>
+  <button type="submit">Subscribe</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">CASL compliance: the box is not pre-checked. Nothing is sent without this express consent.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Deburring and finishing cut parts: dross, burrs, edges and oxide", "description": "What to remove (dross, burr, sharp edge, cutting oxide), in what order, with which method (hammer, belt sander, brushes, tumbling, wide-belt machine), and how to specify it on a drawing.", "inLanguage": "en-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/en/guides/deburring-finishing/", "mainEntityOfPage": "https://coupefab.vercel.app/en/guides/deburring-finishing/", "proficiencyLevel": "Beginner", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["deburring", "dross removal", "slag", "edge rounding", "edge break", "oxide removal", "wide belt", "brush", "tumbling", "vibratory", "chamfer", "burr", "finishing", "powder coating"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is vibratory finishing suitable for large parts?", "acceptedAnswer": {"@type": "Answer", "text": "It suits small parts in bulk; large sheets go better through a wide-belt machine or by hand."}}, {"@type": "Question", "name": "Should parts going to powder coat be deburred?", "acceptedAnswer": {"@type": "Answer", "text": "Generally yes: powder pulls back from sharp edges (edge effect) and oxide can hurt adhesion. Check with your coater."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/en/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>A French-first reference for CNC cutting and metal fabrication: sourced guides, compared sheet prices, used equipment in Quebec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/en/guides/software/">CAD/CAM software and controls</a></li>
+        <li><a href="/en/guides/processes/">Cutting and machining processes</a></li>
+        <li><a href="/en/guides/fundamentals/">CNC fundamentals</a></li>
+        <li><a href="/en/guides/materials/">Materials and grades</a></li>
+        <li><a href="/en/guides/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/en/guides/shop/">Shop: safety, quoting, inspection, training</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explore</p>
+      <ul>
+        <li><a href="/en/sheet-prices/">Sheet prices</a></li>
+        <li><a href="/en/used-equipment/">Used equipment</a></li>
+        <li><a href="/en/newsletter/">Newsletter</a></li>
+        <li><a href="/en/about/">About</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Legal</p>
+      <ul>
+        <li><a href="/en/affiliate-disclosure/">Affiliate disclosure</a></li>
+        <li><a href="/en/privacy/">Privacy and CASL</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Quebec, Canada. No affiliate links. Trademarks belong to their owners and are used descriptively.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>
