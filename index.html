@@ -1,98 +1,160 @@
 <!DOCTYPE html>
 <html lang="fr-CA">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CoupeFab — guides plasma, occasions et prix des tôles au Québec</title>
-  <meta name="description" content="Ressource francophone pour les ateliers de découpe plasma au Québec : guides SheetCam et BricsCAD, digest d’occasions, suivi des prix de tôles.">
-  <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://coupefab.vercel.app/">
-  <link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/">
-  <link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/">
-  <link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="CoupeFab — guides plasma, occasions et prix des tôles au Québec">
-  <meta property="og:description" content="Ressource francophone pour les ateliers de découpe plasma au Québec : guides SheetCam et BricsCAD, digest d’occasions, suivi des prix de tôles.">
-  <meta property="og:url" content="https://coupefab.vercel.app/">
-  <meta property="og:locale" content="fr_CA">
-  <meta property="og:locale:alternate" content="en_CA">
-  <meta name="twitter:card" content="summary">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css">
-  
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "CoupeFab",
-  "url": "https://coupefab.vercel.app/",
-  "inLanguage": [
-    "fr-CA",
-    "en-CA"
-  ],
-  "areaServed": "Quebec, Canada",
-  "description": "Ressource francophone pour les ateliers de découpe plasma au Québec : guides SheetCam et BricsCAD, digest d’occasions, suivi des prix de tôles."
-}
-</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CoupeFab — guides CNC, plasma, CAO/FAO et prix des tôles</title>
+<meta name="description" content="Guides d’atelier sourcés (Mastercam, SolidWorks, Fusion, SheetCam, plasma, laser, pliage) et comparateur des prix de tôle au Canada. En français d’abord.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CoupeFab — guides CNC, plasma, CAO/FAO et prix des tôles">
+<meta property="og:description" content="Guides d’atelier sourcés (Mastercam, SolidWorks, Fusion, SheetCam, plasma, laser, pliage) et comparateur des prix de tôle au Canada. En français d’abord.">
+<meta property="og:url" content="https://coupefab.vercel.app/">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:locale:alternate" content="en_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://coupefab.vercel.app/#org", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": "https://coupefab.vercel.app/favicon.svg", "areaServed": ["Quebec", "Canada"]}, {"@type": "WebSite", "@id": "https://coupefab.vercel.app/#site", "url": "https://coupefab.vercel.app/", "name": "CoupeFab", "inLanguage": ["fr-CA", "en-CA"], "publisher": {"@id": "https://coupefab.vercel.app/#org"}, "potentialAction": {"@type": "SearchAction", "target": "https://coupefab.vercel.app/guides/?q={search_term_string}", "query-input": "required name=search_term_string"}}]}</script>
 </head>
-<body>
-  <a class="skip" href="#contenu">Aller au contenu</a>
-  <header class="site-header">
-    <div class="header-inner">
-      <a class="brand" href="/">
-        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
-          <rect width="32" height="32" rx="6" fill="#1B1D1B"/>
-          <path d="M5 11h22M5 21h22M5 16h9.2M18.2 16H27" stroke="#F4F1EA" stroke-width="2"/>
-          <rect x="14.2" y="14.2" width="4" height="3.6" fill="#B54300"/>
-        </svg>
-        Coupe<span>Fab</span>
-      </a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-primary">Menu</button>
-      <nav class="primary" id="nav-primary">
-        <a href="/" aria-current="page">Accueil</a><a href="/guides/">Guides</a><a href="/occasions/">Occasions Québec</a><a href="/prix/">Prix des tôles</a><a href="/infolettre/">Infolettre</a><a href="/a-propos/">À propos</a><div class="lang-switch" role="navigation" aria-label="Langue"><a href="/" hreflang="fr" aria-current="true">FR</a><a href="/en/" hreflang="en">EN</a></div>
-      </nav>
+<body data-lang="fr">
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/" aria-label="CoupeFab — Accueil"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Navigation principale">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/guides/logiciels/">Par logiciel</a></p>
+            <ul class="mega-list two"><li><a href="/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/guides/debuter-sheetcam/">SheetCam</a></li><li><a href="/guides/solidworks-tolerie-dxf/">SOLIDWORKS tôlerie</a></li><li><a href="/guides/autocad-nettoyer-dxf/">AutoCAD (DXF)</a></li><li><a href="/guides/fusion-fao-debuter/">Fusion (FAO)</a></li><li><a href="/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/guides/bricscad-dxf/">BricsCAD → DXF</a></li><li><a href="/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/guides/inventor-tolerie-cam/">Inventor</a></li><li><a href="/guides/mastercam-parcours-2d-dynamic/">Mastercam 2D</a></li><li><a href="/guides/mastercam-post-tour/">Mastercam post et tour</a></li><li><a href="/guides/onshape-tolerie-cam/">Onshape</a></li><li><a href="/guides/solidworks-mises-en-plan-cam/">SOLIDWORKS CAM et mises en plan</a></li><li><a href="/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/guides/freecad-cam/">FreeCAD (CAM)</a></li><li><a href="/guides/vectric-vcarve-aspire/">Vectric VCarve / Aspire</a></li><li><a href="/guides/lightburn-laser/">LightBurn</a></li><li><a href="/guides/pronest-imbrication/">ProNest</a></li></ul>
+            <p class="mega-all"><a href="/guides/logiciels/">Tous les logiciels →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/procedes/">Par procédé</a></p>
+            <ul class="mega-list"><li><a href="/guides/decoupe-plasma-cnc/">Plasma CNC</a></li><li><a href="/guides/laser-fibre/">Laser fibre</a></li><li><a href="/guides/jet-d-eau/">Jet d’eau</a></li><li><a href="/guides/routeur-cnc/">Routeur CNC</a></li><li><a href="/guides/fraiseuse-cnc/">Fraiseuse CNC</a></li><li><a href="/guides/tour-cnc/">Tour CNC</a></li><li><a href="/guides/presse-plieuse/">Presse plieuse</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/fondamentaux/">Par sujet</a></p>
+            <ul class="mega-list"><li><a href="/guides/reference-g-code-m-code/">G-code et M-code</a></li><li><a href="/guides/avances-vitesses/">Avances et vitesses</a></li><li><a href="/guides/kerf-qualite-coupe/">Kerf et qualité de coupe</a></li><li><a href="/guides/pliage-k-factor/">Pliage : K-factor et déduction</a></li><li><a href="/guides/nuances-metaux/">Nuances de métaux</a></li><li><a href="/guides/dxf-bonnes-pratiques/">DXF : bonnes pratiques</a></li><li class="more"><a href="/guides/fondamentaux/">Fondamentaux CNC →</a></li><li class="more"><a href="/guides/depannage/">Dépannage →</a></li><li class="more"><a href="/guides/atelier/">Atelier : sécurité, achats, consommables →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/prix/">
+              <span class="feature-k">Outil</span>
+              <strong>Prix des tôles</strong>
+              <span>Tôle, plaque, barre et tube : prix publiés chez les fournisseurs qui livrent au Québec, mis à jour chaque jour ouvrable.</span>
+            </a>
+            <a class="mega-allguides" href="/guides/">Tous les guides (41) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/prix/">Prix des tôles</a></li>
+    <li><a class="nav-link" href="/occasions/">Occasions</a></li>
+    <li><a class="nav-link" href="/infolettre/">Infolettre</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Rechercher"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Rechercher</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Langue">
+        <a href="/" hreflang="fr-CA" lang="fr-CA" aria-current="true">FR</a><a href="/en/" hreflang="en-CA" lang="en-CA">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     </div>
-  </header>
-  
-  <main id="contenu">
-  
-  
-<section class="hero">
-  <div class="hero-inner">
-    <p class="kicker">Québec · plasma · CAD/CAM</p>
-    <h1>CoupeFab, la référence francophone pour la découpe plasma.</h1>
-    <p class="lede">Guides SheetCam et BricsCAD, digest d’équipements d’occasion au Québec, et suivi des prix de tôles publiés. Rédigé pour l’atelier, pas pour la brochure.</p>
-    <div class="actions">
-      <a class="btn" href="/guides/">Lire les guides</a>
-      <a class="btn btn-ghost" href="/infolettre/">S’inscrire à l’infolettre</a>
-    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Rechercher">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Rechercher un guide (ex. SheetCam, K-factor, scories)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Fermer</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>Aucun guide trouvé. Essayez un autre mot (logiciel, procédé, matériau).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<section class="hero2">
+  <div class="hero2-inner">
+    <p class="kicker kicker-light">CNC · plasma · laser · usinage · tôlerie — Québec et partout</p>
+    <h1>Couper, plier et usiner juste, du premier coup.</h1>
+    <p class="hero2-lede">Des guides d’atelier sourcés pour Mastercam, SolidWorks, Fusion, SheetCam et compagnie, et un comparateur des prix de tôle publiés au Canada. En français d’abord, en anglais aussi.</p>
+    <button class="hero-search" type="button" data-search-open>
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span>Rechercher un guide (ex. SheetCam, K-factor, scories)…</span><kbd>/</kbd>
+    </button>
+    <div class="qchips"><span>Populaire :</span><button type="button" class="qchip" data-search-q="SheetCam">SheetCam</button><button type="button" class="qchip" data-search-q="Mastercam">Mastercam</button><button type="button" class="qchip" data-search-q="K-factor">K-factor</button><button type="button" class="qchip" data-search-q="scories">scories</button><button type="button" class="qchip" data-search-q="G-code">G-code</button><button type="button" class="qchip" data-search-q="DXF">DXF</button><button type="button" class="qchip" data-search-q="Fusion">Fusion</button></div>
   </div>
 </section>
-<div class="wrap">
-  <h2>Trois outils, un même atelier</h2>
-  <div class="grid">
-    <article class="card">
-      <h3><a href="/guides/">Guides</a></h3>
-      <p>SheetCam en français, un DXF propre depuis BricsCAD, le kerf, les consommables au Canada. Pages encore en brouillon, à valider en atelier.</p>
-      <a class="more" href="/guides/">Voir les guides</a>
-    </article>
-    <article class="card">
-      <h3><a href="/occasions/">Occasions Québec</a></h3>
-      <p>Une ronde d’annonces publiques (tables plasma, laser, presses) avec liens vers Kijiji, Machinio, encans et courtiers, plus une liste de vérification.</p>
-      <a class="more" href="/occasions/">Voir le digest</a>
-    </article>
-    <article class="card">
-      <h3><a href="/prix/">Prix des tôles</a></h3>
-      <p>Comparaison à partir de listes publiques seulement, avec date et source. Beaucoup de fournisseurs restent en « prix sur demande » — on le dit clairement.</p>
-      <a class="more" href="/prix/">Voir la méthode</a>
-    </article>
+<div class="page page-home">
+
+<ul class="stats" aria-label="CoupeFab en chiffres">
+  <li><b>41</b><span>guides en français et en anglais</span></li>
+  <li><b>1 944</b><span>prix de métaux publiés comparés</span></li>
+  <li><b>7</b><span>fournisseurs suivis chaque jour ouvrable</span></li>
+  <li><b>0</b><span>lien d’affiliation, zéro chiffre inventé</span></li>
+</ul>
+<section class="price-feature">
+  <div class="price-feature-txt">
+    <p class="kicker">Outil phare</p>
+    <h2>Prix des tôles : voyez tout de suite le bon prix et le mauvais</h2>
+    <p>Acier, inox, aluminium, en tôle, plaque, barre et tube. Les prix publiés par les fournisseurs sont convertis en $ CA par pi² et par lb, le meilleur prix par spécification est mis en évidence, et chaque ligne renvoie à sa source et à l’heure du relevé.</p>
+    <div class="actions"><a class="btn btn-lg" href="/prix/">Ouvrir le comparateur</a><a class="btn btn-ghost" href="/guides/nuances-metaux/">Comprendre les nuances</a></div>
   </div>
-  <h2>S’inscrire</h2>
-  <p>L’infolettre regroupera les nouveaux guides, le digest d’occasions et la mise à jour des prix. Envoi manuel au départ, depuis Gmail. Pas de pub tierce pour le moment.</p>
-  
+  <div class="price-feature-art" aria-hidden="true">
+    <div class="pf-row pf-best"><span>A36 · 1/4"</span><b>meilleur</b></div>
+    <div class="pf-row"><span>5052-H32 · 0.125"</span><i></i></div>
+    <div class="pf-row pf-high"><span>304 2B · 16 ga</span><b>élevé</b></div>
+    <div class="pf-row"><span>6061-T6 · 3/8"</span><i></i></div>
+  </div>
+</section>
+
+<section class="home-sec">
+  <div class="sec-head"><h2>Guides par logiciel</h2><a href="/guides/logiciels/">Tous les logiciels →</a></div>
+  <div class="tiles"><a class="tile" href="/guides/mach3-mach4/"><span class="tile-mono" aria-hidden="true">M4</span><span>Mach3 / Mach4</span></a><a class="tile" href="/guides/debuter-sheetcam/"><span class="tile-mono" aria-hidden="true">SC</span><span>SheetCam</span></a><a class="tile" href="/guides/solidworks-tolerie-dxf/"><span class="tile-mono" aria-hidden="true">SW</span><span>SOLIDWORKS tôlerie</span></a><a class="tile" href="/guides/autocad-nettoyer-dxf/"><span class="tile-mono" aria-hidden="true">AC</span><span>AutoCAD (DXF)</span></a><a class="tile" href="/guides/fusion-fao-debuter/"><span class="tile-mono" aria-hidden="true">F</span><span>Fusion (FAO)</span></a><a class="tile" href="/guides/linuxcnc-qtplasmac/"><span class="tile-mono" aria-hidden="true">LX</span><span>LinuxCNC / QtPlasmaC</span></a><a class="tile" href="/guides/bricscad-dxf/"><span class="tile-mono" aria-hidden="true">Bc</span><span>BricsCAD → DXF</span></a><a class="tile" href="/guides/firecontrol-langmuir/"><span class="tile-mono" aria-hidden="true">Fi</span><span>FireControl (Langmuir)</span></a><a class="tile" href="/guides/inventor-tolerie-cam/"><span class="tile-mono" aria-hidden="true">Iv</span><span>Inventor</span></a><a class="tile" href="/guides/mastercam-parcours-2d-dynamic/"><span class="tile-mono" aria-hidden="true">Mc</span><span>Mastercam 2D</span></a><a class="tile" href="/guides/mastercam-post-tour/"><span class="tile-mono" aria-hidden="true">Mc</span><span>Mastercam post et tour</span></a><a class="tile" href="/guides/onshape-tolerie-cam/"><span class="tile-mono" aria-hidden="true">On</span><span>Onshape</span></a><a class="tile" href="/guides/solidworks-mises-en-plan-cam/"><span class="tile-mono" aria-hidden="true">SW</span><span>SOLIDWORKS CAM et mises en plan</span></a><a class="tile" href="/guides/ugs-grbl/"><span class="tile-mono" aria-hidden="true">gr</span><span>UGS / grbl</span></a><a class="tile" href="/guides/freecad-cam/"><span class="tile-mono" aria-hidden="true">FC</span><span>FreeCAD (CAM)</span></a><a class="tile" href="/guides/vectric-vcarve-aspire/"><span class="tile-mono" aria-hidden="true">Vc</span><span>Vectric VCarve / Aspire</span></a><a class="tile" href="/guides/lightburn-laser/"><span class="tile-mono" aria-hidden="true">LB</span><span>LightBurn</span></a><a class="tile" href="/guides/pronest-imbrication/"><span class="tile-mono" aria-hidden="true">PN</span><span>ProNest</span></a></div>
+</section>
+
+<section class="home-sec">
+  <div class="sec-head"><h2>Par procédé</h2><a href="/guides/procedes/">Tous les procédés →</a></div>
+  <div class="ptiles"><a class="ptile" href="/guides/decoupe-plasma-cnc/"><strong>Plasma CNC</strong><span>Principe de l’arc plasma, plasma à l’air ou haute définition, contrôle de hauteur (THC), table à eau ou…</span></a><a class="ptile" href="/guides/laser-fibre/"><strong>Laser fibre</strong><span>Comment coupe un laser fibre, oxygène, azote ou air comprimé, ce qui fait la qualité du bord, la sécurité…</span></a><a class="ptile" href="/guides/jet-d-eau/"><strong>Jet d’eau</strong><span>Jet d’eau pur ou abrasif, absence de zone affectée thermiquement, conicité et qualité de bord, coûts…</span></a><a class="ptile" href="/guides/routeur-cnc/"><strong>Routeur CNC</strong><span>Comment fonctionne un routeur CNC, choisir les fraises, fixer la pièce (table à vide, martyr, brides), régler…</span></a><a class="ptile" href="/guides/fraiseuse-cnc/"><strong>Fraiseuse CNC</strong><span>Le déroulé complet d’un premier programme sur centre d’usinage : FAO, feuille de réglage, montage dans…</span></a><a class="ptile" href="/guides/tour-cnc/"><strong>Tour CNC</strong><span>Les bases du tournage CNC : G96/G97 et limite de régime, mode diamètre, correcteurs d’outil, rayon de bec,…</span></a><a class="ptile" href="/guides/presse-plieuse/"><strong>Presse plieuse</strong><span>Pliage en l’air, règle des 8 fois l’épaisseur, règle des 20 % pour le rayon intérieur, formule de tonnage par…</span></a></div>
+</section>
+
+<section class="home-sec">
+  <div class="sec-head"><h2>Par où commencer</h2><a href="/guides/">Tous les guides (41) →</a></div>
+  <div class="paths-grid"><div class="path"><p class="path-t">Débuter en plasma CNC</p><ol><li><a href="/guides/decoupe-plasma-cnc/">Plasma CNC</a></li><li><a href="/guides/dxf-bonnes-pratiques/">DXF : bonnes pratiques</a></li><li><a href="/guides/debuter-sheetcam/">SheetCam</a></li><li><a href="/guides/entrees-sorties-percage-plasma/">Entrées, sorties et perçage</a></li><li><a href="/guides/kerf-qualite-coupe/">Kerf et qualité de coupe</a></li><li><a href="/guides/depannage-plasma-scories-biseau/">Dépannage plasma</a></li></ol></div><div class="path"><p class="path-t">Concevoir de la tôle qui se plie bien</p><ol><li><a href="/guides/solidworks-tolerie-dxf/">SOLIDWORKS tôlerie</a></li><li><a href="/guides/pliage-k-factor/">Pliage : K-factor et déduction</a></li><li><a href="/guides/presse-plieuse/">Presse plieuse</a></li><li><a href="/guides/tolerances-cnc/">Tolérances</a></li></ol></div><div class="path"><p class="path-t">Fraiseuse et tour : premiers programmes</p><ol><li><a href="/guides/reference-g-code-m-code/">G-code et M-code</a></li><li><a href="/guides/decalages-origine-g54/">Décalages d’origine (G54)</a></li><li><a href="/guides/avances-vitesses/">Avances et vitesses</a></li><li><a href="/guides/mastercam-parcours-2d-dynamic/">Mastercam 2D</a></li><li><a href="/guides/depannage-usinage-broutage/">Dépannage usinage</a></li></ol></div></div>
+</section>
+
+<section class="home-sec">
+  <div class="sec-head"><h2>Guides essentiels</h2><a href="/guides/fondamentaux/">Fondamentaux CNC →</a></div>
+  <div class="gcards"><a class="gcard" href="/guides/debuter-sheetcam/" data-hub="software"><span class="card-meta">Logiciel · FAO plasma · Débutant · 5 min de lecture</span><strong>Débuter avec SheetCam : du DXF au G-code plasma</strong><span class="card-desc">Unités, job, import DXF, outil plasma, opération, imbrication et post-processeur : la démarche SheetCam pas à pas, avec les pièges que l’équipe SheetCam documente elle-même.</span></a><a class="gcard" href="/guides/reference-g-code-m-code/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · référence · Débutant · 5 min de lecture</span><strong>Référence G-code et M-code : les codes à connaître par cœur</strong><span class="card-desc">Les codes G et M courants (mouvements, plans, unités, compensation, cycles, broche, arrosage) avec leur sens, un exemple commenté et les pièges entre commandes.</span></a><a class="gcard" href="/guides/pliage-k-factor/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · tôlerie · Intermédiaire · 4 min de lecture</span><strong>Pliage : longueur développée, K-factor et déduction de pli, avec les formules</strong><span class="card-desc">Calculer un déplié juste : formules de la longueur de pli (BA), du retrait extérieur (OSSB) et de la déduction (BD), retrouver le K-factor réel à partir d’un pli d’essai, et le saisir dans la CAO.</span></a><a class="gcard" href="/guides/fusion-fao-debuter/" data-hub="software"><span class="card-meta">Logiciel · FAO · Débutant · 3 min de lecture</span><strong>Débuter en FAO avec Autodesk Fusion : fraisage 2D, découpe plasma et post-traitement</strong><span class="card-desc">Configuration (setup), opérations 2D, Adaptive, profil de découpe plasma ou laser, simulation et post-processeur dans l’espace Fabrication de Fusion, plus les limites réelles de la licence Usage personnel.</span></a><a class="gcard" href="/guides/depannage-plasma-scories-biseau/" data-hub="troubleshooting"><span class="card-meta">Dépannage · plasma · Intermédiaire · 4 min de lecture</span><strong>Dépannage plasma : scories, biseau, projections, perte d’arc</strong><span class="card-desc">Identifier le type de scories (basse vitesse, haute vitesse, projections), lire l’angle de coupe, corriger hauteur, vitesse et courant par petits pas, et régler les pertes d’arc et l’usure rapide — d’après les guides Hypertherm.</span></a><a class="gcard" href="/guides/solidworks-tolerie-dxf/" data-hub="software"><span class="card-meta">Logiciel · CAO · Intermédiaire · 3 min de lecture</span><strong>SOLIDWORKS tôlerie : paramètres de pliage, déplié et export DXF propre pour la découpe</strong><span class="card-desc">Tôle de base, facteur K, tableau de pliage ou déduction, déplié, puis export DXF/DWG du déplié avec lignes de pliage sur leur propre calque : la démarche pour envoyer un fichier qui se coupe du premier coup.</span></a><a class="gcard" href="/guides/mastercam-parcours-2d-dynamic/" data-hub="software"><span class="card-meta">Logiciel · FAO · Intermédiaire · 3 min de lecture</span><strong>Mastercam : parcours 2D et fraisage dynamique (Dynamic Motion) sans se tromper</strong><span class="card-desc">Définition machine, brut, chaînage, Dynamic Mill, Peel Mill, Dynamic Contour, Face et vérification : la démarche Mastercam en 2D, les niveaux de licence et les pièges de chaînage les plus courants.</span></a><a class="gcard" href="/guides/avances-vitesses/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · usinage · Intermédiaire · 4 min de lecture</span><strong>Avances et vitesses : les formules, la méthode, et d’où viennent les chiffres</strong><span class="card-desc">Vitesse de coupe, tr/min, avance par dent, amincissement des copeaux, débit de copeaux : les formules exactes en métrique et en impérial, et comment partir des données du fabricant d’outils.</span></a></div>
+</section>
+
+<section class="home-split">
+  <a class="split-card" href="/occasions/">
+    <p class="kicker">Occasions</p>
+    <h2>Occasions CNC au Québec</h2>
+    <p>Tables plasma, lasers, presses plieuses : un digest daté d’annonces publiques, et la liste de vérification avant d’acheter.</p>
+    <span class="more">Voir le digest →</span>
+  </a>
+  <div class="split-card split-news">
+    <p class="kicker">Infolettre</p>
+    <h2>Un guide par semaine, en français d’abord</h2>
+    <p>Nouveaux guides, occasions au Québec et mouvements de prix. Pas de pub tierce.</p>
+    
 <form class="stack" data-form="newsletter" data-lang="fr" novalidate>
   <div class="hp" aria-hidden="true"><label>Site web<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
   <label>Prénom ou atelier (facultatif)
@@ -110,26 +172,46 @@
 </form>
 <p class="meta">Conformité CASL : la case n’est pas précochée. Aucun envoi sans ce consentement exprès.</p>
 
+  </div>
+</section>
 </div>
 
-  </main>
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div>
-        <a class="brand" href="/" style="color:#fffcf6">Coupe<span>Fab</span></a>
-        <p>Ressource francophone d’abord, pour les ateliers de découpe plasma et de fabrication métallique au Québec.</p>
-      </div>
-      <div>
-        <h2>Explorer</h2>
-        <p><a href="/guides/">Guides</a> / <a href="/occasions/">Occasions Québec</a> / <a href="/prix/">Prix des tôles</a> / <a href="/infolettre/">Infolettre</a></p>
-      </div>
-      <div>
-        <h2>Mentions</h2>
-        <p><a href="/a-propos/">À propos / contact</a><br><a href="/divulgation/">Divulgation (affiliations)</a><br><a href="/confidentialite/">Confidentialité et consentement (CASL)</a></p>
-      </div>
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>La référence francophone de la découpe CNC et de la fabrication métallique : guides vérifiés, prix des tôles comparés, occasions au Québec.</p>
     </div>
-    <p class="legal">© 2026 CoupeFab. Tous droits réservés. Consultation des sources publiques le 26 novembre 2026, fuseau America/Toronto (UTC−5). Aucun lien d’affiliation pour le moment.</p>
-  </footer>
-  <script src="/js/site.js" defer></script>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/guides/logiciels/">Logiciels CAO / FAO et commandes</a></li>
+        <li><a href="/guides/procedes/">Procédés de coupe et d’usinage</a></li>
+        <li><a href="/guides/fondamentaux/">Fondamentaux CNC</a></li>
+        <li><a href="/guides/depannage/">Dépannage</a></li>
+        <li><a href="/guides/atelier/">Atelier : sécurité, achats, consommables</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explorer</p>
+      <ul>
+        <li><a href="/prix/">Prix des tôles</a></li>
+        <li><a href="/occasions/">Occasions</a></li>
+        <li><a href="/infolettre/">Infolettre</a></li>
+        <li><a href="/a-propos/">À propos</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Mentions</p>
+      <ul>
+        <li><a href="/divulgation/">Divulgation (affiliations)</a></li>
+        <li><a href="/confidentialite/">Confidentialité et LCAP</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Québec, Canada. Aucun lien d’affiliation. Les marques citées appartiennent à leurs propriétaires et sont mentionnées à titre descriptif.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
 </body>
 </html>
