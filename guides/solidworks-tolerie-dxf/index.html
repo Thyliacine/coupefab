@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOLIDWORKS tôlerie : paramètres de pliage, déplié et export DXF propre pour la découpe — CoupeFab</title>
+<meta name="description" content="Tôle de base, facteur K, tableau de pliage ou déduction, déplié, puis export DXF/DWG du déplié avec lignes de pliage sur leur propre calque : la démarche pour envoyer un fichier qui se coupe du premier coup.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/guides/solidworks-tolerie-dxf/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/solidworks-tolerie-dxf/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/solidworks-sheet-metal-flat-pattern-dxf/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/solidworks-tolerie-dxf/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SOLIDWORKS tôlerie : paramètres de pliage, déplié et export DXF propre pour la découpe — CoupeFab">
+<meta property="og:description" content="Tôle de base, facteur K, tableau de pliage ou déduction, déplié, puis export DXF/DWG du déplié avec lignes de pliage sur leur propre calque : la démarche pour envoyer un fichier qui se coupe du premier coup.">
+<meta property="og:url" content="https://coupefab.vercel.app/guides/solidworks-tolerie-dxf/">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:locale:alternate" content="en_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="fr">
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/" aria-label="CoupeFab — Accueil"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Navigation principale">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/guides/logiciels/">Par logiciel</a></p>
+            <ul class="mega-list two"><li><a href="/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/guides/debuter-sheetcam/">SheetCam</a></li><li><a href="/guides/solidworks-tolerie-dxf/">SOLIDWORKS tôlerie</a></li><li><a href="/guides/autocad-nettoyer-dxf/">AutoCAD (DXF)</a></li><li><a href="/guides/fusion-fao-debuter/">Fusion (FAO)</a></li><li><a href="/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/guides/bricscad-dxf/">BricsCAD → DXF</a></li><li><a href="/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/guides/inventor-tolerie-cam/">Inventor</a></li><li><a href="/guides/mastercam-parcours-2d-dynamic/">Mastercam 2D</a></li><li><a href="/guides/mastercam-post-tour/">Mastercam post et tour</a></li><li><a href="/guides/onshape-tolerie-cam/">Onshape</a></li><li><a href="/guides/solidworks-mises-en-plan-cam/">SOLIDWORKS CAM et mises en plan</a></li><li><a href="/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/guides/freecad-cam/">FreeCAD (CAM)</a></li><li><a href="/guides/vectric-vcarve-aspire/">Vectric VCarve / Aspire</a></li><li><a href="/guides/lightburn-laser/">LightBurn</a></li><li><a href="/guides/pronest-imbrication/">ProNest</a></li></ul>
+            <p class="mega-all"><a href="/guides/logiciels/">Tous les logiciels →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/procedes/">Par procédé</a></p>
+            <ul class="mega-list"><li><a href="/guides/decoupe-plasma-cnc/">Plasma CNC</a></li><li><a href="/guides/laser-fibre/">Laser fibre</a></li><li><a href="/guides/jet-d-eau/">Jet d’eau</a></li><li><a href="/guides/routeur-cnc/">Routeur CNC</a></li><li><a href="/guides/fraiseuse-cnc/">Fraiseuse CNC</a></li><li><a href="/guides/tour-cnc/">Tour CNC</a></li><li><a href="/guides/presse-plieuse/">Presse plieuse</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/fondamentaux/">Par sujet</a></p>
+            <ul class="mega-list"><li><a href="/guides/reference-g-code-m-code/">G-code et M-code</a></li><li><a href="/guides/avances-vitesses/">Avances et vitesses</a></li><li><a href="/guides/kerf-qualite-coupe/">Kerf et qualité de coupe</a></li><li><a href="/guides/pliage-k-factor/">Pliage : K-factor et déduction</a></li><li><a href="/guides/nuances-metaux/">Nuances de métaux</a></li><li><a href="/guides/dxf-bonnes-pratiques/">DXF : bonnes pratiques</a></li><li class="more"><a href="/guides/fondamentaux/">Fondamentaux CNC →</a></li><li class="more"><a href="/guides/depannage/">Dépannage →</a></li><li class="more"><a href="/guides/atelier/">Atelier : sécurité, achats, consommables →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/prix/">
+              <span class="feature-k">Outil</span>
+              <strong>Prix des tôles</strong>
+              <span>Tôle, plaque, barre et tube : prix publiés chez les fournisseurs qui livrent au Québec, mis à jour chaque jour ouvrable.</span>
+            </a>
+            <a class="mega-allguides" href="/guides/">Tous les guides (41) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/prix/">Prix des tôles</a></li>
+    <li><a class="nav-link" href="/occasions/">Occasions</a></li>
+    <li><a class="nav-link" href="/infolettre/">Infolettre</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Rechercher"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Rechercher</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Langue">
+        <a href="/guides/solidworks-tolerie-dxf/" hreflang="fr-CA" lang="fr-CA" aria-current="true">FR</a><a href="/en/guides/solidworks-sheet-metal-flat-pattern-dxf/" hreflang="en-CA" lang="en-CA">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Rechercher">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Rechercher un guide (ex. SheetCam, K-factor, scories)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Fermer</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>Aucun guide trouvé. Essayez un autre mot (logiciel, procédé, matériau).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Fil d’Ariane"><ol><li><a href="/">Accueil</a></li><li><a href="/guides/">Guides</a></li><li><a href="/guides/logiciels/">Logiciels CAO / FAO et commandes</a></li><li aria-current="page">SOLIDWORKS tôlerie</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://coupefab.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/guides/"}, {"@type": "ListItem", "position": 3, "name": "Logiciels CAO / FAO et commandes", "item": "https://coupefab.vercel.app/guides/logiciels/"}, {"@type": "ListItem", "position": 4, "name": "SOLIDWORKS tôlerie"}]}</script>
+<article class="guide" data-guide="solidworks-sheet-metal">
+  <header class="guide-head">
+    <p class="kicker">Logiciel · CAO</p>
+    <h1>SOLIDWORKS tôlerie : paramètres de pliage, déplié et export DXF propre pour la découpe</h1>
+    <p class="guide-lede">Tôle de base, facteur K, tableau de pliage ou déduction, déplié, puis export DXF/DWG du déplié avec lignes de pliage sur leur propre calque : la démarche pour envoyer un fichier qui se coupe du premier coup.</p>
+    <p class="guide-meta">
+      <span>Révisé le <time datetime="2026-11-26">26 novembre 2026</time></span>
+      <span>3 min de lecture</span>
+      <span>Niveau : Intermédiaire</span>
+      <span class="pill pill-draft" tabindex="0" title="Rédigé par CoupeFab à partir des documents officiels cités. Révision technique par Michaël Brassard en attente.">Brouillon<span class="pill-tip" role="tooltip">Rédigé par CoupeFab à partir des documents officiels cités. Révision technique par Michaël Brassard en attente.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>Sur cette page</summary><ol><li><a href="#1-parametres-de-tolerie">1. Paramètres de tôlerie</a></li><li><a href="#2-modeliser-pour-la-fabrication">2. Modéliser pour la fabrication</a></li><li><a href="#3-exporter-le-deplie-en-dxf-dwg">3. Exporter le déplié en DXF/DWG</a></li><li><a href="#4-verifier-le-dxf-avant-de-l-envoyer">4. Vérifier le DXF avant de l’envoyer</a></li><li><a href="#erreurs-frequentes">Erreurs fréquentes</a></li><li><a href="#faq">FAQ</a></li><li><a href="#a-valider-en-atelier-michael">À valider en atelier (Michaël)</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p>Un déplié SOLIDWORKS n’est juste que si les paramètres de pliage correspondent à l’atelier qui va plier. Le DXF n’est utile que s’il contient la bonne géométrie, sur les bons calques, à l’échelle 1:1.</p>
+<h2 id="1-parametres-de-tolerie">1. Paramètres de tôlerie</h2>
+<p>Dans la fonction <strong>Tôle de base / languette</strong> (Base Flange/Tab), ou dans les paramètres de la fonction Tôlerie :</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Paramètre</th><th>Ce qu’il faut y mettre</th></tr></thead><tbody>
+<tr><td>Épaisseur</td><td>L’épaisseur réelle (calibre converti en mm ou po)</td></tr>
+<tr><td>Rayon de pliage</td><td>Le rayon intérieur que <strong>l’outillage de l’atelier</strong> produit</td></tr>
+<tr><td>Tolérance de pliage</td><td>Facteur K, tableau de pliage, valeur de tolérance ou de déduction</td></tr>
+<tr><td>Dégagement de pliage</td><td>Rectangulaire, oblong ou déchirure selon la pièce</td></tr>
+</tbody></table></div>
+<aside class="callout callout-tip"><p class="callout-label">Astuce d’atelier</p><p>Demandez à votre plieur son <strong>facteur K ou son tableau de déduction</strong> pour la matière, l’épaisseur et l’ouverture de vé utilisées. Un facteur K générique donne un déplié approximatif. Voir <a href="/guides/pliage-k-factor/">Pliage et facteur K</a>.</p></aside>
+<p>Les <strong>gabarits de tôlerie</strong> (sheet metal gauge tables) permettent de lier épaisseur, rayon et facteur K par matière, pour que tout le bureau utilise les mêmes valeurs.</p>
+<h2 id="2-modeliser-pour-la-fabrication">2. Modéliser pour la fabrication</h2>
+<ul><li>Plis de rayon constant, pas de trous trop près d’une ligne de pliage (règles dans <a href="/guides/pliage-k-factor/">Pliage</a> et <a href="/guides/presse-plieuse/">Presse plieuse</a>).</li><li>Fonctions de tôlerie natives (Bord, Ourlet, Pli esquissé) plutôt que des volumes convertis.</li><li>Vérifier que la pièce se <strong>déplie</strong> sans erreur (fonction Déplier/Mise à plat).</li></ul>
+<h2 id="3-exporter-le-deplie-en-dxf-dwg">3. Exporter le déplié en DXF/DWG</h2>
+<ol class="steps"><li>Dans l’arbre de création, clic droit sur <strong>État déplié</strong> (Flat Pattern) → <strong>Exporter en DXF/DWG</strong>, ou Fichier → Enregistrer sous → DXF.</li><li>Dans le gestionnaire <em>Sortie DXF/DWG</em>, choisir <strong>Tôlerie</strong>.</li><li>Entités à exporter : <strong>Géométrie</strong>, et <strong>Lignes de pliage</strong> si le plieur les veut. Décocher Lignes de pliage pour un fichier de découpe seule.</li><li>Pour séparer les plis vers le haut et vers le bas : Options → <em>Mappage personnalisé SOLIDWORKS vers DXF/DWG</em> → Activer, puis assigner les entités « lignes de pliage – haut » et « – bas » à des calques distincts.</li><li>Vérifier l’aperçu, enregistrer.</li></ol>
+<aside class="callout callout-warn"><p class="callout-label">Attention</p><p>Depuis SOLIDWORKS 2022, les lignes de pliage ne vont plus automatiquement dans un calque BEND : sans mappage, elles peuvent arriver mélangées à la géométrie. Un logiciel de découpe risque alors de les couper. Créez un fichier de mappage et réutilisez-le.</p></aside>
+<h2 id="4-verifier-le-dxf-avant-de-l-envoyer">4. Vérifier le DXF avant de l’envoyer</h2>
+<ul class="checklist"><li>Unités et échelle 1:1 (mesurer une cote connue)</li><li>Contours fermés, sans doublons</li><li>Lignes de pliage sur leur propre calque (ou absentes)</li><li>Pas de cotes, cartouche ni texte dans le fichier de découpe</li><li>Gravures sur un calque séparé</li></ul>
+<p>Voir <a href="/guides/dxf-bonnes-pratiques/">DXF : bonnes pratiques</a>.</p>
+<h2 id="erreurs-frequentes">Erreurs fréquentes</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Erreur</th><th>Conséquence</th></tr></thead><tbody>
+<tr><td>Facteur K par défaut</td><td>Pièce pliée hors cote</td></tr>
+<tr><td>Rayon modélisé ≠ rayon d’atelier</td><td>Longueurs de bord fausses</td></tr>
+<tr><td>Lignes de pliage non mappées</td><td>Coupées par erreur</td></tr>
+<tr><td>Export d’une vue de mise en plan à l’échelle</td><td>DXF pas à 1:1</td></tr>
+</tbody></table></div>
+<h2 id="faq">FAQ</h2>
+<h3 id="faut-il-une-mise-en-plan-pour-exporter-le-deplie">Faut-il une mise en plan pour exporter le déplié ?</h3>
+<p>Non. L’export direct depuis la pièce suffit pour la découpe. La mise en plan reste utile pour le pliage (angles, sens, cotes) — voir <a href="/guides/solidworks-mises-en-plan-cam/">SOLIDWORKS mises en plan et FAO</a>.</p>
+<section class="review-box"><h2 id="a-valider-en-atelier-michael">À valider en atelier (Michaël)</h2>
+<ul><li>Votre facteur K ou tableau de pliage réel par matière et épaisseur.</li></ul>
+</section><section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://help.solidworks.com/2024/english/SolidWorks/sldworks/c_exporting_to_dxf_or_dwg_files.htm" class="ext" rel="noopener">SOLIDWORKS Help — Exporting sheet metal parts to DXF or DWG files</a>, consulté le 26 novembre 2026.</li><li><a href="https://help.solidworks.com/2024/english/SolidWorks/sldworks/c_Bend_Allowance.htm" class="ext" rel="noopener">SOLIDWORKS Help — Bend allowance</a>.</li><li><a href="https://sendcutsend.com/blog/how-to-map-bend-lines-into-layers-and-linetypes-in-solidworks/" class="ext" rel="noopener">SendCutSend — Mapping bend lines in SOLIDWORKS (changement 2022)</a>.</li></ul></section>
+
+      <p class="report"><a href="/a-propos/#contact">Une erreur, un ajout ? Écrivez-nous →</a></p>
+    </div>
+  </div>
+  <section class="related"><h2>Guides connexes</h2><div class="gcards"><a class="gcard" href="/guides/pliage-k-factor/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · tôlerie · Intermédiaire · 4 min de lecture</span><strong>Pliage : longueur développée, K-factor et déduction de pli, avec les formules</strong><span class="card-desc">Calculer un déplié juste : formules de la longueur de pli (BA), du retrait extérieur (OSSB) et de la déduction (BD), retrouver le K-factor réel à partir d’un pli d’essai, et le saisir dans la CAO.</span></a><a class="gcard" href="/guides/dxf-bonnes-pratiques/" data-hub="fundamentals"><span class="card-meta">Fondamentaux · DAO/FAO · Débutant · 3 min de lecture</span><strong>DXF pour la découpe : les règles qui évitent 90 % des problèmes</strong><span class="card-desc">Unités, échelle 1:1, contours fermés, doublons, splines, calques, textes et petits détails : la liste de règles à suivre avant d’envoyer un DXF à un FAO ou à un sous-traitant de découpe.</span></a><a class="gcard" href="/guides/presse-plieuse/" data-hub="process"><span class="card-meta">Procédé · formage · Intermédiaire · 3 min de lecture</span><strong>Presse plieuse : choisir le V, calculer le tonnage, prévoir le rayon</strong><span class="card-desc">Pliage en l’air, règle des 8 fois l’épaisseur, règle des 20 % pour le rayon intérieur, formule de tonnage par pied, retour élastique et séquence de pliage — avec les formules de Steve Benson (The Fabricator).</span></a><a class="gcard" href="/guides/solidworks-mises-en-plan-cam/" data-hub="software"><span class="card-meta">Logiciel · FAO · Intermédiaire · 3 min de lecture</span><strong>SOLIDWORKS : mises en plan pour l’atelier et SOLIDWORKS CAM (Standard ou Professional)</strong><span class="card-desc">Ce qu’une mise en plan doit contenir pour l’usinage et le pliage, la différence entre SOLIDWORKS CAM Standard et Professional, l’usinage basé sur les fonctions et la base de données technologique.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">Un guide par semaine, en français d’abord</p><p>Nouveaux guides, occasions au Québec et mouvements de prix. Pas de pub tierce.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="fr" novalidate>
+  <div class="hp" aria-hidden="true"><label>Site web<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Prénom ou atelier (facultatif)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Courriel
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="oui">
+    <span>J’accepte de recevoir l’infolettre de CoupeFab (guides, digest d’occasions et suivi des prix des tôles). Je peux me désabonner en tout temps. Voir la <a href="/confidentialite/">politique de confidentialité</a>.</span>
+  </label>
+  <button type="submit">S’inscrire</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">Conformité CASL : la case n’est pas précochée. Aucun envoi sans ce consentement exprès.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "SOLIDWORKS tôlerie : paramètres de pliage, déplié et export DXF propre pour la découpe", "description": "Tôle de base, facteur K, tableau de pliage ou déduction, déplié, puis export DXF/DWG du déplié avec lignes de pliage sur leur propre calque : la démarche pour envoyer un fichier qui se coupe du premier coup.", "inLanguage": "fr-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/guides/solidworks-tolerie-dxf/", "mainEntityOfPage": "https://coupefab.vercel.app/guides/solidworks-tolerie-dxf/", "proficiencyLevel": "Intermediate", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["solidworks", "sheet metal", "flat pattern", "dxf", "dwg", "k-factor", "bend table", "bend deduction", "base flange", "bend lines", "mapping"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "SOLIDWORKS tôlerie : paramètres de pliage, déplié et export DXF propre pour la découpe", "description": "Tôle de base, facteur K, tableau de pliage ou déduction, déplié, puis export DXF/DWG du déplié avec lignes de pliage sur leur propre calque : la démarche pour envoyer un fichier qui se coupe du premier coup.", "inLanguage": "fr-CA", "step": [{"@type": "HowToStep", "name": "Dans l’arbre de création, clic droit sur État déplié (Flat Pattern) → Exporter en DXF/DWG , ou Fichier → Enreg", "text": "Dans l’arbre de création, clic droit sur État déplié (Flat Pattern) → Exporter en DXF/DWG , ou Fichier → Enregistrer sous → DXF."}, {"@type": "HowToStep", "name": "Dans le gestionnaire Sortie DXF/DWG , choisir Tôlerie ", "text": "Dans le gestionnaire Sortie DXF/DWG , choisir Tôlerie ."}, {"@type": "HowToStep", "name": "Entités à exporter ", "text": "Entités à exporter : Géométrie , et Lignes de pliage si le plieur les veut. Décocher Lignes de pliage pour un fichier de découpe seule."}, {"@type": "HowToStep", "name": "Pour séparer les plis vers le haut et vers le bas ", "text": "Pour séparer les plis vers le haut et vers le bas : Options → Mappage personnalisé SOLIDWORKS vers DXF/DWG → Activer, puis assigner les entités « lignes de pliage – haut » et « – bas » à des calques distincts."}, {"@type": "HowToStep", "name": "Vérifier l’aperçu, enregistrer", "text": "Vérifier l’aperçu, enregistrer."}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Faut-il une mise en plan pour exporter le déplié ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. L’export direct depuis la pièce suffit pour la découpe. La mise en plan reste utile pour le pliage (angles, sens, cotes) — voir SOLIDWORKS mises en plan et FAO ."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>La référence francophone de la découpe CNC et de la fabrication métallique : guides vérifiés, prix des tôles comparés, occasions au Québec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/guides/logiciels/">Logiciels CAO / FAO et commandes</a></li>
+        <li><a href="/guides/procedes/">Procédés de coupe et d’usinage</a></li>
+        <li><a href="/guides/fondamentaux/">Fondamentaux CNC</a></li>
+        <li><a href="/guides/depannage/">Dépannage</a></li>
+        <li><a href="/guides/atelier/">Atelier : sécurité, achats, consommables</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explorer</p>
+      <ul>
+        <li><a href="/prix/">Prix des tôles</a></li>
+        <li><a href="/occasions/">Occasions</a></li>
+        <li><a href="/infolettre/">Infolettre</a></li>
+        <li><a href="/a-propos/">À propos</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Mentions</p>
+      <ul>
+        <li><a href="/divulgation/">Divulgation (affiliations)</a></li>
+        <li><a href="/confidentialite/">Confidentialité et LCAP</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Québec, Canada. Aucun lien d’affiliation. Les marques citées appartiennent à leurs propriétaires et sont mentionnées à titre descriptif.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>

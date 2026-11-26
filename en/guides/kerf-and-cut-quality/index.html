@@ -1,141 +1,215 @@
 <!DOCTYPE html>
 <html lang="en-CA">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kerf and cut quality — CoupeFab</title>
-  <meta name="description" content="How to read a manufacturer kerf chart without mixing manuals, with a cited Hypertherm example. Draft pending review.">
-  <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://coupefab.vercel.app/en/guides/kerf-and-cut-quality/">
-  <link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/kerf-and-cut-quality/">
-  <link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/kerf-qualite-coupe/">
-  <link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="Kerf and cut quality — CoupeFab">
-  <meta property="og:description" content="How to read a manufacturer kerf chart without mixing manuals, with a cited Hypertherm example. Draft pending review.">
-  <meta property="og:url" content="https://coupefab.vercel.app/en/guides/kerf-and-cut-quality/">
-  <meta property="og:locale" content="en_CA">
-  <meta property="og:locale:alternate" content="fr_CA">
-  <meta name="twitter:card" content="summary">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css">
-  
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Kerf and cut quality — CoupeFab",
-  "description": "How to read a manufacturer kerf chart without mixing manuals, with a cited Hypertherm example. Draft pending review.",
-  "inLanguage": "en-CA",
-  "dateModified": "2026-11-26",
-  "url": "https://coupefab.vercel.app/en/guides/kerf-and-cut-quality/",
-  "author": {
-    "@type": "Organization",
-    "name": "CoupeFab"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "CoupeFab",
-    "url": "https://coupefab.vercel.app/"
-  }
-}
-</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kerf and cut quality: read a chart, measure, compensate — CoupeFab</title>
+<meta name="description" content="What kerf is, how to read a manufacturer cut chart without mixing manuals, and how to measure and compensate your table’s real kerf.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/en/guides/kerf-and-cut-quality/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/kerf-and-cut-quality/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/kerf-qualite-coupe/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/kerf-qualite-coupe/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kerf and cut quality: read a chart, measure, compensate — CoupeFab">
+<meta property="og:description" content="What kerf is, how to read a manufacturer cut chart without mixing manuals, and how to measure and compensate your table’s real kerf.">
+<meta property="og:url" content="https://coupefab.vercel.app/en/guides/kerf-and-cut-quality/">
+<meta property="og:locale" content="en_CA">
+<meta property="og:locale:alternate" content="fr_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
 </head>
-<body>
-  <a class="skip" href="#contenu">Skip to content</a>
-  <header class="site-header">
-    <div class="header-inner">
-      <a class="brand" href="/en/">
-        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
-          <rect width="32" height="32" rx="6" fill="#1B1D1B"/>
-          <path d="M5 11h22M5 21h22M5 16h9.2M18.2 16H27" stroke="#F4F1EA" stroke-width="2"/>
-          <rect x="14.2" y="14.2" width="4" height="3.6" fill="#B54300"/>
-        </svg>
-        Coupe<span>Fab</span>
-      </a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-primary">Menu</button>
-      <nav class="primary" id="nav-primary">
-        <a href="/en/">Home</a><a href="/en/guides/" aria-current="page">Guides</a><a href="/en/used-equipment/">Used equipment</a><a href="/en/sheet-prices/">Sheet prices</a><a href="/en/newsletter/">Newsletter</a><a href="/en/about/">About</a><div class="lang-switch" role="navigation" aria-label="Language"><a href="/guides/kerf-qualite-coupe/" hreflang="fr">FR</a><a href="/en/guides/kerf-and-cut-quality/" hreflang="en" aria-current="true">EN</a></div>
-      </nav>
+<body data-lang="en">
+<a class="skip" href="#contenu">Skip to content</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/en/" aria-label="CoupeFab — Home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Main navigation">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/en/guides/software/">By software</a></p>
+            <ul class="mega-list two"><li><a href="/en/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/en/guides/getting-started-sheetcam/">SheetCam</a></li><li><a href="/en/guides/solidworks-sheet-metal-flat-pattern-dxf/">SOLIDWORKS sheet metal</a></li><li><a href="/en/guides/autocad-dxf-cleanup/">AutoCAD (DXF)</a></li><li><a href="/en/guides/fusion-cam-getting-started/">Fusion CAM</a></li><li><a href="/en/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/en/guides/bricscad-to-clean-dxf/">BricsCAD → DXF</a></li><li><a href="/en/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/en/guides/inventor-sheet-metal-and-cam/">Inventor</a></li><li><a href="/en/guides/mastercam-2d-toolpaths-dynamic-milling/">Mastercam 2D</a></li><li><a href="/en/guides/mastercam-posts-and-lathe/">Mastercam posts and lathe</a></li><li><a href="/en/guides/onshape-sheet-metal-cam/">Onshape</a></li><li><a href="/en/guides/solidworks-drawings-and-cam/">SOLIDWORKS CAM and drawings</a></li><li><a href="/en/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/en/guides/freecad-cam/">FreeCAD CAM</a></li><li><a href="/en/guides/vectric-vcarve-aspire/">Vectric VCarve / Aspire</a></li><li><a href="/en/guides/lightburn-laser/">LightBurn</a></li><li><a href="/en/guides/pronest-nesting/">ProNest</a></li></ul>
+            <p class="mega-all"><a href="/en/guides/software/">All software →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/processes/">By process</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/cnc-plasma-cutting/">CNC plasma</a></li><li><a href="/en/guides/fiber-laser-cutting/">Fiber laser</a></li><li><a href="/en/guides/waterjet-cutting/">Waterjet</a></li><li><a href="/en/guides/cnc-router/">CNC router</a></li><li><a href="/en/guides/cnc-mill/">CNC mill</a></li><li><a href="/en/guides/cnc-lathe/">CNC lathe</a></li><li><a href="/en/guides/press-brake-bending/">Press brake</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/fundamentals/">By topic</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/g-code-m-code-reference/">G-code &amp; M-code</a></li><li><a href="/en/guides/feeds-and-speeds/">Feeds and speeds</a></li><li><a href="/en/guides/kerf-and-cut-quality/">Kerf and cut quality</a></li><li><a href="/en/guides/bend-allowance-k-factor/">Bending: K-factor and deduction</a></li><li><a href="/en/guides/metal-grades/">Metal grades</a></li><li><a href="/en/guides/dxf-best-practices/">DXF best practices</a></li><li class="more"><a href="/en/guides/fundamentals/">CNC fundamentals →</a></li><li class="more"><a href="/en/guides/troubleshooting/">Troubleshooting →</a></li><li class="more"><a href="/en/guides/shop/">Shop: safety, buying, consumables →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/en/sheet-prices/">
+              <span class="feature-k">Tool</span>
+              <strong>Sheet prices</strong>
+              <span>Sheet, plate, bar and tube: published prices from suppliers serving Quebec, refreshed every business day.</span>
+            </a>
+            <a class="mega-allguides" href="/en/guides/">All guides (41) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/en/sheet-prices/">Sheet prices</a></li>
+    <li><a class="nav-link" href="/en/used-equipment/">Used equipment</a></li>
+    <li><a class="nav-link" href="/en/newsletter/">Newsletter</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Search</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Language">
+        <a href="/guides/kerf-qualite-coupe/" hreflang="fr-CA" lang="fr-CA">FR</a><a href="/en/guides/kerf-and-cut-quality/" hreflang="en-CA" lang="en-CA" aria-current="true">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     </div>
-  </header>
-  <div class="draft-banner" role="status"><strong>Draft — to be reviewed by Michaël.</strong> This page is not a published version yet. Cut parameters and prices appear only when a public source gives them.</div>
-  <main id="contenu">
-  
-  
-<div class="wrap prose">
-  <p class="crumb"><a href="/en/guides/">Guides</a> · Kerf</p>
-  <h1>Kerf and cut quality</h1>
-  <p class="meta">Draft · updated November 26, 2026 · to be reviewed by Michaël</p>
-  <p class="lede">Kerf is the width of material the plasma jet removes. If the toolpath does not compensate for it, outsides come out small and holes come out large. Cut quality (dross, bevel, surface finish) depends on speed, height, consumable wear, and the state of the table.</p>
-
-  <h2>How to read a manufacturer chart</h2>
-  <p>Hypertherm, in its charts and in “How to use the cut charts,” presents the values as a <strong>starting point</strong>. You typically get: thickness, cut height, pierce height and delay, “best quality” settings (speed and voltage), and “production” or “highest production” settings (faster, not necessarily the best finish). Arc voltage rises as consumables wear; some CNCs trim torch height automatically.</p>
-  <p>Hypertherm also says published kerf widths are <strong>for reference</strong>, taken with Best Quality settings, and that installation and material composition will change the real result.</p>
-  <div class="callout warn">
-    <p><strong>Do not mix manuals.</strong> Two official documents for the same source family can list different kerf values, because the torch, consumable set, or manual revision is different. Use the chart that matches <em>your</em> system, torch, and consumables.</p>
   </div>
-
-  <h2>A cited example — one chart, one setup</h2>
-  <p>The table below copies kerf widths published in the official <a href="https://xnet.hypertherm.com/docs/en/Powermax125_retrofit_torch_OM/vkl1065237733940.html">Mild steel — 125 A — air</a> chart from the Powermax125 retrofit-torch manual, mild steel, air, 125 A, shielded consumables. It is <strong>not</strong> a universal table, and not a recommendation for a Powermax 45/65/85/105 or another torch.</p>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>Thickness</th><th>Kerf (best quality, per this chart)</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>6 mm (1/4 in)</td><td>1.0 mm (0.040 in)</td></tr>
-        <tr><td>10 mm (≈ 3/8 in)</td><td>1.1 mm (0.042 in at 3/8 in in the inch chart)</td></tr>
-        <tr><td>12 mm (1/2 in)</td><td>1.3 mm (0.051 in)</td></tr>
-        <tr><td>25 mm (1 in)</td><td>2.6 mm (0.105 in)</td></tr>
-        <tr><td>40 mm (≈ 1-1/2 in)</td><td>3.2 mm (0.122 in at 1-1/2 in)</td></tr>
-      </tbody>
-    </table>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Search guides (e.g. SheetCam, K-factor, dross)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Close</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>No guide found. Try another word (software, process, material).</p>
   </div>
-  <p>As a warning against mixing documents: Powermax125 Operator Manual 808080 publishes a separate “estimated kerf-width compensation” table for a “125 A shielded” setup, for example 2.2 mm at 6 mm thickness — a different number, in a different documentary context. We do not reproduce that second table in full here; go to the source if that is your manual.</p>
-
-  <h2>Measuring kerf on your table</h2>
-  <p>The honest method is still a test cut: a coupon of known size, measured with calipers, then the real compensation entered into the SheetCam tool. Charts get you close. They do not replace a measurement once consumables are worn, air is wet, or the plate is rusty.</p>
-
-  <h2>Cut quality, with no invented numbers</h2>
-  <p>Hypertherm manuals tie “best quality” to better angle, less dross, and a better finish, and “production” to more parts. Common causes of a poor cut (wrong height, worn consumables, poor air, speed too high or too low) belong in the manufacturer’s care and troubleshooting guides — not in a table invented here. See also <a href="/en/guides/plasma-consumables-canada/">Plasma consumables and buying in Canada</a>.</p>
-
-  <h2>For Michaël to review</h2>
-  <ul>
-    <li>Which sources and torches are most common among the shops you want to reach, so later drafts can cite the right charts?</li>
-    <li>Your own method for measuring kerf and updating SheetCam.</li>
-    <li>Any wording about dross or bevel that is too sweeping.</li>
-  </ul>
-
-  <h2>Sources</h2>
-  <ul class="source-list">
-    <li><a href="https://xnet.hypertherm.com/docs/en/Powermax125_retrofit_torch_OM/vkl1065237733940.html">Hypertherm — Mild steel, 125 A, air cut chart</a> (Powermax125 retrofit torch), consulted November 26, 2026.</li>
-    <li><a href="https://xnet.hypertherm.com/docs/en/Powermax125_retrofit_torch_OM/bzv0315406918125.html">Hypertherm — How to use the cut charts</a>.</li>
-    <li>Powermax125 Operator Manual 808080 (estimated kerf-width compensation table, a distinct context; public distributor PDFs, e.g. weldersupply.com).</li>
-  </ul>
 </div>
 
-  </main>
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div>
-        <a class="brand" href="/en/" style="color:#fffcf6">Coupe<span>Fab</span></a>
-        <p>A French-first resource for plasma cutting and metal fabrication shops in Quebec.</p>
-      </div>
-      <div>
-        <h2>Explore</h2>
-        <p><a href="/en/guides/">Guides</a> / <a href="/en/used-equipment/">Used equipment</a> / <a href="/en/sheet-prices/">Sheet prices</a> / <a href="/en/newsletter/">Newsletter</a></p>
-      </div>
-      <div>
-        <h2>Legal</h2>
-        <p><a href="/en/about/">About / contact</a><br><a href="/en/affiliate-disclosure/">Affiliate disclosure</a><br><a href="/en/privacy/">Privacy and CASL consent</a></p>
-      </div>
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/en/">Home</a></li><li><a href="/en/guides/">Guides</a></li><li><a href="/en/guides/fundamentals/">CNC fundamentals</a></li><li aria-current="page">Kerf and cut quality</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coupefab.vercel.app/en/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/en/guides/"}, {"@type": "ListItem", "position": 3, "name": "CNC fundamentals", "item": "https://coupefab.vercel.app/en/guides/fundamentals/"}, {"@type": "ListItem", "position": 4, "name": "Kerf and cut quality"}]}</script>
+<article class="guide" data-guide="kerf">
+  <header class="guide-head">
+    <p class="kicker">Fundamentals · plasma</p>
+    <h1>Kerf and cut quality: read a chart, measure, compensate</h1>
+    <p class="guide-lede">What kerf is, how to read a manufacturer cut chart without mixing manuals, and how to measure and compensate your table’s real kerf.</p>
+    <p class="guide-meta">
+      <span>Reviewed <time datetime="2026-11-26">November 26, 2026</time></span>
+      <span>4 min read</span>
+      <span>Level : Beginner</span>
+      <span class="pill pill-draft" tabindex="0" title="Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.">Draft<span class="pill-tip" role="tooltip">Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>On this page</summary><ol><li><a href="#reading-a-cut-chart">Reading a cut chart</a></li><li><a href="#a-cited-example-one-chart-one-setup">A cited example — one chart, one setup</a></li><li><a href="#measuring-your-table-s-real-kerf">Measuring your table’s real kerf</a></li><li><a href="#kerf-compensation-in-cam-or-in-the-control">Kerf compensation in CAM or in the control</a></li><li><a href="#common-mistakes">Common mistakes</a></li><li><a href="#faq">FAQ</a></li><li><a href="#for-michael-to-review">For Michaël to review</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p><strong>Kerf</strong> is the width of material removed by the jet (plasma, laser, waterjet) or the tool. If the toolpath does not compensate for it, outside profiles come out small and holes come out large — by about one kerf on the diameter. Cut quality (dross, bevel, finish) depends on speed, height, consumable wear and the state of the table.</p>
+<h2 id="reading-a-cut-chart">Reading a cut chart</h2>
+<p>Hypertherm, in its charts and in “How to use the cut charts,” presents the values as a <strong>starting point</strong>. You typically get:</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Column</th><th>Meaning</th></tr></thead><tbody>
+<tr><td>Thickness</td><td>Plate thickness for this row</td></tr>
+<tr><td>Cut height</td><td>Torch-to-plate distance while cutting</td></tr>
+<tr><td>Pierce height and delay</td><td>Height and dwell time at pierce</td></tr>
+<tr><td>Best quality</td><td>Speed and voltage for angle and finish</td></tr>
+<tr><td>Production</td><td>Faster, not necessarily the best finish</td></tr>
+<tr><td>Kerf</td><td>Reference kerf width</td></tr>
+</tbody></table></div>
+<p>Arc voltage rises as consumables wear; some controls adjust height automatically (THC). Hypertherm also states published kerf widths are <strong>for reference</strong>, taken at Best Quality settings, and that installation and material composition change the real result.</p>
+<aside class="callout callout-warn"><p class="callout-label">Caution</p><p><strong>Do not mix manuals.</strong> Two official documents for the same source family can list different kerfs, because the torch, consumable set or manual revision differs. Use the chart for <em>your</em> source, <em>your</em> torch and <em>your</em> consumables.</p></aside>
+<h2 id="a-cited-example-one-chart-one-setup">A cited example — one chart, one setup</h2>
+<p>The table copies kerfs published in the official <a href="https://xnet.hypertherm.com/docs/en/Powermax125_retrofit_torch_OM/vkl1065237733940.html" class="ext" rel="noopener">Mild steel — 125 A — air</a> chart from the Powermax125 retrofit-torch manual (mild steel, air, 125 A, shielded consumables). It is <strong>not</strong> a universal table.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Thickness</th><th class="num">Kerf (best quality, per this chart)</th></tr></thead><tbody>
+<tr><td>6 mm (1/4 in)</td><td class="num">1.0 mm (0.040 in)</td></tr>
+<tr><td>10 mm (≈ 3/8 in)</td><td class="num">1.1 mm (0.042 in at 3/8 in)</td></tr>
+<tr><td>12 mm (1/2 in)</td><td class="num">1.3 mm (0.051 in)</td></tr>
+<tr><td>25 mm (1 in)</td><td class="num">2.6 mm (0.105 in)</td></tr>
+<tr><td>40 mm (≈ 1-1/2 in)</td><td class="num">3.2 mm (0.122 in at 1-1/2 in)</td></tr>
+</tbody></table></div>
+<p>As a warning: Powermax125 Operator Manual 808080 publishes a separate “estimated kerf-width compensation” table for a “125 A shielded” setup, for example 2.2 mm at 6 mm — a different number in a different documentary context.</p>
+<h2 id="measuring-your-table-s-real-kerf">Measuring your table’s real kerf</h2>
+<ol class="steps"><li><strong>Draw a coupon</strong>: a 50 mm (or 2 in) square with a 25 mm (1 in) hole in the middle.</li><li><strong>Cut it without compensation</strong> (path on the line), with the chart settings for that thickness.</li><li><strong>Measure with calipers</strong> the square width and hole diameter, on the top face.</li><li><strong>Calculate</strong>: kerf ≈ (drawn size − measured square size), or (measured hole − drawn hole). Both should roughly agree.</li><li><strong>Enter that kerf</strong> in the CAM tool (SheetCam: Tools → kerf width), then recut the coupon <strong>with</strong> compensation.</li><li><strong>Record the value</strong> with thickness, amperage, consumables and date. Redo the test when consumables, air or grade change.</li></ol>
+<aside class="callout callout-tip"><p class="callout-label">Shop tip</p><p>Measure top and bottom of the cut: the difference is your bevel. A kerf wider at the top than the bottom often means torch too high or speed too slow — see <a href="/en/guides/plasma-troubleshooting-dross-bevel/">Plasma troubleshooting</a>.</p></aside>
+<h2 id="kerf-compensation-in-cam-or-in-the-control">Kerf compensation in CAM or in the control</h2>
+<p>Two ways to compensate: the <strong>CAM</strong> offsets the path by half a kerf (most common in plasma), or the <strong>control</strong> does it with G41/G42 and a tool value. Never enable both. See <a href="/en/guides/g-code-m-code-reference/">G-code reference</a>.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<ul><li>Using a “standard” kerf found online instead of your torch’s chart.</li><li>Measuring a coupon cut with compensation to compute kerf (you then measure the error, not the kerf).</li><li>Keeping the same value after changing consumables or amperage.</li><li>Compensating in CAM <strong>and</strong> in the control.</li></ul>
+<h2 id="faq">FAQ</h2>
+<h3 id="does-kerf-change-with-wear">Does kerf change with wear?</h3>
+<p>Yes. Arc voltage and jet shape change as nozzle and electrode wear; kerf width follows. Re-measure periodically.</p>
+<h3 id="is-kerf-the-same-for-holes-and-outsides">Is kerf the same for holes and outsides?</h3>
+<p>The jet width is the same, but small plasma holes often have a different finish and bevel. Manufacturers publish hole-cutting guidance; follow your system’s.</p>
+<section class="review-box"><h2 id="for-michael-to-review">For Michaël to review</h2>
+<ul><li>Which sources and torches are most common among the target shops, so we cite the right charts.</li><li>Your real method for measuring kerf and updating SheetCam.</li><li>Any wording on dross or bevel that is too sweeping.</li></ul>
+</section><section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://xnet.hypertherm.com/docs/en/Powermax125_retrofit_torch_OM/vkl1065237733940.html" class="ext" rel="noopener">Hypertherm — Mild steel, 125 A, air (Powermax125 retrofit torch)</a>, consulted November 26, 2026.</li><li><a href="https://xnet.hypertherm.com/docs/en/Powermax125_retrofit_torch_OM/bzv0315406918125.html" class="ext" rel="noopener">Hypertherm — How to use the cut charts</a>.</li><li>Powermax125 Operator Manual 808080 (estimated kerf-width compensation table, distinct context).</li></ul></section>
+
+      <p class="report"><a href="/en/about/#contact">Spotted an error or want something added? Tell us →</a></p>
     </div>
-    <p class="legal">© 2026 CoupeFab. All rights reserved. Public sources consulted on November 26, 2026, time zone America/Toronto (UTC−5). No affiliate links for now.</p>
-  </footer>
-  <script src="/js/site.js" defer></script>
+  </div>
+  <section class="related"><h2>Related guides</h2><div class="gcards"><a class="gcard" href="/en/guides/lead-ins-pierce-height/" data-hub="fundamentals"><span class="card-meta">Fundamentals · plasma · Intermediate · 3 min read</span><strong>Lead-ins, lead-outs, pierce height and pierce delay in plasma cutting</strong><span class="card-desc">Where to place the lead-in, what shape to give it, why pierce higher than cut height, how to set the delay, and clean holes — with the values that come from your chart.</span></a><a class="gcard" href="/en/guides/plasma-troubleshooting-dross-bevel/" data-hub="troubleshooting"><span class="card-meta">Troubleshooting · plasma · Intermediate · 3 min read</span><strong>Plasma troubleshooting: dross, bevel, top spatter, arc loss</strong><span class="card-desc">Identify the dross type (low speed, high speed, top spatter), read the cut angle, correct height, speed and current in small steps, and fix arc loss and fast wear — based on Hypertherm’s guides.</span></a><a class="gcard" href="/en/guides/getting-started-sheetcam/" data-hub="software"><span class="card-meta">Software · plasma CAM · Beginner · 4 min read</span><strong>Getting started with SheetCam: from DXF to plasma G-code</strong><span class="card-desc">Units, job, DXF import, plasma tool, operation, nesting and post processor: the SheetCam workflow step by step, with the pitfalls the SheetCam team documents itself.</span></a><a class="gcard" href="/en/guides/cnc-plasma-cutting/" data-hub="process"><span class="card-meta">Process · thermal cutting · Beginner · 3 min read</span><strong>CNC plasma cutting: how it works and how to start right</strong><span class="card-desc">How the plasma arc works, air versus high-definition plasma, torch height control (THC), water or downdraft table, software chain and settings: the overview to choose well and nail your first cuts.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">One guide a week, French-first</p><p>New guides, used equipment in Quebec and price moves. No third-party ads.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="en" novalidate>
+  <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Name or shop (optional)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Email
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="yes">
+    <span>I agree to receive the CoupeFab newsletter (guides, used-equipment digest, and sheet-price updates). I may unsubscribe at any time. See the <a href="/en/privacy/">privacy policy</a>.</span>
+  </label>
+  <button type="submit">Subscribe</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">CASL compliance: the box is not pre-checked. Nothing is sent without this express consent.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Kerf and cut quality: read a chart, measure, compensate", "description": "What kerf is, how to read a manufacturer cut chart without mixing manuals, and how to measure and compensate your table’s real kerf.", "inLanguage": "en-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/en/guides/kerf-and-cut-quality/", "mainEntityOfPage": "https://coupefab.vercel.app/en/guides/kerf-and-cut-quality/", "proficiencyLevel": "Beginner", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["kerf", "plasma", "cut chart", "hypertherm", "quality", "compensation"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Kerf and cut quality: read a chart, measure, compensate", "description": "What kerf is, how to read a manufacturer cut chart without mixing manuals, and how to measure and compensate your table’s real kerf.", "inLanguage": "en-CA", "step": [{"@type": "HowToStep", "name": "Draw a coupon ", "text": "Draw a coupon : a 50 mm (or 2 in) square with a 25 mm (1 in) hole in the middle."}, {"@type": "HowToStep", "name": "Cut it without compensation (path on the line), with the chart settings for that thickness", "text": "Cut it without compensation (path on the line), with the chart settings for that thickness."}, {"@type": "HowToStep", "name": "Measure with calipers the square width and hole diameter, on the top face", "text": "Measure with calipers the square width and hole diameter, on the top face."}, {"@type": "HowToStep", "name": "Calculate ", "text": "Calculate : kerf ≈ (drawn size − measured square size), or (measured hole − drawn hole). Both should roughly agree."}, {"@type": "HowToStep", "name": "Enter that kerf in the CAM tool (SheetCam", "text": "Enter that kerf in the CAM tool (SheetCam: Tools → kerf width), then recut the coupon with compensation."}, {"@type": "HowToStep", "name": "Record the value with thickness, amperage, consumables and date", "text": "Record the value with thickness, amperage, consumables and date. Redo the test when consumables, air or grade change."}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does kerf change with wear?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Arc voltage and jet shape change as nozzle and electrode wear; kerf width follows. Re-measure periodically."}}, {"@type": "Question", "name": "Is kerf the same for holes and outsides?", "acceptedAnswer": {"@type": "Answer", "text": "The jet width is the same, but small plasma holes often have a different finish and bevel. Manufacturers publish hole-cutting guidance; follow your system’s."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/en/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>A French-first reference for CNC cutting and metal fabrication: sourced guides, compared sheet prices, used equipment in Quebec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/en/guides/software/">CAD/CAM software and controls</a></li>
+        <li><a href="/en/guides/processes/">Cutting and machining processes</a></li>
+        <li><a href="/en/guides/fundamentals/">CNC fundamentals</a></li>
+        <li><a href="/en/guides/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/en/guides/shop/">Shop: safety, buying, consumables</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explore</p>
+      <ul>
+        <li><a href="/en/sheet-prices/">Sheet prices</a></li>
+        <li><a href="/en/used-equipment/">Used equipment</a></li>
+        <li><a href="/en/newsletter/">Newsletter</a></li>
+        <li><a href="/en/about/">About</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Legal</p>
+      <ul>
+        <li><a href="/en/affiliate-disclosure/">Affiliate disclosure</a></li>
+        <li><a href="/en/privacy/">Privacy and CASL</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Quebec, Canada. No affiliate links. Trademarks belong to their owners and are used descriptively.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
 </body>
 </html>

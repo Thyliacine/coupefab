@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DXF pour la découpe : les règles qui évitent 90 % des problèmes — CoupeFab</title>
+<meta name="description" content="Unités, échelle 1:1, contours fermés, doublons, splines, calques, textes et petits détails : la liste de règles à suivre avant d’envoyer un DXF à un FAO ou à un sous-traitant de découpe.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/guides/dxf-bonnes-pratiques/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/dxf-bonnes-pratiques/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/dxf-best-practices/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/dxf-bonnes-pratiques/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DXF pour la découpe : les règles qui évitent 90 % des problèmes — CoupeFab">
+<meta property="og:description" content="Unités, échelle 1:1, contours fermés, doublons, splines, calques, textes et petits détails : la liste de règles à suivre avant d’envoyer un DXF à un FAO ou à un sous-traitant de découpe.">
+<meta property="og:url" content="https://coupefab.vercel.app/guides/dxf-bonnes-pratiques/">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:locale:alternate" content="en_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="fr">
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/" aria-label="CoupeFab — Accueil"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Navigation principale">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/guides/logiciels/">Par logiciel</a></p>
+            <ul class="mega-list two"><li><a href="/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/guides/debuter-sheetcam/">SheetCam</a></li><li><a href="/guides/solidworks-tolerie-dxf/">SOLIDWORKS tôlerie</a></li><li><a href="/guides/autocad-nettoyer-dxf/">AutoCAD (DXF)</a></li><li><a href="/guides/fusion-fao-debuter/">Fusion (FAO)</a></li><li><a href="/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/guides/bricscad-dxf/">BricsCAD → DXF</a></li><li><a href="/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/guides/inventor-tolerie-cam/">Inventor</a></li><li><a href="/guides/mastercam-parcours-2d-dynamic/">Mastercam 2D</a></li><li><a href="/guides/mastercam-post-tour/">Mastercam post et tour</a></li><li><a href="/guides/onshape-tolerie-cam/">Onshape</a></li><li><a href="/guides/solidworks-mises-en-plan-cam/">SOLIDWORKS CAM et mises en plan</a></li><li><a href="/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/guides/freecad-cam/">FreeCAD (CAM)</a></li><li><a href="/guides/vectric-vcarve-aspire/">Vectric VCarve / Aspire</a></li><li><a href="/guides/lightburn-laser/">LightBurn</a></li><li><a href="/guides/pronest-imbrication/">ProNest</a></li></ul>
+            <p class="mega-all"><a href="/guides/logiciels/">Tous les logiciels →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/procedes/">Par procédé</a></p>
+            <ul class="mega-list"><li><a href="/guides/decoupe-plasma-cnc/">Plasma CNC</a></li><li><a href="/guides/laser-fibre/">Laser fibre</a></li><li><a href="/guides/jet-d-eau/">Jet d’eau</a></li><li><a href="/guides/routeur-cnc/">Routeur CNC</a></li><li><a href="/guides/fraiseuse-cnc/">Fraiseuse CNC</a></li><li><a href="/guides/tour-cnc/">Tour CNC</a></li><li><a href="/guides/presse-plieuse/">Presse plieuse</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/guides/fondamentaux/">Par sujet</a></p>
+            <ul class="mega-list"><li><a href="/guides/reference-g-code-m-code/">G-code et M-code</a></li><li><a href="/guides/avances-vitesses/">Avances et vitesses</a></li><li><a href="/guides/kerf-qualite-coupe/">Kerf et qualité de coupe</a></li><li><a href="/guides/pliage-k-factor/">Pliage : K-factor et déduction</a></li><li><a href="/guides/nuances-metaux/">Nuances de métaux</a></li><li><a href="/guides/dxf-bonnes-pratiques/">DXF : bonnes pratiques</a></li><li class="more"><a href="/guides/fondamentaux/">Fondamentaux CNC →</a></li><li class="more"><a href="/guides/depannage/">Dépannage →</a></li><li class="more"><a href="/guides/atelier/">Atelier : sécurité, achats, consommables →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/prix/">
+              <span class="feature-k">Outil</span>
+              <strong>Prix des tôles</strong>
+              <span>Tôle, plaque, barre et tube : prix publiés chez les fournisseurs qui livrent au Québec, mis à jour chaque jour ouvrable.</span>
+            </a>
+            <a class="mega-allguides" href="/guides/">Tous les guides (41) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/prix/">Prix des tôles</a></li>
+    <li><a class="nav-link" href="/occasions/">Occasions</a></li>
+    <li><a class="nav-link" href="/infolettre/">Infolettre</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Rechercher"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Rechercher</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Langue">
+        <a href="/guides/dxf-bonnes-pratiques/" hreflang="fr-CA" lang="fr-CA" aria-current="true">FR</a><a href="/en/guides/dxf-best-practices/" hreflang="en-CA" lang="en-CA">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Rechercher">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Rechercher un guide (ex. SheetCam, K-factor, scories)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Fermer</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>Aucun guide trouvé. Essayez un autre mot (logiciel, procédé, matériau).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Fil d’Ariane"><ol><li><a href="/">Accueil</a></li><li><a href="/guides/">Guides</a></li><li><a href="/guides/fondamentaux/">Fondamentaux CNC</a></li><li aria-current="page">DXF : bonnes pratiques</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://coupefab.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/guides/"}, {"@type": "ListItem", "position": 3, "name": "Fondamentaux CNC", "item": "https://coupefab.vercel.app/guides/fondamentaux/"}, {"@type": "ListItem", "position": 4, "name": "DXF : bonnes pratiques"}]}</script>
+<article class="guide" data-guide="dxf-best-practices">
+  <header class="guide-head">
+    <p class="kicker">Fondamentaux · DAO/FAO</p>
+    <h1>DXF pour la découpe : les règles qui évitent 90 % des problèmes</h1>
+    <p class="guide-lede">Unités, échelle 1:1, contours fermés, doublons, splines, calques, textes et petits détails : la liste de règles à suivre avant d’envoyer un DXF à un FAO ou à un sous-traitant de découpe.</p>
+    <p class="guide-meta">
+      <span>Révisé le <time datetime="2026-11-26">26 novembre 2026</time></span>
+      <span>3 min de lecture</span>
+      <span>Niveau : Débutant</span>
+      <span class="pill pill-draft" tabindex="0" title="Rédigé par CoupeFab à partir des documents officiels cités. Révision technique par Michaël Brassard en attente.">Brouillon<span class="pill-tip" role="tooltip">Rédigé par CoupeFab à partir des documents officiels cités. Révision technique par Michaël Brassard en attente.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>Sur cette page</summary><ol><li><a href="#les-10-regles">Les 10 règles</a></li><li><a href="#demarche-de-controle">Démarche de contrôle</a></li><li><a href="#petits-details-et-procede">Petits détails et procédé</a></li><li><a href="#exporter-depuis-votre-logiciel">Exporter depuis votre logiciel</a></li><li><a href="#envoyer-a-un-atelier-de-decoupe">Envoyer à un atelier de découpe</a></li><li><a href="#erreurs-frequentes">Erreurs fréquentes</a></li><li><a href="#faq">FAQ</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p>Le DXF (Drawing Exchange Format, défini par Autodesk) reste le format d’échange universel pour la découpe 2D. Il est simple… et donc facile à mal remplir. Que vous l’envoyiez à votre propre FAO ou à un atelier de découpe, ces règles évitent l’essentiel des allers-retours.</p>
+<h2 id="les-10-regles">Les 10 règles</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>#</th><th>Règle</th><th>Pourquoi</th></tr></thead><tbody>
+<tr><td>1</td><td>Échelle <strong>1:1</strong>, unités déclarées (mm ou po)</td><td>Le DXF ne garantit pas que l’unité sera bien lue</td></tr>
+<tr><td>2</td><td>Une pièce par fichier (ou une par calque, si convenu)</td><td>Évite les confusions de quantités</td></tr>
+<tr><td>3</td><td><strong>Contours fermés</strong></td><td>Sans contour fermé, pas de compensation de kerf ni d’intérieur/extérieur</td></tr>
+<tr><td>4</td><td><strong>Aucun doublon</strong></td><td>Deux traits superposés = deux passes</td></tr>
+<tr><td>5</td><td>Arcs et cercles natifs plutôt que splines ou polylignes segmentées</td><td>Mouvements fluides, fichiers légers</td></tr>
+<tr><td>6</td><td>Géométrie à <strong>Z = 0</strong>, pas de 3D</td><td>Les FAO 2D ignorent ou rejettent le reste</td></tr>
+<tr><td>7</td><td>Rien d’autre que la géométrie de coupe</td><td>Cotes, cartouche, hachures = coupes fantômes</td></tr>
+<tr><td>8</td><td>Calques par fonction (coupe, marquage, pli)</td><td>Une opération FAO par calque</td></tr>
+<tr><td>9</td><td>Textes convertis en géométrie si on doit les couper</td><td>Une police absente chez le découpeur change tout</td></tr>
+<tr><td>10</td><td>Détails réalisables par le procédé</td><td>Un trou plus petit que l’épaisseur ne sort pas propre au plasma</td></tr>
+</tbody></table></div>
+<h2 id="demarche-de-controle">Démarche de contrôle</h2>
+<ol class="steps"><li><strong>Rouvrir le DXF exporté</strong> (pas le fichier source) dans un visualiseur ou le FAO.</li><li><strong>Mesurer</strong> une cote connue : la pièce est-elle à la bonne taille ?</li><li><strong>Sélectionner tout</strong> et compter les entités : un nombre anormal trahit des segments ou des doublons.</li><li><strong>Vérifier la fermeture</strong> : la plupart des FAO signalent les contours ouverts à l’import (SheetCam les affiche différemment).</li><li><strong>Vérifier les calques</strong> et leur nom.</li><li><strong>Contrôler les petits détails</strong> par rapport au procédé et à l’épaisseur.</li></ol>
+<h2 id="petits-details-et-procede">Petits détails et procédé</h2>
+<p>Chaque procédé a ses limites : plasma (saignée plus large, biseau, petits trous coniques), laser fibre (saignée fine, détails fins possibles), jet d’eau (conicité selon la vitesse), routeur (rayon d’outil dans les coins intérieurs). Les fabricants publient des recommandations ; en l’absence de données, testez sur un coupon. Voir les guides <a href="/guides/decoupe-plasma-cnc/">plasma</a>, <a href="/guides/laser-fibre/">laser fibre</a>, <a href="/guides/jet-d-eau/">jet d’eau</a> et <a href="/guides/routeur-cnc/">routeur</a>.</p>
+<aside class="callout callout-tip"><p class="callout-label">Astuce d’atelier</p><p>Au routeur, un coin intérieur vif est impossible : il aura au minimum le rayon de la fraise. Dessinez les coins intérieurs avec ce rayon, ou prévoyez un dégagement en « os de chien » (dogbone) pour les assemblages.</p></aside>
+<h2 id="exporter-depuis-votre-logiciel">Exporter depuis votre logiciel</h2>
+<ul><li><strong>BricsCAD</strong> : <a href="/guides/bricscad-dxf/">De BricsCAD à un DXF propre</a></li><li><strong>AutoCAD</strong> : <a href="/guides/autocad-nettoyer-dxf/">Nettoyer un DXF dans AutoCAD</a></li><li><strong>SolidWorks</strong> : <a href="/guides/solidworks-tolerie-dxf/">Tôlerie, déplié et DXF</a></li><li><strong>Inventor</strong> : <a href="/guides/inventor-tolerie-cam/">Tôlerie et Inventor CAM</a></li><li><strong>Onshape</strong> : <a href="/guides/onshape-tolerie-cam/">Tôlerie et CAM Studio</a></li><li><strong>Fusion</strong> : export DXF depuis une esquisse ou un déplié — voir <a href="/guides/fusion-fao-debuter/">Fusion FAO</a></li></ul>
+<h2 id="envoyer-a-un-atelier-de-decoupe">Envoyer à un atelier de découpe</h2>
+<ul class="checklist"><li>DXF 1:1 + PDF coté de la pièce (le PDF fait foi pour les cotes critiques)</li><li>Matière, nuance, épaisseur et quantité dans le nom du fichier ou le courriel</li><li>Côté visible ou sens de brossage indiqué</li><li>Tolérances réellement nécessaires (pas « ±0 » partout)</li><li>Pliage éventuel : déplié <strong>et</strong> pièce pliée, rayon et K-factor utilisés</li></ul>
+<h2 id="erreurs-frequentes">Erreurs fréquentes</h2>
+<ul><li>Exporter un fichier en pouces lu en millimètres (pièce 25,4 fois trop petite).</li><li>Laisser la cote d’ensemble ou le cadre : le découpeur coupe un rectangle de plus.</li><li>Splines exportées en centaines de segments : mouvement saccadé, temps de coupe allongé.</li><li>Texte en police TrueType non convertie.</li></ul>
+<h2 id="faq">FAQ</h2>
+<h3 id="quelle-version-de-dxf">Quelle version de DXF ?</h3>
+<p>La plus récente que le destinataire lit sans erreur. Une version ancienne (R12, par exemple) reste parfois demandée par de vieux logiciels, mais peut convertir ou perdre certaines entités.</p>
+<h3 id="dxf-ou-dwg">DXF ou DWG ?</h3>
+<p>Pour la découpe, DXF. Le DWG est natif à AutoCAD et moins universel en FAO.</p>
+<section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://help.autodesk.com/view/OARX/2025/ENU/?guid=GUID-235B22E0-A567-4CF6-92D3-38A2306D73F3" class="ext" rel="noopener">Autodesk — DXF Reference</a>, consulté le 26 novembre 2026.</li><li><a href="https://help.bricsys.com/en-us/document/command-reference/d/dxfout-command?version=V26" class="ext" rel="noopener">Aide BricsCAD — DXFOUT</a>.</li><li><a href="https://sheetcamshop.myshopify.com/pages/support" class="ext" rel="noopener">SheetCam LLC — Support Manuals</a>.</li></ul></section>
+
+      <p class="report"><a href="/a-propos/#contact">Une erreur, un ajout ? Écrivez-nous →</a></p>
+    </div>
+  </div>
+  <section class="related"><h2>Guides connexes</h2><div class="gcards"><a class="gcard" href="/guides/bricscad-dxf/" data-hub="software"><span class="card-meta">Logiciel · DAO · Débutant · 3 min de lecture</span><strong>De BricsCAD à un DXF propre pour la découpe</strong><span class="card-desc">DXFOUT, précision décimale, version DXF, objets mandataires et nettoyage : exporter depuis BricsCAD un DXF que SheetCam, ProNest ou n’importe quel FAO lit du premier coup.</span></a><a class="gcard" href="/guides/autocad-nettoyer-dxf/" data-hub="software"><span class="card-meta">Logiciel · CAO 2D · Débutant · 3 min de lecture</span><strong>AutoCAD : nettoyer un dessin et exporter un DXF prêt pour la découpe CNC</strong><span class="card-desc">Unités, calques, doublons (OVERKILL), contours fermés (JOIN, PEDIT), splines, PURGE et AUDIT, puis enregistrement en DXF : la routine AutoCAD pour un fichier que la FAO accepte du premier coup.</span></a><a class="gcard" href="/guides/solidworks-tolerie-dxf/" data-hub="software"><span class="card-meta">Logiciel · CAO · Intermédiaire · 3 min de lecture</span><strong>SOLIDWORKS tôlerie : paramètres de pliage, déplié et export DXF propre pour la découpe</strong><span class="card-desc">Tôle de base, facteur K, tableau de pliage ou déduction, déplié, puis export DXF/DWG du déplié avec lignes de pliage sur leur propre calque : la démarche pour envoyer un fichier qui se coupe du premier coup.</span></a><a class="gcard" href="/guides/debuter-sheetcam/" data-hub="software"><span class="card-meta">Logiciel · FAO plasma · Débutant · 5 min de lecture</span><strong>Débuter avec SheetCam : du DXF au G-code plasma</strong><span class="card-desc">Unités, job, import DXF, outil plasma, opération, imbrication et post-processeur : la démarche SheetCam pas à pas, avec les pièges que l’équipe SheetCam documente elle-même.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">Un guide par semaine, en français d’abord</p><p>Nouveaux guides, occasions au Québec et mouvements de prix. Pas de pub tierce.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="fr" novalidate>
+  <div class="hp" aria-hidden="true"><label>Site web<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Prénom ou atelier (facultatif)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Courriel
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="oui">
+    <span>J’accepte de recevoir l’infolettre de CoupeFab (guides, digest d’occasions et suivi des prix des tôles). Je peux me désabonner en tout temps. Voir la <a href="/confidentialite/">politique de confidentialité</a>.</span>
+  </label>
+  <button type="submit">S’inscrire</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">Conformité CASL : la case n’est pas précochée. Aucun envoi sans ce consentement exprès.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "DXF pour la découpe : les règles qui évitent 90 % des problèmes", "description": "Unités, échelle 1:1, contours fermés, doublons, splines, calques, textes et petits détails : la liste de règles à suivre avant d’envoyer un DXF à un FAO ou à un sous-traitant de découpe.", "inLanguage": "fr-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/guides/dxf-bonnes-pratiques/", "mainEntityOfPage": "https://coupefab.vercel.app/guides/dxf-bonnes-pratiques/", "proficiencyLevel": "Beginner", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["dxf", "cad", "cam", "plasma", "laser", "waterjet", "router", "splines", "layers", "units"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "DXF pour la découpe : les règles qui évitent 90 % des problèmes", "description": "Unités, échelle 1:1, contours fermés, doublons, splines, calques, textes et petits détails : la liste de règles à suivre avant d’envoyer un DXF à un FAO ou à un sous-traitant de découpe.", "inLanguage": "fr-CA", "step": [{"@type": "HowToStep", "name": "Rouvrir le DXF exporté (pas le fichier source) dans un visualiseur ou le FAO", "text": "Rouvrir le DXF exporté (pas le fichier source) dans un visualiseur ou le FAO."}, {"@type": "HowToStep", "name": "Mesurer une cote connue ", "text": "Mesurer une cote connue : la pièce est-elle à la bonne taille ?"}, {"@type": "HowToStep", "name": "Sélectionner tout et compter les entités ", "text": "Sélectionner tout et compter les entités : un nombre anormal trahit des segments ou des doublons."}, {"@type": "HowToStep", "name": "Vérifier la fermeture ", "text": "Vérifier la fermeture : la plupart des FAO signalent les contours ouverts à l’import (SheetCam les affiche différemment)."}, {"@type": "HowToStep", "name": "Vérifier les calques et leur nom", "text": "Vérifier les calques et leur nom."}, {"@type": "HowToStep", "name": "Contrôler les petits détails par rapport au procédé et à l’épaisseur", "text": "Contrôler les petits détails par rapport au procédé et à l’épaisseur."}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Quelle version de DXF ?", "acceptedAnswer": {"@type": "Answer", "text": "La plus récente que le destinataire lit sans erreur. Une version ancienne (R12, par exemple) reste parfois demandée par de vieux logiciels, mais peut convertir ou perdre certaines entités."}}, {"@type": "Question", "name": "DXF ou DWG ?", "acceptedAnswer": {"@type": "Answer", "text": "Pour la découpe, DXF. Le DWG est natif à AutoCAD et moins universel en FAO."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>La référence francophone de la découpe CNC et de la fabrication métallique : guides vérifiés, prix des tôles comparés, occasions au Québec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/guides/logiciels/">Logiciels CAO / FAO et commandes</a></li>
+        <li><a href="/guides/procedes/">Procédés de coupe et d’usinage</a></li>
+        <li><a href="/guides/fondamentaux/">Fondamentaux CNC</a></li>
+        <li><a href="/guides/depannage/">Dépannage</a></li>
+        <li><a href="/guides/atelier/">Atelier : sécurité, achats, consommables</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explorer</p>
+      <ul>
+        <li><a href="/prix/">Prix des tôles</a></li>
+        <li><a href="/occasions/">Occasions</a></li>
+        <li><a href="/infolettre/">Infolettre</a></li>
+        <li><a href="/a-propos/">À propos</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Mentions</p>
+      <ul>
+        <li><a href="/divulgation/">Divulgation (affiliations)</a></li>
+        <li><a href="/confidentialite/">Confidentialité et LCAP</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Québec, Canada. Aucun lien d’affiliation. Les marques citées appartiennent à leurs propriétaires et sont mentionnées à titre descriptif.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>
