@@ -1290,6 +1290,10 @@ PRIV_EN = """
 </div>
 """
 
+# Prix des tôles: generated from data/prices/latest.json (see prices/)
+from prices.page import render as render_prix  # noqa: E402
+PRIX_FR, PRIX_EN, PRIX_META = render_prix(form_newsletter, SITE)
+
 PAGES = [
     # path, alt, lang, title, description, body, draft, article
     ("/", "/en/", "fr", "CoupeFab — guides plasma, occasions et prix des tôles au Québec",
@@ -1345,13 +1349,13 @@ PAGES = [
      "A checklist for buying a used plasma table in Quebec, and a first dated digest of public listings.",
      OCCASIONS_EN, True, True),
     ("/prix/", "/en/sheet-prices/", "fr",
-     "Prix des tôles au Québec — CoupeFab",
-     "Méthode et première comparaison de prix de tôles à partir de listes publiques québécoises, avec dates et sources.",
-     PRIX_FR, True, True),
+     "Prix des tôles et des métaux au Québec : comparateur à jour — CoupeFab",
+     "Comparateur quotidien des prix publiés de tôle, plaque, barre et tube (acier, inox, aluminium) chez les fournisseurs qui livrent au Québec : $/pi², $/lb, calculateur et tableau des calibres.",
+     PRIX_FR, False, False),
     ("/en/sheet-prices/", "/prix/", "en",
-     "Sheet-metal prices in Quebec — CoupeFab",
-     "Method and first sheet-price comparison from public Quebec lists, with dates and sources.",
-     PRIX_EN, True, True),
+     "Sheet-metal and metal prices in Quebec: daily comparison — CoupeFab",
+     "Daily comparison of published sheet, plate, bar and tube prices (steel, stainless, aluminum) from suppliers serving Quebec: $/sq ft, $/lb, calculator and gauge chart.",
+     PRIX_EN, False, False),
     ("/infolettre/", "/en/newsletter/", "fr",
      "Infolettre CoupeFab",
      "Inscrivez-vous à l’infolettre CoupeFab : guides, occasions Québec et prix des tôles. Consentement LCAP / CASL.",
