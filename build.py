@@ -1294,6 +1294,10 @@ PRIV_EN = """
 from prices.page import render as render_prix  # noqa: E402
 PRIX_FR, PRIX_EN, PRIX_META = render_prix(form_newsletter, SITE)
 
+# Occasions: generated from data/used/listings.json (see used/)
+from used.page import render as render_occasions  # noqa: E402
+OCCASIONS_FR, OCCASIONS_EN, OCCASIONS_META = render_occasions(SITE)
+
 PAGES = [
     # path, alt, lang, title, description, body, draft, article
     ("/", "/en/", "fr", "CoupeFab — guides plasma, occasions et prix des tôles au Québec",
@@ -1341,13 +1345,13 @@ PAGES = [
      "Hypertherm’s consumable-care guidance and Canadian buying paths, with no affiliate links. Draft pending review.",
      CONSOM_EN, True, True),
     ("/occasions/", "/en/used-equipment/", "fr",
-     "Occasions Québec — évaluer une table plasma usagée — CoupeFab",
-     "Liste de vérification pour l’achat d’une table plasma usagée au Québec, et premier digest d’annonces publiques daté.",
-     OCCASIONS_FR, True, True),
+     "Occasions CNC et métaux au Québec — comparateur d’aubaines — CoupeFab",
+     "Annonces publiques de tables plasma, lasers, fraiseuses, tours et plieuses au Québec et au Canada, avec pastilles Super aubaine et comparaison au prix neuf lorsqu’il est documenté.",
+     OCCASIONS_FR, False, False),
     ("/en/used-equipment/", "/occasions/", "en",
-     "Used equipment in Quebec — evaluating a used plasma table — CoupeFab",
-     "A checklist for buying a used plasma table in Quebec, and a first dated digest of public listings.",
-     OCCASIONS_EN, True, True),
+     "Used CNC and metalworking equipment in Quebec — deal tracker — CoupeFab",
+     "Public listings of plasma tables, lasers, mills, lathes and press brakes in Quebec and Canada, with Super deal badges and a comparison to documented new prices.",
+     OCCASIONS_EN, False, False),
     ("/prix/", "/en/sheet-prices/", "fr",
      "Prix des tôles et des métaux au Québec : comparateur à jour — CoupeFab",
      "Comparateur quotidien des prix publiés de tôle, plaque, barre et tube (acier, inox, aluminium) chez les fournisseurs qui livrent au Québec : $/pi², $/lb, calculateur et tableau des calibres.",

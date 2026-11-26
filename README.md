@@ -114,6 +114,25 @@ Les données compilées (`data/prices/`, `prix/donnees.json`, `prix/coupefab-pri
 Un fournisseur en échec garde ses lignes de la veille, marquées « [relevé précédent] », et son erreur est inscrite dans `latest.json` → `status`.
 
 
+
+## Occasions (`used/`)
+
+Comparateur d’équipements CNC et de fabrication usagés : `/occasions/` et `/en/used-equipment/`.
+
+| Fichier | Rôle |
+| --- | --- |
+| `used/fetch_listings.py` | Robot poli (`CoupeFabOccasionsBot`, robots.txt + Crawl-delay, aucune connexion, aucun contournement anti-robot). Agrège les annonces publiques et le journal des sources. |
+| `used/score.py` | Pastilles Super aubaine / Bonne affaire / Prix du marché / Cher : médiane usagée (±10 %, super à −20 %) et écart vs un prix neuf **documenté** (jamais inventé). |
+| `used/page.py` | Rendu FR/EN : onglets de catégories, filtres (région depuis Berthierville, prix, année, source, aubaines), cartes, méthodologie. |
+| `js/occasions.js`, `css/occasions.css` | Filtres, tri et onglets (préfixe `.oc`). |
+| `data/used/listings.json` | Annonces du dernier relevé + taux + table MSRP + statut des sources. |
+| `data/used/discovery.csv` | Journal append-only des sources candidates (`added`, `blocked`, `quote-only`, `pending`) et la raison. |
+| `data/used/msrp.json` | Prix neufs officiels (URL + date). |
+| `data/used/history/AAAA-MM.csv` | Journal daté : première vue et chaque changement de prix ou de statut. |
+| `occasions/donnees.json` | Données publiques servies avec la page. |
+
+`scripts/refresh.sh` appelle aussi `used/fetch_listings.py` avant `build.py`. Pour un relevé d’occasions seul : `/workspace/coupefab-venv-tools/bin/python -m used.fetch_listings` puis `python3 -c "from used.page import write_pages; write_pages()"`. Les annonces absentes 14 jours sont marquées périmées ; « vendu » seulement si le vendeur l’indique. Les prix ALX de l’API WooCommerce ne sont pas publiés : les fiches publiques disent « Demander le prix ».
+
 ## Design et bibliothèque de guides (`sitekit/`, `content/guides/`)
 
 - `sitekit/` (Python, sans dépendance) : gabarit commun (`layout.py` — en-tête avec méga-menu, recherche, sélecteur FR/EN, pied de page), rendu Markdown maison (`md.py`), taxonomie et chaînes FR/EN (`taxonomy.py`), pages guides / pôles / index (`guides.py`) et accueil (`home.py`). `build.py` l’appelle via `sitekit.extend_pages()` et `sitekit.write_assets()` ; les anciennes chaînes HOME/GUIDES de `build.py` ne servent plus.

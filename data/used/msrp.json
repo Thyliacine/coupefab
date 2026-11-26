@@ -1,0 +1,82 @@
+{
+  "generated": "2026-11-26T14:55:46-05:00",
+  "rows": [
+    {
+      "make": "Langmuir",
+      "model": "CrossFire PRO",
+      "title": "CrossFire PRO CNC Plasma Table – Basic Package",
+      "price": 4195.0,
+      "currency": "USD",
+      "source_url": "https://www.langmuirsystems.com/products/crossfire-pro-cnc-plasma-table-basic-package",
+      "date": "2026-11-26",
+      "source_name": "Langmuir Systems official shop",
+      "notes": "Published new price on langmuirsystems.com; freight and options extra."
+    },
+    {
+      "make": "Langmuir",
+      "model": "CrossFire",
+      "title": "CrossFire CNC Plasma Table - Basic Package",
+      "price": 2495.0,
+      "currency": "USD",
+      "source_url": "https://www.langmuirsystems.com/products/crossfire-cnc-plasma-table-basic-package",
+      "date": "2026-11-26",
+      "source_name": "Langmuir Systems official shop",
+      "notes": "Published new price on langmuirsystems.com; freight and options extra."
+    },
+    {
+      "make": "Langmuir",
+      "model": "CrossFire PRO MAX",
+      "title": "CrossFire PRO MAX CNC Plasma Table",
+      "price": 3395.0,
+      "currency": "USD",
+      "source_url": "https://www.langmuirsystems.com/products/crossfire-pro-max-cnc-plasma-table",
+      "date": "2026-11-26",
+      "source_name": "Langmuir Systems official shop",
+      "notes": "Published new price on langmuirsystems.com; freight and options extra."
+    },
+    {
+      "make": "Langmuir",
+      "model": "Titan 25T",
+      "title": "TITAN 25T CNC Press Brake",
+      "price": 4995.0,
+      "currency": "USD",
+      "source_url": "https://www.langmuirsystems.com/products/titan-25t-cnc-press-brake",
+      "date": "2026-11-26",
+      "source_name": "Langmuir Systems official shop",
+      "notes": "Published new price on langmuirsystems.com; freight and options extra."
+    },
+    {
+      "make": "Razorweld",
+      "model": "Razorcut 45",
+      "title": "Razorweld Razorcut 45 with Machine Torch",
+      "price": 1289.0,
+      "currency": "USD",
+      "source_url": "https://www.langmuirsystems.com/products/razorweld-razorcut-45-with-machine-torch",
+      "date": "2026-11-26",
+      "source_name": "Langmuir Systems official shop",
+      "notes": "Published new price on langmuirsystems.com; freight and options extra."
+    },
+    {
+      "make": "Hypertherm",
+      "model": "Powermax45 SYNC",
+      "title": "Hypertherm Powermax45 SYNC with 25ft Mechanized Torch",
+      "price": 3300.0,
+      "currency": "USD",
+      "source_url": "https://www.langmuirsystems.com/products/hypertherm-powermax45-sync-with-25ft-mechanized-torch",
+      "date": "2026-11-26",
+      "source_name": "Langmuir Systems official shop",
+      "notes": "Published new price on langmuirsystems.com; freight and options extra."
+    },
+    {
+      "make": "Langmuir",
+      "model": "CrossFire XR",
+      "title": "CrossFire XR CNC Plasma Table",
+      "price": 6995.0,
+      "currency": "USD",
+      "source_url": "https://www.langmuirsystems.com/products/crossfire-xr-cnc-plasma-table",
+      "date": "2026-11-26",
+      "source_name": "Langmuir Systems official shop",
+      "notes": "Published new price on langmuirsystems.com; freight and options extra."
+    }
+  ]
+}
