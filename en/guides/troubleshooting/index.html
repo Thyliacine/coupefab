@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Troubleshooting — CoupeFab guides</title>
-<meta name="description" content="Dross, bevel, arc loss, chatter, tool breakage: symptom → cause → fix.">
+<meta name="description" content="Plasma and laser dross, bevel, THC hunting, chatter, router tear-out, post errors: symptom → cause → fix.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="#15191c">
 <link rel="canonical" href="https://coupefab.vercel.app/en/guides/troubleshooting/">
@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="CoupeFab">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Troubleshooting — CoupeFab guides">
-<meta property="og:description" content="Dross, bevel, arc loss, chatter, tool breakage: symptom → cause → fix.">
+<meta property="og:description" content="Plasma and laser dross, bevel, THC hunting, chatter, router tear-out, post errors: symptom → cause → fix.">
 <meta property="og:url" content="https://coupefab.vercel.app/en/guides/troubleshooting/">
 <meta property="og:locale" content="en_CA">
 <meta property="og:locale:alternate" content="fr_CA">
@@ -41,16 +41,16 @@
         <div class="mega-inner">
           <div class="mega-col mega-sw">
             <p class="mega-h"><a href="/en/guides/software/">By software</a></p>
-            <ul class="mega-list two"><li><a href="/en/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/en/guides/getting-started-sheetcam/">SheetCam</a></li><li><a href="/en/guides/solidworks-sheet-metal-flat-pattern-dxf/">SOLIDWORKS sheet metal</a></li><li><a href="/en/guides/autocad-dxf-cleanup/">AutoCAD (DXF)</a></li><li><a href="/en/guides/fusion-cam-getting-started/">Fusion CAM</a></li><li><a href="/en/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/en/guides/bricscad-to-clean-dxf/">BricsCAD → DXF</a></li><li><a href="/en/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/en/guides/inventor-sheet-metal-and-cam/">Inventor</a></li><li><a href="/en/guides/mastercam-2d-toolpaths-dynamic-milling/">Mastercam 2D</a></li><li><a href="/en/guides/mastercam-posts-and-lathe/">Mastercam posts and lathe</a></li><li><a href="/en/guides/onshape-sheet-metal-cam/">Onshape</a></li><li><a href="/en/guides/solidworks-drawings-and-cam/">SOLIDWORKS CAM and drawings</a></li><li><a href="/en/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/en/guides/freecad-cam/">FreeCAD CAM</a></li><li><a href="/en/guides/vectric-vcarve-aspire/">Vectric VCarve / Aspire</a></li><li><a href="/en/guides/lightburn-laser/">LightBurn</a></li><li><a href="/en/guides/pronest-nesting/">ProNest</a></li></ul>
+            <ul class="mega-list two"><li><a href="/en/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/en/guides/getting-started-sheetcam/">SheetCam</a></li><li><a href="/en/guides/solidworks-sheet-metal-flat-pattern-dxf/">SOLIDWORKS sheet metal</a></li><li><a href="/en/guides/autocad-dxf-cleanup/">AutoCAD (DXF)</a></li><li><a href="/en/guides/fusion-cam-getting-started/">Fusion CAM</a></li><li><a href="/en/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/en/guides/bricscad-to-clean-dxf/">BricsCAD → DXF</a></li><li><a href="/en/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/en/guides/inventor-sheet-metal-and-cam/">Inventor</a></li><li><a href="/en/guides/mastercam-2d-toolpaths-dynamic-milling/">Mastercam 2D</a></li><li><a href="/en/guides/mastercam-posts-and-lathe/">Mastercam posts and lathe</a></li><li><a href="/en/guides/camworks-cam-solidworks/">CAMWorks</a></li><li><a href="/en/guides/fusion-plasma-posts-per-table/">Fusion plasma: posts per table</a></li><li><a href="/en/guides/esprit-cam-multitasking/">ESPRIT CAM</a></li><li><a href="/en/guides/onshape-sheet-metal-cam/">Onshape</a></li><li><a href="/en/guides/solidworks-drawings-and-cam/">SOLIDWORKS CAM and drawings</a></li><li><a href="/en/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/en/guides/gibbscam-cam/">GibbsCAM</a></li></ul>
             <p class="mega-all"><a href="/en/guides/software/">All software →</a></p>
           </div>
           <div class="mega-col">
             <p class="mega-h"><a href="/en/guides/processes/">By process</a></p>
-            <ul class="mega-list"><li><a href="/en/guides/cnc-plasma-cutting/">CNC plasma</a></li><li><a href="/en/guides/fiber-laser-cutting/">Fiber laser</a></li><li><a href="/en/guides/waterjet-cutting/">Waterjet</a></li><li><a href="/en/guides/cnc-router/">CNC router</a></li><li><a href="/en/guides/cnc-mill/">CNC mill</a></li><li><a href="/en/guides/cnc-lathe/">CNC lathe</a></li><li><a href="/en/guides/press-brake-bending/">Press brake</a></li></ul>
+            <ul class="mega-list"><li><a href="/en/guides/cnc-plasma-cutting/">CNC plasma</a></li><li><a href="/en/guides/fiber-laser-cutting/">Fiber laser</a></li><li><a href="/en/guides/waterjet-cutting/">Waterjet</a></li><li><a href="/en/guides/cnc-router/">CNC router</a></li><li><a href="/en/guides/cnc-mill/">CNC mill</a></li><li><a href="/en/guides/cnc-lathe/">CNC lathe</a></li><li><a href="/en/guides/press-brake-bending/">Press brake</a></li><li><a href="/en/guides/plasma-bevel-cutting/">Plasma bevel cutting</a></li><li><a href="/en/guides/oxyfuel-cutting/">Oxyfuel cutting</a></li><li><a href="/en/guides/edm-wire-sinker/">EDM (wire and sinker)</a></li><li><a href="/en/guides/five-axis-machining/">5-axis machining</a></li><li><a href="/en/guides/turn-mill-swiss-type-lathes/">Turn-mill and Swiss-type</a></li><li><a href="/en/guides/weld-preparation-bevels/">Weld preparation</a></li><li><a href="/en/guides/deburring-finishing/">Deburring and finishing</a></li></ul>
           </div>
           <div class="mega-col">
             <p class="mega-h"><a href="/en/guides/fundamentals/">By topic</a></p>
-            <ul class="mega-list"><li><a href="/en/guides/g-code-m-code-reference/">G-code &amp; M-code</a></li><li><a href="/en/guides/feeds-and-speeds/">Feeds and speeds</a></li><li><a href="/en/guides/kerf-and-cut-quality/">Kerf and cut quality</a></li><li><a href="/en/guides/bend-allowance-k-factor/">Bending: K-factor and deduction</a></li><li><a href="/en/guides/metal-grades/">Metal grades</a></li><li><a href="/en/guides/dxf-best-practices/">DXF best practices</a></li><li class="more"><a href="/en/guides/fundamentals/">CNC fundamentals →</a></li><li class="more"><a href="/en/guides/troubleshooting/">Troubleshooting →</a></li><li class="more"><a href="/en/guides/shop/">Shop: safety, buying, consumables →</a></li></ul>
+            <ul class="mega-list"><li><a href="/en/guides/g-code-m-code-reference/">G-code &amp; M-code</a></li><li><a href="/en/guides/feeds-and-speeds/">Feeds and speeds</a></li><li><a href="/en/guides/kerf-and-cut-quality/">Kerf and cut quality</a></li><li><a href="/en/guides/bend-allowance-k-factor/">Bending: K-factor and deduction</a></li><li><a href="/en/guides/metal-grades/">Metal grades</a></li><li><a href="/en/guides/dxf-best-practices/">DXF best practices</a></li><li class="more"><a href="/en/guides/fundamentals/">CNC fundamentals →</a></li><li class="more"><a href="/en/guides/materials/">Materials and grades →</a></li><li class="more"><a href="/en/guides/troubleshooting/">Troubleshooting →</a></li><li class="more"><a href="/en/guides/shop/">Shop: safety, quoting, inspection, training →</a></li></ul>
           </div>
           <div class="mega-col mega-feature">
             <a class="feature-card" href="/en/sheet-prices/">
@@ -58,7 +58,7 @@
               <strong>Sheet prices</strong>
               <span>Sheet, plate, bar and tube: published prices from suppliers serving Quebec, refreshed every business day.</span>
             </a>
-            <a class="mega-allguides" href="/en/guides/">All guides (41) →</a>
+            <a class="mega-allguides" href="/en/guides/">All guides (71) →</a>
           </div>
         </div>
       </div>
@@ -91,14 +91,14 @@
 <div class="page">
 <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/en/">Home</a></li><li><a href="/en/guides/">Guides</a></li><li aria-current="page">Troubleshooting</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coupefab.vercel.app/en/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/en/guides/"}, {"@type": "ListItem", "position": 3, "name": "Troubleshooting"}]}</script>
 <header class="page-head">
-  <p class="kicker">Guides · 2</p>
+  <p class="kicker">Guides · 4</p>
   <h1>Troubleshooting</h1>
-  <p class="lede">Dross, bevel, arc loss, chatter, tool breakage: symptom → cause → fix.</p>
+  <p class="lede">Plasma and laser dross, bevel, THC hunting, chatter, router tear-out, post errors: symptom → cause → fix.</p>
 </header>
-<div class="gcards"><a class="gcard" href="/en/guides/plasma-troubleshooting-dross-bevel/" data-hub="troubleshooting"><span class="card-meta">Troubleshooting · plasma · Intermediate · 3 min read</span><strong>Plasma troubleshooting: dross, bevel, top spatter, arc loss</strong><span class="card-desc">Identify the dross type (low speed, high speed, top spatter), read the cut angle, correct height, speed and current in small steps, and fix arc loss and fast wear — based on Hypertherm’s guides.</span></a><a class="gcard" href="/en/guides/milling-troubleshooting-chatter/" data-hub="troubleshooting"><span class="card-meta">Troubleshooting · machining · Intermediate · 3 min read</span><strong>Machining troubleshooting: chatter, tool breakage, poor finish, drifting sizes</strong><span class="card-desc">Symptom → cause → fix for milling and routing: vibration, broken tools, built-up edge, poor surface finish, chip recutting and sizes that change during a run.</span></a></div>
-<nav class="chips other-hubs" aria-label="Other sections"><a class="chip" href="/en/guides/software/">CAD/CAM software and controls</a><a class="chip" href="/en/guides/processes/">Cutting and machining processes</a><a class="chip" href="/en/guides/fundamentals/">CNC fundamentals</a><a class="chip" href="/en/guides/shop/">Shop: safety, buying, consumables</a></nav>
+<div class="gcards"><a class="gcard" href="/en/guides/plasma-troubleshooting-dross-bevel/" data-hub="troubleshooting"><span class="card-meta">Troubleshooting · plasma · Intermediate · 3 min read</span><strong>Plasma troubleshooting: dross, bevel, top spatter, arc loss</strong><span class="card-desc">Identify the dross type (low speed, high speed, top spatter), read the cut angle, correct height, speed and current in small steps, and fix arc loss and fast wear — based on Hypertherm’s guides.</span></a><a class="gcard" href="/en/guides/milling-troubleshooting-chatter/" data-hub="troubleshooting"><span class="card-meta">Troubleshooting · machining · Intermediate · 3 min read</span><strong>Machining troubleshooting: chatter, tool breakage, poor finish, drifting sizes</strong><span class="card-desc">Symptom → cause → fix for milling and routing: vibration, broken tools, built-up edge, poor surface finish, chip recutting and sizes that change during a run.</span></a><a class="gcard" href="/en/guides/thc-hunting-diving-troubleshooting/" data-hub="troubleshooting"><span class="card-meta">Troubleshooting · plasma · Intermediate · 3 min read</span><strong>Torch height control (THC) troubleshooting: hunting, diving or climbing torch</strong><span class="card-desc">Why the THC hunts, dives in corners or over voids, or lifts the torch: arc voltage, anti-dive, activation delay, worn consumables, grounding. A step-by-step diagnostic method.</span></a><a class="gcard" href="/en/guides/laser-troubleshooting-dross-burning/" data-hub="troubleshooting"><span class="card-meta">Troubleshooting · fiber laser · Intermediate · 4 min read</span><strong>Fiber laser troubleshooting: dross, burrs, burning and incomplete cuts</strong><span class="card-desc">Symptom → cause → fix for fiber laser cutting: clinging dross, burrs, burned corners, striations, cuts that don’t go through. Nozzle, centering, focus, gas and protective window, in the right order.</span></a></div>
+<nav class="chips other-hubs" aria-label="Other sections"><a class="chip" href="/en/guides/software/">CAD/CAM software and controls</a><a class="chip" href="/en/guides/processes/">Cutting and machining processes</a><a class="chip" href="/en/guides/fundamentals/">CNC fundamentals</a><a class="chip" href="/en/guides/materials/">Materials and grades</a><a class="chip" href="/en/guides/shop/">Shop: safety, quoting, inspection, training</a></nav>
 </div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Troubleshooting", "description": "Dross, bevel, arc loss, chatter, tool breakage: symptom → cause → fix.", "inLanguage": "en-CA", "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://coupefab.vercel.app/en/guides/plasma-troubleshooting-dross-bevel/", "name": "Plasma troubleshooting: dross, bevel, top spatter, arc loss"}, {"@type": "ListItem", "position": 2, "url": "https://coupefab.vercel.app/en/guides/milling-troubleshooting-chatter/", "name": "Machining troubleshooting: chatter, tool breakage, poor finish, drifting sizes"}]}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Troubleshooting", "description": "Plasma and laser dross, bevel, THC hunting, chatter, router tear-out, post errors: symptom → cause → fix.", "inLanguage": "en-CA", "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://coupefab.vercel.app/en/guides/plasma-troubleshooting-dross-bevel/", "name": "Plasma troubleshooting: dross, bevel, top spatter, arc loss"}, {"@type": "ListItem", "position": 2, "url": "https://coupefab.vercel.app/en/guides/milling-troubleshooting-chatter/", "name": "Machining troubleshooting: chatter, tool breakage, poor finish, drifting sizes"}, {"@type": "ListItem", "position": 3, "url": "https://coupefab.vercel.app/en/guides/thc-hunting-diving-troubleshooting/", "name": "Torch height control (THC) troubleshooting: hunting, diving or climbing torch"}, {"@type": "ListItem", "position": 4, "url": "https://coupefab.vercel.app/en/guides/laser-troubleshooting-dross-burning/", "name": "Fiber laser troubleshooting: dross, burrs, burning and incomplete cuts"}]}}</script>
 
 </main>
 <footer class="ftr">
@@ -113,8 +113,9 @@
         <li><a href="/en/guides/software/">CAD/CAM software and controls</a></li>
         <li><a href="/en/guides/processes/">Cutting and machining processes</a></li>
         <li><a href="/en/guides/fundamentals/">CNC fundamentals</a></li>
+        <li><a href="/en/guides/materials/">Materials and grades</a></li>
         <li><a href="/en/guides/troubleshooting/">Troubleshooting</a></li>
-        <li><a href="/en/guides/shop/">Shop: safety, buying, consumables</a></li>
+        <li><a href="/en/guides/shop/">Shop: safety, quoting, inspection, training</a></li>
       </ul>
     </div>
     <div>

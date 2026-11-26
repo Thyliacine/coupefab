@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turn-mill machines and Swiss-type lathes: principles, differences and choosing — CoupeFab</title>
+<meta name="description" content="Sliding headstock and guide bushing (Swiss), B-axis and sub-spindle (turn-mill), live tooling, C and Y axes: how these machines work, which parts they suit, and what changes in CAM programming.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/en/guides/turn-mill-swiss-type-lathes/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/turn-mill-swiss-type-lathes/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/tour-fraiseur-decolleteuse-suisse/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/tour-fraiseur-decolleteuse-suisse/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Turn-mill machines and Swiss-type lathes: principles, differences and choosing — CoupeFab">
+<meta property="og:description" content="Sliding headstock and guide bushing (Swiss), B-axis and sub-spindle (turn-mill), live tooling, C and Y axes: how these machines work, which parts they suit, and what changes in CAM programming.">
+<meta property="og:url" content="https://coupefab.vercel.app/en/guides/turn-mill-swiss-type-lathes/">
+<meta property="og:locale" content="en_CA">
+<meta property="og:locale:alternate" content="fr_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="en">
+<a class="skip" href="#contenu">Skip to content</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/en/" aria-label="CoupeFab — Home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Main navigation">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/en/guides/software/">By software</a></p>
+            <ul class="mega-list two"><li><a href="/en/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/en/guides/getting-started-sheetcam/">SheetCam</a></li><li><a href="/en/guides/solidworks-sheet-metal-flat-pattern-dxf/">SOLIDWORKS sheet metal</a></li><li><a href="/en/guides/autocad-dxf-cleanup/">AutoCAD (DXF)</a></li><li><a href="/en/guides/fusion-cam-getting-started/">Fusion CAM</a></li><li><a href="/en/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/en/guides/bricscad-to-clean-dxf/">BricsCAD → DXF</a></li><li><a href="/en/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/en/guides/inventor-sheet-metal-and-cam/">Inventor</a></li><li><a href="/en/guides/mastercam-2d-toolpaths-dynamic-milling/">Mastercam 2D</a></li><li><a href="/en/guides/mastercam-posts-and-lathe/">Mastercam posts and lathe</a></li><li><a href="/en/guides/camworks-cam-solidworks/">CAMWorks</a></li><li><a href="/en/guides/fusion-plasma-posts-per-table/">Fusion plasma: posts per table</a></li><li><a href="/en/guides/esprit-cam-multitasking/">ESPRIT CAM</a></li><li><a href="/en/guides/onshape-sheet-metal-cam/">Onshape</a></li><li><a href="/en/guides/solidworks-drawings-and-cam/">SOLIDWORKS CAM and drawings</a></li><li><a href="/en/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/en/guides/gibbscam-cam/">GibbsCAM</a></li></ul>
+            <p class="mega-all"><a href="/en/guides/software/">All software →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/processes/">By process</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/cnc-plasma-cutting/">CNC plasma</a></li><li><a href="/en/guides/fiber-laser-cutting/">Fiber laser</a></li><li><a href="/en/guides/waterjet-cutting/">Waterjet</a></li><li><a href="/en/guides/cnc-router/">CNC router</a></li><li><a href="/en/guides/cnc-mill/">CNC mill</a></li><li><a href="/en/guides/cnc-lathe/">CNC lathe</a></li><li><a href="/en/guides/press-brake-bending/">Press brake</a></li><li><a href="/en/guides/plasma-bevel-cutting/">Plasma bevel cutting</a></li><li><a href="/en/guides/oxyfuel-cutting/">Oxyfuel cutting</a></li><li><a href="/en/guides/edm-wire-sinker/">EDM (wire and sinker)</a></li><li><a href="/en/guides/five-axis-machining/">5-axis machining</a></li><li><a href="/en/guides/turn-mill-swiss-type-lathes/">Turn-mill and Swiss-type</a></li><li><a href="/en/guides/weld-preparation-bevels/">Weld preparation</a></li><li><a href="/en/guides/deburring-finishing/">Deburring and finishing</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/fundamentals/">By topic</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/g-code-m-code-reference/">G-code &amp; M-code</a></li><li><a href="/en/guides/feeds-and-speeds/">Feeds and speeds</a></li><li><a href="/en/guides/kerf-and-cut-quality/">Kerf and cut quality</a></li><li><a href="/en/guides/bend-allowance-k-factor/">Bending: K-factor and deduction</a></li><li><a href="/en/guides/metal-grades/">Metal grades</a></li><li><a href="/en/guides/dxf-best-practices/">DXF best practices</a></li><li class="more"><a href="/en/guides/fundamentals/">CNC fundamentals →</a></li><li class="more"><a href="/en/guides/materials/">Materials and grades →</a></li><li class="more"><a href="/en/guides/troubleshooting/">Troubleshooting →</a></li><li class="more"><a href="/en/guides/shop/">Shop: safety, quoting, inspection, training →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/en/sheet-prices/">
+              <span class="feature-k">Tool</span>
+              <strong>Sheet prices</strong>
+              <span>Sheet, plate, bar and tube: published prices from suppliers serving Quebec, refreshed every business day.</span>
+            </a>
+            <a class="mega-allguides" href="/en/guides/">All guides (71) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/en/sheet-prices/">Sheet prices</a></li>
+    <li><a class="nav-link" href="/en/used-equipment/">Used equipment</a></li>
+    <li><a class="nav-link" href="/en/newsletter/">Newsletter</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Search</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Language">
+        <a href="/guides/tour-fraiseur-decolleteuse-suisse/" hreflang="fr-CA" lang="fr-CA">FR</a><a href="/en/guides/turn-mill-swiss-type-lathes/" hreflang="en-CA" lang="en-CA" aria-current="true">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Search guides (e.g. SheetCam, K-factor, dross)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Close</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>No guide found. Try another word (software, process, material).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/en/">Home</a></li><li><a href="/en/guides/">Guides</a></li><li><a href="/en/guides/processes/">Cutting and machining processes</a></li><li aria-current="page">Turn-mill and Swiss-type</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coupefab.vercel.app/en/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/en/guides/"}, {"@type": "ListItem", "position": 3, "name": "Cutting and machining processes", "item": "https://coupefab.vercel.app/en/guides/processes/"}, {"@type": "ListItem", "position": 4, "name": "Turn-mill and Swiss-type"}]}</script>
+<article class="guide" data-guide="swiss-turn-mill">
+  <header class="guide-head">
+    <p class="kicker">Process · multitasking turning</p>
+    <h1>Turn-mill machines and Swiss-type lathes: principles, differences and choosing</h1>
+    <p class="guide-lede">Sliding headstock and guide bushing (Swiss), B-axis and sub-spindle (turn-mill), live tooling, C and Y axes: how these machines work, which parts they suit, and what changes in CAM programming.</p>
+    <p class="guide-meta">
+      <span>Reviewed <time datetime="2026-11-26">November 26, 2026</time></span>
+      <span>3 min read</span>
+      <span>Level : Advanced</span>
+      <span class="pill pill-draft" tabindex="0" title="Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.">Draft<span class="pill-tip" role="tooltip">Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>On this page</summary><ol><li><a href="#the-two-families">The two families</a></li><li><a href="#axes-and-options-to-know">Axes and options to know</a></li><li><a href="#programming">Programming</a></li><li><a href="#checklist-before-investing">Checklist before investing</a></li><li><a href="#common-mistakes">Common mistakes</a></li><li><a href="#faq">FAQ</a></li><li><a href="#for-michael-to-review">For Michaël to review</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p>A basic CNC lathe turns and does simple operations. Add <strong>live tooling</strong>, a <strong>C axis</strong> (spindle indexing), a <strong>Y axis</strong>, a <strong>sub-spindle</strong> or a <strong>B head</strong>, and it becomes a <strong>multitasking</strong> machine: the part comes off finished in one setup (done-in-one). <strong>Swiss-type</strong> lathes are a special family, built for long, slender parts.</p>
+<h2 id="the-two-families">The two families</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Criterion</th><th>Swiss-type lathe</th><th>Turn-mill</th></tr></thead><tbody>
+<tr><td>Principle</td><td><strong>Sliding headstock</strong>: the bar feeds through a <strong>guide bushing</strong>; the tool cuts a few millimetres from the support</td><td>Fixed headstock, part overhangs from the chuck</td></tr>
+<tr><td>Ideal parts</td><td>Long and slender, small diameters, high volume (medical, connectors, watchmaking, screws)</td><td>Complex prismatic and turned parts, larger diameters, small and medium runs</td></tr>
+<tr><td>Strengths</td><td>No part deflection, throughput, precision</td><td>B head (angled milling), versatility, sub-spindle</td></tr>
+<tr><td>Constraints</td><td>Ground bar often needed (bushing tolerance), demanding setup</td><td>Cost, demanding programming and simulation</td></tr>
+</tbody></table></div>
+<p>Modern Machine Shop sums up the distinction: the guide bushing is for <strong>stability</strong>, the B axis for <strong>angular flexibility</strong>; some recent Swiss machines have both.</p>
+<h2 id="axes-and-options-to-know">Axes and options to know</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Element</th><th>Role</th></tr></thead><tbody>
+<tr><td>Live tooling</td><td>Drill, mill, tap off-axis</td></tr>
+<tr><td>C axis</td><td>Index or interpolate spindle rotation (flats, radial holes)</td></tr>
+<tr><td>Y axis</td><td>Offset the tool off-centre (slots, off-centre pockets)</td></tr>
+<tr><td>Sub-spindle</td><td>Transfer the part to machine the back</td></tr>
+<tr><td>B head</td><td>Tilt the milling spindle (angled holes and faces)</td></tr>
+<tr><td>Bar feeder</td><td>Continuous feed, unattended production</td></tr>
+</tbody></table></div>
+<h2 id="programming">Programming</h2>
+<ul><li>CAM must know <strong>the real machine</strong> (kinematics, channels, turret synchronization): Mastercam Swiss Expert, Esprit, GibbsCAM or other CAMs’ multitasking modules (see <a href="/en/guides/esprit-cam-multitasking/">ESPRIT CAM</a> and <a href="/en/guides/gibbscam-cam/">GibbsCAM</a>).</li><li><strong>Full machine simulation</strong> is essential (collisions between turrets, spindle and sub-spindle).</li><li>A certified post for the exact model (see <a href="/en/guides/post-processors/">Post processors</a>).</li><li>On Swiss machines, many programs are still written or edited by hand per channel.</li></ul>
+<h2 id="checklist-before-investing">Checklist before investing</h2>
+<ul class="checklist"><li>Part family (length/diameter, quantities, tolerances)</li><li>Materials (screw machining: 12L14, 303, C360 brass — see <a href="/en/guides/free-machining-steel-12l14-1215/">12L14 and 1215 (free-machining)</a>)</li><li>Ground bar needed? Material cost</li><li>CAM and post available for the model</li><li>Setup skills in the team (see <a href="/en/guides/cnc-careers-training-quebec/">CNC careers and training in Quebec</a>)</li></ul>
+<h2 id="common-mistakes">Common mistakes</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Mistake</th><th>Consequence</th></tr></thead><tbody>
+<tr><td>Buying a Swiss for short, large parts</td><td>Under-used machine, heavy setup</td></tr>
+<tr><td>Bar out of tolerance in the bushing</td><td>Vibration, poor precision or seizing</td></tr>
+<tr><td>Programming without machine simulation</td><td>Turret collision</td></tr>
+<tr><td>Generic post</td><td>Wrong channel synchronization</td></tr>
+</tbody></table></div>
+<h2 id="faq">FAQ</h2>
+<h3 id="can-a-swiss-run-without-a-guide-bushing">Can a Swiss run without a guide bushing?</h3>
+<p>Several Swiss machines can run <strong>guide-bushing-less</strong> to use unground bar and reduce remnant, at the cost of rigidity on long parts.</p>
+<h3 id="is-a-lathe-with-live-tools-a-turn-mill">Is a lathe with live tools a turn-mill?</h3>
+<p>Broadly yes (a multitasking machine); “turn-mill” usually means machines with a B head and serious milling capacity.</p>
+<section class="review-box"><h2 id="for-michael-to-review">For Michaël to review</h2>
+<ul><li>The multitasking machines at your customers and their part families.</li></ul>
+</section><section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://www.mmsonline.com/articles/swiss-types-offer-advantages-beyond-watchmaking" class="ext" rel="noopener">Modern Machine Shop — Swiss-types offer advantages beyond watchmaking</a>, consulted November 26, 2026.</li><li><a href="https://www.mmsonline.com/articles/turn-mills-101" class="ext" rel="noopener">Modern Machine Shop — Turn-mills 101</a>, consulted November 26, 2026.</li><li><a href="https://www.mmsonline.com/articles/turn-mills-being-about-the-b-axis" class="ext" rel="noopener">Modern Machine Shop — Turn-mills: being about the B-axis</a>, consulted November 26, 2026.</li></ul></section>
+
+      <p class="report"><a href="/en/about/#contact">Spotted an error or want something added? Tell us →</a></p>
+    </div>
+  </div>
+  <section class="related"><h2>Related guides</h2><div class="gcards"><a class="gcard" href="/en/guides/cnc-lathe/" data-hub="process"><span class="card-meta">Process · machining · Intermediate · 3 min read</span><strong>CNC lathe: constant surface speed, inserts, offsets and threading</strong><span class="card-desc">CNC turning basics: G96/G97 and spindle limit, diameter mode, tool offsets, nose radius, insert choice, jaws and threading, with the costly traps.</span></a><a class="gcard" href="/en/guides/five-axis-machining/" data-hub="process"><span class="card-meta">Process · advanced milling · Advanced · 3 min read</span><strong>5-axis machining: 3+2 or simultaneous, kinematics, RTCP and tilted planes</strong><span class="card-desc">The difference between positional (3+2) and simultaneous 5-axis, table-table, head-head and head-table kinematics, RTCP (G43.4) and tilted planes (G68.2, CYCLE800), and what it takes to succeed: CAM, post, simulation, fixturing.</span></a><a class="gcard" href="/en/guides/free-machining-steel-12l14-1215/" data-hub="materials"><span class="card-meta">Materials · free-machining steels · Intermediate · 3 min read</span><strong>Free-machining steels 12L14 and 1215: machinability, limits and when to avoid them</strong><span class="card-desc">Why 12L14 (leaded) and 1215 (resulfurized) machine much faster than 1018, and why you shouldn’t weld them or use them everywhere. Comparison and selection.</span></a><a class="gcard" href="/en/guides/mastercam-posts-and-lathe/" data-hub="software"><span class="card-meta">Software · CAM · Advanced · 3 min read</span><strong>Mastercam: machine definition, post processor and first steps in turning</strong><span class="card-desc">How Mastercam links machine definition, control definition and post processor, what to ask your reseller, and the basic turning workflow: stock, chuck, roughing, finishing, grooving, threading.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">One guide a week, French-first</p><p>New guides, used equipment in Quebec and price moves. No third-party ads.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="en" novalidate>
+  <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Name or shop (optional)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Email
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="yes">
+    <span>I agree to receive the CoupeFab newsletter (guides, used-equipment digest, and sheet-price updates). I may unsubscribe at any time. See the <a href="/en/privacy/">privacy policy</a>.</span>
+  </label>
+  <button type="submit">Subscribe</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">CASL compliance: the box is not pre-checked. Nothing is sent without this express consent.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Turn-mill machines and Swiss-type lathes: principles, differences and choosing", "description": "Sliding headstock and guide bushing (Swiss), B-axis and sub-spindle (turn-mill), live tooling, C and Y axes: how these machines work, which parts they suit, and what changes in CAM programming.", "inLanguage": "en-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/en/guides/turn-mill-swiss-type-lathes/", "mainEntityOfPage": "https://coupefab.vercel.app/en/guides/turn-mill-swiss-type-lathes/", "proficiencyLevel": "Expert", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["swiss", "swiss-type", "sliding headstock", "guide bushing", "turn-mill", "multitasking", "b-axis", "sub-spindle", "live tooling", "c-axis", "y-axis", "bar feeder", "done-in-one"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can a Swiss run without a guide bushing?", "acceptedAnswer": {"@type": "Answer", "text": "Several Swiss machines can run guide-bushing-less to use unground bar and reduce remnant, at the cost of rigidity on long parts."}}, {"@type": "Question", "name": "Is a lathe with live tools a turn-mill?", "acceptedAnswer": {"@type": "Answer", "text": "Broadly yes (a multitasking machine); “turn-mill” usually means machines with a B head and serious milling capacity."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/en/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>A French-first reference for CNC cutting and metal fabrication: sourced guides, compared sheet prices, used equipment in Quebec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/en/guides/software/">CAD/CAM software and controls</a></li>
+        <li><a href="/en/guides/processes/">Cutting and machining processes</a></li>
+        <li><a href="/en/guides/fundamentals/">CNC fundamentals</a></li>
+        <li><a href="/en/guides/materials/">Materials and grades</a></li>
+        <li><a href="/en/guides/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/en/guides/shop/">Shop: safety, quoting, inspection, training</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explore</p>
+      <ul>
+        <li><a href="/en/sheet-prices/">Sheet prices</a></li>
+        <li><a href="/en/used-equipment/">Used equipment</a></li>
+        <li><a href="/en/newsletter/">Newsletter</a></li>
+        <li><a href="/en/about/">About</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Legal</p>
+      <ul>
+        <li><a href="/en/affiliate-disclosure/">Affiliate disclosure</a></li>
+        <li><a href="/en/privacy/">Privacy and CASL</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Quebec, Canada. No affiliate links. Trademarks belong to their owners and are used descriptively.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>
