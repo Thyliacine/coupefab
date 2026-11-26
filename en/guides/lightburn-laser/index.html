@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LightBurn: set up your laser, layers and cut settings — CoupeFab</title>
+<meta name="description" content="Core or Pro depending on the controller (GCode, Ruida DSP, galvo), adding the machine, colour layers, speed and power, material test grid and kerf offset.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/en/guides/lightburn-laser/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/lightburn-laser/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/lightburn-laser/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/lightburn-laser/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LightBurn: set up your laser, layers and cut settings — CoupeFab">
+<meta property="og:description" content="Core or Pro depending on the controller (GCode, Ruida DSP, galvo), adding the machine, colour layers, speed and power, material test grid and kerf offset.">
+<meta property="og:url" content="https://coupefab.vercel.app/en/guides/lightburn-laser/">
+<meta property="og:locale" content="en_CA">
+<meta property="og:locale:alternate" content="fr_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="en">
+<a class="skip" href="#contenu">Skip to content</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/en/" aria-label="CoupeFab — Home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Main navigation">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/en/guides/software/">By software</a></p>
+            <ul class="mega-list two"><li><a href="/en/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/en/guides/getting-started-sheetcam/">SheetCam</a></li><li><a href="/en/guides/solidworks-sheet-metal-flat-pattern-dxf/">SOLIDWORKS sheet metal</a></li><li><a href="/en/guides/autocad-dxf-cleanup/">AutoCAD (DXF)</a></li><li><a href="/en/guides/fusion-cam-getting-started/">Fusion CAM</a></li><li><a href="/en/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/en/guides/bricscad-to-clean-dxf/">BricsCAD → DXF</a></li><li><a href="/en/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/en/guides/inventor-sheet-metal-and-cam/">Inventor</a></li><li><a href="/en/guides/mastercam-2d-toolpaths-dynamic-milling/">Mastercam 2D</a></li><li><a href="/en/guides/mastercam-posts-and-lathe/">Mastercam posts and lathe</a></li><li><a href="/en/guides/onshape-sheet-metal-cam/">Onshape</a></li><li><a href="/en/guides/solidworks-drawings-and-cam/">SOLIDWORKS CAM and drawings</a></li><li><a href="/en/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/en/guides/freecad-cam/">FreeCAD CAM</a></li><li><a href="/en/guides/vectric-vcarve-aspire/">Vectric VCarve / Aspire</a></li><li><a href="/en/guides/lightburn-laser/">LightBurn</a></li><li><a href="/en/guides/pronest-nesting/">ProNest</a></li></ul>
+            <p class="mega-all"><a href="/en/guides/software/">All software →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/processes/">By process</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/cnc-plasma-cutting/">CNC plasma</a></li><li><a href="/en/guides/fiber-laser-cutting/">Fiber laser</a></li><li><a href="/en/guides/waterjet-cutting/">Waterjet</a></li><li><a href="/en/guides/cnc-router/">CNC router</a></li><li><a href="/en/guides/cnc-mill/">CNC mill</a></li><li><a href="/en/guides/cnc-lathe/">CNC lathe</a></li><li><a href="/en/guides/press-brake-bending/">Press brake</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/fundamentals/">By topic</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/g-code-m-code-reference/">G-code &amp; M-code</a></li><li><a href="/en/guides/feeds-and-speeds/">Feeds and speeds</a></li><li><a href="/en/guides/kerf-and-cut-quality/">Kerf and cut quality</a></li><li><a href="/en/guides/bend-allowance-k-factor/">Bending: K-factor and deduction</a></li><li><a href="/en/guides/metal-grades/">Metal grades</a></li><li><a href="/en/guides/dxf-best-practices/">DXF best practices</a></li><li class="more"><a href="/en/guides/fundamentals/">CNC fundamentals →</a></li><li class="more"><a href="/en/guides/troubleshooting/">Troubleshooting →</a></li><li class="more"><a href="/en/guides/shop/">Shop: safety, buying, consumables →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/en/sheet-prices/">
+              <span class="feature-k">Tool</span>
+              <strong>Sheet prices</strong>
+              <span>Sheet, plate, bar and tube: published prices from suppliers serving Quebec, refreshed every business day.</span>
+            </a>
+            <a class="mega-allguides" href="/en/guides/">All guides (41) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/en/sheet-prices/">Sheet prices</a></li>
+    <li><a class="nav-link" href="/en/used-equipment/">Used equipment</a></li>
+    <li><a class="nav-link" href="/en/newsletter/">Newsletter</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Search</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Language">
+        <a href="/guides/lightburn-laser/" hreflang="fr-CA" lang="fr-CA">FR</a><a href="/en/guides/lightburn-laser/" hreflang="en-CA" lang="en-CA" aria-current="true">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Search guides (e.g. SheetCam, K-factor, dross)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Close</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>No guide found. Try another word (software, process, material).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/en/">Home</a></li><li><a href="/en/guides/">Guides</a></li><li><a href="/en/guides/software/">CAD/CAM software and controls</a></li><li aria-current="page">LightBurn</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coupefab.vercel.app/en/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/en/guides/"}, {"@type": "ListItem", "position": 3, "name": "CAD/CAM software and controls", "item": "https://coupefab.vercel.app/en/guides/software/"}, {"@type": "ListItem", "position": 4, "name": "LightBurn"}]}</script>
+<article class="guide" data-guide="lightburn">
+  <header class="guide-head">
+    <p class="kicker">Software · laser</p>
+    <h1>LightBurn: set up your laser, layers and cut settings</h1>
+    <p class="guide-lede">Core or Pro depending on the controller (GCode, Ruida DSP, galvo), adding the machine, colour layers, speed and power, material test grid and kerf offset.</p>
+    <p class="guide-meta">
+      <span>Reviewed <time datetime="2026-11-26">November 26, 2026</time></span>
+      <span>3 min read</span>
+      <span>Level : Beginner</span>
+      <span class="pill pill-draft" tabindex="0" title="Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.">Draft<span class="pill-tip" role="tooltip">Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>On this page</summary><ol><li><a href="#which-licence">Which licence</a></li><li><a href="#workflow">Workflow</a></li><li><a href="#finding-the-right-settings">Finding the right settings</a></li><li><a href="#faq">FAQ</a></li><li><a href="#for-michael-to-review">For Michaël to review</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p><strong>LightBurn</strong> is the most widely used layout and control software for small and mid-power diode, CO₂ and fiber galvo lasers. It draws, organizes layers and sends the job straight to the machine.</p>
+<h2 id="which-licence">Which licence</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Licence</th><th>Controllers</th><th>Indicative price (USD, as of November 26, 2026)</th></tr></thead><tbody>
+<tr><td><strong>Core</strong></td><td>G-code based controllers (grbl, Smoothieware, Marlin…)</td><td>$99</td></tr>
+<tr><td><strong>Pro</strong></td><td>G-code <strong>+ DSP</strong> (Ruida, Trocen, TopWisdom…) <strong>+ galvo</strong></td><td>$199</td></tr>
+</tbody></table></div>
+<p>The licence is perpetual with <strong>one year of updates</strong>; renewal is optional afterwards. A free trial lets you confirm compatibility before buying.</p>
+<h2 id="workflow">Workflow</h2>
+<ol class="steps"><li><strong>Add the machine</strong>: auto-detect or pick the controller; work area; origin.</li><li>Import or draw (SVG, DXF, AI, PDF, images).</li><li>Assign each object to a <strong>colour layer</strong>; one layer = one mode (line, fill, image, cut) and its settings.</li><li>Set <strong>speed</strong>, <strong>power</strong> (min/max), passes, air assist, Z offset.</li><li><strong>Preview</strong> (estimated time, cut order).</li><li><strong>Frame</strong> to check position on the material, then start.</li></ol>
+<h2 id="finding-the-right-settings">Finding the right settings</h2>
+<aside class="callout callout-tip"><p class="callout-label">Shop tip</p><p>Use the <strong>Material Test</strong> tool: it engraves a speed × power grid on scrap. Save the best pair in the <strong>material library</strong> so you never redo it.</p></aside>
+<ul><li><strong>Kerf</strong>: measure a test part and enter the kerf offset on the layer to hit size — see <a href="/en/guides/kerf-and-cut-quality/">Kerf</a>.</li><li><strong>Cut order</strong>: inside before outside, so the part doesn’t drop before the end.</li></ul>
+<aside class="callout callout-warn"><p class="callout-label">Caution</p><p>Class 4 lasers require wavelength-specific eyewear, fume extraction and constant supervision (fire risk). Some materials (PVC, vinyl) release corrosive, toxic gases. See <a href="/en/guides/cnc-shop-safety/">Safety</a>.</p></aside>
+<h2 id="faq">FAQ</h2>
+<h3 id="does-lightburn-drive-an-industrial-fiber-laser-cutter">Does LightBurn drive an industrial fiber laser cutter?</h3>
+<p>Generally no: industrial sheet cutting machines have their own control and nesting software. LightBurn targets desktop machines, CO₂ with DSP controllers and marking galvos. See <a href="/en/guides/fiber-laser-cutting/">Fiber laser</a>.</p>
+<section class="review-box"><h2 id="for-michael-to-review">For Michaël to review</h2>
+<ul><li>Your tested settings if you run a laser.</li></ul>
+</section><section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://lightburnsoftware.com/collections/frontpage" class="ext" rel="noopener">LightBurn — Store and licences</a>, consulted November 26, 2026.</li><li><a href="https://docs.lightburnsoftware.com/" class="ext" rel="noopener">LightBurn — Documentation</a>.</li><li><a href="https://docs.lightburnsoftware.com/latest/Reference/MaterialTest/" class="ext" rel="noopener">LightBurn — Material Test</a>.</li></ul></section>
+
+      <p class="report"><a href="/en/about/#contact">Spotted an error or want something added? Tell us →</a></p>
+    </div>
+  </div>
+  <section class="related"><h2>Related guides</h2><div class="gcards"><a class="gcard" href="/en/guides/fiber-laser-cutting/" data-hub="process"><span class="card-meta">Process · thermal cutting · Beginner · 3 min read</span><strong>Fiber laser cutting: assist gas, thicknesses, safety and choosing</strong><span class="card-desc">How a fiber laser cuts, oxygen versus nitrogen versus compressed air, what makes edge quality, class 4 laser safety and how it differs from plasma — to decide with your eyes open.</span></a><a class="gcard" href="/en/guides/kerf-and-cut-quality/" data-hub="fundamentals"><span class="card-meta">Fundamentals · plasma · Beginner · 4 min read</span><strong>Kerf and cut quality: read a chart, measure, compensate</strong><span class="card-desc">What kerf is, how to read a manufacturer cut chart without mixing manuals, and how to measure and compensate your table’s real kerf.</span></a><a class="gcard" href="/en/guides/cnc-shop-safety/" data-hub="shop"><span class="card-meta">Shop · safety · Beginner · 3 min read</span><strong>CNC shop safety: PPE, fumes, noise, radiation and CNESST pointers</strong><span class="card-desc">The hazards specific to plasma and laser cutting, routing and bending, the right protective equipment, capturing fumes at the source, and CNESST and RSST references in Quebec.</span></a><a class="gcard" href="/en/guides/dxf-best-practices/" data-hub="fundamentals"><span class="card-meta">Fundamentals · CAD/CAM · Beginner · 3 min read</span><strong>DXF for cutting: the rules that prevent 90% of problems</strong><span class="card-desc">Units, 1:1 scale, closed contours, duplicates, splines, layers, text and tiny features: the rules to follow before sending a DXF to CAM or to a cutting job shop.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">One guide a week, French-first</p><p>New guides, used equipment in Quebec and price moves. No third-party ads.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="en" novalidate>
+  <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Name or shop (optional)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Email
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="yes">
+    <span>I agree to receive the CoupeFab newsletter (guides, used-equipment digest, and sheet-price updates). I may unsubscribe at any time. See the <a href="/en/privacy/">privacy policy</a>.</span>
+  </label>
+  <button type="submit">Subscribe</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">CASL compliance: the box is not pre-checked. Nothing is sent without this express consent.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "LightBurn: set up your laser, layers and cut settings", "description": "Core or Pro depending on the controller (GCode, Ruida DSP, galvo), adding the machine, colour layers, speed and power, material test grid and kerf offset.", "inLanguage": "en-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/en/guides/lightburn-laser/", "mainEntityOfPage": "https://coupefab.vercel.app/en/guides/lightburn-laser/", "proficiencyLevel": "Beginner", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["lightburn", "laser", "diode", "co2", "fiber", "galvo", "ruida", "grbl", "material test", "cut settings", "layers"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "LightBurn: set up your laser, layers and cut settings", "description": "Core or Pro depending on the controller (GCode, Ruida DSP, galvo), adding the machine, colour layers, speed and power, material test grid and kerf offset.", "inLanguage": "en-CA", "step": [{"@type": "HowToStep", "name": "Add the machine ", "text": "Add the machine : auto-detect or pick the controller; work area; origin."}, {"@type": "HowToStep", "name": "Import or draw (SVG, DXF, AI, PDF, images)", "text": "Import or draw (SVG, DXF, AI, PDF, images)."}, {"@type": "HowToStep", "name": "Assign each object to a colour layer ; one layer = one mode (line, fill, image, cut) and its settings", "text": "Assign each object to a colour layer ; one layer = one mode (line, fill, image, cut) and its settings."}, {"@type": "HowToStep", "name": "Set speed , power (min/max), passes, air assist, Z offset", "text": "Set speed , power (min/max), passes, air assist, Z offset."}, {"@type": "HowToStep", "name": "Preview (estimated time, cut order)", "text": "Preview (estimated time, cut order)."}, {"@type": "HowToStep", "name": "Frame to check position on the material, then start", "text": "Frame to check position on the material, then start."}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does LightBurn drive an industrial fiber laser cutter?", "acceptedAnswer": {"@type": "Answer", "text": "Generally no: industrial sheet cutting machines have their own control and nesting software. LightBurn targets desktop machines, CO₂ with DSP controllers and marking galvos. See Fiber laser ."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/en/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>A French-first reference for CNC cutting and metal fabrication: sourced guides, compared sheet prices, used equipment in Quebec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/en/guides/software/">CAD/CAM software and controls</a></li>
+        <li><a href="/en/guides/processes/">Cutting and machining processes</a></li>
+        <li><a href="/en/guides/fundamentals/">CNC fundamentals</a></li>
+        <li><a href="/en/guides/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/en/guides/shop/">Shop: safety, buying, consumables</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explore</p>
+      <ul>
+        <li><a href="/en/sheet-prices/">Sheet prices</a></li>
+        <li><a href="/en/used-equipment/">Used equipment</a></li>
+        <li><a href="/en/newsletter/">Newsletter</a></li>
+        <li><a href="/en/about/">About</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Legal</p>
+      <ul>
+        <li><a href="/en/affiliate-disclosure/">Affiliate disclosure</a></li>
+        <li><a href="/en/privacy/">Privacy and CASL</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Quebec, Canada. No affiliate links. Trademarks belong to their owners and are used descriptively.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>
