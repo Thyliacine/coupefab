@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Post processors: choose, test and edit without crashing the machine — CoupeFab</title>
+<meta name="description" content="What a post processor does, where to find the right one for your control (Fusion, Mastercam, SheetCam…), how to dry-run it and which edits are safe.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/en/guides/post-processors/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/post-processors/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/post-processeurs/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/post-processeurs/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Post processors: choose, test and edit without crashing the machine — CoupeFab">
+<meta property="og:description" content="What a post processor does, where to find the right one for your control (Fusion, Mastercam, SheetCam…), how to dry-run it and which edits are safe.">
+<meta property="og:url" content="https://coupefab.vercel.app/en/guides/post-processors/">
+<meta property="og:locale" content="en_CA">
+<meta property="og:locale:alternate" content="fr_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="en">
+<a class="skip" href="#contenu">Skip to content</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/en/" aria-label="CoupeFab — Home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Main navigation">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/en/guides/software/">By software</a></p>
+            <ul class="mega-list two"><li><a href="/en/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/en/guides/getting-started-sheetcam/">SheetCam</a></li><li><a href="/en/guides/solidworks-sheet-metal-flat-pattern-dxf/">SOLIDWORKS sheet metal</a></li><li><a href="/en/guides/autocad-dxf-cleanup/">AutoCAD (DXF)</a></li><li><a href="/en/guides/fusion-cam-getting-started/">Fusion CAM</a></li><li><a href="/en/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/en/guides/bricscad-to-clean-dxf/">BricsCAD → DXF</a></li><li><a href="/en/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/en/guides/inventor-sheet-metal-and-cam/">Inventor</a></li><li><a href="/en/guides/mastercam-2d-toolpaths-dynamic-milling/">Mastercam 2D</a></li><li><a href="/en/guides/mastercam-posts-and-lathe/">Mastercam posts and lathe</a></li><li><a href="/en/guides/onshape-sheet-metal-cam/">Onshape</a></li><li><a href="/en/guides/solidworks-drawings-and-cam/">SOLIDWORKS CAM and drawings</a></li><li><a href="/en/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/en/guides/freecad-cam/">FreeCAD CAM</a></li><li><a href="/en/guides/vectric-vcarve-aspire/">Vectric VCarve / Aspire</a></li><li><a href="/en/guides/lightburn-laser/">LightBurn</a></li><li><a href="/en/guides/pronest-nesting/">ProNest</a></li></ul>
+            <p class="mega-all"><a href="/en/guides/software/">All software →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/processes/">By process</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/cnc-plasma-cutting/">CNC plasma</a></li><li><a href="/en/guides/fiber-laser-cutting/">Fiber laser</a></li><li><a href="/en/guides/waterjet-cutting/">Waterjet</a></li><li><a href="/en/guides/cnc-router/">CNC router</a></li><li><a href="/en/guides/cnc-mill/">CNC mill</a></li><li><a href="/en/guides/cnc-lathe/">CNC lathe</a></li><li><a href="/en/guides/press-brake-bending/">Press brake</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/fundamentals/">By topic</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/g-code-m-code-reference/">G-code &amp; M-code</a></li><li><a href="/en/guides/feeds-and-speeds/">Feeds and speeds</a></li><li><a href="/en/guides/kerf-and-cut-quality/">Kerf and cut quality</a></li><li><a href="/en/guides/bend-allowance-k-factor/">Bending: K-factor and deduction</a></li><li><a href="/en/guides/metal-grades/">Metal grades</a></li><li><a href="/en/guides/dxf-best-practices/">DXF best practices</a></li><li class="more"><a href="/en/guides/fundamentals/">CNC fundamentals →</a></li><li class="more"><a href="/en/guides/troubleshooting/">Troubleshooting →</a></li><li class="more"><a href="/en/guides/shop/">Shop: safety, buying, consumables →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/en/sheet-prices/">
+              <span class="feature-k">Tool</span>
+              <strong>Sheet prices</strong>
+              <span>Sheet, plate, bar and tube: published prices from suppliers serving Quebec, refreshed every business day.</span>
+            </a>
+            <a class="mega-allguides" href="/en/guides/">All guides (41) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/en/sheet-prices/">Sheet prices</a></li>
+    <li><a class="nav-link" href="/en/used-equipment/">Used equipment</a></li>
+    <li><a class="nav-link" href="/en/newsletter/">Newsletter</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Search</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Language">
+        <a href="/guides/post-processeurs/" hreflang="fr-CA" lang="fr-CA">FR</a><a href="/en/guides/post-processors/" hreflang="en-CA" lang="en-CA" aria-current="true">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Search guides (e.g. SheetCam, K-factor, dross)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Close</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>No guide found. Try another word (software, process, material).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/en/">Home</a></li><li><a href="/en/guides/">Guides</a></li><li><a href="/en/guides/fundamentals/">CNC fundamentals</a></li><li aria-current="page">Post processors</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coupefab.vercel.app/en/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/en/guides/"}, {"@type": "ListItem", "position": 3, "name": "CNC fundamentals", "item": "https://coupefab.vercel.app/en/guides/fundamentals/"}, {"@type": "ListItem", "position": 4, "name": "Post processors"}]}</script>
+<article class="guide" data-guide="post-processors">
+  <header class="guide-head">
+    <p class="kicker">Fundamentals · CAM</p>
+    <h1>Post processors: choose, test and edit without crashing the machine</h1>
+    <p class="guide-lede">What a post processor does, where to find the right one for your control (Fusion, Mastercam, SheetCam…), how to dry-run it and which edits are safe.</p>
+    <p class="guide-meta">
+      <span>Reviewed <time datetime="2026-11-26">November 26, 2026</time></span>
+      <span>3 min read</span>
+      <span>Level : Intermediate</span>
+      <span class="pill pill-draft" tabindex="0" title="Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.">Draft<span class="pill-tip" role="tooltip">Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>On this page</summary><ol><li><a href="#what-the-post-decides">What the post decides</a></li><li><a href="#where-to-find-the-right-post">Where to find the right post</a></li><li><a href="#validating-a-new-post-step-by-step">Validating a new post, step by step</a></li><li><a href="#safe-edits-and-less-safe-ones">Safe edits… and less safe ones</a></li><li><a href="#common-mistakes">Common mistakes</a></li><li><a href="#faq">FAQ</a></li><li><a href="#for-michael-to-review">For Michaël to review</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p>CAM computes toolpaths in a neutral form. The <strong>post processor</strong> (“post”) translates them into the exact dialect of <strong>your</strong> control: header, units, arc format, tool changes, torch or spindle codes, program end. A good toolpath with a bad post is a bad program.</p>
+<h2 id="what-the-post-decides">What the post decides</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Item</th><th>Example of differences between controls</th></tr></thead><tbody>
+<tr><td>Arcs</td><td>Incremental or absolute <code>I J</code>, <code>R</code>, or arcs broken into segments</td></tr>
+<tr><td>Tool change</td><td><code>T1 M6</code>, <code>M6 T1</code>, or a manual pause</td></tr>
+<tr><td>Compensation</td><td>Output <code>G41/G42</code> or an already-offset path</td></tr>
+<tr><td>Plasma</td><td>Torch, IHS, THC codes (<code>M3/M5</code>, <code>M62/M63</code>, <code>H0/H1</code>…)</td></tr>
+<tr><td>Format</td><td>Decimals, line numbers, <code>%</code>, comments <code>( )</code> or <code>;</code></td></tr>
+<tr><td>Safety</td><td>Start-up line, <code>G28</code>/<code>G53</code> returns</td></tr>
+</tbody></table></div>
+<h2 id="where-to-find-the-right-post">Where to find the right post</h2>
+<ul><li><strong>Fusion</strong>: Autodesk’s official post library, searchable online and from the <em>Post Process</em> dialog; posts are <code>.cps</code> files (JavaScript).</li><li><strong>Mastercam</strong>: the post ships with a <em>machine definition</em> and a <em>control definition</em>; you usually get it from your Mastercam reseller (<code>.pst</code>/<code>.psb</code> files, MP language).</li><li><strong>SheetCam</strong>: Lua posts in the software library; table makers often supply their own.</li><li><strong>Machine maker</strong>: always the first source. Langmuir, for example, publishes its Fusion and SheetCam posts for FireControl and states that a program generated without them will not enable THC.</li></ul>
+<h2 id="validating-a-new-post-step-by-step">Validating a new post, step by step</h2>
+<ol class="steps"><li><strong>Short test program</strong>: a square, a circle, a hole, two tools if the machine has a changer.</li><li><strong>Read the code</strong>: header, units (<code>G20/G21</code>), <code>G90</code> mode, arc format, correct work offset, spindle or torch codes.</li><li><strong>Simulate</strong> in a viewer (CAMotics, NC Viewer, or the control’s preview).</li><li><strong>Dry run</strong>: tool well above the part (Z offset temporarily raised) or, in plasma, <em>dry run</em> mode without arc.</li><li><strong>Feed override down and hand on the E-stop</strong> for the first real cut.</li><li><strong>Archive</strong> the validated post with its date and the CAM version.</li></ol>
+<h2 id="safe-edits-and-less-safe-ones">Safe edits… and less safe ones</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Usually safe</th><th>Leave to the vendor or reseller</th></tr></thead><tbody>
+<tr><td>Header text and comments</td><td>Tool-change logic</td></tr>
+<tr><td>Number of decimals</td><td>Rotary axis handling</td></tr>
+<tr><td>Start-up line</td><td>Canned cycles, macros, probing</td></tr>
+<tr><td>Properties exposed by the post (Fusion)</td><td>Plasma THC / IHS codes</td></tr>
+</tbody></table></div>
+<aside class="callout callout-tip"><p class="callout-label">Shop tip</p><p>In Fusion, many settings are post <strong>properties</strong> you can change in the post dialog: change them there before touching the <code>.cps</code> file.</p></aside>
+<h2 id="common-mistakes">Common mistakes</h2>
+<ul><li>Using a “generic Fanuc” post on a control that is not Fanuc-style.</li><li>Plasma post without the maker’s THC codes: the torch does not follow the plate.</li><li>Editing a post without keeping the original or logging the change.</li><li>Current post but newer or older CAM: check compatibility.</li></ul>
+<h2 id="faq">FAQ</h2>
+<h3 id="my-program-comes-from-fusion-for-personal-use-and-rapids-are">My program comes from Fusion for personal use and rapids are slow. Is the post to blame?</h3>
+<p>No. Autodesk documents that Fusion for personal use reduces rapids to the cutting feed and removes automatic tool changes. See <a href="/en/guides/fusion-cam-getting-started/">Fusion CAM: getting started</a>.</p>
+<h3 id="can-i-write-my-own-post">Can I write my own post?</h3>
+<p>Yes for Fusion (documented JavaScript) and SheetCam (documented Lua). Start from a post close to your control, never from a blank page.</p>
+<section class="review-box"><h2 id="for-michael-to-review">For Michaël to review</h2>
+<ul><li>The SheetCam and Fusion posts actually used on your tables.</li><li>A standard test program to recommend.</li></ul>
+</section><section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://cam.autodesk.com/hsmposts" class="ext" rel="noopener">Autodesk — Fusion post library</a>, consulted November 26, 2026.</li><li><a href="https://www.langmuirsystems.com/pages/thc-guide" class="ext" rel="noopener">Langmuir Systems — THC guide (FireControl posts required)</a>.</li><li><a href="https://www.autodesk.com/support/technical/article/caas/sfdcarticles/sfdcarticles/Fusion-360-Free-License-Changes.html" class="ext" rel="noopener">Autodesk — Fusion personal use: rapids and tool changes</a>.</li><li><a href="https://sheetcamshop.myshopify.com/pages/support" class="ext" rel="noopener">SheetCam LLC — Support Manuals</a>.</li></ul></section>
+
+      <p class="report"><a href="/en/about/#contact">Spotted an error or want something added? Tell us →</a></p>
+    </div>
+  </div>
+  <section class="related"><h2>Related guides</h2><div class="gcards"><a class="gcard" href="/en/guides/g-code-m-code-reference/" data-hub="fundamentals"><span class="card-meta">Fundamentals · reference · Beginner · 4 min read</span><strong>G-code and M-code reference: the codes to know by heart</strong><span class="card-desc">Common G and M codes (motion, planes, units, compensation, canned cycles, spindle, coolant) with their meaning, an annotated example and the traps between controls.</span></a><a class="gcard" href="/en/guides/fusion-cam-getting-started/" data-hub="software"><span class="card-meta">Software · CAM · Beginner · 3 min read</span><strong>Getting started with Autodesk Fusion CAM: 2D milling, plasma cutting and posting</strong><span class="card-desc">Setup, 2D operations, Adaptive, plasma or laser profiling, simulation and post processing in Fusion’s Manufacture workspace, plus the real limits of the Personal Use licence.</span></a><a class="gcard" href="/en/guides/mastercam-posts-and-lathe/" data-hub="software"><span class="card-meta">Software · CAM · Advanced · 3 min read</span><strong>Mastercam: machine definition, post processor and first steps in turning</strong><span class="card-desc">How Mastercam links machine definition, control definition and post processor, what to ask your reseller, and the basic turning workflow: stock, chuck, roughing, finishing, grooving, threading.</span></a><a class="gcard" href="/en/guides/getting-started-sheetcam/" data-hub="software"><span class="card-meta">Software · plasma CAM · Beginner · 4 min read</span><strong>Getting started with SheetCam: from DXF to plasma G-code</strong><span class="card-desc">Units, job, DXF import, plasma tool, operation, nesting and post processor: the SheetCam workflow step by step, with the pitfalls the SheetCam team documents itself.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">One guide a week, French-first</p><p>New guides, used equipment in Quebec and price moves. No third-party ads.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="en" novalidate>
+  <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Name or shop (optional)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Email
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="yes">
+    <span>I agree to receive the CoupeFab newsletter (guides, used-equipment digest, and sheet-price updates). I may unsubscribe at any time. See the <a href="/en/privacy/">privacy policy</a>.</span>
+  </label>
+  <button type="submit">Subscribe</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">CASL compliance: the box is not pre-checked. Nothing is sent without this express consent.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Post processors: choose, test and edit without crashing the machine", "description": "What a post processor does, where to find the right one for your control (Fusion, Mastercam, SheetCam…), how to dry-run it and which edits are safe.", "inLanguage": "en-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/en/guides/post-processors/", "mainEntityOfPage": "https://coupefab.vercel.app/en/guides/post-processors/", "proficiencyLevel": "Intermediate", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["post processor", "cam", "fusion", "mastercam", "sheetcam", "g-code"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Post processors: choose, test and edit without crashing the machine", "description": "What a post processor does, where to find the right one for your control (Fusion, Mastercam, SheetCam…), how to dry-run it and which edits are safe.", "inLanguage": "en-CA", "step": [{"@type": "HowToStep", "name": "Short test program ", "text": "Short test program : a square, a circle, a hole, two tools if the machine has a changer."}, {"@type": "HowToStep", "name": "Read the code ", "text": "Read the code : header, units ( G20/G21 ), G90 mode, arc format, correct work offset, spindle or torch codes."}, {"@type": "HowToStep", "name": "Simulate in a viewer (CAMotics, NC Viewer, or the control’s preview)", "text": "Simulate in a viewer (CAMotics, NC Viewer, or the control’s preview)."}, {"@type": "HowToStep", "name": "Dry run ", "text": "Dry run : tool well above the part (Z offset temporarily raised) or, in plasma, dry run mode without arc."}, {"@type": "HowToStep", "name": "Feed override down and hand on the E-stop for the first real cut", "text": "Feed override down and hand on the E-stop for the first real cut."}, {"@type": "HowToStep", "name": "Archive the validated post with its date and the CAM version", "text": "Archive the validated post with its date and the CAM version."}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "My program comes from Fusion for personal use and rapids are slow. Is the post to blame?", "acceptedAnswer": {"@type": "Answer", "text": "No. Autodesk documents that Fusion for personal use reduces rapids to the cutting feed and removes automatic tool changes. See Fusion CAM: getting started ."}}, {"@type": "Question", "name": "Can I write my own post?", "acceptedAnswer": {"@type": "Answer", "text": "Yes for Fusion (documented JavaScript) and SheetCam (documented Lua). Start from a post close to your control, never from a blank page."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/en/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>A French-first reference for CNC cutting and metal fabrication: sourced guides, compared sheet prices, used equipment in Quebec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/en/guides/software/">CAD/CAM software and controls</a></li>
+        <li><a href="/en/guides/processes/">Cutting and machining processes</a></li>
+        <li><a href="/en/guides/fundamentals/">CNC fundamentals</a></li>
+        <li><a href="/en/guides/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/en/guides/shop/">Shop: safety, buying, consumables</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explore</p>
+      <ul>
+        <li><a href="/en/sheet-prices/">Sheet prices</a></li>
+        <li><a href="/en/used-equipment/">Used equipment</a></li>
+        <li><a href="/en/newsletter/">Newsletter</a></li>
+        <li><a href="/en/about/">About</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Legal</p>
+      <ul>
+        <li><a href="/en/affiliate-disclosure/">Affiliate disclosure</a></li>
+        <li><a href="/en/privacy/">Privacy and CASL</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Quebec, Canada. No affiliate links. Trademarks belong to their owners and are used descriptively.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>

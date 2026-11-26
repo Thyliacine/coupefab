@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work offsets (G54–G59) and tool lengths, without mistakes — CoupeFab</title>
+<meta name="description" content="Machine coordinates, work zero, G54–G59, G43 tool length: how they stack up, how to set a work zero, and the mistakes that break tools.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#15191c">
+<link rel="canonical" href="https://coupefab.vercel.app/en/guides/work-offsets-g54/">
+<link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/work-offsets-g54/">
+<link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/decalages-origine-g54/">
+<link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/guides/decalages-origine-g54/">
+<meta property="og:site_name" content="CoupeFab">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Work offsets (G54–G59) and tool lengths, without mistakes — CoupeFab">
+<meta property="og:description" content="Machine coordinates, work zero, G54–G59, G43 tool length: how they stack up, how to set a work zero, and the mistakes that break tools.">
+<meta property="og:url" content="https://coupefab.vercel.app/en/guides/work-offsets-g54/">
+<meta property="og:locale" content="en_CA">
+<meta property="og:locale:alternate" content="fr_CA">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20261126c">
+<link rel="stylesheet" href="/css/site.css?v=20261126c">
+
+</head>
+<body data-lang="en">
+<a class="skip" href="#contenu">Skip to content</a>
+<header class="hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="/en/" aria-label="CoupeFab — Home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+    
+<nav class="mainnav" id="mainnav" aria-label="Main navigation">
+  <ul class="nav-top">
+    <li class="has-mega">
+      <button class="nav-btn" type="button" aria-expanded="false" aria-controls="mega-guides" data-active="1">Guides<svg viewBox="0 0 24 24" aria-hidden="true" class="ico ico-chev"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="mega" id="mega-guides">
+        <div class="mega-inner">
+          <div class="mega-col mega-sw">
+            <p class="mega-h"><a href="/en/guides/software/">By software</a></p>
+            <ul class="mega-list two"><li><a href="/en/guides/mach3-mach4/">Mach3 / Mach4</a></li><li><a href="/en/guides/getting-started-sheetcam/">SheetCam</a></li><li><a href="/en/guides/solidworks-sheet-metal-flat-pattern-dxf/">SOLIDWORKS sheet metal</a></li><li><a href="/en/guides/autocad-dxf-cleanup/">AutoCAD (DXF)</a></li><li><a href="/en/guides/fusion-cam-getting-started/">Fusion CAM</a></li><li><a href="/en/guides/linuxcnc-qtplasmac/">LinuxCNC / QtPlasmaC</a></li><li><a href="/en/guides/bricscad-to-clean-dxf/">BricsCAD → DXF</a></li><li><a href="/en/guides/firecontrol-langmuir/">FireControl (Langmuir)</a></li><li><a href="/en/guides/inventor-sheet-metal-and-cam/">Inventor</a></li><li><a href="/en/guides/mastercam-2d-toolpaths-dynamic-milling/">Mastercam 2D</a></li><li><a href="/en/guides/mastercam-posts-and-lathe/">Mastercam posts and lathe</a></li><li><a href="/en/guides/onshape-sheet-metal-cam/">Onshape</a></li><li><a href="/en/guides/solidworks-drawings-and-cam/">SOLIDWORKS CAM and drawings</a></li><li><a href="/en/guides/ugs-grbl/">UGS / grbl</a></li><li><a href="/en/guides/freecad-cam/">FreeCAD CAM</a></li><li><a href="/en/guides/vectric-vcarve-aspire/">Vectric VCarve / Aspire</a></li><li><a href="/en/guides/lightburn-laser/">LightBurn</a></li><li><a href="/en/guides/pronest-nesting/">ProNest</a></li></ul>
+            <p class="mega-all"><a href="/en/guides/software/">All software →</a></p>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/processes/">By process</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/cnc-plasma-cutting/">CNC plasma</a></li><li><a href="/en/guides/fiber-laser-cutting/">Fiber laser</a></li><li><a href="/en/guides/waterjet-cutting/">Waterjet</a></li><li><a href="/en/guides/cnc-router/">CNC router</a></li><li><a href="/en/guides/cnc-mill/">CNC mill</a></li><li><a href="/en/guides/cnc-lathe/">CNC lathe</a></li><li><a href="/en/guides/press-brake-bending/">Press brake</a></li></ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-h"><a href="/en/guides/fundamentals/">By topic</a></p>
+            <ul class="mega-list"><li><a href="/en/guides/g-code-m-code-reference/">G-code &amp; M-code</a></li><li><a href="/en/guides/feeds-and-speeds/">Feeds and speeds</a></li><li><a href="/en/guides/kerf-and-cut-quality/">Kerf and cut quality</a></li><li><a href="/en/guides/bend-allowance-k-factor/">Bending: K-factor and deduction</a></li><li><a href="/en/guides/metal-grades/">Metal grades</a></li><li><a href="/en/guides/dxf-best-practices/">DXF best practices</a></li><li class="more"><a href="/en/guides/fundamentals/">CNC fundamentals →</a></li><li class="more"><a href="/en/guides/troubleshooting/">Troubleshooting →</a></li><li class="more"><a href="/en/guides/shop/">Shop: safety, buying, consumables →</a></li></ul>
+          </div>
+          <div class="mega-col mega-feature">
+            <a class="feature-card" href="/en/sheet-prices/">
+              <span class="feature-k">Tool</span>
+              <strong>Sheet prices</strong>
+              <span>Sheet, plate, bar and tube: published prices from suppliers serving Quebec, refreshed every business day.</span>
+            </a>
+            <a class="mega-allguides" href="/en/guides/">All guides (41) →</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a class="nav-link nav-prices" href="/en/sheet-prices/">Sheet prices</a></li>
+    <li><a class="nav-link" href="/en/used-equipment/">Used equipment</a></li>
+    <li><a class="nav-link" href="/en/newsletter/">Newsletter</a></li>
+  </ul>
+</nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" data-search-open aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="search-btn-label">Search</span><kbd>/</kbd></button>
+      <div class="lang" role="group" aria-label="Language">
+        <a href="/guides/decalages-origine-g54/" hreflang="fr-CA" lang="fr-CA">FR</a><a href="/en/guides/work-offsets-g54/" hreflang="en-CA" lang="en-CA" aria-current="true">EN</a>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="search-dlg" id="search-dlg" hidden role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-panel">
+    <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search-input" placeholder="Search guides (e.g. SheetCam, K-factor, dross)…" autocomplete="off" spellcheck="false" aria-controls="search-results"><button type="button" class="search-close" data-search-close>Close</button></div>
+    <ul class="search-results" id="search-results" role="listbox"></ul>
+    <p class="search-empty" hidden>No guide found. Try another word (software, process, material).</p>
+  </div>
+</div>
+
+<main id="contenu">
+
+
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/en/">Home</a></li><li><a href="/en/guides/">Guides</a></li><li><a href="/en/guides/fundamentals/">CNC fundamentals</a></li><li aria-current="page">Work offsets (G54)</li></ol></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coupefab.vercel.app/en/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://coupefab.vercel.app/en/guides/"}, {"@type": "ListItem", "position": 3, "name": "CNC fundamentals", "item": "https://coupefab.vercel.app/en/guides/fundamentals/"}, {"@type": "ListItem", "position": 4, "name": "Work offsets (G54)"}]}</script>
+<article class="guide" data-guide="work-offsets">
+  <header class="guide-head">
+    <p class="kicker">Fundamentals · machining</p>
+    <h1>Work offsets (G54–G59) and tool lengths, without mistakes</h1>
+    <p class="guide-lede">Machine coordinates, work zero, G54–G59, G43 tool length: how they stack up, how to set a work zero, and the mistakes that break tools.</p>
+    <p class="guide-meta">
+      <span>Reviewed <time datetime="2026-11-26">November 26, 2026</time></span>
+      <span>3 min read</span>
+      <span>Level : Beginner</span>
+      <span class="pill pill-draft" tabindex="0" title="Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.">Draft<span class="pill-tip" role="tooltip">Written by CoupeFab from the official documents cited. Technical review by Michaël Brassard pending.</span></span>
+    </p>
+  </header>
+  <div class="guide-grid">
+    <aside class="guide-side"><details class="toc" open><summary>On this page</summary><ol><li><a href="#what-stacks-up">What stacks up</a></li><li><a href="#setting-a-work-zero-mill-or-router">Setting a work zero (mill or router)</a></li><li><a href="#tool-lengths-two-philosophies">Tool lengths: two philosophies</a></li><li><a href="#several-parts-g54-g55-g56">Several parts: G54, G55, G56…</a></li><li><a href="#lathe-and-plasma">Lathe and plasma</a></li><li><a href="#common-mistakes">Common mistakes</a></li><li><a href="#pre-cycle-checklist">Pre-cycle checklist</a></li><li><a href="#faq">FAQ</a></li><li><a href="#for-michael-to-review">For Michaël to review</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+    <div class="prose guide-body">
+<p>A CNC machine knows its own position (<strong>machine coordinates</strong>, set by homing). Your program is written from a point on the part (<strong>work zero</strong>). The <strong>work offset</strong> links the two. Understanding how offsets stack up prevents most crashes.</p>
+<h2 id="what-stacks-up">What stacks up</h2>
+<div class="table-wrap" tabindex="0"><table>
+<thead><tr><th>Layer</th><th>Code</th><th>Who sets it</th></tr></thead><tbody>
+<tr><td>Machine coordinates</td><td><code>G53</code></td><td>Homing (switches or index)</td></tr>
+<tr><td>Work offset</td><td><code>G54</code>…<code>G59</code> (more on some controls)</td><td>The operator, by probe or edge</td></tr>
+<tr><td>Tool length</td><td><code>G43 H…</code></td><td>Presetter, tool setter or operator</td></tr>
+<tr><td>Tool radius (if compensating)</td><td><code>G41/G42 D…</code></td><td>Tool table</td></tr>
+<tr><td>Temporary offset</td><td><code>G92</code></td><td>Avoid, or cancel explicitly</td></tr>
+</tbody></table></div>
+<p>Actual tool position = programmed position + work offset + tool length (and radius). LinuxCNC documents this stack precisely on its <em>Coordinate systems</em> page.</p>
+<h2 id="setting-a-work-zero-mill-or-router">Setting a work zero (mill or router)</h2>
+<ol class="steps"><li><strong>Home</strong> the machine at power-up, before any offset.</li><li><strong>Pick the zero point</strong> the programmer chose in CAM (corner, centre, top of part). It must be on the setup sheet.</li><li><strong>X and Y</strong>: 3D probe, edge finder or tool-and-paper on two faces; account for the probe or tool radius.</li><li><strong>Z</strong>: on top of the part (or the table, per convention), with a probe, gauge block or touch plate of known height.</li><li><strong>Store</strong> in the right offset (<code>G54</code> for example) — not in another register by mistake.</li><li><strong>Verify</strong>: in MDI, <code>G54 G0 X0 Y0</code>, then step Z down slowly with feed override to a safe height above zero.</li></ol>
+<h2 id="tool-lengths-two-philosophies">Tool lengths: two philosophies</h2>
+<ul><li><strong>True length</strong> measured from the spindle face (presetter or tool setter): the <code>G54</code> Z is measured once, tools are interchangeable.</li><li><strong>Length relative</strong> to a master tool: simpler without a presetter, but everything depends on the master tool.</li></ul>
+<p>Do not mix both on the same machine without documenting it.</p>
+<aside class="callout callout-warn"><p class="callout-label">Caution</p><p>A forgotten <code>G43</code>, or an <code>H</code> that does not match the <code>T</code> (for example <code>T3 M6</code> then <code>G43 H1</code>), plunges the tool by the length difference. Display the active offsets before the first pass.</p></aside>
+<h2 id="several-parts-g54-g55-g56">Several parts: G54, G55, G56…</h2>
+<p>One vise per offset lets you run the same program on several stations. CAM assigns one offset per setup; the control stores them. On a router, <code>G54</code> often refers to the top of the sheet and <code>G55</code> to the spoilboard top (for through cuts) — document it.</p>
+<h2 id="lathe-and-plasma">Lathe and plasma</h2>
+<ul><li><strong>Lathe</strong>: Z zero is usually the finished face; X is spindle centre (diameter). Tool offsets carry both.</li><li><strong>Plasma</strong>: Z is generally handled by initial height sensing (IHS) at each pierce; X/Y zero is often a sheet corner set by jogging.</li></ul>
+<h2 id="common-mistakes">Common mistakes</h2>
+<ul><li>Setting zero before homing: the offset has no reliable reference.</li><li>Storing zero in <code>G55</code> while the program calls <code>G54</code>.</li><li>Forgetting the probe or cutter radius when picking up X/Y.</li><li>Leaving a <code>G92</code> active from a previous session.</li></ul>
+<h2 id="pre-cycle-checklist">Pre-cycle checklist</h2>
+<ul class="checklist"><li>Machine homed</li><li>Offset called by the program = offset set</li><li>Tool lengths current, <code>H</code> = <code>T</code></li><li>No <code>G92</code> active</li><li>First move checked slowly at a safe height</li></ul>
+<h2 id="faq">FAQ</h2>
+<h3 id="what-is-the-difference-between-g53-and-g28">What is the difference between G53 and G28?</h3>
+<p><code>G53</code> moves in absolute machine coordinates for one line. <code>G28</code> goes through an intermediate point then to a stored reference position; order and <code>G90/G91</code> mode matter.</p>
+<h3 id="how-many-offsets-are-there">How many offsets are there?</h3>
+<p><code>G54</code> to <code>G59</code> everywhere; many controls add extended offsets (<code>G59.1</code>–<code>G59.3</code> on LinuxCNC, <code>G54.1 P…</code> on Fanuc-style controls).</p>
+<section class="review-box"><h2 id="for-michael-to-review">For Michaël to review</h2>
+<ul><li>Your zero convention on plasma tables (sheet corner, stops, laser pointer).</li><li>The tool length method used in your shops.</li></ul>
+</section><section class="sources"><h2 id="sources">Sources</h2>
+<ul><li><a href="https://linuxcnc.org/docs/stable/html/gcode/coordinates.html" class="ext" rel="noopener">LinuxCNC — Coordinate systems</a>, consulted November 26, 2026.</li><li><a href="https://linuxcnc.org/docs/stable/html/gcode/tool-compensation.html" class="ext" rel="noopener">LinuxCNC — Tool compensation</a>.</li><li><a href="https://linuxcnc.org/docs/stable/html/gcode/g-code.html" class="ext" rel="noopener">LinuxCNC — G-codes (G43, G53, G54–G59, G92)</a>.</li></ul></section>
+
+      <p class="report"><a href="/en/about/#contact">Spotted an error or want something added? Tell us →</a></p>
+    </div>
+  </div>
+  <section class="related"><h2>Related guides</h2><div class="gcards"><a class="gcard" href="/en/guides/g-code-m-code-reference/" data-hub="fundamentals"><span class="card-meta">Fundamentals · reference · Beginner · 4 min read</span><strong>G-code and M-code reference: the codes to know by heart</strong><span class="card-desc">Common G and M codes (motion, planes, units, compensation, canned cycles, spindle, coolant) with their meaning, an annotated example and the traps between controls.</span></a><a class="gcard" href="/en/guides/cnc-mill/" data-hub="process"><span class="card-meta">Process · machining · Intermediate · 3 min read</span><strong>CNC mill: from setup sheet to the first good part</strong><span class="card-desc">The complete flow of a first program on a machining centre: CAM, setup sheet, vise setup, tools, offsets, dry run, first article and inspection.</span></a><a class="gcard" href="/en/guides/cnc-router/" data-hub="process"><span class="card-meta">Process · machining · Beginner · 3 min read</span><strong>CNC router: wood, plastics and aluminum, from workholding to the first file</strong><span class="card-desc">How a CNC router works, choosing bits, holding the work (vacuum table, spoilboard, clamps), setting zero, computing chip load and avoiding burns and moving parts.</span></a><a class="gcard" href="/en/guides/post-processors/" data-hub="fundamentals"><span class="card-meta">Fundamentals · CAM · Intermediate · 3 min read</span><strong>Post processors: choose, test and edit without crashing the machine</strong><span class="card-desc">What a post processor does, where to find the right one for your control (Fusion, Mastercam, SheetCam…), how to dry-run it and which edits are safe.</span></a></div></section>
+  <section class="news-band">
+    <div><p class="news-band-t">One guide a week, French-first</p><p>New guides, used equipment in Quebec and price moves. No third-party ads.</p></div>
+    
+<form class="stack" data-form="newsletter" data-lang="en" novalidate>
+  <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label>Name or shop (optional)
+    <input type="text" name="name" autocomplete="name">
+  </label>
+  <label>Email
+    <input type="email" name="email" required autocomplete="email" inputmode="email">
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" value="yes">
+    <span>I agree to receive the CoupeFab newsletter (guides, used-equipment digest, and sheet-price updates). I may unsubscribe at any time. See the <a href="/en/privacy/">privacy policy</a>.</span>
+  </label>
+  <button type="submit">Subscribe</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<p class="meta">CASL compliance: the box is not pre-checked. Nothing is sent without this express consent.</p>
+
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Work offsets (G54–G59) and tool lengths, without mistakes", "description": "Machine coordinates, work zero, G54–G59, G43 tool length: how they stack up, how to set a work zero, and the mistakes that break tools.", "inLanguage": "en-CA", "dateModified": "2026-11-26", "datePublished": "2026-11-26", "url": "https://coupefab.vercel.app/en/guides/work-offsets-g54/", "mainEntityOfPage": "https://coupefab.vercel.app/en/guides/work-offsets-g54/", "proficiencyLevel": "Beginner", "author": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/"}, "publisher": {"@type": "Organization", "name": "CoupeFab", "url": "https://coupefab.vercel.app/", "logo": {"@type": "ImageObject", "url": "https://coupefab.vercel.app/favicon.svg"}}, "about": ["g54", "work offset", "wcs", "tool length", "probing", "mill", "router", "lathe"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Work offsets (G54–G59) and tool lengths, without mistakes", "description": "Machine coordinates, work zero, G54–G59, G43 tool length: how they stack up, how to set a work zero, and the mistakes that break tools.", "inLanguage": "en-CA", "step": [{"@type": "HowToStep", "name": "Home the machine at power-up, before any offset", "text": "Home the machine at power-up, before any offset."}, {"@type": "HowToStep", "name": "Pick the zero point the programmer chose in CAM (corner, centre, top of part)", "text": "Pick the zero point the programmer chose in CAM (corner, centre, top of part). It must be on the setup sheet."}, {"@type": "HowToStep", "name": "X and Y ", "text": "X and Y : 3D probe, edge finder or tool-and-paper on two faces; account for the probe or tool radius."}, {"@type": "HowToStep", "name": "Z ", "text": "Z : on top of the part (or the table, per convention), with a probe, gauge block or touch plate of known height."}, {"@type": "HowToStep", "name": "Store in the right offset ( G54 for example) — not in another register by mistake", "text": "Store in the right offset ( G54 for example) — not in another register by mistake."}, {"@type": "HowToStep", "name": "Verify ", "text": "Verify : in MDI, G54 G0 X0 Y0 , then step Z down slowly with feed override to a safe height above zero."}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the difference between G53 and G28?", "acceptedAnswer": {"@type": "Answer", "text": "G53 moves in absolute machine coordinates for one line. G28 goes through an intermediate point then to a stored reference position; order and G90/G91 mode matter."}}, {"@type": "Question", "name": "How many offsets are there?", "acceptedAnswer": {"@type": "Answer", "text": "G54 to G59 everywhere; many controls add extended offsets ( G59.1 – G59.3 on LinuxCNC, G54.1 P… on Fanuc-style controls)."}}]}</script>
+
+</main>
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <a class="brand" href="/en/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/><path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/><rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg><span class="brand-word">Coupe<b>Fab</b></span></a>
+      <p>A French-first reference for CNC cutting and metal fabrication: sourced guides, compared sheet prices, used equipment in Quebec.</p>
+    </div>
+    <div>
+      <p class="ftr-h">Guides</p>
+      <ul>
+        <li><a href="/en/guides/software/">CAD/CAM software and controls</a></li>
+        <li><a href="/en/guides/processes/">Cutting and machining processes</a></li>
+        <li><a href="/en/guides/fundamentals/">CNC fundamentals</a></li>
+        <li><a href="/en/guides/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/en/guides/shop/">Shop: safety, buying, consumables</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Explore</p>
+      <ul>
+        <li><a href="/en/sheet-prices/">Sheet prices</a></li>
+        <li><a href="/en/used-equipment/">Used equipment</a></li>
+        <li><a href="/en/newsletter/">Newsletter</a></li>
+        <li><a href="/en/about/">About</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ftr-h">Legal</p>
+      <ul>
+        <li><a href="/en/affiliate-disclosure/">Affiliate disclosure</a></li>
+        <li><a href="/en/privacy/">Privacy and CASL</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-legal">© 2026 CoupeFab · Quebec, Canada. No affiliate links. Trademarks belong to their owners and are used descriptively.</p>
+</footer>
+<script src="/js/site.js?v=20261126c" defer></script>
+</body>
+</html>
