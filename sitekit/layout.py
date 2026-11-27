@@ -5,7 +5,7 @@ from .taxonomy import T, PATHS, HUBS, HUB_ORDER, hub_path
 
 SITE = "https://coupefab.vercel.app"
 YEAR = "2026"
-ASSET_V = "20261126w"  # bump to bust CSS/JS caches
+ASSET_V = "20261126ub"  # bump to bust CSS/JS caches
 
 
 def esc(s: str) -> str:
@@ -22,9 +22,9 @@ def _icon(name):
 
 
 def brand_svg():
-    return ('<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/>'
-            '<path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/>'
-            '<rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg>')
+    # CoupeFab mark v3 ("Tôle tranchée"): a plate sliced by a glowing kerf, the two parts separating.
+    return ('<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">'
+            '<rect width="32" height="32" rx="8" fill="#15191c"/><path d="M7 7h15.2L9.4 24.6H7z" fill="#f4f2ec"/><path d="M25 25H9.8L22.6 7.4H25z" fill="#f4f2ec" opacity=".55"/><path d="M23.4 6.2L8.6 26" stroke="#ff5a1f" stroke-width="1.8" stroke-linecap="round"/><circle cx="8.6" cy="26" r="2.1" fill="#ff5a1f"/></svg>')
 
 
 def mega_nav(lang: str, path: str) -> str:
@@ -41,6 +41,8 @@ def mega_nav(lang: str, path: str) -> str:
     hubs_more = "".join(
         f'<li class="more"><a href="{hub_path(h, lang)}">{esc(HUBS[h][2] if lang == "fr" else HUBS[h][3])} →</a></li>'
         for h in ("fundamentals", "materials", "troubleshooting", "shop"))
+    hubs_more += (f'<li class="more"><a href="{"/codes-erreur/" if lang == "fr" else "/en/error-codes/"}">'
+                  f'{"Codes d’erreur et alarmes" if lang == "fr" else "Error codes and alarms"} →</a></li>')
     guides_active = path.startswith(p["guides"])
     def cur(key):
         return ' aria-current="page"' if path.startswith(p[key]) and (key != "home") else ""
@@ -77,6 +79,8 @@ def mega_nav(lang: str, path: str) -> str:
     </li>
     <li><a class="nav-link nav-prices" href="{p['prices']}"{cur('prices')}>{t['prices']}</a></li>
     <li><a class="nav-link" href="{p['used']}"{cur('used')}>{t['used']}</a></li>
+    <li><a class="nav-link" href="{p['parts']}"{cur('parts')}>{t['parts']}</a></li>
+    <li><a class="nav-link" href="{'/fournisseurs/' if lang == 'fr' else '/en/suppliers/'}"{' aria-current="page"' if path.startswith(('/fournisseurs/', '/en/suppliers/')) else ''}>{'Fournisseurs' if lang == 'fr' else 'Suppliers'}</a></li>
     <li><a class="nav-link" href="{p['news']}"{cur('news')}>{t['news']}</a></li>
   </ul>
 </nav>"""
@@ -196,6 +200,7 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
         <li><a href="{hub_path('materials', lang)}">{HUBS['materials'][2] if fr else HUBS['materials'][3]}</a></li>
         <li><a href="{hub_path('troubleshooting', lang)}">{HUBS['troubleshooting'][2] if fr else HUBS['troubleshooting'][3]}</a></li>
         <li><a href="{hub_path('shop', lang)}">{HUBS['shop'][2] if fr else HUBS['shop'][3]}</a></li>
+        <li><a href="{'/codes-erreur/' if fr else '/en/error-codes/'}">{'Codes d’erreur' if fr else 'Error codes'}</a></li>
       </ul>
     </div>
     <div>
@@ -203,6 +208,8 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
       <ul>
         <li><a href="{p['prices']}">{t['prices']}</a></li>
         <li><a href="{p['used']}">{t['used']}</a></li>
+        <li><a href="{p['parts']}">{t['parts']}</a></li>
+        <li><a href="{'/fournisseurs/' if fr else '/en/suppliers/'}">{'Fournisseurs' if fr else 'Suppliers'}</a></li>
         <li><a href="{p['news']}">{t['news']}</a></li>
         <li><a href="{p['about']}">{t['about']}</a></li>
       </ul>
@@ -210,12 +217,13 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
     <div>
       <p class="ftr-h">{t['legal']}</p>
       <ul>
-        <li><a href="{p['disc']}">{'Divulgation (affiliations)' if fr else 'Affiliate disclosure'}</a></li>
-        <li><a href="{p['priv']}">{'Confidentialité et LCAP' if fr else 'Privacy and CASL'}</a></li>
+        <li><a href="{p['disc']}">{'Divulgation (aucune affiliation, partenaire)' if fr else 'Disclosure (no affiliates, partner)'}</a></li>
+        <li><a href="{p['priv']}">{'Confidentialité (Loi 25)' if fr else 'Privacy (Law 25)'}</a></li>
+        <li><a href="{'/conditions/' if fr else '/en/terms/'}">{'Conditions d’utilisation' if fr else 'Terms of use'}</a></li>
       </ul>
     </div>
   </div>
-  <p class="ftr-legal">© {year} CoupeFab · {'Québec, Canada. Aucun lien d’affiliation. Les marques citées appartiennent à leurs propriétaires et sont mentionnées à titre descriptif.' if fr else 'Quebec, Canada. No affiliate links. Trademarks belong to their owners and are used descriptively.'}</p>
+  <p class="ftr-legal">© {year} CoupeFab · {'Québec, Canada. Aucun lien d’affiliation ni publicité payante; la mention « Partenaire » de SMF Mécanique n’est pas rémunérée (voir la divulgation). Les marques citées appartiennent à leurs propriétaires et sont mentionnées à titre descriptif.' if fr else 'Quebec, Canada. No affiliate links or paid ads; the SMF Mécanique “Partner” label is unpaid (see the disclosure). Trademarks belong to their owners and are used descriptively.'}</p>
 </footer>
 <button class="totop" type="button" hidden aria-label="{'Retour en haut' if fr else 'Back to top'}"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/site.js?v={ASSET_V}" defer></script>

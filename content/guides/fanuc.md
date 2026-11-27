@@ -16,6 +16,7 @@ fr_title: Commande Fanuc : origines, correcteurs, format de programme et post sa
 en_title: Fanuc CNC control: work offsets, tool offsets, program format and a surprise-free post
 fr_desc: Les séries Fanuc (0i-F Plus, 30i-B Plus), le format de programme, les origines G54–G59 et additionnelles, G10, les correcteurs d’outil et les points à vérifier avant de lancer un programme venu d’une autre machine.
 en_desc: Fanuc series (0i-F Plus, 30i-B Plus), program format, G54–G59 and additional work offsets, G10, tool offsets and what to check before running a program written for another machine.
+codes: fanuc
 ---
 === fr
 **Fanuc** équipe une grande partie des fraiseuses et des tours CNC industriels. Le dialecte Fanuc sert de référence à beaucoup d’autres commandes (Haas, LinuxCNC et plusieurs commandes asiatiques en reprennent l’essentiel), mais **chaque constructeur de machine active ses propres options et paramètres**. Ce guide donne la démarche ; le manuel de *votre* machine a toujours le dernier mot.
@@ -56,7 +57,7 @@ M30
 ## Origines pièce (décalages)
 
 1. **G54 à G59** : six origines standard, réglées à l’écran des décalages ou par programme.
-2. **Origines additionnelles** : `G54.1 P1`… sur les commandes qui ont l’option (souvent 48 jeux, parfois plus) — confirmez la plage dans le manuel.
+2. **Origines additionnelles** : `G54.1 P1`… avec l’option « 48 origines additionnelles » de FANUC, on a `G54.1 P1` à `P48` en plus de G54–G59 ; une autre option porte le total à 300 jeux (`P1`–`P300`) sur certaines séries. Vérifiez quelles options sont actives sur votre machine (écran des paramètres ou fiche du fabricant de la machine).
 3. **Écriture par programme** : `G10 L2 P1` écrit G54 ; `G10 L20 P1` écrit l’origine additionnelle P1. En `G90`, la valeur remplace ; en `G91`, elle s’ajoute.
 4. **Vérifier** : afficher la position absolue sur un point connu de la pièce avant le premier cycle.
 
@@ -108,6 +109,8 @@ Oui pour des familles de pièces ou des montages multiples, à condition de l’
 
 - [FANUC America — Série 0i-F Plus](https://www.fanucamerica.com/products/series/0i-f-plus), consulté le 26 novembre 2026.
 - [FANUC America — 30i-B Plus](https://www.fanucamerica.com/products/cnc/30i-b-plus), consulté le 26 novembre 2026.
+- [FANUC America — CNC Options](https://www.fanucamerica.com/support/cnc/options) : option « 48 additional work offsets » (G54.1 P1–P48), consulté le 26 novembre 2026.
+- [FANUC America — CNC Function Catalog (PDF)](https://www.fanucamerica.com/uploads/files/cnc-function-catalog.pdf) : « Addition of workpiece coordinate system » 48 et 300 jeux, consulté le 26 novembre 2026.
 - [LinuxCNC — G-codes (G10 L2/L20, G43, G54–G59)](https://linuxcnc.org/docs/stable/html/gcode/g-code.html) : référence publique du dialecte de type Fanuc.
 - [LinuxCNC — Coordinate systems](https://linuxcnc.org/docs/stable/html/gcode/coordinates.html).
 - [Haas — Mill Programming Workbook (PDF)](https://haascnc.com/content/dam/haascnc/en/service/reference/programming-workbooks/mill---programming-workbook.pdf) : commande de type Fanuc, utile pour comparer.
@@ -151,7 +154,7 @@ M30
 ## Work offsets
 
 1. **G54 to G59**: six standard offsets, set on the offset page or by program.
-2. **Additional offsets**: `G54.1 P1`… on controls with the option (often 48 sets, sometimes more) — confirm the range in the manual.
+2. **Additional offsets**: `G54.1 P1`… with FANUC’s “48 additional work offsets” option you get `G54.1 P1` to `P48` on top of G54–G59; a separate option raises the total to 300 sets (`P1`–`P300`) on some series. Check which options your machine actually has (parameter screen or the machine builder’s spec sheet).
 3. **Writing by program**: `G10 L2 P1` writes G54; `G10 L20 P1` writes additional offset P1. In `G90` the value replaces; in `G91` it adds.
 4. **Check**: display the absolute position on a known point of the part before the first cycle.
 
@@ -203,6 +206,8 @@ Yes for part families or multiple fixtures, as long as it is controlled: absolut
 
 - [FANUC America — 0i-F Plus series](https://www.fanucamerica.com/products/series/0i-f-plus), consulted November 26, 2026.
 - [FANUC America — 30i-B Plus](https://www.fanucamerica.com/products/cnc/30i-b-plus), consulted November 26, 2026.
+- [FANUC America — CNC Options](https://www.fanucamerica.com/support/cnc/options): “48 additional work offsets” option (G54.1 P1–P48), consulted November 26, 2026.
+- [FANUC America — CNC Function Catalog (PDF)](https://www.fanucamerica.com/uploads/files/cnc-function-catalog.pdf): “Addition of workpiece coordinate system” 48 and 300 pairs, consulted November 26, 2026.
 - [LinuxCNC — G-codes (G10 L2/L20, G43, G54–G59)](https://linuxcnc.org/docs/stable/html/gcode/g-code.html): public reference for the Fanuc-style dialect.
 - [LinuxCNC — Coordinate systems](https://linuxcnc.org/docs/stable/html/gcode/coordinates.html).
 - [Haas — Mill Programming Workbook (PDF)](https://haascnc.com/content/dam/haascnc/en/service/reference/programming-workbooks/mill---programming-workbook.pdf): a Fanuc-style control, useful for comparison.

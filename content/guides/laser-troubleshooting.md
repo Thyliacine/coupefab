@@ -14,6 +14,7 @@ fr_title: Dépannage laser fibre : scories, bavures, brûlures et coupe incompl�
 en_title: Fiber laser troubleshooting: dross, burrs, burning and incomplete cuts
 fr_desc: Symptôme → cause → correctif pour la découpe laser fibre : scories adhérentes, bavure, brûlure des coins, stries, coupe qui ne traverse pas. Buse, centrage, focale, gaz, fenêtre de protection, dans le bon ordre.
 en_desc: Symptom → cause → fix for fiber laser cutting: clinging dross, burrs, burned corners, striations, cuts that don’t go through. Nozzle, centering, focus, gas and protective window, in the right order.
+codes: bochu, raytools
 ---
 === fr
 Sur un laser fibre, 80 % des problèmes de qualité viennent de quatre choses que l’opérateur peut vérifier en quelques minutes : **la buse, le centrage du faisceau, la fenêtre de protection et le gaz**. Les paramètres de la table de coupe viennent après. Ce guide suit cet ordre.
@@ -26,7 +27,7 @@ Sur un laser fibre, 80 % des problèmes de qualité viennent de quatre choses qu
 2. **Centrage** : faire le test de centrage (ruban ou tir sur adhésif) prévu par le fabricant ; un faisceau décentré donne une qualité différente selon la direction de coupe.
 3. **Fenêtre de protection** (*protective window*) : inspecter et nettoyer ou remplacer selon la procédure ; une fenêtre tachée absorbe de l’énergie et chauffe.
 4. **Gaz** : bonne pression à la buse (pas seulement au régulateur), pureté conforme, aucune fuite ni humidité.
-5. **Matière** : nuance, épaisseur réelle, état de surface (calamine, huile, film plastique côté correct).
+5. **Matière** : grade, épaisseur réelle, état de surface (calamine, huile, film plastique côté correct).
 6. **Recette** : seulement ensuite, revenir à la charte du fabricant et ajuster un paramètre à la fois.
 
 ## Tableau symptôme → cause → correctif
