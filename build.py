@@ -1246,10 +1246,8 @@ ABOUT_EN = f"""
 
 DISC_FR = """
 <div class="wrap prose">
-  <h1>Divulgation — affiliations, partenaire et publicité</h1>
+  <h1>Divulgation — affiliations et publicité</h1>
   <p class="lede">Pour l’instant, CoupeFab <strong>n’a aucun lien d’affiliation</strong>, aucun commanditaire et aucune publicité payante. Aucun compte d’affiliation n’a été ouvert ni approuvé.</p>
-  <h2>Mention « Partenaire » : SMF Mécanique</h2>
-  <p>Dans certains guides de procédés (fraisage, tournage, préparation des soudures, ébavurage), l’atelier <strong>SMF Mécanique</strong> (Berthierville) apparaît en tête de la liste des ateliers du Québec avec la mention « Partenaire ». Le fondateur de CoupeFab, Michaël Brassard, travaille chez SMF Mécanique : c’est un lien personnel et professionnel, pas une commandite. SMF ne paie pas CoupeFab et ne relit pas le contenu. Les autres ateliers sont listés sans frais et sans ordre de préférence.</p>
   <h2>Si cela change</h2>
   <p>Cette page sera mise à jour en premier. Les liens affiliés seront identifiés, et un article restera lisible sans eux. Nous n’accepterons pas qu’un commanditaire dicte un paramètre de coupe ou un prix.</p>
   <p>Les liens vers des manuels, des chartes, des fournisseurs, des annonces ou des listes de prix sont des liens ordinaires, sans rémunération. Les fournisseurs qui soumettent leurs prix ne paient rien et n’obtiennent aucun classement préférentiel; la mention « Prix vérifiés » indique seulement que CoupeFab a vérifié la source.</p>
@@ -1259,10 +1257,8 @@ DISC_FR = """
 
 DISC_EN = """
 <div class="wrap prose">
-  <h1>Affiliate, partner and advertising disclosure</h1>
+  <h1>Affiliate and advertising disclosure</h1>
   <p class="lede">For now, CoupeFab has <strong>no affiliate links</strong>, no sponsors and no paid ads. No affiliate account has been opened or approved.</p>
-  <h2>The “Partner” label: SMF Mécanique</h2>
-  <p>In some process guides (milling, turning, weld preparation, deburring), the shop <strong>SMF Mécanique</strong> (Berthierville, Quebec) is listed first among Quebec shops with a “Partner” label. CoupeFab’s founder, Michaël Brassard, works at SMF Mécanique: this is a personal and professional tie, not a sponsorship. SMF does not pay CoupeFab and does not review the content. Other shops are listed free of charge and in no order of preference.</p>
   <h2>If that changes</h2>
   <p>This page will be updated first. Affiliate links will be labelled, and an article will still be readable without them. A sponsor will not be allowed to dictate a cut parameter or a price.</p>
   <p>Links to manuals, cut charts, suppliers, listings or price lists are ordinary links, with no payment attached. Suppliers who submit their prices pay nothing and get no preferential ranking; the “Verified prices” badge only means CoupeFab has checked the source.</p>
@@ -1478,12 +1474,12 @@ PAGES = [
      "Who is behind CoupeFab and how to reach us.",
      ABOUT_EN, False, False),
     ("/divulgation/", "/en/affiliate-disclosure/", "fr",
-     "Divulgation — affiliations, partenaire et publicité — CoupeFab",
-     "CoupeFab n’a aucun lien d’affiliation ni commanditaire. Mention « Partenaire » de SMF Mécanique expliquée.",
+     "Divulgation — affiliations et publicité — CoupeFab",
+     "CoupeFab n’a aucun lien d’affiliation, aucun commanditaire et aucune publicité payante.",
      DISC_FR, False, False),
     ("/en/affiliate-disclosure/", "/divulgation/", "en",
-     "Affiliate, partner and advertising disclosure — CoupeFab",
-     "CoupeFab has no affiliate links and no sponsors. The SMF Mécanique “Partner” label explained.",
+     "Affiliate and advertising disclosure — CoupeFab",
+     "CoupeFab has no affiliate links, no sponsors and no paid ads.",
      DISC_EN, False, False),
     ("/confidentialite/", "/en/privacy/", "fr",
      "Politique de confidentialité (Loi 25 et LCAP) — CoupeFab",

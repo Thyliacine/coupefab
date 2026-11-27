@@ -34,7 +34,7 @@ To change a switch, edit the file by hand or use the local admin (below). Then r
 Open http://127.0.0.1:8765/. It only runs on your own computer and is never deployed. You can:
 
 - **Switches**: turn the five features on or off.
-- **Partner**: choose which shops get the unpaid “Partenaire” label (`content/shops.json`). Today that is SMF Mécanique. Any partner must be named on the Divulgation page.
+- **Partner**: choose which shops get the unpaid “Partenaire” label (`content/shops.json`). None are marked as partners today. Any future partner must be named on the Divulgation page.
 - **Newsletter sponsors**: name, logo, two lines FR/EN, https link, dates and “payé” (`config/sponsors.json`, schema in `config/sponsors.schema.json`). Only one sponsor shows per issue: the first one that is paid and whose dates include today.
 - **Affiliate links**: merchant, labels and URL for each slot (`config/affiliate-links.json`). Leave the URL empty until you have joined the program yourself. An empty URL is never shown.
 - **Featured suppliers (read only)**: who is featured, their subscription status and dates. **There is no manual picker. Featured means paid.**

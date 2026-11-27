@@ -90,6 +90,20 @@ async function fetchReceiving(emailId) {
   return r.json();
 }
 
+async function fetchAttachmentList(emailId) {
+  const key = process.env.RESEND_API_KEY;
+  if (!key || !emailId) return [];
+  const r = await fetch("https://api.resend.com/emails/receiving/" + encodeURIComponent(emailId) + "/attachments", {
+    headers: { authorization: "Bearer " + key, accept: "application/json" },
+  });
+  if (!r.ok) {
+    console.error("resend receiving attachments", r.status, await r.text().catch(() => ""));
+    return [];
+  }
+  const j = await r.json();
+  return j.data || j.attachments || (Array.isArray(j) ? j : []);
+}
+
 async function downloadAttachment(att) {
   const url = att.download_url || att.url;
   if (!url) return null;
@@ -115,15 +129,22 @@ module.exports = async (req, res) => {
   if (type && type !== "email.received") return json(res, 200, { ok: true, ignored: type });
   const data = event.data || event;
   const emailId = data.email_id || data.id || "";
+  // Webhook payloads are metadata-only; body/headers come from GET /emails/receiving/{id}.
   let full = null;
   try { full = await fetchReceiving(emailId); } catch (e) { console.error("fetch receiving", e); }
+  if (emailId && !full) {
+    return json(res, 500, { ok: false, error: "could not fetch received email" });
+  }
   const src = full || data;
   const from = firstAddr(src.from);
-  const toList = [].concat(src.to || []);
+  const toList = [].concat(src.to || src.received_for || []);
   const to = toList.map(firstAddr).filter(Boolean).join(", ") || "info@coupefab.ca";
   const id = inbox.nid("msg_");
   const attachments = [];
-  for (const att of src.attachments || []) {
+  let attList = [];
+  try { attList = await fetchAttachmentList(emailId); } catch (e) { console.error("fetch attachments", e); }
+  if (!attList.length) attList = src.attachments || [];
+  for (const att of attList) {
     try {
       const file = await downloadAttachment(att);
       if (file) attachments.push(await inbox.addAttachment(id, file));

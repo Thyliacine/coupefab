@@ -39,11 +39,12 @@ async function request(pathnameQs, init) {
 }
 
 async function put(pathname, body, { contentType = "application/octet-stream", allowOverwrite = true, cacheControlMaxAge = 60 } = {}) {
-  const qs = "/?pathname=" + encodeURIComponent(pathname);
+  const qs = "/?pathname=" + encodeURIComponent(pathname) + "&access=private";
   const buf = Buffer.isBuffer(body) || body instanceof Uint8Array ? body : Buffer.from(typeof body === "string" ? body : String(body));
   return request(qs, {
     method: "PUT",
     headers: {
+      "x-access": "private",
       "x-content-type": contentType,
       "x-add-random-suffix": "0",
       "x-allow-overwrite": allowOverwrite ? "1" : "0",
