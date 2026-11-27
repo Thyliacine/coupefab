@@ -5,7 +5,7 @@
 const crypto = require("crypto");
 const blob = require("./_blob");
 
-const TYPES = ["quote", "newsletter", "contact", "supplier", "email"];
+const TYPES = ["quote", "newsletter", "contact", "supplier", "email", "placement", "brochure"];
 const STATUSES = ["new", "read", "archived"];
 
 function nid(prefix) {

@@ -102,7 +102,7 @@
     });
   });
 
-  const typeLabel = { email: "Courriel", quote: "Soumission", newsletter: "Infolettre", contact: "Message", supplier: "Fournisseur" };
+  const typeLabel = { email: "Courriel", quote: "Soumission", newsletter: "Infolettre", contact: "Message", supplier: "Fournisseur", placement: "Annonce", brochure: "Brochure" };
   const statusLabel = { new: "Nouveau", read: "Lu", archived: "Archivé" };
 
   function inboxQuery() {

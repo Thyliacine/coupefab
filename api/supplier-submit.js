@@ -69,6 +69,7 @@ module.exports = async function handler(req, res) {
   if (req.method !== "POST") return json(res, 405, { ok: false, error: "method not allowed" });
   let b;
   try { b = await readBody(req); } catch (e) { return json(res, 413, { ok: false, error: "Fichier trop lourd / file too large (2 MB max)" }); }
+  if (b.action === "brochure-token" || b.action === "brochure") return require("./_brochure").handle(b, req, res);
   const lang = b.lang === "en" ? "en" : "fr";
   if (b.website) return json(res, 200, { ok: true });
 
