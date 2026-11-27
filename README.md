@@ -176,3 +176,17 @@ Couche gérée par la routine « CoupeFab daily supplier discovery & cleanup »,
 - Note : depuis la machine de vérification, les URL en `http://` répondent toujours 500 (proxy) ; tester en `https://`.
 
 - Ajouter une machine : une entrée dans `data/coolant-machines.json` (`brand`, `model`, `type` ∈ vmc/hmc/5ax/lathe/millturn/vtl/boring/router/swiss/grinder, `liters`, `us_gal`, `source`, `source_label`, `checked`), puis `python3 build.py`.
+
+## App mobile (PWA)
+
+Sur téléphone (≤ 768 px, ou paysage ≤ 520 px de haut), le site se comporte comme une app : barre du haut compacte,
+barre d’onglets en bas (Accueil, Fournisseurs, Prix des métaux, Outils, Plus), feuille « Plus » pour le reste et l’infolettre,
+transitions de page, invite d’installation (Android : `beforeinstallprompt` ; iOS : feuille d’instructions), mémorisée 60 jours.
+Le bureau n’est pas touché : tout le style est dans `css/app.css`, sous la requête média téléphone.
+
+- Code : `sitekit/app.py` (balisage, manifestes, pages hors ligne, `sw.js`), `css/app.css`, `js/app.js`.
+- `build.py` régénère `manifest.webmanifest`, `en/manifest.webmanifest`, `/hors-ligne/`, `/en/offline/` et `sw.js`.
+- Le service worker change de version à chaque build : à l’activation, il supprime les caches précédents. Les pages
+  sont servies en stale-while-revalidate pendant 30 min au plus ; au-delà, réseau d’abord (3,5 s), puis copie en cache,
+  puis page hors ligne. `/api`, `/admin` et `/_vercel` ne passent jamais par le cache.
+- Icônes : `assets/bin/icons/*.b64` (décodées vers `/icons/`), y compris les versions *maskable*.

@@ -10,3 +10,4 @@ __pycache__/
 
 # price digest previews (scripts/digest.py), never deployed
 /digest-preview/
+/icons/*.png
