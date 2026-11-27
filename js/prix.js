@@ -7,7 +7,7 @@
   var FR = app.getAttribute("data-lang") !== "en";
   var T = function (fr, en) { return FR ? fr : en; };
   var D = null, ROWS = [], FULL = false, loadingFull = null;
-  var sortKey = "spec", sortDir = 1, LIMIT = 150, shown = LIMIT;
+  var sortKey = "spec", sortDir = 1, LIMIT = 24, shown = LIMIT, pxPager = null, viewRows = [];
   var SHEET = { tole: 1, plaque: 1 };
   var TABS = [["comparer", "compare"], ["calculateur", "calculator"], ["tendances", "trends"], ["alliages", "grades"], ["methode", "method"]];
   var ALIAS = { comparateur: 0, meilleurs: 0, tendance: 2, catalogue: 3, calibres: 3, nuances: 3, fournisseurs: 4, alerte: 4 };
@@ -255,7 +255,7 @@
   app.querySelectorAll("#px-table th[data-k] button").forEach(function (b) {
     b.addEventListener("click", function () { var k = b.parentNode.getAttribute("data-k"); setSort(k, sortKey === k ? -sortDir : 1); });
   });
-  document.getElementById("px-more").addEventListener("click", function () { shown += LIMIT * 2; render(); });
+  /* numbered pager (#px-pager) replaces the old “show more” button */
 
   /* ---------- table ---------- */
   var SUBORD = { noir: "0", galv: "1", ar: "2" };
@@ -359,16 +359,38 @@
     var rows = filtered().sort(cmp);
     var grouped = sortKey === "spec", last = null, html = "", medOf = {};
     if (grouped) rows.forEach(function (r) { if (r.median != null && r.spec && !medOf[r.spec]) medOf[r.spec] = r; });
-    rows.slice(0, shown).forEach(function (r) {
-      var g = r.spec || specLabel(r) || r.description;
-      if (grouped && g !== last) { html += groupHead(r, medOf[r.spec]); last = g; }
-      html += row(r, grouped);
-    });
-    var tb = app.querySelector("#px-table tbody");
-    tb.innerHTML = html || '<tr><td colspan="7" class="px-empty">' + T("Aucun prix publié pour ces filtres. Cette combinaison est « sur demande » : voyez l’onglet Méthode & sources pour demander un prix.", "No published price for these filters. This combination is “quote only”: see the Method & sources tab to request a quote.") + "</td></tr>";
+    viewRows = rows;
+    function drawPx(start, end) {
+      var html2 = "", last2 = null;
+      viewRows.slice(start, end).forEach(function (r) {
+        var g = r.spec || specLabel(r) || r.description;
+        if (grouped && g !== last2) { html2 += groupHead(r, medOf[r.spec]); last2 = g; }
+        html2 += row(r, grouped);
+      });
+      var tb = app.querySelector("#px-table tbody");
+      tb.innerHTML = html2 || '<tr><td colspan="7" class="px-empty">' + T("Aucun prix publié pour ces filtres. Cette combinaison est « sur demande » : voyez l’onglet Méthode & sources pour demander un prix.", "No published price for these filters. This combination is “quote only”: see the Method & sources tab to request a quote.") + "</td></tr>";
+    }
     var n = rows.length, cmpN = rows.filter(function (r) { return r.tier && r.tier !== "ref" && r.tier !== "oos" && r.tier !== "check" && r.tier !== "surplus"; }).length;
-    setCount(num(n, 0) + T(" prix", " prices") + (cmpN ? " · " + num(cmpN, 0) + T(" comparables", " comparable") : "") + (n > shown ? T(" · " + shown + " affichés", " · " + shown + " shown") : "") + (!FULL && !F.form.value ? T(" · barres, tubes et tuyaux en chargement…", " · loading bar, tube and pipe…") : ""));
-    document.getElementById("px-more").hidden = n <= shown;
+    if (window.cfPager) {
+      if (!pxPager) {
+        pxPager = window.cfPager({
+          mount: "#px-pager",
+          total: function () { return viewRows.length; },
+          pageSize: 24,
+          lang: FR ? "fr" : "en",
+          scrollTo: "#px-table-wrap",
+          render: function (p, start, end, t) {
+            shown = end;
+            drawPx(start, end);
+            setCount(num(t, 0) + T(" prix", " prices") + (cmpN ? " · " + num(cmpN, 0) + T(" comparables", " comparable") : "") + (t > (end - start) ? T(" · page " + p, " · page " + p) : "") + (!FULL && !F.form.value ? T(" · barres, tubes et tuyaux en chargement…", " · loading bar, tube and pipe…") : ""));
+          }
+        });
+      }
+      pxPager.reset();
+    } else {
+      drawPx(0, LIMIT);
+      setCount(num(n, 0) + T(" prix", " prices"));
+    }
     setShowing();
     app.querySelectorAll(".grade-pick").forEach(function (b) {
       b.setAttribute("aria-pressed", F.grade.value && b.getAttribute("data-grade") === F.grade.value && b.getAttribute("data-family") === F.family.value ? "true" : "false");

@@ -1,4 +1,4 @@
-/* CoupeFab — supplier directory: in-place filters + "Add your prices" form (vanilla JS). */
+/* CoupeFab — supplier directory: instant filters, sort, URL state. */
 (function () {
   "use strict";
   var app = document.getElementById("sp-app");
@@ -6,64 +6,103 @@
   var FR = app.getAttribute("data-lang") !== "en";
   var T = function (fr, en) { return FR ? fr : en; };
   var form = document.getElementById("sp-filters");
+  if (!form) return;
+  var grid = document.getElementById("sp-grid");
   var cards = [].slice.call(app.querySelectorAll(".sp-card"));
   var count = document.getElementById("sp-count"), empty = document.getElementById("sp-empty");
-  function norm(s) { return String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); }
-  cards.forEach(function (c) { c._n = norm(c.getAttribute("data-name")); });
-  function apply() {
-    var q = norm(form.q.value.trim()), prov = form.prov.value, cat = form.cat.value, pub = form.pub.value, lang = form.lang.value, n = 0;
+  var writing = false;
+  var pager = null;
+
+  function norm(s) {
+    return String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+  cards.forEach(function (c, i) {
+    c._n = norm(c.getAttribute("data-name"));
+    c._i = i;
+    c._city = norm(c.getAttribute("data-city"));
+    c._qc = (" " + (c.getAttribute("data-prov") || "") + " ").indexOf(" QC ") >= 0 ? 0 : 1;
+    c._pub = c.getAttribute("data-pub") === "1" ? 0 : 1;
+    c._name = norm((c.querySelector("h3") || {}).textContent || "");
+  });
+
+  function hasToken(attr, val) {
+    return (" " + (attr || "") + " ").indexOf(" " + val + " ") >= 0;
+  }
+
+  function apply(push) {
+    var q = norm(form.q.value.trim());
+    var region = form.region.value, cat = form.cat.value, svc = form.svc.value, sort = form.sort.value || "qc";
+    var shown = [];
     cards.forEach(function (c) {
       var ok = (!q || c._n.indexOf(q) >= 0) &&
-        (!prov || (" " + c.getAttribute("data-prov") + " ").indexOf(" " + prov + " ") >= 0) &&
-        (!cat || (" " + c.getAttribute("data-cats") + " ").indexOf(" " + cat + " ") >= 0) &&
-        (!pub || c.getAttribute("data-pub") === pub) &&
-        (!lang || (" " + c.getAttribute("data-lang") + " ").indexOf(" " + lang + " ") >= 0);
-      c.hidden = !ok; if (ok) n++;
+        (!region || hasToken(c.getAttribute("data-prov"), region)) &&
+        (!cat || hasToken(c.getAttribute("data-cats"), cat)) &&
+        (!svc || hasToken(c.getAttribute("data-svc"), svc));
+      c.hidden = !ok;
+      if (ok) shown.push(c);
     });
+    shown.sort(function (a, b) {
+      if (sort === "name") return a._name < b._name ? -1 : a._name > b._name ? 1 : a._i - b._i;
+      if (sort === "prices") return a._pub - b._pub || a._name.localeCompare(b._name);
+      if (sort === "city") return (a._city || "zzz").localeCompare(b._city || "zzz") || a._name.localeCompare(b._name);
+      return a._qc - b._qc || a._name.localeCompare(b._name);
+    });
+    shown.forEach(function (c) { grid.appendChild(c); });
+    var n = shown.length;
     count.textContent = n + T(n > 1 ? " fournisseurs" : " fournisseur", n === 1 ? " supplier" : " suppliers");
     empty.hidden = n > 0;
+    if (window.cfPager) {
+      if (!pager) {
+        pager = window.cfPager({
+          mount: "#sp-pager",
+          items: function () { return shown; },
+          allItems: cards,
+          pageSize: 24,
+          lang: FR ? "fr" : "en",
+          scrollTo: "#sp-grid"
+        });
+      }
+      if (push === "keep") pager.apply();
+      else pager.reset();
+    }
+    if (push !== false && push !== "keep") syncUrl(q, region, cat, svc, sort);
   }
-  form.addEventListener("input", apply);
-  form.addEventListener("change", apply);
-  form.querySelector("[data-reset]").addEventListener("click", function () { form.reset(); apply(); });
 
-  /* ---------- submission ---------- */
-  var sf = document.getElementById("sp-form");
-  if (!sf) return;
-  var status = sf.querySelector(".sp-status");
-  var MAX = 2 * 1024 * 1024;
-  function readFile(f) {
-    return new Promise(function (res, rej) {
-      if (!f) return res(null);
-      if (f.size > MAX) return rej(new Error(T("Fichier trop lourd (2 Mo max). Envoyez plutôt un lien.", "File too large (2 MB max). Send a link instead.")));
-      var r = new FileReader();
-      r.onload = function () { res({ name: f.name, type: f.type || "application/octet-stream", size: f.size, data: String(r.result).split(",")[1] || "" }); };
-      r.onerror = function () { rej(new Error(T("Lecture du fichier impossible.", "Could not read the file."))); };
-      r.readAsDataURL(f);
-    });
+  function syncUrl(q, region, cat, svc, sort) {
+    var u = new URL(location.href);
+    function set(k, v, def) {
+      if (v && v !== (def || "")) u.searchParams.set(k, v); else u.searchParams.delete(k);
+    }
+    set("q", form.q.value.trim());
+    set("region", region);
+    set("cat", cat);
+    set("svc", svc);
+    set("sort", sort, "qc");
+    var next = u.pathname + (u.search || "") + u.hash;
+    if (next !== location.pathname + location.search + location.hash) {
+      writing = true;
+      history.replaceState(null, "", next);
+      writing = false;
+    }
   }
-  sf.addEventListener("submit", function (e) {
-    e.preventDefault();
-    status.className = "sp-status";
-    var email = sf.email.value.trim(), company = sf.company.value.trim();
-    if (!company || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { status.textContent = T("Indiquez le nom de l’entreprise et un courriel valide.", "Enter the company name and a valid email."); status.classList.add("is-err"); return; }
-    if (!sf.price_url.value.trim() && !(sf.file.files && sf.file.files[0])) { status.textContent = T("Ajoutez un lien vers vos prix ou un fichier.", "Add a link to your prices or a file."); status.classList.add("is-err"); return; }
-    if (!sf.consent.checked) { status.textContent = T("Cochez la case d’autorisation pour continuer.", "Tick the authorization box to continue."); status.classList.add("is-err"); return; }
-    var btn = sf.querySelector("button[type=submit]");
-    btn.disabled = true; status.textContent = T("Envoi…", "Sending…");
-    readFile(sf.file.files && sf.file.files[0]).then(function (file) {
-      return fetch("/api/supplier-submit", {
-        method: "POST", headers: { "content-type": "application/json" },
-        body: JSON.stringify({ company: company, email: email, site: sf.site.value.trim(), price_url: sf.price_url.value.trim(),
-          message: sf.message.value.trim(), website: sf.website.value, consent: true, lang: FR ? "fr" : "en", file: file })
-      });
-    }).then(function (r) { return r.json().then(function (j) { if (!r.ok || !j.ok) throw new Error(j.error || "HTTP " + r.status); return j; }); })
-      .then(function () {
-        sf.reset();
-        status.textContent = T("Merci! Votre soumission est en attente de vérification. Nous vous écrirons avant toute publication.", "Thanks! Your submission is waiting for review. We’ll email you before anything is published.");
-        status.classList.add("is-ok");
-      })
-      .catch(function (err) { status.textContent = (err && err.message && err.message.length < 140 ? err.message : T("Envoi impossible pour le moment. Réessayez plus tard.", "Could not send right now. Please try again later.")); status.classList.add("is-err"); })
-      .then(function () { btn.disabled = false; });
+
+  function fromUrl() {
+    var u = new URL(location.href);
+    if (form.q) form.q.value = u.searchParams.get("q") || "";
+    if (form.region) form.region.value = u.searchParams.get("region") || "";
+    if (form.cat) form.cat.value = u.searchParams.get("cat") || "";
+    if (form.svc) form.svc.value = u.searchParams.get("svc") || "";
+    if (form.sort) form.sort.value = u.searchParams.get("sort") || "qc";
+    apply("keep");
+  }
+
+  form.addEventListener("input", function () { apply(true); });
+  form.addEventListener("change", function () { apply(true); });
+  form.querySelector("[data-reset]").addEventListener("click", function () {
+    form.reset();
+    if (form.sort) form.sort.value = "qc";
+    apply(true);
   });
+  window.addEventListener("popstate", function () { if (!writing) fromUrl(); });
+  fromUrl();
 })();

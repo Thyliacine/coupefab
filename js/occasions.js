@@ -5,6 +5,7 @@
   app.classList.add("js");
 
   var form = document.getElementById("oc-filters");
+  var pager = null;
   var grid = document.getElementById("oc-grid");
   var countEl = document.getElementById("oc-count");
   var emptyEl = document.getElementById("oc-empty");
@@ -93,6 +94,23 @@
         : (shown === 1 ? "1 listing" : shown + " listings");
     }
     if (emptyEl) emptyEl.hidden = shown !== 0;
+    pageList();
+  }
+
+  function pageList() {
+    if (!window.cfPager || !grid) return;
+    var vis = cards.filter(function (c) { return !c.classList.contains("is-hidden"); });
+    if (!pager) {
+      pager = window.cfPager({
+        mount: "#oc-pager",
+        items: function () { return cards.filter(function (c) { return !c.classList.contains("is-hidden"); }); },
+        allItems: cards,
+        pageSize: 24,
+        lang: (app.getAttribute("data-lang") || "fr"),
+        scrollTo: "#oc-results-title"
+      });
+    }
+    pager.reset();
   }
 
   function sortCards() {
