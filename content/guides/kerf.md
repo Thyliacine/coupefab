@@ -57,7 +57,7 @@ Le tableau reprend les kerfs publiés dans la charte officielle [Mild steel — 
 3. **Mesurez au pied à coulisse** la largeur du carré et le diamètre du trou, sur la face supérieure.
 4. **Calculez** : kerf ≈ (cote dessinée − cote mesurée du carré), ou (diamètre mesuré du trou − diamètre dessiné). Les deux doivent concorder à peu près.
 5. **Saisissez ce kerf** dans l’outil du FAO (SheetCam : Tools → kerf width), puis recoupez le coupon **avec** compensation.
-6. **Notez la valeur** avec l’épaisseur, l’ampérage, les consommables et la date. Refaites l’essai quand les consommables, l’air ou la nuance changent.
+6. **Notez la valeur** avec l’épaisseur, l’ampérage, les consommables et la date. Refaites l’essai quand les consommables, l’air ou le grade changent.
 
 > [!TIP] Mesurez en haut et en bas de la coupe : l’écart vous donne le biseau. Un kerf plus large en haut qu’en bas indique souvent une torche trop haute ou une vitesse trop lente — voir [Dépannage plasma](/guides/depannage-plasma-scories-biseau/).
 

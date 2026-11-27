@@ -71,6 +71,17 @@ La tension de l’arc est proportionnelle à sa longueur : si la torche s’appr
 5. Ajuster la vitesse par petits pas en lisant les scories — voir [Dépannage plasma](/guides/depannage-plasma-scories-biseau/).
 6. Noter les réglages qui marchent dans la bibliothèque d’outils du FAO.
 
+## Liste de vérification
+
+- [ ] Ligne de la charte de coupe choisie : courant, consommables, vitesse, hauteurs, délai de perçage
+- [ ] Consommables assortis au courant et en bon état
+- [ ] Air propre et sec, à la pression du manuel
+- [ ] IHS (palpage initial) qui fonctionne ; THC actif seulement en coupe stable
+- [ ] Kerf mesuré sur un coupon et réglé dans le FAO
+- [ ] Captation des fumées en marche (table à eau ou aspirante entretenue)
+- [ ] Aluminium sur table à eau : consignes du fabricant suivies (hydrogène)
+- [ ] Réglages qui marchent notés dans la bibliothèque du FAO
+
 ## FAQ
 
 ### Quelle épaisseur peut-on couper ?
@@ -143,6 +154,17 @@ Arc voltage is proportional to arc length: when the torch gets closer to the pla
 4. Set kerf in CAM, recut.
 5. Tune speed in small steps by reading the dross — see [Plasma troubleshooting](/en/guides/plasma-troubleshooting-dross-bevel/).
 6. Save the settings that work in the CAM tool library.
+
+## Checklist
+
+- [ ] Cut chart line chosen: current, consumables, speed, heights, pierce delay
+- [ ] Consumables match the current and are in good shape
+- [ ] Clean, dry air at the manual’s pressure
+- [ ] IHS (initial height sensing) working; THC active only in steady cutting
+- [ ] Kerf measured on a test coupon and set in CAM
+- [ ] Fume extraction running (water or downdraft table maintained)
+- [ ] Aluminum over a water table: maker’s instructions followed (hydrogen)
+- [ ] Settings that work saved in the CAM tool library
 
 ## FAQ
 
