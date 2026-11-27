@@ -176,5 +176,23 @@
   "last_checked": "2026-11-27",
   "status": "no-site",
   "note": "Aucun site web propre dans la fiche; à vérifier via une fiche publique (REQ / répertoire) à la prochaine passe."
+ },
+ "fermetalsteagathe": {
+  "last_checked": "2026-11-27",
+  "status": "flag",
+  "site": "",
+  "note": "feretmetal.com ne résout plus (NXDOMAIN, www et apex, 27 nov. 2026). Lien retiré; la fiche reste. Pas de preuve de fermeture au REQ."
+ },
+ "inoxdistribution": {
+  "last_checked": "2026-11-27",
+  "status": "flag",
+  "site": "",
+  "note": "inox-distribution.com ne résout plus (NXDOMAIN, www et apex, 27 nov. 2026). Lien retiré; la fiche reste. Pas de preuve de fermeture au REQ."
+ },
+ "lemaystephanemetal": {
+  "last_checked": "2026-11-27",
+  "status": "flag",
+  "site": "",
+  "note": "lemaystephanemetal.ca ne résout plus (NXDOMAIN, www et apex, 27 nov. 2026). Lien retiré; la fiche reste. Pas de preuve de fermeture au REQ."
  }
 }
