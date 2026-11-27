@@ -1298,6 +1298,9 @@ PRIX_FR, PRIX_EN, PRIX_META = render_prix(form_newsletter, SITE)
 from used.page import render as render_occasions  # noqa: E402
 OCCASIONS_FR, OCCASIONS_EN, OCCASIONS_META = render_occasions(SITE)
 
+# Répertoire des fournisseurs: generated from data/suppliers/directory.json (see suppliers/)
+from suppliers.page import page_entries as supplier_pages  # noqa: E402
+
 PAGES = [
     # path, alt, lang, title, description, body, draft, article
     ("/", "/en/", "fr", "CoupeFab — guides plasma, occasions et prix des tôles au Québec",
@@ -1346,7 +1349,7 @@ PAGES = [
      CONSOM_EN, True, True),
     ("/occasions/", "/en/used-equipment/", "fr",
      "Occasions CNC et métaux au Québec — comparateur d’aubaines — CoupeFab",
-     "Annonces publiques de tables plasma, lasers, fraiseuses, tours et plieuses au Québec et au Canada, avec pastilles Super aubaine et comparaison au prix neuf lorsqu’il est documenté.",
+     "Annonces publiques de tables plasma, lasers, fraiseuses, tours et plieuses au Québec et au Canada, avec repérage des super aubaines et comparaison au prix neuf lorsqu’il est documenté.",
      OCCASIONS_FR, False, False),
     ("/en/used-equipment/", "/occasions/", "en",
      "Used CNC and metalworking equipment in Quebec — deal tracker — CoupeFab",
@@ -1401,7 +1404,7 @@ PAGES = [
 # entries above by path; the price page and the other pages are kept as defined here.
 import sitekit  # noqa: E402
 layout = sitekit.layout  # noqa: F811
-PAGES = sitekit.extend_pages(PAGES, form_newsletter, PRIX_META)
+PAGES = sitekit.extend_pages(PAGES + supplier_pages(), form_newsletter, PRIX_META)
 
 
 def path_to_file(path: str) -> Path:

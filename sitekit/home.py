@@ -44,7 +44,7 @@ def home(lang, form_newsletter, prix_meta=None):
   <div class="hero2-inner">
     <p class="kicker kicker-light">{'CNC · plasma · laser · usinage · tôlerie — Québec et partout' if fr else 'CNC · plasma · laser · machining · sheet metal — Quebec and beyond'}</p>
     <h1>{'Couper, plier et usiner juste, du premier coup.' if fr else 'Cut, bend and machine it right the first time.'}</h1>
-    <p class="hero2-lede">{'Des guides d’atelier sourcés pour Mastercam, SolidWorks, Fusion, SheetCam et compagnie, et un comparateur des prix de tôle publiés au Canada. En français d’abord, en anglais aussi.' if fr else 'Sourced shop-floor guides for Mastercam, SolidWorks, Fusion, SheetCam and friends, plus a comparison of published sheet-metal prices in Canada. French-first, English too.'}</p>
+    <p class="hero2-lede">{'Des guides d’atelier appuyés sur des sources (Mastercam, SolidWorks, Fusion, SheetCam…), les prix des tôles comparés chez les fournisseurs et les machines d’occasion au Québec. En français d’abord, en anglais aussi.' if fr else 'Shop-floor guides backed by sources (Mastercam, SolidWorks, Fusion, SheetCam…), sheet-metal prices compared across suppliers, and used machines in Quebec. French-first, English too.'}</p>
     <button class="hero-search" type="button" data-search-open>
       <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       <span>{esc(t['search_ph'])}</span><kbd>/</kbd>
@@ -57,9 +57,9 @@ def home(lang, form_newsletter, prix_meta=None):
 <section class="price-feature">
   <div class="price-feature-txt">
     <p class="kicker">{'Outil phare' if fr else 'Flagship tool'}</p>
-    <h2>{'Prix des tôles : voyez tout de suite le bon prix et le mauvais' if fr else 'Sheet prices: see the good price and the bad one at a glance'}</h2>
+    <h2>{'Prix des tôles : repérez d’un coup d’œil le bon prix… et le mauvais' if fr else 'Sheet prices: spot a good price, and a bad one, at a glance'}</h2>
     <p>{'Acier, inox, aluminium, en tôle, plaque, barre et tube. Les prix publiés par les fournisseurs sont convertis en $ CA par pi² et par lb, le meilleur prix par spécification est mis en évidence, et chaque ligne renvoie à sa source et à l’heure du relevé.' if fr else 'Steel, stainless and aluminum in sheet, plate, bar and tube. Published supplier prices are converted to CAD per sq ft and per lb, the best price for each spec is highlighted, and every row links to its source and capture time.'}</p>
-    <div class="actions"><a class="btn btn-lg" href="{p['prices']}">{t['prices_cta_b']}</a><a class="btn btn-ghost" href="{idx['materials-grades'].url(lang) if 'materials-grades' in idx else p['guides']}">{'Comprendre les nuances' if fr else 'Understand the grades'}</a></div>
+    <div class="actions"><a class="btn btn-lg" href="{p['prices']}">{t['prices_cta_b']}</a><a class="btn btn-ghost" href="{idx['materials-grades'].url(lang) if 'materials-grades' in idx else p['guides']}">{'Comprendre les alliages' if fr else 'Understand alloys and grades'}</a></div>
   </div>
   <div class="price-feature-art" aria-hidden="true">
     <div class="pf-row pf-best"><span>A36 · 1/4"</span><b>{'meilleur' if fr else 'best'}</b></div>
@@ -93,8 +93,8 @@ def home(lang, form_newsletter, prix_meta=None):
   <a class="split-card" href="{p['used']}">
     <p class="kicker">{t['used']}</p>
     <h2>{'Occasions CNC au Québec' if fr else 'Used CNC equipment in Quebec'}</h2>
-    <p>{'Tables plasma, lasers, presses plieuses : un digest daté d’annonces publiques, et la liste de vérification avant d’acheter.' if fr else 'Plasma tables, lasers, press brakes: a dated digest of public listings, plus the checklist to use before you buy.'}</p>
-    <span class="more">{'Voir le digest' if fr else 'See the digest'} →</span>
+    <p>{'Tables plasma, lasers, plieuses, fraiseuses : des centaines d’annonces publiques au Québec et au Canada, les super aubaines repérées et la liste de vérification avant d’acheter.' if fr else 'Plasma tables, lasers, press brakes, mills: hundreds of public listings in Quebec and Canada, the standout deals flagged, and the checklist to use before you buy.'}</p>
+    <span class="more">{'Voir les annonces' if fr else 'Browse listings'} →</span>
   </a>
   <div class="split-card split-news">
     <p class="kicker">{t['news']}</p>

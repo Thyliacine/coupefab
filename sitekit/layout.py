@@ -5,7 +5,7 @@ from .taxonomy import T, PATHS, HUBS, HUB_ORDER, hub_path
 
 SITE = "https://coupefab.vercel.app"
 YEAR = "2026"
-ASSET_V = "20261126w"  # bump to bust CSS/JS caches
+ASSET_V = "20261126ux"  # bump to bust CSS/JS caches
 
 
 def esc(s: str) -> str:
@@ -22,9 +22,9 @@ def _icon(name):
 
 
 def brand_svg():
-    return ('<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15191c"/>'
-            '<path d="M6 11h20M6 21h20M6 16h8.4M17.6 16H26" stroke="#eef0ee" stroke-width="2"/>'
-            '<rect x="13.4" y="14" width="5.2" height="4" rx="1" fill="#e4572e"/></svg>')
+    # CoupeFab mark v3 ("Pli CF"): C and F as one bent sheet profile, laser dot where the cut happens.
+    return ('<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">'
+            '<rect width="32" height="32" rx="8" fill="#15191c"/><path d="M14.5 8.5H10a2.5 2.5 0 0 0-2.5 2.5v10a2.5 2.5 0 0 0 2.5 2.5h4.5" fill="none" stroke="#f4f2ec" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 23.5V11a2.5 2.5 0 0 1 2.5-2.5H25M18 16h5" fill="none" stroke="#f4f2ec" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="25.4" cy="16" r="2.2" fill="#ff5a1f"/></svg>')
 
 
 def mega_nav(lang: str, path: str) -> str:
@@ -77,6 +77,7 @@ def mega_nav(lang: str, path: str) -> str:
     </li>
     <li><a class="nav-link nav-prices" href="{p['prices']}"{cur('prices')}>{t['prices']}</a></li>
     <li><a class="nav-link" href="{p['used']}"{cur('used')}>{t['used']}</a></li>
+    <li><a class="nav-link" href="{'/fournisseurs/' if lang == 'fr' else '/en/suppliers/'}"{' aria-current="page"' if path.startswith(('/fournisseurs/', '/en/suppliers/')) else ''}>{'Fournisseurs' if lang == 'fr' else 'Suppliers'}</a></li>
     <li><a class="nav-link" href="{p['news']}"{cur('news')}>{t['news']}</a></li>
   </ul>
 </nav>"""
@@ -203,6 +204,7 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
       <ul>
         <li><a href="{p['prices']}">{t['prices']}</a></li>
         <li><a href="{p['used']}">{t['used']}</a></li>
+        <li><a href="{'/fournisseurs/' if fr else '/en/suppliers/'}">{'Fournisseurs' if fr else 'Suppliers'}</a></li>
         <li><a href="{p['news']}">{t['news']}</a></li>
         <li><a href="{p['about']}">{t['about']}</a></li>
       </ul>
