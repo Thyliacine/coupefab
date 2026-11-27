@@ -4,6 +4,7 @@
  * is not a separate Vercel Function (Hobby limit is 12).
  */
 const { saveForm } = require("./_inbox");
+const sec = require("./_security");
 
 function json(res, status, body) {
   res.statusCode = status;
@@ -14,15 +15,19 @@ function json(res, status, body) {
 
 async function handle(b, req, res) {
   if (b && b.website) return json(res, 200, { ok: true });
-  const company = String((b && b.company) || "").trim().slice(0, 200);
-  const contact = String((b && b.contact) || "").trim().slice(0, 200);
-  const email = String((b && b.email) || "").trim().toLowerCase().slice(0, 200);
-  const promote = String((b && b.promote) || "").trim().slice(0, 2000);
-  const budget = String((b && b.budget) || "").trim().slice(0, 80);
-  const message = String((b && b.message) || "").trim().slice(0, 4000);
+  const company = sec.oneLine(b && b.company, 200);
+  const contact = sec.oneLine(b && b.contact, 200);
+  const email = sec.oneLine(b && b.email, 254).toLowerCase();
+  const promote = sec.clean(b && b.promote, 2000);
+  const budget = sec.oneLine(b && b.budget, 80);
+  const message = sec.clean(b && b.message, 4000);
   const lang = b && b.lang === "en" ? "en" : "fr";
-  if (!company || !contact || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !promote) {
+  if (!company || !contact || !sec.validEmail(email) || !promote) {
     return json(res, 400, { ok: false, error: "Champs requis manquants." });
+  }
+  if (sec.limited(req, "placement", 5, 3600_000, 100)) {
+    res.setHeader("retry-after", "3600");
+    return json(res, 429, { ok: false, error: lang === "en" ? "Too many requests. Try again in an hour." : "Trop de demandes. Réessayez dans une heure." });
   }
   const text = [
     "Demande de visibilité sur CoupeFab",
@@ -45,7 +50,7 @@ async function handle(b, req, res) {
     });
     return json(res, 200, { ok: true, id: saved && saved.id, persisted: true });
   } catch (e) {
-    console.error("placement-request", e);
+    console.error("placement-request: storage failed");
     return json(res, 503, { ok: false, error: "Le formulaire n’est pas encore relié à notre boîte de réception. Réessayez bientôt." });
   }
 }

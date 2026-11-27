@@ -8,15 +8,26 @@
  * Without Blob storage the function answers 503 so the supplier is told to retry instead of being silently dropped.
  * Honeypot field "website" drops bots. Body capped at ~3.2 MB (2 MB file + base64 overhead; Vercel limit is 4.5 MB).
  */
-const fs = require("fs");
-const path = require("path");
+const sec = require("./_security");
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const URL_RE = /^https?:\/\/[^\s]+$/i;
+const URL_RE = /^https?:\/\/[^\s<>"']+$/i;
 const MAX_BODY = 3_200_000;
 const MAX_FILE = 2 * 1024 * 1024;
 const OK_TYPES = /\.(pdf|csv|xls|xlsx)$/i;
-const TMP_FILE = path.join("/tmp", "coupefab-supplier-submissions.json");
+// Content type is decided here from the extension, never taken from the browser.
+const MIME = {
+  pdf: "application/pdf",
+  csv: "text/csv",
+  xls: "application/vnd.ms-excel",
+  xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+};
+function sniff(ext, buf) {
+  if (ext === "pdf") return buf.subarray(0, 4).toString("latin1") === "%PDF";
+  if (ext === "xlsx") return buf[0] === 0x50 && buf[1] === 0x4b && buf[2] === 0x03 && buf[3] === 0x04;
+  if (ext === "xls") return buf.subarray(0, 8).equals(Buffer.from([0xd0, 0xcf, 0x11, 0xe0, 0xa1, 0xb1, 0x1a, 0xe1]));
+  if (ext === "csv") return !buf.subarray(0, 8192).includes(0);
+  return false;
+}
 
 function json(res, status, body) {
   res.statusCode = status;
@@ -32,7 +43,9 @@ function readBody(req) {
       raw += c;
       if (raw.length > MAX_BODY) { reject(new Error("too large")); req.destroy(); }
     });
-    req.on("end", () => { try { resolve(raw ? JSON.parse(raw) : {}); } catch { reject(new Error("invalid json")); } });
+    req.on("end", () => {
+      try { const v = raw ? JSON.parse(raw) : {}; resolve(v && typeof v === "object" && !Array.isArray(v) ? v : {}); } catch { reject(new Error("invalid json")); }
+    });
     req.on("error", reject);
   });
 }
@@ -41,8 +54,10 @@ const msg = (lang, fr, en) => (lang === "en" ? en : fr);
 
 async function toWebhook(entry) {
   const url = process.env.SUPPLIER_WEBHOOK_URL || process.env.NEWSLETTER_WEBHOOK_URL;
-  if (!url) return false;
-  const r = await fetch(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ type: "supplier_prices", ...entry }) });
+  if (!url || !/^https:\/\//i.test(url)) return false;
+  const { file, ...rest } = entry;  // never forward the file bytes to a third party
+  const meta = file ? { name: file.name, size: file.size, type: file.type } : null;
+  const r = await fetch(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ type: "supplier_prices", ...rest, file: meta }) });
   if (!r.ok) throw new Error("webhook " + r.status);
   return true;
 }
@@ -66,7 +81,8 @@ async function toInbox(entry) {
 }
 
 module.exports = async function handler(req, res) {
-  if (req.method !== "POST") return json(res, 405, { ok: false, error: "method not allowed" });
+  if (req.method !== "POST") { res.setHeader("allow", "POST"); return json(res, 405, { ok: false, error: "method not allowed" }); }
+  if (!sec.originOk(req)) return json(res, 403, { ok: false, error: "forbidden" });
   let b;
   try { b = await readBody(req); } catch (e) { return json(res, 413, { ok: false, error: "Fichier trop lourd / file too large (2 MB max)" }); }
   if (b.action === "brochure-token" || b.action === "brochure") return require("./_brochure").handle(b, req, res);
@@ -74,12 +90,12 @@ module.exports = async function handler(req, res) {
   const lang = b.lang === "en" ? "en" : "fr";
   if (b.website) return json(res, 200, { ok: true });
 
-  const company = String(b.company || "").trim().slice(0, 200);
-  const email = String(b.email || "").trim().toLowerCase().slice(0, 200);
-  const site = String(b.site || "").trim().slice(0, 300);
-  const price_url = String(b.price_url || "").trim().slice(0, 500);
-  const message = String(b.message || "").trim().slice(0, 2000);
-  if (!company || !EMAIL_RE.test(email)) return json(res, 400, { ok: false, error: msg(lang, "Nom de l’entreprise et courriel valide requis.", "Company name and a valid email are required.") });
+  const company = sec.oneLine(b.company, 200);
+  const email = sec.oneLine(b.email, 254).toLowerCase();
+  const site = sec.oneLine(b.site, 300);
+  const price_url = sec.oneLine(b.price_url, 500);
+  const message = sec.clean(b.message, 2000);
+  if (!company || !sec.validEmail(email)) return json(res, 400, { ok: false, error: msg(lang, "Nom de l’entreprise et courriel valide requis.", "Company name and a valid email are required.") });
   if (b.consent !== true) return json(res, 400, { ok: false, error: msg(lang, "Autorisation requise.", "Authorization required.") });
   if ((site && !URL_RE.test(site)) || (price_url && !URL_RE.test(price_url))) return json(res, 400, { ok: false, error: msg(lang, "Les liens doivent commencer par https://", "Links must start with https://") });
 
@@ -89,24 +105,28 @@ module.exports = async function handler(req, res) {
     const size = Math.floor((String(b.file.data).length * 3) / 4);
     if (!OK_TYPES.test(name)) return json(res, 400, { ok: false, error: msg(lang, "Formats acceptés : PDF, CSV, XLS, XLSX.", "Accepted formats: PDF, CSV, XLS, XLSX.") });
     if (size > MAX_FILE) return json(res, 413, { ok: false, error: msg(lang, "Fichier trop lourd (2 Mo max).", "File too large (2 MB max).") });
-    file = { name, type: String(b.file.type || "application/octet-stream").slice(0, 100), size, data: String(b.file.data) };
+    const ext = name.split(".").pop().toLowerCase();
+    const data = String(b.file.data);
+    if (!/^[A-Za-z0-9+/=\s]*$/.test(data) || !sniff(ext, Buffer.from(data.slice(0, 12000), "base64"))) {
+      return json(res, 400, { ok: false, error: msg(lang, "Le contenu du fichier ne correspond pas à son extension.", "The file content doesn’t match its extension.") });
+    }
+    file = { name, type: MIME[ext], size, data };
   }
   if (!price_url && !file) return json(res, 400, { ok: false, error: msg(lang, "Ajoutez un lien vers vos prix ou un fichier.", "Add a link to your prices or a file.") });
 
+  if (sec.limited(req, "supplier", 6, 3600_000, 120)) {
+    res.setHeader("retry-after", "3600");
+    return json(res, 429, { ok: false, error: msg(lang, "Trop d’envois. Réessayez dans une heure.", "Too many submissions. Try again in an hour.") });
+  }
+
   const entry = { company, email, site, price_url, message, lang, consent: true, status: "pending_review", file, submittedAt: new Date().toISOString() };
-  try {
-    let list = [];
-    try { list = JSON.parse(fs.readFileSync(TMP_FILE, "utf8")); } catch { list = []; }
-    list.push({ ...entry, file: file ? { name: file.name, size: file.size } : null });
-    fs.writeFileSync(TMP_FILE, JSON.stringify(list));
-  } catch (e) { console.error("tmp log failed", e); }
 
   let stored = false;
-  const errors = [];
+  let failures = 0;
   for (const fn of [toWebhook, toInbox]) {
-    try { stored = (await fn(entry)) || stored; } catch (e) { errors.push(String(e)); }
+    try { stored = (await fn(entry)) || stored; } catch { failures += 1; }
   }
-  if (errors.length) console.error("supplier-submit forward errors", errors);
+  if (failures) console.error("supplier-submit: " + failures + " storage target(s) failed");
   if (!stored) {
     return json(res, 503, { ok: false, error: msg(lang, "Le formulaire n’est pas encore relié à notre boîte de réception. Réessayez bientôt ou écrivez-nous depuis la page À propos.",
       "The form isn’t connected to our inbox yet. Please try again soon, or write to us from the About page.") });

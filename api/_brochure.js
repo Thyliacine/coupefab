@@ -14,6 +14,7 @@
 const crypto = require("crypto");
 const blob = require("./_blob");
 const inbox = require("./_inbox");
+const sec = require("./_security");
 
 const MAX_FILE = 10 * 1024 * 1024;
 const MAX_INLINE = 2 * 1024 * 1024;
@@ -74,17 +75,14 @@ function sniff(ext, buf) {
   return false;
 }
 
-function clientIp(req) {
-  const h = req.headers || {};
-  return String(h["x-real-ip"] || String(h["x-forwarded-for"] || "").split(",")[0] || "0").trim();
-}
+const clientIp = sec.clientIp;
 
 function fields(b) {
   const t = (v, n) => String(v == null ? "" : v).replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g, "").trim().slice(0, n);
   return {
     company: t(b.company, 200),
     contact: t(b.contact, 200),
-    email: t(b.email, 200).toLowerCase(),
+    email: t(b.email, 254).replace(/\s+/g, "").toLowerCase(),
     phone: t(b.phone, 60),
     message: t(b.message, 3000),
     lang: b.lang === "en" ? "en" : "fr",
@@ -95,7 +93,7 @@ function fields(b) {
 function check(f, b) {
   const L = (fr, en) => msg(f.lang, fr, en);
   if (!f.company || !f.contact) return L("Entreprise et nom de la personne-ressource requis.", "Company and contact name are required.");
-  if (!EMAIL_RE.test(f.email)) return L("Courriel invalide.", "Invalid email.");
+  if (!sec.validEmail(f.email)) return L("Courriel invalide.", "Invalid email.");
   if (f.phone && !/^[0-9+().\-\s x#poste ext]{7,60}$/i.test(f.phone)) return L("Numéro de téléphone invalide.", "Invalid phone number.");
   if (b.consent !== true) return L("Autorisation requise.", "Authorization required.");
   return "";
@@ -245,7 +243,7 @@ async function handle(b, req, res) {
     if (b.action === "brochure-token") return await issueToken(b, req, res);
     return await complete(b, req, res);
   } catch (e) {
-    console.error("brochure", e);
+    console.error("brochure failed", e && e.message);
     return json(res, 500, { ok: false, error: msg(b.lang, "Erreur d’envoi. Réessayez ou écrivez à info@coupefab.ca.", "Upload error. Try again or email info@coupefab.ca.") });
   }
 }
