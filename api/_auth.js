@@ -136,12 +136,21 @@ async function handleLogin(req, res) {
     res.setHeader("retry-after", "900");
     return json(res, 429, { ok: false, error: "Trop d’essais. Réessayez dans 15 minutes." });
   }
+  // Plain HTML form post (script blocked or not loaded yet): answer with a
+  // redirect back to /admin/ instead of a bare JSON page.
+  const isForm = /application\/x-www-form-urlencoded/i.test(String(req.headers["content-type"] || ""));
   let body = {};
-  try { body = JSON.parse(await readBody(req, 4000)) || {}; } catch { return json(res, 400, { ok: false, error: "JSON invalide." }); }
+  try {
+    const raw = await readBody(req, 4000);
+    body = isForm ? Object.fromEntries(new URLSearchParams(raw)) : (JSON.parse(raw) || {});
+  } catch { return json(res, 400, { ok: false, error: "JSON invalide." }); }
+  const redirect = (loc) => { res.statusCode = 303; res.setHeader("location", loc); res.setHeader("cache-control", "no-store"); res.end(); };
   if (!safeEqual(String(body.password || ""), password())) {
+    if (isForm) return redirect("/admin/?err=1");
     return json(res, 401, { ok: false, error: "Mot de passe incorrect." });
   }
   setSessionCookie(res, makeCookie(), MAX_AGE_S);
+  if (isForm) return redirect("/admin/");
   return json(res, 200, { ok: true });
 }
 

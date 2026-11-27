@@ -5,6 +5,39 @@
 
   function showErr(el, msg) { el.hidden = !msg; el.textContent = msg || ""; }
 
+  // Visible fallback: never leave a blank page. Inline styles + neutral id so
+  // ad-blocker cosmetic lists (which hide many "ad-*" classes) cannot hide it.
+  function fatal(msg, detail) {
+    let box = document.getElementById("cfa-fatal");
+    if (!box) {
+      box = document.createElement("div");
+      box.id = "cfa-fatal";
+      box.setAttribute("role", "alert");
+      box.style.cssText = "position:fixed;left:50%;top:1rem;transform:translateX(-50%);z-index:2147483647;max-width:40rem;width:calc(100% - 2rem);box-sizing:border-box;padding:1rem 1.2rem;background:#fff4f2;color:#7a1c12;border:2px solid #a3261b;border-radius:10px;font:15px/1.45 system-ui,'Segoe UI',sans-serif;box-shadow:0 8px 28px rgba(0,0,0,.15);display:block;visibility:visible;opacity:1";
+      document.body.appendChild(box);
+    }
+    box.innerHTML = "";
+    const p = document.createElement("p"); p.style.cssText = "margin:0 0 .5rem;font-weight:650"; p.textContent = msg; box.appendChild(p);
+    if (detail) { const d = document.createElement("p"); d.style.cssText = "margin:0 0 .6rem;font:12px/1.4 ui-monospace,monospace;color:#5a1a12;word-break:break-word"; d.textContent = String(detail).slice(0, 400); box.appendChild(d); }
+    const r = document.createElement("button"); r.type = "button"; r.textContent = "Recharger la page";
+    r.style.cssText = "min-height:40px;padding:0 1rem;border:0;border-radius:8px;background:#c2410c;color:#fff;font:inherit;font-weight:650;cursor:pointer";
+    r.addEventListener("click", () => location.reload());
+    box.appendChild(r);
+  }
+  window.addEventListener("error", (e) => fatal("Erreur dans la page admin.", e && (e.message || e.error)));
+  window.addEventListener("unhandledrejection", (e) => fatal("Erreur dans la page admin.", e && e.reason && (e.reason.message || e.reason)));
+
+  // An extension (ad blocker) can hide the panel with CSS; detect it and say so.
+  function checkVisible(el, what) {
+    setTimeout(() => {
+      if (!el || el.hidden) return;
+      const r = el.getBoundingClientRect(), cs = getComputedStyle(el);
+      if (r.height < 20 || cs.display === "none" || cs.visibility === "hidden" || Number(cs.opacity) === 0) {
+        fatal(what + " par une extension du navigateur (bloqueur de pub ?). Désactivez-la pour coupefab.ca, puis rechargez.");
+      }
+    }, 300);
+  }
+
   async function api(url, opts) {
     const r = await fetch(url, { credentials: "same-origin", headers: { accept: "application/json", ...(opts && opts.body ? { "content-type": "application/json" } : {}) }, ...opts });
     const data = await r.json().catch(() => ({}));
@@ -13,17 +46,34 @@
     return data;
   }
 
+  function showLogin() {
+    loginBox.hidden = false; app.hidden = true;
+    checkVisible(loginBox, "Le formulaire de connexion est masqué");
+  }
+
   async function checkSession() {
+    let me;
     try {
-      const me = await api("/api/admin/me");
-      outbound = !!me.outbound;
-      loginBox.hidden = true; app.hidden = false;
-      await loadInbox();
-      return true;
+      me = await api("/api/admin/me");
     } catch (e) {
-      loginBox.hidden = false; app.hidden = true;
+      showLogin();
+      if (!e.auth) showErr($("login-err"), (e.data && e.data.error) || "Le serveur admin ne répond pas. Réessayez dans un instant.");
       return false;
     }
+    outbound = !!me.outbound;
+    loginBox.hidden = true; app.hidden = false;
+    checkVisible(app, "La boîte de réception est masquée");
+    try {
+      await loadInbox();
+    } catch (e) {
+      if (e.auth) { showLogin(); return false; }
+      $("counts").textContent = "";
+      $("list").innerHTML = "";
+      const li = document.createElement("li"); li.className = "cfa-err";
+      li.textContent = "Impossible de charger la boîte : " + ((e.data && e.data.error) || e.message || "erreur inconnue") + ". Rechargez la page.";
+      $("list").appendChild(li);
+    }
+    return true;
   }
 
   $("login-form").addEventListener("submit", async (ev) => {
@@ -43,9 +93,9 @@
     currentId = null; loginBox.hidden = false; app.hidden = true;
   });
 
-  document.querySelectorAll(".ad-tabs button").forEach((btn) => {
+  document.querySelectorAll(".cfa-tabs button").forEach((btn) => {
     btn.addEventListener("click", async () => {
-      document.querySelectorAll(".ad-tabs button").forEach((b) => b.setAttribute("aria-selected", b === btn ? "true" : "false"));
+      document.querySelectorAll(".cfa-tabs button").forEach((b) => b.setAttribute("aria-selected", b === btn ? "true" : "false"));
       $("tab-inbox").hidden = btn.dataset.tab !== "inbox";
       $("tab-settings").hidden = btn.dataset.tab !== "settings";
       if (btn.dataset.tab === "settings") await loadSettings();
@@ -72,7 +122,7 @@
     const ul = $("list");
     ul.innerHTML = "";
     if (!data.messages || !data.messages.length) {
-      ul.innerHTML = '<li class="ad-empty">Aucun message.</li>';
+      ul.innerHTML = '<li class="cfa-empty">Aucun message.</li>';
       return;
     }
     for (const m of data.messages) {
@@ -80,11 +130,17 @@
       const b = document.createElement("button");
       b.type = "button";
       if (m.id === currentId) b.className = "is-on";
-      b.innerHTML = '<div class="ad-from"><span></span><span class="ad-pill ' + (m.status === "new" ? "ad-pill-new" : "") + '"></span></div><div class="ad-sub"></div>';
-      b.querySelector(".ad-from span").textContent = m.fromName || m.from || "(sans nom)";
-      b.querySelector(".ad-pill").textContent = (typeLabel[m.type] || m.type) + " · " + (statusLabel[m.status] || m.status);
-      b.querySelector(".ad-sub").textContent = (m.subject || m.preview || "") + (m.createdAt ? " — " + m.createdAt.replace("T", " ").slice(0, 16) : "");
-      b.addEventListener("click", () => openMessage(m.id));
+      b.innerHTML = '<div class="cfa-from"><span></span><span class="cfa-pill ' + (m.status === "new" ? "cfa-pill-new" : "") + '"></span></div><div class="cfa-sub"></div>';
+      b.querySelector(".cfa-from span").textContent = m.fromName || m.from || "(sans nom)";
+      b.querySelector(".cfa-pill").textContent = (typeLabel[m.type] || m.type) + " · " + (statusLabel[m.status] || m.status);
+      b.querySelector(".cfa-sub").textContent = (m.subject || m.preview || "") + (m.createdAt ? " — " + m.createdAt.replace("T", " ").slice(0, 16) : "");
+      b.addEventListener("click", () => openMessage(m.id).catch((e) => {
+        if (e.auth) return showLogin();
+        const d = $("detail"); d.innerHTML = "";
+        const p = document.createElement("p"); p.className = "cfa-err";
+        p.textContent = "Impossible d’ouvrir ce message : " + ((e.data && e.data.error) || e.message || "erreur inconnue");
+        d.appendChild(p);
+      }));
       li.appendChild(b); ul.appendChild(li);
     }
   }
@@ -96,7 +152,7 @@
 
   async function openMessage(id) {
     currentId = id;
-    document.querySelectorAll(".ad-list button").forEach((b, i) => {});
+    document.querySelectorAll(".cfa-list button").forEach((b, i) => {});
     const data = await api("/api/admin/inbox?id=" + encodeURIComponent(id));
     const m = data.message;
     if (m.status === "new") {
@@ -109,7 +165,7 @@
   function fieldRows(fields) {
     if (!fields || typeof fields !== "object") return "";
     const skip = new Set(["consent", "file"]);
-    let html = '<dl class="ad-fields">';
+    let html = '<dl class="cfa-fields">';
     for (const [k, v] of Object.entries(fields)) {
       if (skip.has(k) || v == null || v === "") continue;
       const val = Array.isArray(v) ? v.join(", ") : (typeof v === "object" ? JSON.stringify(v) : String(v));
@@ -135,14 +191,14 @@
     const h = document.createElement("h2");
     h.textContent = m.subject || "(sans objet)";
     const meta = document.createElement("p");
-    meta.className = "ad-meta";
+    meta.className = "cfa-meta";
     meta.textContent = (typeLabel[m.type] || m.type) + " · " + (m.fromName ? m.fromName + " <" + m.from + ">" : m.from) + (m.to ? " → " + m.to : "") + (m.createdAt ? " · " + m.createdAt.replace("T", " ").slice(0, 19) : "");
     el.appendChild(h); el.appendChild(meta);
     const actions = document.createElement("div");
-    actions.className = "ad-actions";
+    actions.className = "cfa-actions";
     for (const st of ["new", "read", "archived"]) {
       const b = document.createElement("button");
-      b.type = "button"; b.className = "ad-btn" + (m.status === st ? "" : " ad-btn-ghost");
+      b.type = "button"; b.className = "cfa-btn" + (m.status === st ? "" : " cfa-btn-ghost");
       b.textContent = "Marquer " + statusLabel[st].toLowerCase();
       b.addEventListener("click", async () => {
         await api("/api/admin/inbox", { method: "PATCH", body: JSON.stringify({ id: m.id, status: st }) });
@@ -158,12 +214,12 @@
       el.appendChild(box);
     }
     if (m.text) {
-      const pre = document.createElement("div"); pre.className = "ad-body"; pre.textContent = m.text; el.appendChild(pre);
+      const pre = document.createElement("div"); pre.className = "cfa-body"; pre.textContent = m.text; el.appendChild(pre);
     } else if (m.html) {
-      const pre = document.createElement("div"); pre.className = "ad-body"; pre.textContent = m.html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim(); el.appendChild(pre);
+      const pre = document.createElement("div"); pre.className = "cfa-body"; pre.textContent = m.html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim(); el.appendChild(pre);
     }
     if (m.attachments && m.attachments.length) {
-      const ul = document.createElement("ul"); ul.className = "ad-atts";
+      const ul = document.createElement("ul"); ul.className = "cfa-atts";
       for (const a of m.attachments) {
         const li = document.createElement("li");
         const link = document.createElement("a");
@@ -174,10 +230,10 @@
       el.appendChild(ul);
     }
     if (m.replies && m.replies.length) {
-      const ul = document.createElement("ul"); ul.className = "ad-thread";
+      const ul = document.createElement("ul"); ul.className = "cfa-thread";
       for (const r of m.replies) {
         const li = document.createElement("li");
-        li.innerHTML = "<b></b> <span class='ad-meta'></span><div class='ad-body'></div>";
+        li.innerHTML = "<b></b> <span class='cfa-meta'></span><div class='cfa-body'></div>";
         li.querySelector("b").textContent = "Réponse à " + (r.to || "");
         li.querySelector("span").textContent = r.at ? r.at.replace("T", " ").slice(0, 19) : "";
         li.querySelector("div").textContent = r.text || "";
@@ -186,8 +242,8 @@
       el.appendChild(ul);
     }
     const form = document.createElement("form");
-    form.className = "ad-reply";
-    form.innerHTML = '<h3>Répondre</h3><label><span>Destinataire</span><input type="email" name="to" required></label><label><span>Objet</span><input type="text" name="subject"></label><label><span>Message</span><textarea name="text" required></textarea></label><button type="submit" class="ad-btn">Envoyer</button><p class="ad-hint" id="reply-hint"></p><p class="ad-err" id="reply-err" hidden></p>';
+    form.className = "cfa-reply";
+    form.innerHTML = '<h3>Répondre</h3><label><span>Destinataire</span><input type="email" name="to" required></label><label><span>Objet</span><input type="text" name="subject"></label><label><span>Message</span><textarea name="text" required></textarea></label><button type="submit" class="cfa-btn">Envoyer</button><p class="cfa-hint" id="reply-hint"></p><p class="cfa-err" id="reply-err" hidden></p>';
     form.to.value = m.from || "";
     form.subject.value = m.subject && !/^re:/i.test(m.subject) ? "Re: " + m.subject : (m.subject || "CoupeFab");
     if (!outbound) {
@@ -339,5 +395,6 @@
     const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "coupefab-admin-settings.json"; a.click();
   });
 
+  if (/[?&]err=1\b/.test(location.search)) showErr($("login-err"), "Mot de passe incorrect.");
   checkSession();
 })();

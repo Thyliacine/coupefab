@@ -10,36 +10,37 @@
   <link rel="stylesheet" href="/admin/admin.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 </head>
-<body class="ad">
+<body class="cfa">
+  <noscript><p style="max-width:26rem;margin:2rem auto;padding:1rem;border:2px solid #a3261b;border-radius:10px;background:#fff4f2;color:#7a1c12;font:15px/1.45 system-ui,sans-serif">JavaScript est requis pour l’admin. Activez-le pour coupefab.ca.</p></noscript>
   <div id="login" hidden>
-    <form id="login-form" class="ad-login" method="post" action="/api/admin/login" autocomplete="current-password">
-      <p class="ad-kicker">CoupeFab</p>
+    <form id="login-form" class="cfa-login" method="post" action="/api/admin/login" autocomplete="current-password">
+      <p class="cfa-kicker">CoupeFab</p>
       <h1>Administration</h1>
-      <p class="ad-lede">Boîte de réception et réglages. Les messages restent ici ; rien n’est envoyé vers une boîte Gmail.</p>
+      <p class="cfa-lede">Boîte de réception et réglages. Les messages restent ici ; rien n’est envoyé vers une boîte Gmail.</p>
       <label><span>Mot de passe</span>
         <input type="password" name="password" id="password" required minlength="1" autocomplete="current-password">
       </label>
-      <button type="submit" class="ad-btn">Ouvrir</button>
-      <p id="login-err" class="ad-err" role="alert" hidden></p>
+      <button type="submit" class="cfa-btn">Ouvrir</button>
+      <p id="login-err" class="cfa-err" role="alert" hidden></p>
     </form>
   </div>
 
   <div id="app" hidden>
-    <header class="ad-top">
-      <div class="ad-brand">
-        <a href="https://coupefab.ca/" class="ad-logo">CoupeFab</a>
+    <header class="cfa-top">
+      <div class="cfa-brand">
+        <a href="https://coupefab.ca/" class="cfa-logo">CoupeFab</a>
         <span>Admin</span>
       </div>
-      <nav class="ad-tabs" role="tablist">
+      <nav class="cfa-tabs" role="tablist">
         <button type="button" role="tab" aria-selected="true" data-tab="inbox">Boîte de réception</button>
         <button type="button" role="tab" aria-selected="false" data-tab="settings">Interrupteurs et partenariats</button>
       </nav>
-      <button type="button" id="logout" class="ad-btn ad-btn-ghost">Quitter</button>
+      <button type="button" id="logout" class="cfa-btn cfa-btn-ghost">Quitter</button>
     </header>
 
-    <section id="tab-inbox" class="ad-panel" role="tabpanel">
-      <div class="ad-toolbar">
-        <label class="ad-search"><span>Recherche</span>
+    <section id="tab-inbox" class="cfa-panel" role="tabpanel">
+      <div class="cfa-toolbar">
+        <label class="cfa-search"><span>Recherche</span>
           <input type="search" id="q" placeholder="Nom, courriel, objet, texte…">
         </label>
         <label><span>Type</span>
@@ -60,19 +61,19 @@
             <option value="archived">Archivés</option>
           </select>
         </label>
-        <a class="ad-btn ad-btn-ghost" id="csv" href="/api/admin/inbox?format=csv">Exporter CSV</a>
+        <a class="cfa-btn cfa-btn-ghost" id="csv" href="/api/admin/inbox?format=csv">Exporter CSV</a>
       </div>
-      <p id="counts" class="ad-counts"></p>
-      <div class="ad-split">
-        <ul id="list" class="ad-list" aria-label="Messages"></ul>
-        <article id="detail" class="ad-detail">
-          <p class="ad-empty">Choisissez un message.</p>
+      <p id="counts" class="cfa-counts"></p>
+      <div class="cfa-split">
+        <ul id="list" class="cfa-list" aria-label="Messages"></ul>
+        <article id="detail" class="cfa-detail">
+          <p class="cfa-empty">Choisissez un message.</p>
         </article>
       </div>
     </section>
 
-    <section id="tab-settings" class="ad-panel" role="tabpanel" hidden>
-      <p class="ad-note" id="settings-note"></p>
+    <section id="tab-settings" class="cfa-panel" role="tabpanel" hidden>
+      <p class="cfa-note" id="settings-note"></p>
       <form id="settings-form">
         <fieldset>
           <legend>Interrupteurs (site public, après rebuild)</legend>
@@ -80,28 +81,28 @@
         </fieldset>
         <fieldset>
           <legend>Partenaire (non rémunéré)</legend>
-          <p class="ad-hint">Pastille « Partenaire » dans les listes d’ateliers. À divulguer sur la page Divulgation.</p>
-          <div id="partners" class="ad-partner-list"></div>
+          <p class="cfa-hint">Pastille « Partenaire » dans les listes d’ateliers. À divulguer sur la page Divulgation.</p>
+          <div id="partners" class="cfa-partner-list"></div>
         </fieldset>
         <fieldset>
           <legend>Commanditaires de l’infolettre</legend>
-          <div class="ad-table-wrap"><table id="sponsors"></table></div>
+          <div class="cfa-table-wrap"><table id="sponsors"></table></div>
         </fieldset>
         <fieldset>
           <legend>Liens affiliés</legend>
-          <p class="ad-hint">Laisser l’URL vide tant que vous n’êtes pas inscrit au programme. Une URL vide n’est jamais affichée.</p>
-          <div class="ad-table-wrap"><table id="affiliates"></table></div>
+          <p class="cfa-hint">Laisser l’URL vide tant que vous n’êtes pas inscrit au programme. Une URL vide n’est jamais affichée.</p>
+          <div class="cfa-table-wrap"><table id="affiliates"></table></div>
         </fieldset>
-        <fieldset class="ad-ro">
+        <fieldset class="cfa-ro">
           <legend>Fournisseurs en vedette (lecture seule)</legend>
-          <p class="ad-hint">En vedette = abonnement payé actif, géré par le crochet Stripe. Pas de sélection manuelle.</p>
-          <div class="ad-table-wrap"><table id="featured"></table></div>
+          <p class="cfa-hint">En vedette = abonnement payé actif, géré par le crochet Stripe. Pas de sélection manuelle.</p>
+          <div class="cfa-table-wrap"><table id="featured"></table></div>
         </fieldset>
         <p>
-          <button type="submit" class="ad-btn">Enregistrer dans l’admin</button>
-          <button type="button" id="export-settings" class="ad-btn ad-btn-ghost">Télécharger le JSON</button>
+          <button type="submit" class="cfa-btn">Enregistrer dans l’admin</button>
+          <button type="button" id="export-settings" class="cfa-btn cfa-btn-ghost">Télécharger le JSON</button>
         </p>
-        <p id="settings-msg" class="ad-ok" hidden></p>
+        <p id="settings-msg" class="cfa-ok" hidden></p>
       </form>
     </section>
   </div>
