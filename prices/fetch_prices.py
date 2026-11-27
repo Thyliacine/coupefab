@@ -37,6 +37,7 @@ from bs4 import BeautifulSoup
 sys.path.insert(0, str(Path(__file__).parent))
 import normalize as N  # noqa: E402
 import fetch_more as M  # noqa: E402
+import fetch_sweep5 as S5  # noqa: E402
 from store import read_latest, write_latest  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -303,6 +304,17 @@ SUPPLIERS = {
                   "shipping": "Entrepôt à Ottawa; livraison partout au Canada (frais en sus). Prix du catalogue public au pied ou au pi²; coupe et autres frais en sus. Chutes / offcuts et lots aléatoires non ajoutés (surplus).",
                   "shipping_en": "Warehouse in Ottawa; ships across Canada (freight extra). Public catalogue prices per foot or per sq ft; cutting and other fees extra. Offcuts and random-length bundles not added (surplus).",
                   "method": "Outil de prix public (quote.metalpros.com) : GET /api/materials/getdbmaterial, le même que la page catalogue"},
+    "pmabitibi": {"id": "pmabitibi", "name": "Pièces et Matériaux Abitibi", "city": "Rivière-Héva (QC)", "region": "QC",
+                  "site": "https://www.pmabitibi.com", "currency": "CAD", "ships_qc": "cueillette",
+                  "shipping": "Cueillette à Rivière-Héva (Abitibi). Prix affichés avant taxes, coupe comprise sur l’acier. Largeur de la tôle profilée non publiée.",
+                  "shipping_en": "Pickup in Rivière-Héva (Abitibi). Posted prices before tax; cutting included on bar and tube. Profiled-sheet width is not published.",
+                  "method": "Tableaux de prix publics (pages HTML /tole et /acier)"},
+    "knifemaker": {"id": "knifemaker", "name": "KnifeMaker", "city": "Brisco (C.-B.)", "region": "CA",
+                   "site": "https://www.knifemaker.ca", "currency": "CAD", "ships_qc": "oui",
+                   "shipping": "Barres et feuilles de spécialité (aciers à outils, titane, laiton, cuivre). Expédition au Canada depuis Brisco (C.-B.).",
+                   "shipping_en": "Specialty bar and sheet (tool steels, titanium, brass, copper). Ships across Canada from Brisco, BC.",
+                   "method": "Vitrine Shopify publique (products.json des collections métal)"},
+
 }
 
 # Suppliers we checked that do not publish prices, or that we cannot read politely.
@@ -1322,6 +1334,15 @@ def fetch_metalpros(fx, quick=False):
     return rows
 
 
+
+def fetch_pmabitibi(fx, quick=False):
+    return S5.fetch_pmabitibi(get, make_row, SUPPLIERS["pmabitibi"], fx, quick=quick)
+
+
+def fetch_knifemaker(fx, quick=False):
+    return S5.fetch_knifemaker(get, make_row, SUPPLIERS["knifemaker"], fx, quick=quick)
+
+
 FETCHERS = {
     "metalsrus": fetch_metalsrus, "metalsdepot": fetch_metalsdepot, "unitedstainless": fetch_unitedstainless,
     "mercier40": fetch_mercier40, "princessauto": fetch_princessauto, "millennium": fetch_millennium,
@@ -1331,6 +1352,7 @@ FETCHERS = {
     "optikutz": fetch_optikutz, "recyborg": fetch_recyborg, "lasersupply": fetch_lasersupply,
     "aircraftspruce": fetch_aircraftspruce, "cobalt": fetch_cobalt,
     "metalpros": fetch_metalpros,
+    "pmabitibi": fetch_pmabitibi, "knifemaker": fetch_knifemaker,
 }
 # Weekly set (bars/tubes, many requests): on a daily run their rows are kept from the last weekly run.
 WEEKLY = {"acierterrebonne", "recyborg"}

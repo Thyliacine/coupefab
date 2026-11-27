@@ -114,3 +114,13 @@ pass,query,url,name,location,has_public_prices,ships_to_qc,robots_ok,status,note
 5,third-party catalog / public price source sweep,https://novametals.ca/,Nova Metals Ltd,Stony Plain AB,N,N,Y,quote-only,Walk-in metal supply with no public catalog or prices. Not Novametal (Lévis QC).,2026-11-26
 5,third-party catalog / public price source sweep,https://www.russelmetals.com/wp-content/uploads/centres-de-service-guide-des-produits.pdf,Russel Metals / Acier Leroux,Quebec service centres,N,Y,Y,quote-only,Public Products Guide PDF lists sizes and weights only; no selling prices. Quote only.,2026-11-26
 5,third-party catalog / public price source sweep,https://www.aciermajeau.com/,AQM / Acier Majeau,Quebec,N,Y,?,quote-only,Carnet de références (ed. 2 2008/2020) is a dimension/weight handbook with no selling prices. Quote only.,2026-11-26
+5,full internet sweep 5 public catalogs,https://www.pmabitibi.com/tole,Pièces et Matériaux Abitibi,"Rivière-Héva, QC",Y,cueillette,Y,added,HTML price tables /tole and /acier; jdpmecanique.com redirects here,2026-11-26
+5,full internet sweep 5 public catalogs,https://www.knifemaker.ca/products.json,KnifeMaker,"Brisco, BC",Y,Y,Y,added,"Shopify metal-stock collections (tool steel, titanium, brass, copper)",2026-11-26
+5,full internet sweep 5 tooling,https://oxypro-inc.com/products.json,Oxypro,"Trois-Rivières, QC",Y,Y,Y,noted_tooling,Shopify plasma/welding consumables; not added to sheet-price fetcher,2026-11-26
+5,full internet sweep 5 public catalogs,https://gampindustries.com/wp-json/wc/store/v1/products,Gamp Industries,,partial,?,Y,partial_not_integrated,Woo prices often per ton or $0; already in directory,2026-11-26
+5,full internet sweep 5 public catalogs,https://reliablesteel.ca/,Reliable Steel Traders,"Port Coquitlam, BC",N,?,Y,quote-only,Service centre + CNC plasma; quote only,2026-11-26
+5,full internet sweep 5 public catalogs,https://www.metra-aluminium.com/,Metra Aluminium,"Laval, QC",N,?,N,blocked,robots.txt HTTP 202; not bypassed,2026-11-26
+5,full internet sweep 5 public catalogs,https://onlinemetals.ca/,onlinemetals.ca,,N,?,N,unreachable,HTTP 522,2026-11-26
+5,full internet sweep 5 public catalogs,https://store.buymetal.com/products.json,BuyMetal,,?,?,Y,not_shopify,products.json is not a Shopify feed; Canada shipping unconfirmed,2026-11-26
+5,full internet sweep 5 association directories,https://steelplus.com/fr/trouver-un-fabricant/,Réseau Acier Plus (directory),,N,-,Y,directory,Canadian fabricator directory used to add missing shops (no public prices),2026-11-26
+5,full internet sweep 5 association directories,https://www.trans-al.com/liste-des-membres,Réseau Trans-Al / AMQ,,N,-,Y,directory,Quebec aluminum and AMQ member lists,2026-11-26
