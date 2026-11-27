@@ -87,3 +87,7 @@ Never deploy a demo build.
 - `quote_requests`: set `QUOTE_INBOX` or `QUOTE_WEBHOOK_URL` first, and reread the consent text against the privacy page.
 - `affiliate_links`: join the program yourself, then paste the URL.
 - `featured_suppliers`: see section 3.
+
+## Note : noms de classes
+
+Ne jamais préfixer les classes ou id de l’admin par `ad-` (ni `ad`, `ads`, `advert`…) : les listes des bloqueurs de pub (EasyList, Liste FR) masquent `.ad-top`, `.ad-panel`, `.ad-btn`, `.ad-tabs`, `.ad-detail`, ce qui donnait une page blanche après connexion. Le préfixe est `cfa-`.
