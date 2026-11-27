@@ -45,15 +45,15 @@ TEAM = "team_51rPr828F5cibUCQd4qzdhyb"
 BUILD_SETTINGS = {"buildCommand": "mkdir -p public && tar xzf site.tgz -C public",
                   "outputDirectory": "public", "installCommand": "", "framework": None}
 # source / data folders that are never served
-SOURCE_DIRS = {"content", "data", "scripts", "sitekit", "prices", "used", "parts", "suppliers",
+SOURCE_DIRS = {"api", "tests", "content", "data", "scripts", "sitekit", "prices", "used", "parts", "suppliers",
                "assets", "node_modules", "public", "__pycache__", "tooling"}
 
 INCLUDE_TOP = [
     "index.html", "404.html", "favicon.svg", "apple-touch-icon.png",
     "site.webmanifest", "manifest.webmanifest", "sw.js", "robots.txt", "sitemap.xml",
 ]
-INCLUDE_DIRS = [
-    "a-propos", "api", "confidentialite", "css", "divulgation", "en",
+INCLUDE_DIRS = [  # api/ is deployed as functions (src/api), never as static files
+    "a-propos", "confidentialite", "css", "divulgation", "en",
     "fonts", "guides", "icons", "infolettre", "js", "og", "occasions", "prix",
 ]
 
