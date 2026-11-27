@@ -43,7 +43,7 @@ Exemples tirés du tableau Sandvik Coromant (valeurs théoriques pour les rayons
 | Porte-à-faux long | Réduire le porte-à-faux ; plus gros diamètre de barre ; barre carbure ou antivibratoire |
 | Serrage de la barre insuffisant | Allonger la longueur de serrage (au moins 3 × le diamètre de la barre) |
 | Outil mal positionné | Vérifier la hauteur de centre |
-| Usure en dépouille excessive | Nuance plus résistante à l’usure ou vitesse réduite |
+| Usure en dépouille excessive | Grade de carbure plus résistant à l’usure ou vitesse réduite |
 
 ## Démarche de diagnostic
 
@@ -81,7 +81,7 @@ Celle du dessin. Voir [[tolerances]] pour lier rugosité et procédé.
 
 ## À valider en atelier (Michaël)
 
-- Plaquettes et nuances qui fonctionnent sur nos tours, par matière.
+- Plaquettes et grades de carbure qui fonctionnent sur nos tours, par matière.
 - Longueurs de barre d’alésage maximales en pratique.
 
 ## Sources

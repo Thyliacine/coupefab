@@ -39,7 +39,7 @@ Les **mors doux** (aluminium ou acier doux) sont usinés sur la machine à la fo
 - les séries, avec une butée intégrée ;
 - les pièces fragiles qu’il ne faut pas marquer.
 
-Bonne pratique : usiner les mors **serrés sur une cale** à la même force de serrage que la production, pour que la forme corresponde à l’état serré.
+Bonne pratique d’atelier (ce n’est pas une consigne tirée du manuel Kurt) : usiner les mors **serrés sur une cale** à la même force de serrage que la production, pour que la forme corresponde à l’état serré.
 
 ## Répétabilité : butées et origines
 
@@ -111,7 +111,7 @@ Per the Kurt vise manual:
 - production runs, with a built-in stop;
 - delicate parts that must not be marked.
 
-Good practice: machine the jaws **clamped on a spacer** at the same clamping force as production, so the shape matches the clamped state.
+Common shop practice (not an instruction from the Kurt manual): machine the jaws **clamped on a spacer** at the same clamping force as production, so the shape matches the clamped state.
 
 ## Repeatability: stops and offsets
 

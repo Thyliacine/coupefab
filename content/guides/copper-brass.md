@@ -80,7 +80,7 @@ Il suit le cours du métal sur les marchés (LME/COMEX) ; vérifiez les prix cou
 - [Copper Development Association — C11000](https://alloys.copper.org/alloy/C11000), consulté le 26 novembre 2026.
 - [Copper Development Association — C95400](https://alloys.copper.org/alloy/C95400), consulté le 26 novembre 2026.
 - [Concast — Continuous-cast machinability ratings (PDF)](https://www.concast.com/files/cast_machinability_ratings.pdf), consulté le 26 novembre 2026.
-- [Copper Development Association — Comparative machinability of brasses (PDF)](https://archive.copper.org/applications/rodbar/pdf/a7009.pdf), consulté le 26 novembre 2026.
+- [Copper Development Association — Comparative machinability of brasses (PDF)](https://copper.org/wp-content/uploads/2026/05/a7009-1.pdf), consulté le 26 novembre 2026.
 === en
 Copper alloys use the **UNS** system (C + 5 digits, often shortened to 3: C11000 = C110). Their machinability is rated on a scale where **free-cutting brass C36000 = 100**, per the Copper Development Association.
 
@@ -145,4 +145,4 @@ It tracks the metal market (LME/COMEX); check current prices before quoting (see
 - [Copper Development Association — C11000](https://alloys.copper.org/alloy/C11000), consulted November 26, 2026.
 - [Copper Development Association — C95400](https://alloys.copper.org/alloy/C95400), consulted November 26, 2026.
 - [Concast — Continuous-cast machinability ratings (PDF)](https://www.concast.com/files/cast_machinability_ratings.pdf), consulted November 26, 2026.
-- [Copper Development Association — Comparative machinability of brasses (PDF)](https://archive.copper.org/applications/rodbar/pdf/a7009.pdf), consulted November 26, 2026.
+- [Copper Development Association — Comparative machinability of brasses (PDF)](https://copper.org/wp-content/uploads/2026/05/a7009-1.pdf), consulted November 26, 2026.
