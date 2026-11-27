@@ -57,6 +57,16 @@ Les lasers de découpe industriels sont de **classe 4** : le faisceau direct ou 
 
 Les graveurs à diode ou à fibre de faible puissance (galvo) gravent et marquent ; ils ne coupent pas de tôle d’acier. Leur logiciel courant est LightBurn (voir [LightBurn](/guides/lightburn-laser/)).
 
+## Liste de vérification
+
+- [ ] Tableau de paramètres du fabricant pour la puissance, le gaz et l’épaisseur
+- [ ] Bon gaz d’assistance (oxygène, azote ou air) à la pression et à la pureté prévues
+- [ ] Position du foyer et buse vérifiées
+- [ ] Vitre (lentille) de protection propre
+- [ ] Tôle propre ; film plastique placé du côté recommandé par le fabricant
+- [ ] Cuivre et laiton : paramètres et protections du fabricant (réflexion arrière)
+- [ ] Enceinte et verrouillages intacts (laser de classe 4)
+
 ## FAQ
 
 ### Combien d’épaisseur coupe un laser de X kW ?
@@ -115,6 +125,16 @@ Industrial cutting lasers are **class 4**: the direct or reflected beam can inju
 ## Small “hobby” lasers and engravers
 
 Low-power diode or fiber (galvo) engravers engrave and mark; they do not cut steel sheet. Their common software is LightBurn (see [LightBurn](/en/guides/lightburn-laser/)).
+
+## Checklist
+
+- [ ] Maker’s parameter table for the power, gas and thickness
+- [ ] Right assist gas (oxygen, nitrogen or air) at the specified pressure and purity
+- [ ] Focus position and nozzle checked
+- [ ] Protective window (cover glass) clean
+- [ ] Clean sheet; plastic film on the side the maker recommends
+- [ ] Copper and brass: maker’s parameters and protections (back reflection)
+- [ ] Enclosure and interlocks intact (class 4 laser)
 
 ## FAQ
 

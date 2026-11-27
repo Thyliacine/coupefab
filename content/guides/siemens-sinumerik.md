@@ -16,6 +16,7 @@ fr_title: Siemens Sinumerik (828D, 840D sl, ONE) : frames, origines G54–G599 e
 en_title: Siemens Sinumerik (828D, 840D sl, ONE): frames, G54–G599 offsets and ISO mode
 fr_desc: Ce qui change sur une commande Sinumerik : origines G54–G57 et G505–G599, G500, frames programmables TRANS/ATRANS, cycles comme CYCLE800, et le passage au dialecte ISO avec G291/G290.
 en_desc: What changes on a Sinumerik control: G54–G57 and G505–G599 offsets, G500, programmable frames TRANS/ATRANS, cycles such as CYCLE800, and switching to ISO dialect with G291/G290.
+codes: siemens
 ---
 === fr
 Les commandes **Siemens Sinumerik** (828D, 840D sl et la génération ONE) équipent beaucoup de centres d’usinage européens, de tours et de machines 5 axes. Elles peuvent lire du code de type ISO (Fanuc), mais leur langage natif repose sur des **frames** et des **cycles** propres à Siemens. Bien comprendre cette différence évite la plupart des surprises.

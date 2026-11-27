@@ -22,12 +22,12 @@ Un outil s’use toujours ; la question est **comment** et **à quelle vitesse**
 
 | Mode | À quoi ça ressemble | Causes typiques | Correctif |
 |---|---|---|---|
-| Usure en dépouille | Bande d’usure régulière sous l’arête | Usure normale ; trop rapide si vitesse trop élevée | Réduire la vitesse, nuance plus résistante à l’usure |
-| Cratère | Creux sur la face de coupe | Diffusion/chimie à haute température (vitesse élevée) | Réduire la vitesse, nuance revêtue adaptée |
+| Usure en dépouille | Bande d’usure régulière sous l’arête | Usure normale ; trop rapide si vitesse trop élevée | Réduire la vitesse, grade de carbure plus résistant à l’usure |
+| Cratère | Creux sur la face de coupe | Diffusion/chimie à haute température (vitesse élevée) | Réduire la vitesse, grade revêtu adapté |
 | Arête rapportée (BUE) | Matière soudée sur l’arête | Matière collante (alu, inox, cuivre), vitesse/température trop basses | Augmenter la vitesse, arête plus vive, lubrification |
-| Écaillage | Petits éclats sur l’arête | Coupe interrompue, vibrations, arête trop fragile | Nuance plus tenace, arête renforcée, rigidité |
+| Écaillage | Petits éclats sur l’arête | Coupe interrompue, vibrations, arête trop fragile | Grade de carbure plus tenace, arête renforcée, rigidité |
 | Usure en entaille | Encoche à la profondeur de passe | Écrouissage (inox, superalliages), croûte | Varier la profondeur de passe, angle d’attaque plus faible |
-| Déformation plastique | Arête affaissée | Température et effort excessifs | Réduire vitesse/avance, nuance plus dure |
+| Déformation plastique | Arête affaissée | Température et effort excessifs | Réduire vitesse/avance, grade plus dur |
 | Fissures thermiques | Fissures perpendiculaires à l’arête | Chocs thermiques (arrosage intermittent) | Arrosage continu ou à sec selon la recommandation |
 
 ## Ce qui use le plus : la vitesse
@@ -47,7 +47,7 @@ En pratique : pour gagner de la durée de vie sans perdre de productivité, on *
 
 | Donnée | Pourquoi |
 |---|---|
-| Référence outil + nuance | Comparer les fournisseurs |
+| Référence outil + grade de carbure | Comparer les fournisseurs |
 | Matière usinée | La durée de vie n’a de sens que par matière |
 | Vitesse, avance, profondeur | Reproduire les conditions |
 | Pièces ou minutes par arête | Indicateur principal |
@@ -68,7 +68,7 @@ En pratique : pour gagner de la durée de vie sans perdre de productivité, on *
 | Attendre la casse pour changer l’outil | Pièce rebutée, porte-outil abîmé |
 | Réduire l’avance pour « ménager » l’outil | Frottement, écrouissage, usure plus rapide |
 | Ignorer le faux-rond | Une dent travaille pour toutes |
-| Changer de nuance sans noter les conditions | Comparaison impossible |
+| Changer de grade sans noter les conditions | Comparaison impossible |
 
 ## FAQ
 

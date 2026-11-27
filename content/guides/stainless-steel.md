@@ -19,9 +19,9 @@ en_desc: 303 for machining, 304 for general use, 316 for corrosion: differences,
 === fr
 Les inox austénitiques **303, 304 et 316** couvrent la majorité des besoins d’atelier. Ils se ressemblent à l’œil, mais pas à l’usinage ni à la corrosion. Leur grand piège commun : l’**écrouissage** — l’inox durcit sous l’outil s’il frotte au lieu de couper.
 
-## Les trois nuances
+## Les trois grades
 
-| Nuance | Particularité | Usage | En atelier |
+| Grade | Particularité | Usage | En atelier |
 |---|---|---|---|
 | **303** | Soufre ajouté (inclusions qui fragmentent le copeau) | Pièces usinées en série (barres) | **La plus facile à usiner** des trois ; corrosion et soudabilité moindres ; rarement en tôle |
 | **304 / 304L** | Inox « 18-8 » de base ; L = bas carbone pour le soudage | Tôle, tubes, équipements alimentaires, usage général | Usinage plus difficile (gommeux, écrouissable) |
@@ -60,7 +60,7 @@ Commandez le **film protecteur** si la face est visible, et précisez le **sens 
 
 ## Liste de vérification de commande
 
-- [ ] Nuance exacte (304 vs 304L, 316 vs 316L)
+- [ ] Grade exact (304 vs 304L, 316 vs 316L)
 - [ ] Fini (2B, #4, BA) et film protecteur
 - [ ] Épaisseur en calibre **et** décimale (table inox, voir [[sheet-gauges]])
 - [ ] Certificat d’usine si exigé
@@ -78,7 +78,7 @@ Commandez le **film protecteur** si la face est visible, et précisez le **sens 
 ## FAQ
 
 ### L’inox 304 est-il magnétique ?
-À l’état recuit, très peu ; il peut le devenir légèrement après écrouissage (pliage, usinage). Ce n’est pas un test fiable de nuance.
+À l’état recuit, très peu ; il peut le devenir légèrement après écrouissage (pliage, usinage). Ce n’est pas un test fiable du grade.
 
 ### 17-4PH, c’est aussi de l’inox ?
 Oui, un inox martensitique à durcissement structural, traité thermiquement : voir [[ph-17-4]].
