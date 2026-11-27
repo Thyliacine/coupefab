@@ -19,11 +19,14 @@ for a in "$@"; do if [ "$a" = "--weekly" ]; then ARGS+=("--with-bars"); elif [ "
 if [ "$(TZ=America/Toronto date +%u)" = "1" ] || printf '%s\n' "$@" | grep -qx -- "--weekly\|--tooling"; then
   "$PY" -m tooling.fetch_tooling || echo "WARN: tooling fetch failed; keeping data/tooling/prices.json"
 fi
+# Hot news JSON (data/news/latest.json): real, dated, sourced listings + latest price survey.
+# Never invents items. Homepage and /nouvelles/ are rebuilt from this file.
+"$PY" -m news.build || echo "WARN: news.build failed; keeping data/news/latest.json"
 python3 build.py > /dev/null
 python3 scripts/deploy_manifest.py
 # Stage the refreshed data and every generated page (all index.html, sitemap, JSON/CSV exports) so the
 # tree ends clean; hand-edited source (*.py, sitekit/, content/, css/, js/) is left alone on purpose.
-git add -A data/prices data/used data/tooling prix pieces outillage occasions en/sheet-prices en/parts en/tooling en/used-equipment \
+git add -A data/prices data/used data/tooling data/news prix pieces outillage occasions nouvelles en/sheet-prices en/parts en/tooling en/used-equipment en/news \
   sitemap.xml 404.html guides/recherche.json en/guides/search.json >/dev/null 2>&1 || true
 git add -A -- ':(glob)**/index.html' >/dev/null 2>&1 || true
 git commit -q -m "prix et occasions: relevé $(TZ=America/Toronto date +%F)" >/dev/null 2>&1 || true

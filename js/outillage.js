@@ -3,7 +3,7 @@
   var app = document.getElementById("tl-app");
   if (!app) return;
   var fr = (app.getAttribute("data-lang") || "fr") === "fr";
-  var PAGE = 100;
+  var PAGE = 24, tlPager = null;
   function $(s, r) { return (r || document).querySelector(s); }
   function $all(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
   function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
@@ -79,21 +79,35 @@
       if (typeof x === "string") return sortDir * x.localeCompare(y, fr ? "fr" : "en");
       return sortDir * (x - y);
     });
-    shown = 0; body.innerHTML = ""; draw();
     $all(".tl-card", app).forEach(function (b) { var on = !!cat && b.getAttribute("data-cat") === cat; b.classList.toggle("is-on", on); b.setAttribute("aria-pressed", on ? "true" : "false"); });
+    drawPaged(true);
   }
-  function draw() {
-    var next = view.slice(shown, shown + PAGE);
-    if (!view.length) body.innerHTML = '<tr><td colspan="7" class="tl-empty">' + (fr ? "Aucun prix ne correspond. Essayez « Tout afficher »." : "No price matches. Try “Show all”.") + "</td></tr>";
-    else body.insertAdjacentHTML("beforeend", next.map(rowHtml).join(""));
-    shown += next.length;
-    more.hidden = shown >= view.length;
+  function drawPaged(reset) {
     var n = view.length, tot = rows.length;
-    count.textContent = fr
-      ? (n.toLocaleString("fr-CA") + " prix sur " + tot.toLocaleString("fr-CA") + (n > shown ? " — " + shown + " affichés" : "") + ". Chaque ligne indique la source et la date.")
-      : (n.toLocaleString("en-CA") + " of " + tot.toLocaleString("en-CA") + " prices" + (n > shown ? " — " + shown + " shown" : "") + ". Every row names the source and the date.");
+    function paint(start, end) {
+      if (!view.length) body.innerHTML = '<tr><td colspan="7" class="tl-empty">' + (fr ? "Aucun prix ne correspond. Essayez « Tout afficher »." : "No price matches. Try “Show all”.") + "</td></tr>";
+      else body.innerHTML = view.slice(start, end).map(rowHtml).join("");
+      count.textContent = fr
+        ? (n.toLocaleString("fr-CA") + " prix sur " + tot.toLocaleString("fr-CA") + ". Chaque ligne indique la source et la date.")
+        : (n.toLocaleString("en-CA") + " of " + tot.toLocaleString("en-CA") + " prices. Every row names the source and the date.");
+    }
+    if (window.cfPager) {
+      if (!tlPager) {
+        tlPager = window.cfPager({
+          mount: "#tl-pager",
+          total: function () { return view.length; },
+          pageSize: PAGE,
+          lang: fr ? "fr" : "en",
+          scrollTo: "#tl-body",
+          render: function (p, start, end) { paint(start, end); }
+        });
+      }
+      if (reset) tlPager.reset(); else tlPager.apply();
+    } else {
+      paint(0, PAGE);
+    }
+    if (more) more.hidden = true;
   }
-  more.addEventListener("click", draw);
   var t = null;
   form.addEventListener("input", function () { clearTimeout(t); t = setTimeout(apply, 120); });
   form.addEventListener("change", apply);

@@ -32,6 +32,13 @@
     var shown = 0;
     brands.forEach(function (s) { if (!s.hidden) shown += s.querySelectorAll("tbody tr:not([hidden])").length; });
     kinds.forEach(function (k) { k.hidden = !k.querySelector(".ec-brand:not([hidden])"); });
+    var searching = !!(terms.length || b || kind !== "all");
+    brands.forEach(function (s) {
+      var fold = s.querySelector("details.ec-fold");
+      if (!fold) return;
+      if (searching && !s.hidden) fold.open = true;
+      else if (!searching) fold.open = false;
+    });
     empty.hidden = shown > 0;
     status.textContent = (terms.length || b || kind !== "all") ? (fr ? shown + " code" + (shown > 1 ? "s" : "") + " affiché" + (shown > 1 ? "s" : "") : shown + " code" + (shown === 1 ? "" : "s") + " shown") : "";
     var u = new URL(location.href);

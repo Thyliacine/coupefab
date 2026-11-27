@@ -4,6 +4,33 @@
   if (!app) return;
   var lang = app.getAttribute("data-lang") || "fr";
   var fr = lang === "fr";
+
+  var piecesPagers = {};
+  function pageRows(all, mountId, key) {
+    if (!window.cfPager) return;
+    var mount = document.getElementById(mountId);
+    if (!mount) {
+      var last = all && all[0] && all[0].closest("table");
+      if (!last || !last.parentNode) return;
+      mount = document.createElement("nav");
+      mount.className = "cf-pager";
+      mount.id = mountId;
+      mount.hidden = true;
+      last.parentNode.insertBefore(mount, last.nextSibling);
+    }
+    var vis = all.filter(function (el) { return !el.classList.contains("is-hidden") && !el.hidden; });
+    if (!piecesPagers[key]) {
+      piecesPagers[key] = window.cfPager({
+        mount: mount,
+        items: function () { return all.filter(function (el) { return !el.classList.contains("is-hidden") && !el.hidden; }); },
+        allItems: all,
+        pageSize: 24,
+        lang: fr ? "fr" : "en",
+        scrollTo: mount.previousElementSibling
+      });
+    }
+    piecesPagers[key].reset();
+  }
   var data = null;
 
   function $(sel, root) { return (root || document).querySelector(sel); }
@@ -118,6 +145,7 @@
         ? (n + " fournisseur" + (n > 1 ? "s" : "") + " affiché" + (n > 1 ? "s" : "") + " sur " + shopRows.length)
         : (n + " supplier" + (n === 1 ? "" : "s") + " shown of " + shopRows.length);
     }
+    pageRows(shopRows, "pc-shop-pager", "shopPager");
   }
   if (shopForm) {
     shopForm.addEventListener("input", filterShops);
@@ -209,6 +237,7 @@
           ? (n + " prix affiché" + (n > 1 ? "s" : "") + " sur " + rows.length + " — chaque ligne indique la source et la date.")
           : (n + " price" + (n === 1 ? "" : "s") + " shown of " + rows.length + " — each row names the source and the date.");
       }
+      pageRows(rows, "pc-price-pager", "pricePager");
     }
     form.addEventListener("input", filter);
     form.addEventListener("change", filter);
