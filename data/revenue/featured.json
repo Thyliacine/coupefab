@@ -1,0 +1,5 @@
+{
+  "_doc": "Featured (paid) suppliers. Written ONLY by the payment hook (revenue.featured.apply_subscription_event, fed by api/stripe-webhook.js). Not edited in the admin: featured = an active paid subscription. Dates are inclusive, America/Toronto.",
+  "tiers": {"standard": {"fr": "Vedette", "en": "Featured"}, "plus": {"fr": "Vedette Plus", "en": "Featured Plus"}},
+  "suppliers": []
+}
