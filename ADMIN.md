@@ -2,6 +2,19 @@
 
 Four ways to earn money are built and ready. **All are off.** With every switch off, the public site is exactly what it was before. Nothing is linked, nothing is indexed, and nobody is charged or contacted.
 
+## 0. Web admin (production): `https://coupefab.ca/admin/`
+
+Password-protected inbox and settings. `noindex`, not linked from the public nav or sitemap.
+
+- **Inbox** — quote requests, newsletter/contact forms, supplier submissions, and inbound email to `info@coupefab.ca` (once MX is in place). Status new / read / archived, search, CSV export, attachments, and replies (Send only; no auto-reply).
+- **Storage** — Vercel Blob store `coupefab-inbox` (private, Hobby free tier). Forms write here directly. FormSubmit is no longer used.
+- **Login** — `ADMIN_PASSWORD` env var, session cookie (`cf_admin`, 12 h, HttpOnly, Secure, SameSite=Lax), 5 attempts / 15 minutes / IP.
+- **Reply / inbound email** — Resend free tier. Set `RESEND_API_KEY`, `RESEND_WEBHOOK_SECRET`, and optionally `RESEND_FROM` (default `CoupeFab <info@coupefab.ca>`). Webhook URL: `https://coupefab.ca/api/inbound-email`. Add the MX / SPF / DKIM records Resend shows for each domain (none are on the domains today). Do not point mail at a personal Gmail inbox.
+- **Switches / partner / sponsors / affiliates** — also in this admin, saved to Blob. The public site still reads the repo JSON until a rebuild and deploy. Use « Télécharger le JSON » if you want the files for a local build. Featured suppliers stay read-only (paid hook only).
+
+The local page `python3 scripts/admin.py` (127.0.0.1 only) still edits the repo files directly.
+
+
 ## 1. The switches: `config/monetization.json`
 
 | Switch | What turns on |

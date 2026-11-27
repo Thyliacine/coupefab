@@ -4,6 +4,8 @@ Site francophone d’abord (avec version anglaise) pour les ateliers de découpe
 
 Live : https://coupefab.ca  (ancien hôte : https://coupefab.vercel.app)
 
+Admin (protégé par mot de passe, noindex) : https://coupefab.ca/admin/ — boîte de réception des formulaires et des courriels info@. Rien n’est transféré vers Gmail.
+
 ## Contenu
 
 Les six pages d’angle sont des **brouillons** (`brouillon — à réviser par Michaël`) jusqu’à validation technique :

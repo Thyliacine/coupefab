@@ -105,8 +105,9 @@ def main() -> None:
         _ref("src/site.tgz", site_bytes, uploads),
         _ref("src/vercel.json", vercel_bytes, uploads),
     ]
-    for fn in sorted((ROOT / "api").glob("*.js")):
-        refs.append(_ref(f"src/api/{fn.name}", fn.read_bytes(), uploads))
+    for fn in sorted((ROOT / "api").rglob("*.js")):
+        rel = fn.relative_to(ROOT / "api").as_posix()
+        refs.append(_ref(f"src/api/{rel}", fn.read_bytes(), uploads))
     request_body = {
         "name": "coupefab",
         "project": "coupefab",
