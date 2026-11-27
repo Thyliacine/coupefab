@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-26T22:02:37-05:00",
+ "generated_at": "2026-11-26T23:05:26-05:00",
  "date": "2026-11-26",
  "fx": {
   "pair": "USD/CAD",
@@ -236,6 +236,30 @@
    "shipping": "Entrepôt à Ottawa; livraison partout au Canada (frais en sus). Prix du catalogue public au pied ou au pi²; coupe et autres frais en sus. Chutes / offcuts et lots aléatoires non ajoutés (surplus).",
    "shipping_en": "Warehouse in Ottawa; ships across Canada (freight extra). Public catalogue prices per foot or per sq ft; cutting and other fees extra. Offcuts and random-length bundles not added (surplus).",
    "method": "Outil de prix public (quote.metalpros.com) : GET /api/materials/getdbmaterial, le même que la page catalogue"
+  },
+  "pmabitibi": {
+   "id": "pmabitibi",
+   "name": "Pièces et Matériaux Abitibi",
+   "city": "Rivière-Héva (QC)",
+   "region": "QC",
+   "site": "https://www.pmabitibi.com",
+   "currency": "CAD",
+   "ships_qc": "cueillette",
+   "shipping": "Cueillette à Rivière-Héva (Abitibi). Prix affichés avant taxes, coupe comprise sur l’acier. Largeur de la tôle profilée non publiée.",
+   "shipping_en": "Pickup in Rivière-Héva (Abitibi). Posted prices before tax; cutting included on bar and tube. Profiled-sheet width is not published.",
+   "method": "Tableaux de prix publics (pages HTML /tole et /acier)"
+  },
+  "knifemaker": {
+   "id": "knifemaker",
+   "name": "KnifeMaker",
+   "city": "Brisco (C.-B.)",
+   "region": "CA",
+   "site": "https://www.knifemaker.ca",
+   "currency": "CAD",
+   "ships_qc": "oui",
+   "shipping": "Barres et feuilles de spécialité (aciers à outils, titane, laiton, cuivre). Expédition au Canada depuis Brisco (C.-B.).",
+   "shipping_en": "Specialty bar and sheet (tool steels, titanium, brass, copper). Ships across Canada from Brisco, BC.",
+   "method": "Vitrine Shopify publique (products.json des collections métal)"
   }
  },
  "suppliers_static": [
@@ -578,6 +602,18 @@
    "rows": 4511,
    "fetched_at": "2026-11-26T22:02:37-05:00",
    "error": ""
+  },
+  "pmabitibi": {
+   "ok": true,
+   "rows": 125,
+   "fetched_at": "2026-11-26T23:04:58-05:00",
+   "error": ""
+  },
+  "knifemaker": {
+   "ok": true,
+   "rows": 161,
+   "fetched_at": "2026-11-26T23:05:26-05:00",
+   "error": ""
   }
  },
  "catalogue": {
@@ -641,7 +677,7 @@
    "C954"
   ]
  },
- "n_rows": 9717,
+ "n_rows": 10003,
  "rows_files": [
   "latest-rows/part-01.jsonl",
   "latest-rows/part-02.jsonl",
