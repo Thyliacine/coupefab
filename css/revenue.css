@@ -1,0 +1,57 @@
+/* CoupeFab — revenue features (featured spots, affiliate links, quote form, advertise page).
+   Only loaded on pages that render one of these blocks. Reuses site.css tokens. */
+.rv-featured, .rv-affiliate, .rv-cta, .rv-disc-page { max-width: var(--max); margin: 1.25rem auto; padding: 0 1.25rem; }
+.rv-featured { margin-top: 1.5rem; }
+.rv-head { display: flex; align-items: center; gap: .6rem; margin-bottom: .6rem; }
+.rv-head h2 { font-size: 1.05rem; margin: 0; }
+.rv-tag { display: inline-block; font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; color: var(--accent-2); background: var(--accent-soft); border: 1px solid #f3c6ad; border-radius: 999px; padding: .08rem .5rem; vertical-align: middle; }
+.rv-tag-aff { color: var(--muted); background: var(--bg-2); border-color: var(--line-2); }
+.rv-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); }
+.rv-card { display: flex; gap: .85rem; align-items: flex-start; background: var(--paper); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: var(--radius); padding: .9rem 1rem; transition: border-color .15s, box-shadow .15s; }
+.rv-card:hover, .rv-card:focus-within { border-color: var(--accent); box-shadow: var(--shadow); }
+.rv-card.rv-plus { background: linear-gradient(0deg, var(--paper), var(--accent-soft)); }
+.rv-logo { flex: 0 0 auto; width: 120px; height: 40px; object-fit: contain; }
+.rv-logo-txt { width: 40px; display: grid; place-items: center; border-radius: 8px; background: var(--ink); color: #fff; font-weight: 700; font-size: .9rem; }
+.rv-body p { margin: 0 0 .25rem; }
+.rv-blurb { font-size: .92rem; color: var(--muted); line-height: 1.45; }
+.rv-link { font-weight: 600; font-size: .92rem; }
+.rv-note, .rv-disc { font-size: .84rem; color: var(--muted); margin: .6rem 0 0; }
+.rv-cta { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; align-items: center; justify-content: space-between; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: .9rem 1.1rem; }
+.rv-cta div { display: grid; gap: .15rem; } .rv-cta span { color: var(--muted); font-size: .92rem; }
+.rv-affiliate { border-top: 1px solid var(--line); padding-top: 1rem; }
+.rv-affiliate h2 { font-size: 1.05rem; }
+.rv-aff-list { margin: 0; padding-left: 1.1rem; display: grid; gap: .35rem; }
+.rv-merchant { color: var(--muted); font-size: .88rem; }
+.rv-disc-page { padding-bottom: .5rem; }
+
+/* pages */
+.rv-page { max-width: var(--max); margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
+.rv-hero { max-width: 46rem; }
+.rv-hero h1 { margin: 0 0 .6rem; }
+.rv-hero .lede { color: var(--muted); font-size: 1.1rem; }
+.rv-preview { background: var(--draft-bg, #fdf6dc); color: var(--draft-ink, #6b5410); border: 1px dashed #c9a227; border-radius: 8px; padding: .55rem .8rem; font-size: .9rem; margin: 0 0 1rem; }
+.rv-opts { list-style: none; padding: 0; margin: 1.5rem 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); }
+.rv-opt { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem 1.2rem; }
+.rv-opt h2 { font-size: 1.1rem; margin: 0 0 .4rem; }
+.rv-opt p, .rv-opt li { font-size: .95rem; }
+.rv-opt ul { padding-left: 1.1rem; color: var(--muted); }
+.rv-price { margin: .75rem 0 0; }
+.rv-tbd { display: inline-block; font-weight: 700; color: var(--draft-ink, #6b5410); background: var(--draft-bg, #fdf6dc); border-radius: 6px; padding: .2rem .55rem; font-size: .88rem; }
+.rv-rules { max-width: 46rem; }
+
+/* quote form */
+.rv-form { max-width: 46rem; margin-top: 1.25rem; display: grid; gap: 1rem; }
+.rv-form fieldset { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); padding: 1rem 1.1rem 1.1rem; margin: 0; display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.rv-form legend { font-weight: 700; padding: 0 .35rem; }
+.rv-form label { display: grid; gap: .3rem; font-size: .92rem; font-weight: 600; }
+.rv-form .rv-wide { grid-column: 1 / -1; }
+.rv-form input:not([type=checkbox]), .rv-form select, .rv-form textarea { font: inherit; font-weight: 400; font-size: 1rem; padding: .55rem .7rem; border: 1px solid var(--line-2); border-radius: 8px; background: var(--paper); color: var(--ink); width: 100%; }
+.rv-form input:hover, .rv-form select:hover, .rv-form textarea:hover { border-color: var(--muted); }
+.rv-form input:focus-visible, .rv-form select:focus-visible, .rv-form textarea:focus-visible { outline: 3px solid var(--focus); outline-offset: 1px; border-color: var(--focus); }
+.rv-form .consent { display: flex; gap: .6rem; align-items: flex-start; font-weight: 400; font-size: .88rem; color: var(--muted); }
+.rv-form .consent input { margin-top: .25rem; width: 1.1rem; height: 1.1rem; accent-color: var(--accent); flex: 0 0 auto; }
+.rv-form button { justify-self: start; }
+.rv-form button[disabled] { opacity: .6; cursor: progress; }
+.rv-hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.rv-status { margin: 0; font-weight: 600; min-height: 1.4em; }
+.rv-status.is-ok { color: #166534; } .rv-status.is-err { color: #b91c1c; }

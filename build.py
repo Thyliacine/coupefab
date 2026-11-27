@@ -1501,6 +1501,11 @@ PAGES = [
 import sitekit  # noqa: E402
 layout = sitekit.layout  # noqa: F811
 PAGES = sitekit.extend_pages(PAGES + supplier_pages(), form_newsletter, PRIX_META)
+# Revenue features (config/monetization.json). Pages behind an off switch are built for preview
+# but are noindex, kept out of the sitemap and unlinked; every other page is unchanged when all flags are off.
+import revenue  # noqa: E402
+PAGES = PAGES + revenue.page_entries()
+HIDDEN = revenue.hidden_paths()
 
 
 def path_to_file(path: str) -> Path:
@@ -1513,6 +1518,8 @@ def path_to_file(path: str) -> Path:
 def write_sitemap():
     urls = []
     for path, alt, lang, *_rest in PAGES:
+        if path in HIDDEN:
+            continue
         urls.append(
             f"""  <url>
     <loc>{SITE}{path}</loc>
@@ -1536,19 +1543,19 @@ def main():
     for path, alt, lang, title, description, body, draft, article in PAGES:
         dest = path_to_file(path)
         dest.parent.mkdir(parents=True, exist_ok=True)
-        dest.write_text(
-            layout(
-                lang=lang,
-                title=title,
-                description=description,
-                path=path,
-                alt=alt,
-                body=body,
-                draft=draft,
-                article=article,
-            ),
-            encoding="utf-8",
+        extra = {"noindex": True} if path in HIDDEN else {}
+        html = layout(
+            lang=lang,
+            title=title,
+            description=description,
+            path=path,
+            alt=alt,
+            body=revenue.inject(path, lang, body),
+            draft=draft,
+            article=article,
+            **extra,
         )
+        dest.write_text(revenue.postprocess(path, lang, html), encoding="utf-8")
         print("wrote", dest.relative_to(ROOT))
     write_sitemap()
     print("wrote sitemap.xml")
