@@ -227,7 +227,7 @@ def render(site="https://coupefab.ca"):
       <tbody id="tl-body">{''.join(fb)}</tbody>
     </table>
   </div>
-  <div class="tl-more-wrap"><button type="button" class="tl-btn tl-more" id="tl-more" hidden>{L("Afficher 100 lignes de plus", "Show 100 more rows")}</button></div>
+  <nav class="cf-pager" id="tl-pager" hidden></nav>
   <noscript><p class="tl-note">{L("Sans JavaScript, seuls les trois prix à l’unité les plus bas de chaque catégorie sont affichés. Le fichier CSV complet est plus bas.", "Without JavaScript, only the three lowest unit prices per category are shown. The full CSV file is below.")}</p></noscript>
   <p class="tl-note">{L("« Prix à l’unité » = prix affiché divisé par le nombre de pièces quand la boutique vend en paquet (ex. 5 buses). Sinon, c’est le prix affiché.", "“Price per unit” = listed price divided by the number of pieces when the store sells a pack (e.g. 5 nozzles). Otherwise it is the listed price.")}
   <a href="/outillage/coupefab-prix-outillage.csv" download>{L("Télécharger tous les prix (CSV)", "Download every price (CSV)")}</a></p>

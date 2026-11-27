@@ -16,46 +16,62 @@ def advertise(lang: str) -> str:
     fr = lang == "fr"
     L = (lambda a, b: a if fr else b)
     path = P["advertise"][0 if fr else 1]
-    tbd = f'<span class="rv-tbd">{L("Tarif à déterminer (TBD) — à approuver par Michaël", "Price to be determined (TBD) — pending Michaël’s approval")}</span>'
-    opts = [
-        (L("Fournisseur en vedette", "Featured supplier"),
-         L("Votre logo, deux phrases et un lien en haut du répertoire des fournisseurs et des pages de prix, pièces ou outillage de votre choix. Toujours marqué « Commandité ». Actif tant que l’abonnement est payé; il s’arrête de lui-même à la fin de la période.",
-           "Your logo, two sentences and a link at the top of the supplier directory and of the price, parts or tooling pages you pick. Always labelled “Sponsored”. Live while the subscription is paid; it stops on its own at the end of the period."),
-         [L("Répertoire gratuit inchangé : votre fiche normale reste listée comme les autres", "The free directory doesn’t change: your normal listing stays listed like everyone else’s"),
-          L("Aucun effet sur les prix ni sur l’ordre du comparateur", "No effect on prices or on the price-tool ranking"),
-          L("Au mois, sans engagement (proposé)", "Monthly, no commitment (proposed)")]),
-        (L("Commandite de l’infolettre des prix", "Price-digest sponsorship"),
-         L("Un seul commanditaire par numéro : nom, logo, deux lignes de texte et un lien, marqués « Commandité », dans l’infolettre envoyée aux ateliers abonnés.",
-           "One sponsor per issue: name, logo, two lines of copy and a link, labelled “Sponsored”, in the newsletter sent to subscribed shops."),
-         [L("Réservé aux fournisseurs de métal, d’outillage et aux marchands de machines", "For metal and tooling suppliers and machine dealers"),
-          L("Le commanditaire ne voit ni ne modifie le reste du contenu", "The sponsor neither sees nor edits the rest of the content")]),
-        (L("Demandes de soumission (plus tard)", "Quote requests (later)"),
-         L("Les ateliers recevront des demandes de soumission (procédé, matériau, quantité, région) envoyées par les visiteurs, avec leur consentement. Frais par demande reçue, seulement si la demande correspond à votre procédé et à votre région.",
-           "Shops will receive quote requests (process, material, quantity, region) sent by visitors, with their consent. A fee per request received, only when it matches your process and region."),
-         [L("Pas encore offert : on attend d’avoir assez de trafic", "Not offered yet: we’re waiting for enough traffic")]),
+    budgets = [
+        ("", L("Je prefere ne pas le dire", "I would rather not say")),
+        ("lt100", L("Moins de 100 $ CA", "Under CAD 100")),
+        ("100-500", L("100 a 500 $ CA", "CAD 100-500")),
+        ("500-1000", L("500 a 1 000 $ CA", "CAD 500-1,000")),
+        ("1000+", L("Plus de 1 000 $ CA", "Over CAD 1,000")),
+        ("discuss", L("A discuter", "Let us discuss")),
     ]
-    cards = "".join(
-        f'<li class="rv-opt"><h2>{esc(t)}</h2><p>{esc(d)}</p><ul>{"".join(f"<li>{esc(x)}</li>" for x in pts)}</ul><p class="rv-price">{tbd}</p></li>'
-        for t, d, pts in opts)
-    return f'''{css()}<div class="rv-page">
-<section class="rv-hero">
-  {_preview(path, fr)}
-  <p class="kicker">{L("Pour les fournisseurs et marchands", "For suppliers and dealers")}</p>
-  <h1>{L("Annoncer sur CoupeFab", "Advertise on CoupeFab")}</h1>
-  <p class="lede">{L("La fiche dans le répertoire et l’envoi de vos prix restent gratuits pour tous. Pour plus de visibilité, voici les options payantes. Elles sont toujours clairement identifiées comme commanditées.",
-                     "A directory listing and sending us your prices stay free for everyone. For more visibility, here are the paid options. They are always clearly labelled as sponsored.")}</p>
-</section>
-<ul class="rv-opts">{cards}</ul>
-<section class="rv-rules">
-  <h2>{L("Nos règles", "Our rules")}</h2>
-  <ul>
-    <li>{L("Tout espace payé porte la mention « Commandité » et un lien rel=\"sponsored\".", "Every paid spot says “Sponsored” and its link carries rel=\"sponsored\".")}</li>
-    <li>{L("Payer ne change jamais un prix, un classement ou le contenu d’un guide.", "Paying never changes a price, a ranking or a guide’s content.")}</li>
-    <li>{L("On peut refuser une annonce qui ne sert pas les ateliers.", "We may turn down an ad that doesn’t help shops.")}</li>
-  </ul>
-  <p>{L("Intéressé? Écrivez à", "Interested? Write to")} <a href="mailto:info@coupefab.ca?subject={L("Annoncer%20sur%20CoupeFab", "Advertise%20on%20CoupeFab")}">info@coupefab.ca</a>. {L("Voir aussi la", "See also the")} <a href="{P["disc"][0 if fr else 1]}">{L("page de divulgation", "disclosure page")}</a>.</p>
-</section>
-</div>'''
+    # Fix accents after we know the file writes cleanly
+    budgets = [
+        ("", L("Je préfère ne pas le dire", "I'd rather not say")),
+        ("lt100", L("Moins de 100 $ CA", "Under CAD 100")),
+        ("100-500", L("100 à 500 $ CA", "CAD 100–500")),
+        ("500-1000", L("500 à 1 000 $ CA", "CAD 500–1,000")),
+        ("1000+", L("Plus de 1 000 $ CA", "Over CAD 1,000")),
+        ("discuss", L("À discuter", "Let's discuss")),
+    ]
+    opts = "".join('<option value="%s">%s</option>' % (esc(k), esc(lab)) for k, lab in budgets)
+    ph = L("Ex. une gamme de toles, un service d'usinage, une machine d'occasion…",
+           "e.g. a sheet range, a machining service, a used machine…")
+    lede_fr = ("Vous voulez faire connaître votre entreprise aux ateliers qui utilisent CoupeFab? "
+               "Décrivez ce que vous souhaitez promouvoir. Nous vous répondons pour en discuter. "
+               "Cette page n'affiche aucun tarif : les emplacements seront proposés lorsqu'une demande arrive.")
+    lede_en = ("Want to introduce your company to the shops that use CoupeFab? Tell us what you'd like to promote. "
+               "We'll write back to talk it over. This page shows no rates: placements are offered when a request comes in.")
+    note = L("La fiche dans le répertoire et l'envoi de vos prix restent gratuits. Voir aussi la",
+             "A directory listing and sending us your prices stay free. See also the")
+    return (
+        css()
+        + '<link rel="stylesheet" href="/css/ux.css?v=%s">' % ver("css/ux.css")
+        + '<div class="rv-page cf-request-page" id="cf-request">'
+        + '<section class="rv-hero">'
+        + _preview(path, fr)
+        + '<p class="kicker">' + L("Annoncer", "Advertise") + "</p>"
+        + "<h1>" + L("Annoncer sur CoupeFab", "Advertise on CoupeFab") + "</h1>"
+        + '<p class="lede">' + L(lede_fr, lede_en) + "</p>"
+        + "</section>"
+        + '<form class="rv-form sp-form" id="cf-request-form" data-lang="' + lang + '" novalidate>'
+        + "<label>" + L("Entreprise", "Company") + ' <input type="text" name="company" required maxlength="200" autocomplete="organization"></label>'
+        + "<label>" + L("Personne-ressource", "Contact name") + ' <input type="text" name="contact" required maxlength="200" autocomplete="name"></label>'
+        + "<label>" + L("Courriel", "Email") + ' <input type="email" name="email" required maxlength="200" autocomplete="email"></label>'
+        + '<label class="rv-wide">' + L("Ce que vous souhaitez promouvoir", "What you want to promote")
+        + ' <textarea name="promote" rows="3" maxlength="2000" required placeholder="' + esc(ph) + '"></textarea></label>'
+        + "<label>" + L("Ordre de grandeur du budget (facultatif)", "Budget range (optional)")
+        + ' <select name="budget">' + opts + "</select></label>"
+        + '<label class="rv-wide">' + L("Message (facultatif)", "Message (optional)")
+        + ' <textarea name="message" rows="3" maxlength="4000"></textarea></label>'
+        + '<label class="rv-hp sp-hp" aria-hidden="true">Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>'
+        + '<button class="btn btn-lg" type="submit">' + L("Envoyer la demande", "Send the request") + "</button>"
+        + '<p class="rv-status cf-request-status" role="status" aria-live="polite"></p>'
+        + "</form>"
+        + '<p class="rv-note">' + note + ' <a href="' + P["disc"][0 if fr else 1] + '">'
+        + L("page de divulgation", "disclosure page") + "</a>.</p>"
+        + "</div>"
+        + '<script src="/js/placement-request.js?v=' + ver("js/placement-request.js") + '" defer></script>'
+    )
 
 
 def quote(lang: str) -> str:
@@ -109,10 +125,10 @@ def entries() -> list[tuple]:
     a_fr, a_en = P["advertise"]
     q_fr, q_en = P["quote"]
     return [
-        (a_fr, a_en, "fr", "Annoncer sur CoupeFab — fournisseurs en vedette, commandite — CoupeFab",
-         "Options payantes pour les fournisseurs : fiche en vedette, commandite de l’infolettre. Toujours identifiées comme commanditées.", advertise("fr"), False, False),
-        (a_en, a_fr, "en", "Advertise on CoupeFab — featured suppliers, sponsorship — CoupeFab",
-         "Paid options for suppliers: featured listing, newsletter sponsorship. Always labelled as sponsored.", advertise("en"), False, False),
+        (a_fr, a_en, "fr", "Annoncer sur CoupeFab — demande d’annonce — CoupeFab",
+         "Demande pour annoncer sur CoupeFab. Aucun tarif affiché; nous vous répondons pour en discuter.", advertise("fr"), False, False),
+        (a_en, a_fr, "en", "Advertise on CoupeFab — ad request — CoupeFab",
+         "Request to advertise on CoupeFab. No rates listed; we will write back to talk it over.", advertise("en"), False, False),
         (q_fr, q_en, "fr", "Demander une soumission : découpe, pliage, usinage au Québec — CoupeFab",
          "Décrivez votre pièce une fois; CoupeFab la transmet à des ateliers du Québec qui font ce procédé dans votre région.", quote("fr"), False, False),
         (q_en, q_fr, "en", "Request a quote: cutting, bending, machining in Quebec — CoupeFab",

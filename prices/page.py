@@ -594,7 +594,7 @@ def render(form_newsletter, site):
       <tbody><tr><td colspan="7" class="px-loading">{L("Chargement des prix…", "Loading prices…")}</td></tr></tbody>
     </table>
   </div>
-  <p class="px-more-wrap"><button type="button" class="px-btn px-btn-ghost" id="px-more" hidden>{L("Afficher plus", "Show more")}</button></p>
+  <nav class="cf-pager" id="px-pager" hidden></nav>
   <noscript><p>{L("Le tableau filtrable demande JavaScript. Toutes les données sont dans le", "The filterable table needs JavaScript. All data is in the")} <a href="/prix/coupefab-prix-metaux.csv">CSV</a>.</p></noscript>
   <p class="px-foot">{L("Chaque ligne garde sa source et sa date de relevé. $/pi², $/pi et $/lb sont calculés à partir du prix affiché et du poids théorique ou publié.", "Every row keeps its source and survey date. $/sq ft, $/ft and $/lb are computed from the listed price and the theoretical or published weight.")}
     <a href="/prix/coupefab-prix-metaux.csv" download>CSV</a> · <a href="/prix/donnees.json">JSON</a> · <a href="https://creativecommons.org/licenses/by/4.0/deed.{L("fr","en")}" rel="license noopener">CC BY 4.0</a></p>

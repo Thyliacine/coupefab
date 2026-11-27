@@ -371,6 +371,7 @@ def render(site="https://coupefab.ca"):
 </div>
 
 <div class="oc-grid" id="oc-grid">{cards}</div>
+<nav class="cf-pager" id="oc-pager" hidden></nav>
 <p class="oc-empty" id="oc-empty" hidden>{L("Aucune annonce ne correspond à ces filtres.", "No listings match these filters.")}</p>
 
 {_method_html(fr, method, fx_txt, sources)}
