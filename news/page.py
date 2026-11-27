@@ -62,13 +62,14 @@ def item_html(it: dict, fr: bool) -> str:
     ext = ' target="_blank" rel="noopener noreferrer"' if href.startswith("http") else ""
     source = (it.get("source") or "").strip()
     src_html = f'<span class="hn-source">{esc(source)}</span>' if source else ""
+    tr_html = '<span class="hn-tr">(traduit de l’anglais)</span>' if fr and it.get("translated") else ""
     sum_html = f'<span class="hn-sum">{esc(summary)}</span>' if summary else ""
     return (
         f'<li class="hn-item" data-topic="{esc(topic)}" data-kind="{esc(it.get("kind") or "")}">'
         f'<a href="{href}"{ext}>'
         f'<span class="hn-meta"><time datetime="{esc((it.get("date") or "")[:10])}">{esc(_date_label(it.get("date") or "", fr))}</time>'
         f'{src_html}'
-        f'<span class="hn-tag">{esc(tag)}</span></span>'
+        f'<span class="hn-tag">{esc(tag)}</span>{tr_html}</span>'
         f'<strong class="hn-title">{esc(title)}</strong>'
         f"{sum_html}"
         f"</a></li>"
@@ -87,11 +88,22 @@ def chips_html(fr: bool) -> str:
     return f'<div class="hn-chips" role="group" aria-label="{label}">{"".join(bits)}</div>'
 
 
-def featured_items(data: dict | None = None) -> list[dict]:
+def items_for(lang: str, data: dict | None = None) -> list[dict]:
     data = data or load()
     items = data.get("items") or []
+    fr = lang == "fr"
+    if fr:
+        return [it for it in items if it.get("lang") == "fr" or it.get("translated")]
+    return [it for it in items if it.get("lang") != "fr" and not it.get("translated")]
+
+
+def featured_items(lang: str = "fr", data: dict | None = None) -> list[dict]:
+    data = data or load()
+    items = items_for(lang, data)
     by_id = {it.get("id"): it for it in items}
-    featured = [by_id[i] for i in (data.get("featured_ids") or []) if i in by_id]
+    key = "featured_ids_fr" if lang == "fr" else "featured_ids_en"
+    ids = data.get(key) or data.get("featured_ids") or []
+    featured = [by_id[i] for i in ids if i in by_id]
     if not featured:
         featured = items[:6]
     return featured[:6]
@@ -99,7 +111,7 @@ def featured_items(data: dict | None = None) -> list[dict]:
 
 def home_section(lang: str) -> str:
     fr = lang == "fr"
-    items = featured_items()
+    items = featured_items(lang)
     if not items:
         return ""
     p = PATHS[lang]
@@ -120,7 +132,7 @@ def home_section(lang: str) -> str:
 def index_body(lang: str) -> str:
     fr = lang == "fr"
     data = load()
-    items = data.get("items") or []
+    items = items_for(lang, data)
     p = PATHS[lang]
     lis = "".join(item_html(it, fr) for it in items)
     gen = (data.get("generated") or "")[:10]
