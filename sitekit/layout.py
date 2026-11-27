@@ -5,7 +5,7 @@ from .taxonomy import T, PATHS, HUBS, HUB_ORDER, hub_path
 
 SITE = "https://coupefab.ca"
 YEAR = "2026"
-ASSET_V = "20261126as"  # bump to bust CSS/JS caches
+ASSET_V = "20261127lq"  # bump to bust CSS/JS caches
 
 
 def esc(s: str) -> str:
@@ -71,6 +71,11 @@ def mega_nav(lang: str, path: str) -> str:
               <span class="feature-k">{'Outil' if lang == 'fr' else 'Tool'}</span>
               <strong>{t['prices']}</strong>
               <span>{t['prices_cta_d']}</span>
+            </a>
+            <a class="feature-card" href="{'/outils/calculateur-liquide-de-coupe/' if lang == 'fr' else '/en/tools/coolant-calculator/'}">
+              <span class="feature-k">{'Outil' if lang == 'fr' else 'Tool'}</span>
+              <strong>{'Calculateur de liquide de coupe' if lang == 'fr' else 'Coolant calculator'}</strong>
+              <span>{'Concentré, eau et réfractomètre pour votre machine' if lang == 'fr' else 'Concentrate, water and refractometer for your machine'}</span>
             </a>
             <a class="mega-allguides" href="{p['guides']}">{t['all_guides']} ({len(reg)}) →</a>
           </div>
@@ -211,6 +216,7 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
         <li><a href="{p['used']}">{t['used']}</a></li>
         <li><a href="{p['parts']}">{t['parts']}</a></li>
         <li><a href="{p['tooling']}">{t['tooling']}</a></li>
+        <li><a href="{'/outils/calculateur-liquide-de-coupe/' if fr else '/en/tools/coolant-calculator/'}">{'Calculateur de liquide de coupe' if fr else 'Coolant calculator'}</a></li>
         <li><a href="{'/fournisseurs/' if fr else '/en/suppliers/'}">{'Fournisseurs' if fr else 'Suppliers'}</a></li>
         <li><a href="{p['news']}">{t['news']}</a></li>
         <li><a href="{p['about']}">{t['about']}</a></li>

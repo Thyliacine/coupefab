@@ -1506,7 +1506,8 @@ PAGES = [
 # entries above by path; the price page and the other pages are kept as defined here.
 import sitekit  # noqa: E402
 layout = sitekit.layout  # noqa: F811
-PAGES = sitekit.extend_pages(PAGES + supplier_pages(), form_newsletter, PRIX_META)
+from coolant.page import page_entries as coolant_pages  # noqa: E402
+PAGES = sitekit.extend_pages(PAGES + supplier_pages() + coolant_pages(SITE), form_newsletter, PRIX_META)
 # Revenue features (config/monetization.json). Pages behind an off switch are built for preview
 # but are noindex, kept out of the sitemap and unlinked; every other page is unchanged when all flags are off.
 import revenue  # noqa: E402
