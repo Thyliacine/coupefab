@@ -212,8 +212,9 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
     <div>
       <p class="ftr-h">{t['legal']}</p>
       <ul>
-        <li><a href="{p['disc']}">{'Divulgation (affiliations)' if fr else 'Affiliate disclosure'}</a></li>
-        <li><a href="{p['priv']}">{'Confidentialité et LCAP' if fr else 'Privacy and CASL'}</a></li>
+        <li><a href="{p['disc']}">{'Divulgation (affiliations, partenaire)' if fr else 'Disclosure (affiliates, partner)'}</a></li>
+        <li><a href="{p['priv']}">{'Confidentialité (Loi 25)' if fr else 'Privacy (Law 25)'}</a></li>
+        <li><a href="{'/conditions/' if fr else '/en/terms/'}">{'Conditions d’utilisation' if fr else 'Terms of use'}</a></li>
       </ul>
     </div>
   </div>
