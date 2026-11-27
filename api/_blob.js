@@ -44,7 +44,7 @@ async function put(pathname, body, { contentType = "application/octet-stream", a
   return request(qs, {
     method: "PUT",
     headers: {
-      "x-access": "private",
+      "x-vercel-blob-access": "private",
       "x-content-type": contentType,
       "x-add-random-suffix": "0",
       "x-allow-overwrite": allowOverwrite ? "1" : "0",
