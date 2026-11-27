@@ -71,7 +71,7 @@ Comparateur généré à partir de prix **publiés en ligne** — jamais de prix
 | --- | --- |
 | `prices/fetch_prices.py` | Robot poli (`CoupeFabPrixBot`, robots.txt + Crawl-delay, aucune connexion, aucun contournement anti-robot). Écrit les données normalisées. |
 | `prices/normalize.py` | Familles/nuances (catalogue d’atelier), calibres → po/mm, densités, détection forme (tôle, plaque, barre, tube, tuyau). |
-| `prices/page.py` | Rendu FR/EN : recherche rapide, onglets (Comparer, Calculateur, Tendances, Nuances & calibres, Méthode & sources), cartes « meilleure offre », pastilles qualité-prix vs médiane, boutons d’achat, schema.org `Dataset`. |
+| `prices/page.py` | Rendu FR/EN : recherche rapide, onglets (Comparer, Calculateur, Tendances, Alliages & épaisseurs, Méthode & sources), cartes « meilleure offre », étiquettes de prix vs médiane (tableau groupé par produit), boutons d’achat, schema.org `Dataset`. |
 | `js/prix.js`, `css/prix.css` | JS natif (onglets avec hash d’URL, filtres, tri, cartes mobiles, calculateur, graphique) et styles propres à la page (préfixe `.px`, ne touche pas au CSS global). |
 | `data/prices/latest.json` | Toutes les lignes du dernier relevé + statut par fournisseur + taux BdC. |
 | `data/prices/history/AAAA-MM.csv` | Journal daté : chaque prix vu pour la première fois et chaque changement de prix/stock. |
@@ -103,7 +103,7 @@ Mercier 40 et Coop Recyborg sont classés « Surplus / indicatif » (`SURPLUS` d
 
 Millennium Alloys (C.-B.) et National Salvage (Alb.) sont des repères canadiens masqués par défaut (filtre « Achetable au Québec ») et jamais « meilleur prix ».
 
-Pastilles : pour chaque spécification (famille + sous-classe + épaisseur; $/pi² pour tôle/plaque, $/pi ou $/lb pour barres/tubes, jamais mélangés), médiane du meilleur prix unitaire de chaque fournisseur achetable au Québec; ≥ 2 fournisseurs requis. « Meilleur prix » = le plus bas; « Bon prix » ≤ −10 %; « Dans la moyenne » ±10 %; « Cher » ≥ +10 % (`TIER_PCT` dans `page.py`). Repères, ruptures et valeurs « à vérifier » affichent l’écart sans pastille de classement.
+Étiquettes de prix : pour chaque spécification (famille + sous-classe + épaisseur; $/pi² pour tôle/plaque, $/pi ou $/lb pour barres/tubes, jamais mélangés), médiane du meilleur prix unitaire de chaque fournisseur achetable au Québec; ≥ 2 fournisseurs requis. « Meilleur prix » = le plus bas; « Bon prix » ≤ −10 %; « Dans la moyenne » ±10 %; « Cher » ≥ +10 % (`TIER_PCT` dans `page.py`). Repères, ruptures et valeurs « à vérifier » affichent l’écart sans étiquette de classement.
 Boutons : « Acheter » (fournisseur qui livre au Québec) ou « Voir chez … » (cueillette, repères) mènent à la fiche produit (`buy_url`; pour Metals Depot, l’ancre `#id` de la ligne produit sur la page catégorie); « Demander un prix » mène à la page contact/soumission (`QUOTE_URL` dans `page.py`). Aucun paramètre d’affiliation.
 
 ### Licence des données
@@ -142,3 +142,13 @@ Comparateur d’équipements CNC et de fabrication usagés : `/occasions/` et `/
 - Tous les guides sont marqués « Brouillon » jusqu’à la révision de Michaël. Aucun chiffre sans source.
 
 Ajouter un guide : créer `content/guides/<id>.md`, lancer `python3 build.py`, vérifier les liens internes.
+
+## Répertoire des fournisseurs (`/fournisseurs/`, `/en/suppliers/`)
+
+`python -m suppliers.directory [contacts.csv]` régénère `data/suppliers/directory.json` à partir des fournisseurs du comparateur (`data/prices/latest.json`) et du fichier de contacts privé (hors dépôt, par défaut `/workspace/coupefab-supplier-contacts.csv`). Seuls des faits publics sortent du script : nom, villes, province, site web, catégories déduites, langue de service, prix publics oui/non. Aucun nom de personne, courriel ni téléphone.
+
+`suppliers/page.py` rend les deux pages (cartes statiques + filtres `js/fournisseurs.js`, défaut « Toutes »). Le formulaire « Ajoutez vos prix » poste vers `api/supplier-submit.js` : **vérification manuelle obligatoire, rien n’est publié automatiquement**. Stockage : `SUPPLIER_WEBHOOK_URL` (ou `NEWSLETTER_WEBHOOK_URL`) et/ou `SUPPLIER_INBOX` (ou `NEWSLETTER_INBOX`, relais FormSubmit avec pièce jointe). Sans l’une de ces variables, la fonction répond 503 (le fournisseur est invité à réessayer, rien n’est perdu en silence). Le badge « Prix vérifiés » s’active en mettant `"verified": true` sur la fiche après vérification.
+
+## Logo
+
+Marque « Tôle tranchée » (une plaque tranchée par une saignée orange, les deux pièces qui se séparent; option B retenue par Michaël) : `favicon.svg`, `sitekit/layout.py` (`brand_svg`), icônes et images sociales encodées dans `assets/bin/` (`og-fr/en`, `icon-192/512`, `apple-touch-icon`). Source des options et aperçus : `assets/logo/`.
