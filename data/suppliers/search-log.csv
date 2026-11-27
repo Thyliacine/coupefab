@@ -1,0 +1,8 @@
+date,region,category,query,results_new,notes
+2026-11-27,Lanaudière,découpe laser/plasma,découpe laser plasma atelier Joliette Lanaudière,4,FabriMax (fabrimax.ca) skipped: site TLS error / 500 from box and fetcher — recheck
+2026-11-27,Mauricie,usinage,atelier d'usinage Trois-Rivières CNC,7,Plamondon & Fils (plamondonetfils.com) skipped: site unreachable; Machinerie Rimco skipped: no website
+2026-11-27,Centre-du-Québec,tôlerie/laser,tôlerie découpe laser Drummondville entreprise,3,OPD (Canimex) not added yet (only group page found)
+2026-11-27,Estrie,jet d'eau,découpe jet d'eau Sherbrooke atelier métal,1,RGAM (rgam.net) skipped: site TLS error / 500 — recheck; uMake already listed; Groupe Hyperforme skipped (subcontracting broker)
+2026-11-27,Saguenay–Lac-Saint-Jean,soudure/plasma,atelier soudure fabrication métallique Saguenay découpe plasma CNC,4,
+2026-11-27,Chaudière-Appalaches,laser/tôlerie,découpe laser tôlerie Beauce Saint-Georges entreprise,2,Beauce Métal already listed
+2026-11-27,Bas-Saint-Laurent,usinage,usinage CNC atelier Rimouski Bas-Saint-Laurent,1,Usinage de Rimouski (usinagerimouski.com) skipped: site unreachable — recheck; TMS Solution not checked

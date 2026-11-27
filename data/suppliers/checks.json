@@ -1,0 +1,180 @@
+{
+ "a2bperformance": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "a3surfaces": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "abesco": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "accessmetalservices": {
+  "last_checked": "2026-11-27",
+  "status": "no-site",
+  "note": "Aucun site web propre dans la fiche; à vérifier via une fiche publique (REQ / répertoire) à la prochaine passe."
+ },
+ "acieragf": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "acieraltitube": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "acieranica": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "acierbouchard": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "acierbreton2016": {
+  "last_checked": "2026-11-27",
+  "status": "robots",
+  "note": "robots.txt interdit l'accès aux robots; non vérifié, respecté."
+ },
+ "aciercampi": {
+  "last_checked": "2026-11-27",
+  "status": "flag",
+  "note": "Échec TLS/connexion depuis la machine de vérification (ERR https://aciercampi.com SSLError: HTTPSConnectionPool(host='aciercampi.com', ); à revérifier, pas de preuve de fermeture."
+ },
+ "aciercentury": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "acierclauderobert": {
+  "last_checked": "2026-11-27",
+  "status": "no-site",
+  "note": "Aucun site web propre dans la fiche; à vérifier via une fiche publique (REQ / répertoire) à la prochaine passe."
+ },
+ "aciercrawford": {
+  "last_checked": "2026-11-27",
+  "status": "no-site",
+  "note": "Aucun site web propre dans la fiche; à vérifier via une fiche publique (REQ / répertoire) à la prochaine passe."
+ },
+ "acierdm": {
+  "last_checked": "2026-11-27",
+  "status": "no-site",
+  "note": "Aucun site web propre dans la fiche; à vérifier via une fiche publique (REQ / répertoire) à la prochaine passe."
+ },
+ "acierdrummond": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "acierdunord": {
+  "last_checked": "2026-11-27",
+  "status": "flag",
+  "site": "",
+  "note": "Le lien pointait vers anugo.ca (répertoire tiers), pas vers un site de l'entreprise; lien retiré. Aucun site propre trouvé; à revérifier."
+ },
+ "acieretmetalbelfer": {
+  "last_checked": "2026-11-27",
+  "status": "no-site",
+  "note": "Aucun site web propre dans la fiche; à vérifier via une fiche publique (REQ / répertoire) à la prochaine passe."
+ },
+ "acierguilbert": {
+  "last_checked": "2026-11-27",
+  "status": "no-site",
+  "note": "Aucun site web propre dans la fiche; à vérifier via une fiche publique (REQ / répertoire) à la prochaine passe."
+ },
+ "acierhydraulique": {
+  "last_checked": "2026-11-27",
+  "status": "ok",
+  "note": "HTTP 202 (page anti-robot); site répond."
+ },
+ "acierinoxydablefafard": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "acierlachine": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "aciermarquis": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "aciermartinbastille": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "aciermetauxspec": {
+  "last_checked": "2026-11-27",
+  "status": "robots",
+  "note": "robots.txt interdit l'accès aux robots; non vérifié, respecté."
+ },
+ "acieromega": {
+  "last_checked": "2026-11-27",
+  "status": "no-site",
+  "note": "Aucun site web propre dans la fiche; à vérifier via une fiche publique (REQ / répertoire) à la prochaine passe."
+ },
+ "acierouellette": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "acierpacifique": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "acierpesant": {
+  "last_checked": "2026-11-27",
+  "status": "no-site",
+  "note": "Aucun site web propre dans la fiche; à vérifier via une fiche publique (REQ / répertoire) à la prochaine passe."
+ },
+ "acierquebecmaritimes": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "acierrayco": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "acierrobel": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "acierselect": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "aciersjeanpierrerobert": {
+  "last_checked": "2026-11-27",
+  "status": "no-site",
+  "note": "Aucun site web propre dans la fiche; à vérifier via une fiche publique (REQ / répertoire) à la prochaine passe."
+ },
+ "acierssolider": {
+  "last_checked": "2026-11-27",
+  "status": "ok",
+  "site": "https://www.solider.com",
+  "note": "Domaine déplacé : www.solider-inc.com redirige vers www.solider.com (200, « Accueil | Solider »)."
+ },
+ "acierstjerome": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "acierstransrol": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "aciertagrivenord": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "acierterrebonne": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "aciertrimax": {
+  "last_checked": "2026-11-27",
+  "status": "ok"
+ },
+ "acierusagerivesud": {
+  "last_checked": "2026-11-27",
+  "status": "no-site",
+  "note": "Aucun site web propre dans la fiche; à vérifier via une fiche publique (REQ / répertoire) à la prochaine passe."
+ }
+}

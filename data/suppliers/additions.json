@@ -1,0 +1,509 @@
+[
+ {
+  "id": "usinageavantage",
+  "name": "Usinage Avantage",
+  "cities": [
+   "Joliette"
+  ],
+  "region": "Lanaudière",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://usinageavantage.ca",
+  "cats": [
+   "cut",
+   "sheetmetal"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://usinageavantage.ca/services/decoupage/",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "514-312-0561"
+ },
+ {
+  "id": "metofuzion",
+  "name": "MetoFuzion",
+  "cities": [
+   "Joliette"
+  ],
+  "region": "Lanaudière",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://metofuzion.com",
+  "cats": [
+   "cut",
+   "welding",
+   "sheetmetal"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://metofuzion.com/",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "450-398-1117"
+ },
+ {
+  "id": "mecadraulique",
+  "name": "Mécadraulique",
+  "cities": [
+   "Saint-Roch-de-l'Achigan"
+  ],
+  "region": "Lanaudière",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://mecadraulique.ca",
+  "cats": [
+   "cut",
+   "welding"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://mecadraulique.ca/cnc-plasma.php",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "514-249-6286"
+ },
+ {
+  "id": "atelierkustom",
+  "name": "Atelier Kustom",
+  "cities": [
+   "Saint-Cuthbert"
+  ],
+  "region": "Lanaudière",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://atelierkustom.ca",
+  "cats": [
+   "cut",
+   "sheetmetal",
+   "welding"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://atelierkustom.ca/services/decoupe-au-laser/",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "450-836-4798"
+ },
+ {
+  "id": "mf2aero",
+  "name": "MF2 Aero",
+  "cities": [
+   "Trois-Rivières"
+  ],
+  "region": "Mauricie",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://www.mf2cnc.com",
+  "cats": [
+   "machining"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://www.mf2cnc.com/",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "819-694-7660"
+ },
+ {
+  "id": "atelierfaber",
+  "name": "Atelier Faber",
+  "cities": [
+   "Trois-Rivières"
+  ],
+  "region": "Mauricie",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://atelierfaberinc.com",
+  "cats": [
+   "machining",
+   "welding"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://atelierfaberinc.com/",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "819-373-1001"
+ },
+ {
+  "id": "elementservicesindustriels",
+  "name": "Element, Services Industriels",
+  "cities": [
+   "Trois-Rivières"
+  ],
+  "region": "Mauricie",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://element-si.com",
+  "cats": [
+   "machining",
+   "welding",
+   "cut"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://element-si.com/",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "819-374-4897"
+ },
+ {
+  "id": "usinagelamtec",
+  "name": "Usinage Lamtec",
+  "cities": [
+   "Trois-Rivières"
+  ],
+  "region": "Mauricie",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://www.usinagelamtec.com",
+  "cats": [
+   "machining"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://usinagelamtec.ca/?page_id=1912",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "819-377-0508"
+ },
+ {
+  "id": "usinagetrudel",
+  "name": "Usinage Trudel",
+  "cities": [
+   "Trois-Rivières"
+  ],
+  "region": "Mauricie",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://www.usinagetrudel.ca",
+  "cats": [
+   "machining"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://www.usinagetrudel.ca/",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "819-448-7752"
+ },
+ {
+  "id": "usinageservitech",
+  "name": "Usinage Servitech",
+  "cities": [
+   "Trois-Rivières"
+  ],
+  "region": "Mauricie",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://usinageservitech.com",
+  "cats": [
+   "machining",
+   "welding"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "http://www.usinageservitech.com/",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "819-693-2191"
+ },
+ {
+  "id": "fab3r",
+  "name": "FAB 3R",
+  "cities": [
+   "Trois-Rivières"
+  ],
+  "region": "Mauricie",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://www.fab3r.com",
+  "cats": [
+   "machining"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://www.fab3r.com/fr",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "819-371-8227"
+ },
+ {
+  "id": "laserdatoph",
+  "name": "Laser Datoph",
+  "cities": [
+   "Drummondville"
+  ],
+  "region": "Centre-du-Québec",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://www.laserdatoph.com",
+  "cats": [
+   "cut",
+   "sheetmetal"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://www.ccid.qc.ca/entreprise/laser-datoph-inc/",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "819-850-3839"
+ },
+ {
+  "id": "metaluno",
+  "name": "Métaluno",
+  "cities": [
+   "Drummondville"
+  ],
+  "region": "Centre-du-Québec",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://www.metaluno.ca",
+  "cats": [
+   "cut",
+   "sheetmetal",
+   "welding"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://www.metaluno.ca/",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "819-397-4844"
+ },
+ {
+  "id": "usinageprecisplus",
+  "name": "Usinage Précis Plus",
+  "cities": [
+   "Drummondville"
+  ],
+  "region": "Centre-du-Québec",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://usinageprecisplus.com",
+  "cats": [
+   "machining",
+   "welding",
+   "cut"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://usinageprecisplus.com/",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "819-478-5005"
+ },
+ {
+  "id": "hydrocoupecrc",
+  "name": "Hydro Coupe CRC",
+  "cities": [],
+  "region": "",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://www.hydrocoupeplus.com",
+  "cats": [
+   "cut",
+   "welding"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://www.hydrocoupeplus.com/",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "819-846-1990"
+ },
+ {
+  "id": "fabricationindustriellegt",
+  "name": "Fabrication industrielle GT",
+  "cities": [
+   "Saguenay"
+  ],
+  "region": "Saguenay–Lac-Saint-Jean",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://figt.ca",
+  "cats": [
+   "cut",
+   "welding"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://figt.ca/",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27"
+ },
+ {
+  "id": "fabricationsanslimites",
+  "name": "Fabrication Sans Limites",
+  "cities": [
+   "Albanel"
+  ],
+  "region": "Saguenay–Lac-Saint-Jean",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://fabricationsanslimites.com",
+  "cats": [
+   "cut",
+   "sheetmetal",
+   "welding"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://fabricationsanslimites.com/",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "418-618-7858"
+ },
+ {
+  "id": "fabmec",
+  "name": "FABMEC",
+  "cities": [
+   "Jonquière"
+  ],
+  "region": "Saguenay–Lac-Saint-Jean",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://fabmec.ca",
+  "cats": [
+   "cut",
+   "welding",
+   "sheetmetal"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://fabmec.ca/soudage-industriel-fabrication-mecano-soudee/",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "418-549-3636"
+ },
+ {
+  "id": "metalbaie",
+  "name": "Groupe Métal-Baie",
+  "cities": [
+   "La Baie"
+  ],
+  "region": "Saguenay–Lac-Saint-Jean",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://groupemetalbaie.ca",
+  "cats": [
+   "welding",
+   "machining",
+   "cut"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://groupemetalbaie.ca/",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "418-544-8442"
+ },
+ {
+  "id": "caasindustriel",
+  "name": "CAAS Industriel",
+  "cities": [
+   "Saint-Georges"
+  ],
+  "region": "Chaudière-Appalaches",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://www.caasindustriel.ca",
+  "cats": [
+   "cut",
+   "sheetmetal",
+   "welding"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://www.caasindustriel.ca/decoupe-laser/",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "1-877-742-1207"
+ },
+ {
+  "id": "souduredebeauce",
+  "name": "Soudure de Beauce",
+  "cities": [
+   "Saint-Georges"
+  ],
+  "region": "Chaudière-Appalaches",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://www.souduredebeauce.ca",
+  "cats": [
+   "cut",
+   "welding"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://www.souduredebeauce.ca/decoupe-au-plasma",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "418-228-1783"
+ },
+ {
+  "id": "htech",
+  "name": "HTECH",
+  "cities": [
+   "Rimouski"
+  ],
+  "region": "Bas-Saint-Laurent",
+  "provs": [
+   "QC"
+  ],
+  "site": "https://htech.ca",
+  "cats": [
+   "machining"
+  ],
+  "langs": [
+   "fr"
+  ],
+  "source": "https://htech.ca/",
+  "added": "2026-11-27",
+  "last_checked": "2026-11-27",
+  "phone": "418-730-2897"
+ }
+]
