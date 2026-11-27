@@ -31,6 +31,7 @@ CATS = {  # id: (fr, en, regex on name + notes)
     "retail": ("Quincaillerie / grande surface", "Hardware / big box", r"home depot|rona|canadian tire|canac|\bbmr\b|lowe|home hardware|princess auto|patrick morin|réno-dépôt|lordco|matériaux"),
     "surplus": ("Surplus / récupération", "Surplus / salvage", r"surplus|salvage|recyborg|ressourcerie|usagé|scrap|récup"),
     "online": ("Boutique en ligne", "Online store", r"online store|boutique en ligne|e-?commerce|onlinemetals|metals depot|speedy|mcmaster|online metals"),
+    "tooling": ("Outillage et consommables", "Tooling and consumables", r"(?!x)x"),
 }
 PROV = {"QC": ("Québec", "Quebec"), "ON": ("Ontario", "Ontario"), "BC": ("Colombie-Britannique", "British Columbia"),
         "AB": ("Alberta", "Alberta"), "MB": ("Manitoba", "Manitoba"), "SK": ("Saskatchewan", "Saskatchewan"),
@@ -80,6 +81,42 @@ def langs(s):
         out.append("fr")
     if "english" in s:
         out.append("en")
+    return out
+
+
+TOOLING = ROOT / "data" / "tooling" / "prices.json"
+
+
+def add_tooling(out):
+    """Merge the tooling-page suppliers (data/tooling/prices.json) into the directory list. Idempotent."""
+    if not TOOLING.exists():
+        return out
+    d = json.loads(TOOLING.read_text(encoding="utf-8"))
+    rows = {}
+    for it in d.get("items", []):
+        rows[it["source"]] = rows.get(it["source"], 0) + 1
+    host = lambda u: urlparse(u if "//" in (u or "") else "https://" + (u or "")).netloc.lower().removeprefix("www.")
+    by_host = {host(s["site"]): s for s in out if s.get("site")}
+    by_key = {s["id"]: s for s in out}
+    entries = [(s, rows.get(s["id"], 0)) for s in d.get("suppliers", [])]
+    entries += [({"id": "", "name": b["name"], "host": b["host"], "city": "", "province": b.get("province") or "",
+                  "country": "US" if not b.get("province") else "CA"}, 0)
+                for b in d.get("blocked", []) if b.get("host") and "," not in b["name"]]
+    for s, n in entries:
+        k = key(s["name"])
+        cur = by_host.get(host(s["host"])) or by_key.get(k)
+        if not cur:
+            prov = s["province"] or ("US" if s["country"] == "US" else "CA")
+            cur = {"id": k, "name": s["name"], "cities": [s["city"]] if s.get("city") and s["country"] == "CA" else [],
+                   "n_branches": 1 if s.get("city") and s["country"] == "CA" else 0, "provs": [prov],
+                   "site": f"https://{s['host']}", "cats": [], "langs": ["fr"] if s["province"] == "QC" else ["en"],
+                   "public_prices": False, "tracked": False, "rows": 0, "verified": False}
+            out.append(cur); by_key[k] = cur; by_host[host(cur["site"])] = cur
+        if "tooling" not in cur["cats"]:
+            cur["cats"] = [c for c in cur["cats"] if c != "online"] + ["tooling"] + (["online"] if "online" in cur["cats"] or s.get("platform") else [])
+        cur["tooling_rows"] = n
+        if n:
+            cur["public_prices"] = True
     return out
 
 
@@ -155,6 +192,7 @@ def build(csv_path=DEFAULT_CSV):
             "langs": sorted(g["langs"]), "public_prices": bool(g["public"]),
             "tracked": bool(g.get("tracked")), "rows": g.get("rows", 0), "verified": False,
         })
+    out = add_tooling(out)
     out.sort(key=lambda x: (0 if "QC" in x["provs"] else 1, key(x["name"])))
     return {"generated": latest["generated_at"][:10], "cats": {c: [v[0], v[1]] for c, v in CATS.items()},
             "provs": {p: list(v) for p, v in PROV.items()}, "suppliers": out}

@@ -42,6 +42,10 @@ def _card(s, d, fr):
         rows_fr, rows_en = nfr(s["rows"]), f'{s["rows"]:,}'
         tracked = (f'<a class="sp-tracked" href="{L("/prix/", "/en/sheet-prices/")}">'
                    f'{L(rows_fr + " prix dans le comparateur", rows_en + " prices in the price tool")} →</a>')
+    if s.get("tooling_rows"):
+        n_t = s["tooling_rows"]
+        tracked += (f'<a class="sp-tracked" href="{L("/outillage/", "/en/tooling/")}">'
+                    f'{L(nfr(n_t) + " prix d’outillage", f"{n_t:,} tooling prices")} →</a>')
     host = s["site"].split("//", 1)[-1] if s["site"] else ""
     site = (f'<a class="sp-site" href="{esc(s["site"])}" target="_blank" rel="noopener nofollow">{esc(host)} <span aria-hidden="true">↗</span></a>'
             if s["site"] else "")
@@ -56,6 +60,10 @@ def _card(s, d, fr):
 
 def render(form_newsletter=None):
     d = json.loads(DATA.read_text())
+    from suppliers.directory import add_tooling, CATS
+    d["suppliers"] = add_tooling(d["suppliers"])
+    d["suppliers"].sort(key=lambda x: (0 if "QC" in x["provs"] else 1, x["name"].lower()))
+    d["cats"].setdefault("tooling", [CATS["tooling"][0], CATS["tooling"][1]])
     sup = d["suppliers"]
 
     def page(fr):
@@ -71,17 +79,17 @@ def render(form_newsletter=None):
 <section class="sp-hero">
   <p class="sp-kicker">{L("Répertoire", "Directory")}</p>
   <h1>{L("Fournisseurs de métal au Québec et au Canada", "Metal suppliers in Quebec and across Canada")}</h1>
-  <p class="sp-lede">{L(f"{n} fournisseurs, dont {n_qc} au Québec : centres de service, aluminium, inox, tubes, découpe sur mesure et surplus. {n_pub} publient leurs prix en ligne; les autres répondent sur demande.",
-                       f"{n} suppliers, {n_qc} of them in Quebec: service centres, aluminum, stainless, tube, cut-to-size and surplus. {n_pub} publish prices online; the rest quote on request.")}</p>
+  <p class="sp-lede">{L(f"{n} fournisseurs, dont {n_qc} au Québec : centres de service, aluminium, inox, tubes, découpe sur mesure, surplus et outillage d’atelier. {n_pub} publient leurs prix en ligne; les autres répondent sur demande.",
+                       f"{n} suppliers, {n_qc} of them in Quebec: service centres, aluminum, stainless, tube, cut-to-size, surplus and shop tooling. {n_pub} publish prices online; the rest quote on request.")}</p>
   <div class="sp-hero-cta"><a class="btn" href="#ajouter">{L("Ajoutez vos prix", "Add your prices")}</a><a class="btn-ghost" href="{L("/prix/", "/en/sheet-prices/")}">{L("Comparer les prix publiés", "Compare published prices")}</a></div>
 </section>
 
 <form class="sp-filters" id="sp-filters" role="search" aria-label="{L("Filtrer les fournisseurs", "Filter suppliers")}" onsubmit="return false">
   <label class="sp-q"><span>{L("Rechercher", "Search")}</span><input type="search" name="q" autocomplete="off" placeholder="{L("Nom ou ville (ex. Joliette, Picard)", "Name or city (e.g. Laval, Russel)")}"></label>
-  <label><span>{L("Province", "Province")}</span><select name="prov"><option value="">{L("Toutes", "All")}</option>{prov_opts}</select></label>
-  <label><span>{L("Catégorie", "Category")}</span><select name="cat"><option value="">{L("Toutes", "All")}</option>{cat_opts}</select></label>
-  <label><span>{L("Prix", "Prices")}</span><select name="pub"><option value="">{L("Tous", "All")}</option><option value="1">{L("Prix publics", "Public prices")}</option><option value="0">{L("Sur demande", "Quote only")}</option></select></label>
-  <label><span>{L("Langue de service", "Service language")}</span><select name="lang"><option value="">{L("Toutes", "All")}</option><option value="fr">{L("Français", "French")}</option><option value="en">{L("Anglais", "English")}</option></select></label>
+  <label><span>{L("Province", "Province")}</span><select name="prov"><option value="" selected>{L("Tous", "All")}</option>{prov_opts}</select></label>
+  <label><span>{L("Catégorie", "Category")}</span><select name="cat"><option value="" selected>{L("Tous", "All")}</option>{cat_opts}</select></label>
+  <label><span>{L("Prix", "Prices")}</span><select name="pub"><option value="" selected>{L("Tous", "All")}</option><option value="1">{L("Prix publics", "Public prices")}</option><option value="0">{L("Sur demande", "Quote only")}</option></select></label>
+  <label><span>{L("Langue de service", "Service language")}</span><select name="lang"><option value="" selected>{L("Tous", "All")}</option><option value="fr">{L("Français", "French")}</option><option value="en">{L("Anglais", "English")}</option></select></label>
   <button type="button" class="sp-reset" data-reset>{L("Réinitialiser", "Reset")}</button>
 </form>
 <h2 class="vh">{L("Liste des fournisseurs", "Supplier list")}</h2>
