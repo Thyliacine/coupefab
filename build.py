@@ -1204,6 +1204,16 @@ NEWS_FR = f"""
   {form_newsletter("fr")}
   <h2>Ce que vous acceptez</h2>
   <p>En cochant la case, vous donnez un consentement exprès, conformément à la Loi canadienne anti-pourriel (LCAP / CASL), à recevoir des courriels de CoupeFab. Pas de case précochée, pas d’achat lié à l’inscription, et un moyen de se désabonner dans chaque envoi. Détails : <a href="/confidentialite/">confidentialité et consentement</a>.</p>
+  <h2 id="desabonnement">Se désabonner</h2>
+  <p>Entrez votre courriel pour ne plus recevoir l’infolettre. La demande est traitée sous 10 jours ouvrables, comme l’exige la LCAP.</p>
+  <form class="stack" data-form="unsubscribe" data-lang="fr" novalidate>
+    <div class="hp" aria-hidden="true"><label>Site web<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+    <label>Courriel
+      <input type="email" name="email" required autocomplete="email" inputmode="email">
+    </label>
+    <button type="submit">Me désabonner</button>
+    <p class="form-status" role="status" aria-live="polite"></p>
+  </form>
 </div>
 """
 
@@ -1215,6 +1225,16 @@ NEWS_EN = f"""
   {form_newsletter("en")}
   <h2>What you are agreeing to</h2>
   <p>By checking the box, you give express consent, under Canada’s Anti-Spam Legislation (CASL), to receive email from CoupeFab. The box is not pre-checked, a purchase is not required, and every issue will include a way to unsubscribe. Details: <a href="/en/privacy/">privacy and consent</a>.</p>
+  <h2 id="unsubscribe">Unsubscribe</h2>
+  <p>Enter your email to stop receiving the newsletter. Requests are processed within 10 business days, as CASL requires.</p>
+  <form class="stack" data-form="unsubscribe" data-lang="en" novalidate>
+    <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+    <label>Email
+      <input type="email" name="email" required autocomplete="email" inputmode="email">
+    </label>
+    <button type="submit">Unsubscribe me</button>
+    <p class="form-status" role="status" aria-live="polite"></p>
+  </form>
 </div>
 """
 
@@ -1278,20 +1298,22 @@ PRIV_FR = """
   <ul>
     <li><strong>Infolettre :</strong> courriel, prénom ou nom d’atelier s’il est fourni, langue du formulaire, date et preuve du consentement. Fin : vous envoyer l’infolettre et tenir le registre de consentement exigé par la LCAP.</li>
     <li><strong>Message de contact :</strong> courriel, nom s’il est fourni et texte du message. Fin : vous répondre.</li>
-    <li><strong>Soumission de prix (fournisseurs) :</strong> nom de l’entreprise, courriel de contact, site web, lien ou fichier de prix et message. Fin : vérifier et, avec votre autorisation, publier les prix de l’entreprise avec leur source et leur date.</li>
+    <li><strong>Soumission de prix et brochures (fournisseurs) :</strong> nom de l’entreprise, personne-ressource, courriel, téléphone s’il est fourni, site web, lien ou fichier de prix et message. Fin : vérifier et, avec votre autorisation, publier les prix de l’entreprise avec leur source et leur date.</li>
+    <li><strong>Demande de soumission (pièces) :</strong> nom, courriel, entreprise et téléphone s’ils sont fournis, région, description du travail et lien vers vos dessins. Fin : traiter votre demande manuellement et, avec votre consentement, la transmettre à des ateliers de votre région.</li>
+    <li><strong>Demande de visibilité :</strong> entreprise, personne-ressource, courriel et message. Fin : vous répondre.</li>
   </ul>
   <p>Nous n’utilisons pas ces renseignements à d’autres fins, ne les vendons pas et ne les partageons pas avec des annonceurs.</p>
   <h2>Consentement exprès (LCAP)</h2>
-  <p>L’inscription à l’infolettre exige une case à cocher, non précochée. Vous pouvez retirer votre consentement en tout temps, par le lien de désabonnement de chaque envoi ou en écrivant à <a href="mailto:info@coupefab.ca">info@coupefab.ca</a>.</p>
+  <p>L’inscription à l’infolettre exige une case à cocher, non précochée. Vous pouvez retirer votre consentement en tout temps, par le lien de désabonnement de chaque envoi, sur la page <a href="/infolettre/#desabonnement">Se désabonner</a> ou en écrivant à <a href="mailto:info@coupefab.ca">info@coupefab.ca</a>.</p>
   <h2>Où sont conservés vos renseignements</h2>
-  <p>Les formulaires passent par une fonction hébergée chez Vercel (serveurs possiblement situés hors du Québec, notamment aux États-Unis). Selon la configuration, ils sont transmis à une boîte courriel d’exploitation (Gmail, via le relais FormSubmit) ou à une feuille de calcul Google. Ces prestataires peuvent traiter les données hors du Québec; nous les choisissons pour leurs mesures de sécurité et ne leur transmettons que le nécessaire. Les renseignements sont conservés tant que vous êtes inscrit, puis supprimés au plus tard 12 mois après le désabonnement ou la fin de l’échange.</p>
+  <p>Les formulaires passent par une fonction hébergée chez Vercel et sont enregistrés dans un stockage privé (Vercel Blob), accessible seulement depuis l’espace d’administration de CoupeFab, protégé par mot de passe. Les courriels envoyés à info@coupefab.ca et nos réponses transitent par Resend. Ces prestataires peuvent traiter les données hors du Québec, notamment aux États-Unis; nous les choisissons pour leurs mesures de sécurité et ne leur transmettons que le nécessaire. Les échanges sont chiffrés (HTTPS) et les fichiers reçus ne sont jamais publics. Les renseignements sont conservés tant que vous êtes inscrit, puis supprimés au plus tard 12 mois après le désabonnement ou la fin de l’échange.</p>
   <h2>Témoins (cookies) et mesure d’audience</h2>
-  <p>CoupeFab <strong>n’utilise actuellement aucun témoin de suivi, aucun outil de mesure d’audience et aucune publicité</strong>. Il ne dépose aucun témoin et n’enregistre rien dans votre navigateur; les polices sont hébergées sur nos propres serveurs (aucun appel à Google Fonts). Les photos des annonces d’occasion sont chargées depuis le site du vendeur, sans transmettre de page d’origine. Si un outil de mesure d’audience est ajouté, cette section sera mise à jour avant sa mise en service, et un outil sans témoins sera privilégié.</p>
+  <p>CoupeFab <strong>n’utilise aucun témoin de suivi et aucune publicité</strong>. Pour compter les visites, nous utilisons Vercel Web Analytics, un outil <strong>sans témoins</strong> qui ne vous identifie pas et ne vous suit pas d’un site à l’autre (pages vues, pays, type d’appareil, en données agrégées). Les polices sont hébergées sur nos propres serveurs (aucun appel à Google Fonts). Les photos des annonces d’occasion sont chargées depuis le site du vendeur, sans transmettre de page d’origine. L’application installable (mode hors ligne) garde seulement des copies de pages publiques dans votre navigateur.</p>
   <h2>Vos droits</h2>
   <p>Vous pouvez demander l’accès à vos renseignements, leur rectification, leur suppression ou le retrait de votre consentement en écrivant à <a href="mailto:info@coupefab.ca">info@coupefab.ca</a>. Nous répondons dans un délai de 30 jours. Si vous n’êtes pas satisfait, vous pouvez vous adresser à la <a href="https://www.cai.gouv.qc.ca/" rel="noopener">Commission d’accès à l’information du Québec</a>.</p>
   <h2>Incident de confidentialité</h2>
   <p>En cas d’incident présentant un risque de préjudice sérieux, nous aviserons les personnes concernées et la Commission d’accès à l’information, et nous tenons un registre des incidents.</p>
-  <p><small>Dernière mise à jour : 26 novembre 2026. Voir aussi les <a href="/conditions/">conditions d’utilisation</a>.</small></p>
+  <p><small>Dernière mise à jour : 27 novembre 2026. Voir aussi les <a href="/conditions/">conditions d’utilisation</a>.</small></p>
 </div>
 """
 
@@ -1305,20 +1327,22 @@ PRIV_EN = """
   <ul>
     <li><strong>Newsletter:</strong> email, first name or shop name if given, form language, date and proof of consent. Purpose: sending the newsletter and keeping the consent record CASL requires.</li>
     <li><strong>Contact message:</strong> email, name if given, and the message. Purpose: replying to you.</li>
-    <li><strong>Price submission (suppliers):</strong> company name, contact email, website, price link or file, and message. Purpose: reviewing and, with your authorization, publishing the company’s prices with their source and date.</li>
+    <li><strong>Price and brochure submissions (suppliers):</strong> company name, contact person, email, phone if given, website, price link or file, and message. Purpose: reviewing and, with your authorization, publishing the company’s prices with their source and date.</li>
+    <li><strong>Quote requests (parts):</strong> name, email, company and phone if given, region, job description and a link to your drawings. Purpose: handling your request manually and, with your consent, passing it to shops in your region.</li>
+    <li><strong>Visibility requests:</strong> company, contact person, email and message. Purpose: replying to you.</li>
   </ul>
   <p>We do not use this information for anything else, we do not sell it, and we do not share it with advertisers.</p>
   <h2>Express consent (CASL)</h2>
-  <p>Newsletter signup requires a checkbox that is not pre-checked. You can withdraw consent at any time through the unsubscribe link in each issue or by writing to <a href="mailto:info@coupefab.ca">info@coupefab.ca</a>.</p>
+  <p>Newsletter signup requires a checkbox that is not pre-checked. You can withdraw consent at any time through the unsubscribe link in each issue, on the <a href="/en/newsletter/#unsubscribe">unsubscribe page</a>, or by writing to <a href="mailto:info@coupefab.ca">info@coupefab.ca</a>.</p>
   <h2>Where your information is kept</h2>
-  <p>Forms go through a function hosted by Vercel (servers that may be outside Quebec, including in the United States). Depending on configuration, they are forwarded to an operations inbox (Gmail, through the FormSubmit relay) or a Google spreadsheet. These providers may process data outside Quebec; we choose them for their security practices and send them only what is needed. Information is kept while you are subscribed, then deleted no later than 12 months after you unsubscribe or the exchange ends.</p>
+  <p>Forms go through a function hosted by Vercel and are saved in private storage (Vercel Blob) that can only be reached from CoupeFab’s password-protected admin area. Email sent to info@coupefab.ca and our replies go through Resend. These providers may process data outside Quebec, including in the United States; we choose them for their security practices and send them only what is needed. Connections are encrypted (HTTPS) and files you send are never public. Information is kept while you are subscribed, then deleted no later than 12 months after you unsubscribe or the exchange ends.</p>
   <h2>Cookies and analytics</h2>
-  <p>CoupeFab <strong>currently uses no tracking cookies, no analytics tool and no advertising</strong>. It sets no cookies and stores nothing in your browser; fonts are self-hosted (no calls to Google Fonts). Photos in used-equipment listings load from the seller’s site without sending the referring page. If an analytics tool is added, this section will be updated before it goes live, and a cookieless tool will be preferred.</p>
+  <p>CoupeFab <strong>uses no tracking cookies and no advertising</strong>. To count visits we use Vercel Web Analytics, a <strong>cookieless</strong> tool that does not identify you or follow you across sites (page views, country, device type, in aggregate). Fonts are self-hosted (no calls to Google Fonts). Photos in used-equipment listings load from the seller’s site without sending the referring page. The installable app (offline mode) only keeps copies of public pages in your browser.</p>
   <h2>Your rights</h2>
   <p>You can ask to access, correct or delete your information, or withdraw consent, by writing to <a href="mailto:info@coupefab.ca">info@coupefab.ca</a>. We reply within 30 days. If you are not satisfied, you can contact Quebec’s <a href="https://www.cai.gouv.qc.ca/" rel="noopener">Commission d’accès à l’information</a>.</p>
   <h2>Confidentiality incidents</h2>
   <p>If an incident presents a risk of serious injury, we will notify the people affected and the Commission d’accès à l’information, and we keep an incident register.</p>
-  <p><small>Last updated: November 26, 2026. See also the <a href="/en/terms/">terms of use</a>.</small></p>
+  <p><small>Last updated: November 27, 2026. See also the <a href="/en/terms/">terms of use</a>.</small></p>
 </div>
 """
 

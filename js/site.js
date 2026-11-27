@@ -415,8 +415,8 @@
         if (!res.ok || !body.ok) throw new Error(body.error || "request failed");
         form.reset();
         statusEl(form, "ok", flang === "en"
-          ? (type === "contact" ? "Message received. We will reply as soon as we can." : "You are on the list. Thank you — you can unsubscribe at any time.")
-          : (type === "contact" ? "Message reçu. Nous répondrons dès que possible." : "Vous êtes bien inscrit. Merci — vous pourrez vous désabonner en tout temps."));
+          ? (type === "contact" ? "Message received. We will reply as soon as we can." : type === "unsubscribe" ? "Done. If this address was on the list, it will be removed." : "You are on the list. Thank you — you can unsubscribe at any time.")
+          : (type === "contact" ? "Message reçu. Nous répondrons dès que possible." : type === "unsubscribe" ? "C’est noté. Si cette adresse était inscrite, elle sera retirée de la liste." : "Vous êtes bien inscrit. Merci — vous pourrez vous désabonner en tout temps."));
       } catch (err) {
         statusEl(form, "err", flang === "en"
           ? "Something went wrong. Please try again, or write to us from the contact page."

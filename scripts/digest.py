@@ -92,8 +92,8 @@ def build(lang: str, d: dict, sponsor: dict | None) -> tuple[str, str]:
     sp_h = sponsor_html(sponsor, fr) if sponsor else ""
     head = ("<tr><th align=left style='padding:6px 8px'>Métal</th><th align=right style='padding:6px 8px'>Le plus bas</th><th align=left style='padding:6px 8px'>Produit</th><th align=right style='padding:6px 8px'>Fourn.</th></tr>"
             if fr else "<tr><th align=left style='padding:6px 8px'>Metal</th><th align=right style='padding:6px 8px'>Lowest</th><th align=left style='padding:6px 8px'>Product</th><th align=right style='padding:6px 8px'>Suppl.</th></tr>")
-    unsub = ("Vous recevez ce courriel parce que vous êtes abonné à l’infolettre CoupeFab. Pour vous désabonner, répondez « désabonner ». Responsable : Michaël Brassard, info@coupefab.ca."
-             if fr else "You get this email because you subscribed to the CoupeFab newsletter. To unsubscribe, reply “unsubscribe”. Contact: Michaël Brassard, info@coupefab.ca.")
+    unsub = ("Vous recevez ce courriel parce que vous êtes abonné à l’infolettre CoupeFab. Pour vous désabonner, répondez « désabonner » ou utilisez https://coupefab.ca/infolettre/#desabonnement. Responsable : Michaël Brassard, info@coupefab.ca."
+             if fr else "You get this email because you subscribed to the CoupeFab newsletter. To unsubscribe, reply “unsubscribe” or use https://coupefab.ca/en/newsletter/#unsubscribe. Contact: Michaël Brassard, info@coupefab.ca.")
     page = f"""<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>{e(title)}</title></head>
 <body style="margin:0;background:#f6f5f1"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:24px 12px">
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;background:#fff;border:1px solid #e1ded5;border-radius:10px">
