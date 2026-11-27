@@ -1,7 +1,7 @@
 /**
  * CoupeFab newsletter + contact intake.
  * Persists to a webhook (Google Apps Script / Sheet) when NEWSLETTER_WEBHOOK_URL is set.
- * Also forwards to FormSubmit when NEWSLETTER_INBOX is set (confirm the first message by email).
+ * Writes each signup or contact message to the CoupeFab admin Inbox (Vercel Blob).
  * Always appends to /tmp as a last-resort log (ephemeral on serverless).
  * CASL: consent must be explicitly true. Honeypot field "website" drops bots.
  */
@@ -65,24 +65,18 @@ async function forwardWebhook(entry) {
   return true;
 }
 
-async function forwardFormsubmit(entry) {
-  const inbox = process.env.NEWSLETTER_INBOX;
-  if (!inbox) return false;
-  const res = await fetch("https://formsubmit.co/ajax/" + encodeURIComponent(inbox), {
-    method: "POST",
-    headers: { "content-type": "application/json", accept: "application/json" },
-    body: JSON.stringify({
-      _subject: entry.type === "contact" ? "CoupeFab — message" : "CoupeFab — inscription infolettre",
-      type: entry.type,
-      name: entry.name || "(non fourni)",
-      email: entry.email,
-      message: entry.message || "",
-      lang: entry.lang,
-      consent: entry.consent,
-      submittedAt: entry.submittedAt,
-    }),
+async function forwardInbox(entry) {
+  const { saveForm } = require("./_inbox");
+  const isContact = entry.type === "contact";
+  await saveForm({
+    type: isContact ? "contact" : "newsletter",
+    subject: isContact ? "Message depuis le site" : "Inscription à l’infolettre",
+    from: entry.email,
+    fromName: entry.name || "",
+    to: "info@coupefab.ca",
+    text: entry.message || (isContact ? "" : "Inscription à l’infolettre"),
+    fields: entry,
   });
-  if (!res.ok) throw new Error("formsubmit " + res.status);
   return true;
 }
 
@@ -153,18 +147,17 @@ module.exports = async function handler(req, res) {
     errors.push(String(err));
   }
   try {
-    stored = (await forwardFormsubmit(entry)) || stored;
+    stored = (await forwardInbox(entry)) || stored;
   } catch (err) {
     errors.push(String(err));
   }
 
   if (errors.length) console.error("forward errors", errors);
 
-  // Accept the signup even if only the ephemeral log succeeded, so the form
-  // does not fail closed on a fresh project. Operators should set NEWSLETTER_INBOX
-  // or NEWSLETTER_WEBHOOK_URL for durable storage (see README).
-  json(res, 200, {
-    ok: true,
-    persisted: stored,
-  });
+  if (!stored) {
+    return json(res, 503, { ok: false, error: entry.lang === "en"
+      ? "The form isn’t connected to our inbox yet. Please try again soon."
+      : "Le formulaire n’est pas encore relié à notre boîte de réception. Réessayez bientôt." });
+  }
+  json(res, 200, { ok: true, persisted: true });
 };

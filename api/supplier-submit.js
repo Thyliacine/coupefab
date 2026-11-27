@@ -3,9 +3,9 @@
  * Submissions go to MANUAL REVIEW only: nothing here publishes anything.
  *
  * Durable storage, same mechanisms as api/subscribe.js (set at least one in Vercel → Settings → Environment Variables):
- *   SUPPLIER_WEBHOOK_URL (or NEWSLETTER_WEBHOOK_URL)  JSON POST incl. the file as base64 (e.g. Google Apps Script → Sheet + Drive)
- *   SUPPLIER_INBOX (or NEWSLETTER_INBOX)              FormSubmit relay to an inbox, file sent as an attachment
- * Without either, the function answers 503 so the supplier is told to retry instead of being silently dropped.
+ * Durable storage: written to the CoupeFab admin Inbox (Vercel Blob), file included as an attachment.
+ * Optional: SUPPLIER_WEBHOOK_URL (or NEWSLETTER_WEBHOOK_URL) also POSTs JSON.
+ * Without Blob storage the function answers 503 so the supplier is told to retry instead of being silently dropped.
  * Honeypot field "website" drops bots. Body capped at ~3.2 MB (2 MB file + base64 overhead; Vercel limit is 4.5 MB).
  */
 const fs = require("fs");
@@ -48,17 +48,20 @@ async function toWebhook(entry) {
 }
 
 async function toInbox(entry) {
-  const inbox = process.env.SUPPLIER_INBOX || process.env.NEWSLETTER_INBOX;
-  if (!inbox) return false;
-  const fd = new FormData();
-  fd.append("_subject", `CoupeFab — prix fournisseur à vérifier : ${entry.company}`);
-  fd.append("_template", "table");
-  fd.append("_captcha", "false");
-  for (const k of ["company", "email", "site", "price_url", "message", "lang", "submittedAt"]) fd.append(k, entry[k] || "");
-  fd.append("review", "MANUAL REVIEW REQUIRED — do not publish before checking prices, source and date.");
-  if (entry.file) fd.append("attachment", new Blob([Buffer.from(entry.file.data, "base64")], { type: entry.file.type }), entry.file.name);
-  const r = await fetch("https://formsubmit.co/ajax/" + encodeURIComponent(inbox), { method: "POST", headers: { accept: "application/json" }, body: fd });
-  if (!r.ok) throw new Error("formsubmit " + r.status);
+  const { saveForm } = require("./_inbox");
+  const files = entry.file && entry.file.data ? [{ name: entry.file.name, data: entry.file.data, type: entry.file.type }] : [];
+  const fields = { ...entry };
+  if (fields.file) fields.file = { name: entry.file.name, size: entry.file.size, type: entry.file.type };
+  await saveForm({
+    type: "supplier",
+    subject: "Prix fournisseur à vérifier : " + (entry.company || ""),
+    from: entry.email,
+    fromName: entry.company || "",
+    to: "info@coupefab.ca",
+    text: [entry.company, entry.site, entry.price_url, entry.message].filter(Boolean).join("\n"),
+    fields,
+    files,
+  });
   return true;
 }
 
