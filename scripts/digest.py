@@ -22,7 +22,7 @@ sys.path.insert(0, str(ROOT))
 import revenue  # noqa: E402
 from prices import store  # noqa: E402
 
-SITE = "https://coupefab.vercel.app"
+SITE = "https://coupefab.ca"
 OUT = ROOT / "digest-preview"
 TZ = ZoneInfo("America/Toronto")
 FAM = {"acier": ("Acier", "Steel"), "inox": ("Inox", "Stainless"), "aluminium": ("Aluminium", "Aluminum"),

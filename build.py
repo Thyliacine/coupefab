@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-SITE = "https://coupefab.vercel.app"
+SITE = "https://coupefab.ca"
 DATE_ISO = "2026-11-26"
 DATE_FR = "26 novembre 2026"
 DATE_EN = "November 26, 2026"

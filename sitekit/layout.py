@@ -3,7 +3,7 @@ import json
 
 from .taxonomy import T, PATHS, HUBS, HUB_ORDER, hub_path
 
-SITE = "https://coupefab.vercel.app"
+SITE = "https://coupefab.ca"
 YEAR = "2026"
 ASSET_V = "20261126as"  # bump to bust CSS/JS caches
 
