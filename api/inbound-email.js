@@ -84,7 +84,7 @@ async function fetchReceiving(emailId) {
     headers: { authorization: "Bearer " + key, accept: "application/json" },
   });
   if (!r.ok) {
-    console.error("resend receiving get", r.status, await r.text().catch(() => ""));
+    console.error("resend receiving get", r.status);
     return null;
   }
   return r.json();
@@ -97,21 +97,29 @@ async function fetchAttachmentList(emailId) {
     headers: { authorization: "Bearer " + key, accept: "application/json" },
   });
   if (!r.ok) {
-    console.error("resend receiving attachments", r.status, await r.text().catch(() => ""));
+    console.error("resend receiving attachments", r.status);
     return [];
   }
   const j = await r.json();
   return j.data || j.attachments || (Array.isArray(j) ? j : []);
 }
 
+const MAX_ATTACHMENT = 15 * 1024 * 1024;
+const MAX_ATTACHMENTS = 10;
+
 async function downloadAttachment(att) {
-  const url = att.download_url || att.url;
-  if (!url) return null;
+  const url = String(att.download_url || att.url || "");
+  if (!/^https:\/\//i.test(url)) return null;
   const headers = {};
-  if (process.env.RESEND_API_KEY) headers.authorization = "Bearer " + process.env.RESEND_API_KEY;
-  const r = await fetch(url, { headers });
+  // Only Resend's own hosts get the API key; signed download URLs work without it.
+  let host = "";
+  try { host = new URL(url).hostname; } catch { return null; }
+  if (process.env.RESEND_API_KEY && /(^|\.)resend\.(com|dev|app)$/i.test(host)) headers.authorization = "Bearer " + process.env.RESEND_API_KEY;
+  const r = await fetch(url, { headers, redirect: "follow" });
   if (!r.ok) return null;
+  if (Number(r.headers.get("content-length") || 0) > MAX_ATTACHMENT) return null;
   const buf = Buffer.from(await r.arrayBuffer());
+  if (buf.length > MAX_ATTACHMENT) return null;
   return { name: att.filename || att.name || "piece-jointe", data: buf, contentType: att.content_type || att.contentType || r.headers.get("content-type") || "application/octet-stream" };
 }
 
@@ -131,7 +139,7 @@ module.exports = async (req, res) => {
   const emailId = data.email_id || data.id || "";
   // Webhook payloads are metadata-only; body/headers come from GET /emails/receiving/{id}.
   let full = null;
-  try { full = await fetchReceiving(emailId); } catch (e) { console.error("fetch receiving", e); }
+  try { full = await fetchReceiving(emailId); } catch (e) { console.error("fetch receiving failed", e && e.message); }
   if (emailId && !full) {
     return json(res, 500, { ok: false, error: "could not fetch received email" });
   }
@@ -142,13 +150,13 @@ module.exports = async (req, res) => {
   const id = inbox.nid("msg_");
   const attachments = [];
   let attList = [];
-  try { attList = await fetchAttachmentList(emailId); } catch (e) { console.error("fetch attachments", e); }
+  try { attList = await fetchAttachmentList(emailId); } catch (e) { console.error("fetch attachments failed", e && e.message); }
   if (!attList.length) attList = src.attachments || [];
-  for (const att of attList) {
+  for (const att of attList.slice(0, MAX_ATTACHMENTS)) {
     try {
       const file = await downloadAttachment(att);
       if (file) attachments.push(await inbox.addAttachment(id, file));
-    } catch (e) { console.error("inbound att", e); }
+    } catch (e) { console.error("inbound att failed", e && e.message); }
   }
   const msg = {
     id,
@@ -173,7 +181,7 @@ module.exports = async (req, res) => {
   try {
     await inbox.saveMessage(msg);
   } catch (e) {
-    console.error("inbound store", e);
+    console.error("inbound store failed", e && e.message);
     return json(res, 500, { ok: false, error: "store failed" });
   }
   return json(res, 200, { ok: true, id: msg.id });

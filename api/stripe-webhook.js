@@ -22,7 +22,8 @@ function json(res, status, body) {
 function rawBody(req) {
   return new Promise((resolve, reject) => {
     const chunks = [];
-    req.on("data", (c) => chunks.push(c));
+    let n = 0;
+    req.on("data", (c) => { n += c.length; if (n > 1_000_000) { reject(new Error("too large")); req.destroy(); return; } chunks.push(c); });
     req.on("end", () => resolve(Buffer.concat(chunks)));
     req.on("error", reject);
   });
@@ -55,7 +56,8 @@ module.exports = async function handler(req, res) {
   if (req.method !== "POST") return json(res, 405, { ok: false });
   const secret = process.env.STRIPE_WEBHOOK_SECRET, store = process.env.FEATURED_WEBHOOK_URL;
   if (!secret || !store) return json(res, 503, { ok: false, error: "payments not configured" });
-  const raw = await rawBody(req);
+  let raw;
+  try { raw = await rawBody(req); } catch { return json(res, 413, { ok: false }); }
   if (!verify(raw, req.headers["stripe-signature"], secret)) return json(res, 400, { ok: false, error: "bad signature" });
   let evt;
   try { evt = JSON.parse(raw.toString("utf8")); } catch { return json(res, 400, { ok: false }); }

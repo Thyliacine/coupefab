@@ -15,13 +15,19 @@ module.exports = async (req, res) => {
   try {
     const { body, contentType } = await blob.getBuffer(att.url || att.pathname);
     res.statusCode = 200;
-    res.setHeader("content-type", att.contentType || contentType || "application/octet-stream");
-    res.setHeader("content-disposition", "attachment; filename=\"" + att.name.replace(/"/g, "") + "\"");
+    // Always a download, never rendered inline on coupefab.ca (a hostile HTML/SVG
+    // attachment must not run in the admin's origin).
+    const safe = String(att.name || "fichier").replace(/[^\w.\- ]+/g, "_").slice(0, 120) || "fichier";
+    const ct = String(att.contentType || contentType || "application/octet-stream");
+    res.setHeader("content-type", /^(application\/pdf|image\/(png|jpeg|gif|webp)|text\/csv|application\/vnd\.[\w.+-]+|application\/(zip|msword|vnd\.ms-excel))$/i.test(ct) ? ct : "application/octet-stream");
+    res.setHeader("content-disposition", "attachment; filename=\"" + safe + "\"");
+    res.setHeader("x-content-type-options", "nosniff");
+    res.setHeader("content-security-policy", "default-src 'none'; sandbox");
     res.setHeader("cache-control", "private, no-store");
     res.setHeader("x-robots-tag", "noindex");
     res.end(body);
   } catch (e) {
-    console.error("attachment", e);
+    console.error("attachment failed", e && e.message);
     return auth.json(res, 404, { ok: false, error: "Fichier introuvable." });
   }
 };

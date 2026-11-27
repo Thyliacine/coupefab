@@ -9,8 +9,8 @@
  * (QUOTE_RATE_MAX requests per QUOTE_RATE_WINDOW_S seconds, default 5 per 3600; per warm instance).
  * Loi 25: consent must be explicitly true; the consent text version is stored with the request.
  */
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const URL_RE = /^https?:\/\/[^\s]+$/i;
+const sec = require("./_security");
+const URL_RE = /^https?:\/\/[^\s<>"']+$/i;
 const PROCESSES = ["plasma", "laser", "waterjet", "bending", "machining", "router", "welding", "other"];
 const MATERIALS = ["acier", "inox", "aluminium", "cuivre-laiton", "plastique-bois", "autre"];
 const REGIONS = ["montreal", "monteregie", "laurentides-lanaudiere", "mauricie-centre", "quebec-chaudiere", "saguenay", "autre-qc", "hors-qc"];
@@ -34,7 +34,7 @@ function readBody(req) {
   });
 }
 const msg = (lang, fr, en) => (lang === "en" ? en : fr);
-const s = (v, n) => String(v == null ? "" : v).trim().slice(0, n);
+const s = (v, n) => sec.oneLine(v, n);
 
 function rateLimited(ip) {
   const max = +process.env.QUOTE_RATE_MAX || 5, win = (+process.env.QUOTE_RATE_WINDOW_S || 3600) * 1000, now = Date.now();
@@ -45,7 +45,7 @@ function rateLimited(ip) {
 
 async function toWebhook(entry) {
   const url = process.env.QUOTE_WEBHOOK_URL || process.env.NEWSLETTER_WEBHOOK_URL;
-  if (!url) return false;
+  if (!url || !/^https:\/\//i.test(url)) return false;
   const r = await fetch(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ type: "quote_request", ...entry }) });
   if (!r.ok) throw new Error("webhook " + r.status);
   return true;
@@ -72,24 +72,24 @@ async function toInbox(entry) {
 }
 
 module.exports = async function handler(req, res) {
-  if (req.method !== "POST") return json(res, 405, { ok: false, error: "method not allowed" });
+  if (req.method !== "POST") { res.setHeader("allow", "POST"); return json(res, 405, { ok: false, error: "method not allowed" }); }
+  if (!sec.originOk(req)) return json(res, 403, { ok: false, error: "forbidden" });
   let b;
   try { b = await readBody(req); } catch { return json(res, 413, { ok: false, error: "Demande trop longue / request too large" }); }
   const lang = b.lang === "en" ? "en" : "fr";
   if (b.website) return json(res, 200, { ok: true });                       // honeypot
   const t0 = +b.t0 || 0;
   if (t0 && Date.now() - t0 < 3000) return json(res, 200, { ok: true });   // filled in < 3 s: a bot
-  const ip = String(req.headers["x-forwarded-for"] || req.socket?.remoteAddress || "").split(",")[0].trim();
-  if (rateLimited(ip)) return json(res, 429, { ok: false, error: msg(lang, "Trop de demandes. Réessayez dans une heure.", "Too many requests. Please try again in an hour.") });
+  if (rateLimited(sec.clientIp(req)) || sec.limited(req, "quote", 1000, 3600_000, 150)) return json(res, 429, { ok: false, error: msg(lang, "Trop de demandes. Réessayez dans une heure.", "Too many requests. Please try again in an hour.") });
 
   const e = {
     process: s(b.process, 30), material: s(b.material, 30), thickness: s(b.thickness, 60), qty: Math.max(0, Math.floor(+b.qty || 0)),
-    file_url: s(b.file_url, 500), description: s(b.description, 3000), region: s(b.region, 40), deadline: s(b.deadline, 10),
-    name: s(b.name, 120), company: s(b.company, 200), email: s(b.email, 200).toLowerCase(), phone: s(b.phone, 40), lang,
+    file_url: s(b.file_url, 500), description: sec.clean(b.description, 3000), region: s(b.region, 40), deadline: s(b.deadline, 10),
+    name: s(b.name, 120), company: s(b.company, 200), email: s(b.email, 254).toLowerCase(), phone: s(b.phone, 40), lang,
   };
   if (!PROCESSES.includes(e.process) || !MATERIALS.includes(e.material) || !REGIONS.includes(e.region) || !e.qty)
     return json(res, 400, { ok: false, error: msg(lang, "Choisissez le procédé, le matériau, la région et la quantité.", "Pick the process, material, region and quantity.") });
-  if (!e.name || !EMAIL_RE.test(e.email)) return json(res, 400, { ok: false, error: msg(lang, "Nom et courriel valide requis.", "Name and a valid email are required.") });
+  if (!e.name || !sec.validEmail(e.email)) return json(res, 400, { ok: false, error: msg(lang, "Nom et courriel valide requis.", "Name and a valid email are required.") });
   if (!e.file_url && !e.description) return json(res, 400, { ok: false, error: msg(lang, "Ajoutez un lien vers vos dessins ou une description.", "Add a link to your drawings or a description.") });
   if (e.file_url && !URL_RE.test(e.file_url)) return json(res, 400, { ok: false, error: msg(lang, "Le lien doit commencer par https://", "The link must start with https://") });
   if (e.deadline && !/^\d{4}-\d{2}-\d{2}$/.test(e.deadline)) e.deadline = "";
@@ -98,9 +98,9 @@ module.exports = async function handler(req, res) {
   const matched_shops = ((ROUTING.table[e.region] || {})[e.process] || []).slice(0, 8); // for manual follow-up only
   const entry = { ...e, matched_shops, consent: true, consent_version: CONSENT_VERSION, status: "new", submittedAt: new Date().toISOString() };
   let stored = false;
-  const errors = [];
-  for (const fn of [toWebhook, toInbox]) { try { stored = (await fn(entry)) || stored; } catch (err) { errors.push(String(err)); } }
-  if (errors.length) console.error("quote-request forward errors", errors);
+  let failures = 0;
+  for (const fn of [toWebhook, toInbox]) { try { stored = (await fn(entry)) || stored; } catch { failures += 1; } }
+  if (failures) console.error("quote-request: " + failures + " storage target(s) failed");
   if (!stored) return json(res, 503, { ok: false, error: msg(lang, "Le formulaire n’est pas encore relié à notre boîte de réception. Réessayez bientôt ou écrivez à info@coupefab.ca.", "The form isn’t connected to our inbox yet. Please try again soon or write to info@coupefab.ca.") });
   return json(res, 200, { ok: true, status: "new" });
 };
