@@ -15,6 +15,7 @@ DATA = ROOT / "data" / "coolant-machines.json"
 FR_PATH = "/outils/calculateur-liquide-de-coupe/"
 EN_PATH = "/en/tools/coolant-calculator/"
 PUBLIC_JSON = ROOT / "outils" / "machines-liquide-de-coupe.json"
+UI_JSON = ROOT / "outils" / "calculateur-liquide-de-coupe" / "machines.json"
 GUIDE_FR = "/guides/arrosage-fluides-de-coupe/"
 GUIDE_EN = "/en/guides/coolant-cutting-fluids/"
 QA_PRODUCTS = "https://qalube.com/soluble-oil-coolants"
@@ -29,6 +30,8 @@ TYPES = {  # id: (fr, en)
     "vtl": ("Tour vertical", "Vertical turning centre"),
     "boring": ("Aléseuse horizontale", "Horizontal boring mill"),
     "router": ("Routeur portique", "Gantry router"),
+    "swiss": ("Tour à poupée mobile (suisse)", "Swiss-type lathe"),
+    "grinder": ("Rectifieuse", "Grinder"),
 }
 
 
@@ -62,7 +65,8 @@ def compact(d):
     for m in d["machines"]:
         rows.append([m["brand"], m["model"], m["type"], m.get("liters"), m.get("us_gal"), m.get("source"),
                      m.get("note_fr") or "", m.get("note_en") or "",
-                     [[v["label_fr"], v["label_en"], v["liters"], v["us_gal"]] for v in m.get("variants", [])]])
+                     [[v["label_fr"], v["label_en"], v["liters"], v["us_gal"]] for v in m.get("variants", [])],
+                     m.get("official") or ""])
     return rows
 
 
@@ -73,7 +77,9 @@ def render(site="https://coupefab.ca"):
     n_all = len(machines)
     n_cap = sum(1 for m in machines if m.get("liters"))
     brands = sorted({m["brand"] for m in machines}, key=str.lower)
-    blob = json.dumps(compact(d), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    UI_JSON.parent.mkdir(parents=True, exist_ok=True)
+    UI_JSON.write_text(json.dumps({"types": {k: list(v) for k, v in TYPES.items()}, "rows": compact(d)}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    n_mti = sum(1 for m in machines if "machinetoolindex.com" in (m.get("source") or ""))
 
     def page(fr: bool) -> str:
         L = (lambda a, b: a if fr else b)
@@ -85,7 +91,7 @@ def render(site="https://coupefab.ca"):
         mailto = f"mailto:info@coupefab.ca?subject={esc(mail_subj).replace(' ', '%20')}&amp;body={mail_body.replace(' ', '%20')}"
         # static machine table (works without JS, indexable)
         trs = []
-        for m in machines:
+        for m in [x for x in machines if "machinetoolindex.com" not in (x.get("source") or "")][:120]:
             cap = (f'{nfr(m["liters"]) if fr else f"{m["liters"]:,}"} L · {nfr(m["us_gal"], 1) if fr else m["us_gal"]} gal'
                    if m.get("liters") else L("non publiée — entrez la vôtre", "not published — enter your own"))
             note = m.get("note_fr" if fr else "note_en") or ""
@@ -93,7 +99,10 @@ def render(site="https://coupefab.ca"):
             trs.append(f'<tr data-q="{esc((m["brand"] + " " + m["model"]).lower())}"><td><b>{esc(m["brand"])}</b> {esc(m["model"])}'
                        + (f'<div class="lq-sub">{esc(note)}</div>' if note else "")
                        + f'</td><td>{esc(TYPES[m["type"]][0 if fr else 1])}</td><td class="lq-r lq-num">{cap}</td><td>{src}</td></tr>')
-        brand_list = ", ".join(brands)
+        cnt = {}
+        for m in machines: cnt[m["brand"]] = cnt.get(m["brand"], 0) + 1
+        top = sorted(sorted(brands, key=str.lower), key=lambda b: -cnt[b])[:24]
+        brand_list = ", ".join(sorted(top, key=str.lower)) + (L(f" et {len(brands) - len(top)} autres", f" and {len(brands) - len(top)} more") if len(brands) > len(top) else "")
         ld = json.dumps({"@context": "https://schema.org", "@type": "WebApplication",
                          "name": L("Calculateur de liquide de coupe (concentration, appoint, réfractomètre)", "Coolant calculator (mix, top-up, refractometer)"),
                          "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web", "inLanguage": "fr-CA" if fr else "en-CA",
@@ -103,7 +112,7 @@ def render(site="https://coupefab.ca"):
         return f"""<link rel="stylesheet" href="/css/outillage.css?v={ver('css/outillage.css')}">
 <link rel="stylesheet" href="/css/liquide.css?v={ver('css/liquide.css')}">
 <script type="application/ld+json">{ld}</script>
-<div class="tl lq" id="lq-app" data-lang="{lang}">
+<div class="tl lq" id="lq-app" data-lang="{lang}" data-json="/outils/calculateur-liquide-de-coupe/machines.json?v={ver('data/coolant-machines.json')}">
 <section class="tl-hero">
   <div class="tl-hero-top">
     <div>
@@ -120,10 +129,14 @@ def render(site="https://coupefab.ca"):
 
 <form class="lq-setup" id="lq-setup" onsubmit="return false" aria-label="{L("Machine et réglages", "Machine and settings")}">
   <div class="lq-field lq-machine">
-    <label for="lq-q">{L("Machine", "Machine")}</label>
-    <input id="lq-q" type="search" list="lq-list" autocomplete="off" spellcheck="false" placeholder="{esc(ex_ph)}">
-    <datalist id="lq-list"></datalist>
-    <p class="lq-help" id="lq-machine-info" aria-live="polite">{L("Tapez une marque ou un modèle, ou entrez le volume vous-même.", "Type a brand or model, or enter the volume yourself.")}</p>
+    <label for="lq-q" id="lq-q-label">{L("Machine", "Machine")}</label>
+    <div class="lq-combo" id="lq-combo">
+      <svg class="lq-combo-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.6-3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input id="lq-q" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="lq-pop" aria-haspopup="listbox" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="{esc(ex_ph)}">
+      <button type="button" class="lq-combo-clear" id="lq-clear" aria-label="{L("Effacer la machine", "Clear machine")}" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+      <div class="lq-pop" id="lq-pop" role="listbox" aria-labelledby="lq-q-label" hidden></div>
+    </div>
+    <p class="lq-help" id="lq-machine-info" aria-live="polite">{L(f"{n_all} machines, {len(brands)} marques. Tapez une marque ou un modèle, ou entrez le volume vous-même.", f"{n_all} machines, {len(brands)} brands. Type a brand or model, or enter the volume yourself.")}</p>
     <div class="lq-variants" id="lq-variants" hidden></div>
   </div>
   <div class="lq-field">
@@ -192,8 +205,9 @@ def render(site="https://coupefab.ca"):
 <div class="tl-scroll"><table class="tl-table lq-table" id="lq-table">
   <thead><tr><th>{L("Machine", "Machine")}</th><th>{L("Type", "Type")}</th><th class="lq-r">{L("Réservoir", "Tank")}</th><th>{L("Source", "Source")}</th></tr></thead>
   <tbody>{''.join(trs)}</tbody></table></div>
-<p class="lq-src">{L("Données compilées par CoupeFab, réutilisables sous", "Data compiled by CoupeFab, reusable under")} <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener">CC BY 4.0</a> : <a href="/outils/machines-liquide-de-coupe.json">machines-liquide-de-coupe.json</a>. {L("Haas : fiches de Haas Automation UK (mêmes modèles qu’en Amérique du Nord). Une capacité manque ou semble fausse?", "Haas: Haas Automation UK spec sheets (same models as in North America). A capacity missing or wrong?")} <a href="{mailto}">info@coupefab.ca</a>.</p>
-<script type="application/json" id="lq-data">{blob}</script>
+<p class="lq-count" id="lq-table-count"></p>
+<div class="tl-more-wrap"><button type="button" class="tl-btn" id="lq-more" hidden>{L("Afficher 100 machines de plus", "Show 100 more machines")}</button></div>
+<p class="lq-src">{L("Données compilées par CoupeFab, réutilisables sous", "Data compiled by CoupeFab, reusable under")} <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener">CC BY 4.0</a> : <a href="/outils/machines-liquide-de-coupe.json">machines-liquide-de-coupe.json</a>. {L(f"Haas : fiches de Haas Automation UK. {n_mti} capacités viennent des fiches de MachineToolIndex (lien vers la fiche et la source officielle sur chaque ligne). Une capacité manque ou semble fausse?", f"Haas: Haas Automation UK spec sheets. {n_mti} capacities come from MachineToolIndex model pages (link to the page and the official source on each row). A capacity missing or wrong?")} <a href="{mailto}">info@coupefab.ca</a>.</p>
 </div>
 <script src="/js/liquide-math.js?v={ver('js/liquide-math.js')}" defer></script>
 <script src="/js/liquide.js?v={ver('js/liquide.js')}" defer></script>

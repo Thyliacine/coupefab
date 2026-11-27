@@ -5,9 +5,10 @@
   var M = window.CFCoolant, fr = app.getAttribute('data-lang') === 'fr';
   var T = function (a, b) { return fr ? a : b; };
   var $ = function (id) { return document.getElementById(id); };
-  var rows = []; try { rows = JSON.parse($('lq-data').textContent); } catch (e) {}
+  var rows = [];
   var TYPES = { vmc: T('CU vertical', 'VMC'), hmc: T('CU horizontal', 'HMC'), '5ax': T('5 axes', '5-axis'), lathe: T('tour', 'lathe'),
-    millturn: T('tour axe Y', 'mill-turn'), vtl: T('tour vertical', 'VTL'), boring: T('aléseuse', 'boring mill'), router: T('routeur', 'router') };
+    millturn: T('tour axe Y', 'mill-turn'), vtl: T('tour vertical', 'VTL'), boring: T('aléseuse', 'boring mill'), router: T('routeur', 'router'),
+    swiss: T('tour suisse', 'Swiss lathe'), grinder: T('rectifieuse', 'grinder') };
   var unit = 'L', machine = null;
   var KEY = 'cf-coolant-v1';
 
@@ -29,22 +30,120 @@
   }
   function label(r) { return r[0] + ' ' + r[1]; }
 
-  // datalist
-  var dl = $('lq-list'), frag = document.createDocumentFragment();
-  rows.forEach(function (r) {
-    var o = document.createElement('option');
-    o.value = label(r);
-    o.label = (r[3] ? fmt(r[3], 0) + ' L · ' + fmt(r[4], 1) + ' gal' : T('capacité à entrer', 'enter capacity')) + ' · ' + (TYPES[r[2]] || '');
-    frag.appendChild(o);
-  });
-  dl.appendChild(frag);
+  function esc(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  // accent/case fold that keeps string length (so match offsets map back onto the label)
+  function fold(t) { var o = ''; for (var i = 0; i < t.length; i++) { var c = t.charAt(i), d = c.normalize ? c.normalize('NFD').charAt(0) : c; o += d.toLowerCase().length === 1 ? d.toLowerCase() : c; } return o; }
+  var squash = function (t) { return t.replace(/[^a-z0-9]/g, ''); };
+  var idx = []; // [folded label, squashed label, folded model]
+  function index() { idx = rows.map(function (r) { var f = fold(label(r)); return [f, squash(f), fold(r[1])]; }); }
 
-  function find(q) {
-    q = (q || '').toLowerCase().trim(); if (!q) return null;
-    for (var i = 0; i < rows.length; i++) if (label(rows[i]).toLowerCase() === q) return rows[i];
-    var hits = rows.filter(function (r) { return label(r).toLowerCase().indexOf(q) >= 0; });
-    return hits.length === 1 ? hits[0] : null;
+  function find(q) { // exact label, else unique match (deep links, restore)
+    q = fold((q || '').trim()); if (!q) return null;
+    for (var i = 0; i < rows.length; i++) if (idx[i][0] === q) return rows[i];
+    var hits = search(q).hits; return hits.length === 1 ? rows[hits[0].i] : null;
   }
+  function search(q) {
+    var toks = fold(q).split(/[\s,;\/]+/).filter(Boolean), hits = [];
+    for (var i = 0; i < rows.length; i++) {
+      var f = idx[i][0], sq = idx[i][1], m = idx[i][2], score = 0, ok = true;
+      for (var k = 0; k < toks.length; k++) {
+        var t = toks[k], p = f.indexOf(t);
+        if (p < 0) { var st = squash(t); if (st && sq.indexOf(st) >= 0) { score += 1; continue; } ok = false; break; }
+        if (m.indexOf(t) === 0 || squash(m).indexOf(squash(t)) === 0) score += 6; else if (p === 0 || f.charAt(p - 1) === ' ' || f.charAt(p - 1) === '-') score += 3; else score += 1;
+        if (m === t || squash(m) === squash(t)) score += 10;
+      }
+      if (ok) hits.push({ i: i, s: score });
+    }
+    return { hits: hits, toks: toks };
+  }
+  function mark(text, toks) { // <mark> every token occurrence (accent-insensitive)
+    if (!toks.length) return esc(text);
+    var f = fold(text), on = new Array(text.length + 1).join('0').split('');
+    toks.forEach(function (t) { var p = 0; while (t && (p = f.indexOf(t, p)) >= 0) { for (var j = p; j < p + t.length; j++) on[j] = '1'; p += t.length; } });
+    var out = '', open = false;
+    for (var i = 0; i < text.length; i++) {
+      if (on[i] === '1' && !open) { out += '<mark>'; open = true; } else if (on[i] !== '1' && open) { out += '</mark>'; open = false; }
+      out += esc(text.charAt(i));
+    }
+    return out + (open ? '</mark>' : '');
+  }
+
+  // ---- combobox ----
+  var combo = $('lq-combo'), q = $('lq-q'), pop = $('lq-pop'), clr = $('lq-clear');
+  var LIMIT = 150, opts = [], active = -1, isOpen = false, loaded = false;
+  function capTxt(r) { return r[3] ? fmt(r[3], 0) + ' L <span>· ' + fmt(r[4], r[4] >= 100 ? 0 : 1) + ' gal</span>' : '<em>' + T('à entrer', 'enter own') + '</em>'; }
+  function render() {
+    if (!loaded) { pop.innerHTML = '<div class="lq-pop-msg">' + T('Chargement des machines…', 'Loading machines…') + '</div>'; opts = []; active = -1; return; }
+    var v = q.value.trim(), res = v ? search(v) : { hits: rows.map(function (r, i) { return { i: i, s: 0 }; }), toks: [] };
+    var hits = res.hits, total = hits.length;
+    // group by brand; groups ordered by best score, then brand name
+    var groups = {}, order = [];
+    hits.forEach(function (h) { var b = rows[h.i][0]; if (!groups[b]) { groups[b] = { b: b, best: -1, list: [] }; order.push(groups[b]); } groups[b].list.push(h); if (h.s > groups[b].best) groups[b].best = h.s; });
+    order.sort(function (a, b) { return b.best - a.best || a.b.localeCompare(b.b); });
+    var html = '', n = 0; opts = [];
+    for (var g = 0; g < order.length && n < LIMIT; g++) {
+      var G = order[g]; G.list.sort(function (a, b) { return b.s - a.s || a.i - b.i; });
+      html += '<div class="lq-grp" role="group" aria-label="' + esc(G.b) + '"><div class="lq-grp-h" aria-hidden="true">' + mark(G.b, res.toks) + '<span>' + G.list.length + '</span></div>';
+      for (var k = 0; k < G.list.length && n < LIMIT; k++, n++) {
+        var r = rows[G.list[k].i], id = 'lq-opt-' + G.list[k].i;
+        opts.push(G.list[k].i);
+        html += '<div class="lq-opt' + (machine === r ? ' is-sel' : '') + '" role="option" id="' + id + '" data-i="' + G.list[k].i + '" aria-selected="' + (machine === r) + '">'
+          + '<span class="lq-opt-m">' + mark(r[1], res.toks) + '</span><span class="lq-opt-t">' + esc(TYPES[r[2]] || '') + '</span><span class="lq-opt-c">' + capTxt(r) + '</span></div>';
+      }
+      html += '</div>';
+    }
+    if (!total) html = '<div class="lq-pop-msg">' + T('Aucune machine trouvée pour « ', 'No machine found for “') + esc(v) + T(' ». Entrez la capacité vous-même dans le champ suivant.', '”. Enter the capacity yourself in the next field.') + '</div>';
+    else if (total > n) html += '<div class="lq-pop-more">' + T(n + ' sur ' + fmt(total, 0) + ' — continuez à taper pour préciser', n + ' of ' + fmt(total, 0) + ' — keep typing to narrow down') + '</div>';
+    pop.innerHTML = html; pop.scrollTop = 0;
+    setActive(v && opts.length ? 0 : -1, true);
+  }
+  function setActive(k, noScroll) {
+    var prev = pop.querySelector('.lq-opt.is-act'); if (prev) prev.classList.remove('is-act');
+    active = k;
+    if (k < 0 || k >= opts.length) { q.removeAttribute('aria-activedescendant'); active = -1; return; }
+    var el = $('lq-opt-' + opts[k]); el.classList.add('is-act'); q.setAttribute('aria-activedescendant', el.id);
+    if (!noScroll) { // keep row visible below the sticky brand header
+      var head = el.parentNode.querySelector('.lq-grp-h'), hh = head ? head.offsetHeight : 0;
+      var top = el.offsetTop - pop.offsetTop, pr = pop.getBoundingClientRect(), er = el.getBoundingClientRect();
+      if (er.top < pr.top + hh) pop.scrollTop -= (pr.top + hh - er.top);
+      else if (er.bottom > pr.bottom) pop.scrollTop += er.bottom - pr.bottom;
+    }
+  }
+  function open() {
+    if (isOpen) return; isOpen = true; render(); pop.hidden = false; combo.classList.add('is-open'); q.setAttribute('aria-expanded', 'true');
+    if (window.matchMedia && window.matchMedia('(max-width: 34rem)').matches) { try { combo.scrollIntoView({ block: 'start', behavior: 'smooth' }); } catch (e) {} }
+  }
+  function close() { if (!isOpen) return; isOpen = false; pop.hidden = true; combo.classList.remove('is-open'); q.setAttribute('aria-expanded', 'false'); q.removeAttribute('aria-activedescendant'); active = -1; }
+  function syncClear() { clr.hidden = !q.value; }
+  function choose(i) { var r = rows[i]; q.value = label(r); syncClear(); close(); pickMachine(r); update(); }
+  q.addEventListener('focus', open);
+  q.addEventListener('click', open);
+  q.addEventListener('input', function () {
+    syncClear(); if (!isOpen) { isOpen = true; pop.hidden = false; combo.classList.add('is-open'); q.setAttribute('aria-expanded', 'true'); } render();
+    if (machine && fold(q.value.trim()) !== fold(label(machine))) { pickMachine(null); update(); }
+  });
+  q.addEventListener('keydown', function (e) {
+    var k = e.key;
+    if (k === 'ArrowDown' || k === 'ArrowUp') {
+      e.preventDefault(); if (!isOpen) { open(); }
+      if (!opts.length) return;
+      setActive(k === 'ArrowDown' ? (active + 1) % opts.length : (active <= 0 ? opts.length - 1 : active - 1));
+    } else if (k === 'PageDown' || k === 'PageUp') {
+      if (!isOpen || !opts.length) return; e.preventDefault(); setActive(Math.max(0, Math.min(opts.length - 1, (active < 0 ? 0 : active) + (k === 'PageDown' ? 8 : -8))));
+    } else if (k === 'Enter') {
+      if (isOpen && active >= 0) { e.preventDefault(); choose(opts[active]); }
+      else if (isOpen) { var r = find(q.value); if (r) { e.preventDefault(); choose(rows.indexOf(r)); } }
+    } else if (k === 'Escape') {
+      if (isOpen) { e.preventDefault(); close(); } else if (q.value) { e.preventDefault(); q.value = ''; syncClear(); pickMachine(null); update(); }
+    } else if (k === 'Tab') close();
+  });
+  pop.addEventListener('mousedown', function (e) { e.preventDefault(); }); // keep focus in the input
+  pop.addEventListener('click', function (e) { var o = e.target.closest('.lq-opt'); if (o) choose(+o.getAttribute('data-i')); });
+  pop.addEventListener('mousemove', function (e) { var o = e.target.closest('.lq-opt'); if (o) { var k = opts.indexOf(+o.getAttribute('data-i')); if (k !== active) setActive(k, true); } });
+  clr.addEventListener('click', function () { q.value = ''; syncClear(); pickMachine(null); update(); q.focus(); if (isOpen) render(); else open(); });
+  document.addEventListener('pointerdown', function (e) { if (isOpen && !combo.contains(e.target)) close(); });
+  q.addEventListener('blur', function () { setTimeout(function () { if (document.activeElement !== q) close(); }, 0); });
+
   function setCap(liters) {
     $('lq-cap').value = fmt(unit === 'L' ? liters : M.fromL(liters, 'gal'), unit === 'L' ? 0 : 1);
   }
@@ -138,29 +237,44 @@
   }
 
   // events
-  var q = $('lq-q');
-  q.addEventListener('input', function () { var r = find(q.value); if (r && r !== machine) { pickMachine(r); update(); } });
-  q.addEventListener('change', function () { var r = find(q.value); pickMachine(r); update(); });
   document.querySelectorAll('[data-unit]').forEach(function (b) { b.addEventListener('click', function () { setUnit(b.getAttribute('data-unit')); }); });
   document.querySelectorAll('[data-target]').forEach(function (b) { b.addEventListener('click', function () { $('lq-target').value = fmt(+b.getAttribute('data-target'), 1); update(); }); });
   document.querySelectorAll('[data-lvl]').forEach(function (b) { b.addEventListener('click', function () { var c = parse($('lq-cap').value); if (isFinite(c)) { $('lq-cur').value = fmt(c * b.getAttribute('data-lvl') / 100, 1); update(); } else $('lq-cap').focus(); }); });
   ['lq-cap', 'lq-target', 'lq-factor', 'lq-brix', 'lq-cur', 'lq-final', 'lq-brix2'].forEach(function (id) { $(id).addEventListener('input', update); });
-  // table filter
-  var fl = $('lq-filter'), trs = Array.prototype.slice.call(document.querySelectorAll('#lq-table tbody tr'));
-  if (fl) fl.addEventListener('input', function () {
-    var v = fl.value.toLowerCase().trim();
-    trs.forEach(function (tr) { tr.hidden = v && tr.getAttribute('data-q').indexOf(v) < 0; });
-  });
+  // machine table (all rows, 100 at a time, filtered with the same search)
+  var fl = $('lq-filter'), tb = document.querySelector('#lq-table tbody'), more = $('lq-more'), cnt = $('lq-table-count'), shown = 100;
+  function host(u) { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return T('source', 'source'); } }
+  function table() {
+    if (!loaded || !tb) return;
+    var v = fl ? fl.value.trim() : '', list = v ? search(v).hits.map(function (h) { return h.i; }) : rows.map(function (r, i) { return i; });
+    var html = '';
+    list.slice(0, shown).forEach(function (i) {
+      var r = rows[i], note = fr ? r[6] : r[7];
+      html += '<tr><td><b>' + esc(r[0]) + '</b> ' + esc(r[1]) + (note ? '<div class="lq-sub">' + esc(note) + '</div>' : '') + '</td><td>' + esc(TYPES[r[2]] || '') + '</td><td class="lq-r lq-num">'
+        + (r[3] ? fmt(r[3], 0) + ' L · ' + fmt(r[4], 1) + ' gal' : T('non publiée — entrez la vôtre', 'not published — enter your own')) + '</td><td>'
+        + (r[5] ? '<a href="' + esc(r[5]) + '" rel="nofollow noopener" target="_blank">' + esc(host(r[5])) + '</a>' : '')
+        + (r[9] ? ' · <a href="' + esc(r[9]) + '" rel="nofollow noopener" target="_blank">' + T('fabricant', 'maker') + '</a>' : '') + '</td></tr>';
+    });
+    tb.innerHTML = html || '<tr><td colspan="4">' + T('Aucune machine.', 'No machine.') + '</td></tr>';
+    if (cnt) cnt.textContent = T(fmt(Math.min(shown, list.length), 0) + ' sur ' + fmt(list.length, 0) + ' machines', fmt(Math.min(shown, list.length), 0) + ' of ' + fmt(list.length, 0) + ' machines');
+    if (more) more.hidden = list.length <= shown;
+  }
+  if (fl) fl.addEventListener('input', function () { shown = 100; table(); });
+  if (more) more.addEventListener('click', function () { shown += 100; table(); });
 
-  // restore + ?m= deep link
-  try {
-    var st = JSON.parse(localStorage.getItem(KEY) || 'null');
-    var qs = new URLSearchParams(location.search).get('m');
-    if (st) { if (st.unit === 'gal') { unit = 'gal'; document.querySelectorAll('[data-unit]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-unit') === 'gal' ? 'true' : 'false'); }); }
-      if (st.t) $('lq-target').value = st.t; if (st.f) $('lq-factor').value = st.f; }
-    var want = qs || (st && st.m);
-    if (want) { var r0 = find(want); if (r0) { q.value = label(r0); pickMachine(r0); } }
-    if (st && st.cap && !(machine && machine[3])) $('lq-cap').value = st.cap;
-  } catch (e) {}
+  function restore() {
+    try {
+      var st = JSON.parse(localStorage.getItem(KEY) || 'null');
+      var qs = new URLSearchParams(location.search).get('m');
+      if (st) { if (st.unit === 'gal') { unit = 'gal'; document.querySelectorAll('[data-unit]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-unit') === 'gal' ? 'true' : 'false'); }); }
+        if (st.t) $('lq-target').value = st.t; if (st.f) $('lq-factor').value = st.f; }
+      var want = qs || (st && st.m);
+      if (want && !q.value) { var r0 = find(want); if (r0) { q.value = label(r0); syncClear(); pickMachine(r0); } }
+      if (st && st.cap && !(machine && machine[3]) && !$('lq-cap').value) $('lq-cap').value = st.cap;
+    } catch (e) {}
+  }
+  fetch(app.getAttribute('data-json')).then(function (r) { return r.json(); }).then(function (d) {
+    rows = d.rows || []; index(); loaded = true; restore(); table(); if (isOpen) render(); update();
+  }).catch(function () { loaded = true; if (isOpen) render(); });
   update();
 })();
