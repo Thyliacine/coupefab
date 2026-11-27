@@ -1,5 +1,5 @@
 {
- "_note": "Quebec job shops per process guide. Every entry checked on the shop's official site (2026-11-26). Partner = linked to the CoupeFab team. SMF listed only where smfmecanique.com/services-offerts/ shows the service.",
+ "_note": "Quebec job shops per process guide. Every entry checked on the shop's official site (2026-11-26). SMF listed only where smfmecanique.com/services-offerts/ shows the service.",
  "shops": {
   "amicx": {
    "name": "Amicx",
@@ -179,7 +179,6 @@
    "name": "SMF Mécanique (Services Mécanique Fabrication)",
    "city": "Berthierville",
    "url": "https://smfmecanique.com/services-offerts/",
-   "partner": true,
    "fr": "Usinage CNC (tournage, fraisage, perçage, grande dimension), soudure TIG/MIG/arc en atelier ou sur site, fabrication sur mesure et finition de surfaces.",
    "en": "CNC machining (turning, milling, drilling, large parts), TIG/MIG/stick welding in shop or on site, custom fabrication and surface finishing."
   },

@@ -219,13 +219,13 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
     <div>
       <p class="ftr-h">{t['legal']}</p>
       <ul>
-        <li><a href="{p['disc']}">{'Divulgation (aucune affiliation, partenaire)' if fr else 'Disclosure (no affiliates, partner)'}</a></li>
+        <li><a href="{p['disc']}">{'Divulgation (aucune affiliation)' if fr else 'Disclosure (no affiliates)'}</a></li>
         <li><a href="{p['priv']}">{'Confidentialité (Loi 25)' if fr else 'Privacy (Law 25)'}</a></li>
         <li><a href="{'/conditions/' if fr else '/en/terms/'}">{'Conditions d’utilisation' if fr else 'Terms of use'}</a></li>
       </ul>
     </div>
   </div>
-  <p class="ftr-legal">© {year} CoupeFab · {'Québec, Canada. Aucun lien d’affiliation ni publicité payante; la mention « Partenaire » de SMF Mécanique n’est pas rémunérée (voir la divulgation). Les marques citées appartiennent à leurs propriétaires et sont mentionnées à titre descriptif.' if fr else 'Quebec, Canada. No affiliate links or paid ads; the SMF Mécanique “Partner” label is unpaid (see the disclosure). Trademarks belong to their owners and are used descriptively.'}</p>
+  <p class="ftr-legal">© {year} CoupeFab · {'Québec, Canada. Aucun lien d’affiliation ni publicité payante. Les marques citées appartiennent à leurs propriétaires et sont mentionnées à titre descriptif.' if fr else 'Quebec, Canada. No affiliate links or paid ads. Trademarks belong to their owners and are used descriptively.'}</p>
 </footer>
 <button class="totop" type="button" hidden aria-label="{'Retour en haut' if fr else 'Back to top'}"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/site.js?v={ASSET_V}" defer></script>

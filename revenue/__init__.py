@@ -211,12 +211,12 @@ def inject(path: str, lang: str, body: str) -> str:
 
 # footer / home / page sentences that stop being true once a paid feature is on
 _PAID_SWAPS = [
-    ("Aucun lien d’affiliation ni publicité payante; la mention « Partenaire » de SMF Mécanique n’est pas rémunérée (voir la divulgation).",
-     "Certains liens et espaces sont affiliés ou commandités, toujours identifiés (voir la divulgation); la mention « Partenaire » de SMF Mécanique n’est pas rémunérée."),
-    ("No affiliate links or paid ads; the SMF Mécanique “Partner” label is unpaid (see the disclosure).",
-     "Some links and spots are affiliate or sponsored, always labelled (see the disclosure); the SMF Mécanique “Partner” label is unpaid."),
-    ("Divulgation (aucune affiliation, partenaire)", "Divulgation (affiliations, commandites, partenaire)"),
-    ("Disclosure (no affiliates, partner)", "Disclosure (affiliates, sponsors, partner)"),
+    ("Aucun lien d’affiliation ni publicité payante.",
+     "Certains liens et espaces sont affiliés ou commandités, toujours identifiés (voir la divulgation)."),
+    ("No affiliate links or paid ads.",
+     "Some links and spots are affiliate or sponsored, always labelled (see the disclosure)."),
+    ("Divulgation (aucune affiliation)", "Divulgation (affiliations, commandites)"),
+    ("Disclosure (no affiliates)", "Disclosure (affiliates, sponsors)"),
 ]
 _AFF_SWAPS = [
     ("<li><b>0</b><span>lien d’affiliation, zéro chiffre inventé</span></li>", "<li><b>0</b><span>chiffre inventé, liens affiliés toujours identifiés</span></li>"),

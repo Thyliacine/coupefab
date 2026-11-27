@@ -191,7 +191,7 @@
       "id": "smf",
       "name": "SMF Mécanique (Services Mécanique Fabrication)",
       "city": "Berthierville",
-      "partner": true
+      "partner": false
     },
     {
       "id": "soudex",
