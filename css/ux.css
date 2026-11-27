@@ -63,7 +63,7 @@
 .hdr-newsletter[aria-current="page"] { box-shadow: 0 0 0 2px rgba(255,90,31,.35); }
 .hdr-tools { gap: .45rem; }
 
-@media (max-width: 820px) {
+@media (max-width: 1023px) {
   .hdr-newsletter { padding: .38rem .65rem; font-size: .8rem; min-height: 2.5rem; }
   .search-btn { min-width: 0; }
 }
@@ -105,3 +105,97 @@ details.ec-fold { border: 0; }
 details.ec-fold > summary { cursor: pointer; list-style: none; }
 details.ec-fold > summary::-webkit-details-marker { display: none; }
 details.ec-fold > summary h2, details.ec-fold > summary h3 { display: inline; }
+
+
+/* ---------- Desktop nav: one line, no wrap, Plus menu below 1440px ---------- */
+.nav-short { display: none; }
+.nav-full { display: inline; }
+.nav-more { display: none; }
+@media (min-width: 1024px) {
+  .hdr-inner { gap: .7rem; }
+  .nav-btn, .nav-link, .nav-cta { white-space: nowrap; }
+  .nav-btn, .nav-link { padding: .42rem .5rem; font-size: .9rem; }
+  .nav-cta { padding: .38rem .7rem !important; }
+  .nav-short { display: inline; }
+  .nav-full { display: none; }
+  .mainnav { min-width: 0; }
+  .nav-top { flex-wrap: nowrap; }
+}
+@media (min-width: 1024px) and (max-width: 1499px) {
+  .search-btn-label, .search-btn kbd { display: none; }
+}
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .nav-fold { display: none; }
+  .nav-more { display: list-item; position: relative; }
+  .nav-cta { padding: .38rem .6rem !important; }
+}
+.nav-more-box { position: relative; }
+.nav-more-box > summary { list-style: none; }
+.nav-more-box > summary::-webkit-details-marker { display: none; }
+.nav-more-menu {
+  position: absolute; top: calc(100% + .35rem); right: 0; z-index: 60;
+  min-width: 12.5rem; margin: 0; padding: .35rem;
+  list-style: none; background: var(--paper, #fff);
+  border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: var(--shadow-lg, 0 12px 40px rgba(21,25,28,.16));
+}
+.nav-more-menu a {
+  display: block; padding: .5rem .75rem; border-radius: 7px;
+  color: var(--ink); text-decoration: none; white-space: nowrap; font-weight: 550;
+}
+.nav-more-menu a:hover, .nav-more-menu a[aria-current="page"] { background: var(--bg, #f6f5f1); color: var(--accent); }
+@media (max-width: 1023px) {
+  .nav-short { display: none; }
+  .nav-full { display: inline; }
+  .nav-more { display: none !important; }
+  .nav-fold { display: list-item !important; }
+}
+
+/* ---------- Homepage: fewer sections, more air, no square hero ---------- */
+html, body { overflow-x: clip; max-width: 100%; }
+img, svg, video { max-width: 100%; }
+.hero2, .hero2-inner { height: auto; min-height: 0; aspect-ratio: auto; }
+.page-home { padding-top: 2.25rem; padding-bottom: 4rem; }
+.page-home > section, .page-home > .home-hot, .page-home > .home-news, .page-home > .price-feature {
+  margin: 0 0 3rem;
+}
+.home-quick { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 0 0 3.25rem; }
+.home-quick a {
+  display: flex; flex-direction: column; gap: .35rem; text-decoration: none; color: inherit;
+  border: 1px solid var(--line); border-radius: 14px; padding: 1.15rem 1.2rem; background: var(--paper, #fff);
+}
+.home-quick a:hover { border-color: var(--line-2, #c9c4b8); box-shadow: var(--shadow); color: inherit; }
+.home-quick strong { font-size: 1.12rem; }
+.home-quick span { color: var(--muted); font-size: .92rem; }
+.home-quick .more { color: var(--accent, #ff5a1f); font-weight: 600; }
+.page-home .home-hot .hn-list { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; }
+.page-home .price-feature { margin-bottom: 3.25rem; }
+.page-home .home-news { margin-bottom: 0; }
+.hn-source { font-weight: 600; color: var(--ink); }
+@media (max-width: 1023px) {
+  .home-quick { grid-template-columns: 1fr 1fr; }
+  .page-home .home-hot .hn-list { grid-template-columns: 1fr; }
+  .hero2-inner { padding: 1.7rem 1rem 1.9rem; }
+  .hero2 h1 { font-size: clamp(1.7rem, 8vw, 2.35rem); }
+  .hero2-lede { font-size: 1.02rem; margin-bottom: 1.2rem; }
+}
+@media (max-width: 420px) {
+  .home-quick { grid-template-columns: 1fr; }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero2-inner { padding: 1rem 1.15rem 1.15rem; }
+  .hero2 h1 { font-size: 1.55rem; margin-bottom: .5rem; }
+  .hero2-lede { font-size: .95rem; margin-bottom: .8rem; }
+}
+
+@media (max-width: 400px) {
+  .hdr-inner { gap: .35rem; padding: 0 .7rem; }
+  .brand-word { font-size: 1rem; }
+  .hdr-tools { gap: .28rem; }
+  .hdr-newsletter { padding: .32rem .48rem; font-size: .74rem; }
+  .lang a { min-width: 1.9rem; padding: .28rem .4rem; }
+  .search-btn, .menu-btn { padding: .32rem; }
+  .hero2-inner { padding: 1.35rem .85rem 1.45rem; }
+  .hero2 h1 { font-size: clamp(1.55rem, 8vw, 2.05rem); margin-bottom: .55rem; }
+  .hero2-lede { font-size: .95rem; margin-bottom: .9rem; }
+}

@@ -52,7 +52,7 @@
     return ["QC", "ON", "BC", "AB", "SK", "MB", "NS", "NB", "PE", "NL", "YT", "NT", "NU"].indexOf(prov) !== -1;
   }
 
-  function apply() {
+  function apply(keepPage) {
     var q = (val("q") || "").trim().toLowerCase();
     var region = val("region") || "all";
     var price = val("price");
@@ -94,12 +94,11 @@
         : (shown === 1 ? "1 listing" : shown + " listings");
     }
     if (emptyEl) emptyEl.hidden = shown !== 0;
-    pageList();
+    pageList(keepPage);
   }
 
-  function pageList() {
+  function pageList(keepPage) {
     if (!window.cfPager || !grid) return;
-    var vis = cards.filter(function (c) { return !c.classList.contains("is-hidden"); });
     if (!pager) {
       pager = window.cfPager({
         mount: "#oc-pager",
@@ -110,7 +109,8 @@
         scrollTo: "#oc-results-title"
       });
     }
-    pager.reset();
+    if (keepPage) pager.apply();
+    else pager.reset();
   }
 
   function sortCards() {
@@ -218,5 +218,5 @@
     if (!tip.getAttribute("aria-label")) tip.setAttribute("aria-label", tip.getAttribute("data-tip"));
   });
 
-  apply();
+  apply(true);
 })();
