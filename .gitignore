@@ -7,3 +7,6 @@ __pycache__/
 /fonts/*.woff2
 /og/*.png
 /apple-touch-icon.png
+
+# price digest previews (scripts/digest.py), never deployed
+/digest-preview/
