@@ -1573,6 +1573,9 @@ def main():
     print("wrote guides search indexes")
     from sitekit import machines as machine_cards
     print("wrote machine cards index:", machine_cards.write_assets(), "machines")
+    from sitekit import app as appshell
+    from sitekit.layout import ASSET_V, layout as kit_layout
+    print("wrote app shell (manifests, offline pages, sw.js):", appshell.write_assets(kit_layout, ASSET_V))
 
 
 if __name__ == "__main__":

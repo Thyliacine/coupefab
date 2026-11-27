@@ -3,10 +3,11 @@ import json
 
 from .taxonomy import T, PATHS, HUBS, HUB_ORDER, hub_path
 from . import donate
+from . import app as appshell
 
 SITE = "https://coupefab.ca"
 YEAR = "2026"
-ASSET_V = "20261127ux3"  # bump to bust CSS/JS caches
+ASSET_V = "20261127app1"  # bump to bust CSS/JS caches
 
 
 def esc(s: str) -> str:
@@ -146,7 +147,7 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
 <html lang="{in_lang}">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(description)}">
 <meta name="robots" content="{'noindex' if noindex else 'index,follow,max-image-preview:large'}">
@@ -170,11 +171,12 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
 <meta name="twitter:image" content="{SITE}/og/og-{lang}.png">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="manifest" href="/site.webmanifest">
+{appshell.head_tags(lang)}
 <link rel="preload" href="/fonts/plex-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/style.css?v={ASSET_V}">
 <link rel="stylesheet" href="/css/site.css?v={ASSET_V}">
 <link rel="stylesheet" href="/css/ux.css?v={ASSET_V}">
+<link rel="stylesheet" href="/css/app.css?v={ASSET_V}">
 <script src="/js/pager.js?v={ASSET_V}" defer></script>
 {schema}
 </head>
@@ -254,9 +256,11 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
   </div>
   <p class="ftr-legal">© {year} CoupeFab · {'Québec, Canada. Aucun lien d’affiliation ni publicité payante. Les marques citées appartiennent à leurs propriétaires et sont mentionnées à titre descriptif.' if fr else 'Quebec, Canada. No affiliate links or paid ads. Trademarks belong to their owners and are used descriptively.'} · <a class="ftr-admin" href="/admin/" rel="nofollow">{'Admin' if fr else 'Admin'}</a></p>
 </footer>
+{appshell.shell(lang, path, fr_href, en_href)}
 <button class="totop" type="button" hidden aria-label="{'Retour en haut' if fr else 'Back to top'}"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/hot-news.js?v={ASSET_V}" defer></script>
 <script src="/js/site.js?v={ASSET_V}" defer></script>
+<script src="/js/app.js?v={ASSET_V}" defer></script>
 <script>window.va=window.va||function(){{(window.vaq=window.vaq||[]).push(arguments);}};</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>

@@ -50,11 +50,11 @@ SOURCE_DIRS = {"content", "data", "scripts", "sitekit", "prices", "used", "parts
 
 INCLUDE_TOP = [
     "index.html", "404.html", "favicon.svg", "apple-touch-icon.png",
-    "site.webmanifest", "robots.txt", "sitemap.xml",
+    "site.webmanifest", "manifest.webmanifest", "sw.js", "robots.txt", "sitemap.xml",
 ]
 INCLUDE_DIRS = [
     "a-propos", "api", "confidentialite", "css", "divulgation", "en",
-    "fonts", "guides", "infolettre", "js", "og", "occasions", "prix",
+    "fonts", "guides", "icons", "infolettre", "js", "og", "occasions", "prix",
 ]
 
 
