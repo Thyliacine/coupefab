@@ -455,3 +455,27 @@ img, svg { max-width: 100%; }
 /* brand on dark footer: AA contrast */
 .ftr .brand .brand-word { color: #fff; }
 .ftr .brand .brand-word b { color: #f97316; }
+
+/* ---------- v3 UI tokens: one control height, one radius, 44 px touch targets ---------- */
+:root { --ctl-h: 2.75rem; --ctl-h-sm: 2.5rem; --ctl-r: 8px; --ctl-fs: .95rem; --accent: #c2410c; }
+.btn, .btn-ghost, .btn-lg { display: inline-flex; align-items: center; justify-content: center; gap: .4rem; min-height: var(--ctl-h);
+  padding: 0 1.15rem; border-radius: var(--ctl-r); font-size: var(--ctl-fs); font-weight: 600; line-height: 1.2; }
+.btn-lg { min-height: 3rem; padding: 0 1.4rem; font-size: 1rem; }
+input[type="text"], input[type="email"], input[type="url"], input[type="search"], input[type="number"], select { min-height: var(--ctl-h); border-radius: var(--ctl-r); }
+select, .px select, .oc select { -webkit-appearance: none; appearance: none; padding-right: 2rem !important; cursor: pointer;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6' fill='none' stroke='%23586064' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right .6rem center / 1rem; }
+select:hover { border-color: var(--line-2); }
+.px select, .px input[type="search"], .px input[type="number"], .oc select, .oc input[type="search"], .px-reset, .oc-reset { height: var(--ctl-h) !important; border-radius: var(--ctl-r) !important; }
+.px-sort select, .oc-sort select { height: var(--ctl-h-sm) !important; }
+.px-btn, .oc-btn { min-height: var(--ctl-h-sm); border-radius: var(--ctl-r); }
+.px-check, .oc-check { min-height: var(--ctl-h-sm); }
+.px-check input, .oc-check input { width: 1.15rem !important; height: 1.15rem !important; }
+.lang a { min-width: 2.5rem; min-height: 2.25rem; display: inline-flex; align-items: center; justify-content: center; }
+.search-btn, .menu-btn { min-height: 2.5rem; }
+@media (pointer: coarse) {
+  .px-btn, .oc-btn, .px-sort select, .oc-sort select, .px-check, .oc-check, .lang a, .search-btn, .menu-btn { min-height: var(--ctl-h) !important; }
+  .nav-btn, .nav-link { min-height: var(--ctl-h); }
+}
+.ftr .brand-mark { box-shadow: 0 0 0 1px rgba(255,255,255,.14); border-radius: 8px; }
+input[type="url"], input[type="number"], input[type="search"] { width: 100%; font: inherit; padding: .6rem .7rem; border: 1px solid var(--line); background: var(--paper); color: var(--ink); margin-top: .3rem; }
+input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }

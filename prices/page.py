@@ -372,7 +372,7 @@ def cards_html(rows, sup, fr):
         b, nxt, worst = ranked[0], ranked[1], ranked[-1]
         kind, url = buy_action(b, sup)
         sname = sup[b["supplier"]]["name"]
-        btn = (L("Acheter chez ", "Buy at ") if kind == "buy" else L("Voir chez ", "View at ")) + sname
+        btn = L("Acheter", "Buy") if kind == "buy" else L("Voir l’offre", "View offer")
         size = b["size_label"] if fr else b["size_label"].replace(" po", " in")
         lb = b.get("price_per_lb_cad")
         ship = SHIP_LBL.get(sup[b["supplier"]]["ships_qc"], ("", ""))[0 if fr else 1]
@@ -425,7 +425,7 @@ def suppliers_html(latest, rows, fr):
 
 
 TABS = [("comparer", "compare", "Comparer", "Compare"), ("calculateur", "calculator", "Calculateur", "Calculator"),
-        ("tendances", "trends", "Tendances", "Trends"), ("nuances", "grades", "Nuances & calibres", "Grades & gauges"),
+        ("tendances", "trends", "Tendances", "Trends"), ("nuances", "grades", "Alliages & épaisseurs", "Alloys & thicknesses"),
         ("methode", "method", "Méthode & sources", "Method & sources")]
 # old single-page anchors still land on the right tab
 TAB_ALIASES = {"comparateur": 0, "meilleurs": 0, "tendance": 2, "catalogue": 3, "calibres": 3, "fournisseurs": 4, "alerte": 4}
@@ -516,30 +516,31 @@ def render(form_newsletter, site):
     <div>
       <p class="px-kicker">{L("Comparateur de prix des métaux", "Metal price comparison")} <span class="px-beta">{L("bêta", "beta")}</span></p>
       <h1>{L("Prix des tôles et des métaux au Québec", "Sheet-metal and metal prices in Quebec")}</h1>
-      <p class="px-lede">{L(f"{n_rows} prix publiés chez {n_real} fournisseurs, en dollars canadiens, au pi² et à la livre. Trouvez la meilleure offre et achetez en un clic.",
-                              f"{n_rows} published prices from {n_real} suppliers, in Canadian dollars, per sq ft and per pound. Find the best deal and buy in one click.")}</p>
+      <p class="px-lede">{L(f"{nfr(n_rows, 0)} prix publiés chez {n_real} fournisseurs, en dollars canadiens, au pi² et à la livre. Comparez, repérez la meilleure offre et achetez directement chez le fournisseur.",
+                              f"{n_rows:,} published prices from {n_real} suppliers, in Canadian dollars, per sq ft and per pound. Compare, spot the best deal and buy straight from the supplier.")}</p>
     </div>
     <p class="px-stamp" role="status"><span><b>{L("Mis à jour", "Updated")}</b> {L(stamp_fr, stamp_en)}</span><span>{fx_txt}</span></p>
   </div>
 </section>
   <form class="px-search" id="px-search" role="search" aria-label="{L("Recherche rapide de prix", "Quick price search")}" onsubmit="return false">
     <label class="px-q"><span>{L("Rechercher", "Search")}</span><input type="search" name="q" autocomplete="off" placeholder="{L("ex. 14 ga, 5052 0.063, 1/4 A36, 304 2B", "e.g. 14 ga, 5052 0.063, 1/4 A36, 304 2B")}"></label>
+    <button type="button" class="px-ftog" aria-expanded="false" aria-controls="px-search">{L("Filtres", "Filters")} <span data-nf></span></button>
     <label><span>{L("Famille", "Family")}</span><select name="family"><option value="">{L("Toutes", "All")}</option></select></label>
-    <label><span>{L("Nuance", "Grade")}</span><select name="grade"><option value="">{L("Toutes", "All")}</option></select></label>
-    <label><span>{L("Forme", "Form")}</span><select name="form"><option value="">{L("Tôle et plaque", "Sheet and plate")}</option></select></label>
-    <label><span>{L("Épaisseur / dimension", "Thickness / size")}</span><select name="spec"><option value="">{L("Toutes", "All")}</option></select></label>
-    <label><span>{L("Format", "Sheet / length")}</span><select name="size"><option value="">{L("Tous", "All")}</option></select></label>
-    <button type="button" class="px-reset" data-reset>{L("Effacer", "Clear")}</button>
+    <label><span>{L("Alliage / grade", "Alloy / grade")}</span><select name="grade"><option value="">{L("Toutes", "All")}</option></select></label>
+    <label><span>{L("Forme", "Form")}</span><select name="form"><option value="">{L("Toutes", "All")}</option></select></label>
+    <label><span>{L("Épaisseur / dim.", "Thickness / size")}</span><select name="spec"><option value="">{L("Toutes", "All")}</option></select></label>
+    <label><span>{L("Format", "Size")}</span><select name="size"><option value="">{L("Tous", "All")}</option></select></label>
+    <button type="button" class="px-reset" data-reset>{L("Réinitialiser", "Reset")}</button>
   </form>
 
 <nav class="px-tabs" role="tablist" aria-label="{L("Sections du comparateur", "Price tool sections")}">{tabs_html}</nav>
 
 <section class="px-panel is-active" id="p-{tid[0]}" role="tabpanel" aria-labelledby="tab-{tid[0]}" tabindex="-1">
-  <div class="px-caveat">
-    <p><b>{L("Tous les prix en CAD, avant taxes, transport et coupe.", "All prices in CAD, before taxes, freight and cutting.")}</b>
-    {L(f"Les prix en USD sont convertis au taux de la Banque du Canada ({fx_txt.split(' (')[0]}). Pour un fournisseur américain, ajoutez le transport transfrontalier, le courtage et les droits ou surtaxes en vigueur (l’acier et l’aluminium importés des États-Unis peuvent être visés par des surtaxes canadiennes) : vérifiez avant de commander.",
+  <details class="px-caveat">
+    <summary><b>{L("Tous les prix en CAD, avant taxes, transport et coupe.", "All prices in CAD, before taxes, freight and cutting.")}</b> <span class="px-more">{L("Détails", "Details")}</span></summary>
+    <p>{L(f"Les prix en USD sont convertis au taux de la Banque du Canada ({fx_txt.split(' (')[0]}). Pour un fournisseur américain, ajoutez le transport transfrontalier, le courtage et les droits ou surtaxes en vigueur (l’acier et l’aluminium importés des États-Unis peuvent être visés par des surtaxes canadiennes) : vérifiez avant de commander.",
        f"USD prices are converted at the Bank of Canada rate ({fx_txt.split(' (')[0]}). From a US supplier, add cross-border freight, brokerage and any duties or surtaxes in force (steel and aluminum imported from the US may be subject to Canadian surtaxes): check before you order.")}</p>
-  </div>
+  </details>
   <div class="px-deals">
   <h2 class="px-h2">{L("Meilleures offres du jour", "Today’s best deals")}</h2>
   {cards_html(rows, sup, fr)}
@@ -550,32 +551,37 @@ def render(form_newsletter, site):
     <div class="px-tools">
       <label class="px-check"><input type="checkbox" name="qc" form="px-search" checked> {L("Achetable au Québec", "Buyable in Quebec")}</label>
       <label class="px-check"><input type="checkbox" name="cmp" form="px-search"> {L("Comparables seulement", "Comparable only")}</label>
-      <label class="px-check"><input type="checkbox" name="cat" form="px-search"> {L("Nuances du catalogue", "Catalogue grades")}</label>
+      <label class="px-check"><input type="checkbox" name="cat" form="px-search"> {L("Matériaux courants d’atelier", "Common shop materials")}</label>
       <label class="px-sort"><span>{L("Trier", "Sort")}</span><select id="px-sort">
-        <option value="spec">{L("Spécification, puis prix", "Spec, then price")}</option>
+        <option value="spec">{L("Produit, puis prix", "Product, then price")}</option>
         <option value="metric">{L("Prix unitaire ↑", "Unit price ↑")}</option>
         <option value="pct">{L("Écart vs médiane ↑", "Gap vs median ↑")}</option>
-        <option value="price">{L("Prix CAD ↑", "CAD price ↑")}</option>
+        <option value="price">{L("Prix affiché ↑", "Listed price ↑")}</option>
         <option value="lb">$/lb ↑</option>
         <option value="supplier">{L("Fournisseur", "Supplier")}</option>
       </select></label>
     </div>
   </div>
-  <details class="px-legend"><summary>{L("Comment lire les pastilles", "How to read the badges")}</summary>
+  <dl class="px-howto" aria-label="{L("Comment lire le tableau", "How to read the table")}">
+    <div><dt>{L("Prix affiché", "Listed price")}</dt><dd>{L("Le prix du fournisseur pour le format indiqué, en $ CA.", "The supplier’s price for the size shown, in CAD.")}</dd></div>
+    <div><dt>{L("Prix unitaire", "Unit price")}</dt><dd>{L("Ramené au pi², au pied ou à la livre pour comparer des formats différents.", "Brought to $/sq ft, $/ft or $/lb so different sizes compare fairly.")}</dd></div>
+    <div><dt>{L("Écart vs médiane", "vs median price")}</dt><dd>{L(f"Comparaison avec le prix médian des fournisseurs pour le même produit : vert = moins cher, rouge = plus cher (± {TIER_PCT} %).", f"Compared with the median supplier price for the same product: green = cheaper, red = pricier (±{TIER_PCT}%).")}</dd></div>
+  </dl>
+  <details class="px-legend"><summary>{L("Que veulent dire les étiquettes « Meilleur prix », « Bon prix »…?", "What do the “Best price”, “Good price”… labels mean?")}</summary>
     <ul>{legend}</ul>
-    <p>{L("La médiane est calculée sur le meilleur prix unitaire de chaque fournisseur achetable au Québec pour la même spécification (même famille, sous-classe et épaisseur; $/pi² pour la tôle et la plaque, $/pi ou $/lb pour les barres et tubes). Sans au moins deux fournisseurs, aucune pastille : on n’invente pas de comparaison.",
-          "The median is taken over each Quebec-buyable supplier’s best unit price for the same spec (same family, sub-class and thickness; $/sq ft for sheet and plate, $/ft or $/lb for bar and tube). With fewer than two suppliers there is no badge: we don’t invent a comparison.")}</p>
+    <p>{L("La médiane est calculée sur le meilleur prix unitaire de chaque fournisseur achetable au Québec pour la même spécification (même famille, sous-classe et épaisseur; $/pi² pour la tôle et la plaque, $/pi ou $/lb pour les barres et tubes). Sans au moins deux fournisseurs, aucune étiquette : on n’invente pas de comparaison.",
+          "The median is taken over each Quebec-buyable supplier’s best unit price for the same spec (same family, sub-class and thickness; $/sq ft for sheet and plate, $/ft or $/lb for bar and tube). With fewer than two suppliers there is no label: we don’t invent a comparison.")}</p>
   </details>
   <div class="px-table-wrap" id="px-table-wrap">
     <table class="px-table" id="px-table">
       <caption class="px-sr">{L("Prix publiés, triables", "Published prices, sortable")}</caption>
       <thead><tr>
-        <th scope="col" data-k="spec" aria-sort="ascending"><button type="button">{L("Spécification", "Spec")}</button></th>
+        <th scope="col" data-k="spec" aria-sort="ascending"><button type="button">{L("Produit", "Product")}</button></th>
         <th scope="col" data-k="supplier"><button type="button">{L("Fournisseur", "Supplier")}</button></th>
         <th scope="col" data-k="size">{L("Format", "Size")}</th>
-        <th scope="col" data-k="price" class="num"><button type="button">{L("Prix CAD", "CAD price")}</button></th>
+        <th scope="col" data-k="price" class="num"><button type="button">{L("Prix affiché", "Listed price")}</button></th>
         <th scope="col" data-k="metric" class="num"><button type="button">{L("Prix unitaire", "Unit price")}</button></th>
-        <th scope="col" data-k="pct"><button type="button">{L("vs médiane", "vs median")}</button></th>
+        <th scope="col" data-k="pct"><button type="button">{L("Écart vs médiane", "vs median price")}</button></th>
         <th scope="col"><span class="px-sr">{L("Acheter", "Buy")}</span></th>
       </tr></thead>
       <tbody><tr><td colspan="7" class="px-loading">{L("Chargement des prix…", "Loading prices…")}</td></tr></tbody>
@@ -613,8 +619,8 @@ def render(form_newsletter, site):
 </section>
 
 <section class="px-panel" id="p-{tid[3]}" role="tabpanel" aria-labelledby="tab-{tid[3]}" tabindex="-1">
-  <h2 class="px-h2">{L("Nuances suivies", "Tracked grades")}</h2>
-  <p>{L("La liste de matériaux d’un atelier d’usinage et de fabrication québécois. Cliquez une nuance pour voir ses prix. « Sur demande » : aucun fournisseur relevé ne publie de prix.",
+  <h2 class="px-h2">{L("Alliages suivis", "Tracked alloys and grades")}</h2>
+  <p>{L("La liste de matériaux d’un atelier d’usinage et de fabrication québécois. Cliquez un alliage pour voir ses prix. « Sur demande » : aucun fournisseur relevé ne publie de prix.",
         "The material list of a Quebec machine and fabrication shop. Click a grade to see its prices. “Quote only”: no surveyed supplier publishes a price.")}</p>
   {coverage_html(rows, fr)}
   <h2 class="px-h2">{L("Calibres : pouces et millimètres", "Gauges: inches and millimetres")}</h2>
@@ -630,6 +636,7 @@ def render(form_newsletter, site):
   <p>{L("Ces fournisseurs ne publient pas de prix lisibles. Demandez une soumission directement : les liens mènent à leur page de contact ou de soumission.",
         "These suppliers don’t publish readable prices. Ask them directly: links go to their contact or quote page.")}</p>
   {sup_static}
+  <p class="px-foot"><a href="{L("/fournisseurs/", "/en/suppliers/")}">{L("Voir le répertoire complet des fournisseurs (Québec et Canada) →", "See the full supplier directory (Quebec and Canada) →")}</a></p>
   <h2 class="px-h2">{L("Méthode", "Method")}</h2>
   <ol class="px-method">
     <li>{L("Un robot identifié (<code>CoupeFabPrixBot</code>) lit les pages publiques des fournisseurs, une requête à la fois, en respectant robots.txt et son délai. Aucune connexion, aucun panier, aucun contournement anti-robot : un site qui refuse est noté « bloqué ».",
@@ -637,14 +644,14 @@ def render(form_newsletter, site):
     <li>{L("Fréquence : tôle et plaque chaque jour; barres, tubes et tuyaux chaque semaine. Chaque ligne affiche sa propre date.", "Frequency: sheet and plate daily; bar, tube and pipe weekly. Each row shows its own date.")}</li>
     <li>{L("On garde le prix tel qu’affiché (devise, unité, format) et l’URL. USD → CAD au taux quotidien de la Banque du Canada.", "We keep the price as listed (currency, unit, size) and its URL. USD → CAD at the Bank of Canada daily rate.")}</li>
     <li>{L("Tôle vendue au format : on retient le plus grand format offert en ligne (souvent 48 × 96 po); barres et tubes : la plus grande longueur. $/pi², $/lb et $/kg sont calculés.", "Sheet sold by size: we keep the largest size offered online (often 48 × 96 in); bar and tube: the longest length. $/sq ft, $/lb and $/kg are computed.")}</li>
-    <li>{L(f"Pastilles : écart du prix unitaire à la médiane des fournisseurs de la même spécification (± {TIER_PCT} %). Les repères (hors Québec, indicatifs) et les ruptures ne peuvent pas être « meilleur prix ». Une valeur aberrante est signalée « à vérifier », sans être supprimée.",
-           f"Badges: gap between the unit price and the median of suppliers for the same spec (±{TIER_PCT}%). Benchmarks (outside Quebec, indicative) and out-of-stock rows can’t be “best price”. An outlier is flagged “to check”, never deleted.")}</li>
+    <li>{L(f"Étiquettes de prix : écart du prix unitaire à la médiane des fournisseurs de la même spécification (± {TIER_PCT} %). Les repères (hors Québec, indicatifs) et les ruptures ne peuvent pas être « meilleur prix ». Une valeur aberrante est signalée « à vérifier », sans être supprimée.",
+           f"Price labels: gap between the unit price and the median of suppliers for the same spec (±{TIER_PCT}%). Benchmarks (outside Quebec, indicative) and out-of-stock rows can’t be “best price”. An outlier is flagged “to check”, never deleted.")}</li>
     <li>{L("Boutons « Acheter » et « Voir chez » : lien direct vers la fiche du produit chez le fournisseur (ou sa ligne sur la page catégorie quand le fournisseur n’a pas de fiche par produit). Liens ordinaires, sans paramètre d’affiliation; voir la <a href=\"/divulgation/\">divulgation</a>.",
            "“Buy” and “View at” buttons: direct link to the product page at the supplier (or its row on the category page when the supplier has no per-product page). Plain links, no affiliate parameters; see the <a href=\"/en/affiliate-disclosure/\">disclosure</a>.")}</li>
     <li>{L("Licence : les données compilées (tableau, CSV, JSON, historique) sont publiées sous <a href=\"https://creativecommons.org/licenses/by/4.0/deed.fr\" rel=\"license\">CC BY 4.0</a>; réutilisation libre en citant CoupeFab. Les prix restent ceux des fournisseurs cités.",
            "Licence: the compiled data (table, CSV, JSON, history) is published under <a href=\"https://creativecommons.org/licenses/by/4.0/\" rel=\"license\">CC BY 4.0</a>; reuse freely with credit to CoupeFab. Prices remain those of the cited suppliers.")}</li>
-    <li>{L("Historique daté dans le dépôt public du site (journal mensuel des changements). Vous êtes fournisseur et publiez vos prix? Écrivez-nous depuis la page À propos.",
-           "Dated history in the site’s public repository (monthly change log). Are you a supplier publishing prices? Write to us from the About page.")}</li>
+    <li>{L("Historique daté dans le dépôt public du site (journal mensuel des changements). Vous êtes fournisseur? <a href=\"/fournisseurs/#ajouter\">Ajoutez vos prix</a> : après vérification, ils entrent au comparateur avec la mention « Prix vérifiés ».",
+           "Dated history in the site’s public repository (monthly change log). Are you a supplier? <a href=\"/en/suppliers/#ajouter\">Add your prices</a>: once reviewed, they join the price tool with a “Verified prices” badge.")}</li>
   </ol>
   <p class="px-foot"><a href="/prix/coupefab-prix-metaux.csv" download>{L("Télécharger le CSV", "Download the CSV")}</a> · <a href="/prix/donnees.json">JSON</a> · {n_cmp} {L("spécifications comparables aujourd’hui", "comparable specs today")}</p>
 </section>

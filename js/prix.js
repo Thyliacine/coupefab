@@ -33,6 +33,7 @@
   function money(x, d) { return x == null ? "—" : (FR ? num(x, d) + "\u00a0$" : "$" + num(x, d)); }
   function pctTxt(p) { if (p == null) return ""; var s = (p > 0 ? "+" : p < 0 ? "−" : "±") + num(Math.abs(p), 0); return FR ? s + "\u00a0%" : s + "%"; }
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function gradeTxt(g) { return String(g || "").replace(/nuance non précisée/g, T("alliage non précisé", "grade not specified")); }
   function inch(s) { return FR ? s : String(s || "").replace(/ po\b/g, " in"); }
   function uniq(arr) { var s = {}; return arr.filter(function (x) { if (x == null || s[x]) return false; s[x] = 1; return true; }); }
   function dateShort(iso) {
@@ -87,7 +88,7 @@
   function needFull() {
     var v = F.form.value;
     // a bar/tube spec (family|group|form|section), a non-sheet form, or a free-text search needs the full file
-    return (v && !SHEET[v]) || (F.spec.value.split("|").length > 3) || !!F.q.value.trim();
+    return (v && v !== "sheet" && !SHEET[v]) || (F.spec.value.split("|").length > 3) || !!F.q.value.trim();
   }
   function ensureFull() {
     if (FULL) return Promise.resolve();
@@ -105,6 +106,12 @@
     var go = needFull() ? ensureFull() : Promise.resolve();
     go.then(function () { applyQuery(hp.q); refreshOptions(); applyQuery(hp.q); render(); });
     initCalc(); initCoverage(); initCards();
+    // "Toutes" shows sheet and plate first (small file); bar, tube and pipe load when the table comes into view
+    var lazyFull = function () { ensureFull().then(function () { refreshOptions(); render(); }); };
+    if (!FULL && "IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (es) { if (es.some(function (x) { return x.isIntersecting; })) { io.disconnect(); lazyFull(); } }, { rootMargin: "200px" });
+      io.observe(document.getElementById("px-table-wrap"));
+    } else if (!FULL) lazyFull();
     if (cur === 2) drawChart();
   }).catch(function (e) {
     app.querySelector("#px-table tbody").innerHTML = '<tr><td colspan="7">' + T("Impossible de charger les données. Le CSV reste disponible plus bas.", "Could not load the data. The CSV is still available below.") + "</td></tr>";
@@ -120,6 +127,9 @@
   function sizeOf(r) {
     if (r.width_in && r.length_in) return num(r.width_in, r.width_in % 1 ? 1 : 0) + " × " + num(r.length_in, r.length_in % 1 ? 1 : 0) + T(" po", " in");
     if (r.length_ft) return num(r.length_ft, r.length_ft % 1 ? 1 : 0) + T(" pi", " ft");
+    if (r.unit === "sqft") return T("Au pi² (sur mesure)", "Per sq ft (cut to size)");
+    if (r.unit === "ft") return T("Au pied (sur mesure)", "Per foot (cut to length)");
+    if (r.unit === "lb") return T("À la livre", "Per pound");
     return inch(r.size_label || "");
   }
   function munit(r) { return r.munit === "sqft" ? T("/pi²", "/sq ft") : r.munit === "ft" ? T("/pi", "/ft") : "/lb"; }
@@ -140,8 +150,9 @@
     var forms = uniq(ROWS.map(function (r) { return r.form; }));
     var v = F.form.value;
     var all = Object.keys(D.forms).filter(function (k) { return !FULL || forms.indexOf(k) >= 0; });
-    F.form.innerHTML = '<option value="">' + T("Tôle et plaque", "Sheet and plate") + '</option><option value="all">' + T("Toutes les formes", "All forms") + "</option>" +
+    F.form.innerHTML = '<option value="">' + T("Toutes", "All") + '</option><option value="sheet">' + T("Tôle et plaque (toutes)", "Sheet and plate (all)") + "</option>" +
       all.map(function (k) { return '<option value="' + k + '">' + esc(formLabel(k)) + "</option>"; }).join("");
+    if (v === "all") v = "";
     if (v) F.form.value = v;
   }
   function filtered(ignore) {
@@ -151,7 +162,7 @@
       if (v.family && ignore !== "family" && r.family !== v.family) return false;
       if (v.grade && ignore !== "grade" && r.grade !== v.grade && !(v.grade.indexOf("A500") === 0 && r.grade === "A500")) return false;
       if (ignore !== "form") {
-        if (v.form === "all") { /* all */ } else if (v.form) { if (r.form !== v.form) return false; } else if (!SHEET[r.form] && !(v.spec && v.spec.split("|").length > 3) && !words.length) return false;
+        if (!v.form || v.form === "all") { /* all forms */ } else if (v.form === "sheet") { if (!SHEET[r.form]) return false; } else if (r.form !== v.form) return false;
       }
       if (v.spec && ignore !== "spec" && r.spec !== v.spec) return false;
       if (v.size && ignore !== "size" && sizeOf(r) !== v.size) return false;
@@ -167,7 +178,7 @@
   }
   function refreshOptions() {
     opts(F.family, uniq(filtered("family").map(function (r) { return r.family; })).sort(function (a, b) { return a === "acier" ? -1 : b === "acier" ? 1 : famLabel(a).localeCompare(famLabel(b)); }).map(function (f) { return [f, famLabel(f)]; }));
-    opts(F.grade, uniq(filtered("grade").map(function (r) { return r.grade; })).sort().map(function (g) { return [g, g]; }));
+    opts(F.grade, uniq(filtered("grade").map(function (r) { return r.grade; })).sort().map(function (g) { return [g, gradeTxt(g)]; }));
     var specs = {};
     filtered("spec").forEach(function (r) {
       if (!r.spec) return;
@@ -184,6 +195,7 @@
     ["family", "grade", "form", "spec", "size", "q"].forEach(function (k) { if (q.has(k)) F[k].value = q.get(k); });
     var sp = (q.get("spec") || "").split("|");
     if (sp.length > 3 && !q.get("form")) q.set("form", sp[2]);
+    if (q.get("form") === "all") q.delete("form");
     if (q.get("form") && F.form.value !== q.get("form")) { F.form.insertAdjacentHTML("beforeend", '<option value="' + esc(q.get("form")) + '">' + esc(q.get("form")) + "</option>"); F.form.value = q.get("form"); }
     if (q.get("spec") && F.spec.value !== q.get("spec")) { F.spec.insertAdjacentHTML("beforeend", '<option value="' + esc(q.get("spec")) + '"></option>'); F.spec.value = q.get("spec"); }
     if (q.get("grade") && F.grade.value !== q.get("grade")) { F.grade.insertAdjacentHTML("beforeend", '<option value="' + esc(q.get("grade")) + '"></option>'); F.grade.value = q.get("grade"); }
@@ -196,13 +208,29 @@
     var h = "#" + tabId(cur) + (p.toString() ? "?" + p.toString() : "");
     if (h !== location.hash) history[push ? "pushState" : "replaceState"](null, "", h);
   }
+  // mobile: dropdowns fold behind a "Filtres" button so prices sit above the fold
+  var ftog = S.querySelector(".px-ftog");
+  function syncTog() {
+    if (!ftog) return;
+    var n = ["family", "grade", "form", "spec", "size"].filter(function (k) { return F[k].value; }).length;
+    ftog.querySelector("[data-nf]").textContent = n ? "(" + n + ")" : "";
+  }
+  if (ftog) {
+    S.classList.add("is-collapsible");
+    ftog.addEventListener("click", function () {
+      var open = ftog.getAttribute("aria-expanded") !== "true";
+      ftog.setAttribute("aria-expanded", open ? "true" : "false");
+      S.classList.toggle("is-open", open);
+    });
+    S.addEventListener("change", syncTog);
+  }
   var tmr;
   S.addEventListener("input", function (e) {
     if (cur !== 0) show(0, { push: "push", scroll: true });
     clearTimeout(tmr);
     var go = function () {
       shown = LIMIT;
-      (needFull() ? ensureFull() : Promise.resolve()).then(function () { refreshOptions(); render(); writeHash(false); });
+      ensureFull().then(function () { refreshOptions(); render(); writeHash(false); });
     };
     if (e.target.name === "q") tmr = setTimeout(go, 120); else go();
   });
@@ -269,7 +297,13 @@
     var title = r.median ? ' title="' + esc(T("Médiane ", "Median ") + money(r.median) + munit(r) + " · " + r.n_suppliers + T(" fournisseurs", " suppliers")) + '"' : "";
     return '<span class="px-tier px-t-' + r.tier + '"' + title + ">" + TIER[r.tier] + "</span>" + p + nsrc(r);
   }
-  function row(r) {
+  function groupHead(r, m) {
+    var n = r.n_src || 1;
+    var mr = r.median != null ? r : m;
+    var med = mr ? " · " + T("médiane ", "median ") + money(mr.median) + munit(mr) : "";
+    return '<tr class="px-g"><th colspan="7" scope="rowgroup"><span class="px-g-t">' + esc(specLabel(r) || r.description) + '</span> <span class="px-g-m">' + n + T(n > 1 ? " fournisseurs" : " fournisseur", n > 1 ? " suppliers" : " supplier") + med + "</span></th></tr>";
+  }
+  function row(r, grouped) {
     var s = sup(r), a = action(r);
     var usd = r.currency === "USD";
     var listed = usd ? '<small>US' + money(r.price) + (r.unit && r.unit !== "each" ? munitRaw(r.unit) : "") + "</small>" : (r.unit && r.unit !== "each" ? "<small>" + money(r.price) + munitRaw(r.unit) + "</small>" : "");
@@ -279,7 +313,8 @@
     var src = '<a class="px-src" href="' + esc(r.url) + '" target="_blank" rel="noopener nofollow">' + T("source", "source") + "</a> · " + esc(dateShort(r.fetched_at)) + (r.source_updated ? T(" (liste du ", " (list of ") + esc(r.source_updated) + ")" : "");
     var cls = "px-r px-r-" + (r.tier || "none");
     return '<tr class="' + cls + '">' +
-      '<td class="px-c-spec"><b>' + esc(specLabel(r) || r.description) + '</b><span class="px-desc">' + esc(r.description) + "</span></td>" +
+      (grouped ? '<td class="px-c-spec px-c-spec-g"><span class="px-desc-g">' + esc(r.description) + "</span>" + (r.grade ? '<span class="px-desc">' + T("Alliage : ", "Grade: ") + esc(gradeTxt(r.grade)) + "</span>" : "") + "</td>"
+        : '<td class="px-c-spec"><b>' + esc(specLabel(r) || r.description) + '</b><span class="px-desc">' + esc(r.description) + "</span></td>") +
       '<td class="px-c-sup" data-l="' + T("Fournisseur", "Supplier") + '"><b>' + esc(s.name) + "</b>" + chips + "</td>" +
       '<td class="px-c-size" data-l="' + T("Format", "Size") + '">' + esc(sizeOf(r)) + (r.availability && /rupture|out of stock/i.test(r.availability) ? '<small class="px-oos">' + T("rupture", "out of stock") + "</small>" : "") + "</td>" +
       '<td class="num px-c-price" data-l="' + T("Prix CAD", "CAD price") + '"><b>' + money(r.price_cad) + "</b>" + listed + "</td>" +
@@ -292,11 +327,17 @@
     if (!D) return;
     app.classList.toggle("px-filtering", ["family", "grade", "spec", "size", "q"].some(function (k) { return F[k].value; }) || (F.form.value !== ""));
     var rows = filtered().sort(cmp);
-    var html = rows.slice(0, shown).map(row).join("");
+    var grouped = sortKey === "spec", last = null, html = "", medOf = {};
+    if (grouped) rows.forEach(function (r) { if (r.median != null && r.spec && !medOf[r.spec]) medOf[r.spec] = r; });
+    rows.slice(0, shown).forEach(function (r) {
+      var g = r.spec || specLabel(r) || r.description;
+      if (grouped && g !== last) { html += groupHead(r, medOf[r.spec]); last = g; }
+      html += row(r, grouped);
+    });
     var tb = app.querySelector("#px-table tbody");
     tb.innerHTML = html || '<tr><td colspan="7" class="px-empty">' + T("Aucun prix publié pour ces filtres. Cette combinaison est « sur demande » : voyez l’onglet Méthode & sources pour demander un prix.", "No published price for these filters. This combination is “quote only”: see the Method & sources tab to request a quote.") + "</td></tr>";
     var n = rows.length, cmpN = rows.filter(function (r) { return r.tier && r.tier !== "ref" && r.tier !== "oos" && r.tier !== "check" && r.tier !== "surplus"; }).length;
-    setCount(num(n, 0) + T(" prix", " prices") + (cmpN ? " · " + num(cmpN, 0) + T(" comparables", " comparable") : "") + (n > shown ? T(" · " + shown + " affichés", " · " + shown + " shown") : ""));
+    setCount(num(n, 0) + T(" prix", " prices") + (cmpN ? " · " + num(cmpN, 0) + T(" comparables", " comparable") : "") + (n > shown ? T(" · " + shown + " affichés", " · " + shown + " shown") : "") + (!FULL && !F.form.value ? T(" · barres, tubes et tuyaux en chargement…", " · loading bar, tube and pipe…") : ""));
     document.getElementById("px-more").hidden = n <= shown;
   }
 
