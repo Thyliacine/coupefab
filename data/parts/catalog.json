@@ -1,0 +1,566 @@
+{
+  "updated": "2026-11-26",
+  "machines": [
+    {
+      "id": "plasma",
+      "fr": "Plasma",
+      "en": "Plasma",
+      "blurb_fr": "Électrode, buse, anneau de turbulence, bouclier, bague de retenue, cartouches SYNC et commande de hauteur de torche.",
+      "blurb_en": "Electrode, nozzle, swirl ring, shield, retaining cap, SYNC cartridges and torch height control."
+    },
+    {
+      "id": "laser",
+      "fr": "Laser fibre",
+      "en": "Fiber laser",
+      "blurb_fr": "Buses, hublots de protection, bagues céramiques — surtout pour les têtes Raytools, Precitec et WSX.",
+      "blurb_en": "Nozzles, protective windows and ceramic rings — mainly for Raytools, Precitec and WSX heads."
+    },
+    {
+      "id": "usinage",
+      "fr": "Usinage (fraiseuse et tour)",
+      "en": "Machining (mill and lathe)",
+      "blurb_fr": "Plaquettes de coupe, fraises en bout, pinces de serrage, porte-outils et pièces de broche.",
+      "blurb_en": "Inserts, end mills, collets, toolholders and spindle parts."
+    },
+    {
+      "id": "plieuse",
+      "fr": "Presse plieuse",
+      "en": "Press brake",
+      "blurb_fr": "Poinçons, matrices (vés) et systèmes de serrage d’outillage.",
+      "blurb_en": "Punches, dies (V-dies) and tool clamping systems."
+    },
+    {
+      "id": "jet-eau",
+      "fr": "Jet d’eau",
+      "en": "Waterjet",
+      "blurb_fr": "Orifices et tubes de focalisation (tubes mélangeurs), plus filtres haute pression.",
+      "blurb_en": "Orifices and focusing (mixing) tubes, plus high-pressure filters."
+    },
+    {
+      "id": "routeur",
+      "fr": "Routeur CNC",
+      "en": "CNC router",
+      "blurb_fr": "Fraises, pinces et, sur certaines tables, les mêmes consommables plasma qu’une table de découpe.",
+      "blurb_en": "Bits, collets and, on some tables, the same plasma consumables as a cutting table."
+    },
+    {
+      "id": "mouvement",
+      "fr": "Mouvement et entraînement",
+      "en": "Motion and drives",
+      "blurb_fr": "Vis à billes, rails de guidage, moteurs pas à pas, servos et variateurs.",
+      "blurb_en": "Ballscrews, linear guides, stepper motors, servos and drives."
+    },
+    {
+      "id": "entretien",
+      "fr": "Filtres et lubrifiants",
+      "en": "Filters and lubricants",
+      "blurb_fr": "Filtres d’air, de gaz et de refroidisseur, plus les graisses et huiles d’entretien.",
+      "blurb_en": "Air, gas and chiller filters, plus greases and maintenance oils."
+    }
+  ],
+  "categories": [
+    {
+      "id": "plasma-electrode",
+      "machine": "plasma",
+      "fr": "Électrode plasma",
+      "en": "Plasma electrode"
+    },
+    {
+      "id": "plasma-nozzle",
+      "machine": "plasma",
+      "fr": "Buse plasma",
+      "en": "Plasma nozzle"
+    },
+    {
+      "id": "plasma-swirl",
+      "machine": "plasma",
+      "fr": "Anneau de turbulence",
+      "en": "Swirl ring"
+    },
+    {
+      "id": "plasma-shield",
+      "machine": "plasma",
+      "fr": "Bouclier / déflecteur",
+      "en": "Shield / deflector"
+    },
+    {
+      "id": "plasma-cap",
+      "machine": "plasma",
+      "fr": "Bague de retenue",
+      "en": "Retaining cap"
+    },
+    {
+      "id": "plasma-cartridge",
+      "machine": "plasma",
+      "fr": "Cartouche SYNC",
+      "en": "SYNC cartridge"
+    },
+    {
+      "id": "plasma-other",
+      "machine": "plasma",
+      "fr": "Autre pièce plasma",
+      "en": "Other plasma part"
+    },
+    {
+      "id": "thc",
+      "machine": "plasma",
+      "fr": "Commande de hauteur de torche",
+      "en": "Torch height control"
+    },
+    {
+      "id": "laser-nozzle",
+      "machine": "laser",
+      "fr": "Buse laser",
+      "en": "Laser nozzle"
+    },
+    {
+      "id": "laser-window",
+      "machine": "laser",
+      "fr": "Hublot de protection",
+      "en": "Protective window"
+    },
+    {
+      "id": "laser-ceramic",
+      "machine": "laser",
+      "fr": "Bague céramique",
+      "en": "Ceramic ring"
+    },
+    {
+      "id": "laser-other",
+      "machine": "laser",
+      "fr": "Autre pièce laser",
+      "en": "Other laser part"
+    },
+    {
+      "id": "insert",
+      "machine": "usinage",
+      "fr": "Plaquette de coupe",
+      "en": "Cutting insert"
+    },
+    {
+      "id": "end-mill",
+      "machine": "usinage",
+      "fr": "Fraise en bout",
+      "en": "End mill"
+    },
+    {
+      "id": "collet",
+      "machine": "usinage",
+      "fr": "Pince de serrage et porte-outil",
+      "en": "Collet and toolholder"
+    },
+    {
+      "id": "spindle",
+      "machine": "usinage",
+      "fr": "Pièce de broche",
+      "en": "Spindle part"
+    },
+    {
+      "id": "brake-punch",
+      "machine": "plieuse",
+      "fr": "Poinçon de plieuse",
+      "en": "Press-brake punch"
+    },
+    {
+      "id": "brake-die",
+      "machine": "plieuse",
+      "fr": "Matrice de plieuse",
+      "en": "Press-brake die"
+    },
+    {
+      "id": "brake-other",
+      "machine": "plieuse",
+      "fr": "Accessoire de plieuse",
+      "en": "Press-brake accessory"
+    },
+    {
+      "id": "wj-orifice",
+      "machine": "jet-eau",
+      "fr": "Orifice jet d’eau",
+      "en": "Waterjet orifice"
+    },
+    {
+      "id": "wj-tube",
+      "machine": "jet-eau",
+      "fr": "Tube de focalisation",
+      "en": "Focusing / mixing tube"
+    },
+    {
+      "id": "router-bit",
+      "machine": "routeur",
+      "fr": "Fraise de routeur",
+      "en": "Router bit"
+    },
+    {
+      "id": "motion",
+      "machine": "mouvement",
+      "fr": "Vis, rail, moteur ou variateur",
+      "en": "Screw, rail, motor or drive"
+    },
+    {
+      "id": "filter",
+      "machine": "entretien",
+      "fr": "Filtre",
+      "en": "Filter"
+    },
+    {
+      "id": "lube",
+      "machine": "entretien",
+      "fr": "Lubrifiant",
+      "en": "Lubricant"
+    },
+    {
+      "id": "other",
+      "machine": "",
+      "fr": "Autre",
+      "en": "Other"
+    }
+  ],
+  "guides": {
+    "plasma-stack": {
+      "machines": [
+        "plasma"
+      ],
+      "title_fr": "Le jeu de pièces dans une torche plasma",
+      "title_en": "The parts inside a plasma torch",
+      "what_fr": "Une torche plasma d’atelier (Powermax, Cutmaster, Lincoln et les tables de type Torchmate) assemble plusieurs pièces d’usure autour de l’arc : l’électrode (un insert en hafnium émet l’arc), la buse (elle le concentre), l’anneau de turbulence (il fait tourner le gaz), le bouclier (il protège la buse des projections) et la bague de retenue (elle tient le tout). Sur les systèmes Hypertherm SYNC, ces pièces sont regroupées dans une cartouche à remplacer d’un bloc.",
+      "what_en": "A shop plasma torch (Powermax, Cutmaster, Lincoln and Torchmate-style tables) stacks several wear parts around the arc: the electrode (a hafnium insert emits the arc), the nozzle (it constricts the arc), the swirl ring (it spins the gas), the shield (it protects the nozzle from spatter) and the retaining cap (it holds the stack together). On Hypertherm SYNC systems, those parts come as one cartridge you replace as a unit.",
+      "wear_fr": "Électrode : un cratère se creuse au centre de l’insert. Buse : l’orifice n’est plus rond, il est entaillé ou ses arêtes sont arrondies. Anneau : fissure, trous de gaz bouchés ou déformés. Bouclier : projections collées ou déformation. Une mauvaise coupe (biseau, scories, arcs perdus) arrive souvent avant que la pièce ait l’air « finie ».",
+      "wear_en": "Electrode: a pit forms in the centre of the insert. Nozzle: the orifice is no longer round, is nicked, or its edges are rounded. Swirl ring: cracks, or gas holes that are plugged or deformed. Shield: stuck spatter or distortion. Poor cut quality (bevel, dross, lost arcs) often shows up before a part looks obviously worn out.",
+      "when_fr": "Le manuel d’utilisation Hypertherm Powermax65/85 (806650, rév. 3) donne une règle générale : un jeu dure environ 2 à 3 heures d’arc en coupe manuelle, et environ 3 à 5 heures en coupe mécanisée, selon l’épaisseur, la longueur des coupes, le nombre de perçages et la qualité de l’air. Hypertherm recommande de remplacer l’électrode et la buse ensemble lorsque le cratère atteint 1,6 mm (1/16 po), ou dès que l’orifice de la buse n’est plus rond. L’anneau de turbulence se change seulement s’il est endommagé ; il dure en général plusieurs jeux d’électrode et de buse. L’électrode CopperPlus (220777) est présentée par Hypertherm comme durant au moins deux fois plus longtemps que l’électrode standard, pour la coupe jusqu’à 12 mm (1/2 po).",
+      "when_en": "The Hypertherm Powermax65/85 operator manual (806650, rev. 3) gives a general rule: a set lasts about 2 to 3 hours of arc-on time for hand cutting, and about 3 to 5 hours for mechanized cutting, depending on thickness, cut length, pierce count and air quality. Hypertherm recommends replacing the electrode and nozzle together when the electrode pit reaches 1.6 mm (1/16 in), or as soon as the nozzle orifice is no longer round. Replace the swirl ring only if it is damaged; it usually lasts through several electrode and nozzle changes. Hypertherm presents the CopperPlus electrode (220777) as lasting at least twice as long as the standard electrode when cutting metal 12 mm (1/2 in) and under.",
+      "sources": [
+        {
+          "fr": "Manuel d’utilisation Hypertherm Powermax65/85, n° 806650, révision 3 (août 2015) : durée de vie des consommables, électrode CopperPlus, et numéros de pièce de la torche Duramax.",
+          "en": "Hypertherm Powermax65/85 operator manual, 806650, revision 3 (August 2015): consumable life, CopperPlus electrode, and Duramax torch part numbers.",
+          "url": "https://www.weldersupply.com/Content/files/ProductPDFs/Powermax65OperatorManual.pdf"
+        }
+      ]
+    },
+    "laser-stack": {
+      "machines": [
+        "laser"
+      ],
+      "title_fr": "Buses, hublots et bagues céramiques (laser fibre)",
+      "title_en": "Nozzles, windows and ceramic rings (fiber laser)",
+      "what_fr": "Sur une tête de coupe fibre (Raytools, Precitec, WSX et têtes apparentées), trois pièces d’usure reviennent sans cesse : la buse en cuivre (elle dirige le gaz d’assistance dans la saignée), le hublot de protection ou « vitre de couverture » (il protège les lentilles de focalisation des projections) et la bague céramique (elle isole et transmet souvent le signal de hauteur capacitive). Les lentilles de focalisation et de collimation se changent beaucoup moins souvent, si le hublot fait son travail.",
+      "what_en": "On a fiber cutting head (Raytools, Precitec, WSX and related heads), three wear parts come up over and over: the copper nozzle (it directs assist gas into the kerf), the protective window or cover glass (it keeps spatter off the focusing optics) and the ceramic ring (it insulates and often carries the capacitive height-sensing signal). Focusing and collimating lenses are changed much less often, if the window is doing its job.",
+      "wear_fr": "Buse : orifice déformé, ovalisé, ou scories d’un seul côté. Hublot : voile, traces de fumée, microfissures, perte de puissance ou dérive du foyer. Bague céramique : lecture de hauteur erratique, collision, fissure.",
+      "wear_en": "Nozzle: a deformed or oval orifice, or dross on one side only. Window: haze, fume staining, micro-cracks, power loss or a wandering focal point. Ceramic ring: erratic height readings, a crash, or a crack.",
+      "when_fr": "Il n’existe pas de norme unique : la durée dépend de la puissance, du nombre de perçages, de la propreté du gaz et des collisions. Des guides de vendeurs (pas des manuels de fabricant de tête) parlent typiquement de quelques dizaines à quelques centaines d’heures pour une buse ou un hublot, et d’une bague céramique qui dure jusqu’à une collision. Changez une buse dès que la qualité de coupe se dégrade d’un côté, et un hublot dès qu’il est voilé ou éclaboussé — un hublot sale cuit ensuite les lentilles, beaucoup plus chères.",
+      "when_en": "There is no single standard: life depends on power, pierce count, gas cleanliness and crashes. Seller guides (not cutting-head manufacturer manuals) typically talk about tens to a few hundred hours for a nozzle or window, and a ceramic ring that lasts until it is hit. Change a nozzle as soon as cut quality falls off on one side, and a window as soon as it is hazy or splattered — a dirty window then cooks the much more expensive lenses.",
+      "sources": [
+        {
+          "fr": "Guides de vendeurs sur le coût et le calendrier des consommables laser (estimations, pas une norme de fabricant).",
+          "en": "Vendor guides on laser consumable cost and replacement intervals (estimates, not a manufacturer standard).",
+          "url": "https://wsllaser.com/laser-cutting-consumables/"
+        },
+        {
+          "fr": "Hytek Tools : buses et hublots parmi les pièces les plus souvent remplacées.",
+          "en": "Hytek Tools: nozzles and cover glass among the most frequently replaced parts.",
+          "url": "https://www.hytektools.com/blogs/fiber-laser/fiber-laser-consumables"
+        }
+      ]
+    },
+    "tooling": {
+      "machines": [
+        "usinage",
+        "routeur"
+      ],
+      "title_fr": "Plaquettes, fraises, pinces et broche",
+      "title_en": "Inserts, end mills, collets and the spindle",
+      "what_fr": "En fraisage et en tournage, la pièce qui coupe le métal est soit une plaquette de coupe (un petit morceau de carbure vissé dans un porte-plaquette, que l’on tourne ou remplace), soit une fraise en bout (un outil monobloc). La pince de serrage (souvent une pince ER) et le porte-outil tiennent la fraise dans la broche. Les pièces de broche (roulements, pinces, palpeur de cône) se changent moins souvent, mais une broche fatiguée ruine les outils neufs.",
+      "what_en": "In milling and turning, the part that cuts the metal is either a cutting insert (a small carbide tip screwed into a holder, which you index or replace) or an end mill (a solid tool). The collet (often an ER collet) and toolholder hold the mill in the spindle. Spindle parts (bearings, collets, taper contact) are changed less often, but a tired spindle ruins new tools.",
+      "wear_fr": "Plaquette ou fraise : arête ébréchée, usure en dépouille, imitation d’un fini terne, vibration, ou cote qui dérive. Pince : marques de glissement sur la queue d’outil, concentricité mauvaise, ou pince fendue. Broche : échauffement, bruit, jeu, ou cône taché.",
+      "wear_en": "Insert or end mill: a chipped edge, flank wear, a dull finish, chatter, or size starting to drift. Collet: tool-shank witness marks, poor runout, or a cracked collet. Spindle: heat, noise, play, or a stained taper.",
+      "when_fr": "Il n’y a pas de durée unique : cela dépend du matériau, de l’arrosage, des avances et de la rigidité. La règle pratique d’atelier est de changer l’outil dès que le fini, le bruit ou la cote se dégradent, pas d’attendre la casse. Une pince ER se remplace dès que le faux-rond devient inacceptable ; ce n’est pas une pièce à vie. Pour la broche, faites appel à un atelier spécialisé (au Québec, des entreprises comme MEC Precision font la réparation) plutôt que d’improviser un démontage.",
+      "when_en": "There is no single life figure: it depends on the material, coolant, feeds and rigidity. The practical shop rule is to change the tool when finish, sound or size starts to go, not to wait for a breakage. Replace an ER collet as soon as runout becomes unacceptable; it is not a lifetime part. For the spindle, use a specialist repair shop (in Quebec, firms such as MEC Precision do this work) rather than improvising a teardown.",
+      "sources": []
+    },
+    "brake": {
+      "machines": [
+        "plieuse"
+      ],
+      "title_fr": "Outillage de presse plieuse",
+      "title_en": "Press-brake tooling",
+      "what_fr": "Le poinçon (en haut) et la matrice ou le vé (en bas) forment la tôle. Les systèmes de serrage (style Amada, Wila/Trumpf ou autre) tiennent ces outils dans le tablier et le coulisseau. Un jeu usé ou mal apparié donne un angle faux, une marque sur la pièce, ou une rampe d’un bout à l’autre de la plieuse.",
+      "what_en": "The punch (upper) and the die or V-die (lower) form the sheet. Clamping systems (Amada-style, Wila/Trumpf or another standard) hold those tools in the bed and ram. Worn or mismatched tooling gives a wrong angle, a mark on the part, or a bow from one end of the brake to the other.",
+      "wear_fr": "Arêtes émoussées ou écaillées, vé déformé, marques de frottement, ou angle qui n’est plus constant sur la longueur.",
+      "wear_en": "Dull or chipped edges, a distorted V, rub marks, or an angle that is no longer consistent along the length.",
+      "when_fr": "Remplacez ou rectifiez un outil dès que l’angle n’est plus répétable ou que la pièce est marquée. Ne mélangez pas les styles de queue (Amada, Wila, etc.) sans adaptateur prévu à cet effet. Vérifiez aussi le serrage et le parallélisme de la machine avant de blâmer seulement l’outil.",
+      "when_en": "Replace or regrind a tool as soon as the angle is no longer repeatable or the part is marked. Do not mix tang styles (Amada, Wila, and so on) without the proper adapter. Also check clamping and machine parallelism before blaming the tool alone.",
+      "sources": []
+    },
+    "waterjet": {
+      "machines": [
+        "jet-eau"
+      ],
+      "title_fr": "Orifice et tube de focalisation (jet d’eau)",
+      "title_en": "Orifice and focusing tube (waterjet)",
+      "what_fr": "L’orifice (souvent en diamant ou saphir) forme le jet d’eau. Le tube de focalisation, aussi appelé tube mélangeur, y ajoute l’abrasif et concentre le jet de coupe. Ce sont les deux pièces d’usure les plus fréquentes, avec les filtres haute pression.",
+      "what_en": "The orifice (often diamond or sapphire) forms the water jet. The focusing tube, also called a mixing tube, adds abrasive and focuses the cutting stream. Those are the two most frequent wear parts, along with high-pressure filters.",
+      "wear_fr": "Coupe plus large ou irrégulière, stries, perte de vitesse de coupe, ou jet qui « fouette ». Un orifice ébréché se voit souvent tout de suite sur la qualité de bord.",
+      "wear_en": "A wider or uneven cut, striations, lost cutting speed, or a jet that wanders. A chipped orifice often shows up immediately on edge quality.",
+      "when_fr": "La durée varie beaucoup avec la pression, le débit d’abrasif et la qualité de l’eau. Changez l’orifice dès que le bord se dégrade sans autre cause évidente, et le tube lorsque le diamètre intérieur s’est ovalisé ou que la saignée s’est élargie. Suivez le manuel de la pompe (KMT, Flow, Hypertherm HyPrecision, etc.).",
+      "when_en": "Life varies widely with pressure, abrasive flow and water quality. Change the orifice as soon as the edge falls off with no other obvious cause, and the tube when the inside diameter has gone oval or the kerf has widened. Follow the pump manual (KMT, Flow, Hypertherm HyPrecision, and so on).",
+      "sources": []
+    },
+    "motion": {
+      "machines": [
+        "mouvement"
+      ],
+      "title_fr": "Vis à billes, rails, moteurs et variateurs",
+      "title_en": "Ballscrews, rails, motors and drives",
+      "what_fr": "Les rails de guidage et les vis à billes transforment la rotation du moteur en mouvement précis. Les moteurs pas à pas et les servos, avec leurs variateurs, entraînent les axes. Ce ne sont pas des consommables au même rythme qu’une buse, mais ce sont des pièces d’usure à long terme — et une panne arrête la machine.",
+      "what_en": "Linear guides and ballscrews turn motor rotation into accurate motion. Stepper motors and servos, with their drives, move the axes. These are not consumables on the same cadence as a nozzle, but they are long-term wear parts — and a failure stops the machine.",
+      "wear_fr": "Jeu, bruits de roulement, points durs, échauffement, perte de précision, alarmes de suivi sur un servo, ou un axe qui « rate des pas ».",
+      "wear_en": "Backlash, bearing noise, tight spots, heat, lost accuracy, servo following errors, or an axis that drops steps.",
+      "when_fr": "Lubrifiez selon le manuel. Remplacez un patin ou une vis dès que le jeu ou le bruit ne se règlent plus. Pour un moteur ou un variateur, confirmez d’abord le câblage, l’alimentation et les paramètres ; la pièce n’est pas toujours en cause. Au Québec, des distributeurs de guidages (HIWIN et autres) et des ateliers d’automatisation peuvent fournir les équivalents.",
+      "when_en": "Lubricate according to the manual. Replace a bearing block or screw once backlash or noise can no longer be adjusted out. For a motor or drive, first confirm wiring, power and parameters; the part is not always at fault. In Quebec, linear-guide distributors (HIWIN and others) and automation shops can supply replacements.",
+      "sources": []
+    },
+    "filters": {
+      "machines": [
+        "entretien",
+        "plasma",
+        "laser"
+      ],
+      "title_fr": "Filtres, air et lubrifiants",
+      "title_en": "Filters, air and lubricants",
+      "what_fr": "L’air humide ou huileux use une électrode plasma plus vite que n’importe quelle mauvaise marque de pièce. Sur un laser, un gaz d’assistance sale voile le hublot. Les filtres (air, gaz, refroidisseur, dépoussiéreur) et les lubrifiants de guidage font donc partie du même budget d’entretien que les buses.",
+      "what_en": "Damp or oily air wears a plasma electrode faster than any off-brand part. On a laser, dirty assist gas hazes the window. Filters (air, gas, chiller, dust collector) and guide lubrication therefore belong in the same maintenance budget as nozzles.",
+      "wear_fr": "Eau dans les filtres, chute de pression, hublots qui se salissent trop vite, consommables plasma qui meurent tôt, ou rails secs.",
+      "wear_en": "Water in the filters, a pressure drop, windows that soil too quickly, plasma consumables that die early, or dry rails.",
+      "when_fr": "Purgez les filtres d’air tous les jours en milieu humide, et remplacez les cartouches selon le manuel ou dès que la chute de pression est anormale. L’huile et la graisse suivent le tableau d’entretien de la machine — ce n’est pas optionnel si vous voulez garder vis et rails.",
+      "when_en": "Drain air filters daily in a humid shop, and replace cartridges according to the manual or as soon as the pressure drop is abnormal. Oil and grease follow the machine’s maintenance chart — that is not optional if you want to keep screws and rails.",
+      "sources": []
+    }
+  },
+  "crossref": {
+    "title_fr": "Équivalences de numéros — torche Duramax (Powermax 45 XP, 65, 85, 105)",
+    "title_en": "Part-number cross-reference — Duramax torch (Powermax 45 XP, 65, 85, 105)",
+    "caveat_fr": "Les numéros Hypertherm ci-dessous viennent du manuel d’utilisation Powermax65/85 (806650, rév. 3) et de listes publiques de distributeurs. Les numéros Thermacut viennent des fiches publiques de Torch and Tip (pièces compatibles, pas d’origine). Vérifiez toujours le manuel de VOTRE torche : une buse 65 A n’est pas une buse 85 A, et une torche FineCut ou SYNC n’utilise pas le même jeu.",
+    "caveat_en": "Hypertherm numbers below come from the Powermax65/85 operator manual (806650, rev. 3) and from public distributor listings. Thermacut numbers come from Torch and Tip’s public product pages (compatible parts, not genuine Hypertherm). Always check YOUR torch manual: a 65 A nozzle is not an 85 A nozzle, and a FineCut or SYNC torch does not use the same stack.",
+    "source_url": "https://www.weldersupply.com/Content/files/ProductPDFs/Powermax65OperatorManual.pdf",
+    "columns_fr": [
+      "Rôle",
+      "N° Hypertherm",
+      "Usage",
+      "N° Thermacut (compatible)",
+      "Notes"
+    ],
+    "columns_en": [
+      "Role",
+      "Hypertherm no.",
+      "Use",
+      "Thermacut no. (compatible)",
+      "Notes"
+    ],
+    "rows": [
+      {
+        "role_fr": "Électrode",
+        "role_en": "Electrode",
+        "oem": "220842",
+        "use_fr": "Tous procédés, 30–105 A (souvent vendue par 5)",
+        "use_en": "All processes, 30–105 A (often sold in packs of 5)",
+        "aftermarket": "T-11883",
+        "notes_fr": "Pièce de base du jeu Duramax.",
+        "notes_en": "The standard Duramax electrode."
+      },
+      {
+        "role_fr": "Électrode longue durée",
+        "role_en": "Extended-life electrode",
+        "oem": "220777",
+        "use_fr": "CopperPlus, jusqu’à 12 mm, 40–105 A (par 5 ; 228934 = par 25)",
+        "use_en": "CopperPlus, up to 12 mm, 40–105 A (5-pack; 228934 = 25-pack)",
+        "aftermarket": "",
+        "notes_fr": "Annoncée par Hypertherm comme durant au moins deux fois plus longtemps, sous 12 mm.",
+        "notes_en": "Hypertherm presents this as lasting at least twice as long, under 12 mm."
+      },
+      {
+        "role_fr": "Buse 45 A",
+        "role_en": "45 A nozzle",
+        "oem": "220941",
+        "use_fr": "Coupe courante 45 A",
+        "use_en": "Standard 45 A cutting",
+        "aftermarket": "",
+        "notes_fr": "",
+        "notes_en": ""
+      },
+      {
+        "role_fr": "Buse 65 A",
+        "role_en": "65 A nozzle",
+        "oem": "220819",
+        "use_fr": "Coupe courante 65 A",
+        "use_en": "Standard 65 A cutting",
+        "aftermarket": "T-11377",
+        "notes_fr": "Souvent changée avec l’électrode 220842.",
+        "notes_en": "Often changed together with electrode 220842."
+      },
+      {
+        "role_fr": "Buse 85 A",
+        "role_en": "85 A nozzle",
+        "oem": "220816",
+        "use_fr": "Coupe courante 85 A",
+        "use_en": "Standard 85 A cutting",
+        "aftermarket": "",
+        "notes_fr": "",
+        "notes_en": ""
+      },
+      {
+        "role_fr": "Buse 105 A",
+        "role_en": "105 A nozzle",
+        "oem": "220990",
+        "use_fr": "Coupe courante 105 A",
+        "use_en": "Standard 105 A cutting",
+        "aftermarket": "",
+        "notes_fr": "Cite des listes de distributeurs ; confirmez dans le manuel Powermax105.",
+        "notes_en": "From distributor lists; confirm in the Powermax105 manual."
+      },
+      {
+        "role_fr": "Buse FineCut",
+        "role_en": "FineCut nozzle",
+        "oem": "220930",
+        "use_fr": "Tôle mince, 30–45 A",
+        "use_en": "Thin sheet, 30–45 A",
+        "aftermarket": "",
+        "notes_fr": "",
+        "notes_en": ""
+      },
+      {
+        "role_fr": "Buse de gougeage",
+        "role_en": "Gouging nozzle",
+        "oem": "220797",
+        "use_fr": "Gougeage, 10–105 A",
+        "use_en": "Gouging, 10–105 A",
+        "aftermarket": "",
+        "notes_fr": "",
+        "notes_en": ""
+      },
+      {
+        "role_fr": "Anneau de turbulence",
+        "role_en": "Swirl ring",
+        "oem": "220857",
+        "use_fr": "Coupe à la main ou à la machine, 10–85 A",
+        "use_en": "Hand or machine cutting, 10–85 A",
+        "aftermarket": "T-11861",
+        "notes_fr": "Dure en général plusieurs jeux d’électrode et de buse.",
+        "notes_en": "Usually lasts through several electrode and nozzle changes."
+      },
+      {
+        "role_fr": "Bague de retenue",
+        "role_en": "Retaining cap",
+        "oem": "220854",
+        "use_fr": "Coupe, gougeage et FineCut (main)",
+        "use_en": "Cutting, gouging and FineCut (hand)",
+        "aftermarket": "T-11423",
+        "notes_fr": "La même bague sert à plusieurs buses, selon le manuel.",
+        "notes_en": "The same cap is used with several nozzles, per the manual."
+      },
+      {
+        "role_fr": "Bouclier de traînée",
+        "role_en": "Drag shield",
+        "oem": "220818",
+        "use_fr": "Coupe en contact, 45–85 A",
+        "use_en": "Drag cutting, 45–85 A",
+        "aftermarket": "T-11406",
+        "notes_fr": "Permet d’appuyer la torche sur la tôle.",
+        "notes_en": "Lets you rest the torch on the plate."
+      }
+    ]
+  },
+  "sync_note": {
+    "title_fr": "Cartouches SmartSYNC (aperçu)",
+    "title_en": "SmartSYNC cartridges (overview)",
+    "fr": "Sur les sources Powermax SYNC, Hypertherm remplace le jeu démonté par une cartouche. Des listes publiques de distributeurs canadiens citent par exemple 428927 (coupe en contact 45 A, main), 428925 (cartouche mécanisée 45 A), 428928 (FineCut 30–45 A, main) et 428952 (FlushCut 65 A). Commandez le numéro exact indiqué pour votre mode (main ou machine, coupe, FineCut, gougeage) et votre intensité.",
+    "en": "On Powermax SYNC systems, Hypertherm replaces the loose stack with a cartridge. Public Canadian distributor lists cite, for example, 428927 (45 A hand drag cutting), 428925 (45 A mechanized), 428928 (30–45 A FineCut hand) and 428952 (65 A FlushCut). Order the exact number for your mode (hand or machine, cutting, FineCut, gouging) and amperage."
+  },
+  "method": {
+    "fr": "Prix relevés le 26 novembre 2026 (heure de l’Est) sur des pages catalogues publiques, uniquement chez des sites dont le fichier robots.txt autorise la lecture des fiches ou de l’API catalogue. Aucune connexion, aucun contournement de blocage. Un prix affiché est indicatif : taxes (TPS/TVQ), transport, douane et disponibilité s’ajoutent souvent. La quantité par paquet est indiquée quand le vendeur l’écrit ; sinon nous ne l’inventons pas.",
+    "en": "Prices were recorded on 26 November 2026 (Eastern Time) from public catalogue pages, only on sites whose robots.txt allows reading product pages or the catalogue API. No logins, no bypassing of blocks. A listed price is indicative: taxes (GST/QST), freight, brokerage and availability often apply. Pack quantity is shown when the seller states it; otherwise we do not invent it.",
+    "sources": [
+      {
+        "id": "gm-welding",
+        "name": "GM Welding Supplies",
+        "url": "https://gmweldingsupplies.ca/",
+        "api": "https://gmweldingsupplies.ca/api/products?category=plasma-consumables"
+      },
+      {
+        "id": "cws",
+        "name": "Canada Welding Supply",
+        "url": "https://canadaweldingsupply.ca/"
+      },
+      {
+        "id": "mapleweld",
+        "name": "MapleWeld",
+        "url": "https://mapleweld.ca/collections/hypertherm"
+      },
+      {
+        "id": "torchandtip",
+        "name": "Torch and Tip",
+        "url": "https://torchandtip.com/"
+      },
+      {
+        "id": "vault",
+        "name": "Machinist’s Vault",
+        "url": "https://machinistsvault.com/collections/fiber-laser-parts"
+      },
+      {
+        "id": "fabtooling",
+        "name": "Fabtooling Canada",
+        "url": "https://fabtooling.com/"
+      },
+      {
+        "id": "psdl",
+        "name": "PSDL",
+        "url": "https://psdl.ca/collections/hypertherm",
+        "note": "Prix de sources Powermax (machines), pas des consommables."
+      }
+    ]
+  },
+  "market": {
+    "verdict_fr": "Oui : il y a un marché réel, surtout pour les pièces d’usure que l’atelier rachète en boucle (plasma, laser, plaquettes) et, un cran au-dessus, pour l’outillage de plieuse, le jet d’eau et les pièces de mouvement.",
+    "verdict_en": "Yes: there is a real market, especially for wear parts shops buy on a loop (plasma, laser, inserts) and, one step up, for press-brake tooling, waterjet parts and motion components.",
+    "points_fr": [
+      "En 2025, Statistique Canada (tabulation spéciale reproduite par ISED) dénombre au Québec 2 056 établissements employeurs dans la fabrication de produits métalliques (SCIÁN 332) et 722 établissements employeurs d’ateliers d’usinage et produits tournés (SCIÁN 3327), plus 1 059 et 492 établissements sans employés / indéterminés respectivement. Au Canada : 7 929 employeurs (332) et 2 478 employeurs (3327).",
+      "Ces pièces ne se vendent pas une fois : le manuel Hypertherm Powermax65/85 indique environ 2 à 3 heures d’arc en coupe manuelle et 3 à 5 heures en coupe mécanisée par jeu d’électrode et de buse. Un atelier qui coupe tous les jours rachète donc ces pièces chaque semaine ou presque.",
+      "Le réseau québécois existe déjà (gaziers, distributeurs Hypertherm, outilleurs, spécialistes laser et jet d’eau). Plusieurs boutiques canadiennes publient leurs prix, ce qui permet un comparateur honnête — le même travail que pour les tôles.",
+      "Nous n’avons pas de volumes de recherche Google officiels à citer (l’outil Keyword Planner n’est pas une source publique). Le signal le plus solide reste le nombre d’ateliers et le rythme d’achat des consommables, pas un chiffre de mots-clés inventé.",
+      "Des programmes d’affiliation existent pour Amazon.ca (Associates, fourniture industrielle) et eBay (Partner Network). Hypertherm vend par partenaires autorisés ; nous n’avons pas trouvé de programme d’affiliation public du fabricant. CoupeFab n’a pour le moment aucun lien d’affiliation, et cette page n’en ajoute pas."
+    ],
+    "points_en": [
+      "In 2025, Statistics Canada (special tabulation reproduced by ISED) counts 2,056 employer establishments in Quebec in fabricated metal product manufacturing (NAICS 332) and 722 employer establishments in machine shops and turned products (NAICS 3327), plus 1,059 and 492 non-employer / indeterminate establishments respectively. Canada-wide: 7,929 employers (332) and 2,478 employers (3327).",
+      "These parts are not one-off purchases: the Hypertherm Powermax65/85 manual gives about 2 to 3 hours of arc-on time for hand cutting and 3 to 5 hours for mechanized cutting per electrode and nozzle set. A shop that cuts every day therefore reorders those parts almost weekly.",
+      "The Quebec network already exists (gas suppliers, Hypertherm distributors, tooling houses, laser and waterjet specialists). Several Canadian shops publish prices, which makes an honest comparison possible — the same work we did for sheet metal.",
+      "We do not have official Google search-volume figures to cite (Keyword Planner is not a public source). The stronger signal is the number of shops and the repurchase cadence of consumables, not an invented keyword number.",
+      "Affiliate programmes exist for Amazon.ca (Associates, business and industrial supplies) and eBay (Partner Network). Hypertherm sells through authorised partners; we did not find a public manufacturer affiliate programme. CoupeFab currently has no affiliate links, and this page does not add any."
+    ],
+    "sources": [
+      {
+        "fr": "ISED, Statistiques relatives à l’industrie canadienne, SCIÁN 332, établissements 2025 (source : Statistique Canada, tabulation spéciale).",
+        "en": "ISED, Canadian Industry Statistics, NAICS 332, 2025 establishments (source: Statistics Canada, special tabulation).",
+        "url": "https://ised-isde.canada.ca/app/ixb/cis/businesses-entreprises/332"
+      },
+      {
+        "fr": "ISED, SCIÁN 3327, établissements 2025.",
+        "en": "ISED, NAICS 3327, 2025 establishments.",
+        "url": "https://ised-isde.canada.ca/app/ixb/cis/businesses-entreprises/3327"
+      },
+      {
+        "fr": "Manuel Hypertherm 806650, rév. 3 : durée de vie des consommables.",
+        "en": "Hypertherm manual 806650, rev. 3: consumable life.",
+        "url": "https://www.weldersupply.com/Content/files/ProductPDFs/Powermax65OperatorManual.pdf"
+      },
+      {
+        "fr": "Hypertherm : achat auprès de partenaires autorisés.",
+        "en": "Hypertherm: buy from authorised partners.",
+        "url": "https://www.hypertherm.com/where-to-buy/where-to-buy-plasma-cutters/"
+      },
+      {
+        "fr": "Amazon.ca Associates : aide sur les taux (fournitures industrielles).",
+        "en": "Amazon.ca Associates: help on rates (business and industrial supplies).",
+        "url": "https://associates.amazon.ca/"
+      }
+    ]
+  }
+}
