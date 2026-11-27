@@ -2,8 +2,8 @@
  "version": "2026-11-27",
  "units_note": "liters and US gallons (1 US gal = 3.785411784 L). Capacities as published; null = not published, enter your own.",
  "license": "CC BY 4.0, CoupeFab; figures belong to the cited sources",
- "count": 275,
- "count_with_capacity": 272,
+ "count": 387,
+ "count_with_capacity": 387,
  "machines": [
   {
    "brand": "Matsuura",
@@ -48,40 +48,17 @@
    "id_confidence": "probable"
   },
   {
-   "brand": "Okuma",
-   "model": "LB45 (LB45-II / LB45III)",
-   "type": "lathe",
-   "source": "https://www.okuma.com/files/documents/LB35III_45III-E_5a_300_Aug2018.pdf",
-   "source_label": "Brochure Okuma LB35III/LB45III (2018) — aucune capacité publiée",
+   "brand": "Brother",
+   "model": "SPEEDIO S700X1",
+   "type": "vmc",
+   "liters": 150,
+   "us_gal": 39.6,
+   "source": "https://lionmachinery.net/equipment/9514430-brother-speedio-s700x1-vertical-machining-centers",
+   "source_label": "Annonce d’occasion Lion Machinery (Brother S700X1, 2020) : « Coolant Tank Capacity: 150 Liters »",
    "checked": "2026-11-27",
-   "note_fr": "Capacité non publiée dans la brochure ni dans les annonces consultées : entrez la vôtre (plaque, manuel ou Okuma).",
-   "note_en": "Capacity not published in the brochure or the listings checked: enter your own (plate, manual or Okuma).",
-   "shop": "LB45",
-   "id_confidence": "probable"
-  },
-  {
-   "brand": "Toshiba",
-   "model": "TMF-10",
-   "type": "vtl",
-   "source": "https://machinetoolexchange.com/machines/toshiba-tmf-10-2000/",
-   "source_label": "Annonce Machine Tool Exchange (Toshiba TMF-10) — capacité non indiquée",
-   "checked": "2026-11-27",
-   "note_fr": "« TMF10 » identifié comme le tour vertical à fraisage Toshiba TMF-10 (incertain). Capacité introuvable : entrez la vôtre.",
-   "note_en": "“TMF10” identified as the Toshiba TMF-10 vertical turning/milling centre (unsure). Capacity not found: enter your own.",
-   "shop": "TMF10",
-   "id_confidence": "unsure"
-  },
-  {
-   "brand": "Femco",
-   "model": "BMC-100HT",
-   "type": "boring",
-   "source": "https://www.machineriesbv.com/wp-content/uploads/2023/08/BMC_v11_EN_0621-1.pdf",
-   "source_label": "Brochure Femco BMC (v11) — capacité non indiquée",
-   "checked": "2026-11-27",
-   "note_fr": "« BMTC100 » ne correspond à aucun modèle Femco publié; le plus proche est l’aléseuse BMC-100HT (incertain). Capacité introuvable : entrez la vôtre.",
-   "note_en": "“BMTC100” matches no published Femco model; the closest is the BMC-100HT boring mill (unsure). Capacity not found: enter your own.",
-   "shop": "Femco BMTC100",
-   "id_confidence": "unsure"
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
   },
   {
    "brand": "DMG MORI",
@@ -118,6 +95,167 @@
    "checked": "2026-11-27",
    "note_fr": "Avec convoyeur à gauche; réservoir à filtre papier de 600 L en option.",
    "note_en": "With left-side chip conveyor; 600 L paper-filter tank optional."
+  },
+  {
+   "brand": "DMG MORI",
+   "model": "DMC 270 u FD",
+   "type": "5ax",
+   "liters": 2500,
+   "us_gal": 660.4,
+   "source": "https://machinetoolindex.com/machines/dmg-mori-dmc-270-u-fd",
+   "source_label": "MachineToolIndex, fiche DMG Mori DMC 270 u FD : « Coolant Capacity Band filter unit with 2,500 l as standard »",
+   "checked": "2026-11-27",
+   "official": "https://us.dmgmori.com/products/machines/milling/5-axis-milling/portal/dmc-270-u-fd"
+  },
+  {
+   "brand": "DMG MORI",
+   "model": "DMC 340 u FD",
+   "type": "5ax",
+   "liters": 2500,
+   "us_gal": 660.4,
+   "source": "https://machinetoolindex.com/machines/dmg-mori-dmc-340-u-fd",
+   "source_label": "MachineToolIndex, fiche DMG Mori DMC 340 u FD : « Coolant Capacity Band filter unit with 2,500 l as standard »",
+   "checked": "2026-11-27",
+   "official": "https://us.dmgmori.com/products/machines/milling/5-axis-milling/portal/dmc-340-u-fd"
+  },
+  {
+   "brand": "DMG MORI",
+   "model": "DMU 50 (3e génération)",
+   "type": "5ax",
+   "liters": 135,
+   "us_gal": 35.7,
+   "source": "https://dmgmori-fs.com/wp-content/uploads/2026/03/DMU50-3RD-GENERATION.pdf",
+   "source_label": "Liste de prix DMG MORI DMU 50 3rd Generation, description technique : « Capacity of the coolant tank: 135 l » (bac à copeaux standard)",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "DMG MORI",
+   "model": "DMU 210 P",
+   "type": "5ax",
+   "liters": 980,
+   "us_gal": 258.9,
+   "source": "https://machinetoolindex.com/machines/dmg-mori-dmu-210-p",
+   "source_label": "MachineToolIndex, fiche DMG Mori DMU 210 P : « Coolant Capacity 980 l band filter unit as standard »",
+   "checked": "2026-11-27",
+   "official": "https://us.dmgmori.com/products/machines/milling/5-axis-milling/portal/dmu-210-p-fd"
+  },
+  {
+   "brand": "DMG MORI",
+   "model": "NLX 2500 2nd Generation",
+   "type": "lathe",
+   "liters": 900,
+   "us_gal": 237.8,
+   "source": "https://machinetoolindex.com/machines/dmg-mori-nlx-2500-2nd",
+   "source_label": "MachineToolIndex, fiche DMG Mori NLX 2500 2nd Generation : « Coolant Capacity 900 l »",
+   "checked": "2026-11-27",
+   "official": "https://us.dmgmori.com/products/machines/turning/universal-turning/nlx/nlx-2500-2nd"
+  },
+  {
+   "brand": "DMG MORI",
+   "model": "NLX 2500 | 700 (2e génération)",
+   "type": "lathe",
+   "liters": 687,
+   "us_gal": 151.1,
+   "source": "https://dmgmori-fs.com/wp-content/uploads/2026/03/NLX2500GE2-700-Y.pdf",
+   "source_label": "Liste de prix DMG MORI NLX 2500 | 700 2nd Generation, description technique : « Coolant tank capacity L (gal.) 687 (151.1) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "DMG MORI",
+   "model": "NLX 2500 | 700 MSY",
+   "type": "millturn",
+   "liters": 366,
+   "us_gal": 96.6,
+   "source": "https://dmgmori-fs.com/wp-content/uploads/2026/03/NLX2500-700-MSY.pdf",
+   "source_label": "Liste de prix DMG MORI NLX 2500 | 700 (MSY), description technique : « Coolant tank capacity L (gal.) 366 (96.6) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "DMG MORI",
+   "model": "NTX 2000 | 1500 SZ",
+   "type": "millturn",
+   "liters": 675,
+   "us_gal": 178.2,
+   "source": "https://cncexchange.com/equipment/7095080-dmg-mori-seiki-ntx2000sz1500-cnc-lathes",
+   "source_label": "Annonce d’occasion CNC Exchange (DMG Mori Seiki NTX2000SZ1500, 2016) : « Coolant tank capacity L (gal.) 675 (178.2) »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "DMG MORI",
+   "model": "ULTRASONIC 210 p",
+   "type": "5ax",
+   "liters": 980,
+   "us_gal": 258.9,
+   "source": "https://machinetoolindex.com/machines/dmg-mori-ultrasonic-210-p",
+   "source_label": "MachineToolIndex, fiche DMG Mori ULTRASONIC 210 p : « Coolant Capacity Band filter unit with 980 l as standard »",
+   "checked": "2026-11-27",
+   "official": "https://us.dmgmori.com/products/machines/ultrasonic/ultrasonic-universal/ultrasonic-210-p"
+  },
+  {
+   "brand": "DN Solutions (Doosan)",
+   "model": "DNM 400 II",
+   "type": "vmc",
+   "liters": 300,
+   "us_gal": 79.3,
+   "source": "https://cftech.ru/assets/files/ENG_DNM_400_500_650II_160502.pdf",
+   "source_label": "Catalogue Doosan DNM 400/500/650 II (2016) : « Coolant tank capacity DNM 400 II : 300L »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "DN Solutions (Doosan)",
+   "model": "DNM 500/50 II",
+   "type": "vmc",
+   "liters": 300,
+   "us_gal": 79.3,
+   "source": "https://doosan.com.ru/api/v1/files/view/doc_dehfa_dnm-500_50-ii2c650_50-ii_compressed",
+   "source_label": "Catalogue Doosan DNM #50 II series (2017) : « Coolant tank capacity L (gal) 300 (79.3) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "DN Solutions (Doosan)",
+   "model": "DNM 650/50 II",
+   "type": "vmc",
+   "liters": 380,
+   "us_gal": 100.4,
+   "source": "https://doosan.com.ru/api/v1/files/view/doc_dehfa_dnm-500_50-ii2c650_50-ii_compressed",
+   "source_label": "Catalogue Doosan DNM #50 II series (2017) : « Coolant tank capacity L (gal) 380 (100.4) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "DN Solutions (Doosan)",
+   "model": "DNM 750/50 II",
+   "type": "vmc",
+   "liters": 480,
+   "us_gal": 126.8,
+   "source": "https://doosan.com.ru/api/v1/files/view/doc_dehfa_dnm-500_50-ii2c650_50-ii_compressed",
+   "source_label": "Catalogue Doosan DNM #50 II series (2017) : « Coolant tank capacity L (gal) 480 (126.8) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "DN Solutions (Doosan)",
+   "model": "DNM 750L II",
+   "type": "vmc",
+   "liters": 480,
+   "us_gal": 127,
+   "source": "https://cncmachines.com/doosan-dnm750l-ii-2018/l/16063",
+   "source_label": "Annonce d’occasion CNCMachines.com (Doosan DNM750L-II, 2018) : « Coolant tank capacity 480 liters (127 gallons) »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "DN Solutions (Doosan)",
+   "model": "DNM 750L/50 II",
+   "type": "vmc",
+   "liters": 525,
+   "us_gal": 138.7,
+   "source": "https://doosan.com.ru/api/v1/files/view/doc_dehfa_dnm-500_50-ii2c650_50-ii_compressed",
+   "source_label": "Catalogue Doosan DNM #50 II series (2017) : « Coolant tank capacity L (gal) 525 (138.7) »",
+   "checked": "2026-11-27"
   },
   {
    "brand": "DN Solutions (Doosan)",
@@ -185,6 +323,75 @@
   },
   {
    "brand": "DN Solutions (Doosan)",
+   "model": "Lynx 220",
+   "type": "lathe",
+   "liters": 120,
+   "us_gal": 31,
+   "source": "https://sales.haascnc.com/sites/default/files/Doosan_Lynx-220_Price-List_2013-01.pdf",
+   "source_label": "Liste de prix Doosan Lynx 220A/C/LC (2013) : « Coolant tank capacity (Lynx 220 / 220L) (120 L / 130 L) 31 gal. / 34 gal. »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "DN Solutions (Doosan)",
+   "model": "Lynx 220L",
+   "type": "lathe",
+   "liters": 130,
+   "us_gal": 34,
+   "source": "https://sales.haascnc.com/sites/default/files/Doosan_Lynx-220_Price-List_2013-01.pdf",
+   "source_label": "Liste de prix Doosan Lynx 220A/C/LC (2013) : « Coolant tank capacity (Lynx 220 / 220L) (120 L / 130 L) 31 gal. / 34 gal. »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "DN Solutions (Doosan)",
+   "model": "Lynx 2100MA",
+   "type": "millturn",
+   "liters": 145,
+   "us_gal": 38,
+   "source": "https://www.superiormachinery.com/images/8005/L_2100MA_0iT_QUOTE_02012018.pdf",
+   "source_label": "Fiche technique Doosan Lynx 2100MA (offre revendeur, 2018) : « Coolant tank capacity 145 l (38 gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "DN Solutions (Doosan)",
+   "model": "PUMA 800",
+   "type": "lathe",
+   "liters": 410,
+   "us_gal": 110,
+   "source": "https://www.stellymachinetools.com/_files/ugd/4bc7f4_43275a65744644efb9961d8f7c8cc4f5.pdf",
+   "source_label": "Fiche revendeur Stelly (Doosan Puma 800L, 2012) : « Coolant tank capacity - Puma 800 (410L) 110 gal. »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "DN Solutions (Doosan)",
+   "model": "PUMA 800L",
+   "type": "lathe",
+   "liters": 560,
+   "us_gal": 150,
+   "source": "https://www.stellymachinetools.com/_files/ugd/4bc7f4_43275a65744644efb9961d8f7c8cc4f5.pdf",
+   "source_label": "Fiche revendeur Stelly (Doosan Puma 800L, 2012) : « Pum800L (560L) 150 gal. »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "DN Solutions (Doosan)",
+   "model": "PUMA 2600SY II",
+   "type": "millturn",
+   "liters": 220,
+   "us_gal": 58,
+   "source": "https://premierequipment.com/product/doosan-puma-2600syii-2017-30550/",
+   "source_label": "Annonce d’occasion Premier Equipment (Doosan Puma 2600SYII, 2017) : « Coolant tank capacity 220 l (58 gal) »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "DN Solutions (Doosan)",
    "model": "PUMA GT2100",
    "type": "lathe",
    "liters": 190,
@@ -242,6 +449,54 @@
    "source": "https://dematec.pl/wp-content/uploads/2018/01/PUMA-GT-series-3.pdf",
    "source_label": "Catalogue Doosan PUMA GT series",
    "checked": "2026-11-27"
+  },
+  {
+   "brand": "DN Solutions (Doosan)",
+   "model": "Puma 3100B",
+   "type": "lathe",
+   "liters": 350,
+   "us_gal": 92.0,
+   "source": "https://machinetoolindex.com/machines/doosan-puma-3100b",
+   "source_label": "MachineToolIndex, fiche Doosan Puma 3100B : « Coolant Capacity 350 L (92 gal) »",
+   "checked": "2026-11-27",
+   "official": "https://www.ellisontechnologies.com/doosan/puma-series/puma-3100"
+  },
+  {
+   "brand": "DN Solutions (Doosan)",
+   "model": "SVM 4100",
+   "type": "vmc",
+   "liters": 240,
+   "us_gal": 63.4,
+   "source": "https://www.machinestation.us/product/doosan-svm-4100-cnc-vertical-machining-center/",
+   "source_label": "Annonce d’occasion MachineStation (Doosan SVM 4100, 2021) : « Coolant Tank Capacity: 63.4 Gallons »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "DN Solutions (Doosan)",
+   "model": "VC 3600",
+   "type": "vmc",
+   "liters": 500,
+   "us_gal": 132,
+   "source": "https://www.machinestation.us/product/doosan-vc-3600-cnc-vertical-machining-center/",
+   "source_label": "Annonce d’occasion MachineStation (Doosan VC 3600, 2017) : « Coolant Tank Capacity: 132 Gallons »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "DN Solutions (Doosan)",
+   "model": "VTC 300M",
+   "type": "lathe",
+   "liters": 400,
+   "us_gal": 106.0,
+   "source": "https://machinetoolindex.com/machines/doosan-vtc-300m",
+   "source_label": "MachineToolIndex, fiche Doosan VTC 300M : « Coolant Capacity 400 L (106 gal) »",
+   "checked": "2026-11-27",
+   "official": "https://www.dn-solutions.com/global/product/turning-center/vertical-turning/puma-v-8300-m.do"
   },
   {
    "brand": "Fadal",
@@ -2413,6 +2668,32 @@
   },
   {
    "brand": "Hardinge",
+   "model": "Conquest 42",
+   "type": "lathe",
+   "liters": 98,
+   "us_gal": 26,
+   "source": "https://cncexchange.com/equipment/7048740-hardinge-conquest-42-cnc-lathes",
+   "source_label": "Annonce d’occasion CNC Exchange (Hardinge Conquest 42, 1992) : « Coolant tank (capacity) 26 U.S. Gallons »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Hardinge",
+   "model": "Conquest 65",
+   "type": "lathe",
+   "liters": 151,
+   "us_gal": 40,
+   "source": "https://cncexchange.com/equipment/7048782-hardinge-conquest-65-cnc-lathes",
+   "source_label": "Annonce d’occasion CNC Exchange (Hardinge Conquest 65, 1996) : « Coolant Tank Capacity 40 Gal »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Hardinge",
    "model": "Conquest T51",
    "type": "lathe",
    "liters": 151,
@@ -2422,6 +2703,66 @@
    "checked": "2026-11-27",
    "note_fr": "Ancienne Conquest T51 (commande GE Fanuc 18T) : 40 gal US d’après une annonce d’occasion (« spécifications à vérifier »). La série T-51 actuelle a 67 gal (254 L). Vérifiez la plaque ou le manuel de votre machine.",
    "note_en": "Older Conquest T51 (GE Fanuc 18T control): 40 US gal per a used-machine listing (“specifications subject to verification”). The current T-51 has 67 gal (254 L). Check your machine’s plate or manual."
+  },
+  {
+   "brand": "Hardinge",
+   "model": "GS 150/42",
+   "type": "lathe",
+   "liters": 125,
+   "us_gal": 33,
+   "source": "https://gecarmachine.com/wp-content/uploads/2017/12/GS-Series-by-Hardinge.pdf",
+   "source_label": "Brochure Hardinge GS Series : « Coolant Tank Capacity 125liter (33gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hardinge",
+   "model": "GS 200/51",
+   "type": "lathe",
+   "liters": 125,
+   "us_gal": 33,
+   "source": "https://gecarmachine.com/wp-content/uploads/2017/12/GS-Series-by-Hardinge.pdf",
+   "source_label": "Brochure Hardinge GS Series : « Coolant Tank Capacity 125liter (33gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hardinge",
+   "model": "GS 200/66",
+   "type": "lathe",
+   "liters": 290,
+   "us_gal": 76.6,
+   "source": "https://gecarmachine.com/wp-content/uploads/2017/12/GS-Series-by-Hardinge.pdf",
+   "source_label": "Brochure Hardinge GS Series : « Coolant Tank Capacity 290liter (76.6gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hardinge",
+   "model": "GS 200/66 L",
+   "type": "lathe",
+   "liters": 290,
+   "us_gal": 76.6,
+   "source": "https://gecarmachine.com/wp-content/uploads/2017/12/GS-Series-by-Hardinge.pdf",
+   "source_label": "Brochure Hardinge GS Series : « Coolant Tank Capacity 290liter (76.6gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hardinge",
+   "model": "GS 250",
+   "type": "lathe",
+   "liters": 290,
+   "us_gal": 76.6,
+   "source": "https://gecarmachine.com/wp-content/uploads/2017/12/GS-Series-by-Hardinge.pdf",
+   "source_label": "Brochure Hardinge GS Series : « Coolant Tank Capacity 290liter (76.6gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hardinge",
+   "model": "GS 250 L",
+   "type": "lathe",
+   "liters": 290,
+   "us_gal": 76.6,
+   "source": "https://gecarmachine.com/wp-content/uploads/2017/12/GS-Series-by-Hardinge.pdf",
+   "source_label": "Brochure Hardinge GS Series : « Coolant Tank Capacity 290liter (76.6gal) »",
+   "checked": "2026-11-27"
   },
   {
    "brand": "Hardinge",
@@ -2458,6 +2799,43 @@
    "checked": "2026-11-27",
    "note_fr": "Série T actuelle (Hardinge / Kellenberger).",
    "note_en": "Current T-Series (Hardinge / Kellenberger)."
+  },
+  {
+   "brand": "Hurco",
+   "model": "TM8i",
+   "type": "lathe",
+   "liters": 114,
+   "us_gal": 30,
+   "source": "https://altamachinetools.com/product/2019-hurco-tm8i-cnc-lathe/",
+   "source_label": "Annonce d’occasion Alta Machine Tools (Hurco TM8i, 2019) : « Main Coolant Tank 30 gallons »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Hurco",
+   "model": "TM10i",
+   "type": "lathe",
+   "liters": 60,
+   "us_gal": 15.9,
+   "source": "https://cncexchange.com/equipment/7836870-hurco-tm10i-cnc-lathes",
+   "source_label": "Annonce d’occasion CNC Exchange (Hurco TM10i, 2013) : « Coolant Tank Capacity 15.9 gallons 60 liters »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Hurco",
+   "model": "VCX600i",
+   "type": "5ax",
+   "liters": 250,
+   "us_gal": 66.0,
+   "source": "https://machinetoolindex.com/machines/hurco-vcx600i",
+   "source_label": "MachineToolIndex, fiche Hurco VCX600i : « Coolant Capacity 250 L (66 gal) »",
+   "checked": "2026-11-27",
+   "official": "https://www.hurco.com/Specifications/Pages/Machine-Data-Sheet.aspx?Model=VCX600i&Company=HUS"
   },
   {
    "brand": "Hurco",
@@ -2684,8 +3062,8 @@
    "source": "https://db.hurco.de/files/categories/4/210/en/HRC_3_ACHS_FOLDER_2025_EN_WEB_RZ.pdf",
    "source_label": "Brochure Hurco 3 axes 2025 (Europe), « Coolant tank capacity »",
    "checked": "2026-11-27",
-   "note_fr": "Chiffre de la brochure européenne; la version nord-américaine peut différer.",
-   "note_en": "European brochure figure; the North American build may differ."
+   "note_fr": "Chiffre de la brochure européenne; la version nord-américaine peut différer. MachineToolIndex indique 300 L (79 gal).",
+   "note_en": "European brochure figure; the North American build may differ. MachineToolIndex lists 300 L (79 gal)."
   },
   {
    "brand": "Hurco",
@@ -2722,6 +3100,239 @@
    "checked": "2026-11-27",
    "note_fr": "Chiffre de la brochure européenne; la version nord-américaine peut différer.",
    "note_en": "European brochure figure; the North American build may differ."
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "Hi-V50D (Hyundai-Kia)",
+   "type": "vmc",
+   "liters": 300,
+   "us_gal": 79,
+   "source": "https://www.machinestation.us/product/hyundai-kia-hi-v50d-cnc-vertical-machining-center/",
+   "source_label": "Annonce d’occasion MachineStation (Hyundai Kia Hi-V50D, 2005) : « Coolant Tank Capacity: Approx. 79 Gallons (300 L) »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "KF4600",
+   "type": "vmc",
+   "liters": 400,
+   "us_gal": 105.7,
+   "source": "https://www.vantomachines.com/brands/HYUNDAI/HYUNDAI-KF4600-Series-EN.pdf",
+   "source_label": "Catalogue Hyundai WIA KF series : « Coolant Tank ℓ(gal) 400 (105.7) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "KF5600",
+   "type": "vmc",
+   "liters": 400,
+   "us_gal": 105.7,
+   "source": "https://www.vantomachines.com/brands/HYUNDAI/HYUNDAI-KF4600-Series-EN.pdf",
+   "source_label": "Catalogue Hyundai WIA KF series : « Coolant Tank ℓ(gal) 400 (105.7) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "KF5600C",
+   "type": "vmc",
+   "liters": 400,
+   "us_gal": 105.7,
+   "source": "https://www.vantomachines.com/brands/HYUNDAI/HYUNDAI-KF4600-Series-EN.pdf",
+   "source_label": "Catalogue Hyundai WIA KF series : « Coolant Tank ℓ(gal) 400 (105.7) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "KF6700",
+   "type": "vmc",
+   "liters": 400,
+   "us_gal": 105.7,
+   "source": "https://www.vantomachines.com/brands/HYUNDAI/HYUNDAI-KF4600-Series-EN.pdf",
+   "source_label": "Catalogue Hyundai WIA KF series : « Coolant Tank ℓ(gal) 400 (105.7) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "L300A",
+   "type": "lathe",
+   "liters": 220,
+   "us_gal": 58.1,
+   "source": "https://media.nagel-gruppe.de/assets/839/l300-series-eng-v1.2.pdf",
+   "source_label": "Catalogue Hyundai WIA L300 series (v1.2) : « Coolant Tank 220 ℓ (58.1 gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "L300C",
+   "type": "lathe",
+   "liters": 220,
+   "us_gal": 58.1,
+   "source": "https://media.nagel-gruppe.de/assets/839/l300-series-eng-v1.2.pdf",
+   "source_label": "Catalogue Hyundai WIA L300 series (v1.2) : « Coolant Tank 220 ℓ (58.1 gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "L300LA",
+   "type": "lathe",
+   "liters": 270,
+   "us_gal": 71.3,
+   "source": "https://media.nagel-gruppe.de/assets/839/l300-series-eng-v1.2.pdf",
+   "source_label": "Catalogue Hyundai WIA L300 series (v1.2) : « Coolant Tank 270 ℓ (71.3 gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "L300LC",
+   "type": "lathe",
+   "liters": 270,
+   "us_gal": 71.3,
+   "source": "https://media.nagel-gruppe.de/assets/839/l300-series-eng-v1.2.pdf",
+   "source_label": "Catalogue Hyundai WIA L300 series (v1.2) : « Coolant Tank 270 ℓ (71.3 gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "L300LMA",
+   "type": "millturn",
+   "liters": 270,
+   "us_gal": 71.3,
+   "source": "https://media.nagel-gruppe.de/assets/839/l300-series-eng-v1.2.pdf",
+   "source_label": "Catalogue Hyundai WIA L300 series (v1.2) : « Coolant Tank 270 ℓ (71.3 gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "L300LMC",
+   "type": "millturn",
+   "liters": 270,
+   "us_gal": 71.3,
+   "source": "https://media.nagel-gruppe.de/assets/839/l300-series-eng-v1.2.pdf",
+   "source_label": "Catalogue Hyundai WIA L300 series (v1.2) : « Coolant Tank 270 ℓ (71.3 gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "L300LMSA",
+   "type": "millturn",
+   "liters": 270,
+   "us_gal": 71.3,
+   "source": "https://media.nagel-gruppe.de/assets/839/l300-series-eng-v1.2.pdf",
+   "source_label": "Catalogue Hyundai WIA L300 series (v1.2) : « Coolant Tank 270 ℓ (71.3 gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "L300MA",
+   "type": "millturn",
+   "liters": 220,
+   "us_gal": 58.1,
+   "source": "https://media.nagel-gruppe.de/assets/839/l300-series-eng-v1.2.pdf",
+   "source_label": "Catalogue Hyundai WIA L300 series (v1.2) : « Coolant Tank 220 ℓ (58.1 gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "L300MC",
+   "type": "millturn",
+   "liters": 220,
+   "us_gal": 58.1,
+   "source": "https://media.nagel-gruppe.de/assets/839/l300-series-eng-v1.2.pdf",
+   "source_label": "Catalogue Hyundai WIA L300 series (v1.2) : « Coolant Tank 220 ℓ (58.1 gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "L300MSA",
+   "type": "millturn",
+   "liters": 220,
+   "us_gal": 58.1,
+   "source": "https://media.nagel-gruppe.de/assets/839/l300-series-eng-v1.2.pdf",
+   "source_label": "Catalogue Hyundai WIA L300 series (v1.2) : « Coolant Tank 220 ℓ (58.1 gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "L300MSC",
+   "type": "millturn",
+   "liters": 220,
+   "us_gal": 58.1,
+   "source": "https://media.nagel-gruppe.de/assets/839/l300-series-eng-v1.2.pdf",
+   "source_label": "Catalogue Hyundai WIA L300 series (v1.2) : « Coolant Tank 220 ℓ (58.1 gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "L2000LSY",
+   "type": "millturn",
+   "liters": 290,
+   "us_gal": 76.6,
+   "source": "https://machine.hyundai-wia.com/upload/product/pdf/L3000SY%20Series(en).pdf",
+   "source_label": "Catalogue Hyundai WIA L-Y series : « Coolant Tank 290 ℓ (76.6 gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "L2000LY",
+   "type": "millturn",
+   "liters": 290,
+   "us_gal": 76.6,
+   "source": "https://machine.hyundai-wia.com/upload/product/pdf/L3000SY%20Series(en).pdf",
+   "source_label": "Catalogue Hyundai WIA L-Y series : « Coolant Tank 290 ℓ (76.6 gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "L2000SY",
+   "type": "millturn",
+   "liters": 275,
+   "us_gal": 72.6,
+   "source": "https://machine.hyundai-wia.com/upload/product/pdf/L3000SY%20Series(en).pdf",
+   "source_label": "Catalogue Hyundai WIA L-Y series : « Coolant Tank 275 ℓ (72.6 gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "L2000Y",
+   "type": "millturn",
+   "liters": 275,
+   "us_gal": 72.6,
+   "source": "https://machine.hyundai-wia.com/upload/product/pdf/L3000SY%20Series(en).pdf",
+   "source_label": "Catalogue Hyundai WIA L-Y series : « Coolant Tank 275 ℓ (72.6 gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "L3000LY",
+   "type": "millturn",
+   "liters": 320,
+   "us_gal": 84.5,
+   "source": "https://machine.hyundai-wia.com/upload/product/pdf/L3000SY%20Series(en).pdf",
+   "source_label": "Catalogue Hyundai WIA L-Y series : « Coolant Tank 320 ℓ (84.5 gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "L3000SY",
+   "type": "millturn",
+   "liters": 290,
+   "us_gal": 76.6,
+   "source": "https://machine.hyundai-wia.com/upload/product/pdf/L3000SY%20Series(en).pdf",
+   "source_label": "Catalogue Hyundai WIA L-Y series : « Coolant Tank 290 ℓ (76.6 gal) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Hyundai WIA",
+   "model": "L3000Y",
+   "type": "millturn",
+   "liters": 290,
+   "us_gal": 76.6,
+   "source": "https://machine.hyundai-wia.com/upload/product/pdf/L3000SY%20Series(en).pdf",
+   "source_label": "Catalogue Hyundai WIA L-Y series : « Coolant Tank 290 ℓ (76.6 gal) »",
+   "checked": "2026-11-27"
   },
   {
    "brand": "Hyundai WIA",
@@ -2762,6 +3373,29 @@
    "source": "https://media.nagel-gruppe.de/assets/1045/se2200-series-eng-v2.4.pdf",
    "source_label": "Catalogue Hyundai WIA SE2200 series (v2.4)",
    "checked": "2026-11-27"
+  },
+  {
+   "brand": "Kitamura",
+   "model": "Mycenter-3020G",
+   "type": "vmc",
+   "liters": 500,
+   "us_gal": 132.1,
+   "source": "https://jfcnc.hu/wp-content/uploads/2024/06/Kitamura-Mycenter-3020G-202302.pdf",
+   "source_label": "Brochure Kitamura Mycenter-3020G (2023), plan d’implantation : « COOLANT TANK 500L »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Kitamura",
+   "model": "Mycenter-HX500iG",
+   "type": "hmc",
+   "liters": 700,
+   "us_gal": 184.9,
+   "source": "https://www.exapro.com/kitamura-mycenter-hx500ig-p260723232/",
+   "source_label": "Annonce d’occasion Exapro (Kitamura Mycenter HX500iG) : « Coolant tank capacity is 700 liters »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
   },
   {
    "brand": "Makino",
@@ -2822,6 +3456,347 @@
    "note_en": "“May vary with type/size of tank” (source)."
   },
   {
+   "brand": "Makino",
+   "model": "a92",
+   "type": "hmc",
+   "liters": 1600,
+   "us_gal": 423,
+   "source": "https://assetexchangeinc.com/equipment/7725799-makino-a92-machining-centers-horizontal",
+   "source_label": "Annonce d’occasion Asset Exchange (Makino A92, 2012) : « Coolant Tank Capacity (total cap/effective cap): 1600/1150L 423/304 gal »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Matsuura",
+   "model": "MAM72-3VS",
+   "type": "5ax",
+   "liters": 600,
+   "us_gal": 158.5,
+   "source": "https://newton-itm.com/upload/iblock/5d6/5d6b6597b1167c256d06fe5dc28a98f5.pdf",
+   "source_label": "Brochure Matsuura MAM72-3VS : « Coolant Tank Capacity L 600 »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Matsuura",
+   "model": "MX-330",
+   "type": "5ax",
+   "liters": 350,
+   "us_gal": 92.5,
+   "source": "https://www.matsuurausa.com/wp-content/uploads/MX-330-FX-E2.2-202110-3000-BN-1.pdf",
+   "source_label": "Brochure Matsuura MX-330 (2021) : « Coolant tank capacity L 350 »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Matsuura",
+   "model": "MX-520",
+   "type": "5ax",
+   "liters": 560,
+   "us_gal": 147.9,
+   "source": "https://www.matsuurausa.com/wp-content/uploads/MX-520-Leaflet_EN-7.10.17-002.pdf",
+   "source_label": "Fiche Matsuura MX-520 : « Coolant tank capacity L 560 »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Matsuura",
+   "model": "V.Plus-800",
+   "type": "vmc",
+   "liters": 400,
+   "us_gal": 105,
+   "source": "https://www.matsuurausa.com/wp-content/uploads/V.Plus-800-EF-E1.1-201905-1000-S.pdf",
+   "source_label": "Brochure Matsuura V.Plus-800 (2019) : « Coolant tank Capacity L (gal.) 400 (105) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Mazak",
+   "model": "HQR-250MSY",
+   "type": "millturn",
+   "liters": 310,
+   "us_gal": 82,
+   "source": "https://www.machinestation.us/product/mazak-hqr-250msy-cnc-turning-center/",
+   "source_label": "Annonce d’occasion MachineStation (Mazak HQR-250MSY, 2019) : « Coolant Tank Capacity: 82 – 106 Gallons »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "variants": [
+    {
+     "label_fr": "grand réservoir",
+     "label_en": "large tank",
+     "liters": 401,
+     "us_gal": 105.9
+    }
+   ],
+   "dealer_listing": true
+  },
+  {
+   "brand": "Mazak",
+   "model": "INTEGREX 200-IV S",
+   "type": "millturn",
+   "liters": 510,
+   "us_gal": 134.7,
+   "source": "https://cncexchange.com/equipment/7051387-mazak-integrex-200-iv-s-cnc-lathes",
+   "source_label": "Annonce d’occasion CNC Exchange (Mazak INTEGREX 200-IV S) : « Coolant Tank Capacity 510 L »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Mazak",
+   "model": "INTEGREX J-200S",
+   "type": "millturn",
+   "liters": 269,
+   "us_gal": 71,
+   "source": "https://www.machinestation.us/product/mazak-integrex-j-200s-cnc-multi-tasking-turning-center-2015/",
+   "source_label": "Annonce d’occasion MachineStation (Mazak Integrex J-200S, 2015) : « Coolant Tank Capacity: 71 gal »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Mazak",
+   "model": "INTEGREX i-200S",
+   "type": "millturn",
+   "liters": 510,
+   "us_gal": 134.7,
+   "source": "https://cncexchange.com/equipment/7048233-mazak-integrex-i-200s-cnc-lathes",
+   "source_label": "Annonce d’occasion CNC Exchange (Mazak INTEGREX i-200S) : « Coolant Tank Capacity 510 L »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Mazak",
+   "model": "INTEGREX i-200ST",
+   "type": "millturn",
+   "liters": 510,
+   "us_gal": 134.7,
+   "source": "https://cncexchange.com/es/equipment/7048661-mazak-integrex-i-200st-cnc-lathes",
+   "source_label": "Annonce d’occasion CNC Exchange (Mazak INTEGREX i-200ST) : « Coolant Tank Capacity 510 L »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Mazak",
+   "model": "INTEGREX i-300S",
+   "type": "millturn",
+   "liters": 550,
+   "us_gal": 145.3,
+   "source": "https://www.1stmachineryauctions.com/lots/2014-mazak-integrex-300s",
+   "source_label": "Lot d’encan 1st Machinery (Mazak Integrex i300S, 2014) : « Coolant tank capacity: 550L »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Mazak",
+   "model": "INTEGREX j-300 (650U)",
+   "type": "millturn",
+   "liters": 157,
+   "us_gal": 41.5,
+   "source": "https://cnc-toerner.de/wp-content/uploads/2026/09/Integrex-j-Serie_SmoothG_EN.pdf",
+   "source_label": "Brochure Mazak INTEGREX j Series (SmoothG) : « Coolant Tank capacity 157 L / 270 L » (650U / 1200U)",
+   "checked": "2026-11-27",
+   "variants": [
+    {
+     "label_fr": "1200U",
+     "label_en": "1200U",
+     "liters": 270,
+     "us_gal": 71.3
+    }
+   ]
+  },
+  {
+   "brand": "Mazak",
+   "model": "INTEGREX j-400 (650U)",
+   "type": "millturn",
+   "liters": 157,
+   "us_gal": 41.5,
+   "source": "https://cnc-toerner.de/wp-content/uploads/2026/09/Integrex-j-Serie_SmoothG_EN.pdf",
+   "source_label": "Brochure Mazak INTEGREX j Series (SmoothG) : « Coolant Tank capacity 157 L / 270 L » (650U / 1200U)",
+   "checked": "2026-11-27",
+   "variants": [
+    {
+     "label_fr": "1200U",
+     "label_en": "1200U",
+     "liters": 270,
+     "us_gal": 71.3
+    }
+   ]
+  },
+  {
+   "brand": "Mazak",
+   "model": "QUICK TURN 300 (650U)",
+   "type": "lathe",
+   "liters": 225,
+   "us_gal": 59.4,
+   "source": "https://mazarom.ro/wp-content/uploads/2025/01/QUICK-TURN-300350-SERIES-SmoothCNC.pdf",
+   "source_label": "Brochure Mazak QUICK TURN 300/350 (SmoothC) : « Tank capacity 225 / 320 / 340 L » (650 / 1250 / 1500U)",
+   "checked": "2026-11-27",
+   "variants": [
+    {
+     "label_fr": "1250U",
+     "label_en": "1250U",
+     "liters": 320,
+     "us_gal": 84.5
+    },
+    {
+     "label_fr": "1500U",
+     "label_en": "1500U",
+     "liters": 340,
+     "us_gal": 89.8
+    }
+   ]
+  },
+  {
+   "brand": "Mazak",
+   "model": "QUICK TURN 300MS / 300MSY (650U)",
+   "type": "millturn",
+   "liters": 245,
+   "us_gal": 64.7,
+   "source": "https://mazarom.ro/wp-content/uploads/2025/01/QUICK-TURN-300350-SERIES-SmoothCNC.pdf",
+   "source_label": "Brochure Mazak QUICK TURN 300/350 (SmoothC) : « Tank capacity 245 / 290 L » (650U / 1250U)",
+   "checked": "2026-11-27",
+   "variants": [
+    {
+     "label_fr": "1250U",
+     "label_en": "1250U",
+     "liters": 290,
+     "us_gal": 76.6
+    }
+   ]
+  },
+  {
+   "brand": "Mazak",
+   "model": "QUICK TURN 300MY / 300MA / 300MB (650U)",
+   "type": "millturn",
+   "liters": 225,
+   "us_gal": 59.4,
+   "source": "https://mazarom.ro/wp-content/uploads/2025/01/QUICK-TURN-300350-SERIES-SmoothCNC.pdf",
+   "source_label": "Brochure Mazak QUICK TURN 300/350 (SmoothC) : « Tank capacity 225 / 270 / 290 L » (650 / 1250 / 1500U)",
+   "checked": "2026-11-27",
+   "variants": [
+    {
+     "label_fr": "1250U",
+     "label_en": "1250U",
+     "liters": 270,
+     "us_gal": 71.3
+    },
+    {
+     "label_fr": "1500U",
+     "label_en": "1500U",
+     "liters": 290,
+     "us_gal": 76.6
+    }
+   ]
+  },
+  {
+   "brand": "Mazak",
+   "model": "QUICK TURN 350 / 350MY (2000U)",
+   "type": "lathe",
+   "liters": 400,
+   "us_gal": 105.7,
+   "source": "https://mazarom.ro/wp-content/uploads/2025/01/QUICK-TURN-300350-SERIES-SmoothCNC.pdf",
+   "source_label": "Brochure Mazak QUICK TURN 300/350 (SmoothC) : « Tank capacity 400 L » (2000U)",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Mazak",
+   "model": "QUICK TURN 400 L / 450 L / 400M L / 450M L (1000U)",
+   "type": "lathe",
+   "liters": 320,
+   "us_gal": 84.5,
+   "source": "https://mazarom.ro/wp-content/uploads/2025/01/QUICK-TURN-400.450-Series-Digital.pdf",
+   "source_label": "Brochure Mazak QUICK TURN 400 L, 450 L : « Coolant Tank capacity 320 L / 450 L / 550 L » (1000U / 2000U / 3000U)",
+   "checked": "2026-11-27",
+   "variants": [
+    {
+     "label_fr": "2000U",
+     "label_en": "2000U",
+     "liters": 450,
+     "us_gal": 118.9
+    },
+    {
+     "label_fr": "3000U",
+     "label_en": "3000U",
+     "liters": 550,
+     "us_gal": 145.3
+    }
+   ]
+  },
+  {
+   "brand": "Mazak",
+   "model": "QUICK TURN NEXUS 200 (QTN200)",
+   "type": "lathe",
+   "liters": 150,
+   "us_gal": 39.6,
+   "source": "http://makrabg.com/mazak-qtn200/",
+   "source_label": "Fiche revendeur Makra (Mazak QTN200) : « Tank capacity 150L (40gal) / 200 L (53 gal) »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "variants": [
+    {
+     "label_fr": "grand réservoir",
+     "label_en": "large tank",
+     "liters": 200,
+     "us_gal": 52.8
+    }
+   ],
+   "dealer_listing": true
+  },
+  {
+   "brand": "Mazak",
+   "model": "QUICK TURN NEXUS 250-II (QTN 250-II)",
+   "type": "lathe",
+   "liters": 151,
+   "us_gal": 40,
+   "source": "https://quickmachinerysales.com/equipment/7109757-mazak-qtn-250-ii-cnc-lathes-2-axis",
+   "source_label": "Annonce d’occasion Quick Machinery Sales (Mazak QTN 250-II, 2010) : « COOLANT TANK CAPACITY 40 GAL »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Mazak",
+   "model": "QUICK TURN SMART 200 (QTS200)",
+   "type": "lathe",
+   "liters": 150,
+   "us_gal": 39.6,
+   "source": "https://makrabg.com/mazak-qts200/",
+   "source_label": "Fiche revendeur Makra (Mazak QTS200) : « Tank capacity 150L (40gal) / 200 L (53 gal) »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "variants": [
+    {
+     "label_fr": "grand réservoir",
+     "label_en": "large tank",
+     "liters": 200,
+     "us_gal": 52.8
+    }
+   ],
+   "dealer_listing": true
+  },
+  {
+   "brand": "Mazak",
+   "model": "VARIAXIS i-300",
+   "type": "5ax",
+   "liters": 1100,
+   "us_gal": 290.0,
+   "source": "https://machinetoolindex.com/machines/mazak-variaxis-i-300",
+   "source_label": "MachineToolIndex, fiche Mazak VARIAXIS i-300 : « Coolant Capacity 1,100 L (290 gal) »",
+   "checked": "2026-11-27",
+   "official": "https://www.mazak.com/us-en/products/"
+  },
+  {
    "brand": "Mazak",
    "model": "VCN-430A",
    "type": "vmc",
@@ -2839,6 +3814,89 @@
    "us_gal": 66.0,
    "source": "https://cnc-toerner.de/wp-content/uploads/2026/10/VCN-Serie-Englisch.pdf",
    "source_label": "Catalogue Mazak VCN series (anglais)",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Mazak",
+   "model": "VCN-535C",
+   "type": "vmc",
+   "liters": 250,
+   "us_gal": 66.0,
+   "source": "https://www.oltrogge.de/fileadmin/user_upload/oltrogge/service/mazak-maschinen/vcn-535c_vcn-700d_smoothg_en.pdf",
+   "source_label": "Brochure Mazak VCN-535C / VCN-700D (SmoothG) : « Coolant tank capacity 250 L »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Mazak",
+   "model": "VCN-700D",
+   "type": "vmc",
+   "liters": 380,
+   "us_gal": 100.4,
+   "source": "https://www.oltrogge.de/fileadmin/user_upload/oltrogge/service/mazak-maschinen/vcn-535c_vcn-700d_smoothg_en.pdf",
+   "source_label": "Brochure Mazak VCN-535C / VCN-700D (SmoothG) : « Coolant tank capacity 380 L »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Mazak",
+   "model": "VTC-200C",
+   "type": "vmc",
+   "liters": 300,
+   "us_gal": 79.3,
+   "source": "https://www.exapro.com/mazak-vtc-200c-p260514303/",
+   "source_label": "Annonce d’occasion Exapro (Mazak VTC-200C) : « Coolant Tank Capacity: 300 Lt »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Milltronics",
+   "model": "VM16",
+   "type": "vmc",
+   "liters": 115,
+   "us_gal": 30.4,
+   "source": "https://manualzz.com/doc/61909196/milltronics-vm-series--8200-control--instruction-handbook",
+   "source_label": "Manuel d’instructions Milltronics VM Series (8200, rév. 2015), « Coolant capacities » : 115 L",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Milltronics",
+   "model": "VM20",
+   "type": "vmc",
+   "liters": 190,
+   "us_gal": 50.2,
+   "source": "https://manualzz.com/doc/61909196/milltronics-vm-series--8200-control--instruction-handbook",
+   "source_label": "Manuel d’instructions Milltronics VM Series (8200, rév. 2015), « Coolant capacities » : 190 L (une annonce d’occasion Generation Machine Tools indique aussi « Coolant tank 50 gallon capacity »)",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Milltronics",
+   "model": "VM22",
+   "type": "vmc",
+   "liters": 265,
+   "us_gal": 70.0,
+   "source": "https://manualzz.com/doc/61909196/milltronics-vm-series--8200-control--instruction-handbook",
+   "source_label": "Manuel d’instructions Milltronics VM Series (8200, rév. 2015), « Coolant capacities » : 265 L",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Milltronics",
+   "model": "VM25",
+   "type": "vmc",
+   "liters": 265,
+   "us_gal": 70.0,
+   "source": "https://manualzz.com/doc/61909196/milltronics-vm-series--8200-control--instruction-handbook",
+   "source_label": "Manuel d’instructions Milltronics VM Series (8200, rév. 2015), « Coolant capacities » : 265 L",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Milltronics",
+   "model": "VM30",
+   "type": "vmc",
+   "liters": 265,
+   "us_gal": 70.0,
+   "source": "https://manualzz.com/doc/61909196/milltronics-vm-series--8200-control--instruction-handbook",
+   "source_label": "Manuel d’instructions Milltronics VM Series (8200, rév. 2015), « Coolant capacities » : 265 L",
    "checked": "2026-11-27"
   },
   {
@@ -2938,6 +3996,97 @@
    "note_en": "Same tank for the MC, Y, S, SMC and SY versions."
   },
   {
+   "brand": "Mori Seiki",
+   "model": "NV5000 A1B/40",
+   "type": "vmc",
+   "liters": 275,
+   "us_gal": 72.6,
+   "source": "https://cncexchange.com/equipment/7051054-mori-seiki-nv5000-a1b-slash-40-vertical-machining-centers-cnc",
+   "source_label": "Annonce d’occasion CNC Exchange (Mori Seiki NV5000 A1B/40, 2005) : « Coolant tank capacity 72.6 Gal »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Mori Seiki",
+   "model": "SL-303B/700",
+   "type": "lathe",
+   "liters": 210,
+   "us_gal": 55.4,
+   "source": "https://cncexchange.com/equipment/7050121-mori-seiki-sl-303b-slash-700-cnc-lathes",
+   "source_label": "Annonce d’occasion CNC Exchange (Mori Seiki SL-303B/700, 2001) : « Coolant tank capacity 55.4 gal. »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Mori Seiki",
+   "model": "SL-803C",
+   "type": "lathe",
+   "liters": 140,
+   "us_gal": 37,
+   "source": "https://cncexchange.com/equipment/7055011-mori-seiki-sl-803c-cnc-lathes",
+   "source_label": "Annonce d’occasion CNC Exchange (Mori Seiki SL-803C, 2008) : « Coolant Tank Capacity 37 Gal. »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Mori Seiki",
+   "model": "ZT2500Y",
+   "type": "millturn",
+   "liters": 350,
+   "us_gal": 92.4,
+   "source": "https://cncexchange.com/equipment/7046275-mori-seiki-zt2500y-cnc-lathes",
+   "source_label": "Annonce d’occasion CNC Exchange (Mori Seiki ZT2500Y, 2002) : « Coolant tank capacity 350 (92.4 gal) »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Okuma",
+   "model": "GA-34F",
+   "type": "grinder",
+   "liters": 200,
+   "us_gal": 52.8,
+   "source": "https://cncexchange.com/equipment/7045932-okuma-ga-34f-grinder",
+   "source_label": "Annonce d’occasion CNC Exchange (Okuma GA-34F, 1997) : « Coolant tank 52.8 gal »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Okuma",
+   "model": "GENOS L250II-E",
+   "type": "lathe",
+   "liters": 129,
+   "us_gal": 34,
+   "source": "https://assetexchangeinc.com/equipment/7675391-okuma-genos-l250iie-lathes-cnc",
+   "source_label": "Annonce d’occasion Asset Exchange (Okuma GENOS L250IIE, 2019) : « Coolant Tank Capacity (Gals Approx. 34 »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Okuma",
+   "model": "GENOS L300-MYW-eX (/500)",
+   "type": "millturn",
+   "liters": 215,
+   "us_gal": 56.8,
+   "source": "https://info.mmi-direct.com/cnc-lathe-2019-okuma-genos-l300-myw-ex-500",
+   "source_label": "Annonce d’occasion MMI Direct (Okuma Genos L300-MYW-eX 500, 2019) : « Coolant Tank Capacity (Gals): 56.8 »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
    "brand": "Okuma",
    "model": "GENOS M460-VE",
    "type": "vmc",
@@ -2972,6 +4121,181 @@
    "checked": "2026-11-27",
    "note_fr": "Volume utile : 270 L.",
    "note_en": "Effective volume: 270 L."
+  },
+  {
+   "brand": "Okuma",
+   "model": "LB3000 EX II (/1000)",
+   "type": "lathe",
+   "liters": 197,
+   "us_gal": 52,
+   "source": "https://cncmachines.com/okuma-lb3000exii-1000-2022/l/12533",
+   "source_label": "Annonce d’occasion CNCMachines.com (Okuma LB3000EXII/1000, 2022) : « Coolant Tank Capacity: 52 Gallons »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Okuma",
+   "model": "LB3000 EX II MYW (/800)",
+   "type": "millturn",
+   "liters": 260,
+   "us_gal": 68.7,
+   "source": "https://www.machinestation.us/product/okuma-lb3000-exii-myw-800-cnc-turning-center-2014/",
+   "source_label": "Annonce d’occasion MachineStation (Okuma LB3000-EXII-MYW-800, 2014) : « Coolant Tank Capacity: 68.7 Gallons »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Okuma",
+   "model": "LT3000 EX 3T3MY",
+   "type": "millturn",
+   "liters": 336,
+   "us_gal": 88.8,
+   "source": "https://mmi-direct.com/used-machines/okuma-lt3000-ex-3t3my-3762721",
+   "source_label": "Annonce d’occasion MMI Direct (Okuma LT3000-EX-3T3MY, 2021) : « Coolant Tank Capacity (Gals) 88.8 »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Okuma",
+   "model": "MB-46V (VA / VAE / VE)",
+   "type": "vmc",
+   "liters": 190,
+   "us_gal": 50.2,
+   "source": "https://www.okuma.com/files/documents/MB-V_Series-E_27a_100_Nov2022.pdf",
+   "source_label": "Brochure Okuma MB-V series (nov. 2022) : « Coolant tank capacity 190 L (effective: 100 L) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Okuma",
+   "model": "MB-56V (VA / VB)",
+   "type": "vmc",
+   "liters": 230,
+   "us_gal": 60.8,
+   "source": "https://www.okuma.com/files/documents/MB-V_Series-E_27a_100_Nov2022.pdf",
+   "source_label": "Brochure Okuma MB-V series (nov. 2022) : « Coolant tank capacity 230 L (effective: 120 L) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Okuma",
+   "model": "MB-66V (VA / VB)",
+   "type": "vmc",
+   "liters": 460,
+   "us_gal": 121.5,
+   "source": "https://www.okuma.com/files/documents/MB-V_Series-E_27a_100_Nov2022.pdf",
+   "source_label": "Brochure Okuma MB-V series (nov. 2022) : « Coolant tank capacity 460 L (effective: 270 L) »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Okuma",
+   "model": "MULTUS U3000 2SW (/1500)",
+   "type": "millturn",
+   "liters": 490,
+   "us_gal": 129.5,
+   "source": "https://mmi-direct.com/used-machines/okuma-multus-u3000-2sw-1500-bb-sb-3656761",
+   "source_label": "Annonce d’occasion MMI Direct (Okuma MULTUS U3000 2SW 1500) : « Coolant Tank Capacity 129.5 Gals »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Takisawa",
+   "model": "TW-30",
+   "type": "lathe",
+   "liters": 189,
+   "us_gal": 50,
+   "source": "https://cncexchange.com/equipment/7047376-takisawa-tw-30-cnc-lathes",
+   "source_label": "Annonce d’occasion CNC Exchange (Takisawa TW-30, 1998) : « Coolant Tank Capacity 50 Gal »",
+   "checked": "2026-11-27",
+   "note_fr": "Annonce d’occasion d’un revendeur : vérifiez sur la plaque de votre machine.",
+   "note_en": "Used-machine dealer listing: verify on your machine’s plate.",
+   "dealer_listing": true
+  },
+  {
+   "brand": "Victor Taichung",
+   "model": "Vcenter-55",
+   "type": "vmc",
+   "liters": 225,
+   "us_gal": 59.4,
+   "source": "https://www.victor-cnc.de/pdf/Vcenter-range-profile.pdf",
+   "source_label": "Brochure Victor Taichung Vcenter : « Coolant tank capacity 225 L »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Victor Taichung",
+   "model": "Vcenter-70",
+   "type": "vmc",
+   "liters": 240,
+   "us_gal": 63.4,
+   "source": "https://www.victor-cnc.de/pdf/Vcenter-range-profile.pdf",
+   "source_label": "Brochure Victor Taichung Vcenter : « Coolant tank capacity 240 L »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Victor Taichung",
+   "model": "Vcenter-85A/B/C",
+   "type": "vmc",
+   "liters": 280,
+   "us_gal": 74.0,
+   "source": "https://www.victor-cnc.de/pdf/Vcenter-range-profile.pdf",
+   "source_label": "Brochure Victor Taichung Vcenter : « Coolant tank capacity 280 L »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Victor Taichung",
+   "model": "Vcenter-AX380",
+   "type": "5ax",
+   "liters": 400,
+   "us_gal": 105.7,
+   "source": "https://www.gibas.nl/hubfs/Brochures%20Partners/Victor%20Taichung_Brochure_EN.pdf?hsLang=nl",
+   "source_label": "Brochure générale Victor Taichung : « Coolant tank capacity 400 L »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Victor Taichung",
+   "model": "Vcenter-AX630",
+   "type": "5ax",
+   "liters": 400,
+   "us_gal": 105.7,
+   "source": "https://www.gibas.nl/hubfs/Brochures%20Partners/Victor%20Taichung_Brochure_EN.pdf?hsLang=nl",
+   "source_label": "Brochure générale Victor Taichung : « Coolant tank capacity 400 L »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Victor Taichung",
+   "model": "Vcenter-AX800",
+   "type": "5ax",
+   "liters": 450,
+   "us_gal": 118.9,
+   "source": "https://www.gibas.nl/hubfs/Brochures%20Partners/Victor%20Taichung_Brochure_EN.pdf?hsLang=nl",
+   "source_label": "Brochure générale Victor Taichung : « Coolant tank capacity 450 L »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Victor Taichung",
+   "model": "Vcenter-AX800 II",
+   "type": "5ax",
+   "liters": 450,
+   "us_gal": 118.9,
+   "source": "https://www.gibas.nl/hubfs/Brochures%20Partners/Victor%20Taichung_Brochure_EN.pdf?hsLang=nl",
+   "source_label": "Brochure générale Victor Taichung : « Coolant tank capacity 450 L »",
+   "checked": "2026-11-27"
+  },
+  {
+   "brand": "Victor Taichung",
+   "model": "Vturn-Q200 (T2/T3, M, Y)",
+   "type": "millturn",
+   "liters": 420,
+   "us_gal": 111.0,
+   "source": "https://www.gibas.nl/hubfs/Brochures%20Partners/Victor%20Taichung_Brochure_EN.pdf?hsLang=nl",
+   "source_label": "Brochure générale Victor Taichung, Vturn-Q200 : « Tank capacity 420 L »",
+   "checked": "2026-11-27"
   }
  ]
 }
