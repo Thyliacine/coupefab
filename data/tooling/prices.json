@@ -1,0 +1,438 @@
+{
+ "fetched": "2026-11-26",
+ "timezone": "America/Toronto",
+ "currency": "CAD",
+ "fx": {
+  "rate": 1.4243,
+  "date": "2026-11-26",
+  "source": "Banque du Canada — taux de change quotidien (Valet FXUSDCAD)",
+  "url": "https://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/"
+ },
+ "count": 12747,
+ "status": [
+  {
+   "id": "airtek",
+   "ok": true,
+   "error": null,
+   "rows": 1174
+  },
+  {
+   "id": "groupe-mortier",
+   "ok": true,
+   "error": null,
+   "rows": 52
+  },
+  {
+   "id": "oxypro",
+   "ok": true,
+   "error": null,
+   "rows": 84
+  },
+  {
+   "id": "fabtooling",
+   "ok": true,
+   "error": null,
+   "rows": 153
+  },
+  {
+   "id": "sharpex",
+   "ok": true,
+   "error": null,
+   "rows": 176
+  },
+  {
+   "id": "glcs",
+   "ok": true,
+   "error": null,
+   "rows": 2185
+  },
+  {
+   "id": "accusize",
+   "ok": true,
+   "error": null,
+   "rows": 2186
+  },
+  {
+   "id": "busybee",
+   "ok": true,
+   "error": null,
+   "rows": 892
+  },
+  {
+   "id": "wiseline",
+   "ok": true,
+   "error": null,
+   "rows": 1373
+  },
+  {
+   "id": "cncrouterstore",
+   "ok": true,
+   "error": null,
+   "rows": 1255
+  },
+  {
+   "id": "superior-tool",
+   "ok": true,
+   "error": null,
+   "rows": 58
+  },
+  {
+   "id": "machinists-vault",
+   "ok": true,
+   "error": null,
+   "rows": 1057
+  },
+  {
+   "id": "canadian-woodworker",
+   "ok": true,
+   "error": null,
+   "rows": 84
+  },
+  {
+   "id": "langmuir",
+   "ok": true,
+   "error": null,
+   "rows": 103
+  },
+  {
+   "id": "benchmark-abrasives",
+   "ok": true,
+   "error": null,
+   "rows": 672
+  },
+  {
+   "id": "red-label-abrasives",
+   "ok": true,
+   "error": null,
+   "rows": 350
+  },
+  {
+   "id": "pieces-snapshot",
+   "ok": true,
+   "error": null,
+   "rows": 893
+  }
+ ],
+ "suppliers": [
+  {
+   "id": "airtek",
+   "name": "Airtek",
+   "host": "airtekltd.com",
+   "city": "Saint-Laurent (Montréal)",
+   "province": "QC",
+   "country": "CA",
+   "currency": "CAD",
+   "platform": "shopify"
+  },
+  {
+   "id": "groupe-mortier",
+   "name": "Groupe Mortier",
+   "host": "groupemortier.ca",
+   "city": "",
+   "province": "QC",
+   "country": "CA",
+   "currency": "CAD",
+   "platform": "shopify"
+  },
+  {
+   "id": "oxypro",
+   "name": "Oxypro",
+   "host": "oxypro-inc.com",
+   "city": "",
+   "province": "QC",
+   "country": "CA",
+   "currency": "CAD",
+   "platform": "shopify"
+  },
+  {
+   "id": "fabtooling",
+   "name": "Fabtooling",
+   "host": "fabtooling.ca",
+   "city": "Lévis",
+   "province": "QC",
+   "country": "CA",
+   "currency": "CAD",
+   "platform": "shopify"
+  },
+  {
+   "id": "sharpex",
+   "name": "Sharpex",
+   "host": "sharpex.ca",
+   "city": "",
+   "province": "QC",
+   "country": "CA",
+   "currency": "CAD",
+   "platform": "woo"
+  },
+  {
+   "id": "glcs",
+   "name": "Great Lakes Carbide Supply",
+   "host": "glcs.shop",
+   "city": "Kitchener",
+   "province": "ON",
+   "country": "CA",
+   "currency": "CAD",
+   "platform": "woo"
+  },
+  {
+   "id": "accusize",
+   "name": "Accusize Industrial Tools",
+   "host": "accusizetools.com",
+   "city": "Markham",
+   "province": "ON",
+   "country": "CA",
+   "currency": "CAD",
+   "platform": "shopify"
+  },
+  {
+   "id": "busybee",
+   "name": "Busy Bee Tools",
+   "host": "www.busybeetools.com",
+   "city": "Concord",
+   "province": "ON",
+   "country": "CA",
+   "currency": "CAD",
+   "platform": "shopify"
+  },
+  {
+   "id": "wiseline",
+   "name": "Wise Line Tools",
+   "host": "wiselinetools.ca",
+   "city": "",
+   "province": "ON",
+   "country": "CA",
+   "currency": "CAD",
+   "platform": "shopify"
+  },
+  {
+   "id": "cncrouterstore",
+   "name": "CNC Router Store",
+   "host": "www.cncrouterstore.ca",
+   "city": "",
+   "province": "ON",
+   "country": "CA",
+   "currency": "CAD",
+   "platform": "shopify"
+  },
+  {
+   "id": "superior-tool",
+   "name": "Superior Tool Supply",
+   "host": "superiortoolsupply.ca",
+   "city": "Cambridge",
+   "province": "ON",
+   "country": "CA",
+   "currency": "CAD",
+   "platform": "shopify"
+  },
+  {
+   "id": "machinists-vault",
+   "name": "Machinist’s Vault",
+   "host": "machinistsvault.com",
+   "city": "",
+   "province": "ON",
+   "country": "CA",
+   "currency": "CAD",
+   "platform": "shopify"
+  },
+  {
+   "id": "canadian-woodworker",
+   "name": "Canadian Woodworker",
+   "host": "www.canadianwoodworker.com",
+   "city": "Winnipeg",
+   "province": "MB",
+   "country": "CA",
+   "currency": "CAD",
+   "platform": "woo"
+  },
+  {
+   "id": "langmuir",
+   "name": "Langmuir Systems",
+   "host": "www.langmuirsystems.com",
+   "city": "Texas",
+   "province": "",
+   "country": "US",
+   "currency": "USD",
+   "platform": "shopify"
+  },
+  {
+   "id": "benchmark-abrasives",
+   "name": "Benchmark Abrasives",
+   "host": "benchmarkabrasives.com",
+   "city": "Arizona",
+   "province": "",
+   "country": "US",
+   "currency": "USD",
+   "platform": "shopify"
+  },
+  {
+   "id": "red-label-abrasives",
+   "name": "Red Label Abrasives",
+   "host": "www.redlabelabrasives.com",
+   "city": "Michigan",
+   "province": "",
+   "country": "US",
+   "currency": "USD",
+   "platform": "shopify"
+  },
+  {
+   "id": "canada-welding-supply",
+   "name": "Canada Welding Supply",
+   "host": "canadaweldingsupply.ca",
+   "city": "Mississauga",
+   "province": "ON",
+   "country": "CA",
+   "currency": "CAD",
+   "platform": "pieces"
+  },
+  {
+   "id": "gm-welding",
+   "name": "GM Welding Supplies",
+   "host": "gmweldingsupplies.ca",
+   "city": "Mississauga",
+   "province": "ON",
+   "country": "CA",
+   "currency": "CAD",
+   "platform": "pieces"
+  },
+  {
+   "id": "mapleweld",
+   "name": "MapleWeld",
+   "host": "mapleweld.ca",
+   "city": "Toronto",
+   "province": "ON",
+   "country": "CA",
+   "currency": "CAD",
+   "platform": "pieces"
+  },
+  {
+   "id": "torchandtip",
+   "name": "Torch and Tip",
+   "host": "torchandtip.com",
+   "city": "Bragg Creek",
+   "province": "AB",
+   "country": "CA",
+   "currency": "CAD",
+   "platform": "pieces"
+  }
+ ],
+ "blocked": [
+  {
+   "name": "CSL Industriel",
+   "host": "cslindustriel.com",
+   "province": "QC",
+   "why_fr": "Réponse 403 (pare-feu anti-robots) — prix visibles seulement dans un navigateur.",
+   "why_en": "HTTP 403 (bot firewall) — prices only visible in a browser."
+  },
+  {
+   "name": "Cantin et fils (catalogue)",
+   "host": "catalogue.cantinindustriel.com",
+   "province": "QC",
+   "why_fr": "Réponse 403 (pare-feu anti-robots).",
+   "why_en": "HTTP 403 (bot firewall)."
+  },
+  {
+   "name": "Pronet Distribution",
+   "host": "pronetindustriel.com",
+   "province": "QC",
+   "why_fr": "Réponse 403 (pare-feu anti-robots).",
+   "why_en": "HTTP 403 (bot firewall)."
+  },
+  {
+   "name": "Meunier Outillage Industriel",
+   "host": "outillagemeunier.com",
+   "province": "QC",
+   "why_fr": "Réponse 403 (pare-feu anti-robots).",
+   "why_en": "HTTP 403 (bot firewall)."
+  },
+  {
+   "name": "Outils Pierre Berger",
+   "host": "outilspierreberger.com",
+   "province": "QC",
+   "why_fr": "Réponse 403 (pare-feu anti-robots).",
+   "why_en": "HTTP 403 (bot firewall)."
+  },
+  {
+   "name": "Les Attaches Richard",
+   "host": "lesattachesrichard.com",
+   "province": "QC",
+   "why_fr": "robots.txt interdit l’exploration.",
+   "why_en": "robots.txt disallows crawling."
+  },
+  {
+   "name": "Groupe Sabec",
+   "host": "sabec.ca",
+   "province": "QC",
+   "why_fr": "Site injoignable depuis notre robot (erreur de certificat).",
+   "why_en": "Unreachable from our fetcher (certificate error)."
+  },
+  {
+   "name": "Outillage Industriel Québec",
+   "host": "quebecindustriel.com",
+   "province": "QC",
+   "why_fr": "Catalogue sans prix affichés.",
+   "why_en": "Catalogue shows no prices."
+  },
+  {
+   "name": "Drillmex",
+   "host": "drillmex.com",
+   "province": "QC",
+   "why_fr": "Prix sur soumission seulement.",
+   "why_en": "Quote only."
+  },
+  {
+   "name": "Cobalt Industrial",
+   "host": "cobaltindustrial.ca",
+   "province": "AB",
+   "why_fr": "robots.txt interdit l’exploration.",
+   "why_en": "robots.txt disallows crawling."
+  },
+  {
+   "name": "Infinity Industrial",
+   "host": "shop.infinityindustrial.ca",
+   "province": "ON",
+   "why_fr": "Réponse 403 (pare-feu anti-robots).",
+   "why_en": "HTTP 403 (bot firewall)."
+  },
+  {
+   "name": "Machinery Canada (Techleader)",
+   "host": "shop.machinerycanada.com",
+   "province": "ON",
+   "why_fr": "Page de vérification anti-robots (202).",
+   "why_en": "Bot-check page (HTTP 202)."
+  },
+  {
+   "name": "Toolup",
+   "host": "toolup.com",
+   "province": "",
+   "why_fr": "Réponse 403 (pare-feu anti-robots).",
+   "why_en": "HTTP 403 (bot firewall)."
+  },
+  {
+   "name": "Lakeshore Carbide",
+   "host": "lakeshorecarbide.com",
+   "province": "",
+   "why_fr": "Erreur serveur 500 au relevé.",
+   "why_en": "Server error 500 when checked."
+  },
+  {
+   "name": "Travers Tool",
+   "host": "travers.com",
+   "province": "",
+   "why_fr": "robots.txt interdit l’exploration.",
+   "why_en": "robots.txt disallows crawling."
+  },
+  {
+   "name": "Shars, ToolsToday, Maritool, Precise Bits",
+   "host": "",
+   "province": "",
+   "why_fr": "Pas de flux public structuré ; non relevés pour l’instant.",
+   "why_en": "No structured public feed; not recorded yet."
+  }
+ ],
+ "items_files": [
+  "items/part-01.jsonl",
+  "items/part-02.jsonl",
+  "items/part-03.jsonl",
+  "items/part-04.jsonl"
+ ]
+}

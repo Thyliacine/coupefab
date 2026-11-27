@@ -15,6 +15,7 @@ from tooling.classify import CATEGORIES, GROUPS
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "tooling" / "prices.json"
+DATA_GZ = ROOT / "data" / "tooling" / "prices.json.gz"
 OUT_DIR = ROOT / "outillage"
 MONTHS_FR = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre",
              "octobre", "novembre", "décembre"]
@@ -51,7 +52,8 @@ def date_lab(iso, fr):
 
 
 def load():
-    return json.loads(DATA.read_text(encoding="utf-8"))
+    from tooling.fetch_tooling import read_snapshot
+    return read_snapshot()
 
 
 # compact row layout shared with js/outillage.js

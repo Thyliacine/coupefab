@@ -29,7 +29,11 @@ from tooling import classify as C
 from tooling.sources import SOURCES, BLOCKED
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "data" / "tooling" / "prices.json"
+OUT_DIR = ROOT / "data" / "tooling"
+OUT = OUT_DIR / "prices.json"          # metadata + list of item shards (small)
+OUT_GZ = OUT_DIR / "prices.json.gz"    # optional local cache, not pushed
+ITEM_DIR = "items"
+ITEM_BYTES = 1_500_000
 TZ = ZoneInfo("America/Toronto")
 UA = "CoupeFabPriceBot/1.0 (+https://coupefab.vercel.app/a-propos/; prix publics, une requete a la fois)"
 S = requests.Session()
@@ -219,13 +223,53 @@ def from_parts_snapshot():
     return sups, C.dedupe(rows)
 
 
+def read_snapshot():
+    """Read metadata + item shards, or a single-file / gzipped snapshot from an older checkout."""
+    import gzip
+    if OUT.exists():
+        latest = json.loads(OUT.read_text(encoding="utf-8"))
+        if "items" not in latest:
+            items = []
+            for rel in latest.get("items_files", []):
+                with open(OUT_DIR / rel, encoding="utf-8") as fh:
+                    items += [json.loads(line) for line in fh if line.strip()]
+            if len(items) != latest.get("count", len(items)):
+                raise ValueError(f"tooling snapshot incomplete: {len(items)} items, expected {latest.get('count')}")
+            latest["items"] = items
+        return latest
+    if OUT_GZ.exists():
+        return json.loads(gzip.decompress(OUT_GZ.read_bytes()).decode("utf-8"))
+    raise FileNotFoundError(OUT)
+
+
 def write(out):
-    """Metadata on top, one row per line: diff-friendly and far below the 8 MB connector limit."""
-    OUT.parent.mkdir(parents=True, exist_ok=True)
+    """Metadata in prices.json, one item per line in items/part-NN.jsonl (each part well under 8 MB)."""
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    part_dir = OUT_DIR / ITEM_DIR
+    part_dir.mkdir(parents=True, exist_ok=True)
+    parts, buf, size = [], [], 0
+    for r in out.get("items", []):
+        line = json.dumps(r, ensure_ascii=False, separators=(",", ":")) + "\n"
+        n = len(line.encode())
+        if buf and size + n > ITEM_BYTES:
+            parts.append(buf); buf, size = [], 0
+        buf.append(line); size += n
+    if buf or not parts:
+        parts.append(buf)
+    names = []
+    for i, lines in enumerate(parts, 1):
+        rel = f"{ITEM_DIR}/part-{i:02d}.jsonl"
+        (OUT_DIR / rel).write_text("".join(lines), encoding="utf-8")
+        names.append(rel)
+    for old in part_dir.glob("part-*.jsonl"):
+        if f"{ITEM_DIR}/{old.name}" not in names:
+            old.unlink()
     meta = {k: v for k, v in out.items() if k != "items"}
-    head = json.dumps(meta, ensure_ascii=False, separators=(",", ":"))[:-1]
-    lines = ",\n".join(json.dumps(i, ensure_ascii=False, separators=(",", ":")) for i in out["items"])
-    OUT.write_text(head + ',"items":[\n' + lines + "\n]}\n", encoding="utf-8")
+    meta["count"] = len(out.get("items", []))
+    meta["items_files"] = names
+    OUT.write_text(json.dumps(meta, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    if OUT_GZ.exists():
+        OUT_GZ.unlink()
 
 
 def run(only=None, cache=None):
@@ -235,9 +279,9 @@ def run(only=None, cache=None):
     fx = fx_rate()
     date = today()
     prev = {}
-    if OUT.exists():
+    if OUT.exists() or OUT_PLAIN.exists():
         try:
-            old = json.loads(OUT.read_text())
+            old = read_snapshot()
             for it in old.get("items", []):
                 prev.setdefault(it["source"], []).append(it)
         except Exception:

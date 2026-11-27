@@ -58,6 +58,34 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
   </url>
   <url>
+    <loc>https://coupefab.vercel.app/pieces/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/pieces/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/parts/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/parts/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/parts/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/pieces/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/outillage/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/outillage/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/tooling/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/tooling/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/tooling/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/outillage/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
     <loc>https://coupefab.vercel.app/infolettre/</loc>
     <lastmod>2026-11-26</lastmod>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/infolettre/"/>
@@ -111,6 +139,34 @@
     <lastmod>2026-11-26</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/privacy/"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/conditions/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/conditions/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/terms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/terms/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/terms/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/conditions/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/fournisseurs/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/fournisseurs/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/suppliers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/suppliers/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/suppliers/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/fournisseurs/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
   </url>
   <url>
@@ -195,6 +251,20 @@
     <lastmod>2026-11-26</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/shop/"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/atelier/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/guides/alarme-collision-premiers-gestes/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/alarme-collision-premiers-gestes/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/alarm-crash-first-steps/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/guides/alarm-crash-first-steps/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/alarm-crash-first-steps/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/alarme-collision-premiers-gestes/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
   </url>
   <url>
@@ -296,6 +366,20 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
   </url>
   <url>
+    <loc>https://coupefab.vercel.app/guides/cycles-percage-g81-g83/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/cycles-percage-g81-g83/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/canned-cycles-g81-g83/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/guides/canned-cycles-g81-g83/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/canned-cycles-g81-g83/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/cycles-percage-g81-g83/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
     <loc>https://coupefab.vercel.app/guides/metiers-cnc-formation-quebec/</loc>
     <lastmod>2026-11-26</lastmod>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/metiers-cnc-formation-quebec/"/>
@@ -307,6 +391,20 @@
     <lastmod>2026-11-26</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/cnc-careers-training-quebec/"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/metiers-cnc-formation-quebec/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/guides/centroid-acorn-cnc12/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/centroid-acorn-cnc12/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/centroid-acorn-cnc12/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/guides/centroid-acorn-cnc12/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/centroid-acorn-cnc12/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/centroid-acorn-cnc12/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
   </url>
   <url>
@@ -363,6 +461,20 @@
     <lastmod>2026-11-26</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/plasma-consumables-canada/"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/consommables-plasma-canada/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/guides/arrosage-fluides-de-coupe/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/arrosage-fluides-de-coupe/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/coolant-cutting-fluids/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/guides/coolant-cutting-fluids/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/coolant-cutting-fluids/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/arrosage-fluides-de-coupe/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
   </url>
   <url>
@@ -450,6 +562,20 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
   </url>
   <url>
+    <loc>https://coupefab.vercel.app/guides/commande-fanuc-cnc/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/commande-fanuc-cnc/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/fanuc-cnc-control/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/guides/fanuc-cnc-control/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/fanuc-cnc-control/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/commande-fanuc-cnc/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
     <loc>https://coupefab.vercel.app/guides/avances-vitesses/</loc>
     <lastmod>2026-11-26</lastmod>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/avances-vitesses/"/>
@@ -503,6 +629,20 @@
     <lastmod>2026-11-26</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/five-axis-machining/"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/usinage-5-axes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/guides/montage-serrage-etau-mors-doux/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/montage-serrage-etau-mors-doux/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/fixturing-workholding-vise-soft-jaws/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/guides/fixturing-workholding-vise-soft-jaws/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/fixturing-workholding-vise-soft-jaws/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/montage-serrage-etau-mors-doux/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
   </url>
   <url>
@@ -590,6 +730,20 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
   </url>
   <url>
+    <loc>https://coupefab.vercel.app/guides/commande-haas-cnc/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/commande-haas-cnc/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/haas-cnc-control/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/guides/haas-cnc-control/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/haas-cnc-control/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/commande-haas-cnc/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
     <loc>https://coupefab.vercel.app/guides/hypertherm-edge-connect-phoenix/</loc>
     <lastmod>2026-11-26</lastmod>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/hypertherm-edge-connect-phoenix/"/>
@@ -660,6 +814,20 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
   </url>
   <url>
+    <loc>https://coupefab.vercel.app/guides/tournage-fini-surface-vibrations/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/tournage-fini-surface-vibrations/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/turning-surface-finish-chatter/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/guides/turning-surface-finish-chatter/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/turning-surface-finish-chatter/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/tournage-fini-surface-vibrations/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
     <loc>https://coupefab.vercel.app/guides/entrees-sorties-percage-plasma/</loc>
     <lastmod>2026-11-26</lastmod>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/entrees-sorties-percage-plasma/"/>
@@ -702,6 +870,20 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
   </url>
   <url>
+    <loc>https://coupefab.vercel.app/guides/cadenassage-machines-cnc/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/cadenassage-machines-cnc/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/lockout-cnc-machines-quebec/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/guides/lockout-cnc-machines-quebec/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/lockout-cnc-machines-quebec/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/cadenassage-machines-cnc/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
     <loc>https://coupefab.vercel.app/guides/mach3-mach4/</loc>
     <lastmod>2026-11-26</lastmod>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/mach3-mach4/"/>
@@ -713,6 +895,20 @@
     <lastmod>2026-11-26</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/mach3-mach4/"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/mach3-mach4/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/guides/masso-g3-commande-sans-pc/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/masso-g3-commande-sans-pc/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/masso-g3-pc-less-controller/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/guides/masso-g3-pc-less-controller/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/masso-g3-pc-less-controller/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/masso-g3-commande-sans-pc/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
   </url>
   <url>
@@ -755,6 +951,20 @@
     <lastmod>2026-11-26</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/metal-grades/"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/nuances-metaux/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/guides/mesure-controle-pied-a-coulisse-micrometre/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/mesure-controle-pied-a-coulisse-micrometre/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/measuring-inspection-caliper-micrometer/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/guides/measuring-inspection-caliper-micrometer/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/measuring-inspection-caliper-micrometer/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/mesure-controle-pied-a-coulisse-micrometre/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
   </url>
   <url>
@@ -842,6 +1052,20 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
   </url>
   <url>
+    <loc>https://coupefab.vercel.app/guides/planetcnc-tng-mk3/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/planetcnc-tng-mk3/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/planetcnc-tng-mk3/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/guides/planetcnc-tng-mk3/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/planetcnc-tng-mk3/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/planetcnc-tng-mk3/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
     <loc>https://coupefab.vercel.app/guides/plasma-biseau-chanfrein/</loc>
     <lastmod>2026-11-26</lastmod>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/plasma-biseau-chanfrein/"/>
@@ -912,6 +1136,34 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
   </url>
   <url>
+    <loc>https://coupefab.vercel.app/guides/entretien-preventif-cnc-plasma-laser/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/entretien-preventif-cnc-plasma-laser/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/preventive-maintenance-cnc-plasma-laser/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/guides/preventive-maintenance-cnc-plasma-laser/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/preventive-maintenance-cnc-plasma-laser/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/entretien-preventif-cnc-plasma-laser/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/guides/palpage-machine-palpeur-outil/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/palpage-machine-palpeur-outil/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/on-machine-probing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/guides/on-machine-probing/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/on-machine-probing/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/palpage-machine-palpeur-outil/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
     <loc>https://coupefab.vercel.app/guides/pronest-imbrication/</loc>
     <lastmod>2026-11-26</lastmod>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/pronest-imbrication/"/>
@@ -937,6 +1189,34 @@
     <lastmod>2026-11-26</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/quoting-cut-parts/"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/soumission-pieces-coupees/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/guides/lire-un-dessin-gdt/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/lire-un-dessin-gdt/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/reading-drawings-gdt/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/guides/reading-drawings-gdt/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/reading-drawings-gdt/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/lire-un-dessin-gdt/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/guides/routeur-arrachements-eclats/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/routeur-arrachements-eclats/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/router-tear-out-chipping/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/guides/router-tear-out-chipping/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/router-tear-out-chipping/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/routeur-arrachements-eclats/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
   </url>
   <url>
@@ -968,6 +1248,20 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
   </url>
   <url>
+    <loc>https://coupefab.vercel.app/guides/conception-tolerie-regles-dfm/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/conception-tolerie-regles-dfm/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/sheet-metal-design-rules-dfm/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/guides/sheet-metal-design-rules-dfm/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/sheet-metal-design-rules-dfm/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/conception-tolerie-regles-dfm/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
     <loc>https://coupefab.vercel.app/guides/debuter-sheetcam/</loc>
     <lastmod>2026-11-26</lastmod>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/debuter-sheetcam/"/>
@@ -993,6 +1287,20 @@
     <lastmod>2026-11-26</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/shop-hourly-rate-quebec/"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/taux-horaire-atelier-quebec/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/guides/commande-siemens-sinumerik/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/commande-siemens-sinumerik/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/siemens-sinumerik-control/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/guides/siemens-sinumerik-control/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/siemens-sinumerik-control/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/commande-siemens-sinumerik/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
   </url>
   <url>
@@ -1077,6 +1385,20 @@
     <lastmod>2026-11-26</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/thc-hunting-diving-troubleshooting/"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/depannage-thc-oscille-plonge/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/guides/taraudage-filetage-fraise/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/taraudage-filetage-fraise/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/tapping-thread-milling/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/guides/tapping-thread-milling/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/tapping-thread-milling/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/taraudage-filetage-fraise/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
   </url>
   <url>
@@ -1189,6 +1511,20 @@
     <lastmod>2026-11-26</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/guides/work-offsets-g54/"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/guides/decalages-origine-g54/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/codes-erreur/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/codes-erreur/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/error-codes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
+  </url>
+  <url>
+    <loc>https://coupefab.vercel.app/en/error-codes/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://coupefab.vercel.app/en/error-codes/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://coupefab.vercel.app/codes-erreur/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://coupefab.vercel.app/"/>
   </url>
 </urlset>
