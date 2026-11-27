@@ -16,7 +16,10 @@ for a in "$@"; do if [ "$a" = "--weekly" ]; then ARGS+=("--with-bars"); else ARG
 "$PY" -m used.fetch_listings
 python3 build.py > /dev/null
 python3 scripts/deploy_manifest.py
-git add -A data/prices prix en/sheet-prices sitemap.xml >/dev/null 2>&1 || true
-git add data/used occasions en/used-equipment css/occasions.css js/occasions.js >/dev/null 2>&1 || true
+# Stage the refreshed data and every generated page (all index.html, sitemap, JSON/CSV exports) so the
+# tree ends clean; hand-edited source (*.py, sitekit/, content/, css/, js/) is left alone on purpose.
+git add -A data/prices data/used prix pieces occasions en/sheet-prices en/parts en/used-equipment \
+  sitemap.xml 404.html guides/recherche.json en/guides/search.json >/dev/null 2>&1 || true
+git add -A -- ':(glob)**/index.html' >/dev/null 2>&1 || true
 git commit -q -m "prix et occasions: relevé $(TZ=America/Toronto date +%F)" >/dev/null 2>&1 || true
 echo "OK: built. Deploy: see scripts/deploy_manifest.py (Vercel connector, team micro-bot, project coupefab)."
