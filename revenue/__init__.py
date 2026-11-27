@@ -84,8 +84,7 @@ def css() -> str:
 def hidden_paths() -> set[str]:
     """Generated but not public (noindex, not in sitemap): pages whose flag is off."""
     f, out = flags(), set()
-    if not f["advertise_page"]:
-        out.update(P["advertise"])
+    # The advertise *request form* is public (no rates shown). Paid slots stay behind advertise_page.
     if not f["quote_requests"]:
         out.update(P["quote"])
     return out

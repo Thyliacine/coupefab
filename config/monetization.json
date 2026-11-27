@@ -4,5 +4,6 @@
   "affiliate_links": false,
   "digest_sponsor": false,
   "quote_requests": false,
-  "advertise_page": false
+  "advertise_page": false,
+  "donations": false
 }

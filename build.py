@@ -370,7 +370,7 @@ HOME_EN = f"""
     </article>
   </div>
   <h2>Subscribe</h2>
-  <p>The newsletter will carry new guides, the used-equipment digest, and price updates. Early issues will be sent by hand from Gmail. No third-party ads for now.</p>
+  <p>The newsletter will carry new guides, the used-equipment digest, and price updates. Issues are sent from info@coupefab.ca. No third-party ads. No third-party ads for now.</p>
   {form_newsletter("en")}
 </div>
 """
@@ -1200,7 +1200,7 @@ NEWS_FR = f"""
 <div class="wrap prose">
   <p class="kicker">Infolettre</p>
   <h1>L’infolettre CoupeFab</h1>
-  <p class="lede">Un envoi occasionnel, puis hebdomadaire quand le rythme sera bon : nouveaux guides, digest d’occasions au Québec, mise à jour des prix de tôles. Les premiers numéros partiront à la main, depuis Gmail.</p>
+  <p class="lede">Un envoi occasionnel, puis hebdomadaire quand le rythme sera bon : nouveaux guides, digest d’occasions au Québec, mise à jour des prix de tôles. Les envois partent de info@coupefab.ca. Pas de pub tierce.</p>
   {form_newsletter("fr")}
   <h2>Ce que vous acceptez</h2>
   <p>En cochant la case, vous donnez un consentement exprès, conformément à la Loi canadienne anti-pourriel (LCAP / CASL), à recevoir des courriels de CoupeFab. Pas de case précochée, pas d’achat lié à l’inscription, et un moyen de se désabonner dans chaque envoi. Détails : <a href="/confidentialite/">confidentialité et consentement</a>.</p>
@@ -1211,7 +1211,7 @@ NEWS_EN = f"""
 <div class="wrap prose">
   <p class="kicker">Newsletter</p>
   <h1>The CoupeFab newsletter</h1>
-  <p class="lede">An occasional letter, then a weekly one once the pace is right: new guides, the Quebec used-equipment digest, and sheet-price updates. Early issues will be sent by hand from Gmail.</p>
+  <p class="lede">An occasional letter, then a weekly one once the pace is right: new guides, the Quebec used-equipment digest, and sheet-price updates. Issues are sent from info@coupefab.ca. No third-party ads.</p>
   {form_newsletter("en")}
   <h2>What you are agreeing to</h2>
   <p>By checking the box, you give express consent, under Canada’s Anti-Spam Legislation (CASL), to receive email from CoupeFab. The box is not pre-checked, a purchase is not required, and every issue will include a way to unsubscribe. Details: <a href="/en/privacy/">privacy and consent</a>.</p>
@@ -1225,6 +1225,7 @@ ABOUT_FR = f"""
   <p class="lede">CoupeFab est une ressource francophone d’abord, bilingue, pour les ateliers de découpe plasma et de fabrication métallique au Québec. Le site rassemble des guides CAD/CAM, un digest d’équipements d’occasion, et un suivi des prix de tôles lorsqu’ils sont publiés.</p>
   <p>Les pages techniques sont relues par Michaël Brassard avant d’être considérées comme publiées. Tant que la bannière « brouillon — à réviser par Michaël » est visible, traitez le texte comme un jet, pas comme une consigne de coupe.</p>
   <p>Nous ne vendons pas de machines et nous ne prenons pas commission sur les annonces pour le moment. Aucun lien d’affiliation n’est en place. Voir la <a href="/divulgation/">page de divulgation</a>.</p>
+  <p class="about-support">{__import__("sitekit.donate", fromlist=["donate"]).button("fr", "btn-support")}</p>
   <h2>Contact</h2>
   <p>Une question, une correction, une annonce publique à signaler : écrivez-nous. Si vous préférez l’infolettre, c’est par <a href="/infolettre/">ici</a>.</p>
   {form_contact("fr")}
@@ -1238,6 +1239,7 @@ ABOUT_EN = f"""
   <p class="lede">CoupeFab is a French-first, bilingual resource for plasma cutting and metal fabrication shops in Quebec. The site gathers CAD/CAM guides, a digest of used equipment, and a sheet-price tracker when prices are posted publicly.</p>
   <p>Technical pages are reviewed by Michaël Brassard before they count as published. While the “draft — to be reviewed by Michaël” banner is visible, treat the text as a working draft, not as a cutting instruction.</p>
   <p>We do not sell machines and we do not take a commission on listings for now. There are no affiliate links in place. See the <a href="/en/affiliate-disclosure/">disclosure page</a>.</p>
+  <p class="about-support">{__import__("sitekit.donate", fromlist=["donate"]).button("en", "btn-support")}</p>
   <h2>Contact</h2>
   <p>A question, a correction, or a public listing we should see: write to us. If you would rather have the newsletter, it is <a href="/en/newsletter/">here</a>.</p>
   {form_contact("en")}

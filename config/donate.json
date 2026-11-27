@@ -1,0 +1,11 @@
+{
+  "url": "https://donate.stripe.com/test_7sY4gz4MlbrO8tA2vs2Nq00",
+  "livemode": false,
+  "payment_link_id": "plink_1UgIUWFIMEUdJy0WPzJw4yRE",
+  "price_id": "price_1UgIUEFIMEUdJy0WvRlIZ6ge",
+  "product_id": "prod_VhhulqYSHPqSgM",
+  "currency": "CAD",
+  "suggested": [5, 10, 25],
+  "minimum": 5,
+  "account_note": "Created on the only Stripe account available on the connector: MicroBiz sandbox (test mode). A live CoupeFab account was not listed."
+}
