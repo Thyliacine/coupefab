@@ -2,6 +2,22 @@
 (function () {
   var lang = document.body.getAttribute("data-lang") || document.documentElement.lang.slice(0, 2) || "fr";
   var EN = lang === "en";
+  var me = document.currentScript, SV = me && me.src.indexOf("?v=") > -1 ? me.src.split("?v=")[1] : "";
+  /* machine cards (js/machine-cards.js) load only when the search opens or a #machine= link is followed */
+  var mcP = null;
+  function machines() {
+    if (!mcP) mcP = new Promise(function (ok) {
+      if (window.CFMachines) return ok(window.CFMachines);
+      var sc = document.createElement("script"); sc.src = "/js/machine-cards.js?v=" + SV; sc.async = true;
+      sc.onload = function () { ok(window.CFMachines || null); }; sc.onerror = function () { mcP = null; ok(null); };
+      document.head.appendChild(sc);
+    });
+    return mcP;
+  }
+  function machineHits(q) {
+    return machines().then(function (M) { return M ? M.search(q, 5) : []; }).catch(function () { return []; });
+  }
+  function openMachine(id, from) { machines().then(function (M) { if (M) M.open(id, from); }); }
 
   /* ---- mobile menu ---- */
   var menuBtn = document.querySelector(".menu-btn");
@@ -113,6 +129,9 @@
       .sort(function (a, b) { return b.s - a.s; });
   }
   function search(q) {
+    return Promise.all([guideSearch(q), machineHits(q)]).then(function (a) { a[0].machines = a[1]; return a[0]; });
+  }
+  function guideSearch(q) {
     var terms = norm(q).split(/[^a-z0-9.\-]+/).filter(function (t) { return t.length > 0; });
     return loadIndex().then(function (rows) {
       if (!terms.length) return { terms: terms, hits: [] };
@@ -164,6 +183,21 @@
       if (res.fixed) fuzzyEl.innerHTML = (EN ? "Showing results for " : "Résultats pour ") + "<strong>" + escapeHtml(res.fixed) + "</strong>";
     }
     if (suggEl) suggEl.hidden = !!res.terms.length;
+    var mh = res.machines || [];
+    if (mh.length) {
+      var head = document.createElement("li"); head.className = "sr-mhead"; head.setAttribute("role", "presentation");
+      head.textContent = EN ? (mh[0].total > mh.length ? "Machines (" + mh.length + " of " + mh[0].total + ")" : "Machines")
+                            : (mh[0].total > mh.length ? "Machines (" + mh.length + " sur " + mh[0].total + ")" : "Machines");
+      list.appendChild(head);
+    }
+    mh.forEach(function (m, i) {
+      var li = document.createElement("li");
+      li.setAttribute("role", "option"); li.className = "sr-machine"; li.id = "sr-m" + i;
+      li.innerHTML = '<a href="#machine=' + encodeURIComponent(m.id) + '" data-machine="' + escapeHtml(m.id) + '"><span class="r-c"><span class="mc-badge">Machine</span>' +
+        escapeHtml(m.typeLabel) + '</span><span class="r-t">' + highlight(m.brand + " " + m.model, res.terms) + '</span><span class="r-d">' +
+        (EN ? "Specs card: travels, spindle, coolant tank" : "Fiche : courses, broche, réservoir de liquide de coupe") + "</span></a>";
+      list.appendChild(li);
+    });
     res.hits.forEach(function (h, i) {
       var li = document.createElement("li");
       li.setAttribute("role", "option");
@@ -172,7 +206,7 @@
         highlight(h.r.t, res.terms) + '</span><span class="r-d">' + highlight(h.r.d, res.terms) + "</span></a>";
       list.appendChild(li);
     });
-    if (empty) empty.hidden = !(res.terms.length && !res.hits.length);
+    if (empty) empty.hidden = !(res.terms.length && !res.hits.length && !mh.length);
   }
   function openSearch(q) {
     if (!dlg) return;
@@ -182,6 +216,7 @@
     loadIndex();
     input.value = q || "";
     input.focus();
+    machines();
     if (q) search(q).then(render); else { render({ terms: [], hits: [] }); }
   }
   function closeSearch() {
@@ -195,9 +230,14 @@
     document.querySelectorAll("[data-search-q]").forEach(function (b) { b.addEventListener("click", function () { openSearch(b.getAttribute("data-search-q")); }); });
     dlg.querySelectorAll("[data-search-close]").forEach(function (b) { b.addEventListener("click", closeSearch); });
     dlg.addEventListener("click", function (e) { if (e.target === dlg) closeSearch(); });
-    input.addEventListener("input", function () { search(input.value).then(render); });
+    var seq = 0;
+    input.addEventListener("input", function () { var n = ++seq; search(input.value).then(function (r) { if (n === seq) render(r); }); });
+    list.addEventListener("click", function (e) {
+      var a = e.target.closest("a[data-machine]"); if (!a) return;
+      e.preventDefault(); var id = a.getAttribute("data-machine"); var from = lastFocus; closeSearch(); openMachine(id, from);
+    });
     input.addEventListener("keydown", function (e) {
-      var items = list.querySelectorAll("li");
+      var items = list.querySelectorAll('li[role="option"]');
       if (e.key === "ArrowDown" || e.key === "ArrowUp") {
         e.preventDefault();
         if (!items.length) return;
@@ -208,9 +248,16 @@
         input.setAttribute("aria-activedescendant", items[sel].id);
       } else if (e.key === "Enter") {
         var target = items[sel > -1 ? sel : 0];
-        if (target) { e.preventDefault(); window.location.href = target.querySelector("a").getAttribute("href"); }
+        if (target) {
+          e.preventDefault();
+          var ta = target.querySelector("a");
+          if (ta.hasAttribute("data-machine")) { var from = lastFocus; closeSearch(); openMachine(ta.getAttribute("data-machine"), from); }
+          else window.location.href = ta.getAttribute("href");
+        }
       }
     });
+    var mhash = /^#machine=(.+)$/.exec(location.hash);
+    if (mhash) openMachine(decodeURIComponent(mhash[1]));
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") closeSearch();
       var tag = (e.target.tagName || "").toLowerCase();

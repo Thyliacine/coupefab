@@ -1,0 +1,33 @@
+/* Machine cards (js/machine-cards.js). Class prefix mc- (never ad-: ad blockers hide those). */
+.search-results li.sr-machine a { border-left: 3px solid var(--accent); background: linear-gradient(90deg, var(--accent-soft), transparent 70%); }
+.search-results li.sr-machine a:hover, .search-results li.sr-machine[aria-selected="true"] a { background: var(--accent-soft); }
+.search-results .r-c .mc-badge { margin-right: .45rem; }
+.mc-badge { display: inline-block; font-family: var(--mono); font-size: .64rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--accent); border-radius: 4px; padding: .08rem .38rem; vertical-align: .08em; }
+.sr-mhead { padding: .45rem .75rem .15rem; font-family: var(--mono); font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); list-style: none; }
+.mc-back { position: fixed; inset: 0; z-index: 90; background: rgba(13,16,18,.5); display: flex; align-items: center; justify-content: center; padding: 1rem; }
+.mc-back[hidden] { display: none; }
+.mc-dlg { width: min(42rem, 100%); max-height: calc(100vh - 2rem); overflow: auto; background: var(--paper); border-radius: 14px; box-shadow: var(--shadow-lg); padding: 1.25rem 1.4rem 1.1rem; outline: none; }
+.mc-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: .6rem; }
+.mc-kicker { margin: 0 0 .3rem; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; font-size: .82rem; color: var(--muted); }
+.mc-head h2 { margin: 0; font-size: 1.45rem; }
+.mc-alias { margin: .2rem 0 0; font-size: .85rem; color: var(--muted); }
+.mc-x { flex: none; width: 2.5rem; height: 2.5rem; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); cursor: pointer; }
+.mc-x svg { width: 1.1rem; height: 1.1rem; }
+.mc-x:hover { border-color: var(--line-2); }
+.mc-x:focus-visible, .mc-actions a:focus-visible, .mc-actions button:focus-visible, .mc-src a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.mc-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1.2rem; margin: .4rem 0 1rem; }
+.mc-specs div { padding: .5rem 0; border-bottom: 1px solid var(--line); }
+.mc-specs dt { font-size: .76rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.mc-specs dd { margin: .1rem 0 0; font-weight: 600; font-size: .98rem; font-variant-numeric: tabular-nums; }
+.mc-muted { color: var(--muted); font-weight: 400; font-size: .9rem; }
+.mc-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin: .2rem 0 .9rem; }
+.mc-actions .btn-ghost { font: inherit; cursor: pointer; }
+.mc-src { margin: 0; font-size: .8rem; line-height: 1.5; color: var(--muted); }
+.mc-src a { color: inherit; text-decoration: underline; }
+@media (max-width: 600px) {
+  .mc-back { align-items: flex-end; padding: 0; }
+  .mc-dlg { border-radius: 14px 14px 0 0; max-height: 92vh; padding: 1rem 1rem calc(1rem + env(safe-area-inset-bottom)); }
+  .mc-specs { grid-template-columns: 1fr; }
+  .mc-head h2 { font-size: 1.25rem; }
+  .mc-actions > * { flex: 1 1 100%; }
+}
