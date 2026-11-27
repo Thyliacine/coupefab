@@ -19,8 +19,9 @@ for a in "$@"; do if [ "$a" = "--weekly" ]; then ARGS+=("--with-bars"); elif [ "
 if [ "$(TZ=America/Toronto date +%u)" = "1" ] || printf '%s\n' "$@" | grep -qx -- "--weekly\|--tooling"; then
   "$PY" -m tooling.fetch_tooling || echo "WARN: tooling fetch failed; keeping data/tooling/prices.json"
 fi
-# Hot news JSON (data/news/latest.json): real, dated, sourced listings + latest price survey.
-# Never invents items. Homepage and /nouvelles/ are rebuilt from this file.
+# Hot news JSON (data/news/latest.json): worldwide CNC / machining / laser / plasma / fabrication
+# industry RSS (headline, date, source, short excerpt only). Never invents items or copies full articles.
+# Homepage and /nouvelles/ are rebuilt from this file.
 "$PY" -m news.build || echo "WARN: news.build failed; keeping data/news/latest.json"
 python3 build.py > /dev/null
 python3 scripts/deploy_manifest.py

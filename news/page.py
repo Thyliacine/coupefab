@@ -60,11 +60,14 @@ def item_html(it: dict, fr: bool) -> str:
     tag = lab[0] if fr else lab[1]
     href = esc(_item_href(it, fr))
     ext = ' target="_blank" rel="noopener noreferrer"' if href.startswith("http") else ""
+    source = (it.get("source") or "").strip()
+    src_html = f'<span class="hn-source">{esc(source)}</span>' if source else ""
     sum_html = f'<span class="hn-sum">{esc(summary)}</span>' if summary else ""
     return (
         f'<li class="hn-item" data-topic="{esc(topic)}" data-kind="{esc(it.get("kind") or "")}">'
         f'<a href="{href}"{ext}>'
         f'<span class="hn-meta"><time datetime="{esc((it.get("date") or "")[:10])}">{esc(_date_label(it.get("date") or "", fr))}</time>'
+        f'{src_html}'
         f'<span class="hn-tag">{esc(tag)}</span></span>'
         f'<strong class="hn-title">{esc(title)}</strong>'
         f"{sum_html}"
@@ -90,8 +93,8 @@ def featured_items(data: dict | None = None) -> list[dict]:
     by_id = {it.get("id"): it for it in items}
     featured = [by_id[i] for i in (data.get("featured_ids") or []) if i in by_id]
     if not featured:
-        featured = items[:8]
-    return featured[:8]
+        featured = items[:6]
+    return featured[:6]
 
 
 def home_section(lang: str) -> str:
@@ -134,9 +137,9 @@ def index_body(lang: str) -> str:
         f'<p class="hn-empty">{"Aucune nouvelle sourcée pour le moment." if fr else "No sourced news items at the moment."}</p>'
     )
     lede = (
-        "Occasions récemment relevées et mise à jour des prix publiés, classées par sujet (CNC, plasma, laser, usinage, tôlerie). Chaque item renvoie à sa source."
+        "Nouvelles de l’industrie CNC, de l’usinage, du laser, du plasma et de la fabrication dans le monde, y compris les nouvelles technologies. Chaque item renvoie à sa source, avec titre, date et un court extrait — jamais l’article au complet."
         if fr else
-        "Recently surveyed used-equipment listings and the published-price update, tagged by topic (CNC, plasma, laser, machining, sheet metal). Every item links to its source."
+        "Worldwide CNC, machining, laser, plasma and fabrication industry news, including new technology. Every item links out to its source, with headline, date and a short excerpt — never the full article."
     )
     arrow = "\u2192"
     return (
@@ -159,10 +162,10 @@ def pages():
     return [
         ("/nouvelles/", "/en/news/", "fr",
          "Nouvelles chaudes — CNC, plasma, laser, usinage, tôlerie — CoupeFab",
-         "Occasions récemment relevées et mise à jour des prix des tôles, avec source, date et filtre par sujet.",
+         "Nouvelles mondiales de l’industrie CNC, usinage, laser, plasma et fabrication, avec source, date et un court extrait.",
          index_body("fr"), False, False),
         ("/en/news/", "/nouvelles/", "en",
          "Hot news — CNC, plasma, laser, machining, sheet metal — CoupeFab",
-         "Recently surveyed used-equipment listings and the sheet-price update, with source, date and topic filters.",
+         "Worldwide CNC, machining, laser, plasma and fabrication industry news, with source, date and a short excerpt.",
          index_body("en"), False, False),
     ]
