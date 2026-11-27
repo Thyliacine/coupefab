@@ -56,7 +56,7 @@ Exemple tiré d’un guide Lincoln Electric pour le soudage de tuyaux : angle d�
 - [ ] Désalignement (*hi-lo*) dans la tolérance de la procédure
 - [ ] Surfaces propres et sèches sur la largeur prescrite
 - [ ] Pointage correct, pièces bridées pour limiter la déformation
-- [ ] Préchauffage si exigé par la procédure (épaisseur, nuance)
+- [ ] Préchauffage si exigé par la procédure (épaisseur, grade)
 - [ ] Identification des pièces et traçabilité matière si demandées
 
 ## Erreurs fréquentes
@@ -75,7 +75,7 @@ Exemple tiré d’un guide Lincoln Electric pour le soudage de tuyaux : angle d�
 Le dessin et la procédure de soudage qualifiée de l’entreprise ; les normes contiennent des joints préqualifiés avec leurs tolérances.
 
 ### Faut-il meuler un bord coupé au plasma avant de souder ?
-Ça dépend de la procédure, de la nuance et de l’état du bord (scories, nitruration, oxyde) ; beaucoup de procédures exigent au moins un nettoyage mécanique.
+Ça dépend de la procédure, du grade et de l’état du bord (scories, nitruration, oxyde) ; beaucoup de procédures exigent au moins un nettoyage mécanique.
 
 ## À valider en atelier (Michaël)
 

@@ -59,7 +59,7 @@ def home(lang, form_newsletter, prix_meta=None):
     <p class="kicker">{'Outil phare' if fr else 'Flagship tool'}</p>
     <h2>{'Prix des tôles : voyez tout de suite le bon prix et le mauvais' if fr else 'Sheet prices: see the good price and the bad one at a glance'}</h2>
     <p>{'Acier, inox, aluminium, en tôle, plaque, barre et tube. Les prix publiés par les fournisseurs sont convertis en $ CA par pi² et par lb, le meilleur prix par spécification est mis en évidence, et chaque ligne renvoie à sa source et à l’heure du relevé.' if fr else 'Steel, stainless and aluminum in sheet, plate, bar and tube. Published supplier prices are converted to CAD per sq ft and per lb, the best price for each spec is highlighted, and every row links to its source and capture time.'}</p>
-    <div class="actions"><a class="btn btn-lg" href="{p['prices']}">{t['prices_cta_b']}</a><a class="btn btn-ghost" href="{idx['materials-grades'].url(lang) if 'materials-grades' in idx else p['guides']}">{'Comprendre les nuances' if fr else 'Understand the grades'}</a></div>
+    <div class="actions"><a class="btn btn-lg" href="{p['prices']}">{t['prices_cta_b']}</a><a class="btn btn-ghost" href="{idx['materials-grades'].url(lang) if 'materials-grades' in idx else p['guides']}">{'Comprendre les grades et alliages' if fr else 'Understand the grades'}</a></div>
   </div>
   <div class="price-feature-art" aria-hidden="true">
     <div class="pf-row pf-best"><span>A36 · 1/4"</span><b>{'meilleur' if fr else 'best'}</b></div>
