@@ -33,7 +33,9 @@ LEVELS = {"debutant": ("Débutant", "Beginner"), "intermediaire": ("Intermédiai
 
 T = {
     "fr": {
-        "home": "Accueil", "guides": "Guides", "prices": "Prix des tôles", "used": "Occasions", "parts": "Pièces", "tooling": "Outillage", "news": "Infolettre",
+        "home": "Accueil", "guides": "Guides", "prices": "Prix des tôles", "used": "Occasions", "parts": "Pièces", "tooling": "Outillage", "tools": "Outils", "news": "Infolettre",
+        "add_prices": "Ajouter vos prix", "announce": "Annoncer", "headlines": "Nouvelles", "hot_news": "Nouvelles chaudes",
+        "all_news": "Voir toutes les nouvelles", "all_tools": "Tous les outils", "support": "Soutenir CoupeFab",
         "about": "À propos", "search": "Rechercher", "search_ph": "Rechercher un guide (ex. SheetCam, K-factor, scories)…",
         "by_software": "Par logiciel", "by_process": "Par procédé", "by_topic": "Par sujet", "all_guides": "Tous les guides",
         "all_software": "Tous les logiciels", "menu": "Menu", "close": "Fermer", "on_page": "Sur cette page",
@@ -47,7 +49,9 @@ T = {
         "skip": "Aller au contenu", "lang": "Langue", "explore": "Explorer", "legal": "Mentions",
     },
     "en": {
-        "home": "Home", "guides": "Guides", "prices": "Sheet prices", "used": "Used equipment", "parts": "Parts", "tooling": "Tooling", "news": "Newsletter",
+        "home": "Home", "guides": "Guides", "prices": "Sheet prices", "used": "Used equipment", "parts": "Parts", "tooling": "Tooling", "tools": "Tools", "news": "Newsletter",
+        "add_prices": "Add your prices", "announce": "Advertise", "headlines": "News", "hot_news": "Hot news",
+        "all_news": "See all news", "all_tools": "All tools", "support": "Support CoupeFab",
         "about": "About", "search": "Search", "search_ph": "Search guides (e.g. SheetCam, K-factor, dross)…",
         "by_software": "By software", "by_process": "By process", "by_topic": "By topic", "all_guides": "All guides",
         "all_software": "All software", "menu": "Menu", "close": "Close", "on_page": "On this page",
@@ -63,10 +67,13 @@ T = {
 }
 
 PATHS = {
-    "fr": {"home": "/", "guides": "/guides/", "prices": "/prix/", "used": "/occasions/", "parts": "/pieces/", "tooling": "/outillage/", "news": "/infolettre/",
+    "fr": {"home": "/", "guides": "/guides/", "prices": "/prix/", "used": "/occasions/", "parts": "/pieces/", "tooling": "/outillage/", "tools": "/outils/", "news": "/infolettre/",
+           "add_prices": "/ajouter-vos-prix/", "announce": "/annoncer/", "headlines": "/nouvelles/", "suppliers": "/fournisseurs/",
            "about": "/a-propos/", "disc": "/divulgation/", "priv": "/confidentialite/"},
     "en": {"home": "/en/", "guides": "/en/guides/", "prices": "/en/sheet-prices/", "used": "/en/used-equipment/", "parts": "/en/parts/", "tooling": "/en/tooling/",
-           "news": "/en/newsletter/", "about": "/en/about/", "disc": "/en/affiliate-disclosure/", "priv": "/en/privacy/"},
+           "tools": "/en/tools/", "news": "/en/newsletter/", "add_prices": "/en/add-your-prices/", "announce": "/en/advertise/",
+           "headlines": "/en/news/", "suppliers": "/en/suppliers/",
+           "about": "/en/about/", "disc": "/en/affiliate-disclosure/", "priv": "/en/privacy/"},
 }
 
 

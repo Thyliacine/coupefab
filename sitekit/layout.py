@@ -2,10 +2,11 @@
 import json
 
 from .taxonomy import T, PATHS, HUBS, HUB_ORDER, hub_path
+from . import donate
 
 SITE = "https://coupefab.ca"
 YEAR = "2026"
-ASSET_V = "20261127lq"  # bump to bust CSS/JS caches
+ASSET_V = "20261127ux"  # bump to bust CSS/JS caches
 
 
 def esc(s: str) -> str:
@@ -86,8 +87,9 @@ def mega_nav(lang: str, path: str) -> str:
     <li><a class="nav-link" href="{p['used']}"{cur('used')}>{t['used']}</a></li>
     <li><a class="nav-link" href="{p['parts']}"{cur('parts')}>{t['parts']}</a></li>
     <li><a class="nav-link" href="{p['tooling']}"{cur('tooling')}>{t['tooling']}</a></li>
-    <li><a class="nav-link" href="{'/fournisseurs/' if lang == 'fr' else '/en/suppliers/'}"{' aria-current="page"' if path.startswith(('/fournisseurs/', '/en/suppliers/')) else ''}>{'Fournisseurs' if lang == 'fr' else 'Suppliers'}</a></li>
-    <li><a class="nav-link" href="{p['news']}"{cur('news')}>{t['news']}</a></li>
+    <li><a class="nav-link" href="{p['suppliers']}"{' aria-current="page"' if path.startswith((p['suppliers'],)) else ''}>{'Fournisseurs' if lang == 'fr' else 'Suppliers'}</a></li>
+    <li><a class="nav-link" href="{p['tools']}"{' aria-current="page"' if path.startswith(('/outils/', '/en/tools/')) else ''}>{t['tools']}</a></li>
+    <li><a class="nav-cta" href="{p['add_prices']}"{' aria-current="page"' if path.startswith((p['add_prices'],)) else ''}>{t['add_prices']}</a></li>
   </ul>
 </nav>"""
 
@@ -161,6 +163,7 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
 <link rel="preload" href="/fonts/plex-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/style.css?v={ASSET_V}">
 <link rel="stylesheet" href="/css/site.css?v={ASSET_V}">
+<link rel="stylesheet" href="/css/ux.css?v={ASSET_V}">
 {schema}
 </head>
 <body data-lang="{lang}"{progress_attr}>
@@ -172,10 +175,11 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
     {mega_nav(lang, path)}
     <div class="hdr-tools">
       <button class="search-btn" type="button" data-search-open aria-label="{t['search']}">{_icon('search')}<span class="search-btn-label">{t['search']}</span><kbd>/</kbd></button>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="{t['menu']}">{_icon('menu')}</button>
       <div class="lang" role="group" aria-label="{t['lang']}">
         <a href="{fr_href}" hreflang="fr-CA" lang="fr-CA"{' aria-current="true"' if fr else ''}>FR</a><a href="{en_href}" hreflang="en-CA" lang="en-CA"{' aria-current="true"' if not fr else ''}>EN</a>
       </div>
-      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="{t['menu']}">{_icon('menu')}</button>
+      <a class="hdr-newsletter" href="{p['news']}"{' aria-current="page"' if path.startswith((p['news'],)) else ''}>{t['news']}</a>
     </div>
   </div>
 </header>
@@ -196,6 +200,7 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
     <div class="ftr-brand">
       <a class="brand" href="{p['home']}">{brand_svg()}<span class="brand-word">Coupe<b>Fab</b></span></a>
       <p>{'La référence francophone de la découpe CNC et de la fabrication métallique : guides vérifiés, prix des tôles comparés, occasions au Québec.' if fr else 'A French-first reference for CNC cutting and metal fabrication: sourced guides, compared sheet prices, used equipment in Quebec.'}</p>
+      <p class="ftr-support">{donate.button(lang, 'btn-support')}</p>
     </div>
     <div>
       <p class="ftr-h">{t['guides']}</p>
@@ -217,8 +222,12 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
         <li><a href="{p['parts']}">{t['parts']}</a></li>
         <li><a href="{p['tooling']}">{t['tooling']}</a></li>
         <li><a href="{'/outils/calculateur-liquide-de-coupe/' if fr else '/en/tools/coolant-calculator/'}">{'Calculateur de liquide de coupe' if fr else 'Coolant calculator'}</a></li>
-        <li><a href="{'/fournisseurs/' if fr else '/en/suppliers/'}">{'Fournisseurs' if fr else 'Suppliers'}</a></li>
+        <li><a href="{p['suppliers']}">{'Fournisseurs' if fr else 'Suppliers'}</a></li>
+        <li><a href="{p['tools']}">{t['tools']}</a></li>
+        <li><a href="{p['add_prices']}">{t['add_prices']}</a></li>
+        <li><a href="{p['headlines']}">{t['headlines']}</a></li>
         <li><a href="{p['news']}">{t['news']}</a></li>
+        <li><a href="{p['announce']}">{t['announce']}</a></li>
         <li><a href="{p['about']}">{t['about']}</a></li>
       </ul>
     </div>
@@ -234,6 +243,8 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
   <p class="ftr-legal">© {year} CoupeFab · {'Québec, Canada. Aucun lien d’affiliation ni publicité payante. Les marques citées appartiennent à leurs propriétaires et sont mentionnées à titre descriptif.' if fr else 'Quebec, Canada. No affiliate links or paid ads. Trademarks belong to their owners and are used descriptively.'} · <a class="ftr-admin" href="/admin/" rel="nofollow">{'Admin' if fr else 'Admin'}</a></p>
 </footer>
 <button class="totop" type="button" hidden aria-label="{'Retour en haut' if fr else 'Back to top'}"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<script src="/js/pager.js?v={ASSET_V}" defer></script>
+<script src="/js/hot-news.js?v={ASSET_V}" defer></script>
 <script src="/js/site.js?v={ASSET_V}" defer></script>
 </body>
 </html>
