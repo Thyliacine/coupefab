@@ -120,15 +120,15 @@ details.ec-fold > summary h2, details.ec-fold > summary h3 { display: inline; }
   .nav-full { display: none; }
   .mainnav { min-width: 0; }
   .nav-top { flex-wrap: nowrap; }
-}
-@media (min-width: 1024px) and (max-width: 1499px) {
+  /* Icon-only search so the longer "Prix des métaux" / "Metal prices" bar fits in --max (76rem). */
+  .search-btn { min-width: 0; width: auto; padding: .38rem .5rem; }
   .search-btn-label, .search-btn kbd { display: none; }
 }
 @media (min-width: 1024px) and (max-width: 1439px) {
-  .nav-fold { display: none; }
+  .nav-fold, .nav-cta-item { display: none; }
   .nav-more { display: list-item; position: relative; }
-  .nav-cta { padding: .38rem .6rem !important; }
 }
+.nav-more-menu .nav-cta { display: flex; width: 100%; justify-content: center; margin: .15rem 0 0; padding: .45rem .7rem !important; }
 .nav-more-box { position: relative; }
 .nav-more-box > summary { list-style: none; }
 .nav-more-box > summary::-webkit-details-marker { display: none; }
@@ -148,7 +148,7 @@ details.ec-fold > summary h2, details.ec-fold > summary h3 { display: inline; }
   .nav-short { display: none; }
   .nav-full { display: inline; }
   .nav-more { display: none !important; }
-  .nav-fold { display: list-item !important; }
+  .nav-fold, .nav-cta-item { display: list-item !important; }
 }
 
 /* ---------- Homepage: fewer sections, more air, no square hero ---------- */
@@ -199,3 +199,5 @@ img, svg, video { max-width: 100%; }
   .hero2 h1 { font-size: clamp(1.55rem, 8vw, 2.05rem); margin-bottom: .55rem; }
   .hero2-lede { font-size: .95rem; margin-bottom: .9rem; }
 }
+
+.hn-tr { font-weight: 500; color: var(--muted); font-size: .82em; }

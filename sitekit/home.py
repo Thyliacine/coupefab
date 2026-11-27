@@ -9,7 +9,7 @@ def home(lang, form_newsletter, prix_meta=None):
     t, p = T[lang], PATHS[lang]
     arrow = "\u2192"
     links = [
-        (p["prices"], t["prices"],
+        (p["prices"], t["prices_nav"],
          "Comparer les prix publiés, en $ CA par pi² et par lb." if fr else "Compare published prices in CAD per sq ft and per lb.",
          t["prices_cta_b"]),
         (p["suppliers"], "Fournisseurs" if fr else "Suppliers",

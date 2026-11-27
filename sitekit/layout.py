@@ -6,7 +6,7 @@ from . import donate
 
 SITE = "https://coupefab.ca"
 YEAR = "2026"
-ASSET_V = "20261127ux2"  # bump to bust CSS/JS caches
+ASSET_V = "20261127ux3"  # bump to bust CSS/JS caches
 
 
 def esc(s: str) -> str:
@@ -83,7 +83,7 @@ def mega_nav(lang: str, path: str) -> str:
         </div>
       </div>
     </li>
-    <li><a class="nav-link nav-prices" href="{p['prices']}"{cur('prices')}><span class="nav-short">{'Prix' if lang == 'fr' else 'Prices'}</span><span class="nav-full">{t['prices']}</span></a></li>
+    <li><a class="nav-link nav-prices" href="{p['prices']}"{cur('prices')}><span class="nav-short">{t['prices_nav']}</span><span class="nav-full">{t['prices_nav']}</span></a></li>
     <li><a class="nav-link" href="{p['used']}"{cur('used')}><span class="nav-short">{'Occasions' if lang == 'fr' else 'Used'}</span><span class="nav-full">{t['used']}</span></a></li>
     <li class="nav-fold"><a class="nav-link" href="{p['parts']}"{cur('parts')}>{t['parts']}</a></li>
     <li class="nav-fold"><a class="nav-link" href="{p['tooling']}"{cur('tooling')}>{t['tooling']}</a></li>
@@ -91,15 +91,16 @@ def mega_nav(lang: str, path: str) -> str:
     <li class="nav-fold"><a class="nav-link" href="{p['tools']}"{' aria-current="page"' if path.startswith(('/outils/', '/en/tools/')) else ''}>{t['tools']}</a></li>
     <li class="nav-more">
       <details class="nav-more-box">
-        <summary class="nav-btn"{' data-active="1"' if path.startswith((p['parts'], p['tooling'], p['tools'])) else ''}>{'Plus' if lang == 'fr' else 'More'}{_icon('chev')}</summary>
+        <summary class="nav-btn"{' data-active="1"' if path.startswith((p['parts'], p['tooling'], p['tools'], p['add_prices'])) else ''}>{'Plus' if lang == 'fr' else 'More'}{_icon('chev')}</summary>
         <ul class="nav-more-menu">
           <li><a href="{p['parts']}"{cur('parts')}>{t['parts']}</a></li>
           <li><a href="{p['tooling']}"{cur('tooling')}>{t['tooling']}</a></li>
           <li><a href="{p['tools']}"{' aria-current="page"' if path.startswith(('/outils/', '/en/tools/')) else ''}>{t['tools']}</a></li>
+          <li class="nav-more-cta"><a class="nav-cta" href="{p['add_prices']}"{' aria-current="page"' if path.startswith((p['add_prices'],)) else ''}>{t['add_prices']}</a></li>
         </ul>
       </details>
     </li>
-    <li><a class="nav-cta" href="{p['add_prices']}"{' aria-current="page"' if path.startswith((p['add_prices'],)) else ''}>{t['add_prices']}</a></li>
+    <li class="nav-cta-item"><a class="nav-cta" href="{p['add_prices']}"{' aria-current="page"' if path.startswith((p['add_prices'],)) else ''}>{t['add_prices']}</a></li>
   </ul>
 </nav>"""
 
@@ -228,7 +229,7 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
     <div>
       <p class="ftr-h">{t['explore']}</p>
       <ul>
-        <li><a href="{p['prices']}">{t['prices']}</a></li>
+        <li><a href="{p['prices']}">{t['prices_nav']}</a></li>
         <li><a href="{p['used']}">{t['used']}</a></li>
         <li><a href="{p['parts']}">{t['parts']}</a></li>
         <li><a href="{p['tooling']}">{t['tooling']}</a></li>

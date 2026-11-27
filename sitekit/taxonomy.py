@@ -33,7 +33,7 @@ LEVELS = {"debutant": ("Débutant", "Beginner"), "intermediaire": ("Intermédiai
 
 T = {
     "fr": {
-        "home": "Accueil", "guides": "Guides", "prices": "Prix des tôles", "used": "Occasions", "parts": "Pièces", "tooling": "Outillage", "tools": "Outils", "news": "Infolettre",
+        "home": "Accueil", "guides": "Guides", "prices": "Prix des tôles", "prices_nav": "Prix des métaux", "used": "Occasions", "parts": "Pièces", "tooling": "Outillage", "tools": "Outils", "news": "Infolettre",
         "add_prices": "Ajouter vos prix", "announce": "Annoncer", "headlines": "Nouvelles", "hot_news": "Nouvelles chaudes",
         "all_news": "Voir toutes les nouvelles", "all_tools": "Tous les outils", "support": "Soutenir CoupeFab",
         "about": "À propos", "search": "Rechercher", "search_ph": "Rechercher un guide (ex. SheetCam, K-factor, scories)…",
@@ -49,7 +49,7 @@ T = {
         "skip": "Aller au contenu", "lang": "Langue", "explore": "Explorer", "legal": "Mentions",
     },
     "en": {
-        "home": "Home", "guides": "Guides", "prices": "Sheet prices", "used": "Used equipment", "parts": "Parts", "tooling": "Tooling", "tools": "Tools", "news": "Newsletter",
+        "home": "Home", "guides": "Guides", "prices": "Sheet prices", "prices_nav": "Metal prices", "used": "Used equipment", "parts": "Parts", "tooling": "Tooling", "tools": "Tools", "news": "Newsletter",
         "add_prices": "Add your prices", "announce": "Advertise", "headlines": "News", "hot_news": "Hot news",
         "all_news": "See all news", "all_tools": "All tools", "support": "Support CoupeFab",
         "about": "About", "search": "Search", "search_ph": "Search guides (e.g. SheetCam, K-factor, dross)…",
