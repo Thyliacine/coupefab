@@ -3,10 +3,12 @@
  * Cookie: cf_admin = v1.<expMs>.<hexhmac>  (HMAC-SHA256 of "v1.<expMs>")
  */
 const crypto = require("crypto");
+const sec = require("./_security");
 const COOKIE = "cf_admin";
 const MAX_AGE_S = 12 * 60 * 60;
 const LOGIN_WINDOW_MS = 15 * 60 * 1000;
-const LOGIN_MAX = 5;
+const LOGIN_MAX = 5;          // per IP per 15 min (per warm instance)
+const LOGIN_GLOBAL_MAX = 30;  // all IPs together per 15 min (per warm instance)
 const hits = new Map();
 
 function password() { return process.env.ADMIN_PASSWORD || ""; }
@@ -21,17 +23,26 @@ function json(res, status, body) {
   res.end(JSON.stringify(body));
 }
 
-function clientIp(req) {
-  const xf = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim();
-  return xf || req.headers["x-real-ip"] || req.socket?.remoteAddress || "0.0.0.0";
-}
+const clientIp = sec.clientIp;
 
 function rateLimited(ip) {
   const now = Date.now();
+  if (hits.size > 5000) hits.clear();
   const list = (hits.get(ip) || []).filter((t) => now - t < LOGIN_WINDOW_MS);
-  list.push(now);
-  hits.set(ip, list);
-  return list.length > LOGIN_MAX;
+  const all = (hits.get("*") || []).filter((t) => now - t < LOGIN_WINDOW_MS);
+  list.push(now); all.push(now);
+  hits.set(ip, list); hits.set("*", all);
+  return list.length > LOGIN_MAX || all.length > LOGIN_GLOBAL_MAX;
+}
+
+// Compare fixed-length digests so neither the content nor the length of the
+// password leaks through timing.
+function passwordMatches(given) {
+  const want = password();
+  if (!want) return false;
+  const a = crypto.createHash("sha256").update("cf-admin|" + String(given)).digest();
+  const b = crypto.createHash("sha256").update("cf-admin|" + want).digest();
+  return crypto.timingSafeEqual(a, b);
 }
 
 function safeEqual(a, b) {
@@ -76,7 +87,7 @@ function setSessionCookie(res, value, maxAge) {
     "Path=/",
     "HttpOnly",
     "Secure",
-    "SameSite=Lax",
+    "SameSite=Strict",
     "Max-Age=" + String(maxAge),
   ];
   res.setHeader("set-cookie", attrs.join("; "));
@@ -130,7 +141,7 @@ function readBody(req, limit = 1_000_000) {
 async function handleLogin(req, res) {
   if (req.method !== "POST") return json(res, 405, { ok: false, error: "POST only" });
   if (!configured()) return json(res, 503, { ok: false, error: "Admin password is not set." });
-  if (!allowedOrigin(req) && req.headers.origin) return json(res, 403, { ok: false, error: "Origine refusée." });
+  if (!allowedOrigin(req)) return json(res, 403, { ok: false, error: "Origine refusée." });
   const ip = clientIp(req);
   if (rateLimited(ip)) {
     res.setHeader("retry-after", "900");
@@ -145,7 +156,8 @@ async function handleLogin(req, res) {
     body = isForm ? Object.fromEntries(new URLSearchParams(raw)) : (JSON.parse(raw) || {});
   } catch { return json(res, 400, { ok: false, error: "JSON invalide." }); }
   const redirect = (loc) => { res.statusCode = 303; res.setHeader("location", loc); res.setHeader("cache-control", "no-store"); res.end(); };
-  if (!safeEqual(String(body.password || ""), password())) {
+  if (!passwordMatches(String(body.password || "").slice(0, 512))) {
+    await new Promise((r) => setTimeout(r, 400 + Math.floor(Math.random() * 300)));
     if (isForm) return redirect("/admin/?err=1");
     return json(res, 401, { ok: false, error: "Mot de passe incorrect." });
   }

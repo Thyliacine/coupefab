@@ -75,6 +75,14 @@ async function list(prefix, { limit = 1000, cursor } = {}) {
 async function getBuffer(pathnameOrUrl) {
   // Prefer the private blob URL when we have it; fall back to the API.
   if (/^https?:\/\//i.test(pathnameOrUrl)) {
+    // The bearer token is only ever sent to Vercel Blob hosts (never to a URL taken from data).
+    let host = "";
+    try { const u = new URL(pathnameOrUrl); host = u.protocol === "https:" ? u.hostname : ""; } catch { /* bad url */ }
+    if (!/\.blob\.vercel-storage\.com$/i.test(host)) {
+      const err = new Error("blob get refused: not a Vercel Blob URL");
+      err.status = 400;
+      throw err;
+    }
     const res = await fetch(pathnameOrUrl, { headers: headers() });
     if (!res.ok) {
       const err = new Error("blob get " + res.status);

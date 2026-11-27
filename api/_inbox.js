@@ -84,7 +84,7 @@ async function listMessages() {
       const { body } = await blob.getBuffer(f.url || f.pathname);
       msgs.push(JSON.parse(body.toString("utf8")));
     } catch (e) {
-      console.error("inbox list skip", f.pathname, e.message);
+      console.error("inbox list skip", e.message);
     }
   }
   msgs.sort((a, b) => String(b.createdAt || "").localeCompare(String(a.createdAt || "")));
@@ -152,7 +152,10 @@ async function saveForm({ type, subject, from, fromName, to, text, fields, files
 }
 
 function csvEscape(v) {
-  const s = String(v == null ? "" : v);
+  let s = String(v == null ? "" : v);
+  // Spreadsheet formula injection: a cell starting with = + - @ (or tab/CR) is
+  // executed by Excel/Sheets; prefix it so it is shown as text.
+  if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
   if (/[",\n\r]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
   return s;
 }
