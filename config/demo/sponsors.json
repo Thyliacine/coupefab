@@ -1,0 +1,9 @@
+{
+  "_doc": "DEMO ONLY — fictitious sponsor to preview the digest block.",
+  "sponsors": [
+    {"id": "exemple-commandite", "name": "Métaux Démo", "logo": "", "url": "https://example.com/metaux-demo",
+     "line1_fr": "Exemple fictif : tôle et barres livrées partout au Québec.", "line2_fr": "Coupe sur mesure en 24 h.",
+     "line1_en": "Fictitious sample: sheet and bar delivered across Quebec.", "line2_en": "Cut to size in 24 h.",
+     "start": "2026-01-01", "end": "2099-12-31", "paid": true}
+  ]
+}

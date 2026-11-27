@@ -1,0 +1,49 @@
+{
+  "_doc": "DEMO ONLY — sample example.com URLs, not real affiliate links.",
+  "links": [
+    {
+      "key": "pieces-consommables-plasma",
+      "pages": [
+        "/pieces/",
+        "/en/parts/"
+      ],
+      "merchant": "Amazon.ca",
+      "label_fr": "Consommables plasma (électrodes, buses)",
+      "label_en": "Plasma consumables (electrodes, nozzles)",
+      "url": "https://example.com/affilie/pieces-consommables-plasma"
+    },
+    {
+      "key": "pieces-laser-hublots",
+      "pages": [
+        "/pieces/",
+        "/en/parts/"
+      ],
+      "merchant": "Amazon.ca",
+      "label_fr": "Hublots de protection laser",
+      "label_en": "Laser protective windows",
+      "url": "https://example.com/affilie/pieces-laser-hublots"
+    },
+    {
+      "key": "outillage-mesure",
+      "pages": [
+        "/outillage/",
+        "/en/tooling/"
+      ],
+      "merchant": "Amazon.ca",
+      "label_fr": "Pieds à coulisse et micromètres",
+      "label_en": "Calipers and micrometers",
+      "url": "https://example.com/affilie/outillage-mesure"
+    },
+    {
+      "key": "outillage-fraises",
+      "pages": [
+        "/outillage/",
+        "/en/tooling/"
+      ],
+      "merchant": "",
+      "label_fr": "Fraises et plaquettes",
+      "label_en": "End mills and inserts",
+      "url": "https://example.com/affilie/outillage-fraises"
+    }
+  ]
+}

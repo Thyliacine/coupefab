@@ -1,0 +1,8 @@
+{
+  "_doc": "DEMO ONLY — every switch on, sample data, for local previews: COUPEFAB_REVENUE_DIR=config/demo python3 build.py (in a scratch copy). Never deploy a build made with this folder.",
+  "featured_suppliers": true,
+  "affiliate_links": true,
+  "digest_sponsor": true,
+  "quote_requests": true,
+  "advertise_page": true
+}

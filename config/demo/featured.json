@@ -1,0 +1,20 @@
+{
+  "_doc": "DEMO ONLY — fictitious sample suppliers (example.com) to preview the Featured block.",
+  "tiers": {"standard": {"fr": "Vedette", "en": "Featured"}, "plus": {"fr": "Vedette Plus", "en": "Featured Plus"}},
+  "suppliers": [
+    {"id": "exemple-acier", "name": "Acier Exemple (démo)", "tier": "plus", "logo": "",
+     "blurb_fr": "Exemple fictif : tôle d’acier et d’inox coupée sur mesure, livraison en 48 h dans le Grand Montréal.",
+     "blurb_en": "Fictitious sample: steel and stainless sheet cut to size, 48 h delivery in Greater Montreal.",
+     "url": "https://example.com/acier-exemple", "categories": ["suppliers", "prices", "parts", "tooling"],
+     "start": "2026-01-01", "end": "2099-12-31", "subscription": {"provider": "stripe", "id": "sub_DEMO1", "status": "active", "updated": "2026-11-26"}},
+    {"id": "exemple-outils", "name": "Outils Démo inc.", "tier": "standard", "logo": "",
+     "blurb_fr": "Exemple fictif : fraises, plaquettes et consommables pour ateliers CNC.",
+     "blurb_en": "Fictitious sample: end mills, inserts and consumables for CNC shops.",
+     "url": "https://example.com/outils-demo", "categories": ["suppliers", "parts", "tooling"],
+     "start": "2026-01-01", "end": "2099-12-31", "subscription": {"provider": "stripe", "id": "sub_DEMO2", "status": "trialing", "updated": "2026-11-26"}},
+    {"id": "exemple-expire", "name": "Expiré (démo, ne doit pas s’afficher)", "tier": "standard",
+     "blurb_fr": "Abonnement annulé : invisible.", "blurb_en": "Canceled subscription: hidden.",
+     "url": "https://example.com/expire", "categories": ["suppliers"], "start": "2026-01-01", "end": "2099-12-31",
+     "subscription": {"provider": "stripe", "id": "sub_DEMO3", "status": "canceled", "updated": "2026-11-26"}}
+  ]
+}
