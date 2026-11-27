@@ -79,7 +79,7 @@ Oui, en fraisage 5 axes ; voir [[five-axis]].
 ## Sources
 
 - [ESPRIT CAM — Multitasking (tours-fraiseurs et multi-canaux)](https://espritcam.hexagon.com/product/multitasking), consulté le 26 novembre 2026.
-- [ESPRIT CAM — Swiss-type machining](http://world.espritcam.com/product/swiss-type), consulté le 26 novembre 2026.
+- [ESPRIT CAM — Swiss-type machining](https://espritcam.hexagon.com/product/swiss-type), consulté le 26 novembre 2026.
 - [ESPRIT CAM — What we do](https://espritcam.hexagon.com/what-we-do), consulté le 26 novembre 2026.
 === en
 **ESPRIT** (ESPRIT CAM, Hexagon group) is best known for programming **complex** machines: turn-mills, Swiss-type lathes, multichannel and multi-spindle machines, plus 5-axis milling and wire EDM. Its core pitch: a **digital twin** of the real machine, full simulation and **posts developed and maintained by the vendor**, designed to produce edit-free G-code.
@@ -143,5 +143,5 @@ Yes, 5-axis milling; see [[five-axis]].
 ## Sources
 
 - [ESPRIT CAM — Multitasking (turn-mills and multichannel)](https://espritcam.hexagon.com/product/multitasking), consulted November 26, 2026.
-- [ESPRIT CAM — Swiss-type machining](http://world.espritcam.com/product/swiss-type), consulted November 26, 2026.
+- [ESPRIT CAM — Swiss-type machining](https://espritcam.hexagon.com/product/swiss-type), consulted November 26, 2026.
 - [ESPRIT CAM — What we do](https://espritcam.hexagon.com/what-we-do), consulted November 26, 2026.
