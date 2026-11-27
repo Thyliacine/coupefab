@@ -366,7 +366,7 @@ def guide_page(g, lang, form_newsletter):
     rel = related(g)
     rel_html = ""
     if rel:
-        rel_html = f'<section class="related"><h2>{t["related"]}</h2><div class="gcards">{"".join(card(r, lang) for r in rel)}</div></section>'
+        rel_html = f'<section class="related"><h2>{t["related"]}</h2><div class="gcards" data-pager="24">{"".join(card(r, lang) for r in rel)}</div></section>'
     price_cta = ""
     if g.prices:
         price_cta = (f'<aside class="price-cta"><div><p class="price-cta-k">{"Outil CoupeFab" if lang == "fr" else "CoupeFab tool"}</p>'
@@ -417,9 +417,9 @@ def guide_page(g, lang, form_newsletter):
     </div>
   </div>
   {rel_html}
-  <section class="news-band">
+  <section class="news-band news-band-slim">
     <div><p class="news-band-t">{t['news_t']}</p><p>{t['news_d']}</p></div>
-    {form_newsletter(lang)}
+    <p><a class="btn" href="{p['news']}">{t['news']} →</a></p>
   </section>
 </article>
 {ld}
@@ -439,13 +439,13 @@ def hub_page(hub, lang):
         for gid, lfr, len_ in SOFTWARE_GROUPS:
             items = [g for g in gs if g.group == gid]
             if items:
-                sections.append(f'<h2 class="sec-h">{lfr if fr else len_}</h2><div class="gcards">{"".join(card(g, lang) for g in items)}</div>')
+                sections.append(f'<h2 class="sec-h">{lfr if fr else len_}</h2><div class="gcards" data-pager="24">{"".join(card(g, lang) for g in items)}</div>')
         rest = [g for g in gs if g.group not in {x[0] for x in SOFTWARE_GROUPS}]
         if rest:
-            sections.append(f'<div class="gcards">{"".join(card(g, lang) for g in rest)}</div>')
+            sections.append(f'<div class="gcards" data-pager="24">{"".join(card(g, lang) for g in rest)}</div>')
         inner = "".join(sections)
     else:
-        inner = f'<div class="gcards">{"".join(card(g, lang) for g in gs)}</div>'
+        inner = f'<div class="gcards" data-pager="24">{"".join(card(g, lang) for g in gs)}</div>'
     if hub == "troubleshooting":
         from .errorcodes import data as _ecd, URL as _ECU
         n = len(_ecd()["codes"])
@@ -508,7 +508,7 @@ def index_page(lang):
         hubs_html.append(f"""
 <section class="hub-sec" id="{HUBS[h][0] if fr else HUBS[h][1]}" data-hub-sec="{h}">
   <div class="hub-sec-head"><h2><a href="{hub_path(h, lang)}">{esc(HUBS[h][2 if fr else 3])}</a></h2><p>{esc(HUBS[h][4 if fr else 5])}</p></div>
-  <div class="gcards">{''.join(card(g, lang) for g in gs)}</div>
+  <div class="gcards" data-pager="24">{''.join(card(g, lang) for g in gs)}</div>
 </section>""")
     chips = f'<button type="button" class="chip" aria-pressed="true" data-filter="all">{"Tout" if fr else "All"} ({len(reg)})</button>' + "".join(
         f'<button type="button" class="chip" aria-pressed="false" data-filter="{h}">{esc(HUBS[h][2 if fr else 3].split(" ")[0] if h != "software" else ("Logiciels" if fr else "Software"))} ({sum(1 for g in reg if g.hub == h)})</button>'

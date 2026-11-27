@@ -96,11 +96,12 @@ def brand_block(bkey, lang, heading_level=3, limit=None):
     more = ""
     if limit and len(codes) > limit:
         more = (f'<p class="ec-more"><a href="{URL[lang]}#{hid}">{"Voir les" if fr else "See all"} {len(codes)} codes {esc(b["n"])} →</a></p>')
-    return (f'<section class="ec-brand" data-brand="{bkey}" data-kind="{b["kind"]}">{h}'
-            + (f'<p class="ec-note">{esc(note)}</p>' if note else "")
+    inner = ((f'<p class="ec-note">{esc(note)}</p>' if note else "")
             + f'<div class="table-wrap" tabindex="0"><table class="ec-table"><caption class="vh">{esc(b["n"])} — {esc(b["fr"] if fr else b["en"])}</caption>'
             f'<thead><tr><th scope="col">{cols[0]}</th><th scope="col">{cols[1]}</th><th scope="col">{cols[2]}</th></tr></thead>'
-            f'<tbody>{_rows(shown, lang)}</tbody></table></div>{more}{_src_line(srcs, lang)}</section>')
+            f'<tbody>{_rows(shown, lang)}</tbody></table></div>{more}{_src_line(srcs, lang)}')
+    return (f'<section class="ec-brand" data-brand="{bkey}" data-kind="{b["kind"]}">'
+            f'<details class="ec-fold"><summary>{h}</summary>{inner}</details></section>')
 
 
 def guide_section(brand_keys, lang):

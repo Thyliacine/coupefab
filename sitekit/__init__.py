@@ -49,6 +49,10 @@ def extend_pages(pages, form_newsletter, prix_meta=None):
         gen.append(("/en/error-codes/", "/codes-erreur/", "en", "CNC, plasma and laser error codes and alarms (FANUC, Haas, Siemens, Hypertherm…) — CoupeFab",
                     "Look up an alarm code: Haas, Siemens SINUMERIK, FANUC, Hypertherm Powermax and XPR, EDGE Connect, ESAB, Lincoln, Grbl. Official sources cited.",
                     _ec.page("en"), False, False))
+    from . import tools as _tools
+    gen.extend(_tools.pages())
+    from news.page import pages as _news_pages
+    gen.extend(_news_pages())
     gen_paths = {e[0] for e in gen}
     kept = [e for e in pages if e[0] not in gen_paths]
     # keep original order: home + guides first, then the rest of the site, then the library
