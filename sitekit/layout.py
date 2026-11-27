@@ -164,6 +164,7 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
 <link rel="stylesheet" href="/css/style.css?v={ASSET_V}">
 <link rel="stylesheet" href="/css/site.css?v={ASSET_V}">
 <link rel="stylesheet" href="/css/ux.css?v={ASSET_V}">
+<script src="/js/pager.js?v={ASSET_V}" defer></script>
 {schema}
 </head>
 <body data-lang="{lang}"{progress_attr}>
@@ -243,7 +244,6 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
   <p class="ftr-legal">© {year} CoupeFab · {'Québec, Canada. Aucun lien d’affiliation ni publicité payante. Les marques citées appartiennent à leurs propriétaires et sont mentionnées à titre descriptif.' if fr else 'Quebec, Canada. No affiliate links or paid ads. Trademarks belong to their owners and are used descriptively.'} · <a class="ftr-admin" href="/admin/" rel="nofollow">{'Admin' if fr else 'Admin'}</a></p>
 </footer>
 <button class="totop" type="button" hidden aria-label="{'Retour en haut' if fr else 'Back to top'}"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/pager.js?v={ASSET_V}" defer></script>
 <script src="/js/hot-news.js?v={ASSET_V}" defer></script>
 <script src="/js/site.js?v={ASSET_V}" defer></script>
 </body>
