@@ -9,14 +9,14 @@ HUBS = {
                 "Plasma, laser fibre, jet d’eau, routeur, fraiseuse, tour, presse plieuse : comment ça marche, quoi surveiller.",
                 "Plasma, fiber laser, waterjet, router, mill, lathe, press brake: how each works and what to watch."),
     "fundamentals": ("fondamentaux", "fundamentals", "Fondamentaux CNC", "CNC fundamentals",
-                     "G-code, post-processeurs, décalages d’origine, avances et vitesses, kerf, entrées, imbrication, DXF, tolérances, pliage, nuances.",
+                     "G-code, post-processeurs, décalages d’origine, avances et vitesses, kerf, entrées, imbrication, DXF, tolérances, pliage, grades d’acier et alliages.",
                      "G-code, post processors, work offsets, feeds and speeds, kerf, lead-ins, nesting, DXF, tolerances, bending, grades."),
-    "materials": ("materiaux", "materials", "Matériaux et nuances", "Materials and grades",
+    "materials": ("materiaux", "materials", "Matériaux, grades et alliages", "Materials and grades",
                   "Acier doux, inox, aluminium, cuivre, laiton, bronze, alliages de nickel : usinabilité, coupe, pliage, soudage et calibres, avec lien vers les prix publiés.",
                   "Mild steel, stainless, aluminum, copper, brass, bronze, nickel alloys: machinability, cutting, bending, welding and gauges, linked to published prices."),
     "troubleshooting": ("depannage", "troubleshooting", "Dépannage", "Troubleshooting",
-                        "Scories plasma et laser, biseau, THC qui oscille, broutage, arrachement au routeur, erreurs de post : symptôme → cause → correctif.",
-                        "Plasma and laser dross, bevel, THC hunting, chatter, router tear-out, post errors: symptom → cause → fix."),
+                        "Codes d’erreur et alarmes, premiers gestes après une collision, scories plasma et laser, biseau, THC qui oscille, broutage, arrachement au routeur : symptôme → cause → correctif.",
+                        "Error codes and alarms, first steps after a crash, plasma and laser dross, bevel, THC hunting, chatter, router tear-out: symptom → cause → fix."),
     "shop": ("atelier", "shop", "Atelier : sécurité, soumissions, métrologie, formation", "Shop: safety, quoting, inspection, training",
              "EPI, fumées et CNESST, soumissions et taux horaires, montage et métrologie, formation au Québec, achats et consommables.",
              "PPE, fumes and CNESST, quoting and shop rates, fixturing and inspection, training in Quebec, buying and consumables."),
@@ -33,7 +33,7 @@ LEVELS = {"debutant": ("Débutant", "Beginner"), "intermediaire": ("Intermédiai
 
 T = {
     "fr": {
-        "home": "Accueil", "guides": "Guides", "prices": "Prix des tôles", "used": "Occasions", "news": "Infolettre",
+        "home": "Accueil", "guides": "Guides", "prices": "Prix des tôles", "used": "Occasions", "parts": "Pièces", "news": "Infolettre",
         "about": "À propos", "search": "Rechercher", "search_ph": "Rechercher un guide (ex. SheetCam, K-factor, scories)…",
         "by_software": "Par logiciel", "by_process": "Par procédé", "by_topic": "Par sujet", "all_guides": "Tous les guides",
         "all_software": "Tous les logiciels", "menu": "Menu", "close": "Fermer", "on_page": "Sur cette page",
@@ -47,7 +47,7 @@ T = {
         "skip": "Aller au contenu", "lang": "Langue", "explore": "Explorer", "legal": "Mentions",
     },
     "en": {
-        "home": "Home", "guides": "Guides", "prices": "Sheet prices", "used": "Used equipment", "news": "Newsletter",
+        "home": "Home", "guides": "Guides", "prices": "Sheet prices", "used": "Used equipment", "parts": "Parts", "news": "Newsletter",
         "about": "About", "search": "Search", "search_ph": "Search guides (e.g. SheetCam, K-factor, dross)…",
         "by_software": "By software", "by_process": "By process", "by_topic": "By topic", "all_guides": "All guides",
         "all_software": "All software", "menu": "Menu", "close": "Close", "on_page": "On this page",
@@ -63,9 +63,9 @@ T = {
 }
 
 PATHS = {
-    "fr": {"home": "/", "guides": "/guides/", "prices": "/prix/", "used": "/occasions/", "news": "/infolettre/",
+    "fr": {"home": "/", "guides": "/guides/", "prices": "/prix/", "used": "/occasions/", "parts": "/pieces/", "news": "/infolettre/",
            "about": "/a-propos/", "disc": "/divulgation/", "priv": "/confidentialite/"},
-    "en": {"home": "/en/", "guides": "/en/guides/", "prices": "/en/sheet-prices/", "used": "/en/used-equipment/",
+    "en": {"home": "/en/", "guides": "/en/guides/", "prices": "/en/sheet-prices/", "used": "/en/used-equipment/", "parts": "/en/parts/",
            "news": "/en/newsletter/", "about": "/en/about/", "disc": "/en/affiliate-disclosure/", "priv": "/en/privacy/"},
 }
 

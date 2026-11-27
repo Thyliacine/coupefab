@@ -41,6 +41,14 @@ def extend_pages(pages, form_newsletter, prix_meta=None):
             other = "en" if lang == "fr" else "fr"
             gen.append((g.url(lang), g.url(other), lang, f"{g.title(lang)} — CoupeFab", g.desc(lang),
                         _g.guide_page(g, lang, form_newsletter), False, False))
+    from . import errorcodes as _ec
+    if _ec.data()["codes"]:
+        gen.append(("/codes-erreur/", "/en/error-codes/", "fr", "Codes d’erreur et alarmes CNC, plasma et laser (FANUC, Haas, Siemens, Hypertherm…) — CoupeFab",
+                    "Chercher un code d’alarme : Haas, Siemens SINUMERIK, FANUC, Hypertherm Powermax et XPR, EDGE Connect, ESAB, Lincoln, Grbl. Sources officielles citées.",
+                    _ec.page("fr"), False, False))
+        gen.append(("/en/error-codes/", "/codes-erreur/", "en", "CNC, plasma and laser error codes and alarms (FANUC, Haas, Siemens, Hypertherm…) — CoupeFab",
+                    "Look up an alarm code: Haas, Siemens SINUMERIK, FANUC, Hypertherm Powermax and XPR, EDGE Connect, ESAB, Lincoln, Grbl. Official sources cited.",
+                    _ec.page("en"), False, False))
     gen_paths = {e[0] for e in gen}
     kept = [e for e in pages if e[0] not in gen_paths]
     # keep original order: home + guides first, then the rest of the site, then the library
