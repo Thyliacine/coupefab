@@ -38,11 +38,11 @@ L’imbrication (nesting) place les pièces sur la tôle pour minimiser la chute
 5. **Lancer l’imbrication automatique**, comparer les variantes (rendement, longueur des rapides).
 6. **Corriger à la main** : déplacer une pièce isolée, ajouter des petites pièces dans les vides.
 7. **Vérifier l’ordre** de coupe et la répartition de la chaleur.
-8. **Enregistrer la chute** réutilisable (dimensions, nuance, épaisseur) pour le prochain travail.
+8. **Enregistrer la chute** réutilisable (dimensions, grade, épaisseur) pour le prochain travail.
 
 ## Rendement : comment le calculer honnêtement
 
-Rendement = surface des pièces ÷ surface de tôle consommée. Si une chute rectangulaire est vraiment réutilisée, on la retire de la surface consommée ; sinon, elle compte comme perte. Croisez avec le prix de la tôle : le [comparateur de prix](/prix/) donne le $/pi² publié par épaisseur et nuance.
+Rendement = surface des pièces ÷ surface de tôle consommée. Si une chute rectangulaire est vraiment réutilisée, on la retire de la surface consommée ; sinon, elle compte comme perte. Croisez avec le prix de la tôle : le [comparateur de prix](/prix/) donne le $/pi² publié par épaisseur et grade.
 
 ## Coupe en ligne commune
 
