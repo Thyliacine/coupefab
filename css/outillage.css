@@ -37,7 +37,7 @@
 .tl-btn:hover, .tl-btn:focus-visible { background: var(--ink); color: #fff; }
 .tl-more-wrap { display: flex; justify-content: center; margin: 1rem 0; }
 .tl-count { margin: 0 0 .6rem; color: var(--muted); font-size: .9rem; }
-.tl-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--tl-r); background: var(--paper); }
+.tl-scroll { position: relative; overflow-x: auto; border: 1px solid var(--line); border-radius: var(--tl-r); background: var(--paper); }
 .tl-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
 .tl-table th, .tl-table td { padding: .55rem .7rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
 .tl-table th { font-size: .78rem; font-weight: 650; color: var(--ink); background: var(--bg-2); position: sticky; top: 0; white-space: nowrap; }
