@@ -1,5 +1,6 @@
 const auth = require("../_auth");
 const inbox = require("../_inbox");
+const sec = require("../_security");
 
 function fromAddr() {
   return process.env.RESEND_FROM || "CoupeFab <info@coupefab.ca>";
@@ -17,13 +18,13 @@ module.exports = async (req, res) => {
   let body = {};
   try { body = JSON.parse(await auth.readBody(req, 200_000)) || {}; } catch { return auth.json(res, 400, { ok: false, error: "JSON invalide." }); }
   const id = String(body.id || "");
-  const text = String(body.text || "").trim();
+  const text = String(body.text || "").trim().slice(0, 50_000);
   if (!text) return auth.json(res, 400, { ok: false, error: "Le message est vide." });
   const msg = await inbox.getMessage(id);
   if (!msg) return auth.json(res, 404, { ok: false, error: "Introuvable." });
   const to = String(body.to || msg.from || "").trim();
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to)) return auth.json(res, 400, { ok: false, error: "Destinataire invalide." });
-  const subject = String(body.subject || (msg.subject && !/^re:/i.test(msg.subject) ? "Re: " + msg.subject : (msg.subject || "CoupeFab"))).slice(0, 200);
+  if (!sec.validEmail(to)) return auth.json(res, 400, { ok: false, error: "Destinataire invalide." });
+  const subject = sec.oneLine(body.subject || (msg.subject && !/^re:/i.test(msg.subject) ? "Re: " + msg.subject : (msg.subject || "CoupeFab")), 200);
   const payload = {
     from: fromAddr(),
     to: [to],
@@ -31,7 +32,8 @@ module.exports = async (req, res) => {
     text,
   };
   if (msg.messageId) {
-    payload.headers = { "In-Reply-To": msg.messageId, References: msg.references || msg.messageId };
+    const hdr = (v) => sec.oneLine(v, 2000).replace(/[^\x21-\x7e ]/g, "");
+    payload.headers = { "In-Reply-To": hdr(msg.messageId), References: hdr(msg.references || msg.messageId) };
   }
   const r = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -40,7 +42,7 @@ module.exports = async (req, res) => {
   });
   const data = await r.json().catch(() => ({}));
   if (!r.ok) {
-    console.error("resend send", r.status, data);
+    console.error("resend send failed", r.status);
     return auth.json(res, 502, { ok: false, error: (data.error && data.error.message) || "Échec de l’envoi Resend." });
   }
   const reply = {

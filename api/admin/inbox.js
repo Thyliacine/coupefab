@@ -46,7 +46,7 @@ module.exports = async (req, res) => {
     }
     return auth.json(res, 405, { ok: false, error: "Méthode refusée." });
   } catch (e) {
-    console.error("admin inbox", e);
+    console.error("admin inbox failed", e && e.message);
     return auth.json(res, 500, { ok: false, error: "Erreur de stockage." });
   }
 };

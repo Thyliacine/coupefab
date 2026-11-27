@@ -49,7 +49,7 @@ module.exports = async (req, res) => {
     }
     return auth.json(res, 405, { ok: false, error: "Méthode refusée." });
   } catch (e) {
-    console.error("settings", e);
+    console.error("settings failed", e && e.message);
     return auth.json(res, 500, { ok: false, error: "Impossible d’enregistrer les réglages." });
   }
 };
