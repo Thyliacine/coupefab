@@ -1,0 +1,229 @@
+{
+  "flags": {
+    "_doc": "CoupeFab revenue switches. All false = nothing shows publicly. See ADMIN.md. Edit by hand or with: python3 scripts/admin.py",
+    "featured_suppliers": false,
+    "affiliate_links": false,
+    "digest_sponsor": false,
+    "quote_requests": false,
+    "advertise_page": false
+  },
+  "sponsors": [],
+  "affiliates": [
+    {
+      "key": "pieces-consommables-plasma",
+      "pages": [
+        "/pieces/",
+        "/en/parts/"
+      ],
+      "merchant": "Amazon.ca",
+      "label_fr": "Consommables plasma (électrodes, buses)",
+      "label_en": "Plasma consumables (electrodes, nozzles)",
+      "url": ""
+    },
+    {
+      "key": "pieces-laser-hublots",
+      "pages": [
+        "/pieces/",
+        "/en/parts/"
+      ],
+      "merchant": "Amazon.ca",
+      "label_fr": "Hublots de protection laser",
+      "label_en": "Laser protective windows",
+      "url": ""
+    },
+    {
+      "key": "outillage-mesure",
+      "pages": [
+        "/outillage/",
+        "/en/tooling/"
+      ],
+      "merchant": "Amazon.ca",
+      "label_fr": "Pieds à coulisse et micromètres",
+      "label_en": "Calipers and micrometers",
+      "url": ""
+    },
+    {
+      "key": "outillage-fraises",
+      "pages": [
+        "/outillage/",
+        "/en/tooling/"
+      ],
+      "merchant": "",
+      "label_fr": "Fraises et plaquettes",
+      "label_en": "End mills and inserts",
+      "url": ""
+    }
+  ],
+  "partners": [
+    {
+      "id": "amicx",
+      "name": "Amicx",
+      "city": "Boucherville",
+      "partner": false
+    },
+    {
+      "id": "argo",
+      "name": "Argo Machine Tools",
+      "city": "Saint-Léonard (Montréal)",
+      "partner": false
+    },
+    {
+      "id": "bolduc",
+      "name": "Bolduc Leroux",
+      "city": "Terrebonne",
+      "partner": false
+    },
+    {
+      "id": "carbon",
+      "name": "Carbon Steel Profiles",
+      "city": "Châteauguay",
+      "partner": false
+    },
+    {
+      "id": "deburex",
+      "name": "Deburex",
+      "city": "Lanoraie",
+      "partner": false
+    },
+    {
+      "id": "dp",
+      "name": "DP Digital Precision",
+      "city": "Terrebonne",
+      "partner": false
+    },
+    {
+      "id": "fabmec",
+      "name": "Fabmec",
+      "city": "Jonquière (Saguenay)",
+      "partner": false
+    },
+    {
+      "id": "gm",
+      "name": "G.M. Précision",
+      "city": "Saint-Jean-sur-Richelieu",
+      "partner": false
+    },
+    {
+      "id": "iel",
+      "name": "IEL",
+      "city": "Sainte-Claire",
+      "partner": false
+    },
+    {
+      "id": "jnov",
+      "name": "JNOV Usinage",
+      "city": "Québec",
+      "partner": false
+    },
+    {
+      "id": "ladecoupe",
+      "name": "LaDécoupe",
+      "city": "Saint-Prosper",
+      "partner": false
+    },
+    {
+      "id": "mag",
+      "name": "Machinerie MAG",
+      "city": "Drummondville",
+      "partner": false
+    },
+    {
+      "id": "mg",
+      "name": "MG Metal MFG",
+      "city": "Québec",
+      "partner": false
+    },
+    {
+      "id": "nitek",
+      "name": "Nitek Laser",
+      "city": "Nicolet",
+      "partner": false
+    },
+    {
+      "id": "omnifab",
+      "name": "Omnifab",
+      "city": "Louiseville",
+      "partner": false
+    },
+    {
+      "id": "patt",
+      "name": "Patt",
+      "city": "Saint-Eustache",
+      "partner": false
+    },
+    {
+      "id": "plastiver",
+      "name": "Plastiver",
+      "city": "Québec",
+      "partner": false
+    },
+    {
+      "id": "polisseur",
+      "name": "Maître Polisseur",
+      "city": "Laval",
+      "partner": false
+    },
+    {
+      "id": "psmetal",
+      "name": "PS Métal",
+      "city": "Québec",
+      "partner": false
+    },
+    {
+      "id": "qcsoudure",
+      "name": "Québec Soudure",
+      "city": "Québec",
+      "partner": false
+    },
+    {
+      "id": "quefer",
+      "name": "Quéfer",
+      "city": "Saint-Pie",
+      "partner": false
+    },
+    {
+      "id": "satellite",
+      "name": "Satellite Métal",
+      "city": "Saint-Laurent (Montréal)",
+      "partner": false
+    },
+    {
+      "id": "smf",
+      "name": "SMF Mécanique (Services Mécanique Fabrication)",
+      "city": "Berthierville",
+      "partner": true
+    },
+    {
+      "id": "soudex",
+      "name": "Soudex Métal",
+      "city": "Grand-Saint-Esprit",
+      "partner": false
+    },
+    {
+      "id": "soudurent",
+      "name": "Soudure NT",
+      "city": "Saint-Télesphore",
+      "partner": false
+    },
+    {
+      "id": "umake",
+      "name": "uMake",
+      "city": "Montréal",
+      "partner": false
+    },
+    {
+      "id": "usimetal",
+      "name": "Usimétal",
+      "city": "Drummondville",
+      "partner": false
+    },
+    {
+      "id": "vohl",
+      "name": "Vohl",
+      "city": "Saint-Marc-des-Carrières",
+      "partner": false
+    }
+  ],
+  "featured": [],
+  "note": "Réglages de l’admin web. Le site public continue d’utiliser les fichiers du dépôt jusqu’à un rebuild."
+}
