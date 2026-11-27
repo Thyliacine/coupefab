@@ -49,7 +49,7 @@ Valeurs nominales. Les conversions en mm sont arrondies au centième.
 ## Commander sans se tromper
 
 - [ ] Toujours écrire **calibre + décimale** sur le bon de commande (« 14 ga (0,0747 po) A1011 »)
-- [ ] Préciser la matière et la nuance (laminé à chaud décapé, laminé à froid, galvanisé G90, 304 2B…)
+- [ ] Préciser la matière et le grade (laminé à chaud décapé, laminé à froid, galvanisé G90, 304 2B…)
 - [ ] Vérifier l’épaisseur à la réception (micromètre ou pied à coulisse)
 - [ ] Utiliser la **même épaisseur réelle** dans la FAO (K-factor, kerf) — voir [[bend-allowance]]
 
