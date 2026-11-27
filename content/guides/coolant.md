@@ -46,6 +46,9 @@ Sandvik Coromant recommande : arrosage dessous pour la durée de vie ; dessus (e
 | 70–80 bar (1 000–1 200 psi) | Fractionnement des copeaux |
 | 150–200 bar (2 200–2 900 psi) | Matières exigeantes : inox duplex, superalliages |
 
+> [!TIP]
+> **Calculateur :** quantité de concentré et d’eau, correction du bassin et lecture du réfractomètre, avec la capacité du réservoir de plus de 200 machines : [calculateur de liquide de coupe](/outils/calculateur-liquide-de-coupe/).
+
 ## Liste de vérification
 
 - [ ] Concentration d’émulsion mesurée (réfractomètre) et dans la plage du fabricant
@@ -108,6 +111,9 @@ Sandvik Coromant recommends: under coolant for tool life; over (and under) when 
 | 7–10 bar (100–150 psi) | Better chip control in steel and common materials |
 | 70–80 bar (1,000–1,200 psi) | Chip breaking |
 | 150–200 bar (2,200–2,900 psi) | Demanding materials: duplex stainless, superalloys |
+
+> [!TIP]
+> **Calculator:** concentrate and water amounts, sump correction and refractometer reading, with tank capacities for 200+ machines: [coolant calculator](/en/tools/coolant-calculator/).
 
 ## Checklist
 

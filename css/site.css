@@ -543,3 +543,5 @@ html .grade-pick:focus-visible { outline: 3px solid var(--focus); outline-offset
 @keyframes cf-flash { 0% { background-color: #ffd9c2; box-shadow: 0 0 0 3px var(--accent); } 100% { background-color: transparent; box-shadow: 0 0 0 0 transparent; } }
 .cf-flash { animation: cf-flash 1.1s ease-out; border-radius: 6px; }
 @media (prefers-reduced-motion: reduce) { .cf-flash { animation: none; outline: 3px solid var(--accent); outline-offset: 2px; } }
+.mega-feature .feature-card + .feature-card { margin-top: .6rem; }
+@media (max-width: 1080px) and (min-width: 821px) { .mega-feature .feature-card + .feature-card { margin-top: 0; } }

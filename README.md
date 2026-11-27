@@ -155,3 +155,10 @@ Ajouter un guide : créer `content/guides/<id>.md`, lancer `python3 build.py`, v
 ## Logo
 
 Marque « Tôle tranchée » (une plaque tranchée par une saignée orange, les deux pièces qui se séparent; option B retenue par Michaël) : `favicon.svg`, `sitekit/layout.py` (`brand_svg`), icônes et images sociales encodées dans `assets/bin/` (`og-fr/en`, `icon-192/512`, `apple-touch-icon`). Source des options et aperçus : `assets/logo/`.
+
+## Calculateur de liquide de coupe (`/outils/calculateur-liquide-de-coupe/`, `/en/tools/coolant-calculator/`)
+
+- `data/coolant-machines.json` : capacité du réservoir d’arrosage (L et gal US) par machine, avec marque, modèle, type et URL source (fiche du fabricant, brochure, manuel, revendeur). **Jamais de capacité inventée** : `liters` absent = non publiée, l’utilisateur entre la sienne. Publié aussi en `outils/machines-liquide-de-coupe.json` (CC BY 4.0).
+- `coolant/page.py` rend les deux pages (tableau statique indexable + données JSON embarquées). `js/liquide-math.js` contient tout le calcul (remplissage neuf, appoint/correction avec ou sans vidange, Brix × facteur), `js/liquide.js` l’interface, `css/liquide.css` les styles (préfixe `.lq`, par-dessus `outillage.css`).
+- Tests : `node tests/test_liquide_math.js`.
+- Ajouter une machine : une entrée dans `data/coolant-machines.json` (`brand`, `model`, `type` ∈ vmc/hmc/5ax/lathe/millturn/vtl/boring/router, `liters`, `us_gal`, `source`, `source_label`, `checked`), puis `python3 build.py`.
