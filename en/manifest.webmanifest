@@ -1,0 +1,91 @@
+{
+ "id": "/en/",
+ "name": "CoupeFab — CNC cutting and metal in Quebec",
+ "short_name": "CoupeFab",
+ "description": "Metal prices, suppliers, used equipment and CNC, plasma, laser and sheet-metal guides.",
+ "lang": "en-CA",
+ "dir": "ltr",
+ "start_url": "/en/?source=pwa",
+ "scope": "/",
+ "display": "standalone",
+ "display_override": [
+  "standalone",
+  "minimal-ui"
+ ],
+ "orientation": "any",
+ "background_color": "#f6f5f1",
+ "theme_color": "#15191c",
+ "categories": [
+  "business",
+  "productivity",
+  "utilities"
+ ],
+ "icons": [
+  {
+   "src": "/icons/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/icons/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/icons/maskable-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "maskable"
+  },
+  {
+   "src": "/icons/maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ],
+ "shortcuts": [
+  {
+   "name": "Metal prices",
+   "url": "/en/sheet-prices/?source=pwa",
+   "icons": [
+    {
+     "src": "/icons/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  },
+  {
+   "name": "Suppliers",
+   "url": "/en/suppliers/?source=pwa",
+   "icons": [
+    {
+     "src": "/icons/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  },
+  {
+   "name": "Used equipment",
+   "url": "/en/used-equipment/?source=pwa",
+   "icons": [
+    {
+     "src": "/icons/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  },
+  {
+   "name": "Tools",
+   "url": "/en/tools/?source=pwa",
+   "icons": [
+    {
+     "src": "/icons/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  }
+ ]
+}

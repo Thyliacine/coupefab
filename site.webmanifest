@@ -1,1 +1,91 @@
-{"name":"CoupeFab","short_name":"CoupeFab","start_url":"/","display":"standalone","background_color":"#f6f5f1","theme_color":"#15191c","icons":[{"src":"/og/icon-192.png","sizes":"192x192","type":"image/png"},{"src":"/og/icon-512.png","sizes":"512x512","type":"image/png"}]}
+{
+ "id": "/",
+ "name": "CoupeFab — découpe CNC et métal au Québec",
+ "short_name": "CoupeFab",
+ "description": "Prix des métaux, fournisseurs, occasions et guides CNC, plasma, laser et tôlerie, en français d’abord.",
+ "lang": "fr-CA",
+ "dir": "ltr",
+ "start_url": "/?source=pwa",
+ "scope": "/",
+ "display": "standalone",
+ "display_override": [
+  "standalone",
+  "minimal-ui"
+ ],
+ "orientation": "any",
+ "background_color": "#f6f5f1",
+ "theme_color": "#15191c",
+ "categories": [
+  "business",
+  "productivity",
+  "utilities"
+ ],
+ "icons": [
+  {
+   "src": "/icons/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/icons/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/icons/maskable-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "maskable"
+  },
+  {
+   "src": "/icons/maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ],
+ "shortcuts": [
+  {
+   "name": "Prix des métaux",
+   "url": "/prix/?source=pwa",
+   "icons": [
+    {
+     "src": "/icons/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  },
+  {
+   "name": "Fournisseurs",
+   "url": "/fournisseurs/?source=pwa",
+   "icons": [
+    {
+     "src": "/icons/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  },
+  {
+   "name": "Occasions",
+   "url": "/occasions/?source=pwa",
+   "icons": [
+    {
+     "src": "/icons/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  },
+  {
+   "name": "Outils",
+   "url": "/outils/?source=pwa",
+   "icons": [
+    {
+     "src": "/icons/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  }
+ ]
+}
