@@ -62,6 +62,16 @@ Possible avec : fraise 1 ou 2 goujures pour l’aluminium, faible profondeur ou 
 - Pas d’attaches : pièces qui bougent et se font entamer.
 - Poussière fine sans captation : santé et risque d’incendie.
 
+## Liste de vérification
+
+- [ ] Table martyre surfacée et parallèle aux axes
+- [ ] Fraise adaptée (montante, descendante, compression, O-flute, V) à la matière et à la coupe
+- [ ] Avance calculée à partir de la charge de copeau du fabricant de fraise
+- [ ] Pièce tenue (vide, brides, vis, ruban) loin de la trajectoire ; attaches dans le FAO
+- [ ] Origine Z prise au bon endroit (dessus du martyr pour une coupe traversante)
+- [ ] Captation de poussière en marche
+- [ ] Lunettes de protection
+
 ## FAQ
 
 ### Un routeur peut-il couper de l’acier ?
@@ -121,6 +131,16 @@ Possible with: a 1- or 2-flute aluminum bit, shallow depth or reduced engagement
 - Sharp inside corners drawn while the bit leaves its radius — see [DXF](/en/guides/dxf-best-practices/).
 - No tabs: parts move and get gouged.
 - Fine dust without collection: health and fire risk.
+
+## Checklist
+
+- [ ] Spoilboard surfaced and parallel to the axes
+- [ ] Bit suited (up-cut, down-cut, compression, O-flute, V) to the material and cut
+- [ ] Feed calculated from the bit maker’s chip load
+- [ ] Part held (vacuum, clamps, screws, tape) away from the toolpath; tabs in CAM
+- [ ] Z zero set in the right place (top of spoilboard for through cuts)
+- [ ] Dust collection running
+- [ ] Safety glasses
 
 ## FAQ
 

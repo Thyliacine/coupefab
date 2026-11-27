@@ -60,7 +60,7 @@ Chaque procédé a ses limites : plasma (saignée plus large, biseau, petits tro
 ## Envoyer à un atelier de découpe
 
 - [ ] DXF 1:1 + PDF coté de la pièce (le PDF fait foi pour les cotes critiques)
-- [ ] Matière, nuance, épaisseur et quantité dans le nom du fichier ou le courriel
+- [ ] Matière, grade, épaisseur et quantité dans le nom du fichier ou le courriel
 - [ ] Côté visible ou sens de brossage indiqué
 - [ ] Tolérances réellement nécessaires (pas « ±0 » partout)
 - [ ] Pliage éventuel : déplié **et** pièce pliée, rayon et K-factor utilisés
