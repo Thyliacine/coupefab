@@ -1568,6 +1568,8 @@ def main():
     print("wrote sitemap.xml")
     sitekit.write_assets()
     print("wrote guides search indexes")
+    from sitekit import machines as machine_cards
+    print("wrote machine cards index:", machine_cards.write_assets(), "machines")
 
 
 if __name__ == "__main__":
