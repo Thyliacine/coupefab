@@ -46,7 +46,7 @@ async function put(pathname, body, { contentType = "application/octet-stream", a
     headers: {
       "x-vercel-blob-access": "private",
       "x-content-type": contentType,
-      "x-add-random-suffix": "0",
+      "x-add-random-suffix": "false",
       "x-allow-overwrite": allowOverwrite ? "1" : "0",
       "x-cache-control-max-age": String(cacheControlMaxAge),
     },

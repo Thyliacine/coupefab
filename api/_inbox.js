@@ -58,15 +58,20 @@ async function addAttachment(id, { name, data, contentType }) {
 
 async function getMessage(id) {
   if (!/^[A-Za-z0-9_-]+$/.test(id)) return null;
+  const exact = pathFor(id);
+  const files = await blob.list("inbox/messages/" + id);
+  const hit = files.find((b) => b.pathname === exact)
+    || files.find((b) => (b.pathname || "").endsWith("/" + id + ".json"))
+    || files.find((b) => (b.pathname || "").includes("/" + id) && /\.json$/.test(b.pathname || ""));
+  if (hit) {
+    const { body } = await blob.getBuffer(hit.url || hit.pathname || exact);
+    return JSON.parse(body.toString("utf8"));
+  }
   try {
-    return await blob.getJSON(pathFor(id));
+    return await blob.getJSON(exact);
   } catch (e) {
     if (e.status === 404) return null;
-    // try via list url
-    const listed = (await blob.list("inbox/messages/" + id)).find((b) => b.pathname === pathFor(id) || b.pathname.endsWith("/" + id + ".json"));
-    if (!listed) return null;
-    const { body } = await blob.getBuffer(listed.url || pathFor(id));
-    return JSON.parse(body.toString("utf8"));
+    throw e;
   }
 }
 
