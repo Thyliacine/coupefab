@@ -24,7 +24,7 @@ SOLIDWORKS sert à deux choses en atelier : produire des **mises en plan** que l
 
 | Élément | Pourquoi |
 |---|---|
-| Matière, nuance, épaisseur, fini | Achat et choix des paramètres — voir [Nuances](/guides/nuances-metaux/) |
+| Matière, grade, épaisseur, fini | Achat et choix des paramètres — voir [Grades et alliages](/guides/nuances-metaux/) |
 | Tolérance générale (ex. ISO 2768-m) | Évite de coter chaque tolérance — voir [Tolérances](/guides/tolerances-cnc/) |
 | Cotes fonctionnelles seulement tolérancées serré | Le serré coûte cher |
 | Vue dépliée et tableau de pliage (tôlerie) | Angle, sens, rayon, ordre |
