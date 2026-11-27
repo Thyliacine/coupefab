@@ -251,6 +251,71 @@ def _shops_section(g, lang):
     return html_, (2, hid, title)
 
 
+# ---------- Guide tabs (progressive enhancement: anchor nav without JS, ARIA tabs with js/tabs.js) ----------
+TAB_ORDER = ["apercu", "procedure", "parametres", "codes", "depannage", "securite", "verif", "faq"]
+TAB_LABELS = {
+    "apercu": ("Aperçu", "Overview"), "procedure": ("Procédure", "Procedure"), "parametres": ("Paramètres", "Settings"),
+    "codes": ("Codes d’erreur", "Error codes"), "depannage": ("Dépannage", "Troubleshooting"),
+    "securite": ("Sécurité", "Safety"), "verif": ("Liste de vérification", "Checklist"), "faq": ("FAQ et sources", "FAQ & sources"),
+}
+_TAB_RULES = [
+    ("faq", r"^(faq|sources|a-valider|for-michael)"),
+    ("codes", r"^(codes-d-erreur|error-codes|codes-erreur|alarmes|alarms|messages-d-erreur|error-messages)"),
+    ("verif", r"^(liste-de-verification|checklist|controle-avant|pre-cycle|ordering-checklist|commissioning-checklist|.*-checklist$)"),
+    ("securite", r"^(securite|safety|sante-securite|health-and-safety|epi|ppe|cadenassage|lockout|risques|hazards)"),
+    ("depannage", r"^(erreurs-frequentes|common-mistakes|depannage|troubleshoot|symptome|symptom|diagnostic|quick-diagnosis|problemes|problems|demarche-de-depannage)"),
+    ("procedure", r"^(demarche|step-by-step|workflow|procedure|etapes|steps|routine|mise-en-service|commissioning|typical-workflow|le-deroule|the-full-run)"),
+    ("parametres", r"^(parametres|reglages|settings|parameters|fiche-rapide|quick-facts|tableaux?-de|charts?|plages|ranges)"),
+]
+
+
+def _classify(hid, hub):
+    for key, rx in _TAB_RULES:
+        if re.search(rx, hid):
+            return key
+    return "apercu"
+
+
+def _apply_tabs(g, lang, body_html, overrides):
+    """Group the guide's H2 sections into tabs. Returns (html, tabs list) or (body_html, [])."""
+    parts = re.split(r'(?=<section class="(?:sources|review-box|shops|ec-guide)">)|(?<!">)(?=<h2 id=")', body_html)
+    pre, secs = "", []
+    for part in parts:
+        m = re.match(r'(?:<section class="[a-z-]+">)?<h2 id="([^"]+)"', part)
+        if not m:
+            if secs:
+                secs[-1][1] += part
+            else:
+                pre += part
+            continue
+        secs.append([m.group(1), part])
+    if len(secs) < 3:
+        return body_html, []
+    buckets = {k: [] for k in TAB_ORDER}
+    hids = {k: [] for k in TAB_ORDER}
+    for hid, html_ in secs:
+        key = overrides.get(hid) or _classify(hid, g.hub)
+        buckets[key].append(html_)
+        hids[key].append(hid)
+    used = [k for k in TAB_ORDER if buckets[k]]
+    if pre.strip():
+        buckets["apercu"].insert(0, pre)
+        if "apercu" not in used:
+            used.insert(0, "apercu")
+    if len(used) < 2:
+        return body_html, []
+    fr = lang == "fr"
+    labels = {k: TAB_LABELS[k][0 if fr else 1] for k in used}
+    if g.hub == "troubleshooting" and "apercu" in labels:
+        labels["apercu"] = "Diagnostic" if fr else "Diagnosis"
+    nav = "".join(f'<li><a href="#t-{k}" data-tab="{k}">{esc(labels[k])}</a></li>' for k in used)
+    panels = "".join(f'<section class="gtab-panel" id="t-{k}" data-tab-label="{esc(labels[k])}">{"".join(buckets[k])}</section>' for k in used)
+    aria = "Sections du guide" if fr else "Guide sections"
+    html_ = (f'<div class="gtabs" data-gtabs><nav class="gtabs-nav" aria-label="{aria}"><ul class="gtabs-list">{nav}</ul></nav>'
+             f'<div class="gtabs-panels">{panels}</div></div>')
+    return html_, [(k, labels[k], hids[k]) for k in used]
+
+
 def guide_page(g, lang, form_newsletter):
     t, p = T[lang], PATHS[lang]
     body_html, toc = render(g.body[lang], lang)
@@ -263,6 +328,23 @@ def guide_page(g, lang, form_newsletter):
         idx = next((i for i, (lvl, hid, txt) in enumerate(toc) if lvl == 2 and (hid.startswith(("sources", "a-valider", "for-michael")))), len(toc))
         toc = list(toc)
         toc.insert(idx, shops_toc)
+    codes_keys = [x.strip() for x in g.m.get("codes", "").split(",") if x.strip()]
+    if codes_keys:
+        from .errorcodes import guide_section
+        ec_html, ec_toc = guide_section(codes_keys, lang)
+        m = re.search(r'<h2 id="(?:faq|sources)[^"]*"|<section class="(?:review-box|sources)">', body_html)
+        pos = m.start() if m else len(body_html)
+        body_html = body_html[:pos] + ec_html + body_html[pos:]
+        toc = list(toc)
+        idx = next((i for i, (lvl, hid, txt) in enumerate(toc) if lvl == 2 and hid.startswith(("faq", "sources", "a-valider", "for-michael"))), len(toc))
+        toc.insert(idx, ec_toc)
+    # internal review notes ("À valider en atelier (Michaël)") stay in the source but are not published
+    body_html = re.sub(r'<section class="review-box">.*?</section>', "", body_html, flags=re.S)
+    toc = [x for x in toc if not (x[0] == 2 and x[1].startswith(("a-valider", "for-michael")))]
+    overrides = dict(x.split(":", 1) for x in (y.strip() for y in g.m.get("tabs", "").split(",")) if ":" in x)
+    tab_list = []
+    if g.m.get("tabs", "").strip() != "off":
+        body_html, tab_list = _apply_tabs(g, lang, body_html, {k.strip(): v.strip() for k, v in overrides.items()})
     url = g.url(lang)
     lv = LEVELS.get(g.level, LEVELS["debutant"])[0 if lang == "fr" else 1]
     mins = max(3, round(g.words(lang) / 210))
@@ -271,7 +353,14 @@ def guide_page(g, lang, form_newsletter):
                                 (g.nav(lang), None)])
     toc_items = [(i, txt) for lvl, i, txt in toc if lvl == 2]
     toc_html = ""
-    if len(toc_items) >= 3:
+    if tab_list and len(toc_items) >= 3:
+        names = dict(toc_items)
+        groups = []
+        for k, label, ids in tab_list:
+            sub = "".join(f'<li><a href="#{i}">{esc(names[i])}</a></li>' for i in ids if i in names)
+            groups.append(f'<li class="toc-tab"><a href="#t-{k}" data-tab="{k}">{esc(label)}</a>' + (f'<ol>{sub}</ol>' if sub else "") + "</li>")
+        toc_html = f'<details class="toc toc-tabs" open><summary>{t["on_page"]}</summary><ol>{"".join(groups)}</ol></details>'
+    elif len(toc_items) >= 3:
         lis = "".join(f'<li><a href="#{i}">{esc(txt)}</a></li>' for i, txt in toc_items)
         toc_html = (f'<details class="toc" open><summary>{t["on_page"]}</summary><ol>{lis}</ol></details>')
     rel = related(g)
@@ -301,9 +390,13 @@ def guide_page(g, lang, form_newsletter):
         schemas.append(f)
     ld = "".join(f'<script type="application/ld+json">{json.dumps(s, ensure_ascii=False)}</script>' for s in schemas)
     report_href = p["about"] + "#contact"
+    from .layout import ASSET_V
+    assets = (f'<link rel="stylesheet" href="/css/guides2.css?v={ASSET_V}">'
+              + (f'<script src="/js/tabs.js?v={ASSET_V}" defer></script>' if tab_list else ""))
     body = f"""
+{assets}
 {crumbs}
-<article class="guide" data-guide="{g.id}">
+<article class="guide{' has-tabs' if tab_list else ''}" data-guide="{g.id}">
   <header class="guide-head">
     <p class="kicker">{esc(g.kicker(lang))}</p>
     <h1>{esc(g.title(lang))}</h1>
@@ -353,6 +446,14 @@ def hub_page(hub, lang):
         inner = "".join(sections)
     else:
         inner = f'<div class="gcards">{"".join(card(g, lang) for g in gs)}</div>'
+    if hub == "troubleshooting":
+        from .errorcodes import data as _ecd, URL as _ECU
+        n = len(_ecd()["codes"])
+        if n:
+            inner = (f'<aside class="price-cta ec-hub-cta" style="margin:0 0 1.5rem"><div><p class="price-cta-k">{"Référence" if fr else "Reference"}</p>'
+                     f'<p class="price-cta-t">{"Chercher un code d’erreur ou une alarme" if fr else "Look up an error code or alarm"}</p>'
+                     f'<p>{n} {"codes tirés des manuels officiels : Haas, Siemens, FANUC, Hypertherm, ESAB, Lincoln, Grbl…" if fr else "codes from official manuals: Haas, Siemens, FANUC, Hypertherm, ESAB, Lincoln, Grbl…"}</p></div>'
+                     f'<a class="btn" href="{_ECU[lang]}">{"Ouvrir la recherche de codes" if fr else "Open code lookup"}</a></aside>') + inner
     others = "".join(f'<a class="chip" href="{hub_path(h, lang)}">{esc(HUBS[h][2 if fr else 3])}</a>' for h in HUB_ORDER if h != hub)
     items_ld = [{"@type": "ListItem", "position": i + 1, "url": SITE + g.url(lang), "name": g.title(lang)} for i, g in enumerate(gs)]
     ld = json.dumps({"@context": "https://schema.org", "@type": "CollectionPage", "name": title, "description": blurb,
@@ -459,6 +560,8 @@ def search_index(lang):
             {"t": "Sheet-metal and metal prices", "d": "Published price comparison: sheet, plate, bar, tube. Best price per spec.", "u": p["prices"], "h": "", "c": "Tool", "k": "price steel stainless aluminum sheet plate supplier"},
             {"t": "Used equipment in Quebec", "d": "Digest of used CNC and fab equipment in Quebec.", "u": p["used"], "h": "", "c": "Tool", "k": "used plasma table auction"},
         ]
+    from .errorcodes import search_entries
+    out += search_entries(lang)
     return out
 
 
