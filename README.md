@@ -151,4 +151,4 @@ Ajouter un guide : créer `content/guides/<id>.md`, lancer `python3 build.py`, v
 
 ## Logo
 
-Marque « Pli CF » (C et F tracés comme un profil de tôle pliée, point laser orange) : `favicon.svg`, `sitekit/layout.py` (`brand_svg`), icônes et images sociales encodées dans `assets/bin/` (`og-fr/en`, `icon-192/512`, `apple-touch-icon`). Source des options et aperçus : `assets/logo/`.
+Marque « Tôle tranchée » (une plaque tranchée par une saignée orange, les deux pièces qui se séparent; option B retenue par Michaël) : `favicon.svg`, `sitekit/layout.py` (`brand_svg`), icônes et images sociales encodées dans `assets/bin/` (`og-fr/en`, `icon-192/512`, `apple-touch-icon`). Source des options et aperçus : `assets/logo/`.

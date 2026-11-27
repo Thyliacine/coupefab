@@ -5,7 +5,7 @@ from .taxonomy import T, PATHS, HUBS, HUB_ORDER, hub_path
 
 SITE = "https://coupefab.vercel.app"
 YEAR = "2026"
-ASSET_V = "20261126ux"  # bump to bust CSS/JS caches
+ASSET_V = "20261126ub"  # bump to bust CSS/JS caches
 
 
 def esc(s: str) -> str:
@@ -22,9 +22,9 @@ def _icon(name):
 
 
 def brand_svg():
-    # CoupeFab mark v3 ("Pli CF"): C and F as one bent sheet profile, laser dot where the cut happens.
+    # CoupeFab mark v3 ("Tôle tranchée"): a plate sliced by a glowing kerf, the two parts separating.
     return ('<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">'
-            '<rect width="32" height="32" rx="8" fill="#15191c"/><path d="M14.5 8.5H10a2.5 2.5 0 0 0-2.5 2.5v10a2.5 2.5 0 0 0 2.5 2.5h4.5" fill="none" stroke="#f4f2ec" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 23.5V11a2.5 2.5 0 0 1 2.5-2.5H25M18 16h5" fill="none" stroke="#f4f2ec" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="25.4" cy="16" r="2.2" fill="#ff5a1f"/></svg>')
+            '<rect width="32" height="32" rx="8" fill="#15191c"/><path d="M7 7h15.2L9.4 24.6H7z" fill="#f4f2ec"/><path d="M25 25H9.8L22.6 7.4H25z" fill="#f4f2ec" opacity=".55"/><path d="M23.4 6.2L8.6 26" stroke="#ff5a1f" stroke-width="1.8" stroke-linecap="round"/><circle cx="8.6" cy="26" r="2.1" fill="#ff5a1f"/></svg>')
 
 
 def mega_nav(lang: str, path: str) -> str:
