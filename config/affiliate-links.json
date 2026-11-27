@@ -1,0 +1,9 @@
+{
+  "_doc": "Affiliate link slots. Leave url empty until Michaël has joined a program himself; an empty url is never shown. key = product or category slot; pages = where the slot may appear (path prefixes).",
+  "links": [
+    {"key": "pieces-consommables-plasma", "pages": ["/pieces/", "/en/parts/"], "merchant": "Amazon.ca", "label_fr": "Consommables plasma (électrodes, buses)", "label_en": "Plasma consumables (electrodes, nozzles)", "url": ""},
+    {"key": "pieces-laser-hublots", "pages": ["/pieces/", "/en/parts/"], "merchant": "Amazon.ca", "label_fr": "Hublots de protection laser", "label_en": "Laser protective windows", "url": ""},
+    {"key": "outillage-mesure", "pages": ["/outillage/", "/en/tooling/"], "merchant": "Amazon.ca", "label_fr": "Pieds à coulisse et micromètres", "label_en": "Calipers and micrometers", "url": ""},
+    {"key": "outillage-fraises", "pages": ["/outillage/", "/en/tooling/"], "merchant": "", "label_fr": "Fraises et plaquettes", "label_en": "End mills and inserts", "url": ""}
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CoupeFab digest sponsors",
+  "type": "object",
+  "required": ["sponsors"],
+  "properties": {
+    "sponsors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "url", "line1_fr", "line1_en", "start", "end"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+          "name": {"type": "string", "maxLength": 80},
+          "logo": {"type": "string", "description": "https URL or /assets/... path, about 240x80, PNG or SVG"},
+          "url": {"type": "string", "pattern": "^https://"},
+          "line1_fr": {"type": "string", "maxLength": 90},
+          "line2_fr": {"type": "string", "maxLength": 90},
+          "line1_en": {"type": "string", "maxLength": 90},
+          "line2_en": {"type": "string", "maxLength": 90},
+          "start": {"type": "string", "format": "date"},
+          "end": {"type": "string", "format": "date"},
+          "paid": {"type": "boolean", "description": "Set by the payment hook or by hand once paid; unpaid sponsors are skipped"}
+        }
+      }
+    }
+  }
+}

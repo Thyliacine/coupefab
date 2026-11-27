@@ -1,0 +1,4 @@
+{
+  "_doc": "Price-digest sponsors, one per issue. Schema: config/sponsors.schema.json. Nothing is used unless monetization.json digest_sponsor is true AND an issue date falls inside start..end.",
+  "sponsors": []
+}

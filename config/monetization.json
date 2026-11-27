@@ -1,0 +1,8 @@
+{
+  "_doc": "CoupeFab revenue switches. All false = nothing shows publicly. See ADMIN.md. Edit by hand or with: python3 scripts/admin.py",
+  "featured_suppliers": false,
+  "affiliate_links": false,
+  "digest_sponsor": false,
+  "quote_requests": false,
+  "advertise_page": false
+}
