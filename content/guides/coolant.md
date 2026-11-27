@@ -28,7 +28,7 @@ Le fluide de coupe a trois rôles : **évacuer les copeaux**, **refroidir** et *
 | **MQL** | Air + quantité minimale d’huile | Équipement spécial |
 | **Cryogénie** | Gaz liquéfié | Refroidissement maximal, équipement spécial |
 
-L’usinage **à sec** est parfois possible et avantageux (coût, environnement) avec le bon outil et la bonne nuance.
+L’usinage **à sec** est parfois possible et avantageux (coût, environnement) avec le bon outil et le bon grade de carbure.
 
 ## Où viser (tournage)
 
@@ -36,7 +36,7 @@ L’usinage **à sec** est parfois possible et avantageux (coût, environnement)
 - **Arrosage dessous** (côté dépouille) : évacue la chaleur de la plaquette et prolonge la durée de vie.
 - **Arrosage conventionnel** (buses orientables, gros débit) : inonde la zone ; pas conçu pour la haute pression.
 
-Sandvik Coromant recommande : arrosage dessous pour la durée de vie ; dessus (et dessous) quand le contrôle des copeaux pose problème ; les deux pour les nuances PVD minces (superalliages, inox) afin d’éviter la déformation plastique.
+Sandvik Coromant recommande : arrosage dessous pour la durée de vie ; dessus (et dessous) quand le contrôle des copeaux pose problème ; les deux pour les grades de carbure à revêtement PVD mince (superalliages, inox) afin d’éviter la déformation plastique.
 
 ## Plages de pression (arrosage de précision)
 
@@ -63,7 +63,7 @@ Sandvik Coromant recommande : arrosage dessous pour la durée de vie ; dessus (e
 ## FAQ
 
 ### À sec ou arrosé en fraisage ?
-Ça dépend de la matière et de la nuance ; en fraisage interrompu, l’arrosage peut causer des fissures thermiques. Suivez la recommandation du fabricant d’outils.
+Ça dépend de la matière et du grade de carbure ; en fraisage interrompu, l’arrosage peut causer des fissures thermiques. Suivez la recommandation du fabricant d’outils.
 
 ### La haute pression vaut-elle l’investissement ?
 Pour l’inox, les superalliages et le perçage profond, souvent oui ; elle consomme plus d’énergie, à prendre en compte.
