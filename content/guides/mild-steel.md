@@ -48,12 +48,12 @@ en_desc: The most-cut steel in Quebec: A36 and CSA G40.21 44W/50W, hot-rolled, p
 
 ## Plier et souder
 
-- Pliage facile ; le rayon minimal dépend de l’épaisseur, de la nuance et du sens de laminage (voir [[press-brake]] et [[bend-allowance]]).
+- Pliage facile ; le rayon minimal dépend de l’épaisseur, du grade et du sens de laminage (voir [[press-brake]] et [[bend-allowance]]).
 - Soudage facile par tous les procédés courants ; nettoyer calamine et oxyde de coupe selon la procédure (voir [[weld-prep]]).
 
 ## Liste de vérification de commande
 
-- [ ] Norme et nuance (A36, 44W, A1011 HRPO…)
+- [ ] Norme et grade (A36, 44W, A1011 HRPO…)
 - [ ] Épaisseur en calibre **et** décimale (voir [[sheet-gauges]])
 - [ ] Format de feuille (4×8, 5×10, 4×10 pi…)
 - [ ] Certificat d’usine si structural
@@ -78,7 +78,7 @@ Le décapage et l’huilage ajoutent une étape ; en échange, pas de calamine �
 
 ## À valider en atelier (Michaël)
 
-- Les nuances et formats d’acier doux que vous stockez.
+- Les grades et formats d’acier doux que vous stockez.
 - HR vs HRPO sur votre laser : différence observée.
 
 ## Sources

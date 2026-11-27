@@ -16,6 +16,7 @@ fr_title: Commande Haas : origines G54/G154, longueurs d’outil, G187 et régla
 en_title: Haas CNC control: G54/G154 offsets, tool lengths, G187 and the settings that catch people out
 fr_desc: Le dialecte Haas (proche de Fanuc) pour fraiseuses : origines G54–G59, G110–G129 et G154 P1–P99, G43 et le réglage 15, précision de contournage G187, gravure G47, démarche de première pièce.
 en_desc: The Haas dialect (close to Fanuc) for mills: G54–G59, G110–G129 and G154 P1–P99 offsets, G43 and Setting 15, G187 contouring accuracy, G47 engraving and a first-part routine.
+codes: haas
 ---
 === fr
 Les centres d’usinage et tours **Haas** sont omniprésents dans les ateliers québécois, des écoles aux sous-traitants. Leur commande parle un dialecte **de type Fanuc**, avec des codes et des **réglages (Settings)** propres à Haas. La documentation publique de Haas (manuels en ligne, cahier de programmation) est l’une des plus complètes du marché : servez-vous-en.
