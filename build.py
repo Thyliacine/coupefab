@@ -1246,47 +1246,125 @@ ABOUT_EN = f"""
 
 DISC_FR = """
 <div class="wrap prose">
-  <h1>Divulgation — affiliations et publicité</h1>
+  <h1>Divulgation — affiliations, partenaire et publicité</h1>
   <p class="lede">Pour l’instant, CoupeFab <strong>n’a aucun lien d’affiliation</strong>, aucun commanditaire et aucune publicité payante. Aucun compte d’affiliation n’a été ouvert ni approuvé.</p>
-  <p>Si cela change, cette page sera mise à jour en premier. Les liens affiliés seront identifiés, et un article restera lisible sans eux. Nous n’accepterons pas qu’un commanditaire dicte un paramètre de coupe ou un prix.</p>
-  <p>Les liens vers des manuels, des chartes, des courtiers ou des listes de prix sont des liens ordinaires, sans rémunération.</p>
+  <h2>Mention « Partenaire » : SMF Mécanique</h2>
+  <p>Dans certains guides de procédés (fraisage, tournage, préparation des soudures, ébavurage), l’atelier <strong>SMF Mécanique</strong> (Berthierville) apparaît en tête de la liste des ateliers du Québec avec la mention « Partenaire ». Le fondateur de CoupeFab, Michaël Brassard, travaille chez SMF Mécanique : c’est un lien personnel et professionnel, pas une commandite. SMF ne paie pas CoupeFab et ne relit pas le contenu. Les autres ateliers sont listés sans frais et sans ordre de préférence.</p>
+  <h2>Si cela change</h2>
+  <p>Cette page sera mise à jour en premier. Les liens affiliés seront identifiés, et un article restera lisible sans eux. Nous n’accepterons pas qu’un commanditaire dicte un paramètre de coupe ou un prix.</p>
+  <p>Les liens vers des manuels, des chartes, des fournisseurs, des annonces ou des listes de prix sont des liens ordinaires, sans rémunération. Les fournisseurs qui soumettent leurs prix ne paient rien et n’obtiennent aucun classement préférentiel; la mention « Prix vérifiés » indique seulement que CoupeFab a vérifié la source.</p>
   <p><a href="/a-propos/">Retour à À propos</a></p>
 </div>
 """
 
 DISC_EN = """
 <div class="wrap prose">
-  <h1>Affiliate and advertising disclosure</h1>
-  <p class="lede">For now, CoupeFab has <strong>no affiliate links</strong>, no sponsors, and no paid ads. No affiliate account has been opened or approved.</p>
-  <p>If that changes, this page will be updated first. Affiliate links will be labelled, and an article will still be readable without them. A sponsor will not be allowed to dictate a cut parameter or a price.</p>
-  <p>Links to manuals, cut charts, dealers, or price lists are ordinary links, with no payment attached.</p>
+  <h1>Affiliate, partner and advertising disclosure</h1>
+  <p class="lede">For now, CoupeFab has <strong>no affiliate links</strong>, no sponsors and no paid ads. No affiliate account has been opened or approved.</p>
+  <h2>The “Partner” label: SMF Mécanique</h2>
+  <p>In some process guides (milling, turning, weld preparation, deburring), the shop <strong>SMF Mécanique</strong> (Berthierville, Quebec) is listed first among Quebec shops with a “Partner” label. CoupeFab’s founder, Michaël Brassard, works at SMF Mécanique: this is a personal and professional tie, not a sponsorship. SMF does not pay CoupeFab and does not review the content. Other shops are listed free of charge and in no order of preference.</p>
+  <h2>If that changes</h2>
+  <p>This page will be updated first. Affiliate links will be labelled, and an article will still be readable without them. A sponsor will not be allowed to dictate a cut parameter or a price.</p>
+  <p>Links to manuals, cut charts, suppliers, listings or price lists are ordinary links, with no payment attached. Suppliers who submit their prices pay nothing and get no preferential ranking; the “Verified prices” badge only means CoupeFab has checked the source.</p>
   <p><a href="/en/about/">Back to About</a></p>
 </div>
 """
 
 PRIV_FR = """
 <div class="wrap prose">
-  <h1>Confidentialité et consentement (LCAP / CASL)</h1>
-  <p>CoupeFab recueille le courriel que vous saisissez, le prénom ou le nom d’atelier s’il est fourni, la langue du formulaire, et la date du consentement. Pour un message de contact, nous conservons aussi le texte du message. Nous n’utilisons pas ces données à d’autres fins que d’envoyer l’infolettre, de répondre, et de tenir un registre de consentement.</p>
-  <h2>Consentement exprès</h2>
-  <p>L’inscription à l’infolettre exige une case à cocher, non précochée. En la cochant, vous acceptez de recevoir des courriels de CoupeFab (guides, digest d’occasions, suivi des prix des tôles). Vous pouvez retirer ce consentement en tout temps, via le lien de désabonnement de chaque envoi ou en nous écrivant.</p>
-  <h2>Conservation</h2>
-  <p>Les inscriptions transitent par une fonction hébergée sur Vercel. Lorsque c’est configuré, elles sont aussi envoyées vers une boîte courriel d’exploitation ou une feuille de calcul, afin que les premiers numéros puissent partir manuellement depuis Gmail. Nous ne vendons pas la liste et nous ne la partageons pas avec des annonceurs.</p>
+  <h1>Politique de confidentialité (Loi 25 et LCAP)</h1>
+  <p class="lede">CoupeFab recueille le moins de renseignements personnels possible, seulement pour les fins décrites ici, et ne les vend jamais.</p>
+  <h2>Responsable de la protection des renseignements personnels</h2>
+  <p>Responsable de la protection des renseignements personnels : <strong>Michaël Brassard</strong>. Pour toute question, demande d’accès, de rectification ou de suppression, ou pour une plainte : <a href="mailto:info@coupefab.ca">info@coupefab.ca</a>.</p>
+  <h2>Ce que nous recueillons et pourquoi</h2>
+  <ul>
+    <li><strong>Infolettre :</strong> courriel, prénom ou nom d’atelier s’il est fourni, langue du formulaire, date et preuve du consentement. Fin : vous envoyer l’infolettre et tenir le registre de consentement exigé par la LCAP.</li>
+    <li><strong>Message de contact :</strong> courriel, nom s’il est fourni et texte du message. Fin : vous répondre.</li>
+    <li><strong>Soumission de prix (fournisseurs) :</strong> nom de l’entreprise, courriel de contact, site web, lien ou fichier de prix et message. Fin : vérifier et, avec votre autorisation, publier les prix de l’entreprise avec leur source et leur date.</li>
+  </ul>
+  <p>Nous n’utilisons pas ces renseignements à d’autres fins, ne les vendons pas et ne les partageons pas avec des annonceurs.</p>
+  <h2>Consentement exprès (LCAP)</h2>
+  <p>L’inscription à l’infolettre exige une case à cocher, non précochée. Vous pouvez retirer votre consentement en tout temps, par le lien de désabonnement de chaque envoi ou en écrivant à <a href="mailto:info@coupefab.ca">info@coupefab.ca</a>.</p>
+  <h2>Où sont conservés vos renseignements</h2>
+  <p>Les formulaires passent par une fonction hébergée chez Vercel (serveurs possiblement situés hors du Québec, notamment aux États-Unis). Selon la configuration, ils sont transmis à une boîte courriel d’exploitation (Gmail, via le relais FormSubmit) ou à une feuille de calcul Google. Ces prestataires peuvent traiter les données hors du Québec; nous les choisissons pour leurs mesures de sécurité et ne leur transmettons que le nécessaire. Les renseignements sont conservés tant que vous êtes inscrit, puis supprimés au plus tard 12 mois après le désabonnement ou la fin de l’échange.</p>
+  <h2>Témoins (cookies) et mesure d’audience</h2>
+  <p>CoupeFab <strong>n’utilise actuellement aucun témoin de suivi, aucun outil de mesure d’audience et aucune publicité</strong>. Il ne dépose aucun témoin et n’enregistre rien dans votre navigateur; les polices sont hébergées sur nos propres serveurs (aucun appel à Google Fonts). Les photos des annonces d’occasion sont chargées depuis le site du vendeur, sans transmettre de page d’origine. Si un outil de mesure d’audience est ajouté, cette section sera mise à jour avant sa mise en service, et un outil sans témoins sera privilégié.</p>
   <h2>Vos droits</h2>
-  <p>Pour consulter, corriger ou supprimer votre courriel, écrivez-nous depuis la page <a href="/a-propos/">À propos / contact</a>. Cette politique sera mise à jour si un prestataire d’infolettre plus complet est ajouté.</p>
+  <p>Vous pouvez demander l’accès à vos renseignements, leur rectification, leur suppression ou le retrait de votre consentement en écrivant à <a href="mailto:info@coupefab.ca">info@coupefab.ca</a>. Nous répondons dans un délai de 30 jours. Si vous n’êtes pas satisfait, vous pouvez vous adresser à la <a href="https://www.cai.gouv.qc.ca/" rel="noopener">Commission d’accès à l’information du Québec</a>.</p>
+  <h2>Incident de confidentialité</h2>
+  <p>En cas d’incident présentant un risque de préjudice sérieux, nous aviserons les personnes concernées et la Commission d’accès à l’information, et nous tenons un registre des incidents.</p>
+  <p><small>Dernière mise à jour : 26 novembre 2026. Voir aussi les <a href="/conditions/">conditions d’utilisation</a>.</small></p>
 </div>
 """
 
 PRIV_EN = """
 <div class="wrap prose">
-  <h1>Privacy and CASL consent</h1>
-  <p>CoupeFab collects the email you enter, a first name or shop name if you give one, the form language, and the date of consent. For a contact message, we also keep the text of the message. We do not use this data for anything other than sending the newsletter, replying, and keeping a consent record.</p>
-  <h2>Express consent</h2>
-  <p>Newsletter signup requires a checkbox that is not pre-checked. By ticking it, you agree to receive email from CoupeFab (guides, the used-equipment digest, sheet-price updates). You may withdraw that consent at any time, through the unsubscribe link in each issue or by writing to us.</p>
-  <h2>Storage</h2>
-  <p>Signups go through a function hosted on Vercel. When it is configured, they are also forwarded to an operations inbox or a spreadsheet, so early issues can be sent by hand from Gmail. We do not sell the list and we do not share it with advertisers.</p>
+  <h1>Privacy policy (Quebec Law 25 and CASL)</h1>
+  <p class="lede">CoupeFab collects as little personal information as possible, only for the purposes described here, and never sells it.</p>
+  <h2>Person in charge of the protection of personal information</h2>
+  <p>Person in charge of the protection of personal information: <strong>Michaël Brassard</strong>. For questions, requests to access, correct or delete your information, or complaints: <a href="mailto:info@coupefab.ca">info@coupefab.ca</a>.</p>
+  <h2>What we collect and why</h2>
+  <ul>
+    <li><strong>Newsletter:</strong> email, first name or shop name if given, form language, date and proof of consent. Purpose: sending the newsletter and keeping the consent record CASL requires.</li>
+    <li><strong>Contact message:</strong> email, name if given, and the message. Purpose: replying to you.</li>
+    <li><strong>Price submission (suppliers):</strong> company name, contact email, website, price link or file, and message. Purpose: reviewing and, with your authorization, publishing the company’s prices with their source and date.</li>
+  </ul>
+  <p>We do not use this information for anything else, we do not sell it, and we do not share it with advertisers.</p>
+  <h2>Express consent (CASL)</h2>
+  <p>Newsletter signup requires a checkbox that is not pre-checked. You can withdraw consent at any time through the unsubscribe link in each issue or by writing to <a href="mailto:info@coupefab.ca">info@coupefab.ca</a>.</p>
+  <h2>Where your information is kept</h2>
+  <p>Forms go through a function hosted by Vercel (servers that may be outside Quebec, including in the United States). Depending on configuration, they are forwarded to an operations inbox (Gmail, through the FormSubmit relay) or a Google spreadsheet. These providers may process data outside Quebec; we choose them for their security practices and send them only what is needed. Information is kept while you are subscribed, then deleted no later than 12 months after you unsubscribe or the exchange ends.</p>
+  <h2>Cookies and analytics</h2>
+  <p>CoupeFab <strong>currently uses no tracking cookies, no analytics tool and no advertising</strong>. It sets no cookies and stores nothing in your browser; fonts are self-hosted (no calls to Google Fonts). Photos in used-equipment listings load from the seller’s site without sending the referring page. If an analytics tool is added, this section will be updated before it goes live, and a cookieless tool will be preferred.</p>
   <h2>Your rights</h2>
-  <p>To review, correct, or delete your email, write to us from the <a href="/en/about/">About / contact</a> page. This policy will be updated if a fuller newsletter provider is added later.</p>
+  <p>You can ask to access, correct or delete your information, or withdraw consent, by writing to <a href="mailto:info@coupefab.ca">info@coupefab.ca</a>. We reply within 30 days. If you are not satisfied, you can contact Quebec’s <a href="https://www.cai.gouv.qc.ca/" rel="noopener">Commission d’accès à l’information</a>.</p>
+  <h2>Confidentiality incidents</h2>
+  <p>If an incident presents a risk of serious injury, we will notify the people affected and the Commission d’accès à l’information, and we keep an incident register.</p>
+  <p><small>Last updated: November 26, 2026. See also the <a href="/en/terms/">terms of use</a>.</small></p>
+</div>
+"""
+
+TERMS_FR = """
+<div class="wrap prose">
+  <h1>Conditions d’utilisation</h1>
+  <p class="lede">En utilisant CoupeFab, vous acceptez les conditions suivantes. Elles sont courtes, et nous les écrivons en langage clair.</p>
+  <h2>Information seulement</h2>
+  <p>Les guides, paramètres, prix et annonces sont fournis à titre informatif. Vérifiez toujours auprès du manuel de votre machine, du fabricant ou du fournisseur avant de couper, d’usiner ou d’acheter. Le travail en atelier comporte des risques : suivez les règles de santé et sécurité (CNESST) et les consignes de votre équipement.</p>
+  <h2>Prix et annonces</h2>
+  <p>Les prix sont ceux publiés par les fournisseurs à la date indiquée, avant taxes, transport et coupe. CoupeFab n’est ni vendeur, ni courtier, ni intermédiaire : toute transaction se fait directement avec le fournisseur ou le vendeur. Les prix et la disponibilité peuvent changer sans préavis.</p>
+  <h2>Responsabilité</h2>
+  <p>Dans la mesure permise par la loi, CoupeFab n’est pas responsable des dommages découlant de l’utilisation du site, d’une erreur dans un guide ou un prix, ou d’une transaction avec un tiers. Signalez-nous toute erreur à <a href="mailto:info@coupefab.ca">info@coupefab.ca</a>; nous la corrigerons rapidement.</p>
+  <h2>Contenu et réutilisation</h2>
+  <p>Les textes des guides appartiennent à CoupeFab. Les données de prix compilées sont publiées sous licence <a href="https://creativecommons.org/licenses/by/4.0/deed.fr" rel="license noopener">CC BY 4.0</a> (réutilisation libre en citant CoupeFab). Les marques citées appartiennent à leurs propriétaires et sont mentionnées à titre descriptif.</p>
+  <h2>Soumissions des fournisseurs</h2>
+  <p>En soumettant des prix, vous confirmez représenter l’entreprise et autorisez CoupeFab à les publier, avec leur source et leur date, après vérification. Vous pouvez demander leur retrait en tout temps.</p>
+  <h2>Liens externes</h2>
+  <p>Les liens vers d’autres sites sont fournis pour votre commodité; CoupeFab ne contrôle pas leur contenu.</p>
+  <h2>Droit applicable</h2>
+  <p>Ces conditions sont régies par les lois du Québec et du Canada. Elles peuvent être mises à jour; la date ci-dessous indique la dernière version.</p>
+  <p><small>Dernière mise à jour : 26 novembre 2026. Voir aussi la <a href="/confidentialite/">politique de confidentialité</a> et la <a href="/divulgation/">divulgation</a>.</small></p>
+</div>
+"""
+
+TERMS_EN = """
+<div class="wrap prose">
+  <h1>Terms of use</h1>
+  <p class="lede">By using CoupeFab, you agree to the following terms. They are short, and written in plain language.</p>
+  <h2>Information only</h2>
+  <p>Guides, parameters, prices and listings are provided for information. Always check your machine manual, the manufacturer or the supplier before you cut, machine or buy. Shop work carries risks: follow health and safety rules (CNESST in Quebec) and your equipment’s instructions.</p>
+  <h2>Prices and listings</h2>
+  <p>Prices are those published by suppliers on the date shown, before taxes, freight and cutting. CoupeFab is not a seller, broker or intermediary: every transaction is made directly with the supplier or seller. Prices and availability can change without notice.</p>
+  <h2>Liability</h2>
+  <p>To the extent permitted by law, CoupeFab is not liable for damages arising from use of the site, an error in a guide or a price, or a transaction with a third party. Report any error to <a href="mailto:info@coupefab.ca">info@coupefab.ca</a>; we will fix it promptly.</p>
+  <h2>Content and reuse</h2>
+  <p>Guide texts belong to CoupeFab. The compiled price data is published under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener">CC BY 4.0</a> (free reuse with credit to CoupeFab). Trademarks belong to their owners and are used descriptively.</p>
+  <h2>Supplier submissions</h2>
+  <p>By submitting prices, you confirm you represent the company and allow CoupeFab to publish them, with source and date, after review. You can ask for their removal at any time.</p>
+  <h2>External links</h2>
+  <p>Links to other sites are provided for convenience; CoupeFab does not control their content.</p>
+  <h2>Governing law</h2>
+  <p>These terms are governed by the laws of Quebec and Canada. They may be updated; the date below shows the latest version.</p>
+  <p><small>Last updated: November 26, 2026. See also the <a href="/en/privacy/">privacy policy</a> and the <a href="/en/affiliate-disclosure/">disclosure</a>.</small></p>
 </div>
 """
 
@@ -1297,6 +1375,11 @@ PRIX_FR, PRIX_EN, PRIX_META = render_prix(form_newsletter, SITE)
 # Occasions: generated from data/used/listings.json (see used/)
 from used.page import render as render_occasions  # noqa: E402
 OCCASIONS_FR, OCCASIONS_EN, OCCASIONS_META = render_occasions(SITE)
+
+# Répertoire des fournisseurs: generated from data/suppliers/directory.json (see suppliers/)
+from suppliers.page import page_entries as supplier_pages  # noqa: E402
+from parts.page import render as render_pieces  # noqa: E402
+PIECES_FR, PIECES_EN, PIECES_META = render_pieces(SITE)
 
 PAGES = [
     # path, alt, lang, title, description, body, draft, article
@@ -1346,7 +1429,7 @@ PAGES = [
      CONSOM_EN, True, True),
     ("/occasions/", "/en/used-equipment/", "fr",
      "Occasions CNC et métaux au Québec — comparateur d’aubaines — CoupeFab",
-     "Annonces publiques de tables plasma, lasers, fraiseuses, tours et plieuses au Québec et au Canada, avec pastilles Super aubaine et comparaison au prix neuf lorsqu’il est documenté.",
+     "Annonces publiques de tables plasma, lasers, fraiseuses, tours et plieuses au Québec et au Canada, avec repérage des super aubaines et comparaison au prix neuf lorsqu’il est documenté.",
      OCCASIONS_FR, False, False),
     ("/en/used-equipment/", "/occasions/", "en",
      "Used CNC and metalworking equipment in Quebec — deal tracker — CoupeFab",
@@ -1360,6 +1443,14 @@ PAGES = [
      "Sheet-metal and metal prices in Quebec: daily comparison — CoupeFab",
      "Daily comparison of published sheet, plate, bar and tube prices (steel, stainless, aluminum) from suppliers serving Quebec: $/sq ft, $/lb, calculator and gauge chart.",
      PRIX_EN, False, False),
+    ("/pieces/", "/en/parts/", "fr",
+     "Pièces et consommables CNC, plasma, laser et tôlerie — CoupeFab",
+     "Fournisseurs québécois et canadiens, guides d’usure et prix publics (électrode, buse, hublot, plaquette, outillage de plieuse), avec source et date.",
+     PIECES_FR, False, False),
+    ("/en/parts/", "/pieces/", "en",
+     "CNC, plasma, laser and fabrication parts and consumables — CoupeFab",
+     "Quebec and Canadian suppliers, wear-part guides and published prices (electrodes, nozzles, windows, inserts, press-brake tooling), with source and date.",
+     PIECES_EN, False, False),
     ("/infolettre/", "/en/newsletter/", "fr",
      "Infolettre CoupeFab",
      "Inscrivez-vous à l’infolettre CoupeFab : guides, occasions Québec et prix des tôles. Consentement LCAP / CASL.",
@@ -1377,21 +1468,29 @@ PAGES = [
      "Who is behind CoupeFab and how to reach us.",
      ABOUT_EN, False, False),
     ("/divulgation/", "/en/affiliate-disclosure/", "fr",
-     "Divulgation — affiliations et publicité — CoupeFab",
-     "CoupeFab n’a pour le moment aucun lien d’affiliation ni commanditaire.",
+     "Divulgation — affiliations, partenaire et publicité — CoupeFab",
+     "CoupeFab n’a aucun lien d’affiliation ni commanditaire. Mention « Partenaire » de SMF Mécanique expliquée.",
      DISC_FR, False, False),
     ("/en/affiliate-disclosure/", "/divulgation/", "en",
-     "Affiliate and advertising disclosure — CoupeFab",
-     "CoupeFab currently has no affiliate links and no sponsors.",
+     "Affiliate, partner and advertising disclosure — CoupeFab",
+     "CoupeFab has no affiliate links and no sponsors. The SMF Mécanique “Partner” label explained.",
      DISC_EN, False, False),
     ("/confidentialite/", "/en/privacy/", "fr",
-     "Confidentialité et consentement (LCAP / CASL) — CoupeFab",
-     "Comment CoupeFab recueille les courriels et obtient un consentement exprès conforme à la LCAP.",
+     "Politique de confidentialité (Loi 25 et LCAP) — CoupeFab",
+     "Renseignements recueillis, responsable de la protection des renseignements personnels, témoins et vos droits en vertu de la Loi 25 et de la LCAP.",
      PRIV_FR, False, False),
     ("/en/privacy/", "/confidentialite/", "en",
-     "Privacy and CASL consent — CoupeFab",
-     "How CoupeFab collects emails and obtains express consent under CASL.",
+     "Privacy policy (Quebec Law 25 and CASL) — CoupeFab",
+     "What CoupeFab collects, who is in charge of personal information, cookies, and your rights under Quebec Law 25 and CASL.",
      PRIV_EN, False, False),
+    ("/conditions/", "/en/terms/", "fr",
+     "Conditions d’utilisation — CoupeFab",
+     "Conditions d’utilisation de CoupeFab : information seulement, prix des fournisseurs, responsabilité, réutilisation des données.",
+     TERMS_FR, False, False),
+    ("/en/terms/", "/conditions/", "en",
+     "Terms of use — CoupeFab",
+     "CoupeFab terms of use: information only, supplier prices, liability, data reuse.",
+     TERMS_EN, False, False),
 ]
 
 
@@ -1401,7 +1500,7 @@ PAGES = [
 # entries above by path; the price page and the other pages are kept as defined here.
 import sitekit  # noqa: E402
 layout = sitekit.layout  # noqa: F811
-PAGES = sitekit.extend_pages(PAGES, form_newsletter, PRIX_META)
+PAGES = sitekit.extend_pages(PAGES + supplier_pages(), form_newsletter, PRIX_META)
 
 
 def path_to_file(path: str) -> Path:
