@@ -163,4 +163,16 @@ Marque « Tôle tranchée » (une plaque tranchée par une saignée orange, les 
 - Sélecteur de machine : combobox maison (pas de `<datalist>`) — un champ, panneau de résultats juste dessous à la même largeur, groupé par marque (en-têtes collants), modèle + type + capacité, correspondances surlignées, flèches / Entrée / Échap, clic à l’extérieur ferme, bouton effacer, liste pleine largeur à grandes cibles sur mobile. ARIA combobox/listbox (`aria-activedescendant`).
 - Lignes `source` = `machinetoolindex.com/machines/…` : capacité lue sur la fiche MachineToolIndex (propriété « Coolant Capacity »), avec `official` = lien du fabricant cité par la fiche. Collecte respectant robots.txt (délai de 2 s, pas de `/api/`). Si une fiche contredit une source déjà présente de plus de 10 %, la ligne existante est gardée et la valeur MTI ajoutée en note.
 - Tests : `node tests/test_liquide_math.js`.
+
+### Découverte et nettoyage quotidiens (`suppliers/curated.py`)
+
+Couche gérée par la routine « CoupeFab daily supplier discovery & cleanup », appliquée par `suppliers/stats.py` par-dessus `directory.json` :
+
+- `data/suppliers/additions.json` — nouvelles entreprises (ateliers de découpe, usinage, tôlerie, soudure…) : nom, villes, région, province, site, catégories, téléphone public, URL source, dates `added` / `last_checked`. Faits publics seulement.
+- `data/suppliers/checks.json` — vérification par tranches (30–50 fiches/jour, la plus ancienne d’abord; fiche absente = jamais vérifiée) : `last_checked`, `status` (`ok`, `flag`, `robots`, `no-site`), `note`, et `site` pour corriger un domaine déplacé (`""` = pas de site propre).
+- `data/suppliers/removals.csv` — journal des retraits avec preuve (fermeture définitive affichée, radiation au REQ, ou site disparu sans autre signe d’activité). Un site lent ou en panne = `flag`, jamais un retrait.
+- `data/suppliers/search-log.csv` — requêtes déjà faites (région, catégorie) pour varier les passes.
+- Nouvelles catégories de services : `machining` (Usinage), `sheetmetal` (Tôlerie et pliage), `welding` (Soudure et fabrication).
+- Note : depuis la machine de vérification, les URL en `http://` répondent toujours 500 (proxy) ; tester en `https://`.
+
 - Ajouter une machine : une entrée dans `data/coolant-machines.json` (`brand`, `model`, `type` ∈ vmc/hmc/5ax/lathe/millturn/vtl/boring/router/swiss/grinder, `liters`, `us_gal`, `source`, `source_label`, `checked`), puis `python3 build.py`.
