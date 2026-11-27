@@ -479,3 +479,67 @@ select:hover { border-color: var(--line-2); }
 .ftr .brand-mark { box-shadow: 0 0 0 1px rgba(255,255,255,.14); border-radius: 8px; }
 input[type="url"], input[type="number"], input[type="search"] { width: 100%; font: inherit; padding: .6rem .7rem; border: 1px solid var(--line); background: var(--paper); color: var(--ink); margin-top: .3rem; }
 input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+
+/* ===================================================================
+   Active / selected states — one strong pattern site-wide
+   (prix, pièces, occasions, fournisseurs, codes d'erreur, guides).
+   Selected = filled brand orange (#c2410c, 5.2:1 with white) + bold;
+   hover = soft orange; keyboard focus = blue ring. "html" prefix so the
+   section stylesheets (loaded after this one) can't water it down.
+   =================================================================== */
+html .px-tabs a, html .oc-tabs [role="tab"], html .pc-tabs [role="tab"] {
+  border-radius: 8px 8px 0 0; border-bottom: 3px solid transparent;
+  transition: background-color .15s ease, color .15s ease;
+}
+html .px-tabs a:hover, html .oc-tabs [role="tab"]:hover, html .pc-tabs [role="tab"]:hover {
+  background: var(--accent-soft); color: var(--accent-2);
+}
+html .px-tabs a[aria-selected="true"], html .oc-tabs [role="tab"][aria-selected="true"], html .pc-tabs [role="tab"][aria-selected="true"],
+html .gtabs-list a[aria-selected="true"] {
+  background: var(--accent); color: #fff; font-weight: 700; border-bottom-color: var(--accent-2);
+  box-shadow: none;
+}
+html .oc-tabs [role="tab"][aria-selected="true"] small, html .pc-tabs [role="tab"][aria-selected="true"] small { color: #fff; opacity: .92; }
+html .px-tabs, html .oc-tabs, html .pc-tabs { border-bottom: 2px solid var(--accent); }
+html .gtabs-list a:hover:not([aria-selected="true"]) { background: var(--accent-soft); color: var(--accent-2); }
+
+/* toggle chips / segmented buttons */
+html .chip:hover:not([aria-pressed="true"]) { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-2); }
+html .chip[aria-pressed="true"], html [aria-pressed="true"].chip {
+  background: var(--accent); border-color: var(--accent-2); color: #fff; font-weight: 700;
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+html .chip[aria-pressed="true"]::before { content: "✓ "; }
+html .pc-mcard.is-on, html .pc-mcard[aria-pressed="true"] {
+  border: 2px solid var(--accent); background: var(--accent-soft); box-shadow: inset 5px 0 0 var(--accent), var(--shadow);
+}
+html .pc-mcard.is-on strong::after { content: " ✓"; color: var(--accent); }
+
+/* filter dropdowns: a select that is not on its "Tous / Toutes / All" option looks set */
+html select.cf-set {
+  border: 2px solid var(--accent) !important; background-color: var(--accent-soft) !important;
+  color: var(--accent-2) !important; font-weight: 700;
+}
+html label:has(> select.cf-set) > span { color: var(--accent-2); }
+html label:has(> select.cf-set) > span::after { content: " ●"; color: var(--accent); }
+/* checkbox / radio filters */
+html input[type="checkbox"], html input[type="radio"] { accent-color: var(--accent); }
+html label:has(> input[type="checkbox"]:checked), html label:has(> input[type="radio"]:checked) { color: var(--ink); font-weight: 700; }
+
+/* sorted column header */
+html th[aria-sort="ascending"], html th[aria-sort="descending"] { background: var(--accent-soft); color: var(--accent-2); box-shadow: inset 0 -3px 0 var(--accent); }
+html th[aria-sort] button { font-weight: 700; color: inherit; }
+
+/* keyboard focus on every switchable control */
+html .px-tabs a:focus-visible, html .oc-tabs [role="tab"]:focus-visible, html .pc-tabs [role="tab"]:focus-visible,
+html .chip:focus-visible, html .pc-mcard:focus-visible, html select:focus-visible, html th button:focus-visible,
+html .grade-pick:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* "Affiché : …" summary of the current filter + brief highlight when results change */
+.cf-showing { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; margin: .5rem 0 0; flex-basis: 100%; font-size: .92rem; }
+.cf-showing > b { color: var(--muted); font-weight: 600; text-transform: uppercase; font-size: .72rem; letter-spacing: .05em; }
+.cf-showing .cf-tag { display: inline-flex; align-items: center; padding: .22rem .65rem; border-radius: 999px; background: var(--accent); color: #fff; font-weight: 700; }
+.cf-showing .cf-tag.is-all { background: var(--bg-2); color: var(--ink); font-weight: 600; }
+@keyframes cf-flash { 0% { background-color: #ffd9c2; box-shadow: 0 0 0 3px var(--accent); } 100% { background-color: transparent; box-shadow: 0 0 0 0 transparent; } }
+.cf-flash { animation: cf-flash 1.1s ease-out; border-radius: 6px; }
+@media (prefers-reduced-motion: reduce) { .cf-flash { animation: none; outline: 3px solid var(--accent); outline-offset: 2px; } }

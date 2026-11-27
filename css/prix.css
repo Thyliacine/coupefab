@@ -274,3 +274,6 @@
 .px-more { margin-left: auto; font-weight: 600; color: var(--accent-2); text-decoration: underline; text-underline-offset: 2px; }
 .px-caveat[open] .px-more { display: none; }
 .px-caveat p { margin: .35rem 0 .15rem; }
+/* grade picker: the grade currently filtered */
+.px .grade-pick[aria-pressed="true"] { background: var(--accent); color: #fff; padding: .05rem .4rem; border-radius: 4px; }
+.px .grade-pick:hover { text-decoration: underline; }

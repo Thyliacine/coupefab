@@ -60,6 +60,7 @@
     cur = i; app.setAttribute("data-tab", i);
     tabs.forEach(function (t, k) { t.setAttribute("aria-selected", k === i ? "true" : "false"); t.tabIndex = k === i ? 0 : -1; });
     panels.forEach(function (p, k) { p.classList.toggle("is-active", k === i); });
+    if (opts.push !== false && window.cfFlash) window.cfFlash(panels[i]);
     if (opts.focus) tabs[i].focus();
     if (opts.push !== false) writeHash(opts.push === "push");
     if (i === 2) drawChart();
@@ -74,6 +75,8 @@
     });
   });
   window.addEventListener("popstate", function () { var hp = hashParts(), i = tabIndex(hp.tab); if (i >= 0) { show(i, { push: false }); if (i === 0 && D) { applyQuery(hp.q); (needFull() ? ensureFull() : Promise.resolve()).then(function () { applyQuery(hp.q); refreshOptions(); applyQuery(hp.q); render(); }); } } });
+  // the inline boot script runs before the tabs exist: apply the deep-linked tab (#tendances…) now
+  show(cur, { push: false });
   function headerH() { var h = document.querySelector(".hdr, .site-header, body > header"); if (!h) return 0; var cs = getComputedStyle(h); return cs.position === "sticky" || cs.position === "fixed" ? h.offsetHeight : 0; }
   function setHeaderVar() { app.style.setProperty("--px-top", headerH() + "px"); }
   setHeaderVar(); window.addEventListener("resize", setHeaderVar);
@@ -279,6 +282,33 @@
     return c;
   }
   function setCount(t) { document.getElementById("px-count").textContent = t; }
+  /* "Affiché : Aluminium · Toutes les formes …" — the current filter, always visible above the table */
+  var lastShowing = null;
+  function optText(sel) {
+    var o = sel.options[sel.selectedIndex];
+    return o ? o.textContent.split(" · ")[0].replace(/\s*\(\d[\d\s ]*\)$/, "") : "";
+  }
+  function setShowing() {
+    var el = document.getElementById("px-showing");
+    if (!el) return;
+    var tags = [];
+    function tag(on, txt) { tags.push('<span class="cf-tag' + (on ? "" : " is-all") + '">' + esc(txt) + "</span>"); }
+    tag(!!F.family.value, F.family.value ? optText(F.family) : T("Tous les métaux", "All metals"));
+    if (F.grade.value) tag(true, optText(F.grade));
+    var fv = F.form.value;
+    tag(!!fv && fv !== "all", fv && fv !== "all" ? optText(F.form) : T("Toutes les formes", "All forms"));
+    if (F.spec.value) tag(true, optText(F.spec));
+    if (F.size.value) tag(true, optText(F.size));
+    if (F.q.value.trim()) tag(true, "« " + F.q.value.trim() + " »");
+    if (F.qc.checked) tag(true, T("Achetable au Québec", "Buyable in Quebec"));
+    if (F.cmp.checked) tag(true, T("Comparables seulement", "Comparable only"));
+    if (F.cat.checked) tag(true, T("Matériaux courants", "Common materials"));
+    var html = "<b>" + T("Affiché :", "Showing:") + "</b>" + tags.join("");
+    if (html === lastShowing) return;
+    var first = lastShowing === null;
+    el.innerHTML = html; lastShowing = html;
+    if (!first && window.cfFlash) { window.cfFlash(el); window.cfFlash(document.getElementById("px-table-wrap")); }
+  }
   function nsrc(r) {
     var n = r.n_src || 1;
     return '<span class="px-nsrc" title="' + esc(T("Nombre de fournisseurs qui publient un prix pour cette spécification", "Number of suppliers publishing a price for this spec")) + '">' + n + T(n > 1 ? " fournisseurs" : " fournisseur", n > 1 ? " suppliers" : " supplier") + "</span>";
@@ -339,6 +369,10 @@
     var n = rows.length, cmpN = rows.filter(function (r) { return r.tier && r.tier !== "ref" && r.tier !== "oos" && r.tier !== "check" && r.tier !== "surplus"; }).length;
     setCount(num(n, 0) + T(" prix", " prices") + (cmpN ? " · " + num(cmpN, 0) + T(" comparables", " comparable") : "") + (n > shown ? T(" · " + shown + " affichés", " · " + shown + " shown") : "") + (!FULL && !F.form.value ? T(" · barres, tubes et tuyaux en chargement…", " · loading bar, tube and pipe…") : ""));
     document.getElementById("px-more").hidden = n <= shown;
+    setShowing();
+    app.querySelectorAll(".grade-pick").forEach(function (b) {
+      b.setAttribute("aria-pressed", F.grade.value && b.getAttribute("data-grade") === F.grade.value && b.getAttribute("data-family") === F.family.value ? "true" : "false");
+    });
   }
 
   app.querySelector("#px-table").addEventListener("click", function (e) {

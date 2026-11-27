@@ -380,3 +380,32 @@
     });
   });
 })();
+
+/* Active states: mark filter dropdowns that left their "Tous / All" option, and briefly
+   highlight result counts when a filter, tab or chip changes what is shown. */
+(function () {
+  function isFilter(s) { return s.tagName === "SELECT" && s.querySelector('option[value=""]'); }
+  function sync() {
+    document.querySelectorAll("main select").forEach(function (s) { if (isFilter(s)) s.classList.toggle("cf-set", s.value !== ""); });
+  }
+  function flash(el) {
+    if (!el || !el.classList) return;
+    el.classList.remove("cf-flash"); void el.offsetWidth; el.classList.add("cf-flash");
+    clearTimeout(el._cfT); el._cfT = setTimeout(function () { el.classList.remove("cf-flash"); }, 1200);
+  }
+  window.cfFlash = flash;
+  ["change", "input", "reset"].forEach(function (t) { document.addEventListener(t, function () { setTimeout(sync, 0); }, true); });
+  document.addEventListener("click", function () { setTimeout(sync, 30); }, true);
+  window.addEventListener("hashchange", function () { setTimeout(sync, 30); });
+  sync(); setTimeout(sync, 600); setTimeout(sync, 2000);
+  var ready = false; setTimeout(function () { ready = true; }, 1500);
+  var sel = '[id$="-count"], #ec-status, .sp-count';
+  if (window.MutationObserver) {
+    var mo = new MutationObserver(function (ms) {
+      if (!ready) return;
+      ms.forEach(function (m) { var el = m.target.nodeType === 1 ? m.target : m.target.parentNode; if (el && el.matches && el.matches(sel)) flash(el); });
+      sync();
+    });
+    document.querySelectorAll(sel).forEach(function (el) { mo.observe(el, { childList: true, characterData: true, subtree: true }); });
+  }
+})();
