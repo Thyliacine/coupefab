@@ -1380,6 +1380,8 @@ OCCASIONS_FR, OCCASIONS_EN, OCCASIONS_META = render_occasions(SITE)
 from suppliers.page import page_entries as supplier_pages  # noqa: E402
 from parts.page import render as render_pieces  # noqa: E402
 PIECES_FR, PIECES_EN, PIECES_META = render_pieces(SITE)
+from tooling.page import render as render_tooling  # noqa: E402
+OUTIL_FR, OUTIL_EN, OUTIL_META = render_tooling(SITE)
 
 PAGES = [
     # path, alt, lang, title, description, body, draft, article
@@ -1451,6 +1453,14 @@ PAGES = [
      "CNC, plasma, laser and fabrication parts and consumables — CoupeFab",
      "Quebec and Canadian suppliers, wear-part guides and published prices (electrodes, nozzles, windows, inserts, press-brake tooling), with source and date.",
      PIECES_EN, False, False),
+    ("/outillage/", "/en/tooling/", "fr",
+     "Prix de l’outillage au Québec : plasma, laser, fraises, forets, abrasifs, plieuse — CoupeFab",
+     f"Comparateur de {OUTIL_META['prices']:,} prix publics d’outillage".replace(",", "\u202f") + f" chez {OUTIL_META['suppliers']} fournisseurs (Québec d’abord) : consommables plasma et laser, fraises, forets, tarauds, plaquettes, lames de scie, abrasifs, outillage de plieuse et mesure, avec source et date.",
+     OUTIL_FR, False, False),
+    ("/en/tooling/", "/outillage/", "en",
+     "Tooling prices in Quebec and Canada: plasma, laser, end mills, drills, abrasives, press brake — CoupeFab",
+     f"Compare {OUTIL_META['prices']:,} published tooling prices from {OUTIL_META['suppliers']} suppliers (Quebec first): plasma and laser consumables, end mills, drills, taps, inserts, saw blades, abrasives, press-brake tooling and measuring tools, with source and date.",
+     OUTIL_EN, False, False),
     ("/infolettre/", "/en/newsletter/", "fr",
      "Infolettre CoupeFab",
      "Inscrivez-vous à l’infolettre CoupeFab : guides, occasions Québec et prix des tôles. Consentement LCAP / CASL.",
