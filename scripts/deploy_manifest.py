@@ -46,7 +46,7 @@ BUILD_SETTINGS = {"buildCommand": "mkdir -p public && tar xzf site.tgz -C public
                   "outputDirectory": "public", "installCommand": "", "framework": None}
 # source / data folders that are never served
 SOURCE_DIRS = {"content", "data", "scripts", "sitekit", "prices", "used", "parts", "suppliers",
-               "assets", "node_modules", "public", "__pycache__"}
+               "assets", "node_modules", "public", "__pycache__", "tooling"}
 
 INCLUDE_TOP = [
     "index.html", "404.html", "favicon.svg", "apple-touch-icon.png",

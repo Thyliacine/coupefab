@@ -80,6 +80,7 @@ def mega_nav(lang: str, path: str) -> str:
     <li><a class="nav-link nav-prices" href="{p['prices']}"{cur('prices')}>{t['prices']}</a></li>
     <li><a class="nav-link" href="{p['used']}"{cur('used')}>{t['used']}</a></li>
     <li><a class="nav-link" href="{p['parts']}"{cur('parts')}>{t['parts']}</a></li>
+    <li><a class="nav-link" href="{p['tooling']}"{cur('tooling')}>{t['tooling']}</a></li>
     <li><a class="nav-link" href="{'/fournisseurs/' if lang == 'fr' else '/en/suppliers/'}"{' aria-current="page"' if path.startswith(('/fournisseurs/', '/en/suppliers/')) else ''}>{'Fournisseurs' if lang == 'fr' else 'Suppliers'}</a></li>
     <li><a class="nav-link" href="{p['news']}"{cur('news')}>{t['news']}</a></li>
   </ul>
@@ -209,6 +210,7 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
         <li><a href="{p['prices']}">{t['prices']}</a></li>
         <li><a href="{p['used']}">{t['used']}</a></li>
         <li><a href="{p['parts']}">{t['parts']}</a></li>
+        <li><a href="{p['tooling']}">{t['tooling']}</a></li>
         <li><a href="{'/fournisseurs/' if fr else '/en/suppliers/'}">{'Fournisseurs' if fr else 'Suppliers'}</a></li>
         <li><a href="{p['news']}">{t['news']}</a></li>
         <li><a href="{p['about']}">{t['about']}</a></li>
