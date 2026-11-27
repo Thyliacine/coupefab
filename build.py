@@ -1298,6 +1298,9 @@ PRIX_FR, PRIX_EN, PRIX_META = render_prix(form_newsletter, SITE)
 from used.page import render as render_occasions  # noqa: E402
 OCCASIONS_FR, OCCASIONS_EN, OCCASIONS_META = render_occasions(SITE)
 
+from parts.page import render as render_pieces  # noqa: E402
+PIECES_FR, PIECES_EN, PIECES_META = render_pieces(SITE)
+
 PAGES = [
     # path, alt, lang, title, description, body, draft, article
     ("/", "/en/", "fr", "CoupeFab — guides plasma, occasions et prix des tôles au Québec",
@@ -1360,6 +1363,14 @@ PAGES = [
      "Sheet-metal and metal prices in Quebec: daily comparison — CoupeFab",
      "Daily comparison of published sheet, plate, bar and tube prices (steel, stainless, aluminum) from suppliers serving Quebec: $/sq ft, $/lb, calculator and gauge chart.",
      PRIX_EN, False, False),
+    ("/pieces/", "/en/parts/", "fr",
+     "Pièces et consommables CNC, plasma, laser et tôlerie — CoupeFab",
+     "Fournisseurs québécois et canadiens, guides d’usure et prix publics (électrode, buse, hublot, plaquette, outillage de plieuse), avec source et date.",
+     PIECES_FR, False, False),
+    ("/en/parts/", "/pieces/", "en",
+     "CNC, plasma, laser and fabrication parts and consumables — CoupeFab",
+     "Quebec and Canadian suppliers, wear-part guides and published prices (electrodes, nozzles, windows, inserts, press-brake tooling), with source and date.",
+     PIECES_EN, False, False),
     ("/infolettre/", "/en/newsletter/", "fr",
      "Infolettre CoupeFab",
      "Inscrivez-vous à l’infolettre CoupeFab : guides, occasions Québec et prix des tôles. Consentement LCAP / CASL.",

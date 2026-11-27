@@ -77,6 +77,7 @@ def mega_nav(lang: str, path: str) -> str:
     </li>
     <li><a class="nav-link nav-prices" href="{p['prices']}"{cur('prices')}>{t['prices']}</a></li>
     <li><a class="nav-link" href="{p['used']}"{cur('used')}>{t['used']}</a></li>
+    <li><a class="nav-link" href="{p['parts']}"{cur('parts')}>{t['parts']}</a></li>
     <li><a class="nav-link" href="{p['news']}"{cur('news')}>{t['news']}</a></li>
   </ul>
 </nav>"""
@@ -203,6 +204,7 @@ def layout(*, lang, title, description, path, alt, body, draft=False, article=Fa
       <ul>
         <li><a href="{p['prices']}">{t['prices']}</a></li>
         <li><a href="{p['used']}">{t['used']}</a></li>
+        <li><a href="{p['parts']}">{t['parts']}</a></li>
         <li><a href="{p['news']}">{t['news']}</a></li>
         <li><a href="{p['about']}">{t['about']}</a></li>
       </ul>
