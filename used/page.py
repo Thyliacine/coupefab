@@ -205,7 +205,7 @@ def card_html(it: dict, fr: bool) -> str:
     )
 
 
-def render(site="https://coupefab.vercel.app"):
+def render(site="https://coupefab.ca"):
     data = load()
     listings = data.get("listings") or []
     fx = data.get("fx") or {}
@@ -475,7 +475,7 @@ def _checklist_html(fr: bool) -> str:
 </details>"""
 
 
-def write_pages(site="https://coupefab.vercel.app"):
+def write_pages(site="https://coupefab.ca"):
     """Write the two occasions pages using the shared sitekit layout, without rebuilding the rest of the site."""
     import sitekit
     fr, en, meta = render(site)

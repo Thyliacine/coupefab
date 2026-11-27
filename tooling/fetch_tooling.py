@@ -35,7 +35,7 @@ OUT_GZ = OUT_DIR / "prices.json.gz"    # optional local cache, not pushed
 ITEM_DIR = "items"
 ITEM_BYTES = 1_500_000
 TZ = ZoneInfo("America/Toronto")
-UA = "CoupeFabPriceBot/1.0 (+https://coupefab.vercel.app/a-propos/; prix publics, une requete a la fois)"
+UA = "CoupeFabPriceBot/1.0 (+https://coupefab.ca/a-propos/; prix publics, une requete a la fois)"
 S = requests.Session()
 S.headers.update({"User-Agent": UA, "Accept": "application/json"})
 DELAY = 1.0

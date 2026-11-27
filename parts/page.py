@@ -91,7 +91,7 @@ def _guide_html(g: dict, fr: bool) -> str:
 </article>"""
 
 
-def render(site="https://coupefab.vercel.app"):
+def render(site="https://coupefab.ca"):
     catalog, prices, suppliers = load()
     items = prices.get("items") or []
     shops = suppliers.get("suppliers") or []

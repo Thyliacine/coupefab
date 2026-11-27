@@ -86,7 +86,7 @@ def write_exports(d):
     (OUT_DIR / "coupefab-prix-outillage.csv").write_text(buf.getvalue(), encoding="utf-8")
 
 
-def render(site="https://coupefab.vercel.app"):
+def render(site="https://coupefab.ca"):
     d = load()
     write_exports(d)
     items = d["items"]
