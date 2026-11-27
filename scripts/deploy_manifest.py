@@ -5,18 +5,21 @@ Recent CoupeFab production deploys unpack a single tarball:
 
     mkdir -p public && tar xzf site.tgz -C public
 
-The payload is three files under src/ (rootDirectory=src):
+The payload is a few files under src/ (rootDirectory=src):
 
     src/site.tgz
-    src/vercel.json          (scripts/vercel-deploy.json — not the repo-root vercel.json)
-    src/api/subscribe.js
+    src/vercel.json          (repo-root vercel.json + the tarball build settings)
+    src/api/*.js             (subscribe.js, supplier-submit.js, any future function)
+
+Every top-level folder holding a generated index.html is packed automatically, so new
+sections (pieces, codes-erreur, fournisseurs, conditions…) never need a manual list.
 
 This avoids the 199-file SHA manifest, which Vercel now reports as
 missing_files because current production deploys only cache the tarball.
 
 Writes /tmp/coupefab-deploy/:
   site.tgz
-  <sha>.b64 for each of the three files
+  <sha>.b64 for each file
   uploads.json
   create_deployment.json
   requestBody.json
@@ -39,7 +42,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 OUT = Path("/tmp/coupefab-deploy")
 TEAM = "team_51rPr828F5cibUCQd4qzdhyb"
-DEPLOY_VERCEL = Path(__file__).resolve().parent / "vercel-deploy.json"
+BUILD_SETTINGS = {"buildCommand": "mkdir -p public && tar xzf site.tgz -C public",
+                  "outputDirectory": "public", "installCommand": "", "framework": None}
+# source / data folders that are never served
+SOURCE_DIRS = {"content", "data", "scripts", "sitekit", "prices", "used", "parts", "suppliers",
+               "assets", "node_modules", "public", "__pycache__"}
 
 INCLUDE_TOP = [
     "index.html", "404.html", "favicon.svg", "apple-touch-icon.png",
@@ -51,9 +58,17 @@ INCLUDE_DIRS = [
 ]
 
 
+def served_dirs():
+    dirs = set(INCLUDE_DIRS)
+    for d in ROOT.iterdir():
+        if d.is_dir() and not d.name.startswith(".") and d.name not in SOURCE_DIRS and any(d.rglob("index.html")):
+            dirs.add(d.name)
+    return sorted(dirs)
+
+
 def site_files():
     out = [ROOT / n for n in INCLUDE_TOP if (ROOT / n).exists()]
-    for d in INCLUDE_DIRS:
+    for d in served_dirs():
         folder = ROOT / d
         if not folder.exists():
             continue
@@ -81,25 +96,24 @@ def main() -> None:
     site_bytes = tgz_path.read_bytes()
     (OUT / "site.tgz").write_bytes(site_bytes)
 
-    vercel_bytes = DEPLOY_VERCEL.read_bytes()
-    api_bytes = (ROOT / "api" / "subscribe.js").read_bytes()
+    vcfg = json.loads((ROOT / "vercel.json").read_text())
+    vcfg.update(BUILD_SETTINGS)
+    vercel_bytes = json.dumps(vcfg, ensure_ascii=False).encode()
 
     uploads: list[dict] = []
     refs = [
         _ref("src/site.tgz", site_bytes, uploads),
         _ref("src/vercel.json", vercel_bytes, uploads),
-        _ref("src/api/subscribe.js", api_bytes, uploads),
     ]
+    for fn in sorted((ROOT / "api").glob("*.js")):
+        refs.append(_ref(f"src/api/{fn.name}", fn.read_bytes(), uploads))
     request_body = {
         "name": "coupefab",
         "project": "coupefab",
         "target": "production",
         "files": refs,
         "projectSettings": {
-            "framework": None,
-            "buildCommand": "mkdir -p public && tar xzf site.tgz -C public",
-            "outputDirectory": "public",
-            "installCommand": "",
+            **BUILD_SETTINGS,
             "rootDirectory": "src",
         },
     }
@@ -112,7 +126,7 @@ def main() -> None:
     (OUT / "create_deployment.json").write_text(json.dumps(args, indent=1))
     (OUT / "requestBody.json").write_text(json.dumps(request_body, indent=1))
     (OUT / "uploads.json").write_text(json.dumps(uploads, indent=1))
-    print(f"site.tgz {refs[0]['size']} bytes sha={refs[0]['sha']} -> {OUT}/create_deployment.json (3 files)")
+    print(f"site.tgz {refs[0]['size']} bytes sha={refs[0]['sha']} -> {OUT}/create_deployment.json ({len(refs)} files: {', '.join(r['file'] for r in refs)}; dirs: {' '.join(served_dirs())})")
 
 
 if __name__ == "__main__":

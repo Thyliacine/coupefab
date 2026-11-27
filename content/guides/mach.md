@@ -16,6 +16,7 @@ fr_title: Mach3, Mach4 et MachPro : où en est le logiciel de commande CNC sur P
 en_title: Mach3, Mach4 and MachPro: where the PC CNC control software stands
 fr_desc: Statut actuel de Mach3 (plus mis à jour), Mach4 Hobby et Industrial (maintenance) et MachPro, rôle du contrôleur de mouvement, et ce qu’il faut vérifier avant de moderniser une vieille machine sous Mach3.
 en_desc: Current status of Mach3 (no longer updated), Mach4 Hobby and Industrial (maintenance) and MachPro, the role of the motion controller, and what to check before upgrading an old Mach3 machine.
+codes: mach
 ---
 === fr
 La famille **Mach** pilote depuis longtemps des tables plasma, routeurs et fraiseuses converties à partir d’un PC Windows. Beaucoup de machines usagées tournent encore sous Mach3 : savoir où en est le produit aide à décider entre garder, migrer ou changer de commande.

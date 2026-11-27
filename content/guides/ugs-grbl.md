@@ -16,6 +16,7 @@ fr_title: UGS et grbl : connecter, régler et lancer un travail sur un petit rou
 en_title: UGS and grbl: connect, set up and run a job on a small CNC router
 fr_desc: Universal Gcode Sender avec grbl ou grblHAL : connexion, assistant de configuration, paramètres $$, prise d’origine, déplacement manuel, zéro de travail, sonde et envoi du programme.
 en_desc: Universal Gcode Sender with grbl or grblHAL: connecting, setup wizard, $$ settings, homing, jogging, work zero, probing and sending the program.
+codes: grbl
 ---
 === fr
 **grbl** est un micrologiciel libre qui transforme une petite carte (souvent Arduino) en commande CNC ; **grblHAL** en est l’évolution pour des cartes 32 bits plus puissantes. **Universal Gcode Sender (UGS)** est l’interface libre la plus utilisée pour les piloter depuis un PC.
