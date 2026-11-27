@@ -13,11 +13,11 @@ fr_slug: aluminium-5052-6061-6063
 en_slug: aluminum-5052-6061-6063
 fr_title: Aluminium en atelier : 5052, 6061 et 6063, états (T6, H32) et comment les couper, plier, souder et usiner
 en_title: Aluminum in the shop: 5052, 6061 and 6063, tempers (T6, H32) and how to cut, bend, weld and machine them
-fr_desc: Quelle nuance pour quelle pièce : 5052-H32 pour la tôle pliée, 6061-T6 pour l’usinage et la structure, 6063 pour les profilés. Désignation des états, pliage, soudage, coupe plasma/laser et usinage, avec lien vers les prix publiés.
+fr_desc: Quel alliage pour quelle pièce : 5052-H32 pour la tôle pliée, 6061-T6 pour l’usinage et la structure, 6063 pour les profilés. Désignation des états, pliage, soudage, coupe plasma/laser et usinage, avec lien vers les prix publiés.
 en_desc: Which grade for which part: 5052-H32 for bent sheet, 6061-T6 for machining and structure, 6063 for extrusions. Temper designations, bending, welding, plasma/laser cutting and machining, linked to published prices.
 ---
 === fr
-L’aluminium d’atelier se résume souvent à trois nuances : **5052** (tôle à plier), **6061** (plaque, barres, usinage, structure) et **6063** (profilés extrudés, architecture). Les choisir correctement évite les fissures au pliage, les pièces trop molles et les surcoûts.
+L’aluminium d’atelier se résume souvent à trois alliages : **5052** (tôle à plier), **6061** (plaque, barres, usinage, structure) et **6063** (profilés extrudés, architecture). Les choisir correctement évite les fissures au pliage, les pièces trop molles et les surcoûts.
 
 ## Lire une désignation : alliage + état
 
@@ -30,7 +30,7 @@ L’aluminium d’atelier se résume souvent à trois nuances : **5052** (tôle 
 | État T | T5, T52 | Refroidi à la sortie de la presse puis vieilli (courant pour 6063 extrudé) |
 | État O | O | Recuit, le plus mou et le plus formable |
 
-## Comparatif des trois nuances
+## Comparatif des trois alliages
 
 | Critère | 5052-H32 | 6061-T6 | 6063-T5/T6 |
 |---|---|---|---|
@@ -64,7 +64,7 @@ Pour les propriétés exactes (limite élastique, allongement), utilisez les fic
 
 ## Commander
 
-- [ ] Nuance **et** état (ex. 5052-H32, 6061-T6511 pour barre détendue par étirage)
+- [ ] Alliage **et** état (ex. 5052-H32, 6061-T6511 pour barre détendue par étirage)
 - [ ] Épaisseur en décimale (les calibres aluminium suivent Brown & Sharpe, voir [[sheet-gauges]])
 - [ ] Film protecteur si la face est visible
 - [ ] Certificat d’usine si la pièce est structurale
@@ -89,7 +89,7 @@ Non : il ne durcit pas par traitement thermique, seulement par écrouissage (ét
 
 ## À valider en atelier (Michaël)
 
-- Les nuances et états que vous tenez en stock et leurs rayons de pliage minimaux pratiques.
+- Les alliages et états que vous tenez en stock et leurs rayons de pliage minimaux pratiques.
 
 ## Sources
 

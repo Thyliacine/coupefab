@@ -48,7 +48,7 @@ En pliage **en l’air** sur presse plieuse, le rayon intérieur n’est pas cel
 
 ## Retrouver votre K-factor réel (pli d’essai)
 
-1. **Couper une bande** de longueur développée connue L (mesurez-la précisément), dans la nuance et l’épaisseur visées.
+1. **Couper une bande** de longueur développée connue L (mesurez-la précisément), dans le grade et l’épaisseur visés.
 2. **Plier à 90°** avec l’outillage de production.
 3. **Mesurer** les deux ailes à l’extérieur (jusqu’à l’intersection des faces extérieures prolongées) : a et b. Mesurez aussi le rayon intérieur réel R (jauge de rayon).
 4. **Calculer** BD = a + b − L.

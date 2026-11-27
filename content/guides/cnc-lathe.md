@@ -46,7 +46,7 @@ Une plaquette a un rayon de bec (0,4 ; 0,8 mm…). Sans compensation, les cônes
 
 ## Choisir la plaquette
 
-Le code ISO des plaquettes (par exemple CNMG 120408) décrit forme, angle de dépouille, tolérance, type, taille, épaisseur et rayon de bec. Le **brise-copeaux** et la **nuance** se choisissent dans le catalogue du fabricant selon la matière (groupes ISO P, M, K, N…) et l’opération (ébauche, finition).
+Le code ISO des plaquettes (par exemple CNMG 120408) décrit forme, angle de dépouille, tolérance, type, taille, épaisseur et rayon de bec. Le **brise-copeaux** et le **grade de carbure** se choisissent dans le catalogue du fabricant selon la matière (groupes ISO P, M, K, N…) et l’opération (ébauche, finition).
 
 ## Filetage
 
@@ -58,6 +58,16 @@ Le cycle de filetage (`G76` sur beaucoup de commandes) synchronise l’avance av
 - Corriger la géométrie au lieu de l’usure.
 - Pas de compensation de rayon de bec sur un cône précis.
 - Pièce trop sortie des mors sans contre-pointe.
+
+## Liste de vérification
+
+- [ ] Limite de régime programmée avec G96 et compatible avec le mandrin et les mors
+- [ ] Mode diamètre ou rayon confirmé pour X
+- [ ] Correcteurs de géométrie mesurés ; corrections faites dans l’**usure**
+- [ ] Rayon de bec et orientation saisis ; compensation active sur cônes et rayons
+- [ ] Plaquette, brise-copeaux et grade de carbure adaptés à la matière
+- [ ] Filetage en régime constant (G97), cycle du post de **votre** commande
+- [ ] Porte-à-faux de la pièce raisonnable, contre-pointe si nécessaire
 
 ## FAQ
 
@@ -112,6 +122,16 @@ The threading cycle (`G76` on many controls) syncs feed with the spindle. Parame
 - Correcting geometry instead of wear.
 - No nose radius compensation on a precise taper.
 - Part sticking too far out of the jaws without a tailstock.
+
+## Checklist
+
+- [ ] Spindle speed limit programmed with G96 and within the chuck and jaw rating
+- [ ] Diameter or radius mode confirmed for X
+- [ ] Geometry offsets measured; corrections made in **wear**
+- [ ] Nose radius and orientation entered; compensation on for tapers and radii
+- [ ] Insert, chipbreaker and carbide grade suited to the material
+- [ ] Threading at constant rpm (G97), cycle from **your** control’s post
+- [ ] Reasonable part stick-out, tailstock if needed
 
 ## FAQ
 
