@@ -105,6 +105,7 @@ def render(form_newsletter=None):
     <h2 id="sp-submit-h">{L("Ajoutez vos prix", "Add your prices")}</h2>
     <p>{L("Envoyez votre liste de prix (PDF, CSV ou Excel) ou le lien vers vos prix en ligne. Après vérification manuelle par CoupeFab, vos prix entrent dans le comparateur avec la mention « Prix vérifiés » et un lien vers votre site.",
           "Send your price list (PDF, CSV or Excel) or a link to your online prices. Once CoupeFab has reviewed it by hand, your prices join the price tool with a “Verified prices” badge and a link to your website.")}</p>
+    <p class="sp-brochure"><a class="btn-ghost" href="{L("/fournisseurs/envoyer-brochure/", "/en/suppliers/send-brochure/")}">{L("Envoyer une brochure ou une liste de prix (10 Mo)", "Send a brochure or price list (10 MB)")} →</a></p>
     <ul class="sp-perks">
       <li>{L("Badge « Prix vérifiés » sur votre fiche et dans le comparateur", "“Verified prices” badge on your listing and in the price tool")}</li>
       <li>{L("Lien direct vers votre site (sans paramètre d’affiliation)", "Direct link to your website (no affiliate parameters)")}</li>
