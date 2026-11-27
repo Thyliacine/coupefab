@@ -2,7 +2,7 @@
 id: materials-grades
 hub: materials
 order: 40
-nav: Nuances de métaux | Metal grades
+nav: Grades de métaux | Metal grades
 kicker: Fondamentaux · matériaux | Fundamentals · materials
 level: debutant
 schema: Article
@@ -11,27 +11,30 @@ related: feeds-speeds, plasma-cutting, bend-allowance, nesting
 prices: yes
 fr_slug: nuances-metaux
 en_slug: metal-grades
-fr_title: Nuances de métaux en atelier : acier, inox, aluminium, cuivre, laiton, bronze
+fr_title: Grades et alliages de métaux en atelier : acier, inox, aluminium, cuivre, laiton, bronze
 en_title: Metal grades in the shop: steel, stainless, aluminum, copper, brass, bronze
-fr_desc: A36, 44W, 1018, 4140, A500, 304, 316, 17-4PH, 5052, 6061, C110, C360, C932 : à quoi sert chaque nuance, comment elle se coupe, se plie, se soude et s’usine, avec lien vers les prix publiés.
+fr_desc: A36, 44W, 1018, 4140, A500, 304, 316, 17-4PH, 5052, 6061, C110, C360, C932 : à quoi sert chaque grade, comment il se coupe, se plie, se soude et s’usine, avec lien vers les prix publiés.
 en_desc: A36, 44W, 1018, 4140, A500, 304, 316, 17-4PH, 5052, 6061, C110, C360, C932: what each grade is for, how it cuts, bends, welds and machines, linked to published prices.
 ---
 === fr
 Ce guide suit le catalogue d’un atelier québécois réel (celui que suit notre [comparateur de prix](/prix/)) : aciers au carbone et alliés, aciers de construction, inox, aluminium et alliages cuivreux. Les propriétés mécaniques exactes viennent des normes (ASTM, CSA, AA) et des certificats d’usine (*mill certs*) ; ici, on parle d’usage et de comportement en atelier.
 
+> [!NOTE]
+> **« Grade », c’est quoi ?** C’est le nom précis du métal commandé : A36 ou 44W pour l’acier de construction, 304 ou 316 pour l’inox, 5052 ou 6061 pour l’aluminium. Pour l’aluminium et le cuivre, on dit aussi **alliage**. Les normes françaises écrivent « nuance » ; en atelier au Québec, on dit « grade ». C’est la même chose.
+
 ## Aciers de construction (profilés, plaques, tubes)
 
-| Nuance | Norme | Où on la voit | En atelier |
+| Grade | Norme | Où on le voit | En atelier |
 |---|---|---|---|
 | A36 | ASTM A36 | Plaque, profilés, barres plates | Le « acier doux » de référence : soudable, se coupe bien au plasma et à l’oxycoupage |
-| 44W / 50W | CSA G40.21 | Plaque et profilés au Canada | Le chiffre est la limite élastique minimale en ksi (44 ou 50) ; nuance canadienne courante en charpente |
+| 44W / 50W | CSA G40.21 | Plaque et profilés au Canada | Le chiffre est la limite élastique minimale en ksi (44 ou 50) ; grade canadien courant en charpente |
 | A500 gr. B / C | ASTM A500 | Tubes structuraux (HSS) carrés, rectangulaires, ronds | Formé à froid, soudé ; gr. C plus résistant |
 | A53 / A106 | ASTM A53, A106 | Tuyau | A106 pour service haute température ; souvent vendu au tuyau, pas à la tôle |
 | A513 / A519 | ASTM A513, A519 | Tube mécanique (DOM, sans soudure) | Tolérances plus serrées que le structural |
 
 ## Aciers au carbone et alliés (barres, usinage)
 
-| Nuance | Caractère | Usage typique |
+| Grade | Caractère | Usage typique |
 |---|---|---|
 | 1018 / 1020 | Bas carbone, usinable, soudable | Pièces usinées générales, gabarits ; « CR » = laminé à froid (fini et tolérance meilleurs), « HR » = laminé à chaud |
 | 1045 | Carbone moyen | Arbres, pièces plus résistantes ; trempe possible |
@@ -43,7 +46,7 @@ Ce guide suit le catalogue d’un atelier québécois réel (celui que suit notr
 
 ## Inox
 
-| Nuance | Famille | En atelier |
+| Grade | Famille | En atelier |
 |---|---|---|
 | 304 / 304L | Austénitique 18-8 | La plus courante ; « L » = bas carbone, meilleure après soudage ; s’écrouit à l’usinage |
 | 316 / 316L | Austénitique au molybdène | Meilleure résistance aux chlorures (milieu marin, alimentaire, chimique) |
@@ -56,10 +59,10 @@ Au plasma, l’inox se coupe idéalement avec les gaz et consommables prévus pa
 
 ## Aluminium
 
-| Nuance | Caractère | Usage typique |
+| Grade | Caractère | Usage typique |
 |---|---|---|
 | 3003 | Non traitable, très formable | Tôlerie légère, carters, réservoirs simples |
-| 5052 (souvent H32) | Non traitable, bonne résistance à la corrosion | **La** nuance de tôle pliée : se plie bien, se soude bien |
+| 5052 (souvent H32) | Non traitable, bonne résistance à la corrosion | **Le** grade de tôle pliée : se plie bien, se soude bien |
 | 6061 (souvent T6) | Traitable thermiquement | Plaques et barres usinées, structure ; se plie mal à rayon serré à l’état T6 |
 | 6063 | Traitable, extrusion | Profilés architecturaux |
 
@@ -67,7 +70,7 @@ Au plasma, l’inox se coupe idéalement avec les gaz et consommables prévus pa
 
 ## Cuivre, laiton, bronze
 
-| Nuance | Nom courant | En atelier |
+| Grade | Nom courant | En atelier |
 |---|---|---|
 | C110 | Cuivre ETP | Conducteur électrique (barres omnibus) ; gommeux à l’usinage ; réfléchit fortement le laser |
 | C360 | Laiton de décolletage | Référence d’usinabilité ; raccords, pièces tournées |
@@ -84,14 +87,14 @@ Au plasma, l’inox se coupe idéalement avec les gaz et consommables prévus pa
 ## FAQ
 
 ### A36 ou 44W ?
-Les deux sont des aciers de construction courants ; 44W est la nuance CSA canadienne, A36 la nuance ASTM. Beaucoup de produits sont certifiés aux deux (double certification) : vérifiez le certificat.
+Les deux sont des aciers de construction courants ; 44W est le grade CSA canadien, A36 le grade ASTM. Beaucoup de produits sont certifiés aux deux (double certification) : vérifiez le certificat.
 
 ### Pourquoi l’inox « colle » à l’usinage ?
 Les austénitiques (304, 316) s’écrouissent : un outil qui frotte durcit la surface. Copeau suffisant, outil affûté, pas d’arrêt en pleine coupe. Voir [Avances et vitesses](/guides/avances-vitesses/).
 
 ## À valider en atelier (Michaël)
 
-- Les nuances les plus demandées dans votre atelier et vos remarques d’usage.
+- Les grades les plus demandés dans votre atelier et vos remarques d’usage.
 - Les doubles certifications courantes chez vos fournisseurs.
 
 ## Sources

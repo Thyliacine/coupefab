@@ -16,6 +16,7 @@ fr_title: LinuxCNC et QtPlasmaC : commande libre pour table plasma, avec contrô
 en_title: LinuxCNC and QtPlasmaC: open-source control for plasma tables, with height control
 fr_desc: Ce qu’est LinuxCNC, le matériel habituel (cartes Mesa), l’interface QtPlasmaC pour le plasma, son contrôle de hauteur (THC), le seuil anti-plongée VAD et la démarche de mise en service.
 en_desc: What LinuxCNC is, typical hardware (Mesa cards), the QtPlasmaC interface for plasma, its torch height control (THC), the VAD anti-dive threshold and the commissioning steps.
+codes: linuxcnc
 ---
 === fr
 **LinuxCNC** est un logiciel de commande CNC **libre** qui génère les mouvements en temps réel. Il pilote fraiseuses, tours, routeurs et tables plasma. **QtPlasmaC** est son interface dédiée au plasma, intégrée à la distribution.
