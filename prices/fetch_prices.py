@@ -172,7 +172,8 @@ def make_row(*, supplier, text, price, currency, url, fx, unit="each", form_hint
         row["price_per_ft_cad"] = price_cad
     if weight_lb:
         row["weight_lb"] = round(weight_lb, 2)
-        if unit == "each":
+        # weight_lb is the mass of the priced unit (per piece if unit=each, per foot if unit=ft)
+        if unit in ("each", "ft") and not row["price_per_lb_cad"]:
             row["price_per_lb_cad"] = round(price_cad / weight_lb, 3)
     if row["price_per_lb_cad"]:
         row["price_per_kg_cad"] = round(row["price_per_lb_cad"] * 2.20462, 3)
@@ -295,6 +296,11 @@ SUPPLIERS = {
                "shipping": "Quincaillerie H. Paulin : petites barres, cornières et feuilles. Expédition par transporteur (tarifs au panier) ou cueillette à Barrie et Calgary.",
                "shipping_en": "H. Paulin hardware-store stock: small bars, angles and sheets. Carrier shipping (rates at checkout) or pickup in Barrie and Calgary.",
                "method": "Pages catégorie publiques (prix CAD affichés)"},
+    "metalpros": {"id": "metalpros", "name": "Metal Pros", "city": "Ottawa (ON)", "region": "CA",
+                  "site": "https://www.metalpros.com", "currency": "CAD", "ships_qc": "oui",
+                  "shipping": "Entrepôt à Ottawa; livraison partout au Canada (frais en sus). Prix du catalogue public au pied ou au pi²; coupe et autres frais en sus. Chutes / offcuts et lots aléatoires non ajoutés (surplus).",
+                  "shipping_en": "Warehouse in Ottawa; ships across Canada (freight extra). Public catalogue prices per foot or per sq ft; cutting and other fees extra. Offcuts and random-length bundles not added (surplus).",
+                  "method": "Outil de prix public (quote.metalpros.com) : GET /api/materials/getdbmaterial, le même que la page catalogue"},
 }
 
 # Suppliers we checked that do not publish prices, or that we cannot read politely.
@@ -330,12 +336,13 @@ SUPPLIERS_STATIC = [
     {"name": "Speedy Metals", "city": "É.-U.", "status": "bloque",
      "url": "https://www.speedymetals.com/", "note": "Prix publics sur le site, mais connexion refusée à notre robot : non lu, pas de contournement.", "note_en": "Public prices on the site, but connection refused to our bot: not read, no workaround."},
     {"name": "Home Depot Canada", "city": "Magasins QC", "status": "bloque",
-     "url": "https://www.homedepot.ca/", "note": "Protection anti-robot (aucune réponse) : non lu.", "note_en": "Bot protection (no response): not read."},
+     "url": "https://www.homedepot.ca/", "note": "Protection anti-robot (aucune réponse) : non lu, pas de contournement. Pas de catalogue PDF de métal en stock trouvé; les extraits des moteurs de recherche ne sont pas ingérés.",
+     "note_en": "Bot protection (no response): not read, no workaround. No metal-stock price-list PDF found; search-engine snippets are not ingested."},
     {"name": "Cangard Supplies", "city": "Canada", "status": "bloque",
      "url": "https://cangardsupplies.com/", "note": "robots.txt interdit les robots génériques : non lu.", "note_en": "robots.txt disallows generic bots: not read."},
     {"name": "RONA / Lowe’s / BMR", "city": "Magasins QC", "status": "bloque",
-     "url": "https://www.rona.ca/", "note": "Prix publics, mais protection anti-robot (RONA et Lowe’s refusent la connexion, BMR répond 403) : non lus, pas de contournement.",
-     "note_en": "Public prices, but bot protection (RONA and Lowe’s refuse the connection, BMR answers 403): not read, no workaround."},
+     "url": "https://www.rona.ca/", "note": "Prix publics, mais protection anti-robot (RONA et Lowe’s refusent la connexion, BMR répond 403) : non lus, pas de contournement. Pas de catalogue PDF de métal en stock trouvé.",
+     "note_en": "Public prices, but bot protection (RONA and Lowe’s refuse the connection, BMR answers 403): not read, no workaround. No metal-stock price-list PDF found."},
     {"name": "Canac", "city": "Magasins QC", "status": "bloque",
      "url": "https://www.canac.ca/", "note": "robots.txt interdit les pages produits (/canac/fr/) : non lu.",
      "note_en": "robots.txt disallows product pages (/canac/fr/): not read."},
@@ -348,9 +355,6 @@ SUPPLIERS_STATIC = [
     {"name": "Public Metal", "city": "Welland (ON)", "status": "non_couvert",
      "url": "https://publicmetal.ca/", "note": "≈1 500 prix publics, mais l’unité (pied? barre?) n’est indiquée nulle part : non ajoutés plutôt que deviner.",
      "note_en": "≈1,500 public prices, but the unit (per foot? per bar?) is not stated anywhere: not added rather than guess."},
-    {"name": "Metal Pros", "city": "Ottawa (ON)", "status": "bloque",
-     "url": "https://www.metalpros.com/", "note": "Outil de prix en ligne (quote.metalpros.com) en erreur HTTP 500 pour notre robot : non lu.",
-     "note_en": "Online pricing tool (quote.metalpros.com) returns HTTP 500 to our bot: not read."},
     {"name": "Amazon.ca", "city": "En ligne", "status": "non_couvert",
      "url": "https://www.amazon.ca/", "note": "Pas d’aspiration (conditions d’Amazon). Liens affiliés possibles plus tard, si approuvés.",
      "note_en": "Not scraped (Amazon terms). Affiliate links possible later, if approved."},
@@ -369,6 +373,15 @@ SUPPLIERS_STATIC = [
     {"name": "ArcelorMittal Dofasco", "city": "Hamilton (ON) — usine", "status": "non_couvert",
      "url": "https://ec.dofasco.ca/EC-B2B-Public-Files/Price%20Book%20-%20ENGLISH.pdf", "note": "Livre « Products & Prices » public (en vigueur 1er janv. 2027) : extra en CAD/cwt FOB usine pour bobines (commande typique ≥ 2 master coils). Pas de prix de base publié, donc pas un prix de tôle au détail comparable.",
      "note_en": "Public ‘Products & Prices’ book (effective 1 Jan 2027): CAD/cwt extras FOB mill for coils (typical order ≥ 2 master coils). No published base selling price, so not a comparable retail sheet price."},
+    {"name": "AQM / Acier Majeau", "city": "Québec", "status": "sur_demande",
+     "url": "https://www.aciermajeau.com/", "note": "Carnet de références (éd. 2, 2008/2020) : guide de dimensions et de poids, aucun prix de vente. Prix sur soumission.",
+     "note_en": "Reference handbook (ed. 2, 2008/2020): size and weight guide, no selling prices. Quote only."},
+    {"name": "Fraser Valley Steel & Wire", "city": "Abbotsford (C.-B.)", "status": "bloque",
+     "url": "https://fvstar.ca/wp-content/uploads/2026/06/SteelProductsCatalog_v2026.4.pdf", "note": "Catalogue produits 2026 annoncé (dimensions/poids, pas une liste de prix). Notre GET du catalogue et du guide de référence PDF (FVSTAR_SteelRefGuide_v2.0.pdf) a reçu HTTP 202 (défi) : non contourné. Liste mensuelle de rebar sur demande seulement.",
+     "note_en": "2026 product catalog is advertised (sizes/weights, not a price list). Our GET of the catalog and of the reference-guide PDF (FVSTAR_SteelRefGuide_v2.0.pdf) received HTTP 202 (challenge): not bypassed. Monthly rebar list is request-only."},
+    {"name": "Nova Metals Ltd", "city": "Stony Plain (AB)", "status": "sur_demande",
+     "url": "https://novametals.ca/", "note": "Fourniture de métal sur place, aucun catalogue ou prix public. À ne pas confondre avec l’atelier Novametal de Lévis (QC).",
+     "note_en": "Walk-in metal supply, no public catalog or prices. Not the Novametal machine shop in Lévis, QC."},
 ]
 
 MRU_COLLECTIONS = [
@@ -1124,6 +1137,189 @@ def fetch_cobalt(fx, quick=False):
     return rows
 
 
+MP_MATERIALS = [
+    "ALUMINUM", "BRASS", "BRONZE", "CHROME", "COPPER", "GALVANIZED/ SATIN",
+    "STAINLESS", "STEEL", "TOOL/ KNIFE MAKING",
+]
+MP_SKIP = re.compile(
+    r"NO AVAILABILITY|NOT AVAILABLE|\*{0,2}OFFCUT\b|HONEYCOMB|GRATING|GRIP STRUT|SHUR GRIP|LADDER RUNGS",
+    re.I,
+)
+_MP_DIM = re.compile(r"(\d+(?:\.\d+)?)\s*(mm\b|\")", re.I)
+
+
+def _mp_num(text, *labels):
+    for lab in labels:
+        m = re.search(r"(\d+(?:\.\d+)?)\s*(mm\b|\"?)\s*" + lab, text, re.I)
+        if m:
+            v = float(m.group(1))
+            if (m.group(2) or "").lower().startswith("mm"):
+                v /= 25.4
+            return v
+    return None
+
+
+def _mp_nums(text):
+    out = []
+    for m in _MP_DIM.finditer(text):
+        v = float(m.group(1))
+        if m.group(2).lower().startswith("mm"):
+            v /= 25.4
+        out.append(v)
+    return out
+
+
+def _mp_dims(desc, form):
+    """Parse published inches (or mm) into thickness / size_label / weight-per-foot args."""
+    nums = _mp_nums(desc)
+    dia = _mp_num(desc, r"DIA\.?")
+    af = _mp_num(desc, r"ACROSS\s+FLATS")
+    od = _mp_num(desc, r"OD")
+    id_ = _mp_num(desc, r"ID")
+    wall = _mp_num(desc, r"WALL")
+    thick = _mp_num(desc, r"THICK")
+    weight_args = {}
+    thickness_in = None
+    width_in = None
+    size_label = ""
+    if form in ("tole", "plaque", "feuille"):
+        thickness_in = thick or (nums[-1] if nums else None)
+        if thickness_in:
+            size_label = f"{thickness_in:g} po"
+    elif form == "barre_ronde":
+        dia = dia or (nums[0] if nums else None)
+        if dia:
+            thickness_in = dia
+            size_label = f"{dia:g} po dia"
+            weight_args = {"dia": dia}
+    elif form == "barre_hex":
+        af = af or (nums[0] if nums else None)
+        if af:
+            thickness_in = af
+            size_label = f"{af:g} po plats"
+            weight_args = {"af": af}
+    elif form in ("barre_plate", "barre_carree"):
+        if len(nums) >= 2:
+            thickness_in, width_in = nums[0], nums[1]
+            size_label = f"{thickness_in:g} × {width_in:g} po"
+            weight_args = {"t": thickness_in, "w": width_in}
+        elif len(nums) == 1 and form == "barre_carree":
+            thickness_in = width_in = nums[0]
+            size_label = f"{thickness_in:g} × {width_in:g} po"
+            weight_args = {"t": thickness_in, "w": width_in}
+    elif form == "corniere" and len(nums) >= 3:
+        leg1, leg2, thk = nums[0], nums[1], nums[2]
+        thickness_in = thk
+        size_label = f"{leg1:g} × {leg2:g} × {thk:g} po"
+        weight_args = {"leg1": leg1, "leg2": leg2, "t": thk}
+    elif form in ("tube_rond", "tuyau"):
+        if od and (id_ or wall):
+            thickness_in = wall or ((od - id_) / 2 if id_ else None)
+            parts = [f"{od:g} po OD"]
+            if id_:
+                parts.append(f"{id_:g} po ID")
+            if wall:
+                parts.append(f"paroi {wall:g} po")
+            size_label = ", ".join(parts)
+            weight_args = {"od": od, "id_": id_, "wall": wall}
+        elif len(nums) >= 2:
+            od, id_ = nums[0], nums[1]
+            wall = nums[2] if len(nums) >= 3 else (od - id_) / 2
+            thickness_in = wall
+            size_label = f"{od:g} po OD, {id_:g} po ID"
+            weight_args = {"od": od, "id_": id_, "wall": wall}
+    elif form == "tube_carre" and len(nums) >= 3:
+        w, _, wall = nums[0], nums[1], nums[2]
+        thickness_in = wall
+        size_label = f"{nums[0]:g} × {nums[1]:g} × {wall:g} po"
+        weight_args = {"w": w, "wall": wall}
+    elif form == "tube_rect" and len(nums) >= 3:
+        w, h, wall = nums[0], nums[1], nums[2]
+        thickness_in = wall
+        size_label = f"{w:g} × {h:g} × {wall:g} po"
+        weight_args = {"w": w, "h": h, "wall": wall}
+    elif nums:
+        size_label = " × ".join(f"{n:g}" for n in nums[:4]) + " po"
+        thickness_in = nums[-1] if form in ("tole", "plaque") else nums[0]
+    return thickness_in, width_in, size_label, weight_args
+
+
+def _mp_price(val):
+    try:
+        t = str(val or "").replace(",", "").strip()
+        m = re.match(r"-?\d+(?:\.\d+)?", t)
+        return float(m.group(0)) if m else 0.0
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def fetch_metalpros(fx, quick=False):
+    """Public quote-tool catalogue: GET /api/materials/getdbmaterial (no POST)."""
+    from urllib.parse import quote, urlencode
+    sup = SUPPLIERS["metalpros"]
+    quote_home = "https://quote.metalpros.com/"
+    page = get(quote_home)
+    m = re.search(r'data-version=["\']([^"\']+)["\']', page.text)
+    ver = m.group(1) if m else ""
+    mats = MP_MATERIALS[:2] if quick else MP_MATERIALS
+    rows, seen = [], set()
+    for material in mats:
+        params = {"material": material}
+        if ver:
+            params["v"] = ver
+        url = "https://quote.metalpros.com/api/materials/getdbmaterial?" + urlencode(params)
+        data = get(url, timeout=60).json()
+        for item in data.get("results") or []:
+            iid = item.get("id")
+            if iid in seen:
+                continue
+            seen.add(iid)
+            desc = html.unescape(str(item.get("description") or "")).strip()
+            unit_raw = str(item.get("unit") or "").strip().lower()
+            price = _mp_price(item.get("price"))
+            if not desc or price <= 0 or MP_SKIP.search(desc):
+                continue
+            if N.EXCLUDE.search(desc):
+                continue
+            if unit_raw == "sq ft":
+                if not re.search(r"\b(sheet|plate|sht|t[ôo]le|plaque)\b", desc, re.I):
+                    continue
+                unit = "sqft"
+            elif unit_raw == "ft":
+                unit = "ft"
+            else:
+                # Offcuts (PC), random bundles (BDL) and specialty each-pieces are not regular stock.
+                continue
+            form = N.detect_form(desc)
+            if not form:
+                continue
+            thickness_in, width_in, size_label, wargs = _mp_dims(desc, form)
+            # "SHEET 7.000\"" is not a usable thickness (likely a typo or a different field).
+            if (re.search(r"\bsheet\b", desc, re.I) and not re.search(r"\bplate\b", desc, re.I)
+                    and thickness_in and thickness_in > 1.01):
+                continue
+            family = N.detect_family(desc)
+            weight_lb = N.weight_per_ft_lb(family, form, **wargs) if (unit == "ft" and family and wargs) else None
+            stock = _mp_price(item.get("stock"))
+            sku = item.get("internalId") or iid
+            purl = f"https://quote.metalpros.com/?search={quote(str(sku))}"
+            r = make_row(
+                supplier=sup, text=desc, price=price, currency="CAD", url=purl, fx=fx,
+                unit=unit, form_hint="", family=family, thickness_in=thickness_in,
+                width_in=width_in, size_label=size_label or desc, weight_lb=weight_lb,
+                availability="en stock" if stock > 0 else "stock 0",
+                source_updated=f"catalogue en ligne {ver}" if ver else "",
+                notes="Prix catalogue public (au pied ou au pi²); coupe en sus",
+            )
+            # Drop derived $/lb that can only be a placeholder or a bad size parse
+            # (e.g. $1.00/ft on 7.5" DOM, $31/ft on 14" stainless), not typical retail.
+            if r and r.get("price_per_lb_cad") is not None and r["price_per_lb_cad"] < 1.00:
+                continue
+            if r:
+                rows.append(r)
+    return rows
+
+
 FETCHERS = {
     "metalsrus": fetch_metalsrus, "metalsdepot": fetch_metalsdepot, "unitedstainless": fetch_unitedstainless,
     "mercier40": fetch_mercier40, "princessauto": fetch_princessauto, "millennium": fetch_millennium,
@@ -1132,6 +1328,7 @@ FETCHERS = {
     "acierterrebonne": fetch_acierterrebonne, "wemachine": fetch_wemachine, "smithmetal": fetch_smithmetal,
     "optikutz": fetch_optikutz, "recyborg": fetch_recyborg, "lasersupply": fetch_lasersupply,
     "aircraftspruce": fetch_aircraftspruce, "cobalt": fetch_cobalt,
+    "metalpros": fetch_metalpros,
 }
 # Weekly set (bars/tubes, many requests): on a daily run their rows are kept from the last weekly run.
 WEEKLY = {"acierterrebonne", "recyborg"}

@@ -4,6 +4,7 @@ Nothing here invents a price. These helpers only interpret text that a supplier
 published (thickness, grade, size) and compute derived units ($/lb, $/sq ft)
 from the published price and standard densities.
 """
+import math
 import re
 from fractions import Fraction
 
@@ -73,9 +74,9 @@ def detect_family(text: str):
     t = text.lower()
     if re.search(r"alum\w* bronze|bronze d.?alu|c954", t):
         return "bronze_alu"
-    if re.search(r"stainless|inox|\bss\b|inconel|17-4|\b30[34]l?\b|\b316l?\b", t):
+    if re.search(r"st\.?\s*st\.?|stainless|inox|\bss\b|inconel|17-4|\b30[34]l?\b|\b316l?\b", t):
         return "inox"
-    if re.search(r"alumin", t):
+    if re.search(r"alumin|\balum\b", t):
         return "aluminium"
     if re.search(r"copper|cuivre|\bc110\b", t):
         return "cuivre"
@@ -176,7 +177,7 @@ def detect_form(text: str, hint: str = ""):
         return "barre_hex"
     if re.search(r"round bar|barre ronde|\bround\b|drill rod|rod\b|chrome", t):
         return "barre_ronde"
-    if re.search(r"sheet|plate|plaque|t[ôo]le|feuille", t):
+    if re.search(r"sheet|plate|plaque|t[ôo]le|feuille|\bsht\b", t):
         return "feuille"  # resolved to tole/plaque by thickness
     return None
 
@@ -242,6 +243,38 @@ def sheet_weight_lb(family, thk_in, w_in, l_in):
     if not (thk_in and w_in and l_in):
         return None
     return DENSITY[family] * thk_in * w_in * l_in
+
+
+def weight_per_ft_lb(family, form, *, dia=None, af=None, t=None, w=None, h=None,
+                     od=None, id_=None, wall=None, leg1=None, leg2=None):
+    """Pounds per linear foot from published cross-section and standard density."""
+    dens = DENSITY.get(family)
+    if not dens:
+        return None
+    area = None
+    if form == "barre_ronde" and dia:
+        area = math.pi * (dia / 2) ** 2
+    elif form == "barre_hex" and af:
+        area = (math.sqrt(3) / 2) * af ** 2
+    elif form in ("barre_plate", "barre_carree") and t and w:
+        area = t * w
+    elif form == "corniere" and leg1 and leg2 and t:
+        area = (leg1 + leg2 - t) * t
+    elif form in ("tube_rond", "tuyau") and od and (id_ or wall):
+        inner = id_ if id_ is not None else (od - 2 * wall)
+        if inner is not None and 0 < inner < od:
+            area = math.pi / 4 * (od ** 2 - inner ** 2)
+    elif form == "tube_carre" and w and wall:
+        inner = w - 2 * wall
+        if inner > 0:
+            area = w * w - inner * inner
+    elif form == "tube_rect" and w and h and wall:
+        iw, ih = w - 2 * wall, h - 2 * wall
+        if iw > 0 and ih > 0:
+            area = w * h - iw * ih
+    if not area or area <= 0:
+        return None
+    return dens * area * 12
 
 
 def fmt_frac(x):
