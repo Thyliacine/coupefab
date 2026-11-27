@@ -136,7 +136,7 @@
         form.machine.value = id;
         form.dispatchEvent(new Event("change"));
       }
-      $all(".pc-mcard", app).forEach(function (b) { b.classList.toggle("is-on", b === btn); });
+      $all(".pc-mcard", app).forEach(function (b) { b.classList.toggle("is-on", b === btn); b.setAttribute("aria-pressed", b === btn ? "true" : "false"); });
     });
   });
 
@@ -201,7 +201,8 @@
         if (ok) n++;
       });
       $all(".pc-mcard", app).forEach(function (b) {
-        b.classList.toggle("is-on", machine && b.getAttribute("data-machine") === machine);
+        var on = !!machine && b.getAttribute("data-machine") === machine;
+        b.classList.toggle("is-on", on); b.setAttribute("aria-pressed", on ? "true" : "false");
       });
       if (count) {
         count.textContent = fr

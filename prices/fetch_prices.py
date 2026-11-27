@@ -8,7 +8,8 @@ Polite by design:
   * one request at a time with a delay between requests.
 
 Writes:
-  data/prices/latest.json             all normalized rows + supplier status + FX
+  data/prices/latest.json             supplier status + FX + list of row shards (prices/store.py)
+  data/prices/latest-rows/*.jsonl     all normalized rows, one per line, ≤ 4 MB per shard
   data/prices/history/YYYY-MM.csv    dated price log (new rows + every price/stock change)
   data/prices/index.csv               daily median CAD $/lb per family/form (trend chart)
 
@@ -36,6 +37,7 @@ from bs4 import BeautifulSoup
 sys.path.insert(0, str(Path(__file__).parent))
 import normalize as N  # noqa: E402
 import fetch_more as M  # noqa: E402
+from store import read_latest, write_latest  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "prices"
@@ -1408,7 +1410,7 @@ def main():
     today = dt.datetime.now(TZ).date().isoformat()
     prev = {}
     if (OUT / "latest.json").exists():
-        prev = json.loads((OUT / "latest.json").read_text())
+        prev = read_latest(OUT)
     global WITH_BARS
     WITH_BARS = args.with_bars
     if args.rederive:
@@ -1426,7 +1428,7 @@ def main():
                         r["weight_lb"] = round(wl, 2)
                         r["price_per_lb_cad"] = round(r["price_cad"] / wl, 3)
                         r["price_per_kg_cad"] = round(r["price_per_lb_cad"] * 2.20462, 3)
-        (OUT / "latest.json").write_text(dump_latest(prev))
+        write_latest(OUT, prev)
         print(f"rederived {n} rows")
         return
     fx = fx_usdcad()
@@ -1456,7 +1458,7 @@ def main():
     latest = {"generated_at": now_iso(), "date": today, "fx": fx, "suppliers": SUPPLIERS,
               "suppliers_static": SUPPLIERS_STATIC, "status": status, "catalogue": N.CATALOGUE,
               "rows": all_rows}
-    (OUT / "latest.json").write_text(dump_latest(latest))
+    write_latest(OUT, latest)
     write_history(prev.get("rows", []), all_rows, today)
     write_index(all_rows, today)
     print(f"total {len(all_rows)} rows -> {OUT/'latest.json'}")

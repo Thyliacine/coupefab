@@ -11,6 +11,7 @@ import statistics
 from pathlib import Path
 
 from . import normalize as N
+from .store import read_latest
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "prices"
@@ -101,7 +102,7 @@ def spec_dims(r):
 
 
 def load():
-    latest = json.loads((DATA / "latest.json").read_text())
+    latest = read_latest(DATA)
     rows = latest["rows"]
     sup = latest["suppliers"]
     # sanity band on computed $/lb for sheet & plate (bars are cut pieces: no band)
@@ -553,6 +554,7 @@ def render(form_newsletter, site):
   <div class="px-results-head">
     <h2 class="px-h2" id="px-results-title">{L("Tous les prix", "All prices")}</h2>
     <p class="px-count" id="px-count" aria-live="polite"></p>
+    <p class="cf-showing" id="px-showing"></p>
     <div class="px-tools">
       <label class="px-check"><input type="checkbox" name="qc" form="px-search" checked> {L("Achetable au Québec", "Buyable in Quebec")}</label>
       <label class="px-check"><input type="checkbox" name="cmp" form="px-search"> {L("Comparables seulement", "Comparable only")}</label>
