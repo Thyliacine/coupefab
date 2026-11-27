@@ -36,7 +36,7 @@ Un prix de pièce coupée n’est pas « le poids de la pièce fois le prix de l
 
 ## Démarche pas à pas
 
-1. **Lire le dessin** : matière, nuance, épaisseur (calibre **et** décimale, voir [[sheet-gauges]]), quantité, tolérances, fini.
+1. **Lire le dessin** : matière, grade, épaisseur (calibre **et** décimale, voir [[sheet-gauges]]), quantité, tolérances, fini.
 2. **Mesurer la géométrie** : longueur totale de coupe et nombre de contours (la FAO ou le logiciel d’imbrication les donne).
 3. **Imbriquer** sur le format de tôle réel pour obtenir le taux d’utilisation et le nombre de pièces par tôle.
 4. **Chiffrer la matière** : décider si la chute est facturée (souvent oui, en tout ou en partie) ; utiliser un **prix courant** du fournisseur.
@@ -50,7 +50,7 @@ Un prix de pièce coupée n’est pas « le poids de la pièce fois le prix de l
 | Colonne | Exemple de contenu |
 |---|---|
 | Pièce / révision | P-1024 rév. B |
-| Matière, nuance, épaisseur | A36, 1/4 po |
+| Matière, grade, épaisseur | A36, 1/4 po |
 | Quantité | 50 |
 | Surface pièce | (de la FAO) |
 | Taux d’utilisation | (de l’imbrication) |

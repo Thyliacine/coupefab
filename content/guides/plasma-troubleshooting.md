@@ -14,6 +14,7 @@ fr_title: Dépannage plasma : scories, biseau, projections, perte d’arc
 en_title: Plasma troubleshooting: dross, bevel, top spatter, arc loss
 fr_desc: Identifier le type de scories (basse vitesse, haute vitesse, projections), lire l’angle de coupe, corriger hauteur, vitesse et courant par petits pas, et régler les pertes d’arc et l’usure rapide — d’après les guides Hypertherm.
 en_desc: Identify the dross type (low speed, high speed, top spatter), read the cut angle, correct height, speed and current in small steps, and fix arc loss and fast wear — based on Hypertherm’s guides.
+codes: pmx-sync, pmx, xpr, esab, lincoln
 ---
 === fr
 La plupart des défauts de coupe plasma viennent de trois variables : **vitesse**, **hauteur** (tension d’arc) et **courant** — plus l’état des consommables. Hypertherm le dit clairement dans ses guides de qualité de coupe. Ce guide suit leur logique : identifier le symptôme, puis corriger une variable à la fois, par petits pas.
@@ -78,7 +79,7 @@ Hypertherm rappelle que la tension d’arc doit être réajustée à mesure que 
 ### Pourquoi plus de scories en fin de tôle ?
 La tôle chauffe pendant le travail ; Hypertherm note que davantage de scories peut se former sur les coupes suivantes. Répartissez les coupes sur la tôle ([Imbrication](/guides/imbrication/)).
 
-### La nuance compte-t-elle ?
+### Le grade (l’alliage) compte-t-il ?
 Oui : composition chimique, état de surface et planéité changent la fenêtre sans scories, même à épaisseur égale.
 
 ## À valider en atelier (Michaël)

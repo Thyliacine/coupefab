@@ -65,6 +65,18 @@ Le point de pincement entre poinçon et matrice est l’un des plus dangereux de
 - Aile trop courte qui tombe dans le V.
 - Plier perpendiculairement au laminage sans vérifier le rayon minimal (fissures, surtout aluminium traité).
 
+## Liste de vérification
+
+- [ ] Rayon demandé supérieur au rayon de pli vif
+- [ ] Ouverture du V choisie (départ 8 × T, ajustée avec la règle des 20 %)
+- [ ] Tonnage calculé pour la longueur de pli, comparé à la presse **et** à l’outillage
+- [ ] Déduction de pli calculée avec le rayon réel
+- [ ] Aile minimale respectée (repose sur les deux épaules du V)
+- [ ] Séquence de pliage vérifiée pour éviter les collisions
+- [ ] Sens de laminage vérifié pour les petits rayons (aluminium traité)
+- [ ] Protecteurs, rideaux lumineux et pédale protégée en place ; cadenassage pour changer l’outillage (voir [[lockout-cadenassage]])
+- [ ] Pli d’essai mesuré (angle et ailes) avant la série
+
 ## FAQ
 
 ### Pliage en l’air, frappe ou matage ?
@@ -127,6 +139,18 @@ The pinch point between punch and die is one of the most dangerous in the shop. 
 - CAD radius different from the real radius: wrong flat.
 - Flange too short, falls into the V.
 - Bending across the grain without checking minimum radius (cracks, especially heat-treated aluminum).
+
+## Checklist
+
+- [ ] Requested radius larger than the sharp-bend radius
+- [ ] V opening chosen (start at 8 × T, adjusted with the 20% rule)
+- [ ] Tonnage calculated for the bend length, compared with the press **and** the tooling
+- [ ] Bend deduction calculated with the real radius
+- [ ] Minimum flange respected (rests on both V shoulders)
+- [ ] Bend sequence checked for collisions
+- [ ] Grain direction checked for tight radii (heat-treated aluminum)
+- [ ] Guards, light curtains and guarded foot pedal in place; lockout to change tooling (see [[lockout-cadenassage]])
+- [ ] Test bend measured (angle and flanges) before the run
 
 ## FAQ
 
