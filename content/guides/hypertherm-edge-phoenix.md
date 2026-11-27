@@ -16,6 +16,7 @@ fr_title: Commandes Hypertherm EDGE Connect et Phoenix : prise en main pour l’
 en_title: Hypertherm EDGE Connect and Phoenix controls: an operator’s first steps
 fr_desc: EDGE Connect, EDGE Pro, MicroEDGE Pro et le logiciel Phoenix : charger une pièce, imbriquer, CutPro Wizard, processus et chartes de coupe, contrôle de hauteur, True Hole, et où trouver la bonne documentation.
 en_desc: EDGE Connect, EDGE Pro, MicroEDGE Pro and Phoenix software: loading a part, nesting, CutPro Wizard, cut processes and charts, height control, True Hole, and where to find the right documentation.
+codes: edge
 ---
 === fr
 Sur beaucoup de tables plasma industrielles (et certaines tables oxycoupage et jet d’eau), la commande est une **Hypertherm** : les anciennes **EDGE Pro / MicroEDGE Pro / EDGE Pro Ti** et la plateforme actuelle **EDGE Connect**. Toutes tournent le logiciel **Phoenix**. Selon Hypertherm, EDGE Connect communique en EtherCAT avec le mouvement et la coupe, tourne sous Windows 10 Enterprise et se décline en EDGE Connect (CNC embarquée) et EDGE Connect TC (avec écran tactile et console matérielle).
