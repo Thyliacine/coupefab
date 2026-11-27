@@ -70,6 +70,7 @@ module.exports = async function handler(req, res) {
   let b;
   try { b = await readBody(req); } catch (e) { return json(res, 413, { ok: false, error: "Fichier trop lourd / file too large (2 MB max)" }); }
   if (b.action === "brochure-token" || b.action === "brochure") return require("./_brochure").handle(b, req, res);
+  if (b.action === "placement") return require("./_placement").handle(b, req, res);
   const lang = b.lang === "en" ? "en" : "fr";
   if (b.website) return json(res, 200, { ok: true });
 
