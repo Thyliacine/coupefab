@@ -73,7 +73,8 @@ Comparateur généré à partir de prix **publiés en ligne** — jamais de prix
 | `prices/normalize.py` | Familles/nuances (catalogue d’atelier), calibres → po/mm, densités, détection forme (tôle, plaque, barre, tube, tuyau). |
 | `prices/page.py` | Rendu FR/EN : recherche rapide, onglets (Comparer, Calculateur, Tendances, Alliages & épaisseurs, Méthode & sources), cartes « meilleure offre », étiquettes de prix vs médiane (tableau groupé par produit), boutons d’achat, schema.org `Dataset`. |
 | `js/prix.js`, `css/prix.css` | JS natif (onglets avec hash d’URL, filtres, tri, cartes mobiles, calculateur, graphique) et styles propres à la page (préfixe `.px`, ne touche pas au CSS global). |
-| `data/prices/latest.json` | Toutes les lignes du dernier relevé + statut par fournisseur + taux BdC. |
+| `data/prices/latest.json` | Statut par fournisseur + taux BdC + liste des fichiers de lignes (`rows_files`, `n_rows`). |
+| `data/prices/latest-rows/part-NN.jsonl` | Toutes les lignes du dernier relevé, une par ligne, ≤ 4 Mo par fichier (limite de 8 Mo du connecteur GitHub). Lecture/écriture : `prices/store.py`. |
 | `data/prices/history/AAAA-MM.csv` | Journal daté : chaque prix vu pour la première fois et chaque changement de prix/stock. |
 | `data/prices/index.csv` | Indice quotidien : médiane CAD/lb par famille et forme (courbe de tendance). |
 | `prix/donnees-toles.json`, `prix/donnees.json`, `prix/coupefab-prix-metaux.csv` | Données publiques générées par `build.py` : tôle/plaque seulement (chargé d’abord, ~220 Ko), toutes les formes (chargé à la demande), CSV. |
