@@ -2,10 +2,9 @@
  * CoupeFab — "Demander une soumission / Request a quote" intake.
  * Stores/forwards each request for MANUAL handling; nothing is sent to shops automatically.
  *
- * Durable storage (set at least one in Vercel → Settings → Environment Variables):
- *   QUOTE_WEBHOOK_URL (or NEWSLETTER_WEBHOOK_URL)  JSON POST (e.g. Google Apps Script → Sheet)
- *   QUOTE_INBOX (or NEWSLETTER_INBOX)              FormSubmit relay to an inbox, e.g. info@coupefab.ca
- * Without either, the function answers 503 so the visitor is told to retry instead of being silently dropped.
+ * Durable storage: each request is written to the CoupeFab admin Inbox (Vercel Blob).
+ * Optional: QUOTE_WEBHOOK_URL (or NEWSLETTER_WEBHOOK_URL) also POSTs JSON to a sheet.
+ * Without Blob storage the function answers 503 so the visitor is told to retry instead of being silently dropped.
  * Spam: honeypot "website", minimum fill time (t0), and a best-effort per-IP rate limit
  * (QUOTE_RATE_MAX requests per QUOTE_RATE_WINDOW_S seconds, default 5 per 3600; per warm instance).
  * Loi 25: consent must be explicitly true; the consent text version is stored with the request.
@@ -52,18 +51,23 @@ async function toWebhook(entry) {
   return true;
 }
 async function toInbox(entry) {
-  const inbox = process.env.QUOTE_INBOX || process.env.NEWSLETTER_INBOX;
-  if (!inbox) return false;
-  const fd = new FormData();
-  fd.append("_subject", `CoupeFab — demande de soumission : ${entry.process} / ${entry.region}`);
-  fd.append("_template", "table");
-  fd.append("_captcha", "false");
-  fd.append("_replyto", entry.email);
-  for (const k of ["process", "material", "thickness", "qty", "file_url", "description", "region", "deadline", "name", "company", "email", "phone", "lang", "consent_version", "submittedAt"]) fd.append(k, String(entry[k] || ""));
-  fd.append("matched_shops", (entry.matched_shops || []).join(", ") || "(aucun atelier dans cette région — élargir)");
-  fd.append("handling", "MANUAL — check the request, then pick shops from data/revenue/lead-routing.json (region x process). Do not forward without the requester's consent on file.");
-  const r = await fetch("https://formsubmit.co/ajax/" + encodeURIComponent(inbox), { method: "POST", headers: { accept: "application/json" }, body: fd });
-  if (!r.ok) throw new Error("formsubmit " + r.status);
+  const { saveForm } = require("./_inbox");
+  const lines = [
+    (entry.process || "") + " / " + (entry.material || "") + " / " + (entry.region || ""),
+    entry.description || "",
+    entry.company ? ("Entreprise : " + entry.company) : "",
+    entry.phone ? ("Téléphone : " + entry.phone) : "",
+    entry.file_url ? ("Fichier : " + entry.file_url) : "",
+  ].filter(Boolean);
+  await saveForm({
+    type: "quote",
+    subject: "Demande de soumission : " + (entry.process || "") + " / " + (entry.region || ""),
+    from: entry.email,
+    fromName: entry.name || entry.company || "",
+    to: "info@coupefab.ca",
+    text: lines.join("\n"),
+    fields: entry,
+  });
   return true;
 }
 
