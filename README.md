@@ -2,7 +2,7 @@
 
 Site francophone d’abord (avec version anglaise) pour les ateliers de découpe plasma et de fabrication métallique au Québec : guides CAD/CAM, digest d’occasions, suivi des prix de tôles publiés.
 
-Live (Vercel) : https://coupefab.vercel.app
+Live : https://coupefab.ca  (ancien hôte : https://coupefab.vercel.app)
 
 ## Contenu
 
@@ -91,7 +91,7 @@ scripts/refresh.sh --only metalsrus     # un ou plusieurs fournisseurs; les autr
 `refresh.sh` relève les prix **et** les occasions (`python -m used.fetch_listings`), régénère **tout** le site (`build.py`), fait un commit local des fichiers de prix et d’occasions, et prépare le déploiement via `scripts/deploy_manifest.py`.
 Déploiement (méthode **site.tgz**) : le manifeste empacte le site construit dans `/tmp/coupefab-deploy/site.tgz` et écrit un `create_deployment` de trois fichiers (`src/site.tgz`, `src/vercel.json` issu de `scripts/vercel-deploy.json`, `src/api/subscribe.js`). Le `vercel.json` de déploiement lance `mkdir -p public && tar xzf site.tgz -C public` (`rootDirectory` = `src`). Appeler `upload_file` pour tout SHA nouveau (`xVercelDigest`, `contentLength`, `requestBody`=`$file:<b64_path>`, équipe `micro-bot` = `team_51rPr828F5cibUCQd4qzdhyb`, projet `coupefab`), puis `create_deployment` avec le contenu de `requestBody.json`. Ne pas renvoyer les ~200 pages une par une : les déploiements récents ne conservent que le tarball.
 Puis pousser les fichiers modifiés sur GitHub (`Thyliacine/coupefab`).
-Vérifier ensuite : `curl -s https://coupefab.vercel.app/prix/ | grep -o 'Mis à jour[^<]*'`.
+Vérifier ensuite : `curl -s https://coupefab.ca/prix/ | grep -o 'Mis à jour[^<]*'`.
 
 En quotidien, les lignes barre/tube/tuyau sont reprises du dernier relevé hebdomadaire avec leur propre date.
 Sources relevées (19) : Metals ’R’ Us, Metals Depot (USD → CAD), United Stainless (indicatif), Mercier 40 (surplus), Princess Auto, Millennium Alloys et National Salvage (repères), et depuis le balayage du 26 nov. 2026 : Aluminox (Montréal), Forces Inc (Blainville), Valmont Metal (Montréal), Acier Terrebonne, WeMachine & Fabricate, Smith Metal Shop, OptiKutz, Canadian Laser Supply, Coop Recyborg (Montréal, tableau public au pied), Aircraft Spruce Canada (Brantford; prix CAD sur les pages catalogue — le PDF imprime « --- »), Cobalt Industrial (Barrie/Calgary; quincaillerie H. Paulin), Metal Pros (Ottawa; catalogue public GET de quote.metalpros.com, au pied ou au pi² — chutes et lots aléatoires non ajoutés). `prices/fetch_more.py` contient les lecteurs génériques (Shopify `products.json`, API WooCommerce Store) : une ligne par section, la plus grande longueur ou le plus grand format offert. Quotidien : tôles/plaques et petites boutiques Shopify; hebdomadaire (`--weekly`) : barres/tubes/tuyaux/cornières de Metals ’R’ Us, Metals Depot (39 catégories, une requête de prix par produit) Acier Terrebonne et Coop Recyborg (`WEEKLY` dans `fetch_prices.py`).

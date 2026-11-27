@@ -43,7 +43,7 @@ from store import read_latest, write_latest  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "prices"
 TZ = ZoneInfo("America/Toronto")
-USER_AGENT = "Mozilla/5.0 (compatible; CoupeFabPrixBot/1.0; +https://coupefab.vercel.app/prix/)"
+USER_AGENT = "Mozilla/5.0 (compatible; CoupeFabPrixBot/1.0; +https://coupefab.ca/prix/)"
 DEFAULT_DELAY = 1.5
 
 S = requests.Session()

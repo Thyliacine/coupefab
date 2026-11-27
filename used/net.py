@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 
 import requests
 
-USER_AGENT = "Mozilla/5.0 (compatible; CoupeFabOccasionsBot/1.0; +https://coupefab.vercel.app/occasions/)"
+USER_AGENT = "Mozilla/5.0 (compatible; CoupeFabOccasionsBot/1.0; +https://coupefab.ca/occasions/)"
 DEFAULT_DELAY = 1.5
 
 S = requests.Session()

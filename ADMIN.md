@@ -33,7 +33,7 @@ Open http://127.0.0.1:8765/. It only runs on your own computer and is never depl
 The flow, once you decide to sell spots:
 
 1. Create a product and price in Stripe yourself, plus a Payment Link or Checkout page. **Nothing was created in Stripe.** Put `supplier_id`, `tier` (`standard` or `plus`) and `categories` (e.g. `suppliers,prices`) in the Checkout or Subscription **metadata**.
-2. In Stripe → Developers → Webhooks, point an endpoint at `https://coupefab.vercel.app/api/stripe-webhook` with these events: `checkout.session.completed`, `customer.subscription.created`, `customer.subscription.updated` and `customer.subscription.deleted`.
+2. In Stripe → Developers → Webhooks, point an endpoint at `https://coupefab.ca/api/stripe-webhook` with these events: `checkout.session.completed`, `customer.subscription.created`, `customer.subscription.updated` and `customer.subscription.deleted`.
 3. In Vercel → Settings → Environment Variables, set:
    - `STRIPE_WEBHOOK_SECRET` (whsec_…)
    - `FEATURED_WEBHOOK_URL`: where events are stored, for example a Google Apps Script that writes to a Sheet.
