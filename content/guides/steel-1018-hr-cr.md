@@ -51,7 +51,7 @@ L’étirage laisse des **contraintes internes**. Quand on enlève de la matièr
 
 ## Liste de vérification de commande
 
-- [ ] Nuance et état (1018 CD, 1018 HR, A36)
+- [ ] Grade et état (1018 CD, 1018 HR, A36)
 - [ ] Forme et dimension (rond, carré, plat, hexagonal)
 - [ ] Tolérance requise (étiré vs rectifié/poli)
 - [ ] Longueur et coupe à longueur par le fournisseur
