@@ -111,11 +111,11 @@ def card_html(it: dict, fr: bool) -> str:
     if days is None:
         days_txt = ""
     elif days == 0:
-        days_txt = "Aujourd’hui" if fr else "Today"
+        days_txt = "Repérée aujourd’hui" if fr else "Spotted today"
     elif days == 1:
-        days_txt = "1 jour" if fr else "1 day"
+        days_txt = "Repérée hier" if fr else "Spotted yesterday"
     else:
-        days_txt = (f"{days} jours" if fr else f"{days} days")
+        days_txt = (f"En ligne depuis {days} jours" if fr else f"Listed {days} days ago")
     loc = it.get("location") or ""
     if it.get("distance_km") is not None:
         dk = nfr(it["distance_km"], 0) if fr else f"{it['distance_km']:.0f}"
@@ -173,6 +173,16 @@ def card_html(it: dict, fr: bool) -> str:
     url = esc(it.get("url") or "#")
     dist = it.get("distance_km") if it.get("distance_km") is not None else ""
     price_d = it.get("price_cad") if it.get("price_cad") is not None else ""
+    specs = []
+    if it.get("year"):
+        specs.append(f'<li><span class="vh">{"Année" if fr else "Year"} </span>{it["year"]}</li>')
+    if it.get("hours") is not None:
+        specs.append(f'<li>{esc(hours.strip(" ·"))}</li>')
+    if loc:
+        specs.append(f'<li class="oc-loc">{esc(loc)}</li>')
+    spec_ul = f'<ul class="oc-specs">{"".join(specs)}</ul>' if specs else ""
+    seller = esc(it.get("seller") or "")
+    src_tag = f'<span class="oc-src">{seller}</span>' if seller else ""
     return (
         f'<article class="oc-card" data-id="{esc(it.get("id"))}" '
         f'data-cat="{esc(it.get("category") or "other")}" data-prov="{esc(it.get("province") or "")}" '
@@ -180,15 +190,17 @@ def card_html(it: dict, fr: bool) -> str:
         f'data-src="{esc(it.get("source_id") or "")}" data-badge="{esc(badge or "")}" '
         f'data-status="{esc(it.get("status") or "active")}" data-seen="{esc(it.get("last_seen") or "")}" '
         f'data-deal="{deal_rank(badge)}" data-dropped="{1 if it.get("price_dropped") else 0}">'
-        f'<a class="oc-photo" href="{url}" rel="nofollow noopener" target="_blank" tabindex="-1">{img}</a>'
+        f'<a class="oc-photo" href="{url}" rel="nofollow noopener" target="_blank" tabindex="-1" aria-hidden="true">{img}'
+        f'<span class="oc-photo-tags">{pill}{status_pill}</span>{src_tag}</a>'
         f'<div class="oc-body"><header>'
-        f'<p class="oc-k">{esc(cat_lab)}{year}{hours}</p>'
+        f'<p class="oc-k">{esc(cat_lab)}</p>'
         f'<h3><a href="{url}" rel="nofollow noopener" target="_blank">{esc(it.get("title"))}</a></h3>'
         f'</header>'
-        f'<p class="oc-price"><b>{esc(price_lbl)}</b> {typ_s} {new_s} {pill} {status_pill} {dropped}</p>'
+        f'<p class="oc-price"><b>{esc(price_lbl)}</b> {typ_s} {new_s} {dropped}</p>'
         f'{msrp_line}'
-        f'<p class="oc-meta">{esc(it.get("seller") or "")} · {esc(loc)} · {esc(days_txt)}</p>'
-        f'<a class="oc-btn" href="{url}" rel="nofollow noopener" target="_blank">{esc(cta)}</a>'
+        f'{spec_ul}'
+        f'<div class="oc-foot"><span class="oc-meta">{esc(days_txt)}</span>'
+        f'<a class="oc-btn" href="{url}" rel="nofollow noopener" target="_blank">{esc(cta)} <span aria-hidden="true">↗</span></a></div>'
         f'</div></article>'
     )
 
@@ -295,28 +307,29 @@ def render(site="https://coupefab.vercel.app"):
   </div>
 </section>
 
-<div class="oc-caveat">
-  <p><b>{L("CoupeFab n’est pas un courtier.", "CoupeFab is not a broker.")}</b>
-  {L("Les prix, la disponibilité et l’état changent sans préavis. Vérifiez toujours auprès du vendeur. Un prix « sur demande » n’est pas une offre. Les enchères excluent souvent la prime d’acheteur, le transport et les taxes (TPS/TVQ). Les prix en USD sont convertis au taux de la Banque du Canada lorsqu’il est disponible.",
-     "Prices, availability and condition change without notice. Always confirm with the seller. A “price on request” is not an offer. Auction figures often exclude the buyer’s premium, freight and taxes (GST/QST). USD prices are converted at the Bank of Canada rate when available.")}
+<details class="oc-caveat">
+  <summary><b>{L("CoupeFab n’est pas un courtier.", "CoupeFab is not a broker.")}</b> {L("Vérifiez toujours auprès du vendeur.", "Always confirm with the seller.")} <span class="oc-more">{L("Détails", "Details")}</span></summary>
+  <p>{L("Les prix, la disponibilité et l’état changent sans préavis. Un prix « sur demande » n’est pas une offre. Les enchères excluent souvent la prime d’acheteur, le transport et les taxes (TPS/TVQ). Les prix en USD sont convertis au taux de la Banque du Canada lorsqu’il est disponible.",
+     "Prices, availability and condition change without notice. A “price on request” is not an offer. Auction figures often exclude the buyer’s premium, freight and taxes (GST/QST). USD prices are converted at the Bank of Canada rate when available.")}
   {esc(fx_txt)}</p>
-</div>
+</details>
 
+<button type="button" class="oc-filters-toggle" aria-expanded="false" aria-controls="oc-filters">{L("Filtres", "Filters")} <span class="oc-nf" data-nf></span></button>
 <form class="oc-filters" id="oc-filters" role="search" aria-label="{L("Filtrer les annonces", "Filter listings")}" onsubmit="return false">
   <label class="oc-q"><span>{L("Rechercher", "Search")}</span>
     <input type="search" name="q" autocomplete="off" placeholder="{L("ex. Haas VF-2, plasma 5x10, plieuse", "e.g. Haas VF-2, 5x10 plasma, press brake")}"></label>
   <label><span>{L("Région", "Region")}</span>
     <select name="region">
-      <option value="ca" selected>{L("Canada (défaut)", "Canada (default)")}</option>
+      <option value="" selected>{L("Toutes", "All")}</option>
+      <option value="ca">{L("Canada", "Canada")}</option>
       <option value="qc">{L("Québec seulement", "Quebec only")}</option>
       <option value="qc-on">{L("Québec et Ontario", "Quebec and Ontario")}</option>
       <option value="near150">{L("≤ 150 km de Berthierville", "Within 150 km of Berthierville")}</option>
       <option value="near300">{L("≤ 300 km de Berthierville", "Within 300 km of Berthierville")}</option>
-      <option value="all">{L("Toutes les régions", "All regions")}</option>
     </select></label>
   <label><span>{L("Prix", "Price")}</span>
     <select name="price">
-      <option value="">{L("Tous", "Any")}</option>
+      <option value="">{L("Tous", "All")}</option>
       <option value="0-10000">{L("Moins de 10 000 $", "Under $10,000")}</option>
       <option value="10000-40000">10 000 – 40 000 $</option>
       <option value="40000-100000">40 000 – 100 000 $</option>
@@ -325,7 +338,7 @@ def render(site="https://coupefab.vercel.app"):
     </select></label>
   <label><span>{L("Année", "Year")}</span>
     <select name="year">
-      <option value="">{L("Toutes", "Any")}</option>
+      <option value="">{L("Toutes", "All")}</option>
       <option value="2020-">2020 – 2026</option>
       <option value="2010-2019">2010 – 2019</option>
       <option value="2000-2009">2000 – 2009</option>
@@ -334,7 +347,7 @@ def render(site="https://coupefab.vercel.app"):
   <label><span>{L("Source", "Source")}</span>
     <select name="source"><option value="">{L("Toutes", "All")}</option>{src_html}</select></label>
   <label class="oc-check"><input type="checkbox" name="deals"> {L("Aubaines seulement", "Deals only")}</label>
-  <button type="button" class="oc-reset" data-reset>{L("Effacer", "Clear")}</button>
+  <button type="button" class="oc-reset" data-reset>{L("Réinitialiser", "Reset")}</button>
 </form>
 
 <nav class="oc-tabs" role="tablist" aria-label="{L("Catégories", "Categories")}">{"".join(tabs_html)}</nav>
@@ -394,14 +407,14 @@ def _method_html(fr: bool, method: dict, fx_txt: str, sources: list) -> str:
         return f"""<details class="oc-details" id="oc-method">
   <summary>Comment nous notons les aubaines</summary>
   <p>Nous ne relions que des pages publiques. Pas d’aspiration derrière une connexion, pas de contournement de protection anti-robot. Si un prix n’est pas affiché sur la page, nous écrivons « sur demande » — même lorsqu’une API interne expose un montant.</p>
-  <h3>Pastilles</h3>
+  <h3>Les étiquettes d’aubaine</h3>
   <ul class="oc-legend">
     <li><span class="oc-tier oc-t-super">Super aubaine</span> au moins {su} % sous la médiane usagée (au moins 2 comparables), ou au moins {sm} % sous un prix neuf documenté, ou les deux (≥ 45 % sous le neuf et ≥ 10 % sous la médiane).</li>
     <li><span class="oc-tier oc-t-good">Bonne affaire</span> au moins {tp} % sous la médiane, ou au moins {gm} % sous le neuf en l’absence de comparables.</li>
     <li><span class="oc-tier oc-t-market">Prix du marché</span> à ± {tp} % de la médiane, ou 20–35 % sous le neuf sans comparables.</li>
     <li><span class="oc-tier oc-t-high">Cher</span> au moins {tp} % au-dessus de la médiane, ou moins de 20 % sous le neuf sans comparables.</li>
   </ul>
-  <p>Les comparables, dans l’ordre, dès qu’il y en a au moins deux autres avec un prix : (1) même marque et même modèle ; (2) même catégorie, même marque et même classe de taille ; (3) même catégorie et même classe de taille. Une table hobby n’est pas comparée à une table de production, ni une plieuse de 44 t à une de 200 t. Une machine neuve en inventaire n’entre pas dans la médiane usagée, et l’inverse. L’âge est ramené à l’année de l’annonce avec un facteur estimatif de {dep} % par an (plafond {cap} ans) — c’est une estimation CoupeFab, pas une expertise. Pointez ou touchez une pastille pour voir le calcul (par ex. « 42 % sous le prix neuf, 18 % sous la médiane usagée »).</p>
+  <p>Les comparables, dans l’ordre, dès qu’il y en a au moins deux autres avec un prix : (1) même marque et même modèle ; (2) même catégorie, même marque et même classe de taille ; (3) même catégorie et même classe de taille. Une table hobby n’est pas comparée à une table de production, ni une plieuse de 44 t à une de 200 t. Une machine neuve en inventaire n’entre pas dans la médiane usagée, et l’inverse. L’âge est ramené à l’année de l’annonce avec un facteur estimatif de {dep} % par an (plafond {cap} ans) — c’est une estimation CoupeFab, pas une expertise. Pointez ou touchez une étiquette pour voir le calcul (par ex. « 42 % sous le prix neuf, 18 % sous la médiane usagée »).</p>
   <p>Un prix neuf n’est affiché que s’il provient d’une page officielle du fabricant ou d’un concessionnaire autorisé (URL + date), ou, à défaut, d’une fourchette clairement étiquetée « Prix neuf estimé » appuyée par au moins deux sources de presse ou de concessionnaires. Nous n’inventons jamais ce chiffre. Un appareil usagé peut inclure des options que le prix de base n’inclut pas, ou l’inverse.</p>
   <p>Une baisse de prix est signalée lorsque le montant publié a diminué depuis notre premier relevé. Les jours en ligne sont comptés depuis ce premier relevé. Une annonce absente pendant {stale} jours est marquée périmée ; « vendu » ne l’est que si le vendeur l’indique.</p>
   <p>{esc(fx_txt)}</p>
@@ -469,7 +482,7 @@ def write_pages(site="https://coupefab.vercel.app"):
     pages = [
         ("/occasions/", "/en/used-equipment/", "fr",
          "Occasions CNC et métaux au Québec — comparateur d’aubaines — CoupeFab",
-         "Annonces publiques de tables plasma, lasers, fraiseuses, tours et plieuses au Québec et au Canada, avec pastilles Super aubaine et comparaison au prix neuf lorsqu’il est documenté.",
+         "Annonces publiques de tables plasma, lasers, fraiseuses, tours et plieuses au Québec et au Canada, avec repérage des super aubaines et comparaison au prix neuf lorsqu’il est documenté.",
          fr),
         ("/en/used-equipment/", "/occasions/", "en",
          "Used CNC and metalworking equipment in Quebec — deal tracker — CoupeFab",

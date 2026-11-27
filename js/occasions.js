@@ -53,7 +53,7 @@
 
   function apply() {
     var q = (val("q") || "").trim().toLowerCase();
-    var region = val("region") || "ca";
+    var region = val("region") || "all";
     var price = val("price");
     var year = val("year");
     var source = val("source");
@@ -156,13 +156,37 @@
     });
   });
 
+  // mobile: filters collapse behind a "Filtres" button so listings sit above the fold
+  var ftog = app.querySelector(".oc-filters-toggle");
+  function activeFilters() {
+    if (!form) return 0;
+    var n = 0;
+    ["q", "region", "price", "year", "source"].forEach(function (k) { if (form.elements[k] && form.elements[k].value) n++; });
+    if (form.elements.deals && form.elements.deals.checked) n++;
+    return n;
+  }
+  function syncToggle() {
+    if (!ftog) return;
+    var n = activeFilters(), b = ftog.querySelector("[data-nf]");
+    if (b) b.textContent = n ? "(" + n + ")" : "";
+  }
+  if (ftog && form) {
+    form.classList.add("is-collapsible");
+    ftog.addEventListener("click", function () {
+      var open = ftog.getAttribute("aria-expanded") !== "true";
+      ftog.setAttribute("aria-expanded", open ? "true" : "false");
+      form.classList.toggle("is-open", open);
+    });
+  }
   if (form) {
+    form.addEventListener("input", syncToggle);
+    form.addEventListener("change", syncToggle);
     form.addEventListener("input", apply);
     form.addEventListener("change", apply);
     var reset = form.querySelector("[data-reset]");
     if (reset) reset.addEventListener("click", function () {
       form.reset();
-      if (form.elements.region) form.elements.region.value = "ca";
+      if (form.elements.region) form.elements.region.value = "";
       setTab("");
     });
   }

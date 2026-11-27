@@ -183,7 +183,7 @@ def score_one(item: dict, pool: list[dict], today: dt.date) -> dict:
         bits_fr.append("enchère : frais et prime d’acheteur en sus")
         bits_en.append("auction: buyer’s premium and fees extra")
     if not price:
-        bits_fr.append("prix sur demande : pas de pastille")
+        bits_fr.append("prix sur demande : pas d’étiquette")
         bits_en.append("price on request: no badge")
 
     first = item.get("first_seen") or item.get("last_seen")
