@@ -2,8 +2,8 @@
  "version": "2026-11-27",
  "units_note": "liters and US gallons (1 US gal = 3.785411784 L). Capacities as published; null = not published, enter your own.",
  "license": "CC BY 4.0, CoupeFab; figures belong to the cited sources",
- "count": 224,
- "count_with_capacity": 221,
+ "count": 275,
+ "count_with_capacity": 272,
  "machines": [
   {
    "brand": "Matsuura",
@@ -425,7 +425,64 @@
    "us_gal": 45.0,
    "source": "https://www.haas.co.uk/machines/dc-1/",
    "source_label": "Haas Automation UK, fiche technique « Coolant Capacity »",
-   "checked": "2026-11-27"
+   "checked": "2026-11-27",
+   "note_fr": "MachineToolIndex indique 40 gal (151 L).",
+   "note_en": "MachineToolIndex lists 40 gal (151 L)."
+  },
+  {
+   "brand": "Haas",
+   "model": "DC-1-40 Drill Center",
+   "type": "vmc",
+   "liters": 151,
+   "us_gal": 40.0,
+   "source": "https://machinetoolindex.com/machines/haas-dc-1-40-drill-center",
+   "source_label": "MachineToolIndex, fiche Haas DC-1-40 Drill Center : « Coolant Capacity 40 gal (151 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/high-speed-drill-centers/models/dc-1-40-drill-center.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "DC-2 Drill Center",
+   "type": "vmc",
+   "liters": 250,
+   "us_gal": 66.0,
+   "source": "https://machinetoolindex.com/machines/haas-dc-2-drill-center",
+   "source_label": "MachineToolIndex, fiche Haas DC-2 Drill Center : « Coolant Capacity 66 gal (250 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/high-speed-drill-centers/models/dc-2-drill-center.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "DC-2-40 Drill Center",
+   "type": "vmc",
+   "liters": 250,
+   "us_gal": 66.0,
+   "source": "https://machinetoolindex.com/machines/haas-dc-2-40-drill-center",
+   "source_label": "MachineToolIndex, fiche Haas DC-2-40 Drill Center : « Coolant Capacity 66 gal (250 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/high-speed-drill-centers/models/dc-2-40-drill-center.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "DC-3-40 Drill Center",
+   "type": "vmc",
+   "liters": 250,
+   "us_gal": 66.0,
+   "source": "https://machinetoolindex.com/machines/haas-dc-3-40-drill-center",
+   "source_label": "MachineToolIndex, fiche Haas DC-3-40 Drill Center : « Coolant Capacity 66 gal (250 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "DC-4-40 Drill Center",
+   "type": "vmc",
+   "liters": 568,
+   "us_gal": 150.0,
+   "source": "https://machinetoolindex.com/machines/haas-dc-4-40-drill-center",
+   "source_label": "MachineToolIndex, fiche Haas DC-4-40 Drill Center : « Coolant Capacity 150 gal (568 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines.html"
   },
   {
    "brand": "Haas",
@@ -435,7 +492,9 @@
    "us_gal": 45.0,
    "source": "https://www.haas.co.uk/machines/dm-1/",
    "source_label": "Haas Automation UK, fiche technique « Coolant Capacity »",
-   "checked": "2026-11-27"
+   "checked": "2026-11-27",
+   "note_fr": "MachineToolIndex indique 55 gal (208 L).",
+   "note_en": "MachineToolIndex lists 55 gal (208 L)."
   },
   {
    "brand": "Haas",
@@ -445,7 +504,9 @@
    "us_gal": 45.0,
    "source": "https://www.haas.co.uk/machines/dm-2/",
    "source_label": "Haas Automation UK, fiche technique « Coolant Capacity »",
-   "checked": "2026-11-27"
+   "checked": "2026-11-27",
+   "note_fr": "MachineToolIndex indique 55 gal (208 L).",
+   "note_en": "MachineToolIndex lists 55 gal (208 L)."
   },
   {
    "brand": "Haas",
@@ -455,7 +516,9 @@
    "us_gal": 45.0,
    "source": "https://www.haas.co.uk/machines/dm-3/",
    "source_label": "Haas Automation UK, fiche technique « Coolant Capacity »",
-   "checked": "2026-11-27"
+   "checked": "2026-11-27",
+   "note_fr": "MachineToolIndex indique 55 gal (208 L).",
+   "note_en": "MachineToolIndex lists 55 gal (208 L)."
   },
   {
    "brand": "Haas",
@@ -486,6 +549,17 @@
    "source": "https://www.haas.co.uk/lathes/ds-28y/",
    "source_label": "Haas Automation UK, fiche technique « Coolant Capacity »",
    "checked": "2026-11-27"
+  },
+  {
+   "brand": "Haas",
+   "model": "DS-30",
+   "type": "lathe",
+   "liters": 208,
+   "us_gal": 55.0,
+   "source": "https://machinetoolindex.com/machines/haas-ds-30",
+   "source_label": "MachineToolIndex, fiche Haas DS-30 : « Coolant Capacity 208 L (55 gal) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines.html"
   },
   {
    "brand": "Haas",
@@ -525,7 +599,9 @@
    "us_gal": 45.0,
    "source": "https://www.haas.co.uk/machines/dt-1/",
    "source_label": "Haas Automation UK, fiche technique « Coolant Capacity »",
-   "checked": "2026-11-27"
+   "checked": "2026-11-27",
+   "note_fr": "MachineToolIndex indique 55 gal (208 L).",
+   "note_en": "MachineToolIndex lists 55 gal (208 L)."
   },
   {
    "brand": "Haas",
@@ -535,7 +611,9 @@
    "us_gal": 45.0,
    "source": "https://www.haas.co.uk/machines/dt-2/",
    "source_label": "Haas Automation UK, fiche technique « Coolant Capacity »",
-   "checked": "2026-11-27"
+   "checked": "2026-11-27",
+   "note_fr": "MachineToolIndex indique 55 gal (208 L).",
+   "note_en": "MachineToolIndex lists 55 gal (208 L)."
   },
   {
    "brand": "Haas",
@@ -546,6 +624,160 @@
    "source": "https://www.haas.co.uk/machines/dt-3/",
    "source_label": "Haas Automation UK, fiche technique « Coolant Capacity »",
    "checked": "2026-11-27"
+  },
+  {
+   "brand": "Haas",
+   "model": "EC-400",
+   "type": "hmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-ec-400",
+   "source_label": "MachineToolIndex, fiche Haas EC-400 : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/horizontal-mills/40-taper/models/ec-400.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "EC-500 Horizontal Machining Center",
+   "type": "hmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-ec-500",
+   "source_label": "MachineToolIndex, fiche Haas EC-500 Horizontal Machining Center : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/horizontal-mills/40-taper/models/ec-500.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "EC-500/50",
+   "type": "hmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-ec-500-50",
+   "source_label": "MachineToolIndex, fiche Haas EC-500/50 : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/horizontal-mills/ec-series/models/ec-500-50.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "EC-630",
+   "type": "hmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-ec-630",
+   "source_label": "MachineToolIndex, fiche Haas EC-630 : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/horizontal-mills/ec-series/models/ec-630.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "EC-1600",
+   "type": "hmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-ec-1600",
+   "source_label": "MachineToolIndex, fiche Haas EC-1600 : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/horizontal-mills/ec-series/models/ec-1600.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "EC-1600ZT",
+   "type": "hmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-ec-1600zt",
+   "source_label": "MachineToolIndex, fiche Haas EC-1600ZT : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/horizontal-mills/ec-series/models/ec-1600zt.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "EC-1600ZT-5AX",
+   "type": "hmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-ec-1600zt-5ax",
+   "source_label": "MachineToolIndex, fiche Haas EC-1600ZT-5AX : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/horizontal-mills/ec-series/models/ec-1600zt-5ax.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "EC-1700ZT",
+   "type": "hmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-ec-1700zt",
+   "source_label": "MachineToolIndex, fiche Haas EC-1700ZT : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/horizontal-mills/ec-series/models/ec-1700zt.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "GM-1",
+   "type": "vmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-gm-1",
+   "source_label": "MachineToolIndex, fiche Haas GM-1 : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/gantry/models/gm-1.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "GM-1-5AX",
+   "type": "5ax",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-gm-1-5ax",
+   "source_label": "MachineToolIndex, fiche Haas GM-1-5AX : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/gantry/models/gm-1-5ax.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "GM-1XT",
+   "type": "vmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-gm-1xt",
+   "source_label": "MachineToolIndex, fiche Haas GM-1XT : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/gantry/models/gm-1xt.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "GM-1XT-5AX",
+   "type": "5ax",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-gm-1xt-5ax",
+   "source_label": "MachineToolIndex, fiche Haas GM-1XT-5AX : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/gantry/models/gm-1xt-5ax.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "GM-2",
+   "type": "vmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-gm-2",
+   "source_label": "MachineToolIndex, fiche Haas GM-2 : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/gantry/models/gm-2.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "GM-2-5AX",
+   "type": "5ax",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-gm-2-5ax",
+   "source_label": "MachineToolIndex, fiche Haas GM-2-5AX : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/gantry/models/gm-2-5ax.html"
   },
   {
    "brand": "Haas",
@@ -569,6 +801,28 @@
   },
   {
    "brand": "Haas",
+   "model": "HDC-3",
+   "type": "vmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-hdc-3",
+   "source_label": "MachineToolIndex, fiche Haas HDC-3 : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/double-column/models/hdc-3.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "HDC-3-5AX",
+   "type": "5ax",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-hdc-3-5ax",
+   "source_label": "MachineToolIndex, fiche Haas HDC-3-5AX : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/double-column/models/hdc-3-5ax.html"
+  },
+  {
+   "brand": "Haas",
    "model": "Mini Mill",
    "type": "vmc",
    "liters": 170,
@@ -576,6 +830,50 @@
    "source": "https://www.haas.co.uk/machines/mini-mill/",
    "source_label": "Haas Automation UK, fiche technique « Coolant Capacity »",
    "checked": "2026-11-27"
+  },
+  {
+   "brand": "Haas",
+   "model": "Mini Mill-EDU",
+   "type": "vmc",
+   "liters": 170,
+   "us_gal": 45.0,
+   "source": "https://machinetoolindex.com/machines/haas-minimill-edu",
+   "source_label": "MachineToolIndex, fiche Haas Mini Mill-EDU : « Coolant Capacity 45 gal (170 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/mini-mills/models/minimill-edu.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "PMC-500SS",
+   "type": "vmc",
+   "liters": 208,
+   "us_gal": 55.0,
+   "source": "https://machinetoolindex.com/machines/haas-pmc-500ss",
+   "source_label": "MachineToolIndex, fiche Haas PMC-500SS : « Coolant Capacity 55 gal (208 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/positioning-machines/models/pmc-500ss.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "PMC-750SS",
+   "type": "vmc",
+   "liters": 208,
+   "us_gal": 55.0,
+   "source": "https://machinetoolindex.com/machines/haas-pmc-750ss",
+   "source_label": "MachineToolIndex, fiche Haas PMC-750SS : « Coolant Capacity 55 gal (208 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/positioning-machines/models/pmc-750ss.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "PMC-1000SS",
+   "type": "vmc",
+   "liters": 208,
+   "us_gal": 55.0,
+   "source": "https://machinetoolindex.com/machines/haas-pmc-1000ss",
+   "source_label": "MachineToolIndex, fiche Haas PMC-1000SS : « Coolant Capacity 55 gal (208 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/positioning-machines/models/pmc-1000ss.html"
   },
   {
    "brand": "Haas",
@@ -689,6 +987,17 @@
   },
   {
    "brand": "Haas",
+   "model": "ST-10Y Turning Center",
+   "type": "lathe",
+   "liters": 114,
+   "us_gal": 30.0,
+   "source": "https://machinetoolindex.com/machines/haas-st-10y",
+   "source_label": "MachineToolIndex, fiche Haas ST-10Y Turning Center : « Coolant Capacity 30 gal (114 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/lathes/st/models/y-axis/st-10y.html"
+  },
+  {
+   "brand": "Haas",
    "model": "ST-15",
    "type": "lathe",
    "liters": 114,
@@ -706,6 +1015,28 @@
    "source": "https://www.haas.co.uk/lathes/st-15l/",
    "source_label": "Haas Automation UK, fiche technique « Coolant Capacity »",
    "checked": "2026-11-27"
+  },
+  {
+   "brand": "Haas",
+   "model": "ST-15LY",
+   "type": "lathe",
+   "liters": 114,
+   "us_gal": 30.0,
+   "source": "https://machinetoolindex.com/machines/haas-st-15ly",
+   "source_label": "MachineToolIndex, fiche Haas ST-15LY : « Coolant Capacity 30 gal (114 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/lathes/st/models/y-axis/st-15ly.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "ST-15Y",
+   "type": "lathe",
+   "liters": 114,
+   "us_gal": 30.0,
+   "source": "https://machinetoolindex.com/machines/haas-st-15y",
+   "source_label": "MachineToolIndex, fiche Haas ST-15Y : « Coolant Capacity 30 gal (114 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/lathes/st/models/y-axis/st-15y.html"
   },
   {
    "brand": "Haas",
@@ -796,6 +1127,17 @@
    "source": "https://www.haas.co.uk/lathes/st-28/",
    "source_label": "Haas Automation UK, fiche technique « Coolant Capacity »",
    "checked": "2026-11-27"
+  },
+  {
+   "brand": "Haas",
+   "model": "ST-28L",
+   "type": "lathe",
+   "liters": 208,
+   "us_gal": 55.0,
+   "source": "https://machinetoolindex.com/machines/haas-st-28l",
+   "source_label": "MachineToolIndex, fiche Haas ST-28L : « Coolant Capacity 55 gal (208 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/lathes/st/models/standard/st-28l.html"
   },
   {
    "brand": "Haas",
@@ -919,6 +1261,17 @@
   },
   {
    "brand": "Haas",
+   "model": "ST-40LY",
+   "type": "lathe",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-st-40ly",
+   "source_label": "MachineToolIndex, fiche Haas ST-40LY : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/lathes/st/models/large-bore-y-axis/st-40ly.html"
+  },
+  {
+   "brand": "Haas",
    "model": "ST-40S",
    "type": "lathe",
    "liters": 360,
@@ -969,6 +1322,17 @@
   },
   {
    "brand": "Haas",
+   "model": "ST-45LY",
+   "type": "lathe",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-st-45ly",
+   "source_label": "MachineToolIndex, fiche Haas ST-45LY : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/lathes/st/models/large-bore-y-axis/st-45ly.html"
+  },
+  {
+   "brand": "Haas",
    "model": "ST-45S",
    "type": "lathe",
    "liters": 360,
@@ -976,6 +1340,17 @@
    "source": "https://www.haas.co.uk/lathes/st-45s/",
    "source_label": "Haas Automation UK, fiche technique « Coolant Capacity »",
    "checked": "2026-11-27"
+  },
+  {
+   "brand": "Haas",
+   "model": "ST-45SY",
+   "type": "lathe",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-st-45sy",
+   "source_label": "MachineToolIndex, fiche Haas ST-45SY : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/lathes/st/models/large-bore-y-axis/st-45sy.html"
   },
   {
    "brand": "Haas",
@@ -1059,6 +1434,17 @@
   },
   {
    "brand": "Haas",
+   "model": "UMC-350HD-EDU",
+   "type": "5ax",
+   "liters": 208,
+   "us_gal": 55.0,
+   "source": "https://machinetoolindex.com/machines/haas-umc-350hd-edu",
+   "source_label": "MachineToolIndex, fiche Haas UMC-350HD-EDU : « Coolant Capacity 55 gal (208 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/universal-machine/models/umc-350hd-edu.html"
+  },
+  {
+   "brand": "Haas",
    "model": "UMC-400",
    "type": "5ax",
    "liters": 170,
@@ -1115,7 +1501,9 @@
    "us_gal": 75.0,
    "source": "https://www.haas.co.uk/machines/umc-750ss/",
    "source_label": "Haas Automation UK, fiche technique « Coolant Capacity »",
-   "checked": "2026-11-27"
+   "checked": "2026-11-27",
+   "note_fr": "MachineToolIndex indique 55 gal (208 L).",
+   "note_en": "MachineToolIndex lists 55 gal (208 L)."
   },
   {
    "brand": "Haas",
@@ -1129,6 +1517,17 @@
   },
   {
    "brand": "Haas",
+   "model": "UMC-1000-P",
+   "type": "5ax",
+   "liters": 208,
+   "us_gal": 55.0,
+   "source": "https://machinetoolindex.com/machines/haas-umc-1000-p",
+   "source_label": "MachineToolIndex, fiche Haas UMC-1000-P : « Coolant Capacity 55 gal (208 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/universal-machine/models/umc-1000-p.html"
+  },
+  {
+   "brand": "Haas",
    "model": "UMC-1000SS",
    "type": "5ax",
    "liters": 208,
@@ -1136,6 +1535,17 @@
    "source": "https://www.haas.co.uk/machines/umc-1000ss/",
    "source_label": "Haas Automation UK, fiche technique « Coolant Capacity »",
    "checked": "2026-11-27"
+  },
+  {
+   "brand": "Haas",
+   "model": "UMC-1000SS-P",
+   "type": "5ax",
+   "liters": 208,
+   "us_gal": 55.0,
+   "source": "https://machinetoolindex.com/machines/haas-umc-1000ss-p",
+   "source_label": "MachineToolIndex, fiche Haas UMC-1000SS-P : « Coolant Capacity 55 gal (208 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/universal-machine/models/umc-1000ss-p.html"
   },
   {
    "brand": "Haas",
@@ -1199,6 +1609,28 @@
   },
   {
    "brand": "Haas",
+   "model": "VC-400",
+   "type": "vmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-vc-400",
+   "source_label": "MachineToolIndex, fiche Haas VC-400 : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/vc-series/models/vc-400.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "VC-400SS",
+   "type": "vmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-vc-400ss",
+   "source_label": "MachineToolIndex, fiche Haas VC-400SS : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/vc-series/models/vc-400ss.html"
+  },
+  {
+   "brand": "Haas",
    "model": "VF-1",
    "type": "vmc",
    "liters": 208,
@@ -1206,6 +1638,17 @@
    "source": "https://www.haas.co.uk/machines/vf-1/",
    "source_label": "Haas Automation UK, fiche technique « Coolant Capacity »",
    "checked": "2026-11-27"
+  },
+  {
+   "brand": "Haas",
+   "model": "VF-1YT",
+   "type": "vmc",
+   "liters": 208,
+   "us_gal": 55.0,
+   "source": "https://machinetoolindex.com/machines/haas-vf-1yt",
+   "source_label": "MachineToolIndex, fiche Haas VF-1YT : « Coolant Capacity 55 gal (208 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/vf-series/models/small/vf-1yt-eu.html"
   },
   {
    "brand": "Haas",
@@ -1226,6 +1669,17 @@
    "source": "https://www.haas.co.uk/machines/vf-2ss/",
    "source_label": "Haas Automation UK, fiche technique « Coolant Capacity »",
    "checked": "2026-11-27"
+  },
+  {
+   "brand": "Haas",
+   "model": "VF-2SS Super Speed VMC",
+   "type": "vmc",
+   "liters": 208,
+   "us_gal": 55.0,
+   "source": "https://machinetoolindex.com/machines/haas-vf-2ss",
+   "source_label": "MachineToolIndex, fiche Haas VF-2SS Super Speed VMC : « Coolant Capacity 55 gal (208 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/vf-series/models/small/vf-2ss.html"
   },
   {
    "brand": "Haas",
@@ -1526,6 +1980,17 @@
    "source": "https://www.haas.co.uk/machines/vf-9-50/",
    "source_label": "Haas Automation UK, fiche technique « Coolant Capacity »",
    "checked": "2026-11-27"
+  },
+  {
+   "brand": "Haas",
+   "model": "VF-9/50 High-Capacity VMC",
+   "type": "vmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-vf-9-50",
+   "source_label": "MachineToolIndex, fiche Haas VF-9/50 High-Capacity VMC : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/vf-series/models/large/vf-9-50.html"
   },
   {
    "brand": "Haas",
@@ -1848,34 +2313,151 @@
    "checked": "2026-11-27"
   },
   {
-   "brand": "Hardinge (Kellenberger)",
-   "model": "T-42",
+   "brand": "Haas",
+   "model": "VP-5",
+   "type": "vmc",
+   "liters": 208,
+   "us_gal": 55.0,
+   "source": "https://machinetoolindex.com/machines/haas-vp-5",
+   "source_label": "MachineToolIndex, fiche Haas VP-5 : « Coolant Capacity 55 gal (208 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/vp-5.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "VR-5",
+   "type": "vmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-vr-5",
+   "source_label": "MachineToolIndex, fiche Haas VR-5 : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/vr-series/models/vr-5.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "VR-8",
+   "type": "vmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-vr-8",
+   "source_label": "MachineToolIndex, fiche Haas VR-8 : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/vr-series/models/vr-8.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "VR-9",
+   "type": "vmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-vr-9",
+   "source_label": "MachineToolIndex, fiche Haas VR-9 : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/vr-series/models/vr-9.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "VR-11",
+   "type": "vmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-vr-11",
+   "source_label": "MachineToolIndex, fiche Haas VR-11 : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/vr-series/models/vr-11.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "VR-14",
+   "type": "vmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-vr-14",
+   "source_label": "MachineToolIndex, fiche Haas VR-14 : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/vr-series/models/vr-14.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "VS-1",
+   "type": "vmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-vs-1",
+   "source_label": "MachineToolIndex, fiche Haas VS-1 : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/extra-large-vmc/models/vs-1.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "VS-3",
+   "type": "vmc",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-vs-3",
+   "source_label": "MachineToolIndex, fiche Haas VS-3 : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/extra-large-vmc/models/vs-3.html"
+  },
+  {
+   "brand": "Haas",
+   "model": "VS-3-5AX",
+   "type": "5ax",
+   "liters": 360,
+   "us_gal": 95.0,
+   "source": "https://machinetoolindex.com/machines/haas-vs-3-5ax",
+   "source_label": "MachineToolIndex, fiche Haas VS-3-5AX : « Coolant Capacity 95 gal (360 L) »",
+   "checked": "2026-11-27",
+   "official": "https://www.haascnc.com/machines/vertical-mills/extra-large-vmc/models/vs-3-5ax.html"
+  },
+  {
+   "brand": "Hardinge",
+   "model": "Conquest T51",
+   "type": "lathe",
+   "liters": 151,
+   "us_gal": 40,
+   "source": "https://www.recycled-parts.com/Drop-off-Centers-/Metal-/Silver-items-/Hardinge-conquest-t-51-big-bore-cnc-lathe.cgi",
+   "source_label": "Annonce d’occasion Hardinge Conquest T51 Big Bore (GE Fanuc 18T) : « COOLANT TANK CAPACITY 40 US GALLONS »",
+   "checked": "2026-11-27",
+   "note_fr": "Ancienne Conquest T51 (commande GE Fanuc 18T) : 40 gal US d’après une annonce d’occasion (« spécifications à vérifier »). La série T-51 actuelle a 67 gal (254 L). Vérifiez la plaque ou le manuel de votre machine.",
+   "note_en": "Older Conquest T51 (GE Fanuc 18T control): 40 US gal per a used-machine listing (“specifications subject to verification”). The current T-51 has 67 gal (254 L). Check your machine’s plate or manual."
+  },
+  {
+   "brand": "Hardinge",
+   "model": "T-42 (T-Series)",
    "type": "lathe",
    "liters": 208,
    "us_gal": 55,
    "source": "https://kellenberger.com/wp-content/uploads/2024/09/1310_Hardinge_TSeries_2023.pdf",
    "source_label": "Brochure Hardinge / Kellenberger T-Series (2023)",
-   "checked": "2026-11-27"
+   "checked": "2026-11-27",
+   "note_fr": "Série T actuelle (Hardinge / Kellenberger).",
+   "note_en": "Current T-Series (Hardinge / Kellenberger)."
   },
   {
-   "brand": "Hardinge (Kellenberger)",
-   "model": "T-51",
+   "brand": "Hardinge",
+   "model": "T-51 (T-Series)",
    "type": "lathe",
    "liters": 254,
    "us_gal": 67,
    "source": "https://kellenberger.com/wp-content/uploads/2024/09/1310_Hardinge_TSeries_2023.pdf",
    "source_label": "Brochure Hardinge / Kellenberger T-Series (2023)",
-   "checked": "2026-11-27"
+   "checked": "2026-11-27",
+   "note_fr": "Série T actuelle (Hardinge / Kellenberger).",
+   "note_en": "Current T-Series (Hardinge / Kellenberger)."
   },
   {
-   "brand": "Hardinge (Kellenberger)",
-   "model": "T-65",
+   "brand": "Hardinge",
+   "model": "T-65 (T-Series)",
    "type": "lathe",
    "liters": 254,
    "us_gal": 67,
    "source": "https://kellenberger.com/wp-content/uploads/2024/09/1310_Hardinge_TSeries_2023.pdf",
    "source_label": "Brochure Hardinge / Kellenberger T-Series (2023)",
-   "checked": "2026-11-27"
+   "checked": "2026-11-27",
+   "note_fr": "Série T actuelle (Hardinge / Kellenberger).",
+   "note_en": "Current T-Series (Hardinge / Kellenberger)."
   },
   {
    "brand": "Hurco",
