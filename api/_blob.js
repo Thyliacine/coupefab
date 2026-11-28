@@ -72,32 +72,38 @@ async function list(prefix, { limit = 1000, cursor } = {}) {
   return out;
 }
 
+function pathnameOf(pathnameOrUrl) {
+  if (!/^https?:\/\//i.test(pathnameOrUrl)) return String(pathnameOrUrl || "");
+  const u = new URL(pathnameOrUrl);
+  if (u.protocol !== "https:" || !/\.blob\.vercel-storage\.com$/i.test(u.hostname)) {
+    const err = new Error("blob get refused: not a Vercel Blob URL");
+    err.status = 400;
+    throw err;
+  }
+  return decodeURIComponent(u.pathname.replace(/^\//, ""));
+}
+
+async function sleep(ms) { return new Promise((r) => setTimeout(r, ms)); }
+
 async function getBuffer(pathnameOrUrl) {
-  // Prefer the private blob URL when we have it; fall back to the API.
-  if (/^https?:\/\//i.test(pathnameOrUrl)) {
-    // The bearer token is only ever sent to Vercel Blob hosts (never to a URL taken from data).
-    let host = "";
-    try { const u = new URL(pathnameOrUrl); host = u.protocol === "https:" ? u.hostname : ""; } catch { /* bad url */ }
-    if (!/\.blob\.vercel-storage\.com$/i.test(host)) {
-      const err = new Error("blob get refused: not a Vercel Blob URL");
-      err.status = 400;
-      throw err;
+  // Always read through the Blob API with the token. Fetching the stored file URL
+  // can return 429 (challenge or store throttling) from a serverless function.
+  const pathname = pathnameOf(pathnameOrUrl);
+  let last;
+  for (let i = 0; i < 4; i++) {
+    try {
+      const res = await request("/get?pathname=" + encodeURIComponent(pathname), { method: "GET" });
+      if (res && typeof res.arrayBuffer === "function") {
+        return { body: Buffer.from(await res.arrayBuffer()), contentType: res.headers.get("content-type") || "application/octet-stream" };
+      }
+      return { body: Buffer.from(JSON.stringify(res)), contentType: "application/json" };
+    } catch (e) {
+      last = e;
+      if (e && e.status === 429 && i < 3) { await sleep(400 * (i + 1)); continue; }
+      throw e;
     }
-    const res = await fetch(pathnameOrUrl, { headers: headers() });
-    if (!res.ok) {
-      const err = new Error("blob get " + res.status);
-      err.status = res.status;
-      throw err;
-    }
-    const buf = Buffer.from(await res.arrayBuffer());
-    return { body: buf, contentType: res.headers.get("content-type") || "application/octet-stream" };
   }
-  const res = await request("/get?pathname=" + encodeURIComponent(pathnameOrUrl), { method: "GET" });
-  // request() may have parsed JSON; if so wrap it
-  if (res && res.body && typeof res.arrayBuffer === "function") {
-    return { body: Buffer.from(await res.arrayBuffer()), contentType: res.headers.get("content-type") || "application/octet-stream" };
-  }
-  return { body: Buffer.from(JSON.stringify(res)), contentType: "application/json" };
+  throw last;
 }
 
 async function getJSON(pathname) {

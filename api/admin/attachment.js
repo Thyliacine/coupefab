@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
   const att = (msg.attachments || []).find((a) => a.name === name);
   if (!att) return auth.json(res, 404, { ok: false, error: "Pièce jointe introuvable." });
   try {
-    const { body, contentType } = await blob.getBuffer(att.url || att.pathname);
+    const { body, contentType } = await blob.getBuffer(att.pathname || att.url);
     res.statusCode = 200;
     // Always a download, never rendered inline on coupefab.ca (a hostile HTML/SVG
     // attachment must not run in the admin's origin).

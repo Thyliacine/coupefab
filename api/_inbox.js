@@ -64,7 +64,7 @@ async function getMessage(id) {
     || files.find((b) => (b.pathname || "").endsWith("/" + id + ".json"))
     || files.find((b) => (b.pathname || "").includes("/" + id) && /\.json$/.test(b.pathname || ""));
   if (hit) {
-    const { body } = await blob.getBuffer(hit.url || hit.pathname || exact);
+    const { body } = await blob.getBuffer(hit.pathname || exact || hit.url);
     return JSON.parse(body.toString("utf8"));
   }
   try {
@@ -81,7 +81,7 @@ async function listMessages() {
   for (const f of files) {
     if (!/\.json$/.test(f.pathname || f.url || "")) continue;
     try {
-      const { body } = await blob.getBuffer(f.url || f.pathname);
+      const { body } = await blob.getBuffer(f.pathname || f.url);
       msgs.push(JSON.parse(body.toString("utf8")));
     } catch (e) {
       console.error("inbox list skip", e.message);
