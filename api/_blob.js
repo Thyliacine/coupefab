@@ -72,35 +72,86 @@ async function list(prefix, { limit = 1000, cursor } = {}) {
   return out;
 }
 
-function pathnameOf(pathnameOrUrl) {
-  if (!/^https?:\/\//i.test(pathnameOrUrl)) return String(pathnameOrUrl || "");
-  const u = new URL(pathnameOrUrl);
+function assertBlobHost(url) {
+  let u;
+  try { u = new URL(url); } catch {
+    const err = new Error("blob get refused: not a Vercel Blob URL");
+    err.status = 400;
+    throw err;
+  }
   if (u.protocol !== "https:" || !/\.blob\.vercel-storage\.com$/i.test(u.hostname)) {
     const err = new Error("blob get refused: not a Vercel Blob URL");
     err.status = 400;
     throw err;
   }
+  return u;
+}
+
+function pathnameOf(pathnameOrUrl) {
+  if (!/^https?:\/\//i.test(pathnameOrUrl)) return String(pathnameOrUrl || "").replace(/^\//, "");
+  const u = assertBlobHost(pathnameOrUrl);
   return decodeURIComponent(u.pathname.replace(/^\//, ""));
+}
+
+function storeIdFromToken() {
+  // vercel_blob_rw_<storeId>_<secret> — never log the token.
+  const parts = String(token()).split("_");
+  const id = parts[3] || "";
+  return id.replace(/^store_/, "");
+}
+
+function storeId() {
+  const env = String(process.env.BLOB_STORE_ID || "").trim().replace(/^store_/, "");
+  return env || storeIdFromToken();
+}
+
+function candidateUrls(pathnameOrUrl) {
+  const urls = [];
+  const seen = new Set();
+  const add = (u) => { if (u && !seen.has(u)) { seen.add(u); urls.push(u); } };
+  if (/^https?:\/\//i.test(pathnameOrUrl)) {
+    const u = assertBlobHost(pathnameOrUrl);
+    add(u.origin + u.pathname);
+    // Listed URLs may omit the .private. infix; the SDK reads from {id}.private.blob...
+    if (!/\.(private|public)\.blob\.vercel-storage\.com$/i.test(u.hostname)) {
+      const id = u.hostname.replace(/\.blob\.vercel-storage\.com$/i, "");
+      add("https://" + id + ".private.blob.vercel-storage.com" + u.pathname);
+    }
+  } else {
+    const pathname = pathnameOf(pathnameOrUrl);
+    const id = storeId();
+    if (!pathname || !id) {
+      const err = new Error("blob get refused: missing pathname or store id");
+      err.status = 400;
+      throw err;
+    }
+    add("https://" + id + ".private.blob.vercel-storage.com/" + pathname);
+  }
+  return urls;
 }
 
 async function sleep(ms) { return new Promise((r) => setTimeout(r, ms)); }
 
 async function getBuffer(pathnameOrUrl) {
-  // Always read through the Blob API with the token. Fetching the stored file URL
-  // can return 429 (challenge or store throttling) from a serverless function.
-  const pathname = pathnameOf(pathnameOrUrl);
+  // Download from the Blob storage host with Authorization only (same as the
+  // official SDK). There is no vercel.com/api/blob/get?pathname= endpoint.
+  const urls = candidateUrls(pathnameOrUrl);
+  const authOnly = { authorization: "Bearer " + token() };
   let last;
-  for (let i = 0; i < 4; i++) {
-    try {
-      const res = await request("/get?pathname=" + encodeURIComponent(pathname), { method: "GET" });
-      if (res && typeof res.arrayBuffer === "function") {
+  for (const url of urls) {
+    for (let i = 0; i < 4; i++) {
+      const res = await fetch(url, { method: "GET", headers: authOnly });
+      if (res.ok) {
         return { body: Buffer.from(await res.arrayBuffer()), contentType: res.headers.get("content-type") || "application/octet-stream" };
       }
-      return { body: Buffer.from(JSON.stringify(res)), contentType: "application/json" };
-    } catch (e) {
-      last = e;
-      if (e && e.status === 429 && i < 3) { await sleep(400 * (i + 1)); continue; }
-      throw e;
+      const mitigated = res.headers.get("x-vercel-mitigated") || "";
+      last = new Error("blob get " + res.status + (mitigated ? " " + mitigated : ""));
+      last.status = res.status;
+      if (res.status === 429 && i < 3) {
+        await sleep(500 * Math.pow(2, i));
+        continue;
+      }
+      break;
     }
   }
   throw last;

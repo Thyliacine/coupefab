@@ -64,7 +64,7 @@ async function getMessage(id) {
     || files.find((b) => (b.pathname || "").endsWith("/" + id + ".json"))
     || files.find((b) => (b.pathname || "").includes("/" + id) && /\.json$/.test(b.pathname || ""));
   if (hit) {
-    const { body } = await blob.getBuffer(hit.pathname || exact || hit.url);
+    const { body } = await blob.getBuffer(hit.url || hit.pathname || exact);
     return JSON.parse(body.toString("utf8"));
   }
   try {
@@ -78,14 +78,21 @@ async function getMessage(id) {
 async function listMessages() {
   const files = await blob.list("inbox/messages/");
   const msgs = [];
+  let failed = 0;
+  let lastErr = "";
   for (const f of files) {
     if (!/\.json$/.test(f.pathname || f.url || "")) continue;
     try {
-      const { body } = await blob.getBuffer(f.pathname || f.url);
+      const { body } = await blob.getBuffer(f.url || f.pathname);
       msgs.push(JSON.parse(body.toString("utf8")));
     } catch (e) {
-      console.error("inbox list skip", e.message);
+      failed += 1;
+      lastErr = (e && e.message) ? String(e.message) : "error";
     }
+  }
+  if (failed) console.error("inbox list skip", failed, "last", lastErr);
+  if (failed && msgs.length === 0) {
+    throw new Error("inbox list failed " + failed + " " + lastErr);
   }
   msgs.sort((a, b) => String(b.createdAt || "").localeCompare(String(a.createdAt || "")));
   return msgs;

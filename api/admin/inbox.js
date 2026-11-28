@@ -20,7 +20,8 @@ module.exports = async (req, res) => {
       const type = u.searchParams.get("type") || "";
       const status = u.searchParams.get("status") || "";
       const format = u.searchParams.get("format") || "";
-      const msgs = (await inbox.listMessages()).filter((m) => inbox.matchQuery(m, q, type, status));
+      const all = await inbox.listMessages();
+      const msgs = all.filter((m) => inbox.matchQuery(m, q, type, status));
       if (format === "csv") {
         const csv = inbox.toCSV(msgs);
         res.statusCode = 200;
@@ -33,7 +34,7 @@ module.exports = async (req, res) => {
       }
       const summaries = msgs.map(inbox.summaryOf);
       const counts = { all: 0, new: 0, read: 0, archived: 0 };
-      for (const m of await inbox.listMessages()) {
+      for (const m of all) {
         counts.all += 1;
         if (counts[m.status] != null) counts[m.status] += 1;
       }
