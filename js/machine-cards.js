@@ -198,6 +198,7 @@
         var calc = (EN ? "/en/tools/coolant-calculator/" : "/outils/calculateur-liquide-de-coupe/") + "?m=" + encodeURIComponent(d.c || name);
         var src = [];
         if (d.mti) src.push('<a href="' + esc(d.mti) + '" target="_blank" rel="noopener">MachineToolIndex</a>');
+        if (d.mti2) src.push('<a href="' + esc(d.mti2) + '" target="_blank" rel="noopener">MachineToolIndex</a>');
         if (d.mk) src.push('<a href="' + esc(d.mk) + '" target="_blank" rel="noopener nofollow">' + T("Site du fabricant", "Maker’s page") + " (" + esc(host(d.mk)) + ")</a>");
         if (d.cs) src.push('<a href="' + esc(d.cs) + '" target="_blank" rel="noopener nofollow">' + T("Source du réservoir", "Coolant tank source") + " (" + esc(host(d.cs)) + ")</a>");
         var tl = tileList(s), tiles = tl.tiles, rows = specRows(s).filter(function (x) { return !tl.used[x.key]; });
