@@ -91,3 +91,19 @@ Never deploy a demo build.
 ## Note : noms de classes
 
 Ne jamais préfixer les classes ou id de l’admin par `ad-` (ni `ad`, `ads`, `advert`…) : les listes des bloqueurs de pub (EasyList, Liste FR) masquent `.ad-top`, `.ad-panel`, `.ad-btn`, `.ad-tabs`, `.ad-detail`, ce qui donnait une page blanche après connexion. Le préfixe est `cfa-`.
+
+## 8. Conservation 12 mois (infolettre)
+
+La politique de confidentialité prévoit la suppression des renseignements d’un abonné au plus tard 12 mois après un désabonnement. Un passage authentifié de l’admin le fait, sans créer de 13e fonction Vercel :
+
+- aperçu (aucune suppression) : `GET /api/admin/inbox?action=retention`
+- suppression réelle : `POST /api/admin/inbox` avec `{ "action": "retention", "delete": true }`
+
+Le script `scripts/retention_cleanup.py` s’authentifie, lance l’aperçu par défaut, et n’écrit que des comptes (jamais de courriels). Mot de passe uniquement dans la variable d’environnement `ADMIN_PASSWORD` (jamais en argument) :
+
+```bash
+python3 scripts/retention_cleanup.py
+python3 scripts/retention_cleanup.py --delete
+```
+
+Seuls les messages d’inscription et de désabonnement sont concernés. Un réabonnement plus récent est traité comme un abonné actif et n’est jamais effacé. Les messages de contact, soumissions, courriels, etc. sont laissés tels quels.

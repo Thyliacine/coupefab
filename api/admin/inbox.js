@@ -6,6 +6,10 @@ module.exports = async (req, res) => {
   try {
     if (req.method === "GET") {
       const u = new URL(req.url, "https://coupefab.ca");
+      if (u.searchParams.get("action") === "retention") {
+        const retention = require("../_retention");
+        return auth.json(res, 200, { ok: true, dryRun: true, ...(await retention.plan()) });
+      }
       const id = u.searchParams.get("id");
       if (id) {
         const msg = await inbox.getMessage(id);
@@ -34,6 +38,14 @@ module.exports = async (req, res) => {
         if (counts[m.status] != null) counts[m.status] += 1;
       }
       return auth.json(res, 200, { ok: true, count: summaries.length, counts, messages: summaries });
+    }
+    if (req.method === "POST") {
+      let body = {};
+      try { body = JSON.parse(await auth.readBody(req, 20_000) || "{}") || {}; } catch { return auth.json(res, 400, { ok: false, error: "JSON invalide." }); }
+      if (body.action !== "retention") return auth.json(res, 400, { ok: false, error: "Action inconnue." });
+      const retention = require("../_retention");
+      if (body.delete === true) return auth.json(res, 200, { ok: true, dryRun: false, ...(await retention.apply()) });
+      return auth.json(res, 200, { ok: true, dryRun: true, ...(await retention.plan()) });
     }
     if (req.method === "PATCH") {
       const raw = await auth.readBody(req, 20_000);
