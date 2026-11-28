@@ -8,13 +8,13 @@
   "source": "Banque du Canada — taux de change quotidien (Valet FXUSDCAD)",
   "url": "https://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/"
  },
- "count": 12747,
+ "count": 12363,
  "status": [
   {
    "id": "airtek",
    "ok": true,
    "error": null,
-   "rows": 1174
+   "rows": 796
   },
   {
    "id": "groupe-mortier",
@@ -56,13 +56,13 @@
    "id": "busybee",
    "ok": true,
    "error": null,
-   "rows": 892
+   "rows": 887
   },
   {
    "id": "wiseline",
    "ok": true,
    "error": null,
-   "rows": 1373
+   "rows": 1372
   },
   {
    "id": "cncrouterstore",
@@ -433,6 +433,8 @@
   "items/part-01.jsonl",
   "items/part-02.jsonl",
   "items/part-03.jsonl",
-  "items/part-04.jsonl"
+  "items/part-04.jsonl",
+  "items/part-05.jsonl",
+  "items/part-06.jsonl"
  ]
 }

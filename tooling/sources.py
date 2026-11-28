@@ -7,7 +7,7 @@ are never fetched.
 
 SOURCES = [
     # --- Québec ------------------------------------------------------------
-    {"id": "airtek", "name": "Airtek", "platform": "shopify", "host": "airtekltd.com", "lang_path": "/fr",
+    {"id": "airtek", "name": "Airtek", "platform": "shopify", "host": "airtekltd.com", "lang_path": "/fr", "verify_pages": True,
      "city": "Saint-Laurent (Montréal)", "province": "QC", "country": "CA", "currency": "CAD", "max_pages": 80},
     {"id": "groupe-mortier", "name": "Groupe Mortier", "platform": "shopify", "host": "groupemortier.ca",
      "city": "", "province": "QC", "country": "CA", "currency": "CAD", "max_pages": 40},
