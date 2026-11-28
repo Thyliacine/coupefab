@@ -47,6 +47,44 @@ Sans ces variables, l’inscription est acceptée mais n’est consignée que da
 
 Les premiers numéros sont prévus pour un envoi manuel depuis Gmail.
 
+## Vérificateur de liens (`scripts/check_links.py`)
+
+Règle de la maison : **aucun lien d’achat n’est publié sans avoir été ouvert.** Le vérificateur trouve tous les
+liens sortants du site construit (pages HTML, `prix/`, `outillage/`, `pieces/`, `occasions/`, fiches machines,
+sources du calculateur de liquide de coupe, guides), fait un vrai GET avec un User-Agent de navigateur
+(redirections suivies) et classe chaque lien :
+
+- `broken` : 404 / 410, 5xx persistant, domaine mort, erreur TLS ;
+- `soft404` : 200 mais « page introuvable », « produit discontinué / non disponible », ou redirection vers
+  l’accueil ou une page de recherche ;
+- `pointless` : la page se charge mais ne montre rien d’utile (recherche à 0 produit, recherche trop large pour
+  isoler l’article, accueil générique derrière un bouton « acheter », variante Shopify disparue, ancre `#1234`
+  absente chez Metals Depot, page produit qui n’affiche pas le numéro de pièce / la dimension) ;
+- 403 / 429 / Cloudflare = `blocked` (pas cassé) : revérifié dans un navigateur (Playwright), ou via le flux
+  `/products.json` pour les boutiques Shopify qui limitent le débit. Tout lien « cassé » est rouvert dans le
+  navigateur avant d’être signalé (certaines boutiques répondent un faux 404 aux robots).
+
+```bash
+python3 build.py                                   # le vérificateur lit le site construit
+python3 scripts/check_links.py                     # liens d’achat seulement (prix, outillage, pièces, occasions)
+python3 scripts/check_links.py --render            # + navigateur : liens bloqués, ancres, échantillon de pages produit
+python3 scripts/check_links.py --all --render      # tous les liens sortants (guides, sources machines, annuaire)
+python3 scripts/check_links.py --internal          # + liens internes absents du build
+python3 scripts/check_links.py --resume            # réutilise .link-cache.json (7 jours), reprend un passage interrompu
+python3 scripts/check_links.py --json rapport.json # rapport lisible par machine
+```
+
+Code de sortie **1** dès qu’un lien d’achat est `broken` / `soft404` / `pointless` et n’est pas dans
+`scripts/link_baseline.json` (`{"known": {"<url>": "raison"}}`, exceptions connues et justifiées). Les liens de
+référence en échec sont listés mais ne font échouer le passage qu’avec `--strict`. À lancer avant chaque
+déploiement (`--render --resume`, ~10 min avec le cache) ; dépendances : `requests`, et `playwright` +
+`playwright install chromium` pour `--render`.
+
+Cas appris : la recherche de Metal Pros (`quote.metalpros.com/?search=`) ne cherche que dans la **description**
+(tous les mots), jamais dans le code interne : les liens se font donc avec la description complète, et une ligne
+dont la recherche ramène plus de 25 articles n’a pas de lien. Un produit présent dans `/products.json` n’est pas
+forcément en vitrine (Airtek) : `tooling/fetch_tooling.py` vérifie la page avant de garder la ligne.
+
 ## Domaines (plus tard)
 
 `coupefab.ca` et `coupefab.com` sont achetés à part (Porkbun). Ne rien acheter depuis ce dépôt.

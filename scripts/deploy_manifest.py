@@ -40,7 +40,8 @@ import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = Path("/tmp/coupefab-deploy")
+import os
+OUT = Path(os.environ.get("COUPEFAB_DEPLOY_OUT", "/tmp/coupefab-deploy"))  # set per worker: several agents share /tmp
 TEAM = "team_51rPr828F5cibUCQd4qzdhyb"
 BUILD_SETTINGS = {"buildCommand": "mkdir -p public && tar xzf site.tgz -C public",
                   "outputDirectory": "public", "installCommand": "", "framework": None}
