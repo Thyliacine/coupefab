@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-26T22:02:44-05:00",
+  "generated": "2026-11-27T06:31:10-05:00",
   "rows": [
     {
       "make": "Langmuir",
@@ -8,7 +8,7 @@
       "price": 4195.0,
       "currency": "USD",
       "source_url": "https://www.langmuirsystems.com/products/crossfire-pro-cnc-plasma-table-basic-package",
-      "date": "2026-11-26",
+      "date": "2026-11-27",
       "source_name": "Langmuir Systems official shop",
       "kind": "official",
       "notes": "Published new price on langmuirsystems.com; freight and options extra."
@@ -20,7 +20,7 @@
       "price": 2495.0,
       "currency": "USD",
       "source_url": "https://www.langmuirsystems.com/products/crossfire-cnc-plasma-table-basic-package",
-      "date": "2026-11-26",
+      "date": "2026-11-27",
       "source_name": "Langmuir Systems official shop",
       "kind": "official",
       "notes": "Published new price on langmuirsystems.com; freight and options extra."
@@ -32,7 +32,7 @@
       "price": 3395.0,
       "currency": "USD",
       "source_url": "https://www.langmuirsystems.com/products/crossfire-pro-max-cnc-plasma-table",
-      "date": "2026-11-26",
+      "date": "2026-11-27",
       "source_name": "Langmuir Systems official shop",
       "kind": "official",
       "notes": "Published new price on langmuirsystems.com; freight and options extra."
@@ -44,7 +44,7 @@
       "price": 4995.0,
       "currency": "USD",
       "source_url": "https://www.langmuirsystems.com/products/titan-25t-cnc-press-brake",
-      "date": "2026-11-26",
+      "date": "2026-11-27",
       "source_name": "Langmuir Systems official shop",
       "kind": "official",
       "notes": "Published new price on langmuirsystems.com; freight and options extra."
@@ -56,7 +56,7 @@
       "price": 1289.0,
       "currency": "USD",
       "source_url": "https://www.langmuirsystems.com/products/razorweld-razorcut-45-with-machine-torch",
-      "date": "2026-11-26",
+      "date": "2026-11-27",
       "source_name": "Langmuir Systems official shop",
       "kind": "official",
       "notes": "Published new price on langmuirsystems.com; freight and options extra."
@@ -68,7 +68,7 @@
       "price": 3300.0,
       "currency": "USD",
       "source_url": "https://www.langmuirsystems.com/products/hypertherm-powermax45-sync-with-25ft-mechanized-torch",
-      "date": "2026-11-26",
+      "date": "2026-11-27",
       "source_name": "Langmuir Systems official shop",
       "kind": "official",
       "notes": "Published new price on langmuirsystems.com; freight and options extra."
@@ -80,7 +80,7 @@
       "price": 6995.0,
       "currency": "USD",
       "source_url": "https://www.langmuirsystems.com/products/crossfire-xr-cnc-plasma-table",
-      "date": "2026-11-26",
+      "date": "2026-11-27",
       "source_name": "Langmuir Systems official shop",
       "kind": "official",
       "notes": "Published new price on langmuirsystems.com; freight and options extra."
@@ -92,7 +92,7 @@
       "price": 58900.0,
       "currency": "USD",
       "source_url": "https://piranhafab.com/current-promotions-and-in-stock-equipment",
-      "date": "2026-11-26",
+      "date": "2026-11-27",
       "source_name": "Piranha / MegaFab official promotions page",
       "kind": "official",
       "notes": "Published regular (list) price on piranhafab.com; special price ignored; freight extra."
@@ -104,7 +104,7 @@
       "price": 63900.0,
       "currency": "USD",
       "source_url": "https://piranhafab.com/current-promotions-and-in-stock-equipment",
-      "date": "2026-11-26",
+      "date": "2026-11-27",
       "source_name": "Piranha / MegaFab official promotions page",
       "kind": "official",
       "notes": "Published regular (list) price on piranhafab.com; special price ignored; freight extra."
@@ -116,7 +116,7 @@
       "price": 36000.0,
       "currency": "USD",
       "source_url": "https://shop.arcsolinc.com/products/hypertherm-xpr300-power-supply-400v-078625",
-      "date": "2026-11-26",
+      "date": "2026-11-27",
       "source_name": "Arc Solutions (Hypertherm dealer shop)",
       "kind": "official",
       "scope": "power_supply",

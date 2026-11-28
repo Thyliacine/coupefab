@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-26T23:05:26-05:00",
- "date": "2026-11-26",
+ "generated_at": "2026-11-27T06:31:04-05:00",
+ "date": "2026-11-27",
  "fx": {
   "pair": "USD/CAD",
   "rate": 1.4243,
@@ -492,61 +492,61 @@
   "metalsrus": {
    "ok": true,
    "rows": 1573,
-   "fetched_at": "2026-11-26T21:55:46-05:00",
+   "fetched_at": "2026-11-27T06:19:06-05:00",
    "error": ""
   },
   "metalsdepot": {
    "ok": true,
    "rows": 2108,
-   "fetched_at": "2026-11-26T22:00:26-05:00",
+   "fetched_at": "2026-11-27T06:23:39-05:00",
    "error": ""
   },
   "unitedstainless": {
    "ok": true,
    "rows": 115,
-   "fetched_at": "2026-11-26T22:00:27-05:00",
+   "fetched_at": "2026-11-27T06:23:40-05:00",
    "error": ""
   },
   "mercier40": {
    "ok": true,
    "rows": 34,
-   "fetched_at": "2026-11-26T22:00:31-05:00",
+   "fetched_at": "2026-11-27T06:23:44-05:00",
    "error": ""
   },
   "princessauto": {
    "ok": true,
    "rows": 10,
-   "fetched_at": "2026-11-26T22:00:53-05:00",
+   "fetched_at": "2026-11-27T06:24:11-05:00",
    "error": ""
   },
   "millennium": {
    "ok": true,
    "rows": 49,
-   "fetched_at": "2026-11-26T22:00:56-05:00",
+   "fetched_at": "2026-11-27T06:24:13-05:00",
    "error": ""
   },
   "nationalsalvage": {
    "ok": true,
    "rows": 8,
-   "fetched_at": "2026-11-26T22:00:56-05:00",
+   "fetched_at": "2026-11-27T06:24:13-05:00",
    "error": ""
   },
   "aluminox": {
    "ok": true,
    "rows": 105,
-   "fetched_at": "2026-11-26T22:00:57-05:00",
+   "fetched_at": "2026-11-27T06:24:15-05:00",
    "error": ""
   },
   "forcesinc": {
    "ok": true,
    "rows": 37,
-   "fetched_at": "2026-11-26T22:00:59-05:00",
+   "fetched_at": "2026-11-27T06:24:17-05:00",
    "error": ""
   },
   "valmont": {
    "ok": true,
    "rows": 19,
-   "fetched_at": "2026-11-26T22:01:00-05:00",
+   "fetched_at": "2026-11-27T06:24:18-05:00",
    "error": ""
   },
   "acierterrebonne": {
@@ -558,19 +558,19 @@
   "wemachine": {
    "ok": true,
    "rows": 165,
-   "fetched_at": "2026-11-26T22:01:00-05:00",
+   "fetched_at": "2026-11-27T06:24:18-05:00",
    "error": ""
   },
   "smithmetal": {
    "ok": true,
    "rows": 100,
-   "fetched_at": "2026-11-26T22:01:01-05:00",
+   "fetched_at": "2026-11-27T06:24:19-05:00",
    "error": ""
   },
   "optikutz": {
    "ok": true,
    "rows": 10,
-   "fetched_at": "2026-11-26T22:01:02-05:00",
+   "fetched_at": "2026-11-27T06:24:19-05:00",
    "error": ""
   },
   "recyborg": {
@@ -582,37 +582,37 @@
   "lasersupply": {
    "ok": true,
    "rows": 4,
-   "fetched_at": "2026-11-26T22:01:02-05:00",
+   "fetched_at": "2026-11-27T06:24:20-05:00",
    "error": ""
   },
   "aircraftspruce": {
    "ok": true,
    "rows": 736,
-   "fetched_at": "2026-11-26T22:02:01-05:00",
+   "fetched_at": "2026-11-27T06:25:18-05:00",
    "error": ""
   },
   "cobalt": {
    "ok": true,
    "rows": 49,
-   "fetched_at": "2026-11-26T22:02:21-05:00",
+   "fetched_at": "2026-11-27T06:30:19-05:00",
    "error": ""
   },
   "metalpros": {
    "ok": true,
    "rows": 4511,
-   "fetched_at": "2026-11-26T22:02:37-05:00",
+   "fetched_at": "2026-11-27T06:30:34-05:00",
    "error": ""
   },
   "pmabitibi": {
    "ok": true,
    "rows": 125,
-   "fetched_at": "2026-11-26T23:04:58-05:00",
+   "fetched_at": "2026-11-27T06:30:36-05:00",
    "error": ""
   },
   "knifemaker": {
    "ok": true,
    "rows": 161,
-   "fetched_at": "2026-11-26T23:05:26-05:00",
+   "fetched_at": "2026-11-27T06:31:04-05:00",
    "error": ""
   }
  },
