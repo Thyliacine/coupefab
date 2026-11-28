@@ -680,7 +680,12 @@
  "n_rows": 10003,
  "rows_files": [
   "latest-rows/part-01.jsonl",
-  "latest-rows/part-02.jsonl",
-  "latest-rows/part-03.jsonl"
+  "latest-rows/part-04.jsonl",
+  "latest-rows/part-05.jsonl",
+  "latest-rows/part-06.jsonl",
+  "latest-rows/part-07.jsonl",
+  "latest-rows/part-08.jsonl",
+  "latest-rows/part-09.jsonl",
+  "latest-rows/part-10.jsonl"
  ]
 }
