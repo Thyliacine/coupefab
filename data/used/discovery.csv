@@ -51,3 +51,53 @@ Surplus Record,https://surplusrecord.com/,directory,CA-US,?,,blocked,0,0,"robots
 Haas official machine pages / shop inventory,https://haascnc.com/machines/vertical-mills/vf-series/models/small/vf-2,oem,US,?,,blocked,0,0,"robots allow, but our identified bot receives HTTP 403; list price taken only from two press sources for the VF-2 estimate",2026-11-26
 Powermaster Machinery (Mississauga),https://www.powermaster.ca/used-machines,dealer,ON,?,,blocked,0,0,Challenge-like page to our identified bot; not bypassed,2026-11-26
 Milltronics official site,https://milltronics.com/cnc-machines/trl18-60,oem,US,?,,blocked,0,0,Product page returned HTTP 202 challenge; info.milltronics.com/online-pricing is a form with no public prices,2026-11-26
+Langmuir Systems shop (MSRP),https://www.langmuirsystems.com/products.json?limit=250,msrp,US-ships,Y,200,added,7,7,Official Shopify products.json; complete machines only,2026-11-27
+Piranha official in-stock prices (MSRP),https://piranhafab.com/current-promotions-and-in-stock-equipment,msrp,US-ships,Y,200,added,2,2,Official regular prices for current T-series brakes; the used 9510 is a discontinued model and is not assigned these figures,2026-11-27
+Hypertherm XPR300 power supply (MSRP),https://shop.arcsolinc.com/products/hypertherm-xpr300-power-supply-400v-078625,msrp,US-ships,Y,200,added,1,1,Authorized-dealer published price for the XPR300 power supply only; not applied to complete tables,2026-11-27
+Haas VF-2 estimated new price (2 press sources),https://machinetoolindex.com/machines/haas-vf-2,msrp,US-ships,Y,200,added,1,1,"No official haascnc.com price reachable (HTTP 403). Estimate US$70,995 from MachineTool Index + Open Factory, dated 26 Nov 2026",2026-11-27
+Machinerie ALX,https://machineriealx.com/,dealer,QC,Y,200,added,345,0,"WooCommerce Store API (20 pages); public pages are quote-only, API amounts not used",2026-11-27
+Tardif Industrie,https://www.tardifindustrie.com/equipement,dealer,QC,Y,200,added,10,10,Public Next.js inventory; asking prices shown on the listing cards,2026-11-27
+Industriel Go,https://www.industrielgo.com/listings,dealer,QC,Y,200,added,1,0,"Public inventory HTML; relevant CNC/metal/shop items only, prices on request",2026-11-27
+Southern Fabricating Machinery Sales,https://www.southernfabsales.com/machines,dealer,US-ships,Y,200,added,459,7,Public inventory cards (data-make/model/year); asking prices almost never published,2026-11-27
+IronPlanet / Ritchie Bros.,https://www.ironplanet.com/,auction,QC,Y,,blocked,0,0,"Listing/search challenge (HTTP 202 challenge for https://www.ironplanet.com/for-sale/Welding-Machines-and-Equipment-2022-HD-EBF-Hypertherm-XPR-300-78%E2%80%9Dx150%E2%80%9D-Plasma-Cutter-Quebec/14972875). Buy-now of 137 500 CAD was read from this public lot page earlier on 26 Nov 2026; kept as last confirmed, not re-verified this run.",2026-11-27
+Gizmo Machine Tools,https://www.gizmo-mt.ca/listings,dealer,ON,Y,200,added,25,0,"Public MachineryHost inventory HTML; 0 with a published asking price, others on request",2026-11-27
+Trader Machinery,https://www.tradermachinery.com/listings,dealer,ON,Y,200,added,60,0,"Public MachineryHost inventory HTML; 0 with a published asking price, others on request",2026-11-27
+Surplus Record,https://surplusrecord.com/,directory,CA-US,?,,blocked,0,0,"robots allow, but our identified bot receives HTTP 403 on dealer and Canada pages; not bypassed",2026-11-27
+Haas official machine pages / shop inventory,https://haascnc.com/machines/vertical-mills/vf-series/models/small/vf-2,oem,US,?,,blocked,0,0,"robots allow, but our identified bot receives HTTP 403; list price taken only from two press sources for the VF-2 estimate",2026-11-27
+Powermaster Machinery (Mississauga),https://www.powermaster.ca/used-machines,dealer,ON,?,,blocked,0,0,Challenge-like page to our identified bot; not bypassed,2026-11-27
+Milltronics official site,https://milltronics.com/cnc-machines/trl18-60,oem,US,?,,blocked,0,0,Product page returned HTTP 202 challenge; info.milltronics.com/online-pricing is a form with no public prices,2026-11-27
+Steel Machinery (QC/ON directory),https://steelmachinery.ca/,directory,QC-ON,?,,blocked,0,0,TLS handshake failed on retry (unexpected EOF); not bypassed,2026-11-27
+Seguin Machinery,https://www.seguinmachinery.com/,dealer,QC,?,,blocked,0,0,TLS handshake failed on retry; not bypassed,2026-11-27
+CNC Pro Equipment,https://www.cncproequipment.com/,dealer,ON,?,,blocked,0,0,"Public inventory exists, but our identified bot receives HTTP 403; not bypassed",2026-11-27
+Machinery Inc. (Sherbrooke),https://www.1machinery.com/active-inventory,dealer,QC,?,,blocked,0,0,"Public inventory exists, but our identified bot receives HTTP 403; not bypassed",2026-11-27
+Kijiji Québec,https://www.kijiji.ca/b-outils-machinerie/quebec/cnc/k0c632l9001,classifieds,QC,?,,blocked,0,0,Page loads but search results are not present in the public HTML (results=null); no API workaround,2026-11-27
+LesPAC,https://www.lespac.com/,classifieds,QC,?,,pending,0,0,Keyword URL 404; no permitted results page found this pass,2026-11-27
+Craigslist Montréal / Toronto,https://montreal.craigslist.org/search/sss?query=cnc,classifieds,QC-ON,?,,blocked,0,0,HTML search redirected/blocked (HTTP 301/403) from this host; RSS also 403; not bypassed,2026-11-27
+Ritchie Bros. search,https://www.ironplanet.com/jsp/s/search.ips?query=plasma+cutter,auction,CA,?,,blocked,0,0,Search endpoint returned HTTP 202 with an empty body; individual public lots are still tried,2026-11-27
+Ritchie Bros. Québec,https://www.rbauction.qc.ca/,auction,QC,?,,blocked,0,0,robots.txt not served (HTTP 403) to our bot; not bypassed,2026-11-27
+BidSpotter,https://www.bidspotter.com/,auction,CA-US,?,,blocked,0,0,Not parsed this pass; site is JS-heavy and often challenges bots — recorded for a later permitted read,2026-11-27
+Michael Fox,https://www.michaelfox.com/,auction,US-CA,?,,pending,0,0,robots.txt 404 (treated as empty rules); no structured public inventory extracted this pass,2026-11-27
+Corporate Assets,https://www.corporateassets.com/,auction,ON,?,,pending,0,0,Public homepage returned a consent/empty shell with no listings for our bot,2026-11-27
+TCL Asset Group,https://www.managingyourassets.com/,auction,ON,?,,pending,0,0,Reached earlier; no structured public inventory extracted this pass,2026-11-27
+Maynards,https://www.maynards.com/,auction,CA,?,,pending,0,0,Homepage may load; no machine-tool inventory extracted this pass,2026-11-27
+GoIndustry DoveBid,https://www.go-dove.com/,auction,INTL,?,,blocked,0,0,robots.txt HTTP 403 to our bot; not bypassed,2026-11-27
+GovDeals Canada,https://www.govdeals.ca/,auction,CA,?,,blocked,0,0,robots.txt HTTP 403 to our bot; not bypassed,2026-11-27
+Machinio,https://www.machinio.com/,aggregator,INTL,?,,blocked,0,0,robots.txt HTTP 403 to our bot; not bypassed. Industriel Go listings used instead where they overlap,2026-11-27
+Exapro,https://www.exapro.com/,aggregator,INTL,?,,pending,0,0,Canada search URL returned 404 this pass,2026-11-27
+Machinery Trader,https://www.machinerytrader.com/,aggregator,CA-US,?,,pending,0,0,Not parsed this pass (large JS app); robots allow listing pages — pending,2026-11-27
+Equipment Trader,https://www.equipmenttrader.com/,aggregator,US,?,,blocked,0,0,robots.txt HTTP 403 to our bot; not bypassed,2026-11-27
+Haas certified used,https://www.haascnc.com/owners/used-cnc-machines.html,oem-used,CA-US,?,,quote-only,0,0,Page is allowed; no structured public used inventory with prices extracted this pass (quote / dealer referral),2026-11-27
+TRUMPF used machines,https://www.trumpf.com/en_US/products/used-machines/,oem-used,INTL,?,,quote-only,0,0,"Allowed; used-machine programme is quote / regional-dealer, no public price list extracted",2026-11-27
+Bystronic used,https://www.bystronic.com/usa/en/used-machines,oem-used,INTL,?,,pending,0,0,Allowed; no public priced inventory extracted this pass,2026-11-27
+Amada used,https://www.amada.com/america,oem-used,US,?,,pending,0,0,"Corporate site, no public used price list",2026-11-27
+Mazak used,https://www.mazakusa.com/machines/used/,oem-used,US,?,,pending,0,0,Allowed; no public priced used list extracted this pass,2026-11-27
+Ferro Technique inventory,https://ferrotechnique.com/inventory/,dealer,ON-QC,?,,quote-only,0,0,In-stock new machines at Mississauga (quote); not used equipment — omitted from the digest,2026-11-27
+A.W. Miller,https://www.awmiller.com/,dealer,CA,?,,pending,0,0,Mazak dealer site; no public used inventory extracted this pass,2026-11-27
+SMS Machine Tools,https://smsmachine.com/,dealer,ON,?,,pending,0,0,Dealer site; no public used inventory extracted this pass,2026-11-27
+Thomas Skinner (Haas),https://www.thomasskinner.com/,dealer,BC-AB,?,,blocked,0,0,Challenge-like page or no public used list extracted,2026-11-27
+Elliott Matsuura Canada,https://www.elliottmachinery.com/,dealer,ON,?,,pending,0,0,No public used inventory extracted this pass,2026-11-27
+Sterling Machinery,https://www.sterlingmachinery.com/inventory.php,dealer,US,?,,pending,0,0,inventory.php 404 this pass,2026-11-27
+Prestige Equipment,https://www.prestigeequipment.com/,dealer,US-ships,?,,blocked,0,0,Possible challenge page; not bypassed,2026-11-27
+Unique Machine Tools,https://uniquemachinetools.com/,dealer,US,?,,pending,0,0,Homepage allowed; no structured priced inventory extracted this pass,2026-11-27
+CNCmachines.net,https://www.cncmachines.net/,aggregator,US,?,,pending,0,0,Homepage allowed; not parsed this pass (pending),2026-11-27
+Facebook Marketplace / OEM logins,https://www.facebook.com/marketplace/,classifieds,QC,?,,blocked,0,0,Login wall — not used,2026-11-27
