@@ -193,9 +193,9 @@
     mh.forEach(function (m, i) {
       var li = document.createElement("li");
       li.setAttribute("role", "option"); li.className = "sr-machine"; li.id = "sr-m" + i;
-      li.innerHTML = '<a href="#machine=' + encodeURIComponent(m.id) + '" data-machine="' + escapeHtml(m.id) + '"><span class="r-c"><span class="mc-badge">Machine</span>' +
-        escapeHtml(m.typeLabel) + '</span><span class="r-t">' + highlight(m.brand + " " + m.model, res.terms) + '</span><span class="r-d">' +
-        (EN ? "Specs card: travels, spindle, coolant tank" : "Fiche : courses, broche, réservoir de liquide de coupe") + "</span></a>";
+      li.innerHTML = '<a href="#machine=' + encodeURIComponent(m.id) + '" data-machine="' + escapeHtml(m.id) + '"><span class="sr-ico">' + (m.icon || "") + '</span><span class="sr-bd"><span class="r-c"><span class="mc-badge">Machine</span><span class="sr-type">' +
+        escapeHtml(m.typeLabel) + '</span></span><span class="r-t">' + highlight(m.brand + " " + m.model, res.terms) + '</span><span class="r-d">' +
+        (EN ? "Specs card: travels, spindle, coolant tank" : "Fiche : courses, broche, réservoir de liquide de coupe") + '</span></span><svg class="sr-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>';
       list.appendChild(li);
     });
     res.hits.forEach(function (h, i) {
