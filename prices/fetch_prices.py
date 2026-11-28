@@ -1277,6 +1277,7 @@ def fetch_metalpros(fx, quick=False):
     ver = m.group(1) if m else ""
     mats = MP_MATERIALS[:2] if quick else MP_MATERIALS
     rows, seen = [], set()
+    catalogue = []  # every description, to check a ?search= link isolates the item
     for material in mats:
         params = {"material": material}
         if ver:
@@ -1289,6 +1290,7 @@ def fetch_metalpros(fx, quick=False):
                 continue
             seen.add(iid)
             desc = html.unescape(str(item.get("description") or "")).strip()
+            catalogue.append(re.sub(r"\s+", " ", desc).lower())
             unit_raw = str(item.get("unit") or "").strip().lower()
             price = _mp_price(item.get("price"))
             if not desc or price <= 0 or MP_SKIP.search(desc):
@@ -1316,7 +1318,9 @@ def fetch_metalpros(fx, quick=False):
             weight_lb = N.weight_per_ft_lb(family, form, **wargs) if (unit == "ft" and family and wargs) else None
             stock = _mp_price(item.get("stock"))
             sku = item.get("internalId") or iid
-            purl = f"https://quote.metalpros.com/?search={quote(str(sku))}"
+            # The quote tool's ?search= matches the DESCRIPTION text only (never the internal SKU), so a
+            # SKU search renders an empty catalogue. Search by the full description: it isolates the item.
+            purl = "https://quote.metalpros.com/?search=" + quote(desc, safe="")
             r = make_row(
                 supplier=sup, text=desc, price=price, currency="CAD", url=purl, fx=fx,
                 unit=unit, form_hint="", family=family, thickness_in=thickness_in,
@@ -1331,6 +1335,12 @@ def fetch_metalpros(fx, quick=False):
                 continue
             if r:
                 rows.append(r)
+    # The site ANDs the search words: a link that matches more than 25 items does not show THE item,
+    # so those rows keep their price but get no link (scripts/check_links.py flags such links).
+    for r in rows:
+        words = re.sub(r"\s+", " ", r["description"]).lower().split()
+        if sum(1 for d in catalogue if all(w in d for w in words)) > 25:
+            r["url"] = None
     return rows
 
 

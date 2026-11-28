@@ -33,7 +33,7 @@ OUT_DIR = ROOT / "data" / "tooling"
 OUT = OUT_DIR / "prices.json"          # metadata + list of item shards (small)
 OUT_GZ = OUT_DIR / "prices.json.gz"    # optional local cache, not pushed
 ITEM_DIR = "items"
-ITEM_BYTES = 1_500_000
+ITEM_BYTES = 900_000
 TZ = ZoneInfo("America/Toronto")
 UA = "CoupeFabPriceBot/1.0 (+https://coupefab.ca/a-propos/; prix publics, une requete a la fois)"
 S = requests.Session()
@@ -105,6 +105,21 @@ def clean(s):
     return re.sub(r"\s+", " ", s).strip()
 
 
+def page_exists(url):
+    """True unless the storefront answers 404/410 (network errors count as 'exists': never drop on a hiccup)."""
+    time.sleep(0.4)
+    for _ in range(2):
+        try:
+            r = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                                           "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"}, timeout=25, stream=True)
+            code = r.status_code
+            r.close()
+            return code not in (404, 410)
+        except requests.RequestException:
+            time.sleep(2)
+    return True
+
+
 def shopify_items(F, src):
     host = src["host"]
     for page in range(1, src.get("max_pages", 10) + 1):
@@ -113,6 +128,10 @@ def shopify_items(F, src):
         if not prods:
             break
         for p in prods:
+            # Some stores (Airtek) list products in /products.json that are not on the storefront
+            # (the page is a 404): never publish a link to those. ~0.4 s per product, weekly run only.
+            if src.get("verify_pages") and not page_exists(f"https://{host}{src.get('lang_path','')}/products/{p.get('handle')}"):
+                continue
             opts = [o.get("name", "") for o in p.get("options") or []]
             for v in p.get("variants") or []:
                 vt = v.get("title") or ""

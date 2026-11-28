@@ -270,7 +270,7 @@ def buy_action(r, sup):
         return "quote", QUOTE_URL.get(r["supplier"]) or r["url"]
     if ships == "oui":
         return "buy", r.get("buy_url") or r["url"]
-    return "see", r.get("buy_url") or r["url"]
+    return "see", r.get("buy_url") or r["url"]  # url may be None: no link beats a link that shows nothing
 
 
 def compact(latest, rows, index):
@@ -383,7 +383,7 @@ def cards_html(rows, sup, fr):
   <p class="px-card-price"><b>{money(b["metric"])}</b><span>/{L("pi²", "sq ft")}</span>{f'<small>≈ {money(lb)}/lb</small>' if lb else ""}</p>
   <p class="px-card-sup"><span class="px-tier px-t-best">{L("Meilleur prix", "Best price")}</span> <b>{esc(sname)}</b> <span class="px-muted">{esc(ship)}{usd}</span></p>
   <p class="px-card-meta">{L("Feuille", "Sheet")} {esc(size)} : <b>{money(b["price_cad"])}</b> · <span class="px-down">{pct((b["metric"] / med - 1) * 100)}</span> {L("vs médiane", "vs median")} ({money(med)}, {len(ranked)} {L("fourn.", "suppliers")})</p>
-  <a class="px-btn px-btn-buy" href="{esc(url)}" target="_blank" rel="noopener nofollow">{esc(btn)} <span aria-hidden="true">↗</span></a>
+  {f'<a class="px-btn px-btn-buy" href="{esc(url)}" target="_blank" rel="noopener nofollow">{esc(btn)} <span aria-hidden="true">↗</span></a>' if url else ""}
   <ul class="px-card-alt">
     <li>{L("2ᵉ", "2nd")} : {esc(sup[nxt["supplier"]]["name"])} {money(nxt["metric"])} <span class="px-up">{pct((nxt["metric"] / b["metric"] - 1) * 100)}</span></li>
     {f'<li>{L("Plus cher", "Priciest")} : {esc(sup[worst["supplier"]]["name"])} {money(worst["metric"])} <span class="px-up">{pct((worst["metric"] / b["metric"] - 1) * 100)}</span></li>' if worst is not nxt else ""}

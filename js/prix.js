@@ -339,8 +339,8 @@
     var listed = usd ? '<small>US' + money(r.price) + (r.unit && r.unit !== "each" ? munitRaw(r.unit) : "") + "</small>" : (r.unit && r.unit !== "each" ? "<small>" + money(r.price) + munitRaw(r.unit) + "</small>" : "");
     var chips = '<span class="px-chip px-ship-' + esc(s.ships_qc) + '">' + esc(SHIP[s.ships_qc] || "") + "</span>" + (usd ? ' <span class="px-chip px-chip-usd" title="' + esc(T("Converti en CAD. Ajoutez transport transfrontalier, courtage et droits/surtaxes éventuels.", "Converted to CAD. Add cross-border freight, brokerage and any duties/surtaxes.")) + '">USD</span>' : "");
     var lb = r.price_per_lb_cad != null && r.munit !== "lb" ? "<small>" + money(r.price_per_lb_cad) + "/lb</small>" : "";
-    var btn = '<a class="px-btn px-btn-' + a.kind + '" href="' + esc(a.url) + '" target="_blank" rel="noopener nofollow">' + esc(a.label) + ' <span aria-hidden="true">↗</span></a>';
-    var src = '<a class="px-src" href="' + esc(r.url) + '" target="_blank" rel="noopener nofollow">' + T("source", "source") + "</a> · " + esc(dateShort(r.fetched_at)) + (r.source_updated ? T(" (liste du ", " (list of ") + esc(r.source_updated) + ")" : "");
+    var btn = a.url ? '<a class="px-btn px-btn-' + a.kind + '" href="' + esc(a.url) + '" target="_blank" rel="noopener nofollow">' + esc(a.label) + ' <span aria-hidden="true">↗</span></a>' : "";
+    var src = (r.url ? '<a class="px-src" href="' + esc(r.url) + '" target="_blank" rel="noopener nofollow">' + T("source", "source") + "</a>" : T("source", "source")) + " · " + esc(dateShort(r.fetched_at)) + (r.source_updated ? T(" (liste du ", " (list of ") + esc(r.source_updated) + ")" : "");
     var cls = "px-r px-r-" + (r.tier || "none");
     return '<tr class="' + cls + '">' +
       (grouped ? '<td class="px-c-spec px-c-spec-g"><span class="px-desc-g">' + esc(r.description) + "</span>" + (r.grade ? '<span class="px-desc">' + T("Alliage : ", "Grade: ") + esc(gradeTxt(r.grade)) + "</span>" : "") + "</td>"
@@ -465,7 +465,7 @@
           (buyable(r) ? "" : ' <span class="px-chip">' + T("hors Québec", "outside QC") + "</span>") +
           '<span class="px-desc">' + esc(gradeTxt(r.grade)) + " · " + esc(sizeOf(r)) + " · " + money(r.price_per_sqft_cad) + T("/pi²", "/sq ft") + (r.currency === "USD" ? " · USD→CAD" : "") + "</span></div>" +
           '<div class="px-calc-cost"><b>' + money(cost) + "</b>" + (i > 0 ? "<small>+" + money(cost - area * list[0].price_per_sqft_cad) + "</small>" : "") + "</div>" +
-          '<a class="px-btn px-btn-' + a.kind + '" href="' + esc(a.url) + '" target="_blank" rel="noopener nofollow">' + esc(a.label) + ' <span aria-hidden="true">↗</span></a></li>';
+          (a.url ? '<a class="px-btn px-btn-' + a.kind + '" href="' + esc(a.url) + '" target="_blank" rel="noopener nofollow">' + esc(a.label) + ' <span aria-hidden="true">↗</span></a>' : "") + "</li>";
       });
       out.innerHTML = h + "</ol>";
     }
