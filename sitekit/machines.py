@@ -19,9 +19,20 @@ def _slug(t):
 
 
 def write_assets():
-    if not SRC.exists():
+    parts = sorted((ROOT / "data" / "machines").glob("part-*.json"))
+    if SRC.exists():
+        d = json.loads(SRC.read_text(encoding="utf-8"))
+    elif parts:
+        # data/machines.json is split in parts (the GitHub connector caps one push near 1 MB per call)
+        d = None
+        for pf in parts:
+            x = json.loads(pf.read_text(encoding="utf-8"))
+            if d is None:
+                d = x
+            else:
+                d["machines"] += x["machines"]
+    else:
         return 0
-    d = json.loads(SRC.read_text(encoding="utf-8"))
     brands, shards, rows, det = [], [], [], {}
     for m in d["machines"]:
         if m["brand"] not in brands:
